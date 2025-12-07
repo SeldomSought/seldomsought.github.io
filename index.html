@@ -753,6 +753,54 @@
             font-size: 1.5rem;
             color: var(--dark-text);
             cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .mobile-nav-links {
+            display: none;
+            position: fixed;
+            top: 70px;
+            left: 0;
+            right: 0;
+            background: rgba(249, 247, 244, 0.98);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            border-bottom: 1px solid var(--border-color);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .mobile-nav-links.active {
+            display: block;
+        }
+
+        .mobile-nav-links ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .mobile-nav-links a {
+            text-decoration: none;
+            color: var(--dark-text);
+            font-weight: 500;
+            font-size: 1.1rem;
+            padding: 0.8rem 1rem;
+            display: block;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-nav-links a:hover {
+            background: var(--primary-green);
+            color: white;
+        }
+
+        .mobile-nav-links .cta-button {
+            background: var(--primary-green);
+            color: white;
+            text-align: center;
+            margin-top: 0.5rem;
         }
 
         /* Responsive */
@@ -858,15 +906,25 @@
     <!-- Navigation -->
     <nav id="navbar">
         <div class="nav-container">
-            <a href="#" class="logo">SeldomSought</a>
-            <button class="mobile-menu-toggle">☰</button>
+            <a href="index.html" class="logo">SeldomSought</a>
+            <button class="mobile-menu-toggle" id="mobileMenuToggle">☰</button>
             <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#philosophy">Philosophy</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#expertise">Expertise</a></li>
-                <li><a href="#faq">FAQ</a></li>
-                <li><a href="#contact" class="cta-button">Book Consultation</a></li>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="philosophy.html">Philosophy</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="expertise.html">Expertise</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="contact.html" class="cta-button">Book Consultation</a></li>
+            </ul>
+        </div>
+        <div class="mobile-nav-links" id="mobileNavLinks">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="philosophy.html">Philosophy</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="expertise.html">Expertise</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="contact.html" class="cta-button">Book Consultation</a></li>
             </ul>
         </div>
     </nav>
@@ -879,8 +937,8 @@
                 <p class="tagline">Providing answers to questions you didn't know existed.</p>
                 <p>We specialize in uncovering rare knowledge, forgotten wisdom, and obscure information that lies beyond conventional research. From historical mysteries to specialized inquiries, we navigate the depths of human knowledge to bring you answers that others overlook.</p>
                 <div class="hero-buttons">
-                    <a href="#services" class="btn-primary">Explore Services</a>
-                    <a href="#philosophy" class="btn-secondary">Our Philosophy</a>
+                    <a href="services.html" class="btn-primary">Explore Services</a>
+                    <a href="philosophy.html" class="btn-secondary">Our Philosophy</a>
                 </div>
             </div>
             <div class="hero-visual">
@@ -910,303 +968,6 @@
         </div>
     </section>
 
-    <!-- Philosophy Section -->
-    <section class="philosophy scroll-reveal" id="philosophy">
-        <div class="section-header">
-            <h2>Our Philosophy</h2>
-            <p class="subtitle">In pursuit of the extraordinary</p>
-        </div>
-        <div class="philosophy-content">
-            <div class="philosophy-text">
-                <p>In an age of instant information, true knowledge has become paradoxically more elusive. While search engines provide surface-level answers, they often miss the nuanced, the forgotten, and the deliberately obscure.</p>
-
-                <p>At SeldomSought, we believe that the most valuable insights lie in the margins of mainstream knowledge—in dusty archives, specialist publications, oral traditions, and the collective wisdom of experts across diverse fields.</p>
-
-                <div class="quote">
-                    "The questions you don't know to ask are often more important than the answers you seek."
-                </div>
-
-                <p>Our mission is to bridge the gap between curiosity and discovery, helping individuals, researchers, and organizations access information that traditional methods fail to uncover.</p>
-            </div>
-            <div class="philosophy-features">
-                <div class="feature-item">
-                    <h3>Deep Research</h3>
-                    <p>We don't stop at Google page one. Our researchers delve into academic databases, historical archives, and specialist networks to find what others miss.</p>
-                </div>
-                <div class="feature-item">
-                    <h3>Expert Networks</h3>
-                    <p>Access to over 500 subject matter experts across disciplines ensures we can tackle questions from medieval manuscripts to quantum physics.</p>
-                </div>
-                <div class="feature-item">
-                    <h3>Context & Synthesis</h3>
-                    <p>Information without context is just noise. We provide comprehensive analysis and cross-disciplinary insights that make findings actionable.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Services Section -->
-    <section class="services scroll-reveal" id="services">
-        <div class="section-header">
-            <h2>Our Services</h2>
-            <p class="subtitle">Tailored research for every inquiry</p>
-        </div>
-        <div class="services-grid">
-            <div class="service-card">
-                <div class="service-icon">📚</div>
-                <h3>Historical Research</h3>
-                <p>Uncover genealogies, trace historical events, authenticate artifacts, and explore the stories that shaped our world.</p>
-                <ul>
-                    <li>Family genealogy & lineage</li>
-                    <li>Historical documentation</li>
-                    <li>Archival research</li>
-                    <li>Provenance verification</li>
-                    <li>Lost records recovery</li>
-                </ul>
-                <a href="#contact" class="service-link">Learn more →</a>
-            </div>
-
-            <div class="service-card">
-                <div class="service-icon">🔬</div>
-                <h3>Scientific Inquiry</h3>
-                <p>Access cutting-edge research, specialized studies, and expert analysis across all scientific disciplines.</p>
-                <ul>
-                    <li>Literature reviews</li>
-                    <li>Expert consultations</li>
-                    <li>Data analysis</li>
-                    <li>Methodology verification</li>
-                    <li>Cross-disciplinary synthesis</li>
-                </ul>
-                <a href="#contact" class="service-link">Learn more →</a>
-            </div>
-
-            <div class="service-card">
-                <div class="service-icon">🗺️</div>
-                <h3>Cultural & Linguistic</h3>
-                <p>Navigate the complexities of language, culture, and tradition across societies and throughout history.</p>
-                <ul>
-                    <li>Translation & interpretation</li>
-                    <li>Cultural context analysis</li>
-                    <li>Dialectal research</li>
-                    <li>Ancient texts decipherment</li>
-                    <li>Anthropological insights</li>
-                </ul>
-                <a href="#contact" class="service-link">Learn more →</a>
-            </div>
-
-            <div class="service-card">
-                <div class="service-icon">⚖️</div>
-                <h3>Legal & Regulatory</h3>
-                <p>Comprehensive legal research, precedent analysis, and regulatory navigation across jurisdictions.</p>
-                <ul>
-                    <li>Case law research</li>
-                    <li>Regulatory compliance</li>
-                    <li>International law</li>
-                    <li>Historical legislation</li>
-                    <li>Expert testimony support</li>
-                </ul>
-                <a href="#contact" class="service-link">Learn more →</a>
-            </div>
-
-            <div class="service-card">
-                <div class="service-icon">🎨</div>
-                <h3>Arts & Humanities</h3>
-                <p>Explore artistic movements, literary traditions, philosophical concepts, and creative heritage.</p>
-                <ul>
-                    <li>Art authentication</li>
-                    <li>Literary analysis</li>
-                    <li>Music history</li>
-                    <li>Philosophical research</li>
-                    <li>Cultural heritage studies</li>
-                </ul>
-                <a href="#contact" class="service-link">Learn more →</a>
-            </div>
-
-            <div class="service-card">
-                <div class="service-icon">💼</div>
-                <h3>Specialized Consulting</h3>
-                <p>Custom research projects tailored to unique needs, from due diligence to competitive intelligence.</p>
-                <ul>
-                    <li>Industry analysis</li>
-                    <li>Background research</li>
-                    <li>Risk assessment</li>
-                    <li>Opportunity identification</li>
-                    <li>Strategic insights</li>
-                </ul>
-                <a href="#contact" class="service-link">Learn more →</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Expertise Areas -->
-    <section class="expertise scroll-reveal" id="expertise">
-        <div class="section-header">
-            <h2>Areas of Expertise</h2>
-            <p class="subtitle">Spanning the breadth of human knowledge</p>
-        </div>
-        <div class="expertise-grid">
-            <div class="expertise-item">
-                <h4>Ancient Civilizations</h4>
-                <p>Mesopotamia to Mesoamerica</p>
-            </div>
-            <div class="expertise-item">
-                <h4>Medieval Studies</h4>
-                <p>European & Islamic traditions</p>
-            </div>
-            <div class="expertise-item">
-                <h4>Renaissance Art</h4>
-                <p>Techniques & provenance</p>
-            </div>
-            <div class="expertise-item">
-                <h4>Natural Sciences</h4>
-                <p>Biology, Chemistry, Physics</p>
-            </div>
-            <div class="expertise-item">
-                <h4>Ancient Languages</h4>
-                <p>Latin, Greek, Sanskrit, more</p>
-            </div>
-            <div class="expertise-item">
-                <h4>Philosophy</h4>
-                <p>Western & Eastern traditions</p>
-            </div>
-            <div class="expertise-item">
-                <h4>Rare Books</h4>
-                <p>Bibliography & authentication</p>
-            </div>
-            <div class="expertise-item">
-                <h4>Maritime History</h4>
-                <p>Navigation & exploration</p>
-            </div>
-            <div class="expertise-item">
-                <h4>Cryptography</h4>
-                <p>Historical & modern codes</p>
-            </div>
-            <div class="expertise-item">
-                <h4>Numismatics</h4>
-                <p>Currency & economic history</p>
-            </div>
-            <div class="expertise-item">
-                <h4>Folklore & Mythology</h4>
-                <p>Global oral traditions</p>
-            </div>
-            <div class="expertise-item">
-                <h4>Esoteric Studies</h4>
-                <p>Alchemy, mysticism, occult</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ Section -->
-    <section class="faq scroll-reveal" id="faq">
-        <div class="section-header">
-            <h2>Frequently Asked Questions</h2>
-            <p class="subtitle">Everything you need to know</p>
-        </div>
-        <div class="faq-container">
-            <div class="faq-item">
-                <div class="faq-question">What makes SeldomSought different from traditional research services?</div>
-                <div class="faq-answer">
-                    <p>While traditional research services focus on readily available information, we specialize in the obscure, the forgotten, and the deliberately hidden. Our team includes specialists in rare fields, access to restricted archives, and relationships with experts worldwide. We tackle questions that conventional researchers wouldn't know how to approach.</p>
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-question">How long does a typical research project take?</div>
-                <div class="faq-answer">
-                    <p>Project timelines vary dramatically based on complexity. Simple inquiries might be resolved in 24-48 hours, while comprehensive historical research or multi-disciplinary projects can take weeks or months. We provide realistic timelines during the consultation phase and maintain transparent communication throughout the process.</p>
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-question">Can you research topics in languages other than English?</div>
-                <div class="faq-answer">
-                    <p>Absolutely. Our network includes researchers fluent in over 40 modern languages and specialists in ancient languages including Latin, Ancient Greek, Sanskrit, Classical Chinese, Aramaic, and many others. We regularly conduct research across linguistic and cultural boundaries.</p>
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-question">What if my question seems too obscure or impossible to answer?</div>
-                <div class="faq-answer">
-                    <p>Obscure questions are our specialty. While we can't guarantee answers to every question, we have a 95% success rate even with seemingly impossible inquiries. We'll provide an honest assessment during consultation and explore creative approaches to finding answers. Many "impossible" questions simply require unconventional thinking.</p>
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-question">How do you ensure the accuracy of your research?</div>
-                <div class="faq-answer">
-                    <p>Every finding undergoes rigorous verification. We cross-reference multiple primary sources, consult subject matter experts, and employ peer review processes. All research includes detailed citations, methodology documentation, and confidence assessments. We distinguish between established facts, probable interpretations, and speculative conclusions.</p>
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-question">Do you maintain confidentiality for sensitive research?</div>
-                <div class="faq-answer">
-                    <p>Absolutely. We maintain strict confidentiality for all client projects. Non-disclosure agreements are available upon request. Our researchers are bound by professional ethics, and we employ secure communication channels and data protection protocols for sensitive inquiries.</p>
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-question">What types of deliverables do you provide?</div>
-                <div class="faq-answer">
-                    <p>Deliverables are tailored to your needs. Standard reports include comprehensive findings, source documentation, visual materials where relevant, and executive summaries. We can also provide presentations, expert consultations, ongoing research support, or customized formats to suit your specific requirements.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials -->
-    <section class="testimonials scroll-reveal">
-        <div class="section-header">
-            <h2>What Our Clients Say</h2>
-            <p class="subtitle">Trust built through exceptional service</p>
-        </div>
-        <div class="testimonials-grid">
-            <div class="testimonial-card">
-                <p class="testimonial-text">SeldomSought uncovered details about my great-grandfather's immigration that had eluded three previous researchers. Their knowledge of obscure 19th-century European archives is remarkable.</p>
-                <div class="testimonial-author">
-                    <div class="author-avatar">EM</div>
-                    <div class="author-info">
-                        <h5>Elizabeth Morrison</h5>
-                        <p>Genealogy Client</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="testimonial-card">
-                <p class="testimonial-text">Their analysis of a 16th-century manuscript required expertise in paleography, Renaissance Latin, and alchemical symbolism. The team delivered insights that fundamentally changed our understanding of the text.</p>
-                <div class="testimonial-author">
-                    <div class="author-avatar">DR</div>
-                    <div class="author-info">
-                        <h5>Dr. Robert Chen</h5>
-                        <p>University Professor</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="testimonial-card">
-                <p class="testimonial-text">We needed obscure regulatory precedents across multiple jurisdictions. SeldomSought's research was not only comprehensive but delivered with the kind of analytical depth that proved invaluable in court.</p>
-                <div class="testimonial-author">
-                    <div class="author-avatar">SH</div>
-                    <div class="author-info">
-                        <h5>Sarah Hamilton</h5>
-                        <p>Legal Partner</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Newsletter -->
-    <section class="newsletter scroll-reveal" id="contact">
-        <div class="section-header">
-            <h2>Stay Curious</h2>
-            <p style="color: rgba(255, 255, 255, 0.95);">Subscribe to receive monthly insights into fascinating research discoveries</p>
-        </div>
-        <form class="newsletter-form" onsubmit="return false;">
-            <input type="email" placeholder="Enter your email address" required>
-            <button type="submit">Subscribe</button>
-        </form>
-    </section>
 
     <!-- Footer -->
     <footer>
@@ -1218,31 +979,31 @@
             <div class="footer-links">
                 <h4>Services</h4>
                 <ul>
-                    <li><a href="#services">Historical Research</a></li>
-                    <li><a href="#services">Scientific Inquiry</a></li>
-                    <li><a href="#services">Cultural Studies</a></li>
-                    <li><a href="#services">Legal Research</a></li>
-                    <li><a href="#services">Arts & Humanities</a></li>
+                    <li><a href="services.html">Historical Research</a></li>
+                    <li><a href="services.html">Scientific Inquiry</a></li>
+                    <li><a href="services.html">Cultural Studies</a></li>
+                    <li><a href="services.html">Legal Research</a></li>
+                    <li><a href="services.html">Arts & Humanities</a></li>
                 </ul>
             </div>
             <div class="footer-links">
                 <h4>Company</h4>
                 <ul>
-                    <li><a href="#philosophy">About Us</a></li>
-                    <li><a href="#expertise">Expertise</a></li>
-                    <li><a href="#faq">FAQ</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                    <li><a href="#contact">Book Consultation</a></li>
+                    <li><a href="philosophy.html">About Us</a></li>
+                    <li><a href="expertise.html">Expertise</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="contact.html">Book Consultation</a></li>
                 </ul>
             </div>
             <div class="footer-links">
                 <h4>Resources</h4>
                 <ul>
-                    <li><a href="#faq">Knowledge Base</a></li>
-                    <li><a href="#contact">Case Studies</a></li>
-                    <li><a href="#contact">Research Blog</a></li>
-                    <li><a href="#contact">Privacy Policy</a></li>
-                    <li><a href="#contact">Terms of Service</a></li>
+                    <li><a href="faq.html">Knowledge Base</a></li>
+                    <li><a href="contact.html">Case Studies</a></li>
+                    <li><a href="contact.html">Research Blog</a></li>
+                    <li><a href="contact.html">Privacy Policy</a></li>
+                    <li><a href="contact.html">Terms of Service</a></li>
                 </ul>
             </div>
         </div>
@@ -1262,22 +1023,27 @@
             }
         });
 
-        // FAQ accordion
-        document.querySelectorAll('.faq-question').forEach(question => {
-            question.addEventListener('click', function() {
-                const faqItem = this.parentElement;
-                const isActive = faqItem.classList.contains('active');
+        // Mobile menu toggle
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const mobileNavLinks = document.getElementById('mobileNavLinks');
 
-                // Close all FAQ items
-                document.querySelectorAll('.faq-item').forEach(item => {
-                    item.classList.remove('active');
-                });
+        mobileMenuToggle.addEventListener('click', function() {
+            mobileNavLinks.classList.toggle('active');
 
-                // Open clicked item if it wasn't active
-                if (!isActive) {
-                    faqItem.classList.add('active');
-                }
-            });
+            // Change icon
+            if (mobileNavLinks.classList.contains('active')) {
+                mobileMenuToggle.textContent = '✕';
+            } else {
+                mobileMenuToggle.textContent = '☰';
+            }
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!event.target.closest('nav')) {
+                mobileNavLinks.classList.remove('active');
+                mobileMenuToggle.textContent = '☰';
+            }
         });
 
         // Scroll reveal animation
@@ -1296,32 +1062,6 @@
 
         window.addEventListener('scroll', revealOnScroll);
         revealOnScroll(); // Initial check
-
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                const href = this.getAttribute('href');
-                if (href !== '#' && href.length > 1) {
-                    e.preventDefault();
-                    const target = document.querySelector(href);
-                    if (target) {
-                        const offsetTop = target.offsetTop - 80;
-                        window.scrollTo({
-                            top: offsetTop,
-                            behavior: 'smooth'
-                        });
-                    }
-                }
-            });
-        });
-
-        // Newsletter form submission
-        document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const email = this.querySelector('input[type="email"]').value;
-            alert('Thank you for subscribing! You will receive our monthly newsletter at ' + email);
-            this.reset();
-        });
 
         // Service worker registration (if sw.js exists)
         if ('serviceWorker' in navigator) {
