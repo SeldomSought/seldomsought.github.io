@@ -4,72 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SeldomSought - Providing Answers to Questions You Didn't Know Existed</title>
-
-    <!-- Meta Tags -->
-    <meta name="description" content="SeldomSought specializes in uncovering rare knowledge, forgotten wisdom, and answers to questions you didn't know existed. Expert research and consultation services.">
-    <meta name="keywords" content="rare knowledge, research, consultation, obscure information, historical research, specialized knowledge">
-
-    <!-- Open Graph -->
-    <meta property="og:site_name" content="SeldomSought"/>
-    <meta property="og:title" content="SeldomSought - Rare Knowledge & Research"/>
-    <meta property="og:description" content="Providing answers to questions you didn't know existed."/>
-    <meta property="og:type" content="website"/>
-    <meta property="og:image" content="https://img1.wsimg.com/isteam/ip/1ccf137f-e768-42fa-ac89-15fa5230f59d/b52a34679636d532da8d08a54fc92f55.jpg"/>
-    <meta property="og:locale" content="en_US"/>
-
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image"/>
-    <meta name="twitter:title" content="SeldomSought"/>
-    <meta name="twitter:description" content="Providing answers to questions you didn't know existed."/>
-    <meta name="twitter:image" content="https://img1.wsimg.com/isteam/ip/1ccf137f-e768-42fa-ac89-15fa5230f59d/b52a34679636d532da8d08a54fc92f55.jpg"/>
-
-    <!-- Theme Color -->
+    <meta name="description" content="SeldomSought specializes in uncovering rare knowledge, forgotten wisdom, and answers to questions you didn't know existed.">
     <meta name="theme-color" content="#088a33"/>
-
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&family=Cabin:wght@400;500;600;700&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&family=Cabin:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --primary-green: #088a33;
-            --dark-green: #065a22;
-            --light-green: #0fb346;
-            --cream: #f9f7f4;
-            --dark-text: #1a1a1a;
-            --medium-text: #4a4a4a;
-            --light-text: #757575;
-            --border-color: #e0ddd9;
-        }
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        html {
-            scroll-behavior: smooth;
+        :root {
+            --green: #088a33;
+            --dark: #1a1a1a;
+            --light: #f9f7f4;
         }
 
         body {
             font-family: 'Cabin', sans-serif;
-            color: var(--dark-text);
-            background-color: var(--cream);
-            line-height: 1.7;
-            overflow-x: hidden;
+            color: var(--dark);
+            background: var(--light);
+            line-height: 1.6;
         }
 
-        h1, h2, h3, h4, h5, h6 {
+        h1, h2, h3, h4 {
             font-family: 'Old Standard TT', serif;
-            font-weight: 700;
-            line-height: 1.3;
-            margin-bottom: 1rem;
-        }
-
-        .serif {
-            font-family: 'Old Standard TT', serif;
+            font-weight: 400;
         }
 
         /* Navigation */
@@ -78,20 +40,14 @@
             top: 0;
             width: 100%;
             background: rgba(249, 247, 244, 0.95);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            border-bottom: 1px solid var(--border-color);
-            transition: all 0.3s ease;
-        }
-
-        nav.scrolled {
-            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            border-bottom: 1px solid #e0e0e0;
+            z-index: 100;
         }
 
         .nav-container {
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 1.2rem 2rem;
+            padding: 1.5rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -99,692 +55,170 @@
 
         .logo {
             font-family: 'Old Standard TT', serif;
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--primary-green);
+            font-size: 1.5rem;
+            color: var(--green);
             text-decoration: none;
-            letter-spacing: 1px;
         }
 
         .nav-links {
             display: flex;
-            gap: 2.5rem;
+            gap: 2rem;
             list-style: none;
         }
 
         .nav-links a {
             text-decoration: none;
-            color: var(--dark-text);
-            font-weight: 500;
+            color: var(--dark);
             font-size: 0.95rem;
-            transition: color 0.3s ease;
-            position: relative;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--primary-green);
-            transition: width 0.3s ease;
+            transition: color 0.2s;
         }
 
         .nav-links a:hover {
-            color: var(--primary-green);
+            color: var(--green);
         }
 
-        .nav-links a:hover::after {
-            width: 100%;
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark);
         }
 
-        .cta-button {
-            background: var(--primary-green);
-            color: white;
-            padding: 0.7rem 1.8rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            border: 2px solid var(--primary-green);
+        .mobile-menu {
+            display: none;
         }
 
-        .cta-button:hover {
-            background: var(--dark-green);
-            border-color: var(--dark-green);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(8, 138, 51, 0.3);
-        }
-
-        /* Hero Section */
+        /* Hero */
         .hero {
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, #f9f7f4 0%, #e8f5ee 100%);
-            position: relative;
-            overflow: hidden;
-            padding-top: 80px;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -20%;
-            width: 800px;
-            height: 800px;
-            background: radial-gradient(circle, rgba(8, 138, 51, 0.1) 0%, transparent 70%);
-            border-radius: 50%;
+            text-align: center;
+            padding: 6rem 2rem 4rem;
         }
 
         .hero-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 2rem;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-            position: relative;
-            z-index: 1;
+            max-width: 800px;
         }
 
-        .hero-text h1 {
-            font-size: 4.5rem;
-            color: var(--dark-text);
+        h1 {
+            font-size: 3.5rem;
             margin-bottom: 1.5rem;
-            line-height: 1.1;
+            color: var(--dark);
         }
 
-        .hero-text .tagline {
-            font-size: 1.5rem;
+        .tagline {
             font-family: 'Old Standard TT', serif;
             font-style: italic;
-            color: var(--primary-green);
+            font-size: 1.3rem;
+            color: var(--green);
             margin-bottom: 2rem;
         }
 
-        .hero-text p {
-            font-size: 1.15rem;
-            color: var(--medium-text);
+        .hero p {
+            font-size: 1.1rem;
+            line-height: 1.8;
             margin-bottom: 2.5rem;
-            max-width: 550px;
+            color: #4a4a4a;
         }
 
-        .hero-buttons {
+        .buttons {
             display: flex;
-            gap: 1.5rem;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.9rem 2rem;
+            text-decoration: none;
+            border-radius: 3px;
+            font-weight: 500;
+            transition: all 0.2s;
         }
 
         .btn-primary {
-            background: var(--primary-green);
+            background: var(--green);
             color: white;
-            padding: 1rem 2.5rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            border: 2px solid var(--primary-green);
-            display: inline-block;
+            border: 2px solid var(--green);
         }
 
         .btn-primary:hover {
-            background: var(--dark-green);
-            border-color: var(--dark-green);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(8, 138, 51, 0.3);
+            background: #065a22;
+            border-color: #065a22;
         }
 
         .btn-secondary {
             background: transparent;
-            color: var(--primary-green);
-            padding: 1rem 2.5rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            border: 2px solid var(--primary-green);
-            display: inline-block;
+            color: var(--green);
+            border: 2px solid var(--green);
         }
 
         .btn-secondary:hover {
-            background: var(--primary-green);
+            background: var(--green);
             color: white;
-            transform: translateY(-2px);
-        }
-
-        .hero-visual {
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .visual-box {
-            background: white;
-            padding: 3rem;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
-            text-align: center;
-        }
-
-        .visual-box h3 {
-            font-size: 2rem;
-            color: var(--primary-green);
-            margin-bottom: 1rem;
-        }
-
-        .visual-stats {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .stat {
-            text-align: center;
-        }
-
-        .stat-number {
-            font-family: 'Old Standard TT', serif;
-            font-size: 3rem;
-            font-weight: 700;
-            color: var(--primary-green);
-            display: block;
-        }
-
-        .stat-label {
-            color: var(--medium-text);
-            font-size: 0.9rem;
-        }
-
-        /* Section Styles */
-        section {
-            padding: 6rem 2rem;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .section-header h2 {
-            font-size: 3rem;
-            color: var(--dark-text);
-            margin-bottom: 1rem;
-        }
-
-        .section-header .subtitle {
-            font-family: 'Old Standard TT', serif;
-            font-style: italic;
-            font-size: 1.3rem;
-            color: var(--primary-green);
-        }
-
-        /* Philosophy Section */
-        .philosophy {
-            background: white;
-        }
-
-        .philosophy-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .philosophy-text {
-            font-size: 1.1rem;
-            line-height: 1.9;
-            color: var(--medium-text);
-        }
-
-        .philosophy-text p {
-            margin-bottom: 1.5rem;
-        }
-
-        .philosophy-text .quote {
-            font-family: 'Old Standard TT', serif;
-            font-size: 1.5rem;
-            font-style: italic;
-            color: var(--primary-green);
-            padding: 2rem;
-            border-left: 4px solid var(--primary-green);
-            margin: 2rem 0;
-            background: var(--cream);
-        }
-
-        .philosophy-features {
-            display: grid;
-            gap: 2rem;
-        }
-
-        .feature-item {
-            background: var(--cream);
-            padding: 2rem;
-            border-radius: 15px;
-            transition: all 0.3s ease;
-        }
-
-        .feature-item:hover {
-            transform: translateX(10px);
-            box-shadow: -5px 0 0 var(--primary-green);
-        }
-
-        .feature-item h3 {
-            color: var(--primary-green);
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .feature-item p {
-            color: var(--medium-text);
-        }
-
-        /* Services Section */
-        .services {
-            background: var(--cream);
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2.5rem;
-        }
-
-        .service-card {
-            background: white;
-            padding: 2.5rem;
-            border-radius: 20px;
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-        }
-
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-            border-color: var(--primary-green);
-        }
-
-        .service-icon {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .service-card h3 {
-            font-size: 1.8rem;
-            color: var(--dark-text);
-            margin-bottom: 1rem;
-        }
-
-        .service-card p {
-            color: var(--medium-text);
-            margin-bottom: 1.5rem;
-        }
-
-        .service-card ul {
-            list-style: none;
-            margin-bottom: 1.5rem;
-        }
-
-        .service-card li {
-            color: var(--medium-text);
-            padding: 0.5rem 0;
-            padding-left: 1.5rem;
-            position: relative;
-        }
-
-        .service-card li::before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            color: var(--primary-green);
-            font-weight: bold;
-        }
-
-        .service-link {
-            color: var(--primary-green);
-            text-decoration: none;
-            font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: gap 0.3s ease;
-        }
-
-        .service-link:hover {
-            gap: 1rem;
-        }
-
-        /* Expertise Areas */
-        .expertise {
-            background: linear-gradient(135deg, var(--dark-green) 0%, var(--primary-green) 100%);
-            color: white;
-        }
-
-        .expertise .section-header h2,
-        .expertise .section-header .subtitle {
-            color: white;
-        }
-
-        .expertise-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-        }
-
-        .expertise-item {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            padding: 2rem;
-            border-radius: 15px;
-            text-align: center;
-            transition: all 0.3s ease;
-            border: 2px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .expertise-item:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-5px);
-        }
-
-        .expertise-item h4 {
-            font-size: 1.3rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .expertise-item p {
-            font-size: 0.95rem;
-            opacity: 0.9;
-        }
-
-        /* FAQ Section */
-        .faq {
-            background: white;
-        }
-
-        .faq-container {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .faq-item {
-            background: var(--cream);
-            margin-bottom: 1.5rem;
-            border-radius: 15px;
-            overflow: hidden;
-            border: 2px solid transparent;
-            transition: all 0.3s ease;
-        }
-
-        .faq-item:hover {
-            border-color: var(--primary-green);
-        }
-
-        .faq-question {
-            font-family: 'Old Standard TT', serif;
-            font-size: 1.3rem;
-            color: var(--dark-text);
-            padding: 1.5rem 2rem;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-weight: 600;
-        }
-
-        .faq-question::after {
-            content: '+';
-            font-size: 2rem;
-            color: var(--primary-green);
-            transition: transform 0.3s ease;
-        }
-
-        .faq-item.active .faq-question::after {
-            transform: rotate(45deg);
-        }
-
-        .faq-answer {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease;
-            padding: 0 2rem;
-        }
-
-        .faq-item.active .faq-answer {
-            max-height: 500px;
-            padding: 0 2rem 1.5rem 2rem;
-        }
-
-        .faq-answer p {
-            color: var(--medium-text);
-            line-height: 1.8;
-        }
-
-        /* Testimonials */
-        .testimonials {
-            background: var(--cream);
-        }
-
-        .testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2.5rem;
-        }
-
-        .testimonial-card {
-            background: white;
-            padding: 2.5rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            position: relative;
-        }
-
-        .testimonial-card::before {
-            content: '"';
-            position: absolute;
-            top: 1rem;
-            left: 1.5rem;
-            font-size: 6rem;
-            font-family: 'Old Standard TT', serif;
-            color: rgba(8, 138, 51, 0.1);
-            line-height: 1;
-        }
-
-        .testimonial-text {
-            font-style: italic;
-            color: var(--medium-text);
-            margin-bottom: 1.5rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .author-avatar {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: var(--primary-green);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: bold;
-            font-size: 1.2rem;
-        }
-
-        .author-info h5 {
-            color: var(--dark-text);
-            font-size: 1.1rem;
-            margin-bottom: 0.2rem;
-        }
-
-        .author-info p {
-            color: var(--light-text);
-            font-size: 0.9rem;
-        }
-
-        /* Newsletter */
-        .newsletter {
-            background: linear-gradient(135deg, var(--primary-green) 0%, var(--dark-green) 100%);
-            color: white;
-            text-align: center;
-        }
-
-        .newsletter h2 {
-            color: white;
-            font-size: 2.5rem;
-        }
-
-        .newsletter p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            opacity: 0.95;
-        }
-
-        .newsletter-form {
-            max-width: 600px;
-            margin: 0 auto;
-            display: flex;
-            gap: 1rem;
-        }
-
-        .newsletter-form input {
-            flex: 1;
-            padding: 1rem 1.5rem;
-            border: none;
-            border-radius: 50px;
-            font-size: 1rem;
-            font-family: 'Cabin', sans-serif;
-        }
-
-        .newsletter-form button {
-            background: var(--dark-text);
-            color: white;
-            padding: 1rem 2.5rem;
-            border: none;
-            border-radius: 50px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-family: 'Cabin', sans-serif;
-        }
-
-        .newsletter-form button:hover {
-            background: #000;
-            transform: translateY(-2px);
         }
 
         /* Footer */
         footer {
-            background: var(--dark-text);
+            background: var(--dark);
             color: white;
-            padding: 4rem 2rem 2rem 2rem;
+            padding: 3rem 2rem 2rem;
+            margin-top: 4rem;
         }
 
         .footer-content {
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
+            grid-template-columns: 2fr 1fr 1fr;
             gap: 3rem;
-            margin-bottom: 3rem;
+            margin-bottom: 2rem;
         }
 
-        .footer-about h3 {
-            font-size: 1.8rem;
-            color: var(--light-green);
-            margin-bottom: 1rem;
-        }
-
-        .footer-about p {
-            color: rgba(255, 255, 255, 0.8);
-            line-height: 1.8;
-        }
-
-        .footer-links h4 {
-            color: var(--light-green);
-            margin-bottom: 1rem;
+        .footer-section h3 {
             font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: #0fb346;
         }
 
-        .footer-links ul {
+        .footer-section p {
+            color: rgba(255,255,255,0.8);
+            line-height: 1.7;
+        }
+
+        .footer-links {
             list-style: none;
         }
 
         .footer-links a {
-            color: rgba(255, 255, 255, 0.8);
+            color: rgba(255,255,255,0.8);
             text-decoration: none;
             display: block;
-            padding: 0.5rem 0;
-            transition: color 0.3s ease;
+            padding: 0.3rem 0;
+            transition: color 0.2s;
         }
 
         .footer-links a:hover {
-            color: var(--light-green);
-            padding-left: 5px;
+            color: white;
         }
 
         .footer-bottom {
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
             padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 1px solid rgba(255,255,255,0.1);
             text-align: center;
-            color: rgba(255, 255, 255, 0.6);
+            color: rgba(255,255,255,0.6);
+            font-size: 0.9rem;
         }
 
-        /* Mobile Menu */
-        .mobile-menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            color: var(--dark-text);
-            cursor: pointer;
-        }
-
-        /* Responsive */
-        @media (max-width: 1024px) {
-            .hero-content {
-                grid-template-columns: 1fr;
-                gap: 3rem;
-            }
-
-            .hero-text h1 {
-                font-size: 3.5rem;
-            }
-
-            .services-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .expertise-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .testimonials-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .footer-content {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-
+        /* Mobile */
         @media (max-width: 768px) {
-            .mobile-menu-toggle {
+            .menu-toggle {
                 display: block;
             }
 
@@ -792,545 +226,140 @@
                 display: none;
             }
 
-            .hero-text h1 {
+            .mobile-menu {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background: rgba(249, 247, 244, 0.98);
+                border-bottom: 1px solid #e0e0e0;
+                padding: 1rem 2rem;
+            }
+
+            .mobile-menu.active {
+                display: block;
+            }
+
+            .mobile-menu ul {
+                list-style: none;
+            }
+
+            .mobile-menu a {
+                display: block;
+                padding: 0.8rem 0;
+                text-decoration: none;
+                color: var(--dark);
+                border-bottom: 1px solid #f0f0f0;
+            }
+
+            .mobile-menu a:hover {
+                color: var(--green);
+            }
+
+            h1 {
                 font-size: 2.5rem;
             }
 
-            .hero-text .tagline {
-                font-size: 1.2rem;
+            .tagline {
+                font-size: 1.1rem;
             }
 
-            .hero-buttons {
-                flex-direction: column;
-            }
-
-            .services-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .expertise-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .philosophy-content {
-                grid-template-columns: 1fr;
-            }
-
-            .newsletter-form {
+            .buttons {
                 flex-direction: column;
             }
 
             .footer-content {
                 grid-template-columns: 1fr;
+                gap: 2rem;
             }
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .fade-in-up {
-            animation: fadeInUp 0.8s ease-out;
-        }
-
-        /* Scroll Animations */
-        .scroll-reveal {
-            opacity: 0;
-            transform: translateY(50px);
-            transition: all 0.6s ease-out;
-        }
-
-        .scroll-reveal.revealed {
-            opacity: 1;
-            transform: translateY(0);
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav id="navbar">
+    <nav>
         <div class="nav-container">
-            <a href="#" class="logo">SeldomSought</a>
-            <button class="mobile-menu-toggle">☰</button>
+            <a href="index.html" class="logo">SeldomSought</a>
+            <button class="menu-toggle" id="menuToggle">☰</button>
             <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#philosophy">Philosophy</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#expertise">Expertise</a></li>
-                <li><a href="#faq">FAQ</a></li>
-                <li><a href="#contact" class="cta-button">Book Consultation</a></li>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="philosophy.html">Philosophy</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="expertise.html">Expertise</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+        <div class="mobile-menu" id="mobileMenu">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="philosophy.html">Philosophy</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="expertise.html">Expertise</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="contact.html">Contact</a></li>
             </ul>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="hero-content fade-in-up">
-            <div class="hero-text">
-                <h1>Seldom Sought</h1>
-                <p class="tagline">Providing answers to questions you didn't know existed.</p>
-                <p>We specialize in uncovering rare knowledge, forgotten wisdom, and obscure information that lies beyond conventional research. From historical mysteries to specialized inquiries, we navigate the depths of human knowledge to bring you answers that others overlook.</p>
-                <div class="hero-buttons">
-                    <a href="#services" class="btn-primary">Explore Services</a>
-                    <a href="#philosophy" class="btn-secondary">Our Philosophy</a>
-                </div>
-            </div>
-            <div class="hero-visual">
-                <div class="visual-box">
-                    <h3 class="serif">Unveiling the Unknown</h3>
-                    <p style="color: var(--medium-text); margin-bottom: 2rem;">Expertise in the extraordinary</p>
-                    <div class="visual-stats">
-                        <div class="stat">
-                            <span class="stat-number">500+</span>
-                            <span class="stat-label">Research Projects</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-number">95%</span>
-                            <span class="stat-label">Success Rate</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-number">50+</span>
-                            <span class="stat-label">Specializations</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-number">24/7</span>
-                            <span class="stat-label">Availability</span>
-                        </div>
-                    </div>
-                </div>
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Seldom Sought</h1>
+            <p class="tagline">Providing answers to questions you didn't know existed.</p>
+            <p>We specialize in uncovering rare knowledge, forgotten wisdom, and obscure information that lies beyond conventional research. From historical mysteries to specialized inquiries, we navigate the depths of human knowledge to bring you answers that others overlook.</p>
+            <div class="buttons">
+                <a href="services.html" class="btn btn-primary">Explore Services</a>
+                <a href="philosophy.html" class="btn btn-secondary">Our Philosophy</a>
             </div>
         </div>
     </section>
 
-    <!-- Philosophy Section -->
-    <section class="philosophy scroll-reveal" id="philosophy">
-        <div class="section-header">
-            <h2>Our Philosophy</h2>
-            <p class="subtitle">In pursuit of the extraordinary</p>
-        </div>
-        <div class="philosophy-content">
-            <div class="philosophy-text">
-                <p>In an age of instant information, true knowledge has become paradoxically more elusive. While search engines provide surface-level answers, they often miss the nuanced, the forgotten, and the deliberately obscure.</p>
-
-                <p>At SeldomSought, we believe that the most valuable insights lie in the margins of mainstream knowledge—in dusty archives, specialist publications, oral traditions, and the collective wisdom of experts across diverse fields.</p>
-
-                <div class="quote">
-                    "The questions you don't know to ask are often more important than the answers you seek."
-                </div>
-
-                <p>Our mission is to bridge the gap between curiosity and discovery, helping individuals, researchers, and organizations access information that traditional methods fail to uncover.</p>
-            </div>
-            <div class="philosophy-features">
-                <div class="feature-item">
-                    <h3>Deep Research</h3>
-                    <p>We don't stop at Google page one. Our researchers delve into academic databases, historical archives, and specialist networks to find what others miss.</p>
-                </div>
-                <div class="feature-item">
-                    <h3>Expert Networks</h3>
-                    <p>Access to over 500 subject matter experts across disciplines ensures we can tackle questions from medieval manuscripts to quantum physics.</p>
-                </div>
-                <div class="feature-item">
-                    <h3>Context & Synthesis</h3>
-                    <p>Information without context is just noise. We provide comprehensive analysis and cross-disciplinary insights that make findings actionable.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Services Section -->
-    <section class="services scroll-reveal" id="services">
-        <div class="section-header">
-            <h2>Our Services</h2>
-            <p class="subtitle">Tailored research for every inquiry</p>
-        </div>
-        <div class="services-grid">
-            <div class="service-card">
-                <div class="service-icon">📚</div>
-                <h3>Historical Research</h3>
-                <p>Uncover genealogies, trace historical events, authenticate artifacts, and explore the stories that shaped our world.</p>
-                <ul>
-                    <li>Family genealogy & lineage</li>
-                    <li>Historical documentation</li>
-                    <li>Archival research</li>
-                    <li>Provenance verification</li>
-                    <li>Lost records recovery</li>
-                </ul>
-                <a href="#contact" class="service-link">Learn more →</a>
-            </div>
-
-            <div class="service-card">
-                <div class="service-icon">🔬</div>
-                <h3>Scientific Inquiry</h3>
-                <p>Access cutting-edge research, specialized studies, and expert analysis across all scientific disciplines.</p>
-                <ul>
-                    <li>Literature reviews</li>
-                    <li>Expert consultations</li>
-                    <li>Data analysis</li>
-                    <li>Methodology verification</li>
-                    <li>Cross-disciplinary synthesis</li>
-                </ul>
-                <a href="#contact" class="service-link">Learn more →</a>
-            </div>
-
-            <div class="service-card">
-                <div class="service-icon">🗺️</div>
-                <h3>Cultural & Linguistic</h3>
-                <p>Navigate the complexities of language, culture, and tradition across societies and throughout history.</p>
-                <ul>
-                    <li>Translation & interpretation</li>
-                    <li>Cultural context analysis</li>
-                    <li>Dialectal research</li>
-                    <li>Ancient texts decipherment</li>
-                    <li>Anthropological insights</li>
-                </ul>
-                <a href="#contact" class="service-link">Learn more →</a>
-            </div>
-
-            <div class="service-card">
-                <div class="service-icon">⚖️</div>
-                <h3>Legal & Regulatory</h3>
-                <p>Comprehensive legal research, precedent analysis, and regulatory navigation across jurisdictions.</p>
-                <ul>
-                    <li>Case law research</li>
-                    <li>Regulatory compliance</li>
-                    <li>International law</li>
-                    <li>Historical legislation</li>
-                    <li>Expert testimony support</li>
-                </ul>
-                <a href="#contact" class="service-link">Learn more →</a>
-            </div>
-
-            <div class="service-card">
-                <div class="service-icon">🎨</div>
-                <h3>Arts & Humanities</h3>
-                <p>Explore artistic movements, literary traditions, philosophical concepts, and creative heritage.</p>
-                <ul>
-                    <li>Art authentication</li>
-                    <li>Literary analysis</li>
-                    <li>Music history</li>
-                    <li>Philosophical research</li>
-                    <li>Cultural heritage studies</li>
-                </ul>
-                <a href="#contact" class="service-link">Learn more →</a>
-            </div>
-
-            <div class="service-card">
-                <div class="service-icon">💼</div>
-                <h3>Specialized Consulting</h3>
-                <p>Custom research projects tailored to unique needs, from due diligence to competitive intelligence.</p>
-                <ul>
-                    <li>Industry analysis</li>
-                    <li>Background research</li>
-                    <li>Risk assessment</li>
-                    <li>Opportunity identification</li>
-                    <li>Strategic insights</li>
-                </ul>
-                <a href="#contact" class="service-link">Learn more →</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Expertise Areas -->
-    <section class="expertise scroll-reveal" id="expertise">
-        <div class="section-header">
-            <h2>Areas of Expertise</h2>
-            <p class="subtitle">Spanning the breadth of human knowledge</p>
-        </div>
-        <div class="expertise-grid">
-            <div class="expertise-item">
-                <h4>Ancient Civilizations</h4>
-                <p>Mesopotamia to Mesoamerica</p>
-            </div>
-            <div class="expertise-item">
-                <h4>Medieval Studies</h4>
-                <p>European & Islamic traditions</p>
-            </div>
-            <div class="expertise-item">
-                <h4>Renaissance Art</h4>
-                <p>Techniques & provenance</p>
-            </div>
-            <div class="expertise-item">
-                <h4>Natural Sciences</h4>
-                <p>Biology, Chemistry, Physics</p>
-            </div>
-            <div class="expertise-item">
-                <h4>Ancient Languages</h4>
-                <p>Latin, Greek, Sanskrit, more</p>
-            </div>
-            <div class="expertise-item">
-                <h4>Philosophy</h4>
-                <p>Western & Eastern traditions</p>
-            </div>
-            <div class="expertise-item">
-                <h4>Rare Books</h4>
-                <p>Bibliography & authentication</p>
-            </div>
-            <div class="expertise-item">
-                <h4>Maritime History</h4>
-                <p>Navigation & exploration</p>
-            </div>
-            <div class="expertise-item">
-                <h4>Cryptography</h4>
-                <p>Historical & modern codes</p>
-            </div>
-            <div class="expertise-item">
-                <h4>Numismatics</h4>
-                <p>Currency & economic history</p>
-            </div>
-            <div class="expertise-item">
-                <h4>Folklore & Mythology</h4>
-                <p>Global oral traditions</p>
-            </div>
-            <div class="expertise-item">
-                <h4>Esoteric Studies</h4>
-                <p>Alchemy, mysticism, occult</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ Section -->
-    <section class="faq scroll-reveal" id="faq">
-        <div class="section-header">
-            <h2>Frequently Asked Questions</h2>
-            <p class="subtitle">Everything you need to know</p>
-        </div>
-        <div class="faq-container">
-            <div class="faq-item">
-                <div class="faq-question">What makes SeldomSought different from traditional research services?</div>
-                <div class="faq-answer">
-                    <p>While traditional research services focus on readily available information, we specialize in the obscure, the forgotten, and the deliberately hidden. Our team includes specialists in rare fields, access to restricted archives, and relationships with experts worldwide. We tackle questions that conventional researchers wouldn't know how to approach.</p>
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-question">How long does a typical research project take?</div>
-                <div class="faq-answer">
-                    <p>Project timelines vary dramatically based on complexity. Simple inquiries might be resolved in 24-48 hours, while comprehensive historical research or multi-disciplinary projects can take weeks or months. We provide realistic timelines during the consultation phase and maintain transparent communication throughout the process.</p>
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-question">Can you research topics in languages other than English?</div>
-                <div class="faq-answer">
-                    <p>Absolutely. Our network includes researchers fluent in over 40 modern languages and specialists in ancient languages including Latin, Ancient Greek, Sanskrit, Classical Chinese, Aramaic, and many others. We regularly conduct research across linguistic and cultural boundaries.</p>
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-question">What if my question seems too obscure or impossible to answer?</div>
-                <div class="faq-answer">
-                    <p>Obscure questions are our specialty. While we can't guarantee answers to every question, we have a 95% success rate even with seemingly impossible inquiries. We'll provide an honest assessment during consultation and explore creative approaches to finding answers. Many "impossible" questions simply require unconventional thinking.</p>
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-question">How do you ensure the accuracy of your research?</div>
-                <div class="faq-answer">
-                    <p>Every finding undergoes rigorous verification. We cross-reference multiple primary sources, consult subject matter experts, and employ peer review processes. All research includes detailed citations, methodology documentation, and confidence assessments. We distinguish between established facts, probable interpretations, and speculative conclusions.</p>
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-question">Do you maintain confidentiality for sensitive research?</div>
-                <div class="faq-answer">
-                    <p>Absolutely. We maintain strict confidentiality for all client projects. Non-disclosure agreements are available upon request. Our researchers are bound by professional ethics, and we employ secure communication channels and data protection protocols for sensitive inquiries.</p>
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-question">What types of deliverables do you provide?</div>
-                <div class="faq-answer">
-                    <p>Deliverables are tailored to your needs. Standard reports include comprehensive findings, source documentation, visual materials where relevant, and executive summaries. We can also provide presentations, expert consultations, ongoing research support, or customized formats to suit your specific requirements.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials -->
-    <section class="testimonials scroll-reveal">
-        <div class="section-header">
-            <h2>What Our Clients Say</h2>
-            <p class="subtitle">Trust built through exceptional service</p>
-        </div>
-        <div class="testimonials-grid">
-            <div class="testimonial-card">
-                <p class="testimonial-text">SeldomSought uncovered details about my great-grandfather's immigration that had eluded three previous researchers. Their knowledge of obscure 19th-century European archives is remarkable.</p>
-                <div class="testimonial-author">
-                    <div class="author-avatar">EM</div>
-                    <div class="author-info">
-                        <h5>Elizabeth Morrison</h5>
-                        <p>Genealogy Client</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="testimonial-card">
-                <p class="testimonial-text">Their analysis of a 16th-century manuscript required expertise in paleography, Renaissance Latin, and alchemical symbolism. The team delivered insights that fundamentally changed our understanding of the text.</p>
-                <div class="testimonial-author">
-                    <div class="author-avatar">DR</div>
-                    <div class="author-info">
-                        <h5>Dr. Robert Chen</h5>
-                        <p>University Professor</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="testimonial-card">
-                <p class="testimonial-text">We needed obscure regulatory precedents across multiple jurisdictions. SeldomSought's research was not only comprehensive but delivered with the kind of analytical depth that proved invaluable in court.</p>
-                <div class="testimonial-author">
-                    <div class="author-avatar">SH</div>
-                    <div class="author-info">
-                        <h5>Sarah Hamilton</h5>
-                        <p>Legal Partner</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Newsletter -->
-    <section class="newsletter scroll-reveal" id="contact">
-        <div class="section-header">
-            <h2>Stay Curious</h2>
-            <p style="color: rgba(255, 255, 255, 0.95);">Subscribe to receive monthly insights into fascinating research discoveries</p>
-        </div>
-        <form class="newsletter-form" onsubmit="return false;">
-            <input type="email" placeholder="Enter your email address" required>
-            <button type="submit">Subscribe</button>
-        </form>
-    </section>
-
-    <!-- Footer -->
     <footer>
         <div class="footer-content">
-            <div class="footer-about">
+            <div class="footer-section">
                 <h3>SeldomSought</h3>
-                <p>Dedicated to uncovering the knowledge that lies beyond conventional reach. We transform impossible questions into answered mysteries through expert research and tireless curiosity.</p>
+                <p>Dedicated to uncovering the knowledge that lies beyond conventional reach.</p>
             </div>
-            <div class="footer-links">
-                <h4>Services</h4>
-                <ul>
-                    <li><a href="#services">Historical Research</a></li>
-                    <li><a href="#services">Scientific Inquiry</a></li>
-                    <li><a href="#services">Cultural Studies</a></li>
-                    <li><a href="#services">Legal Research</a></li>
-                    <li><a href="#services">Arts & Humanities</a></li>
+            <div class="footer-section">
+                <h3>Navigate</h3>
+                <ul class="footer-links">
+                    <li><a href="philosophy.html">Philosophy</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="expertise.html">Expertise</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="contact.html">Contact</a></li>
                 </ul>
             </div>
-            <div class="footer-links">
-                <h4>Company</h4>
-                <ul>
-                    <li><a href="#philosophy">About Us</a></li>
-                    <li><a href="#expertise">Expertise</a></li>
-                    <li><a href="#faq">FAQ</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                    <li><a href="#contact">Book Consultation</a></li>
-                </ul>
-            </div>
-            <div class="footer-links">
-                <h4>Resources</h4>
-                <ul>
-                    <li><a href="#faq">Knowledge Base</a></li>
-                    <li><a href="#contact">Case Studies</a></li>
-                    <li><a href="#contact">Research Blog</a></li>
-                    <li><a href="#contact">Privacy Policy</a></li>
-                    <li><a href="#contact">Terms of Service</a></li>
+            <div class="footer-section">
+                <h3>Services</h3>
+                <ul class="footer-links">
+                    <li><a href="services.html">Historical Research</a></li>
+                    <li><a href="services.html">Scientific Inquiry</a></li>
+                    <li><a href="services.html">Cultural Studies</a></li>
+                    <li><a href="services.html">Legal Research</a></li>
                 </ul>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2024 SeldomSought. All rights reserved. Providing answers to questions you didn't know existed.</p>
+            <p>&copy; 2024 SeldomSought. All rights reserved.</p>
         </div>
     </footer>
 
     <script>
-        // Navbar scroll effect
-        window.addEventListener('scroll', function() {
-            const navbar = document.getElementById('navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        menuToggle.addEventListener('click', function(e) {
+            e.stopPropagation();
+            mobileMenu.classList.toggle('active');
+            menuToggle.textContent = mobileMenu.classList.contains('active') ? '✕' : '☰';
+        });
+
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('nav')) {
+                mobileMenu.classList.remove('active');
+                menuToggle.textContent = '☰';
             }
         });
-
-        // FAQ accordion
-        document.querySelectorAll('.faq-question').forEach(question => {
-            question.addEventListener('click', function() {
-                const faqItem = this.parentElement;
-                const isActive = faqItem.classList.contains('active');
-
-                // Close all FAQ items
-                document.querySelectorAll('.faq-item').forEach(item => {
-                    item.classList.remove('active');
-                });
-
-                // Open clicked item if it wasn't active
-                if (!isActive) {
-                    faqItem.classList.add('active');
-                }
-            });
-        });
-
-        // Scroll reveal animation
-        const revealElements = document.querySelectorAll('.scroll-reveal');
-
-        const revealOnScroll = () => {
-            revealElements.forEach(element => {
-                const elementTop = element.getBoundingClientRect().top;
-                const elementVisible = 150;
-
-                if (elementTop < window.innerHeight - elementVisible) {
-                    element.classList.add('revealed');
-                }
-            });
-        };
-
-        window.addEventListener('scroll', revealOnScroll);
-        revealOnScroll(); // Initial check
-
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                const href = this.getAttribute('href');
-                if (href !== '#' && href.length > 1) {
-                    e.preventDefault();
-                    const target = document.querySelector(href);
-                    if (target) {
-                        const offsetTop = target.offsetTop - 80;
-                        window.scrollTo({
-                            top: offsetTop,
-                            behavior: 'smooth'
-                        });
-                    }
-                }
-            });
-        });
-
-        // Newsletter form submission
-        document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const email = this.querySelector('input[type="email"]').value;
-            alert('Thank you for subscribing! You will receive our monthly newsletter at ' + email);
-            this.reset();
-        });
-
-        // Service worker registration (if sw.js exists)
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', function () {
-                navigator.serviceWorker.register('/sw.js').catch(err => {
-                    console.log('Service Worker registration failed:', err);
-                });
-            });
-        }
     </script>
 </body>
 </html>
