@@ -6,6 +6,19 @@
     <title>SeldomSought - Providing Answers to Questions You Didn't Know Existed</title>
     <meta name="description" content="SeldomSought specializes in uncovering rare knowledge, forgotten wisdom, and answers to questions you didn't know existed.">
     <meta name="theme-color" content="#088a33"/>
+
+    <!-- Open Graph -->
+    <meta property="og:site_name" content="SeldomSought"/>
+    <meta property="og:title" content="SeldomSought"/>
+    <meta property="og:description" content="Providing answers to questions you didn't know existed."/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:image" content="https://img1.wsimg.com/isteam/ip/1ccf137f-e768-42fa-ac89-15fa5230f59d/b52a34679636d532da8d08a54fc92f55.jpg"/>
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:title" content="SeldomSought"/>
+    <meta name="twitter:description" content="Providing answers to questions you didn't know existed."/>
+    <meta name="twitter:image" content="https://img1.wsimg.com/isteam/ip/1ccf137f-e768-42fa-ac89-15fa5230f59d/b52a34679636d532da8d08a54fc92f55.jpg"/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&family=Cabin:wght@400;500;600&display=swap" rel="stylesheet">
@@ -98,16 +111,42 @@
             justify-content: center;
             text-align: center;
             padding: 6rem 2rem 4rem;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('https://img1.wsimg.com/isteam/ip/1ccf137f-e768-42fa-ac89-15fa5230f59d/b52a34679636d532da8d08a54fc92f55.jpg');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.08;
+            z-index: 0;
         }
 
         .hero-content {
             max-width: 800px;
+            position: relative;
+            z-index: 1;
         }
 
         h1 {
             font-size: 3.5rem;
             margin-bottom: 1.5rem;
             color: var(--dark);
+        }
+
+        h1::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background: var(--green);
+            margin: 1rem auto 0;
         }
 
         .tagline {
