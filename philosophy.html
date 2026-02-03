@@ -5,173 +5,403 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Philosophy - SeldomSought</title>
     <meta name="description" content="Learn about SeldomSought's philosophy of uncovering rare knowledge beyond conventional reach.">
-    <meta name="theme-color" content="#00ff41"/>
+    <meta name="theme-color" content="#1a1a2e"/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;500;700&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
+
         :root {
-            --matrix-green: #00ff41;
-            --matrix-green-dim: #00cc33;
-            --matrix-green-dark: #008f11;
-            --matrix-bg: #0a0a0a;
+            --t-bg: #0d0e1a;
+            --t-panel: #1a1c2e;
+            --t-panel-light: #222440;
+            --t-border: #3a3c5e;
+            --t-border-light: #4a4c6e;
+            --t-blue: #00b4d8;
+            --t-blue-dim: #0077b6;
+            --t-blue-glow: rgba(0,180,216,0.3);
+            --t-green: #44cc44;
+            --t-green-dark: #2a8a2a;
+            --t-red: #cc3333;
+            --t-yellow: #ccaa33;
+            --t-purple: #9966cc;
+            --t-text: #c8cad0;
+            --t-text-dim: #6a6c80;
+            --t-text-bright: #e8eaf0;
+            --t-rivet: #2a2c40;
+            --t-mineral: #4fc3f7;
+            --t-gas: #66bb6a;
         }
+
         body {
-            font-family: 'Share Tech Mono', monospace;
-            color: var(--matrix-green);
-            background: #000;
-            line-height: 1.6;
+            font-family: 'Rajdhani', sans-serif;
+            color: var(--t-text);
+            background: var(--t-bg);
+            line-height: 1.5;
             overflow-x: hidden;
         }
-        #matrixCanvas {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+
+        /* Starfield canvas */
+        #starfield {
+            position: fixed; top: 0; left: 0;
+            width: 100%; height: 100%;
             z-index: 0; pointer-events: none;
-        }
-        .scanlines {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            pointer-events: none; z-index: 99;
-            background: repeating-linear-gradient(0deg, rgba(0,0,0,0.03) 0px, rgba(0,0,0,0.03) 1px, transparent 1px, transparent 3px);
         }
 
         /* Navigation */
         nav {
             position: fixed; top: 0; width: 100%;
-            background: rgba(0,0,0,0.85);
-            border-bottom: 1px solid rgba(0,255,65,0.15);
-            z-index: 100; backdrop-filter: blur(10px);
+            background: linear-gradient(180deg, #12132a 0%, #1a1c30 100%);
+            border-bottom: 2px solid var(--t-border);
+            z-index: 200;
+        }
+        nav::after {
+            content: ''; position: absolute; bottom: -1px; left: 0;
+            width: 100%; height: 1px;
+            background: linear-gradient(90deg, transparent, var(--t-blue), transparent);
+            opacity: 0.3;
         }
         .nav-container {
-            max-width: 1200px; margin: 0 auto; padding: 1.2rem 2rem;
+            max-width: 1200px; margin: 0 auto; padding: 0.8rem 2rem;
             display: flex; justify-content: space-between; align-items: center;
         }
         .logo {
-            font-size: 1.5rem; color: var(--matrix-green); text-decoration: none;
-            text-shadow: 0 0 10px rgba(0,255,65,0.5), 0 0 20px rgba(0,255,65,0.3);
-            letter-spacing: 2px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.2rem; color: var(--t-blue);
+            text-decoration: none; letter-spacing: 3px;
+            text-shadow: 0 0 8px var(--t-blue-glow);
+            font-weight: 700;
         }
-        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-links { display: flex; gap: 1.5rem; list-style: none; }
         .nav-links a {
-            text-decoration: none; color: var(--matrix-green-dark);
-            font-size: 0.9rem; letter-spacing: 1px; text-transform: uppercase;
-            transition: all 0.3s; position: relative;
+            text-decoration: none; color: var(--t-text-dim);
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.75rem; letter-spacing: 1px;
+            text-transform: uppercase; transition: all 0.3s;
         }
-        .nav-links a:hover {
-            color: var(--matrix-green);
-            text-shadow: 0 0 8px rgba(0,255,65,0.6);
-        }
-        .nav-links a::after {
-            content: ''; position: absolute; bottom: -4px; left: 0;
-            width: 0; height: 1px; background: var(--matrix-green);
-            box-shadow: 0 0 5px var(--matrix-green); transition: width 0.3s;
-        }
-        .nav-links a:hover::after { width: 100%; }
+        .nav-links a:hover { color: var(--t-blue); text-shadow: 0 0 6px var(--t-blue-glow); }
         .menu-toggle {
-            display: none; background: none;
-            border: 1px solid var(--matrix-green-dark);
-            font-size: 1.5rem; cursor: pointer; color: var(--matrix-green);
+            display: none; background: var(--t-panel);
+            border: 1px solid var(--t-border);
+            font-size: 1.3rem; cursor: pointer; color: var(--t-blue);
             padding: 0.2rem 0.5rem;
         }
         .mobile-menu { display: none; }
 
-        /* Page Header */
-        .page-header {
-            padding: 8rem 2rem 3rem; text-align: center;
-            position: relative; z-index: 1;
+        /* Resource Bar */
+        .resource-bar {
+            position: fixed; top: 45px; left: 0; width: 100%;
+            background: linear-gradient(180deg, #16182a 0%, #1e2038 100%);
+            border-bottom: 1px solid var(--t-border);
+            z-index: 190; padding: 0.3rem 2rem;
+            display: flex; justify-content: flex-end; gap: 2rem;
+            align-items: center;
         }
-        .page-header h1 {
-            font-size: 3rem; margin-bottom: 1rem;
-            color: var(--matrix-green); font-weight: 400;
-            text-shadow: 0 0 20px rgba(0,255,65,0.4), 0 0 40px rgba(0,255,65,0.2);
-            letter-spacing: 4px; text-transform: uppercase;
+        .resource {
+            display: flex; align-items: center; gap: 0.4rem;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.7rem; letter-spacing: 1px;
         }
-        .page-header h1::after {
-            content: ''; display: block; width: 80px; height: 1px;
-            background: var(--matrix-green);
-            box-shadow: 0 0 10px var(--matrix-green);
-            margin: 1rem auto 0;
+        .resource-icon {
+            width: 12px; height: 12px; border-radius: 2px;
+            display: inline-block;
         }
-        .page-header .subtitle {
-            color: var(--matrix-green-dim); font-size: 1.1rem;
-            letter-spacing: 2px;
-            text-shadow: 0 0 10px rgba(0,255,65,0.2);
-        }
+        .resource-icon.mineral { background: var(--t-mineral); box-shadow: 0 0 4px var(--t-mineral); }
+        .resource-icon.gas { background: var(--t-gas); box-shadow: 0 0 4px var(--t-gas); }
+        .resource-icon.supply { background: var(--t-yellow); box-shadow: 0 0 4px var(--t-yellow); }
+        .resource .val { color: var(--t-text-bright); }
+        .resource .label { color: var(--t-text-dim); font-size: 0.6rem; }
 
         /* Main Content */
-        main {
-            max-width: 1000px; margin: 0 auto; padding: 3rem 2rem;
-            position: relative; z-index: 1;
+        .content-wrap {
+            position: relative; z-index: 10;
+            padding-top: 90px;
+            max-width: 1100px; margin: 0 auto;
+            padding-left: 1.5rem; padding-right: 1.5rem;
         }
-        section { margin-bottom: 4rem; }
-        section h2 {
-            font-size: 1.8rem; margin-bottom: 1.5rem;
-            color: var(--matrix-green); font-weight: 400;
-            text-shadow: 0 0 10px rgba(0,255,65,0.3);
-            letter-spacing: 2px; text-transform: uppercase;
-        }
-        section p {
-            line-height: 1.8; margin-bottom: 1rem;
-            color: var(--matrix-green-dark);
-        }
-        .content-box {
-            background: rgba(0,255,65,0.02);
-            padding: 2.5rem; margin-bottom: 2rem;
-            border: 1px solid rgba(0,255,65,0.1);
-            border-top: 2px solid rgba(0,255,65,0.3);
-        }
-        .content-box h3 {
-            color: var(--matrix-green-dim); font-weight: 400;
-            margin-bottom: 1rem; letter-spacing: 1px;
-        }
-        .quote-box {
-            color: var(--matrix-green); font-size: 1.3rem;
-            font-style: italic; letter-spacing: 1px;
-            text-shadow: 0 0 10px rgba(0,255,65,0.2);
-            margin-bottom: 1.5rem;
-        }
-        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
 
-        /* Decode animation */
-        .decode-text { opacity: 0; }
-        .decode-text.revealed { opacity: 1; }
+        /* Page Title */
+        .page-title {
+            text-align: center; padding: 2rem 0 1.5rem;
+        }
+        .page-title h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700; font-size: 1.6rem;
+            color: var(--t-text-bright);
+            letter-spacing: 5px; text-transform: uppercase;
+            margin-bottom: 0.3rem;
+        }
+        .page-title .subtitle {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.7rem; color: var(--t-blue);
+            letter-spacing: 3px; text-transform: uppercase;
+        }
+
+        /* Unit Panel - the main card style */
+        .unit-panel {
+            background: linear-gradient(135deg, var(--t-panel) 0%, #1e2038 100%);
+            border: 1px solid var(--t-border);
+            margin-bottom: 1.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+        /* Corner rivets */
+        .unit-panel::before, .unit-panel::after {
+            content: ''; position: absolute;
+            width: 8px; height: 8px; border-radius: 50%;
+            background: radial-gradient(circle, #3a3c55, #22243a);
+            border: 1px solid var(--t-border-light);
+            z-index: 5;
+        }
+        .unit-panel::before { top: 6px; left: 6px; }
+        .unit-panel::after { top: 6px; right: 6px; }
+
+        /* Panel header bar */
+        .panel-header {
+            background: linear-gradient(90deg, var(--t-border) 0%, var(--t-panel-light) 50%, var(--t-border) 100%);
+            padding: 0.5rem 1.2rem 0.5rem 1.2rem;
+            display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 1px solid var(--t-border);
+        }
+        .panel-header .unit-name {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.75rem; font-weight: 700;
+            color: var(--t-blue);
+            letter-spacing: 2px; text-transform: uppercase;
+            text-shadow: 0 0 6px var(--t-blue-glow);
+        }
+        .panel-header .unit-class {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.6rem; color: var(--t-text-dim);
+            letter-spacing: 1px;
+        }
+
+        /* Panel body */
+        .panel-body {
+            display: grid;
+            grid-template-columns: 120px 1fr;
+            gap: 0;
+        }
+
+        /* Portrait area */
+        .portrait {
+            background: #0a0b15;
+            border-right: 1px solid var(--t-border);
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            padding: 1rem 0.5rem;
+            position: relative;
+        }
+        .portrait-frame {
+            width: 80px; height: 80px;
+            border: 2px solid var(--t-border-light);
+            background: #0f1020;
+            display: flex; align-items: center; justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .portrait-frame::after {
+            content: ''; position: absolute; inset: 0;
+            border: 1px solid rgba(0,180,216,0.1);
+        }
+        /* Wireframe icons drawn with CSS */
+        .wireframe {
+            width: 60px; height: 60px;
+            position: relative;
+        }
+        /* Command Center wireframe */
+        .wf-cc .base { width: 50px; height: 30px; border: 1.5px solid var(--t-blue); position: absolute; bottom: 5px; left: 5px; }
+        .wf-cc .top { width: 30px; height: 15px; border: 1.5px solid var(--t-blue); position: absolute; top: 8px; left: 15px; border-bottom: none; }
+        .wf-cc .antenna { width: 1.5px; height: 12px; background: var(--t-blue); position: absolute; top: 0; left: 30px; }
+        .wf-cc .dot { width: 4px; height: 4px; border-radius: 50%; background: var(--t-blue); position: absolute; top: 18px; left: 28px; box-shadow: 0 0 4px var(--t-blue); }
+        /* Science Vessel wireframe */
+        .wf-sv .hull { width: 44px; height: 24px; border: 1.5px solid var(--t-purple); border-radius: 50%; position: absolute; top: 18px; left: 8px; }
+        .wf-sv .ring { width: 54px; height: 10px; border: 1.5px solid var(--t-purple); border-radius: 50%; position: absolute; top: 25px; left: 3px; }
+        .wf-sv .sensor { width: 6px; height: 6px; border-radius: 50%; border: 1.5px solid var(--t-purple); position: absolute; top: 10px; left: 27px; box-shadow: 0 0 4px var(--t-purple); }
+        .wf-sv .beam { width: 1.5px; height: 10px; background: var(--t-purple); position: absolute; top: 15px; left: 30px; opacity: 0.6; }
+        /* Siege Tank wireframe */
+        .wf-st .body { width: 45px; height: 18px; border: 1.5px solid var(--t-green); position: absolute; bottom: 8px; left: 8px; }
+        .wf-st .turret { width: 20px; height: 12px; border: 1.5px solid var(--t-green); position: absolute; top: 15px; left: 18px; }
+        .wf-st .barrel { width: 22px; height: 3px; background: var(--t-green); position: absolute; top: 19px; right: 3px; }
+        .wf-st .tread1 { width: 40px; height: 5px; border: 1px solid var(--t-green); position: absolute; bottom: 3px; left: 10px; border-radius: 2px; }
+        /* Battlecruiser wireframe */
+        .wf-bc .hull { width: 50px; height: 16px; border: 1.5px solid var(--t-yellow); position: absolute; top: 22px; left: 5px; clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%); }
+        .wf-bc .bridge { width: 16px; height: 10px; border: 1.5px solid var(--t-yellow); position: absolute; top: 14px; left: 22px; }
+        .wf-bc .wing-l { width: 15px; height: 6px; border: 1px solid var(--t-yellow); position: absolute; top: 30px; left: 2px; transform: skewX(-15deg); }
+        .wf-bc .wing-r { width: 15px; height: 6px; border: 1px solid var(--t-yellow); position: absolute; top: 30px; right: 2px; transform: skewX(15deg); }
+        .wf-bc .cannon { width: 4px; height: 4px; border-radius: 50%; background: var(--t-yellow); position: absolute; top: 12px; left: 28px; box-shadow: 0 0 6px var(--t-yellow); }
+
+        /* Status bars under portrait */
+        .status-bars {
+            width: 80px; margin-top: 0.6rem;
+        }
+        .bar-row {
+            display: flex; align-items: center; gap: 3px;
+            margin-bottom: 3px;
+        }
+        .bar-label {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.5rem; color: var(--t-text-dim);
+            width: 12px; text-align: right;
+        }
+        .bar-track {
+            flex: 1; height: 4px;
+            background: #0a0b15;
+            border: 1px solid #2a2c40;
+            overflow: hidden;
+        }
+        .bar-fill {
+            height: 100%;
+        }
+        .bar-fill.hp { background: var(--t-green); box-shadow: 0 0 3px var(--t-green); }
+        .bar-fill.en { background: var(--t-purple); box-shadow: 0 0 3px var(--t-purple); }
+        .bar-fill.sh { background: var(--t-blue); box-shadow: 0 0 3px var(--t-blue); }
+
+        /* Info area */
+        .info-area {
+            padding: 1.2rem 1.5rem;
+        }
+        .info-area p {
+            font-size: 0.9rem; color: var(--t-text);
+            line-height: 1.7; margin-bottom: 0.8rem;
+            font-weight: 400;
+        }
+        .info-area .quote {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1.15rem; font-weight: 600;
+            color: var(--t-blue);
+            font-style: italic;
+            border-left: 2px solid var(--t-blue);
+            padding-left: 1rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 8px var(--t-blue-glow);
+        }
+
+        /* Approach section title */
+        .section-divider {
+            display: flex; align-items: center; gap: 1rem;
+            margin: 2rem 0 1rem;
+        }
+        .section-divider .line {
+            flex: 1; height: 1px;
+            background: linear-gradient(90deg, var(--t-border), transparent);
+        }
+        .section-divider .line:last-child {
+            background: linear-gradient(90deg, transparent, var(--t-border));
+        }
+        .section-divider h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.8rem; font-weight: 500;
+            color: var(--t-text-dim); letter-spacing: 3px;
+            text-transform: uppercase; white-space: nowrap;
+        }
+
+        /* Two-column grid */
+        .approach-grid {
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        /* Minimap */
+        .minimap {
+            position: fixed; bottom: 15px; left: 15px;
+            width: 160px; height: 120px;
+            background: #0a0b15;
+            border: 2px solid var(--t-border);
+            z-index: 150;
+            overflow: hidden;
+        }
+        .minimap::before {
+            content: 'TACTICAL MAP'; position: absolute;
+            top: -1px; left: 50%; transform: translateX(-50%);
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.5rem; color: var(--t-text-dim);
+            letter-spacing: 1px; background: var(--t-border);
+            padding: 0 6px; z-index: 2;
+        }
+        #minimapCanvas { width: 100%; height: 100%; }
+
+        /* Command Card */
+        .command-card {
+            position: fixed; bottom: 15px; right: 15px;
+            z-index: 150;
+            display: grid; grid-template-columns: repeat(3, 36px);
+            gap: 2px;
+        }
+        .cmd-btn {
+            width: 36px; height: 32px;
+            background: linear-gradient(180deg, var(--t-panel-light), var(--t-panel));
+            border: 1px solid var(--t-border);
+            display: flex; align-items: center; justify-content: center;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.55rem; color: var(--t-text-dim);
+            cursor: pointer; transition: all 0.15s;
+            letter-spacing: 0.5px;
+        }
+        .cmd-btn:hover {
+            border-color: var(--t-blue);
+            color: var(--t-blue);
+            box-shadow: inset 0 0 8px var(--t-blue-glow);
+        }
+        .cmd-btn.active {
+            border-color: var(--t-blue);
+            background: linear-gradient(180deg, #1a2a4a, #142238);
+            color: var(--t-blue);
+        }
+
+        /* Advisor text */
+        .advisor {
+            position: fixed; bottom: 20px; left: 190px; right: 140px;
+            z-index: 150;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.65rem; color: var(--t-green);
+            letter-spacing: 1px;
+            text-shadow: 0 0 4px rgba(68,204,68,0.3);
+        }
+        .advisor .callsign { color: var(--t-yellow); }
 
         /* Footer */
         footer {
-            background: rgba(0,0,0,0.9); color: var(--matrix-green-dark);
-            padding: 3rem 2rem 2rem;
-            border-top: 1px solid rgba(0,255,65,0.1);
-            position: relative; z-index: 1;
+            background: linear-gradient(180deg, var(--t-panel) 0%, #12132a 100%);
+            border-top: 2px solid var(--t-border);
+            padding: 2rem 2rem 1.5rem;
+            position: relative; z-index: 100;
+            margin-top: 3rem;
+        }
+        footer::before {
+            content: ''; position: absolute; top: -1px; left: 0;
+            width: 100%; height: 1px;
+            background: linear-gradient(90deg, transparent, var(--t-blue), transparent);
+            opacity: 0.2;
         }
         .footer-content {
             max-width: 1200px; margin: 0 auto;
             display: grid; grid-template-columns: 2fr 1fr 1fr;
-            gap: 3rem; margin-bottom: 2rem;
+            gap: 3rem; margin-bottom: 1.5rem;
         }
         .footer-section h3 {
-            font-size: 1.1rem; margin-bottom: 1rem;
-            color: var(--matrix-green);
-            text-shadow: 0 0 8px rgba(0,255,65,0.3);
-            letter-spacing: 2px; text-transform: uppercase; font-weight: 400;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.7rem; margin-bottom: 0.8rem;
+            color: var(--t-blue); letter-spacing: 2px;
+            text-transform: uppercase; font-weight: 500;
         }
-        .footer-section p { color: var(--matrix-green-dark); line-height: 1.7; }
+        .footer-section p { color: var(--t-text-dim); font-size: 0.85rem; line-height: 1.6; }
         .footer-links { list-style: none; }
         .footer-links a {
-            color: var(--matrix-green-dark); text-decoration: none;
-            display: block; padding: 0.3rem 0; transition: all 0.2s;
-            letter-spacing: 1px; font-size: 0.9rem;
+            color: var(--t-text-dim); text-decoration: none;
+            display: block; padding: 0.2rem 0;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.7rem; letter-spacing: 1px;
+            transition: all 0.2s;
         }
-        .footer-links a:hover {
-            color: var(--matrix-green);
-            text-shadow: 0 0 8px rgba(0,255,65,0.4);
-            padding-left: 0.5rem;
-        }
-        .footer-links a::before { content: '> '; opacity: 0; transition: opacity 0.2s; }
-        .footer-links a:hover::before { opacity: 1; }
+        .footer-links a:hover { color: var(--t-blue); padding-left: 0.4rem; }
         .footer-bottom {
-            max-width: 1200px; margin: 0 auto; padding-top: 2rem;
-            border-top: 1px solid rgba(0,255,65,0.1);
-            text-align: center; color: rgba(0,255,65,0.3);
-            font-size: 0.85rem; letter-spacing: 1px;
+            max-width: 1200px; margin: 0 auto; padding-top: 1rem;
+            border-top: 1px solid var(--t-border);
+            text-align: center; color: var(--t-text-dim);
+            font-size: 0.7rem; font-family: 'Share Tech Mono', monospace;
+            letter-spacing: 1px;
         }
 
         /* Mobile */
@@ -179,32 +409,34 @@
             .menu-toggle { display: block; }
             .nav-links { display: none; }
             .mobile-menu {
-                position: fixed; top: 60px; left: 0; right: 0;
-                background: rgba(0,0,0,0.95);
-                border-bottom: 1px solid rgba(0,255,65,0.15);
-                padding: 1rem 2rem; backdrop-filter: blur(10px);
+                position: fixed; top: 45px; left: 0; right: 0;
+                background: rgba(13,14,26,0.97);
+                border-bottom: 1px solid var(--t-border);
+                padding: 0.8rem 1.5rem;
             }
             .mobile-menu.active { display: block; }
             .mobile-menu ul { list-style: none; }
             .mobile-menu a {
-                display: block; padding: 0.8rem 0; text-decoration: none;
-                color: var(--matrix-green-dark);
-                border-bottom: 1px solid rgba(0,255,65,0.05);
-                letter-spacing: 1px; text-transform: uppercase; font-size: 0.9rem;
+                display: block; padding: 0.6rem 0; text-decoration: none;
+                color: var(--t-text-dim);
+                font-family: 'Share Tech Mono', monospace;
+                border-bottom: 1px solid rgba(58,60,94,0.3);
+                letter-spacing: 1px; text-transform: uppercase; font-size: 0.75rem;
             }
-            .mobile-menu a:hover {
-                color: var(--matrix-green);
-                text-shadow: 0 0 8px rgba(0,255,65,0.4);
-            }
-            .page-header h1 { font-size: 2.2rem; }
-            .grid-2 { grid-template-columns: 1fr; }
-            .footer-content { grid-template-columns: 1fr; gap: 2rem; }
+            .mobile-menu a:hover { color: var(--t-blue); }
+            .resource-bar { display: none; }
+            .content-wrap { padding-top: 55px; }
+            .panel-body { grid-template-columns: 1fr; }
+            .portrait { padding: 1rem; flex-direction: row; gap: 1rem; border-right: none; border-bottom: 1px solid var(--t-border); }
+            .approach-grid { grid-template-columns: 1fr; }
+            .minimap, .command-card, .advisor { display: none; }
+            .footer-content { grid-template-columns: 1fr; gap: 1.5rem; }
+            .page-title h1 { font-size: 1.2rem; }
         }
     </style>
 </head>
 <body>
-    <canvas id="matrixCanvas"></canvas>
-    <div class="scanlines"></div>
+    <canvas id="starfield"></canvas>
 
     <nav>
         <div class="nav-container">
@@ -231,36 +463,205 @@
         </div>
     </nav>
 
-    <div class="page-header">
-        <h1 class="decode-text" data-decode-delay="300" data-decode-speed="40">Our Philosophy</h1>
-        <p class="subtitle decode-text" data-decode-delay="1200" data-decode-speed="30">In pursuit of the extraordinary</p>
+    <!-- Resource Bar -->
+    <div class="resource-bar">
+        <div class="resource">
+            <span class="resource-icon mineral"></span>
+            <span class="val" id="minerals">1,247</span>
+            <span class="label">MIN</span>
+        </div>
+        <div class="resource">
+            <span class="resource-icon gas"></span>
+            <span class="val" id="gas">863</span>
+            <span class="label">GAS</span>
+        </div>
+        <div class="resource">
+            <span class="resource-icon supply"></span>
+            <span class="val">87/200</span>
+            <span class="label">SUP</span>
+        </div>
     </div>
 
-    <main>
-        <section>
-            <div class="content-box">
-                <p>In an age of instant information, true knowledge has become paradoxically more elusive. While search engines provide surface-level answers, they often miss the nuanced, the forgotten, and the deliberately obscure.</p>
-                <p>At SeldomSought, we believe that the most valuable insights lie in the margins of mainstream knowledge -- in dusty archives, specialist publications, oral traditions, and the collective wisdom of experts across diverse fields.</p>
+    <div class="content-wrap">
+        <div class="page-title">
+            <h1>Our Philosophy</h1>
+            <div class="subtitle">Terran Command // Sector 7 // Briefing Protocol</div>
+        </div>
+
+        <!-- COMMAND CENTER -->
+        <div class="unit-panel">
+            <div class="panel-header">
+                <span class="unit-name">Command Center</span>
+                <span class="unit-class">STRUCTURE // TIER 1 // HQ</span>
             </div>
-            <div class="content-box">
-                <p class="quote-box">"The questions you don't know to ask are often more important than the answers you seek."</p>
-                <p>Our mission is to bridge the gap between curiosity and discovery, helping individuals, researchers, and organizations access information that traditional methods fail to uncover.</p>
-            </div>
-        </section>
-        <section>
-            <h2>Our Approach</h2>
-            <div class="grid-2">
-                <div class="content-box">
-                    <h3>Deep Research</h3>
-                    <p>We don't stop at Google page one. Our researchers delve into academic databases, historical archives, and specialist networks to find what others miss.</p>
+            <div class="panel-body">
+                <div class="portrait">
+                    <div class="portrait-frame">
+                        <div class="wireframe wf-cc">
+                            <div class="base"></div>
+                            <div class="top"></div>
+                            <div class="antenna"></div>
+                            <div class="dot"></div>
+                        </div>
+                    </div>
+                    <div class="status-bars">
+                        <div class="bar-row">
+                            <span class="bar-label">HP</span>
+                            <div class="bar-track"><div class="bar-fill hp" style="width:100%"></div></div>
+                        </div>
+                        <div class="bar-row">
+                            <span class="bar-label">EN</span>
+                            <div class="bar-track"><div class="bar-fill en" style="width:75%"></div></div>
+                        </div>
+                    </div>
                 </div>
-                <div class="content-box">
-                    <h3>Expert Networks</h3>
-                    <p>Access to over 500 subject matter experts across disciplines ensures we can tackle questions from medieval manuscripts to quantum physics.</p>
+                <div class="info-area">
+                    <p>In an age of instant information, true knowledge has become paradoxically more elusive. While search engines provide surface-level answers, they often miss the nuanced, the forgotten, and the deliberately obscure.</p>
+                    <p>At SeldomSought, we believe that the most valuable insights lie in the margins of mainstream knowledge -- in dusty archives, specialist publications, oral traditions, and the collective wisdom of experts across diverse fields.</p>
                 </div>
             </div>
-        </section>
-    </main>
+        </div>
+
+        <!-- SCIENCE VESSEL -->
+        <div class="unit-panel">
+            <div class="panel-header">
+                <span class="unit-name">Science Vessel</span>
+                <span class="unit-class">AIR UNIT // TIER 3 // DETECTOR</span>
+            </div>
+            <div class="panel-body">
+                <div class="portrait">
+                    <div class="portrait-frame">
+                        <div class="wireframe wf-sv">
+                            <div class="hull"></div>
+                            <div class="ring"></div>
+                            <div class="sensor"></div>
+                            <div class="beam"></div>
+                        </div>
+                    </div>
+                    <div class="status-bars">
+                        <div class="bar-row">
+                            <span class="bar-label">HP</span>
+                            <div class="bar-track"><div class="bar-fill hp" style="width:85%"></div></div>
+                        </div>
+                        <div class="bar-row">
+                            <span class="bar-label">EN</span>
+                            <div class="bar-track"><div class="bar-fill en" style="width:100%"></div></div>
+                        </div>
+                        <div class="bar-row">
+                            <span class="bar-label">SH</span>
+                            <div class="bar-track"><div class="bar-fill sh" style="width:60%"></div></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="info-area">
+                    <p class="quote">"The questions you don't know to ask are often more important than the answers you seek."</p>
+                    <p>Our mission is to bridge the gap between curiosity and discovery, helping individuals, researchers, and organizations access information that traditional methods fail to uncover.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Approach Section -->
+        <div class="section-divider">
+            <div class="line"></div>
+            <h2>Tactical Approach</h2>
+            <div class="line"></div>
+        </div>
+
+        <div class="approach-grid">
+            <!-- SIEGE TANK -->
+            <div class="unit-panel">
+                <div class="panel-header">
+                    <span class="unit-name">Siege Tank</span>
+                    <span class="unit-class">GROUND // TIER 2 // MECH</span>
+                </div>
+                <div class="panel-body">
+                    <div class="portrait">
+                        <div class="portrait-frame">
+                            <div class="wireframe wf-st">
+                                <div class="body"></div>
+                                <div class="turret"></div>
+                                <div class="barrel"></div>
+                                <div class="tread1"></div>
+                            </div>
+                        </div>
+                        <div class="status-bars">
+                            <div class="bar-row">
+                                <span class="bar-label">HP</span>
+                                <div class="bar-track"><div class="bar-fill hp" style="width:95%"></div></div>
+                            </div>
+                            <div class="bar-row">
+                                <span class="bar-label">EN</span>
+                                <div class="bar-track"><div class="bar-fill en" style="width:50%"></div></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="info-area">
+                        <p><strong style="color:var(--t-green);letter-spacing:1px;">DEEP RESEARCH</strong></p>
+                        <p>We don't stop at Google page one. Our researchers delve into academic databases, historical archives, and specialist networks to find what others miss.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BATTLECRUISER -->
+            <div class="unit-panel">
+                <div class="panel-header">
+                    <span class="unit-name">Battlecruiser</span>
+                    <span class="unit-class">CAPITAL // TIER 3 // FLAGSHIP</span>
+                </div>
+                <div class="panel-body">
+                    <div class="portrait">
+                        <div class="portrait-frame">
+                            <div class="wireframe wf-bc">
+                                <div class="hull"></div>
+                                <div class="bridge"></div>
+                                <div class="wing-l"></div>
+                                <div class="wing-r"></div>
+                                <div class="cannon"></div>
+                            </div>
+                        </div>
+                        <div class="status-bars">
+                            <div class="bar-row">
+                                <span class="bar-label">HP</span>
+                                <div class="bar-track"><div class="bar-fill hp" style="width:100%"></div></div>
+                            </div>
+                            <div class="bar-row">
+                                <span class="bar-label">EN</span>
+                                <div class="bar-track"><div class="bar-fill en" style="width:90%"></div></div>
+                            </div>
+                            <div class="bar-row">
+                                <span class="bar-label">SH</span>
+                                <div class="bar-track"><div class="bar-fill sh" style="width:100%"></div></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="info-area">
+                        <p><strong style="color:var(--t-yellow);letter-spacing:1px;">EXPERT NETWORKS</strong></p>
+                        <p>Access to over 500 subject matter experts across disciplines ensures we can tackle questions from medieval manuscripts to quantum physics.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Minimap -->
+    <div class="minimap">
+        <canvas id="minimapCanvas"></canvas>
+    </div>
+
+    <!-- Command Card -->
+    <div class="command-card">
+        <div class="cmd-btn active">MOV</div>
+        <div class="cmd-btn">ATK</div>
+        <div class="cmd-btn">PTL</div>
+        <div class="cmd-btn">HLD</div>
+        <div class="cmd-btn">STP</div>
+        <div class="cmd-btn">BLD</div>
+    </div>
+
+    <!-- Advisor -->
+    <div class="advisor">
+        <span class="callsign">[ADJUTANT]</span> Briefing complete. All units standing by. Research protocols active.
+    </div>
 
     <footer>
         <div class="footer-content">
@@ -294,95 +695,133 @@
     </footer>
 
     <script>
-        // Matrix Rain
-        const canvas = document.getElementById('matrixCanvas');
-        const ctx = canvas.getContext('2d');
-        function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
-        resizeCanvas();
-        window.addEventListener('resize', resizeCanvas);
-        const matrixChars = 'アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        const fontSize = 14;
-        let columns, drops;
-        function initDrops() {
-            columns = Math.floor(canvas.width / fontSize);
-            drops = [];
-            for (let i = 0; i < columns; i++) drops[i] = Math.random() * -100;
-        }
-        initDrops();
-        window.addEventListener('resize', initDrops);
-        function drawMatrix() {
-            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-            for (let i = 0; i < drops.length; i++) {
-                const char = matrixChars[Math.floor(Math.random() * matrixChars.length)];
-                const x = i * fontSize, y = drops[i] * fontSize;
-                if (Math.random() > 0.98) {
-                    ctx.fillStyle = '#ffffff'; ctx.shadowColor = '#00ff41'; ctx.shadowBlur = 15;
-                } else {
-                    const intensity = Math.random();
-                    ctx.fillStyle = intensity > 0.9 ? '#00ff41' : intensity > 0.6 ? '#00cc33' : '#008f11';
-                    ctx.shadowColor = 'transparent'; ctx.shadowBlur = 0;
-                }
-                ctx.font = fontSize + 'px monospace';
-                ctx.fillText(char, x, y);
-                if (y > canvas.height && Math.random() > 0.975) drops[i] = 0;
-                drops[i]++;
-            }
-            requestAnimationFrame(drawMatrix);
-        }
-        drawMatrix();
+    // ── Starfield Background ────────────────────────────────────
+    const canvas = document.getElementById('starfield');
+    const ctx = canvas.getContext('2d');
+    function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+    resize(); window.addEventListener('resize', resize);
 
-        // Decode Effect
-        const scrambleChars = '01アイウエオ!@#$%カキクケコ10サシスセソ';
-        function decodeElement(el) {
-            const delay = parseInt(el.dataset.decodeDelay) || 0;
-            const speed = parseInt(el.dataset.decodeSpeed) || 30;
-            const text = el.textContent;
-            setTimeout(() => {
-                el.classList.add('revealed');
-                decodeSimpleText(el, text, speed, 0);
-            }, delay);
-        }
-        function decodeSimpleText(el, text, speed, extraDelay) {
-            const chars = text.split('');
-            const settled = new Array(chars.length).fill(false);
-            let currentIndex = 0;
-            el.textContent = chars.map(c => c === ' ' ? ' ' : scrambleChars[Math.floor(Math.random() * scrambleChars.length)]).join('');
-            setTimeout(() => {
-                const interval = setInterval(() => {
-                    let result = '';
-                    for (let i = 0; i < chars.length; i++) {
-                        if (settled[i]) result += chars[i];
-                        else if (chars[i] === ' ') { result += ' '; settled[i] = true; }
-                        else result += scrambleChars[Math.floor(Math.random() * scrambleChars.length)];
-                    }
-                    el.textContent = result;
-                    if (currentIndex < chars.length) {
-                        settled[currentIndex] = true; currentIndex++;
-                        while (currentIndex < chars.length && chars[currentIndex] === ' ') { settled[currentIndex] = true; currentIndex++; }
-                    }
-                    if (currentIndex >= chars.length) { clearInterval(interval); el.textContent = text; }
-                }, speed);
-            }, extraDelay);
-        }
-        document.addEventListener('DOMContentLoaded', () => {
-            document.querySelectorAll('.decode-text').forEach(el => decodeElement(el));
+    const stars = [];
+    for (let i = 0; i < 200; i++) {
+        stars.push({
+            x: Math.random() * 2000, y: Math.random() * 2000,
+            r: Math.random() * 1.2 + 0.3,
+            a: Math.random() * 0.6 + 0.2,
+            speed: Math.random() * 0.0005 + 0.0002,
+            phase: Math.random() * Math.PI * 2
         });
+    }
 
-        // Mobile Menu
-        const menuToggle = document.getElementById('menuToggle');
-        const mobileMenu = document.getElementById('mobileMenu');
-        menuToggle.addEventListener('click', function(e) {
-            e.stopPropagation();
-            mobileMenu.classList.toggle('active');
-            menuToggle.innerHTML = mobileMenu.classList.contains('active') ? '&#10005;' : '&#9776;';
+    function drawStars() {
+        ctx.fillStyle = '#0d0e1a';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        const t = Date.now();
+        for (const s of stars) {
+            const flicker = 0.5 + 0.5 * Math.sin(t * s.speed + s.phase);
+            const alpha = s.a * flicker;
+            ctx.fillStyle = `rgba(180,190,220,${alpha})`;
+            ctx.beginPath();
+            ctx.arc(s.x % canvas.width, s.y % canvas.height, s.r, 0, Math.PI * 2);
+            ctx.fill();
+        }
+        requestAnimationFrame(drawStars);
+    }
+    drawStars();
+
+    // ── Minimap ─────────────────────────────────────────────────
+    const mm = document.getElementById('minimapCanvas');
+    const mmCtx = mm.getContext('2d');
+    mm.width = 160; mm.height = 120;
+
+    function drawMinimap() {
+        mmCtx.fillStyle = '#0a0b12';
+        mmCtx.fillRect(0, 0, 160, 120);
+
+        // Terrain patches
+        mmCtx.fillStyle = '#1a2a1a';
+        mmCtx.fillRect(20, 15, 40, 25);
+        mmCtx.fillRect(90, 60, 50, 30);
+        mmCtx.fillRect(50, 80, 30, 20);
+
+        // Grid
+        mmCtx.strokeStyle = 'rgba(58,60,94,0.15)';
+        mmCtx.lineWidth = 0.5;
+        for (let x = 0; x < 160; x += 20) {
+            mmCtx.beginPath(); mmCtx.moveTo(x, 0); mmCtx.lineTo(x, 120); mmCtx.stroke();
+        }
+        for (let y = 0; y < 120; y += 20) {
+            mmCtx.beginPath(); mmCtx.moveTo(0, y); mmCtx.lineTo(160, y); mmCtx.stroke();
+        }
+
+        // Units (blips)
+        const blips = [
+            {x:40,y:35,c:'#00b4d8'}, {x:45,y:38,c:'#00b4d8'}, {x:38,y:32,c:'#00b4d8'},
+            {x:100,y:70,c:'#44cc44'}, {x:105,y:75,c:'#44cc44'},
+            {x:70,y:50,c:'#ccaa33'},
+            {x:120,y:30,c:'#cc3333'}, {x:125,y:25,c:'#cc3333'}, {x:118,y:28,c:'#cc3333'}
+        ];
+        const now = Date.now();
+        for (const b of blips) {
+            const pulse = 0.6 + 0.4 * Math.sin(now * 0.003 + b.x);
+            mmCtx.fillStyle = b.c;
+            mmCtx.globalAlpha = pulse;
+            mmCtx.fillRect(b.x - 1.5, b.y - 1.5, 3, 3);
+        }
+        mmCtx.globalAlpha = 1;
+
+        // Viewport box
+        mmCtx.strokeStyle = 'rgba(255,255,255,0.3)';
+        mmCtx.lineWidth = 1;
+        mmCtx.strokeRect(25, 20, 50, 35);
+
+        requestAnimationFrame(drawMinimap);
+    }
+    drawMinimap();
+
+    // ── Resource Ticker ─────────────────────────────────────────
+    let minerals = 1247, gas = 863;
+    setInterval(() => {
+        minerals += Math.floor(Math.random() * 12) - 3;
+        gas += Math.floor(Math.random() * 8) - 2;
+        if (minerals < 0) minerals = 0;
+        if (gas < 0) gas = 0;
+        document.getElementById('minerals').textContent = minerals.toLocaleString();
+        document.getElementById('gas').textContent = gas.toLocaleString();
+    }, 2000);
+
+    // ── Command Card Interaction ────────────────────────────────
+    document.querySelectorAll('.cmd-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            document.querySelectorAll('.cmd-btn').forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            const texts = {
+                'MOV': 'Move order confirmed. Repositioning units.',
+                'ATK': 'Attack order confirmed. Engaging hostile targets.',
+                'PTL': 'Patrol route established. Units on patrol.',
+                'HLD': 'Hold position. All units holding ground.',
+                'STP': 'All stop. Units standing by.',
+                'BLD': 'Construction queue updated. SCV dispatched.'
+            };
+            const advisor = document.querySelector('.advisor');
+            advisor.innerHTML = '<span class="callsign">[ADJUTANT]</span> ' + (texts[this.textContent] || 'Awaiting orders.');
         });
-        document.addEventListener('click', function(e) {
-            if (!e.target.closest('nav')) {
-                mobileMenu.classList.remove('active');
-                menuToggle.innerHTML = '&#9776;';
-            }
-        });
+    });
+
+    // ── Mobile Menu ─────────────────────────────────────────────
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    menuToggle.addEventListener('click', function(e) {
+        e.stopPropagation();
+        mobileMenu.classList.toggle('active');
+        menuToggle.innerHTML = mobileMenu.classList.contains('active') ? '&#10005;' : '&#9776;';
+    });
+    document.addEventListener('click', function(e) {
+        if (!e.target.closest('nav')) {
+            mobileMenu.classList.remove('active');
+            menuToggle.innerHTML = '&#9776;';
+        }
+    });
     </script>
 </body>
 </html>
