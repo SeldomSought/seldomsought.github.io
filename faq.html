@@ -1,117 +1,388 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FAQ - SeldomSought</title>
-<meta name="description" content="Frequently asked questions about SeldomSought's research services.">
-<meta name="theme-color" content="#088a33"/>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&family=Cabin:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-*{margin:0;padding:0;box-sizing:border-box}:root{--green:#088a33;--dark:#1a1a1a;--light:#f9f7f4}body{font-family:'Cabin',sans-serif;color:var(--dark);background:var(--light);line-height:1.6}h1,h2,h3,h4{font-family:'Old Standard TT',serif;font-weight:400}nav{position:fixed;top:0;width:100%;background:rgba(249,247,244,0.95);border-bottom:1px solid #e0e0e0;z-index:100}.nav-container{max-width:1200px;margin:0 auto;padding:1.5rem 2rem;display:flex;justify-content:space-between;align-items:center}.logo{font-family:'Old Standard TT',serif;font-size:1.5rem;color:var(--green);text-decoration:none}.nav-links{display:flex;gap:2rem;list-style:none}.nav-links a{text-decoration:none;color:var(--dark);font-size:0.95rem;transition:color 0.2s}.nav-links a:hover{color:var(--green)}.menu-toggle{display:none;background:none;border:none;font-size:1.5rem;cursor:pointer;color:var(--dark)}.mobile-menu{display:none}.page-header{padding:8rem 2rem 3rem;text-align:center;background:var(--light);position:relative;overflow:hidden}.page-header::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background-image:url('https://img1.wsimg.com/isteam/ip/1ccf137f-e768-42fa-ac89-15fa5230f59d/b52a34679636d532da8d08a54fc92f55.jpg');background-size:cover;background-position:center;opacity:0.05;z-index:0}.page-header h1{font-size:3rem;margin-bottom:1rem;position:relative;z-index:1}.page-header h1::after{content:'';display:block;width:60px;height:3px;background:var(--green);margin:1rem auto 0}.page-header .subtitle{font-family:'Old Standard TT',serif;font-style:italic;color:var(--green);font-size:1.2rem;position:relative;z-index:1}main{max-width:900px;margin:0 auto;padding:3rem 2rem}.faq-item{background:white;margin-bottom:1.5rem;border-radius:5px;border:1px solid #e0e0e0;overflow:hidden}.faq-question{font-family:'Old Standard TT',serif;font-size:1.1rem;padding:1.5rem 2rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center}.faq-question::after{content:'+';font-size:1.5rem;color:var(--green)}.faq-item.active .faq-question::after{content:'−'}.faq-answer{max-height:0;overflow:hidden;transition:max-height 0.3s ease;padding:0 2rem}.faq-item.active .faq-answer{max-height:300px;padding:0 2rem 1.5rem}.faq-answer p{color:#4a4a4a;line-height:1.8}footer{background:var(--dark);color:white;padding:3rem 2rem 2rem;margin-top:4rem}.footer-content{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:3rem;margin-bottom:2rem}.footer-section h3{font-size:1.2rem;margin-bottom:1rem;color:#0fb346}.footer-section p{color:rgba(255,255,255,0.8);line-height:1.7}.footer-links{list-style:none}.footer-links a{color:rgba(255,255,255,0.8);text-decoration:none;display:block;padding:0.3rem 0;transition:color 0.2s}.footer-links a:hover{color:white}.footer-bottom{max-width:1200px;margin:0 auto;padding-top:2rem;border-top:1px solid rgba(255,255,255,0.1);text-align:center;color:rgba(255,255,255,0.6);font-size:0.9rem}@media (max-width:768px){.menu-toggle{display:block}.nav-links{display:none}.mobile-menu{position:fixed;top:70px;left:0;right:0;background:rgba(249,247,244,0.98);border-bottom:1px solid #e0e0e0;padding:1rem 2rem}.mobile-menu.active{display:block}.mobile-menu ul{list-style:none}.mobile-menu a{display:block;padding:0.8rem 0;text-decoration:none;color:var(--dark);border-bottom:1px solid #f0f0f0}.mobile-menu a:hover{color:var(--green)}.page-header h1{font-size:2.2rem}.footer-content{grid-template-columns:1fr;gap:2rem}}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - SeldomSought</title>
+    <meta name="description" content="Frequently asked questions about SeldomSought's research services.">
+    <meta name="theme-color" content="#00ff41"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --matrix-green: #00ff41;
+            --matrix-green-dim: #00cc33;
+            --matrix-green-dark: #008f11;
+        }
+        body {
+            font-family: 'Share Tech Mono', monospace;
+            color: var(--matrix-green); background: #000;
+            line-height: 1.6; overflow-x: hidden;
+        }
+        #matrixCanvas {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 0; pointer-events: none;
+        }
+        .scanlines {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; z-index: 99;
+            background: repeating-linear-gradient(0deg, rgba(0,0,0,0.03) 0px, rgba(0,0,0,0.03) 1px, transparent 1px, transparent 3px);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed; top: 0; width: 100%;
+            background: rgba(0,0,0,0.85);
+            border-bottom: 1px solid rgba(0,255,65,0.15);
+            z-index: 100; backdrop-filter: blur(10px);
+        }
+        .nav-container {
+            max-width: 1200px; margin: 0 auto; padding: 1.2rem 2rem;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .logo {
+            font-size: 1.5rem; color: var(--matrix-green); text-decoration: none;
+            text-shadow: 0 0 10px rgba(0,255,65,0.5), 0 0 20px rgba(0,255,65,0.3);
+            letter-spacing: 2px;
+        }
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-links a {
+            text-decoration: none; color: var(--matrix-green-dark);
+            font-size: 0.9rem; letter-spacing: 1px; text-transform: uppercase;
+            transition: all 0.3s; position: relative;
+        }
+        .nav-links a:hover { color: var(--matrix-green); text-shadow: 0 0 8px rgba(0,255,65,0.6); }
+        .nav-links a::after {
+            content: ''; position: absolute; bottom: -4px; left: 0;
+            width: 0; height: 1px; background: var(--matrix-green);
+            box-shadow: 0 0 5px var(--matrix-green); transition: width 0.3s;
+        }
+        .nav-links a:hover::after { width: 100%; }
+        .menu-toggle {
+            display: none; background: none;
+            border: 1px solid var(--matrix-green-dark);
+            font-size: 1.5rem; cursor: pointer; color: var(--matrix-green);
+            padding: 0.2rem 0.5rem;
+        }
+        .mobile-menu { display: none; }
+
+        /* Page Header */
+        .page-header {
+            padding: 8rem 2rem 3rem; text-align: center;
+            position: relative; z-index: 1;
+        }
+        .page-header h1 {
+            font-size: 3rem; margin-bottom: 1rem;
+            color: var(--matrix-green); font-weight: 400;
+            text-shadow: 0 0 20px rgba(0,255,65,0.4), 0 0 40px rgba(0,255,65,0.2);
+            letter-spacing: 4px; text-transform: uppercase;
+        }
+        .page-header h1::after {
+            content: ''; display: block; width: 80px; height: 1px;
+            background: var(--matrix-green);
+            box-shadow: 0 0 10px var(--matrix-green);
+            margin: 1rem auto 0;
+        }
+        .page-header .subtitle {
+            color: var(--matrix-green-dim); font-size: 1.1rem;
+            letter-spacing: 2px; text-shadow: 0 0 10px rgba(0,255,65,0.2);
+        }
+
+        /* FAQ Content */
+        main {
+            max-width: 900px; margin: 0 auto; padding: 3rem 2rem;
+            position: relative; z-index: 1;
+        }
+        .faq-item {
+            background: rgba(0,255,65,0.02);
+            margin-bottom: 1px; overflow: hidden;
+            border: 1px solid rgba(0,255,65,0.08);
+            transition: all 0.3s;
+        }
+        .faq-item:hover {
+            border-color: rgba(0,255,65,0.2);
+        }
+        .faq-item.active {
+            border-color: rgba(0,255,65,0.3);
+            background: rgba(0,255,65,0.04);
+            box-shadow: 0 0 20px rgba(0,255,65,0.05);
+        }
+        .faq-question {
+            font-size: 1rem; padding: 1.5rem 2rem;
+            cursor: pointer; display: flex;
+            justify-content: space-between; align-items: center;
+            color: var(--matrix-green-dim);
+            letter-spacing: 1px; transition: all 0.3s;
+        }
+        .faq-question:hover {
+            color: var(--matrix-green);
+        }
+        .faq-question::before {
+            content: '> ';
+            color: var(--matrix-green-dark);
+            transition: color 0.3s;
+        }
+        .faq-item.active .faq-question::before {
+            color: var(--matrix-green);
+        }
+        .faq-question::after {
+            content: '[+]';
+            font-size: 1rem;
+            color: var(--matrix-green-dark);
+            transition: all 0.3s;
+        }
+        .faq-item.active .faq-question::after {
+            content: '[-]';
+            color: var(--matrix-green);
+        }
+        .faq-answer {
+            max-height: 0; overflow: hidden;
+            transition: max-height 0.4s ease;
+            padding: 0 2rem;
+        }
+        .faq-item.active .faq-answer {
+            max-height: 300px;
+            padding: 0 2rem 1.5rem;
+        }
+        .faq-answer p {
+            color: var(--matrix-green-dark); line-height: 1.8;
+            padding-left: 1.2rem;
+            border-left: 1px solid rgba(0,255,65,0.15);
+        }
+
+        /* Decode animation */
+        .decode-text { opacity: 0; }
+        .decode-text.revealed { opacity: 1; }
+
+        /* Footer */
+        footer {
+            background: rgba(0,0,0,0.9); color: var(--matrix-green-dark);
+            padding: 3rem 2rem 2rem;
+            border-top: 1px solid rgba(0,255,65,0.1);
+            position: relative; z-index: 1;
+        }
+        .footer-content {
+            max-width: 1200px; margin: 0 auto;
+            display: grid; grid-template-columns: 2fr 1fr 1fr;
+            gap: 3rem; margin-bottom: 2rem;
+        }
+        .footer-section h3 {
+            font-size: 1.1rem; margin-bottom: 1rem;
+            color: var(--matrix-green);
+            text-shadow: 0 0 8px rgba(0,255,65,0.3);
+            letter-spacing: 2px; text-transform: uppercase; font-weight: 400;
+        }
+        .footer-section p { color: var(--matrix-green-dark); line-height: 1.7; }
+        .footer-links { list-style: none; }
+        .footer-links a {
+            color: var(--matrix-green-dark); text-decoration: none;
+            display: block; padding: 0.3rem 0; transition: all 0.2s;
+            letter-spacing: 1px; font-size: 0.9rem;
+        }
+        .footer-links a:hover {
+            color: var(--matrix-green);
+            text-shadow: 0 0 8px rgba(0,255,65,0.4);
+            padding-left: 0.5rem;
+        }
+        .footer-links a::before { content: '> '; opacity: 0; transition: opacity 0.2s; }
+        .footer-links a:hover::before { opacity: 1; }
+        .footer-bottom {
+            max-width: 1200px; margin: 0 auto; padding-top: 2rem;
+            border-top: 1px solid rgba(0,255,65,0.1);
+            text-align: center; color: rgba(0,255,65,0.3);
+            font-size: 0.85rem; letter-spacing: 1px;
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle { display: block; }
+            .nav-links { display: none; }
+            .mobile-menu {
+                position: fixed; top: 60px; left: 0; right: 0;
+                background: rgba(0,0,0,0.95);
+                border-bottom: 1px solid rgba(0,255,65,0.15);
+                padding: 1rem 2rem; backdrop-filter: blur(10px);
+            }
+            .mobile-menu.active { display: block; }
+            .mobile-menu ul { list-style: none; }
+            .mobile-menu a {
+                display: block; padding: 0.8rem 0; text-decoration: none;
+                color: var(--matrix-green-dark);
+                border-bottom: 1px solid rgba(0,255,65,0.05);
+                letter-spacing: 1px; text-transform: uppercase; font-size: 0.9rem;
+            }
+            .mobile-menu a:hover { color: var(--matrix-green); text-shadow: 0 0 8px rgba(0,255,65,0.4); }
+            .page-header h1 { font-size: 2.2rem; }
+            .footer-content { grid-template-columns: 1fr; gap: 2rem; }
+        }
+    </style>
 </head>
 <body>
-<nav>
-<div class="nav-container">
-<a href="index.html" class="logo">SeldomSought</a>
-<button class="menu-toggle" id="menuToggle">☰</button>
-<ul class="nav-links">
-<li><a href="index.html">Home</a></li>
-<li><a href="philosophy.html">Philosophy</a></li>
-<li><a href="services.html">Services</a></li>
-<li><a href="expertise.html">Expertise</a></li>
-<li><a href="faq.html">FAQ</a></li>
-<li><a href="contact.html">Contact</a></li>
-</ul>
-</div>
-<div class="mobile-menu" id="mobileMenu">
-<ul>
-<li><a href="index.html">Home</a></li>
-<li><a href="philosophy.html">Philosophy</a></li>
-<li><a href="services.html">Services</a></li>
-<li><a href="expertise.html">Expertise</a></li>
-<li><a href="faq.html">FAQ</a></li>
-<li><a href="contact.html">Contact</a></li>
-</ul>
-</div>
-</nav>
-<div class="page-header">
-<h1>Frequently Asked Questions</h1>
-<p class="subtitle">Everything you need to know</p>
-</div>
-<main>
-<div class="faq-item">
-<div class="faq-question">What makes SeldomSought different?</div>
-<div class="faq-answer">
-<p>While traditional research services focus on readily available information, we specialize in the obscure, the forgotten, and the deliberately hidden. Our team includes specialists in rare fields with access to restricted archives and relationships with experts worldwide.</p>
-</div>
-</div>
-<div class="faq-item">
-<div class="faq-question">How long does a typical project take?</div>
-<div class="faq-answer">
-<p>Project timelines vary based on complexity. Simple inquiries might be resolved in 24-48 hours, while comprehensive research can take weeks or months. We provide realistic timelines during consultation and maintain transparent communication throughout.</p>
-</div>
-</div>
-<div class="faq-item">
-<div class="faq-question">Can you research topics in other languages?</div>
-<div class="faq-answer">
-<p>Absolutely. Our network includes researchers fluent in over 40 modern languages and specialists in ancient languages including Latin, Ancient Greek, Sanskrit, Classical Chinese, Aramaic, and many others.</p>
-</div>
-</div>
-<div class="faq-item">
-<div class="faq-question">What if my question seems impossible to answer?</div>
-<div class="faq-answer">
-<p>Obscure questions are our specialty. While we can't guarantee answers to every question, we have a 95% success rate even with seemingly impossible inquiries. We'll provide an honest assessment and explore creative approaches to finding answers.</p>
-</div>
-</div>
-<div class="faq-item">
-<div class="faq-question">How do you ensure research accuracy?</div>
-<div class="faq-answer">
-<p>Every finding undergoes rigorous verification. We cross-reference multiple primary sources, consult subject matter experts, and employ peer review processes. All research includes detailed citations and methodology documentation.</p>
-</div>
-</div>
-<div class="faq-item">
-<div class="faq-question">Do you maintain confidentiality?</div>
-<div class="faq-answer">
-<p>Absolutely. We maintain strict confidentiality for all client projects. Non-disclosure agreements are available upon request. Our researchers are bound by professional ethics and employ secure communication channels.</p>
-</div>
-</div>
-</main>
-<footer>
-<div class="footer-content">
-<div class="footer-section">
-<h3>SeldomSought</h3>
-<p>Dedicated to uncovering the knowledge that lies beyond conventional reach.</p>
-</div>
-<div class="footer-section">
-<h3>Navigate</h3>
-<ul class="footer-links">
-<li><a href="philosophy.html">Philosophy</a></li>
-<li><a href="services.html">Services</a></li>
-<li><a href="expertise.html">Expertise</a></li>
-<li><a href="faq.html">FAQ</a></li>
-<li><a href="contact.html">Contact</a></li>
-</ul>
-</div>
-<div class="footer-section">
-<h3>Services</h3>
-<ul class="footer-links">
-<li><a href="services.html">Historical Research</a></li>
-<li><a href="services.html">Scientific Inquiry</a></li>
-<li><a href="services.html">Cultural Studies</a></li>
-<li><a href="services.html">Legal Research</a></li>
-</ul>
-</div>
-</div>
-<div class="footer-bottom">
-<p>&copy; 2024 SeldomSought. All rights reserved.</p>
-</div>
-</footer>
-<script>
-const menuToggle=document.getElementById('menuToggle');const mobileMenu=document.getElementById('mobileMenu');menuToggle.addEventListener('click',function(e){e.stopPropagation();mobileMenu.classList.toggle('active');menuToggle.textContent=mobileMenu.classList.contains('active')?'✕':'☰'});document.addEventListener('click',function(e){if(!e.target.closest('nav')){mobileMenu.classList.remove('active');menuToggle.textContent='☰'}});document.querySelectorAll('.faq-question').forEach(q=>{q.addEventListener('click',function(){const item=this.parentElement;const isActive=item.classList.contains('active');document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('active'));if(!isActive){item.classList.add('active')}})});
-</script>
+    <canvas id="matrixCanvas"></canvas>
+    <div class="scanlines"></div>
+
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">SeldomSought</a>
+            <button class="menu-toggle" id="menuToggle">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="philosophy.html">Philosophy</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="expertise.html">Expertise</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+        <div class="mobile-menu" id="mobileMenu">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="philosophy.html">Philosophy</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="expertise.html">Expertise</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="page-header">
+        <h1 class="decode-text" data-decode-delay="300" data-decode-speed="35">Frequently Asked Questions</h1>
+        <p class="subtitle decode-text" data-decode-delay="1400" data-decode-speed="30">Everything you need to know</p>
+    </div>
+
+    <main>
+        <div class="faq-item">
+            <div class="faq-question">What makes SeldomSought different?</div>
+            <div class="faq-answer">
+                <p>While traditional research services focus on readily available information, we specialize in the obscure, the forgotten, and the deliberately hidden. Our team includes specialists in rare fields with access to restricted archives and relationships with experts worldwide.</p>
+            </div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">How long does a typical project take?</div>
+            <div class="faq-answer">
+                <p>Project timelines vary based on complexity. Simple inquiries might be resolved in 24-48 hours, while comprehensive research can take weeks or months. We provide realistic timelines during consultation and maintain transparent communication throughout.</p>
+            </div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">Can you research topics in other languages?</div>
+            <div class="faq-answer">
+                <p>Absolutely. Our network includes researchers fluent in over 40 modern languages and specialists in ancient languages including Latin, Ancient Greek, Sanskrit, Classical Chinese, Aramaic, and many others.</p>
+            </div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">What if my question seems impossible to answer?</div>
+            <div class="faq-answer">
+                <p>Obscure questions are our specialty. While we can't guarantee answers to every question, we have a 95% success rate even with seemingly impossible inquiries. We'll provide an honest assessment and explore creative approaches to finding answers.</p>
+            </div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">How do you ensure research accuracy?</div>
+            <div class="faq-answer">
+                <p>Every finding undergoes rigorous verification. We cross-reference multiple primary sources, consult subject matter experts, and employ peer review processes. All research includes detailed citations and methodology documentation.</p>
+            </div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">Do you maintain confidentiality?</div>
+            <div class="faq-answer">
+                <p>Absolutely. We maintain strict confidentiality for all client projects. Non-disclosure agreements are available upon request. Our researchers are bound by professional ethics and employ secure communication channels.</p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>SeldomSought</h3>
+                <p>Dedicated to uncovering the knowledge that lies beyond conventional reach.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Navigate</h3>
+                <ul class="footer-links">
+                    <li><a href="philosophy.html">Philosophy</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="expertise.html">Expertise</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Services</h3>
+                <ul class="footer-links">
+                    <li><a href="services.html">Historical Research</a></li>
+                    <li><a href="services.html">Scientific Inquiry</a></li>
+                    <li><a href="services.html">Cultural Studies</a></li>
+                    <li><a href="services.html">Legal Research</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 SeldomSought. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Matrix Rain
+        const canvas = document.getElementById('matrixCanvas');
+        const ctx = canvas.getContext('2d');
+        function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+        resizeCanvas(); window.addEventListener('resize', resizeCanvas);
+        const matrixChars = 'アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        const fontSize = 14; let columns, drops;
+        function initDrops() { columns = Math.floor(canvas.width / fontSize); drops = []; for (let i = 0; i < columns; i++) drops[i] = Math.random() * -100; }
+        initDrops(); window.addEventListener('resize', initDrops);
+        function drawMatrix() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)'; ctx.fillRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < drops.length; i++) {
+                const char = matrixChars[Math.floor(Math.random() * matrixChars.length)];
+                const x = i * fontSize, y = drops[i] * fontSize;
+                if (Math.random() > 0.98) { ctx.fillStyle = '#ffffff'; ctx.shadowColor = '#00ff41'; ctx.shadowBlur = 15; }
+                else { const r = Math.random(); ctx.fillStyle = r > 0.9 ? '#00ff41' : r > 0.6 ? '#00cc33' : '#008f11'; ctx.shadowColor = 'transparent'; ctx.shadowBlur = 0; }
+                ctx.font = fontSize + 'px monospace'; ctx.fillText(char, x, y);
+                if (y > canvas.height && Math.random() > 0.975) drops[i] = 0; drops[i]++;
+            }
+            requestAnimationFrame(drawMatrix);
+        }
+        drawMatrix();
+
+        // Decode Effect
+        const scrambleChars = '01アイウエオ!@#$%カキクケコ10サシスセソ';
+        function decodeElement(el) {
+            const delay = parseInt(el.dataset.decodeDelay) || 0;
+            const speed = parseInt(el.dataset.decodeSpeed) || 30;
+            const text = el.textContent;
+            setTimeout(() => { el.classList.add('revealed'); decodeSimpleText(el, text, speed, 0); }, delay);
+        }
+        function decodeSimpleText(el, text, speed, extraDelay) {
+            const chars = text.split(''), settled = new Array(chars.length).fill(false); let cur = 0;
+            el.textContent = chars.map(c => c === ' ' ? ' ' : scrambleChars[Math.floor(Math.random() * scrambleChars.length)]).join('');
+            setTimeout(() => {
+                const iv = setInterval(() => {
+                    let r = '';
+                    for (let i = 0; i < chars.length; i++) { if (settled[i]) r += chars[i]; else if (chars[i] === ' ') { r += ' '; settled[i] = true; } else r += scrambleChars[Math.floor(Math.random() * scrambleChars.length)]; }
+                    el.textContent = r;
+                    if (cur < chars.length) { settled[cur] = true; cur++; while (cur < chars.length && chars[cur] === ' ') { settled[cur] = true; cur++; } }
+                    if (cur >= chars.length) { clearInterval(iv); el.textContent = text; }
+                }, speed);
+            }, extraDelay);
+        }
+        document.addEventListener('DOMContentLoaded', () => { document.querySelectorAll('.decode-text').forEach(el => decodeElement(el)); });
+
+        // FAQ Toggle
+        document.querySelectorAll('.faq-question').forEach(q => {
+            q.addEventListener('click', function() {
+                const item = this.parentElement;
+                const isActive = item.classList.contains('active');
+                document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+                if (!isActive) item.classList.add('active');
+            });
+        });
+
+        // Mobile Menu
+        const menuToggle = document.getElementById('menuToggle'), mobileMenu = document.getElementById('mobileMenu');
+        menuToggle.addEventListener('click', function(e) { e.stopPropagation(); mobileMenu.classList.toggle('active'); menuToggle.innerHTML = mobileMenu.classList.contains('active') ? '&#10005;' : '&#9776;'; });
+        document.addEventListener('click', function(e) { if (!e.target.closest('nav')) { mobileMenu.classList.remove('active'); menuToggle.innerHTML = '&#9776;'; } });
+    </script>
 </body>
 </html>
