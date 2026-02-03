@@ -5,201 +5,331 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Services - SeldomSought</title>
     <meta name="description" content="Expert research services in history, science, culture, law, and more.">
-    <meta name="theme-color" content="#00ff41"/>
+    <meta name="theme-color" content="#0a1628"/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
+
         :root {
-            --matrix-green: #00ff41;
-            --matrix-green-dim: #00cc33;
-            --matrix-green-dark: #008f11;
-        }
-        body {
-            font-family: 'Share Tech Mono', monospace;
-            color: var(--matrix-green); background: #000;
-            line-height: 1.6; overflow-x: hidden;
-        }
-        #matrixCanvas {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            z-index: 0; pointer-events: none;
-        }
-        .scanlines {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            pointer-events: none; z-index: 99;
-            background: repeating-linear-gradient(0deg, rgba(0,0,0,0.03) 0px, rgba(0,0,0,0.03) 1px, transparent 1px, transparent 3px);
+            --ocean-deep: #0a1628;
+            --ocean-mid: #0d2137;
+            --ocean-surface: #134a6e;
+            --current-cold: #4fc3f7;
+            --current-warm: #ff8a65;
+            --current-hot: #ef5350;
+            --current-cool: #00bcd4;
+            --land-dark: #1a2a1a;
+            --text-primary: rgba(255,255,255,0.9);
+            --text-secondary: rgba(255,255,255,0.55);
+            --text-dim: rgba(255,255,255,0.3);
+            --panel-bg: rgba(10,22,40,0.85);
+            --panel-border: rgba(79,195,247,0.15);
         }
 
-        /* Navigation */
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-primary);
+            background: var(--ocean-deep);
+            line-height: 1.5;
+            overflow-x: hidden;
+            cursor: crosshair;
+        }
+
+        /* Flow Canvas */
+        #flowCanvas {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: 0;
+        }
+
+        /* Globe overlay canvas */
+        #globeCanvas {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* Navigation - keeps Matrix site consistency */
         nav {
             position: fixed; top: 0; width: 100%;
-            background: rgba(0,0,0,0.85);
-            border-bottom: 1px solid rgba(0,255,65,0.15);
-            z-index: 100; backdrop-filter: blur(10px);
+            background: rgba(10,22,40,0.9);
+            border-bottom: 1px solid rgba(79,195,247,0.1);
+            z-index: 200;
+            backdrop-filter: blur(12px);
         }
         .nav-container {
-            max-width: 1200px; margin: 0 auto; padding: 1.2rem 2rem;
+            max-width: 1200px; margin: 0 auto; padding: 1rem 2rem;
             display: flex; justify-content: space-between; align-items: center;
         }
         .logo {
-            font-size: 1.5rem; color: var(--matrix-green); text-decoration: none;
-            text-shadow: 0 0 10px rgba(0,255,65,0.5), 0 0 20px rgba(0,255,65,0.3);
-            letter-spacing: 2px;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 1.4rem; color: var(--current-cold);
+            text-decoration: none; letter-spacing: 2px;
+            text-shadow: 0 0 10px rgba(79,195,247,0.4);
         }
-        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-links { display: flex; gap: 1.8rem; list-style: none; }
         .nav-links a {
-            text-decoration: none; color: var(--matrix-green-dark);
-            font-size: 0.9rem; letter-spacing: 1px; text-transform: uppercase;
-            transition: all 0.3s; position: relative;
+            text-decoration: none; color: var(--text-secondary);
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.8rem; letter-spacing: 1px;
+            text-transform: uppercase; transition: all 0.3s;
         }
-        .nav-links a:hover { color: var(--matrix-green); text-shadow: 0 0 8px rgba(0,255,65,0.6); }
-        .nav-links a::after {
-            content: ''; position: absolute; bottom: -4px; left: 0;
-            width: 0; height: 1px; background: var(--matrix-green);
-            box-shadow: 0 0 5px var(--matrix-green); transition: width 0.3s;
+        .nav-links a:hover {
+            color: var(--current-cold);
+            text-shadow: 0 0 8px rgba(79,195,247,0.5);
         }
-        .nav-links a:hover::after { width: 100%; }
         .menu-toggle {
             display: none; background: none;
-            border: 1px solid var(--matrix-green-dark);
-            font-size: 1.5rem; cursor: pointer; color: var(--matrix-green);
+            border: 1px solid var(--text-dim);
+            font-size: 1.3rem; cursor: pointer;
+            color: var(--current-cold);
             padding: 0.2rem 0.5rem;
         }
         .mobile-menu { display: none; }
 
-        /* Page Header */
+        /* HUD Readout - top right */
+        .hud {
+            position: fixed; top: 70px; right: 20px;
+            z-index: 150; font-family: 'Share Tech Mono', monospace;
+            text-align: right; pointer-events: none;
+        }
+        .hud-line {
+            font-size: 0.7rem; color: var(--text-dim);
+            letter-spacing: 1px; line-height: 1.8;
+        }
+        .hud-line .val {
+            color: var(--current-cold);
+        }
+        .hud-line .warm {
+            color: var(--current-warm);
+        }
+
+        /* Color scale legend */
+        .legend {
+            position: fixed; bottom: 30px; left: 20px;
+            z-index: 150; pointer-events: none;
+        }
+        .legend-title {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.65rem; color: var(--text-dim);
+            letter-spacing: 1px; text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+        .legend-bar {
+            width: 200px; height: 6px; border-radius: 3px;
+            background: linear-gradient(90deg, #4fc3f7, #00bcd4, #66bb6a, #ffca28, #ff8a65, #ef5350);
+        }
+        .legend-labels {
+            display: flex; justify-content: space-between;
+            margin-top: 4px;
+        }
+        .legend-labels span {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.6rem; color: var(--text-dim);
+        }
+
+        /* Source attribution */
+        .source-label {
+            position: fixed; bottom: 30px; right: 20px;
+            z-index: 150; font-family: 'Share Tech Mono', monospace;
+            font-size: 0.6rem; color: var(--text-dim);
+            letter-spacing: 1px; pointer-events: none;
+        }
+
+        /* Main content overlay */
+        .content-overlay {
+            position: relative; z-index: 100;
+            min-height: 100vh;
+            padding-top: 80px;
+        }
+
+        /* Page header */
         .page-header {
-            padding: 8rem 2rem 3rem; text-align: center;
-            position: relative; z-index: 1;
+            text-align: center; padding: 3rem 2rem 1rem;
         }
         .page-header h1 {
-            font-size: 3rem; margin-bottom: 1rem;
-            color: var(--matrix-green); font-weight: 400;
-            text-shadow: 0 0 20px rgba(0,255,65,0.4), 0 0 40px rgba(0,255,65,0.2);
-            letter-spacing: 4px; text-transform: uppercase;
-        }
-        .page-header h1::after {
-            content: ''; display: block; width: 80px; height: 1px;
-            background: var(--matrix-green);
-            box-shadow: 0 0 10px var(--matrix-green);
-            margin: 1rem auto 0;
+            font-family: 'Inter', sans-serif;
+            font-weight: 300; font-size: 2.2rem;
+            color: var(--text-primary);
+            letter-spacing: 3px; text-transform: uppercase;
+            margin-bottom: 0.5rem;
         }
         .page-header .subtitle {
-            color: var(--matrix-green-dim); font-size: 1.1rem;
-            letter-spacing: 2px; text-shadow: 0 0 10px rgba(0,255,65,0.2);
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.8rem; color: var(--text-dim);
+            letter-spacing: 2px; text-transform: uppercase;
         }
 
-        /* Main Content */
-        main {
-            max-width: 1000px; margin: 0 auto; padding: 3rem 2rem;
-            position: relative; z-index: 1;
+        /* Service panels */
+        .services-grid {
+            max-width: 1100px; margin: 2rem auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1px;
         }
-        section { margin-bottom: 4rem; }
-        .content-box {
-            background: rgba(0,255,65,0.02);
-            padding: 2.5rem; margin-bottom: 2rem;
-            border: 1px solid rgba(0,255,65,0.1);
-            border-left: 2px solid rgba(0,255,65,0.3);
-            transition: all 0.3s;
-        }
-        .content-box:hover {
-            border-left-color: var(--matrix-green);
-            background: rgba(0,255,65,0.04);
-            box-shadow: 0 0 20px rgba(0,255,65,0.05);
-        }
-        .content-box h3 {
-            color: var(--matrix-green); font-weight: 400;
-            margin-bottom: 1rem; letter-spacing: 2px;
-            text-transform: uppercase; font-size: 1.1rem;
-            text-shadow: 0 0 8px rgba(0,255,65,0.3);
-        }
-        .content-box p {
-            color: var(--matrix-green-dark); line-height: 1.8;
-            margin-bottom: 1rem;
-        }
-        .list-simple { list-style: none; padding-left: 0; }
-        .list-simple li {
-            padding: 0.5rem 0;
-            border-bottom: 1px solid rgba(0,255,65,0.05);
-            color: var(--matrix-green-dim);
-            font-size: 0.95rem; letter-spacing: 1px;
-        }
-        .list-simple li::before {
-            content: '// ';
-            color: var(--matrix-green-dark);
-        }
-        .list-simple li:last-child { border-bottom: none; }
 
-        /* Decode animation */
-        .decode-text { opacity: 0; }
-        .decode-text.revealed { opacity: 1; }
+        .service-panel {
+            background: var(--panel-bg);
+            border: 1px solid var(--panel-border);
+            padding: 2rem 2.2rem;
+            backdrop-filter: blur(8px);
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-panel::before {
+            content: '';
+            position: absolute; top: 0; left: 0;
+            width: 100%; height: 2px;
+            background: linear-gradient(90deg,
+                transparent,
+                var(--accent-color, var(--current-cold)),
+                transparent);
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+        .service-panel:hover::before { opacity: 1; }
+
+        .service-panel:hover {
+            background: rgba(10,22,40,0.92);
+            border-color: rgba(79,195,247,0.25);
+            box-shadow: 0 0 40px rgba(79,195,247,0.06);
+        }
+
+        .panel-icon {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.65rem; color: var(--text-dim);
+            letter-spacing: 2px; text-transform: uppercase;
+            margin-bottom: 0.8rem;
+            display: flex; align-items: center; gap: 0.5rem;
+        }
+        .panel-icon .dot {
+            width: 6px; height: 6px; border-radius: 50%;
+            display: inline-block;
+        }
+
+        .service-panel h3 {
+            font-weight: 400; font-size: 1.15rem;
+            color: var(--text-primary);
+            margin-bottom: 0.6rem; letter-spacing: 0.5px;
+        }
+
+        .service-panel p {
+            font-size: 0.88rem; color: var(--text-secondary);
+            line-height: 1.7; margin-bottom: 1.2rem;
+            font-weight: 300;
+        }
+
+        .service-list {
+            list-style: none; padding: 0;
+        }
+        .service-list li {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.75rem; color: var(--text-dim);
+            padding: 0.3rem 0;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid rgba(255,255,255,0.03);
+        }
+        .service-list li:last-child { border-bottom: none; }
+        .service-list li::before {
+            content: '\2022  ';
+            color: var(--accent-color, var(--current-cold));
+            font-size: 0.6rem;
+        }
+
+        /* Accent colors per panel */
+        .panel-historical { --accent-color: #4fc3f7; }
+        .panel-scientific { --accent-color: #66bb6a; }
+        .panel-cultural  { --accent-color: #ffca28; }
+        .panel-legal     { --accent-color: #ff8a65; }
+
+        .panel-historical .dot { background: #4fc3f7; box-shadow: 0 0 6px #4fc3f7; }
+        .panel-scientific .dot { background: #66bb6a; box-shadow: 0 0 6px #66bb6a; }
+        .panel-cultural .dot   { background: #ffca28; box-shadow: 0 0 6px #ffca28; }
+        .panel-legal .dot      { background: #ff8a65; box-shadow: 0 0 6px #ff8a65; }
 
         /* Footer */
         footer {
-            background: rgba(0,0,0,0.9); color: var(--matrix-green-dark);
-            padding: 3rem 2rem 2rem;
-            border-top: 1px solid rgba(0,255,65,0.1);
-            position: relative; z-index: 1;
+            background: rgba(10,22,40,0.95);
+            border-top: 1px solid rgba(79,195,247,0.08);
+            padding: 2.5rem 2rem 1.5rem;
+            position: relative; z-index: 100;
         }
         .footer-content {
             max-width: 1200px; margin: 0 auto;
             display: grid; grid-template-columns: 2fr 1fr 1fr;
-            gap: 3rem; margin-bottom: 2rem;
+            gap: 3rem; margin-bottom: 1.5rem;
         }
         .footer-section h3 {
-            font-size: 1.1rem; margin-bottom: 1rem;
-            color: var(--matrix-green);
-            text-shadow: 0 0 8px rgba(0,255,65,0.3);
-            letter-spacing: 2px; text-transform: uppercase; font-weight: 400;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.8rem; margin-bottom: 0.8rem;
+            color: var(--current-cold); letter-spacing: 2px;
+            text-transform: uppercase; font-weight: 400;
         }
-        .footer-section p { color: var(--matrix-green-dark); line-height: 1.7; }
+        .footer-section p {
+            color: var(--text-dim); font-size: 0.85rem;
+            line-height: 1.6; font-weight: 300;
+        }
         .footer-links { list-style: none; }
         .footer-links a {
-            color: var(--matrix-green-dark); text-decoration: none;
-            display: block; padding: 0.3rem 0; transition: all 0.2s;
-            letter-spacing: 1px; font-size: 0.9rem;
+            color: var(--text-dim); text-decoration: none;
+            display: block; padding: 0.25rem 0;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.75rem; letter-spacing: 1px;
+            transition: all 0.2s;
         }
         .footer-links a:hover {
-            color: var(--matrix-green);
-            text-shadow: 0 0 8px rgba(0,255,65,0.4);
-            padding-left: 0.5rem;
+            color: var(--current-cold);
+            padding-left: 0.4rem;
         }
-        .footer-links a::before { content: '> '; opacity: 0; transition: opacity 0.2s; }
-        .footer-links a:hover::before { opacity: 1; }
         .footer-bottom {
-            max-width: 1200px; margin: 0 auto; padding-top: 2rem;
-            border-top: 1px solid rgba(0,255,65,0.1);
-            text-align: center; color: rgba(0,255,65,0.3);
-            font-size: 0.85rem; letter-spacing: 1px;
+            max-width: 1200px; margin: 0 auto; padding-top: 1.5rem;
+            border-top: 1px solid rgba(79,195,247,0.06);
+            text-align: center; color: var(--text-dim);
+            font-size: 0.75rem; letter-spacing: 1px;
+            font-family: 'Share Tech Mono', monospace;
         }
 
+        /* Mobile */
         @media (max-width: 768px) {
             .menu-toggle { display: block; }
             .nav-links { display: none; }
             .mobile-menu {
-                position: fixed; top: 60px; left: 0; right: 0;
-                background: rgba(0,0,0,0.95);
-                border-bottom: 1px solid rgba(0,255,65,0.15);
-                padding: 1rem 2rem; backdrop-filter: blur(10px);
+                position: fixed; top: 55px; left: 0; right: 0;
+                background: rgba(10,22,40,0.97);
+                border-bottom: 1px solid rgba(79,195,247,0.1);
+                padding: 1rem 2rem; backdrop-filter: blur(12px);
             }
             .mobile-menu.active { display: block; }
             .mobile-menu ul { list-style: none; }
             .mobile-menu a {
-                display: block; padding: 0.8rem 0; text-decoration: none;
-                color: var(--matrix-green-dark);
-                border-bottom: 1px solid rgba(0,255,65,0.05);
-                letter-spacing: 1px; text-transform: uppercase; font-size: 0.9rem;
+                display: block; padding: 0.7rem 0; text-decoration: none;
+                color: var(--text-secondary);
+                font-family: 'Share Tech Mono', monospace;
+                border-bottom: 1px solid rgba(79,195,247,0.05);
+                letter-spacing: 1px; text-transform: uppercase;
+                font-size: 0.8rem;
             }
-            .mobile-menu a:hover { color: var(--matrix-green); text-shadow: 0 0 8px rgba(0,255,65,0.4); }
-            .page-header h1 { font-size: 2.2rem; }
-            .footer-content { grid-template-columns: 1fr; gap: 2rem; }
+            .mobile-menu a:hover { color: var(--current-cold); }
+            .page-header h1 { font-size: 1.6rem; }
+            .services-grid { grid-template-columns: 1fr; }
+            .hud { display: none; }
+            .legend { display: none; }
+            .source-label { display: none; }
+            .footer-content { grid-template-columns: 1fr; gap: 1.5rem; }
         }
     </style>
 </head>
 <body>
-    <canvas id="matrixCanvas"></canvas>
-    <div class="scanlines"></div>
+    <canvas id="flowCanvas"></canvas>
+    <canvas id="globeCanvas"></canvas>
 
     <nav>
         <div class="nav-container">
@@ -226,55 +356,86 @@
         </div>
     </nav>
 
-    <div class="page-header">
-        <h1 class="decode-text" data-decode-delay="300" data-decode-speed="40">Our Services</h1>
-        <p class="subtitle decode-text" data-decode-delay="1200" data-decode-speed="30">Tailored research for every inquiry</p>
+    <!-- HUD readout -->
+    <div class="hud" id="hud">
+        <div class="hud-line">SURFACE CURRENT <span class="val" id="hudMode">ORTHOGRAPHIC</span></div>
+        <div class="hud-line">PARTICLES <span class="val" id="hudParticles">0</span></div>
+        <div class="hud-line">VELOCITY <span class="warm" id="hudVelocity">0.00</span> m/s</div>
+        <div class="hud-line">POSITION <span class="val" id="hudPos">0.0, 0.0</span></div>
     </div>
 
-    <main>
-        <section>
-            <div class="content-box">
+    <!-- Legend -->
+    <div class="legend">
+        <div class="legend-title">Current Velocity (m/s)</div>
+        <div class="legend-bar"></div>
+        <div class="legend-labels">
+            <span>0.0</span>
+            <span>0.5</span>
+            <span>1.0</span>
+            <span>1.5</span>
+            <span>2.0</span>
+        </div>
+    </div>
+
+    <div class="source-label">SELDOMSOUGHT RESEARCH NETWORK</div>
+
+    <!-- Content -->
+    <div class="content-overlay">
+        <div class="page-header">
+            <h1>Our Services</h1>
+            <p class="subtitle">Navigating the currents of human knowledge</p>
+        </div>
+
+        <div class="services-grid">
+            <div class="service-panel panel-historical">
+                <div class="panel-icon"><span class="dot"></span> HIST.RESEARCH // COLD CURRENT</div>
                 <h3>Historical Research</h3>
                 <p>Uncover genealogies, trace historical events, authenticate artifacts, and explore the stories that shaped our world.</p>
-                <ul class="list-simple">
+                <ul class="service-list">
                     <li>Family genealogy & lineage</li>
                     <li>Historical documentation</li>
                     <li>Archival research</li>
                     <li>Provenance verification</li>
                 </ul>
             </div>
-            <div class="content-box">
+
+            <div class="service-panel panel-scientific">
+                <div class="panel-icon"><span class="dot"></span> SCI.INQUIRY // TEMPERATE DRIFT</div>
                 <h3>Scientific Inquiry</h3>
                 <p>Access cutting-edge research, specialized studies, and expert analysis across all scientific disciplines.</p>
-                <ul class="list-simple">
+                <ul class="service-list">
                     <li>Literature reviews</li>
                     <li>Expert consultations</li>
                     <li>Data analysis</li>
                     <li>Cross-disciplinary synthesis</li>
                 </ul>
             </div>
-            <div class="content-box">
+
+            <div class="service-panel panel-cultural">
+                <div class="panel-icon"><span class="dot"></span> CULT.LINGUISTIC // EQUATORIAL FLOW</div>
                 <h3>Cultural & Linguistic</h3>
                 <p>Navigate the complexities of language, culture, and tradition across societies and throughout history.</p>
-                <ul class="list-simple">
+                <ul class="service-list">
                     <li>Translation & interpretation</li>
                     <li>Cultural context analysis</li>
                     <li>Ancient texts decipherment</li>
                     <li>Anthropological insights</li>
                 </ul>
             </div>
-            <div class="content-box">
+
+            <div class="service-panel panel-legal">
+                <div class="panel-icon"><span class="dot"></span> LEGAL.REG // WARM CURRENT</div>
                 <h3>Legal & Regulatory</h3>
                 <p>Comprehensive legal research, precedent analysis, and regulatory navigation across jurisdictions.</p>
-                <ul class="list-simple">
+                <ul class="service-list">
                     <li>Case law research</li>
                     <li>Regulatory compliance</li>
                     <li>International law</li>
                     <li>Expert testimony support</li>
                 </ul>
             </div>
-        </section>
-    </main>
+        </div>
+    </div>
 
     <footer>
         <div class="footer-content">
@@ -308,56 +469,293 @@
     </footer>
 
     <script>
-        // Matrix Rain
-        const canvas = document.getElementById('matrixCanvas');
-        const ctx = canvas.getContext('2d');
-        function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
-        resizeCanvas(); window.addEventListener('resize', resizeCanvas);
-        const matrixChars = 'アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        const fontSize = 14; let columns, drops;
-        function initDrops() { columns = Math.floor(canvas.width / fontSize); drops = []; for (let i = 0; i < columns; i++) drops[i] = Math.random() * -100; }
-        initDrops(); window.addEventListener('resize', initDrops);
-        function drawMatrix() {
-            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)'; ctx.fillRect(0, 0, canvas.width, canvas.height);
-            for (let i = 0; i < drops.length; i++) {
-                const char = matrixChars[Math.floor(Math.random() * matrixChars.length)];
-                const x = i * fontSize, y = drops[i] * fontSize;
-                if (Math.random() > 0.98) { ctx.fillStyle = '#ffffff'; ctx.shadowColor = '#00ff41'; ctx.shadowBlur = 15; }
-                else { const r = Math.random(); ctx.fillStyle = r > 0.9 ? '#00ff41' : r > 0.6 ? '#00cc33' : '#008f11'; ctx.shadowColor = 'transparent'; ctx.shadowBlur = 0; }
-                ctx.font = fontSize + 'px monospace'; ctx.fillText(char, x, y);
-                if (y > canvas.height && Math.random() > 0.975) drops[i] = 0; drops[i]++;
+    // ── Simplex-like Noise ──────────────────────────────────────
+    // Compact 2D/3D noise using permutation table
+    const perm = new Uint8Array(512);
+    const grad3 = [[1,1,0],[-1,1,0],[1,-1,0],[-1,-1,0],[1,0,1],[-1,0,1],[1,0,-1],[-1,0,-1],[0,1,1],[0,-1,1],[0,1,-1],[0,-1,-1]];
+    (function() {
+        const p = [];
+        for (let i = 0; i < 256; i++) p[i] = i;
+        for (let i = 255; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [p[i], p[j]] = [p[j], p[i]];
+        }
+        for (let i = 0; i < 512; i++) perm[i] = p[i & 255];
+    })();
+
+    function noise3D(x, y, z) {
+        const X = Math.floor(x) & 255, Y = Math.floor(y) & 255, Z = Math.floor(z) & 255;
+        x -= Math.floor(x); y -= Math.floor(y); z -= Math.floor(z);
+        const u = x * x * x * (x * (x * 6 - 15) + 10);
+        const v = y * y * y * (y * (y * 6 - 15) + 10);
+        const w = z * z * z * (z * (z * 6 - 15) + 10);
+        const A = perm[X] + Y, AA = perm[A] + Z, AB = perm[A + 1] + Z;
+        const B = perm[X + 1] + Y, BA = perm[B] + Z, BB = perm[B + 1] + Z;
+        function dot(g, x, y, z) { return g[0]*x + g[1]*y + g[2]*z; }
+        function lerp(a, b, t) { return a + t * (b - a); }
+        return lerp(
+            lerp(lerp(dot(grad3[perm[AA]%12],x,y,z), dot(grad3[perm[BA]%12],x-1,y,z),u),
+                 lerp(dot(grad3[perm[AB]%12],x,y-1,z), dot(grad3[perm[BB]%12],x-1,y-1,z),u),v),
+            lerp(lerp(dot(grad3[perm[AA+1]%12],x,y,z-1), dot(grad3[perm[BA+1]%12],x-1,y,z-1),u),
+                 lerp(dot(grad3[perm[AB+1]%12],x,y-1,z-1), dot(grad3[perm[BB+1]%12],x-1,y-1,z-1),u),v),w);
+    }
+
+    // ── Flow Canvas Setup ───────────────────────────────────────
+    const flowCanvas = document.getElementById('flowCanvas');
+    const flowCtx = flowCanvas.getContext('2d');
+    const globeCanvas = document.getElementById('globeCanvas');
+    const globeCtx = globeCanvas.getContext('2d');
+
+    let W, H, cx, cy, globeR;
+    function resize() {
+        W = flowCanvas.width = globeCanvas.width = window.innerWidth;
+        H = flowCanvas.height = globeCanvas.height = window.innerHeight;
+        cx = W / 2;
+        cy = H / 2;
+        globeR = Math.min(W, H) * 0.42;
+        drawGlobe();
+    }
+    resize();
+    window.addEventListener('resize', () => { resize(); initParticles(); });
+
+    // ── Globe / Graticule Drawing ───────────────────────────────
+    function drawGlobe() {
+        globeCtx.clearRect(0, 0, W, H);
+
+        // Globe outline
+        globeCtx.strokeStyle = 'rgba(79,195,247,0.08)';
+        globeCtx.lineWidth = 1;
+        globeCtx.beginPath();
+        globeCtx.arc(cx, cy, globeR, 0, Math.PI * 2);
+        globeCtx.stroke();
+
+        // Latitude lines (orthographic projection)
+        globeCtx.strokeStyle = 'rgba(79,195,247,0.04)';
+        globeCtx.lineWidth = 0.5;
+        for (let lat = -80; lat <= 80; lat += 20) {
+            const radLat = (lat * Math.PI) / 180;
+            const y = cy - Math.sin(radLat) * globeR;
+            const halfWidth = Math.cos(radLat) * globeR;
+            globeCtx.beginPath();
+            globeCtx.ellipse(cx, y, halfWidth, halfWidth * 0.05, 0, 0, Math.PI * 2);
+            globeCtx.stroke();
+        }
+
+        // Longitude lines
+        for (let lon = 0; lon < 180; lon += 30) {
+            const radLon = (lon * Math.PI) / 180;
+            globeCtx.beginPath();
+            for (let t = -90; t <= 90; t += 2) {
+                const radLat = (t * Math.PI) / 180;
+                const px = cx + Math.cos(radLat) * Math.sin(radLon) * globeR;
+                const py = cy - Math.sin(radLat) * globeR;
+                if (t === -90) globeCtx.moveTo(px, py);
+                else globeCtx.lineTo(px, py);
             }
-            requestAnimationFrame(drawMatrix);
+            globeCtx.stroke();
         }
-        drawMatrix();
 
-        // Decode Effect
-        const scrambleChars = '01アイウエオ!@#$%カキクケコ10サシスセソ';
-        function decodeElement(el) {
-            const delay = parseInt(el.dataset.decodeDelay) || 0;
-            const speed = parseInt(el.dataset.decodeSpeed) || 30;
-            const text = el.textContent;
-            setTimeout(() => { el.classList.add('revealed'); decodeSimpleText(el, text, speed, 0); }, delay);
-        }
-        function decodeSimpleText(el, text, speed, extraDelay) {
-            const chars = text.split(''), settled = new Array(chars.length).fill(false); let cur = 0;
-            el.textContent = chars.map(c => c === ' ' ? ' ' : scrambleChars[Math.floor(Math.random() * scrambleChars.length)]).join('');
-            setTimeout(() => {
-                const iv = setInterval(() => {
-                    let r = '';
-                    for (let i = 0; i < chars.length; i++) { if (settled[i]) r += chars[i]; else if (chars[i] === ' ') { r += ' '; settled[i] = true; } else r += scrambleChars[Math.floor(Math.random() * scrambleChars.length)]; }
-                    el.textContent = r;
-                    if (cur < chars.length) { settled[cur] = true; cur++; while (cur < chars.length && chars[cur] === ' ') { settled[cur] = true; cur++; } }
-                    if (cur >= chars.length) { clearInterval(iv); el.textContent = text; }
-                }, speed);
-            }, extraDelay);
-        }
-        document.addEventListener('DOMContentLoaded', () => { document.querySelectorAll('.decode-text').forEach(el => decodeElement(el)); });
+        // Simplified continents - rough outlines
+        globeCtx.fillStyle = 'rgba(20,40,20,0.25)';
+        globeCtx.strokeStyle = 'rgba(79,195,247,0.06)';
+        drawLandmass(globeCtx, [
+            [-10,60],[-5,55],[0,50],[10,48],[15,45],[25,40],[30,35],[35,32],
+            [35,37],[30,45],[20,55],[10,60],[0,65],[-10,65],[-10,60]
+        ]); // rough Europe/Africa
+        drawLandmass(globeCtx, [
+            [-100,50],[-90,48],[-80,40],[-75,30],[-80,25],[-85,15],[-75,10],
+            [-70,0],[-60,-10],[-55,-25],[-65,-35],[-70,-45],[-75,-50],
+            [-80,-40],[-90,-30],[-100,-20],[-105,0],[-110,20],[-120,35],
+            [-130,45],[-125,50],[-115,52],[-100,50]
+        ]); // rough Americas
+    }
 
-        // Mobile Menu
-        const menuToggle = document.getElementById('menuToggle'), mobileMenu = document.getElementById('mobileMenu');
-        menuToggle.addEventListener('click', function(e) { e.stopPropagation(); mobileMenu.classList.toggle('active'); menuToggle.innerHTML = mobileMenu.classList.contains('active') ? '&#10005;' : '&#9776;'; });
-        document.addEventListener('click', function(e) { if (!e.target.closest('nav')) { mobileMenu.classList.remove('active'); menuToggle.innerHTML = '&#9776;'; } });
+    function drawLandmass(ctx, coords) {
+        ctx.beginPath();
+        coords.forEach(([lon, lat], i) => {
+            const radLat = (lat * Math.PI) / 180;
+            const radLon = (lon * Math.PI) / 180;
+            const cosCheck = Math.cos(radLat) * Math.cos(radLon);
+            if (cosCheck < 0) return; // back of globe
+            const px = cx + Math.cos(radLat) * Math.sin(radLon) * globeR;
+            const py = cy - Math.sin(radLat) * globeR;
+            if (i === 0) ctx.moveTo(px, py);
+            else ctx.lineTo(px, py);
+        });
+        ctx.closePath();
+        ctx.fill();
+        ctx.stroke();
+    }
+
+    // ── Particle System ─────────────────────────────────────────
+    const PARTICLE_COUNT = 4000;
+    const TRAIL_LENGTH = 20;
+    const SPEED_FACTOR = 1.8;
+    const NOISE_SCALE = 0.0025;
+
+    let particles = [];
+    let time = 0;
+    let mouseX = cx, mouseY = cy;
+
+    class Particle {
+        constructor() { this.reset(); }
+        reset() {
+            // Spawn within globe bounds
+            const angle = Math.random() * Math.PI * 2;
+            const r = Math.sqrt(Math.random()) * globeR;
+            this.x = cx + Math.cos(angle) * r;
+            this.y = cy + Math.sin(angle) * r;
+            this.trail = [];
+            this.life = Math.random() * 200 + 80;
+            this.age = 0;
+            this.speed = 0;
+        }
+    }
+
+    function initParticles() {
+        particles = [];
+        for (let i = 0; i < PARTICLE_COUNT; i++) {
+            particles.push(new Particle());
+        }
+    }
+    initParticles();
+
+    // Velocity color ramp
+    function velocityColor(speed, alpha) {
+        const t = Math.min(speed / 3.0, 1.0);
+        let r, g, b;
+        if (t < 0.2) {
+            r = 79; g = 195; b = 247; // cold blue
+        } else if (t < 0.4) {
+            const s = (t - 0.2) / 0.2;
+            r = 79 + s * (0 - 79); g = 195 + s * (188 - 195); b = 247 + s * (212 - 247); // teal
+        } else if (t < 0.6) {
+            const s = (t - 0.4) / 0.2;
+            r = 0 + s * 102; g = 188 + s * (187 - 188); b = 212 + s * (106 - 212); // green
+        } else if (t < 0.8) {
+            const s = (t - 0.6) / 0.2;
+            r = 102 + s * (255 - 102); g = 187 + s * (202 - 187); b = 106 + s * (40 - 106); // yellow
+        } else {
+            const s = (t - 0.8) / 0.2;
+            r = 255 + s * (239 - 255); g = 202 + s * (83 - 202); b = 40 + s * (80 - 40); // red
+        }
+        return `rgba(${Math.round(r)},${Math.round(g)},${Math.round(b)},${alpha})`;
+    }
+
+    // ── Animation Loop ──────────────────────────────────────────
+    let frameCount = 0;
+
+    function animate() {
+        // Slow fade for trails
+        flowCtx.fillStyle = 'rgba(10,22,40,0.06)';
+        flowCtx.fillRect(0, 0, W, H);
+
+        time += 0.003;
+
+        let maxSpeed = 0;
+
+        for (const p of particles) {
+            // Get noise-based flow direction
+            const nx = p.x * NOISE_SCALE;
+            const ny = p.y * NOISE_SCALE;
+
+            // Multi-octave noise for complex current patterns
+            const angle1 = noise3D(nx, ny, time) * Math.PI * 2;
+            const angle2 = noise3D(nx * 2.1, ny * 2.1, time * 1.3) * Math.PI * 2;
+            const angle = angle1 * 0.7 + angle2 * 0.3;
+
+            // Speed varies with noise
+            const speedNoise = Math.abs(noise3D(nx * 0.5, ny * 0.5, time * 0.5));
+            const baseSpeed = speedNoise * SPEED_FACTOR + 0.3;
+
+            // Mouse influence - create a gentle attraction/disturbance
+            const dx = mouseX - p.x, dy = mouseY - p.y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            const influence = Math.max(0, 1 - dist / 200);
+            const mouseAngle = Math.atan2(dy, dx);
+
+            const finalAngle = angle + influence * 0.5 * Math.sin(mouseAngle - angle);
+            const finalSpeed = baseSpeed + influence * 1.5;
+
+            p.speed = finalSpeed;
+            if (finalSpeed > maxSpeed) maxSpeed = finalSpeed;
+
+            // Move
+            p.x += Math.cos(finalAngle) * finalSpeed;
+            p.y += Math.sin(finalAngle) * finalSpeed;
+
+            // Trail
+            p.trail.push({ x: p.x, y: p.y, s: finalSpeed });
+            if (p.trail.length > TRAIL_LENGTH) p.trail.shift();
+
+            p.age++;
+
+            // Check bounds - within globe
+            const gdx = p.x - cx, gdy = p.y - cy;
+            const gDist = Math.sqrt(gdx * gdx + gdy * gdy);
+            if (gDist > globeR || p.age > p.life) {
+                p.reset();
+            }
+
+            // Draw trail
+            if (p.trail.length > 1) {
+                const lifeAlpha = Math.min(p.age / 15, 1) * Math.min((p.life - p.age) / 20, 1);
+                for (let i = 1; i < p.trail.length; i++) {
+                    const t0 = p.trail[i - 1], t1 = p.trail[i];
+                    const segAlpha = (i / p.trail.length) * 0.6 * lifeAlpha;
+                    flowCtx.strokeStyle = velocityColor(t1.s, segAlpha);
+                    flowCtx.lineWidth = 0.8 + (t1.s / 3) * 0.7;
+                    flowCtx.beginPath();
+                    flowCtx.moveTo(t0.x, t0.y);
+                    flowCtx.lineTo(t1.x, t1.y);
+                    flowCtx.stroke();
+                }
+            }
+        }
+
+        // Update HUD
+        frameCount++;
+        if (frameCount % 10 === 0) {
+            document.getElementById('hudParticles').textContent = PARTICLE_COUNT;
+            document.getElementById('hudVelocity').textContent = (maxSpeed * 0.3).toFixed(2);
+            const normX = ((mouseX - cx) / globeR * 180).toFixed(1);
+            const normY = (-(mouseY - cy) / globeR * 90).toFixed(1);
+            document.getElementById('hudPos').textContent = normY + '\u00b0, ' + normX + '\u00b0';
+        }
+
+        requestAnimationFrame(animate);
+    }
+
+    // Fill background once
+    flowCtx.fillStyle = 'rgba(10,22,40,1)';
+    flowCtx.fillRect(0, 0, W, H);
+    animate();
+
+    // ── Mouse Tracking ──────────────────────────────────────────
+    document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+    });
+
+    document.addEventListener('touchmove', (e) => {
+        mouseX = e.touches[0].clientX;
+        mouseY = e.touches[0].clientY;
+    });
+
+    // ── Mobile Menu ─────────────────────────────────────────────
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    menuToggle.addEventListener('click', function(e) {
+        e.stopPropagation();
+        mobileMenu.classList.toggle('active');
+        menuToggle.innerHTML = mobileMenu.classList.contains('active') ? '&#10005;' : '&#9776;';
+    });
+    document.addEventListener('click', function(e) {
+        if (!e.target.closest('nav')) {
+            mobileMenu.classList.remove('active');
+            menuToggle.innerHTML = '&#9776;';
+        }
+    });
     </script>
 </body>
 </html>
