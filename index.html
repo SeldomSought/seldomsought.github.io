@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SeldomSought - Providing Answers to Questions You Didn't Know Existed</title>
     <meta name="description" content="SeldomSought specializes in uncovering rare knowledge, forgotten wisdom, and answers to questions you didn't know existed.">
-    <meta name="theme-color" content="#088a33"/>
+    <meta name="theme-color" content="#00ff41"/>
 
     <!-- Open Graph -->
     <meta property="og:site_name" content="SeldomSought"/>
@@ -21,7 +21,7 @@
     <meta name="twitter:image" content="https://img1.wsimg.com/isteam/ip/1ccf137f-e768-42fa-ac89-15fa5230f59d/b52a34679636d532da8d08a54fc92f55.jpg"/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&family=Cabin:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -30,21 +30,31 @@
         }
 
         :root {
-            --green: #088a33;
-            --dark: #1a1a1a;
-            --light: #f9f7f4;
+            --matrix-green: #00ff41;
+            --matrix-green-dim: #00cc33;
+            --matrix-green-dark: #008f11;
+            --matrix-green-glow: #00ff41;
+            --matrix-bg: #0a0a0a;
+            --matrix-bg-alt: #0d0d0d;
         }
 
         body {
-            font-family: 'Cabin', sans-serif;
-            color: var(--dark);
-            background: var(--light);
+            font-family: 'Share Tech Mono', monospace;
+            color: var(--matrix-green);
+            background: #000;
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        h1, h2, h3, h4 {
-            font-family: 'Old Standard TT', serif;
-            font-weight: 400;
+        /* Matrix Rain Canvas */
+        #matrixCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
         }
 
         /* Navigation */
@@ -52,25 +62,27 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(249, 247, 244, 0.95);
-            border-bottom: 1px solid #e0e0e0;
+            background: rgba(0, 0, 0, 0.85);
+            border-bottom: 1px solid rgba(0, 255, 65, 0.15);
             z-index: 100;
+            backdrop-filter: blur(10px);
         }
 
         .nav-container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 1.5rem 2rem;
+            padding: 1.2rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
         .logo {
-            font-family: 'Old Standard TT', serif;
             font-size: 1.5rem;
-            color: var(--green);
+            color: var(--matrix-green);
             text-decoration: none;
+            text-shadow: 0 0 10px rgba(0, 255, 65, 0.5), 0 0 20px rgba(0, 255, 65, 0.3);
+            letter-spacing: 2px;
         }
 
         .nav-links {
@@ -81,22 +93,43 @@
 
         .nav-links a {
             text-decoration: none;
-            color: var(--dark);
-            font-size: 0.95rem;
-            transition: color 0.2s;
+            color: var(--matrix-green-dark);
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.3s;
+            position: relative;
         }
 
         .nav-links a:hover {
-            color: var(--green);
+            color: var(--matrix-green);
+            text-shadow: 0 0 8px rgba(0, 255, 65, 0.6);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--matrix-green);
+            box-shadow: 0 0 5px var(--matrix-green);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
         }
 
         .menu-toggle {
             display: none;
             background: none;
-            border: none;
+            border: 1px solid var(--matrix-green-dark);
             font-size: 1.5rem;
             cursor: pointer;
-            color: var(--dark);
+            color: var(--matrix-green);
+            padding: 0.2rem 0.5rem;
         }
 
         .mobile-menu {
@@ -112,101 +145,145 @@
             text-align: center;
             padding: 6rem 2rem 4rem;
             position: relative;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: url('https://img1.wsimg.com/isteam/ip/1ccf137f-e768-42fa-ac89-15fa5230f59d/b52a34679636d532da8d08a54fc92f55.jpg');
-            background-size: cover;
-            background-position: center;
-            opacity: 0.08;
-            z-index: 0;
+            z-index: 1;
         }
 
         .hero-content {
-            max-width: 800px;
+            max-width: 850px;
             position: relative;
             z-index: 1;
         }
 
         h1 {
-            font-size: 3.5rem;
+            font-size: 4rem;
             margin-bottom: 1.5rem;
-            color: var(--dark);
+            color: var(--matrix-green);
+            text-shadow: 0 0 20px rgba(0, 255, 65, 0.4), 0 0 40px rgba(0, 255, 65, 0.2);
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            font-weight: 400;
         }
 
         h1::after {
             content: '';
             display: block;
-            width: 80px;
-            height: 3px;
-            background: var(--green);
-            margin: 1rem auto 0;
+            width: 120px;
+            height: 1px;
+            background: var(--matrix-green);
+            box-shadow: 0 0 10px var(--matrix-green), 0 0 20px rgba(0, 255, 65, 0.3);
+            margin: 1.2rem auto 0;
         }
 
         .tagline {
-            font-family: 'Old Standard TT', serif;
-            font-style: italic;
-            font-size: 1.3rem;
-            color: var(--green);
-            margin-bottom: 2rem;
+            font-size: 1.2rem;
+            color: var(--matrix-green-dim);
+            margin-bottom: 2.5rem;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px rgba(0, 255, 65, 0.2);
         }
 
-        .hero p {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            margin-bottom: 2.5rem;
-            color: #4a4a4a;
+        .hero .description {
+            font-size: 1rem;
+            line-height: 2;
+            margin-bottom: 3rem;
+            color: var(--matrix-green-dark);
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .buttons {
             display: flex;
-            gap: 1rem;
+            gap: 1.5rem;
             justify-content: center;
             flex-wrap: wrap;
         }
 
         .btn {
-            padding: 0.9rem 2rem;
+            padding: 0.9rem 2.2rem;
             text-decoration: none;
-            border-radius: 3px;
-            font-weight: 500;
-            transition: all 0.2s;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.95rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
         }
 
         .btn-primary {
-            background: var(--green);
-            color: white;
-            border: 2px solid var(--green);
+            background: transparent;
+            color: var(--matrix-green);
+            border: 1px solid var(--matrix-green);
+            box-shadow: 0 0 10px rgba(0, 255, 65, 0.15), inset 0 0 10px rgba(0, 255, 65, 0.05);
         }
 
         .btn-primary:hover {
-            background: #065a22;
-            border-color: #065a22;
+            background: rgba(0, 255, 65, 0.1);
+            box-shadow: 0 0 20px rgba(0, 255, 65, 0.3), inset 0 0 20px rgba(0, 255, 65, 0.1);
+            text-shadow: 0 0 8px rgba(0, 255, 65, 0.5);
         }
 
         .btn-secondary {
             background: transparent;
-            color: var(--green);
-            border: 2px solid var(--green);
+            color: var(--matrix-green-dark);
+            border: 1px solid var(--matrix-green-dark);
         }
 
         .btn-secondary:hover {
-            background: var(--green);
-            color: white;
+            color: var(--matrix-green);
+            border-color: var(--matrix-green);
+            box-shadow: 0 0 15px rgba(0, 255, 65, 0.2);
+            text-shadow: 0 0 8px rgba(0, 255, 65, 0.5);
+        }
+
+        /* Decode animation for text elements */
+        .decode-text {
+            opacity: 0;
+        }
+
+        .decode-text.revealed {
+            opacity: 1;
+        }
+
+        .decode-char {
+            display: inline-block;
+            min-width: 0.1em;
+        }
+
+        .decode-char.scrambling {
+            color: var(--matrix-green);
+            text-shadow: 0 0 8px rgba(0, 255, 65, 0.8);
+        }
+
+        .decode-char.settled {
+            transition: text-shadow 0.5s;
+        }
+
+        /* Cursor blink for the title */
+        .cursor {
+            display: inline-block;
+            width: 3px;
+            height: 1em;
+            background: var(--matrix-green);
+            margin-left: 4px;
+            animation: blink 0.8s step-end infinite;
+            vertical-align: text-bottom;
+            box-shadow: 0 0 8px var(--matrix-green);
+        }
+
+        @keyframes blink {
+            50% { opacity: 0; }
         }
 
         /* Footer */
         footer {
-            background: var(--dark);
-            color: white;
+            background: rgba(0, 0, 0, 0.9);
+            color: var(--matrix-green-dark);
             padding: 3rem 2rem 2rem;
-            margin-top: 4rem;
+            border-top: 1px solid rgba(0, 255, 65, 0.1);
+            position: relative;
+            z-index: 1;
         }
 
         .footer-content {
@@ -219,13 +296,17 @@
         }
 
         .footer-section h3 {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             margin-bottom: 1rem;
-            color: #0fb346;
+            color: var(--matrix-green);
+            text-shadow: 0 0 8px rgba(0, 255, 65, 0.3);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 400;
         }
 
         .footer-section p {
-            color: rgba(255,255,255,0.8);
+            color: var(--matrix-green-dark);
             line-height: 1.7;
         }
 
@@ -234,25 +315,58 @@
         }
 
         .footer-links a {
-            color: rgba(255,255,255,0.8);
+            color: var(--matrix-green-dark);
             text-decoration: none;
             display: block;
             padding: 0.3rem 0;
-            transition: color 0.2s;
+            transition: all 0.2s;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
         }
 
         .footer-links a:hover {
-            color: white;
+            color: var(--matrix-green);
+            text-shadow: 0 0 8px rgba(0, 255, 65, 0.4);
+            padding-left: 0.5rem;
+        }
+
+        .footer-links a::before {
+            content: '> ';
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+
+        .footer-links a:hover::before {
+            opacity: 1;
         }
 
         .footer-bottom {
             max-width: 1200px;
             margin: 0 auto;
             padding-top: 2rem;
-            border-top: 1px solid rgba(255,255,255,0.1);
+            border-top: 1px solid rgba(0, 255, 65, 0.1);
             text-align: center;
-            color: rgba(255,255,255,0.6);
-            font-size: 0.9rem;
+            color: rgba(0, 255, 65, 0.3);
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+
+        /* Scanline overlay */
+        .scanlines {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 99;
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(0, 0, 0, 0.03) 0px,
+                rgba(0, 0, 0, 0.03) 1px,
+                transparent 1px,
+                transparent 3px
+            );
         }
 
         /* Mobile */
@@ -267,12 +381,13 @@
 
             .mobile-menu {
                 position: fixed;
-                top: 70px;
+                top: 60px;
                 left: 0;
                 right: 0;
-                background: rgba(249, 247, 244, 0.98);
-                border-bottom: 1px solid #e0e0e0;
+                background: rgba(0, 0, 0, 0.95);
+                border-bottom: 1px solid rgba(0, 255, 65, 0.15);
                 padding: 1rem 2rem;
+                backdrop-filter: blur(10px);
             }
 
             .mobile-menu.active {
@@ -287,24 +402,30 @@
                 display: block;
                 padding: 0.8rem 0;
                 text-decoration: none;
-                color: var(--dark);
-                border-bottom: 1px solid #f0f0f0;
+                color: var(--matrix-green-dark);
+                border-bottom: 1px solid rgba(0, 255, 65, 0.05);
+                letter-spacing: 1px;
+                text-transform: uppercase;
+                font-size: 0.9rem;
             }
 
             .mobile-menu a:hover {
-                color: var(--green);
+                color: var(--matrix-green);
+                text-shadow: 0 0 8px rgba(0, 255, 65, 0.4);
             }
 
             h1 {
                 font-size: 2.5rem;
+                letter-spacing: 4px;
             }
 
             .tagline {
-                font-size: 1.1rem;
+                font-size: 1rem;
             }
 
             .buttons {
                 flex-direction: column;
+                align-items: center;
             }
 
             .footer-content {
@@ -315,10 +436,13 @@
     </style>
 </head>
 <body>
+    <canvas id="matrixCanvas"></canvas>
+    <div class="scanlines"></div>
+
     <nav>
         <div class="nav-container">
             <a href="index.html" class="logo">SeldomSought</a>
-            <button class="menu-toggle" id="menuToggle">☰</button>
+            <button class="menu-toggle" id="menuToggle">&#9776;</button>
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="philosophy.html">Philosophy</a></li>
@@ -342,10 +466,10 @@
 
     <section class="hero">
         <div class="hero-content">
-            <h1>Seldom Sought</h1>
-            <p class="tagline">Providing answers to questions you didn't know existed.</p>
-            <p>We specialize in uncovering rare knowledge, forgotten wisdom, and obscure information that lies beyond conventional research. From historical mysteries to specialized inquiries, we navigate the depths of human knowledge to bring you answers that others overlook.</p>
-            <div class="buttons">
+            <h1 class="decode-text" data-decode-delay="500" data-decode-speed="40">Seldom Sought</h1>
+            <p class="tagline decode-text" data-decode-delay="2000" data-decode-speed="30">Providing answers to questions you didn't know existed.</p>
+            <p class="description decode-text" data-decode-delay="3800" data-decode-speed="15">We specialize in uncovering rare knowledge, forgotten wisdom, and obscure information that lies beyond conventional research. From historical mysteries to specialized inquiries, we navigate the depths of human knowledge to bring you answers that others overlook.</p>
+            <div class="buttons decode-text" data-decode-delay="7000" data-decode-speed="35">
                 <a href="services.html" class="btn btn-primary">Explore Services</a>
                 <a href="philosophy.html" class="btn btn-secondary">Our Philosophy</a>
             </div>
@@ -384,19 +508,166 @@
     </footer>
 
     <script>
+        // ── Matrix Rain Canvas ──────────────────────────────────────
+        const canvas = document.getElementById('matrixCanvas');
+        const ctx = canvas.getContext('2d');
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        const matrixChars = 'アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        const fontSize = 14;
+        let columns = Math.floor(canvas.width / fontSize);
+        let drops = [];
+
+        function initDrops() {
+            columns = Math.floor(canvas.width / fontSize);
+            drops = [];
+            for (let i = 0; i < columns; i++) {
+                drops[i] = Math.random() * -100;
+            }
+        }
+        initDrops();
+        window.addEventListener('resize', initDrops);
+
+        function drawMatrix() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            for (let i = 0; i < drops.length; i++) {
+                const char = matrixChars[Math.floor(Math.random() * matrixChars.length)];
+                const x = i * fontSize;
+                const y = drops[i] * fontSize;
+
+                // Brighter head character
+                if (Math.random() > 0.98) {
+                    ctx.fillStyle = '#ffffff';
+                    ctx.shadowColor = '#00ff41';
+                    ctx.shadowBlur = 15;
+                } else {
+                    // Vary the green intensity
+                    const intensity = Math.random();
+                    if (intensity > 0.9) {
+                        ctx.fillStyle = '#00ff41';
+                    } else if (intensity > 0.6) {
+                        ctx.fillStyle = '#00cc33';
+                    } else {
+                        ctx.fillStyle = '#008f11';
+                    }
+                    ctx.shadowColor = 'transparent';
+                    ctx.shadowBlur = 0;
+                }
+
+                ctx.font = fontSize + 'px monospace';
+                ctx.fillText(char, x, y);
+
+                if (y > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+
+            requestAnimationFrame(drawMatrix);
+        }
+        drawMatrix();
+
+        // ── Text Decode Effect ──────────────────────────────────────
+        const scrambleChars = '01アイウエオ!@#$%カキクケコ10サシスセソ';
+
+        function decodeElement(el) {
+            const delay = parseInt(el.dataset.decodeDelay) || 0;
+            const speed = parseInt(el.dataset.decodeSpeed) || 30;
+
+            // Gather all text nodes and preserve HTML structure
+            const originalHTML = el.innerHTML;
+            const textContent = el.textContent;
+
+            // For elements with child elements (like .buttons), handle differently
+            if (el.children.length > 0 && el.classList.contains('buttons')) {
+                setTimeout(() => {
+                    el.classList.add('revealed');
+                    // Decode each button text separately
+                    Array.from(el.querySelectorAll('.btn')).forEach((btn, idx) => {
+                        decodeSimpleText(btn, btn.textContent, speed, idx * 600);
+                    });
+                }, delay);
+                return;
+            }
+
+            // For simple text elements
+            setTimeout(() => {
+                el.classList.add('revealed');
+                decodeSimpleText(el, textContent, speed, 0);
+            }, delay);
+        }
+
+        function decodeSimpleText(el, text, speed, extraDelay) {
+            const chars = text.split('');
+            const settled = new Array(chars.length).fill(false);
+            let currentIndex = 0;
+
+            // Start with scrambled text
+            el.textContent = chars.map(c => c === ' ' ? ' ' : scrambleChars[Math.floor(Math.random() * scrambleChars.length)]).join('');
+
+            setTimeout(() => {
+                const scrambleInterval = setInterval(() => {
+                    let result = '';
+                    for (let i = 0; i < chars.length; i++) {
+                        if (settled[i]) {
+                            result += chars[i];
+                        } else if (chars[i] === ' ') {
+                            result += ' ';
+                            settled[i] = true;
+                        } else {
+                            result += scrambleChars[Math.floor(Math.random() * scrambleChars.length)];
+                        }
+                    }
+                    el.textContent = result;
+
+                    // Settle the next character(s)
+                    if (currentIndex < chars.length) {
+                        settled[currentIndex] = true;
+                        currentIndex++;
+                        // Skip spaces
+                        while (currentIndex < chars.length && chars[currentIndex] === ' ') {
+                            settled[currentIndex] = true;
+                            currentIndex++;
+                        }
+                    }
+
+                    // All settled
+                    if (currentIndex >= chars.length) {
+                        clearInterval(scrambleInterval);
+                        el.textContent = text;
+                    }
+                }, speed);
+            }, extraDelay);
+        }
+
+        // Initialize decode animations
+        document.addEventListener('DOMContentLoaded', () => {
+            const decodeElements = document.querySelectorAll('.decode-text');
+            decodeElements.forEach(el => decodeElement(el));
+        });
+
+        // ── Mobile Menu ─────────────────────────────────────────────
         const menuToggle = document.getElementById('menuToggle');
         const mobileMenu = document.getElementById('mobileMenu');
 
         menuToggle.addEventListener('click', function(e) {
             e.stopPropagation();
             mobileMenu.classList.toggle('active');
-            menuToggle.textContent = mobileMenu.classList.contains('active') ? '✕' : '☰';
+            menuToggle.innerHTML = mobileMenu.classList.contains('active') ? '&#10005;' : '&#9776;';
         });
 
         document.addEventListener('click', function(e) {
             if (!e.target.closest('nav')) {
                 mobileMenu.classList.remove('active');
-                menuToggle.textContent = '☰';
+                menuToggle.innerHTML = '&#9776;';
             }
         });
     </script>
