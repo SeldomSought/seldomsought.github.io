@@ -5,137 +5,149 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Areas of Expertise - SeldomSought</title>
     <meta name="description" content="SeldomSought's areas of expertise span the breadth of human knowledge.">
-    <meta name="theme-color" content="#00ff41"/>
+    <meta name="theme-color" content="#D4AF37"/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
-            --matrix-green: #00ff41;
-            --matrix-green-dim: #00cc33;
-            --matrix-green-dark: #008f11;
+            --gold: #D4AF37;
+            --gold-light: #E8C967;
+            --gold-dim: #B8860B;
+            --gold-dark: #8B6914;
+            --bg: #0A0805;
+            --text-primary: #E8DCC8;
+            --text-secondary: rgba(212,175,55,0.7);
+            --panel-bg: rgba(15,12,8,0.88);
         }
         body {
-            font-family: 'Share Tech Mono', monospace;
-            color: var(--matrix-green); background: #000;
-            line-height: 1.6; overflow-x: hidden;
+            font-family: 'Cormorant Garamond', serif;
+            color: var(--text-primary);
+            background: var(--bg);
+            line-height: 1.6;
+            overflow-x: hidden;
         }
-        #matrixCanvas {
+
+        /* Canvases */
+        #dragonCanvas {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             z-index: 0; pointer-events: none;
         }
-        .scanlines {
+        #decorCanvas {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            pointer-events: none; z-index: 99;
-            background: repeating-linear-gradient(0deg, rgba(0,0,0,0.03) 0px, rgba(0,0,0,0.03) 1px, transparent 1px, transparent 3px);
+            z-index: 1; pointer-events: none;
         }
 
         /* Navigation */
         nav {
             position: fixed; top: 0; width: 100%;
-            background: rgba(0,0,0,0.85);
-            border-bottom: 1px solid rgba(0,255,65,0.15);
-            z-index: 100; backdrop-filter: blur(10px);
+            background: rgba(10,8,5,0.92);
+            border-bottom: 1px solid rgba(212,175,55,0.15);
+            z-index: 200; backdrop-filter: blur(10px);
         }
         .nav-container {
             max-width: 1200px; margin: 0 auto; padding: 1.2rem 2rem;
             display: flex; justify-content: space-between; align-items: center;
         }
         .logo {
-            font-size: 1.5rem; color: var(--matrix-green); text-decoration: none;
-            text-shadow: 0 0 10px rgba(0,255,65,0.5), 0 0 20px rgba(0,255,65,0.3);
-            letter-spacing: 2px;
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem; color: var(--gold); text-decoration: none;
+            text-shadow: 0 0 10px rgba(212,175,55,0.5), 0 0 20px rgba(212,175,55,0.3);
+            letter-spacing: 3px;
         }
         .nav-links { display: flex; gap: 2rem; list-style: none; }
         .nav-links a {
-            text-decoration: none; color: var(--matrix-green-dark);
-            font-size: 0.9rem; letter-spacing: 1px; text-transform: uppercase;
+            font-family: 'Share Tech Mono', monospace;
+            text-decoration: none; color: var(--gold-dark);
+            font-size: 0.85rem; letter-spacing: 1px; text-transform: uppercase;
             transition: all 0.3s; position: relative;
         }
-        .nav-links a:hover { color: var(--matrix-green); text-shadow: 0 0 8px rgba(0,255,65,0.6); }
+        .nav-links a:hover { color: var(--gold); text-shadow: 0 0 8px rgba(212,175,55,0.6); }
         .nav-links a::after {
             content: ''; position: absolute; bottom: -4px; left: 0;
-            width: 0; height: 1px; background: var(--matrix-green);
-            box-shadow: 0 0 5px var(--matrix-green); transition: width 0.3s;
+            width: 0; height: 1px; background: var(--gold);
+            box-shadow: 0 0 5px var(--gold); transition: width 0.3s;
         }
         .nav-links a:hover::after { width: 100%; }
         .menu-toggle {
             display: none; background: none;
-            border: 1px solid var(--matrix-green-dark);
-            font-size: 1.5rem; cursor: pointer; color: var(--matrix-green);
+            border: 1px solid var(--gold-dark);
+            font-size: 1.5rem; cursor: pointer; color: var(--gold);
             padding: 0.2rem 0.5rem;
         }
         .mobile-menu { display: none; }
 
         /* Page Header */
         .page-header {
-            padding: 8rem 2rem 3rem; text-align: center;
-            position: relative; z-index: 1;
+            padding: 8rem 2rem 2rem; text-align: center;
+            position: relative; z-index: 10;
         }
         .page-header h1 {
-            font-size: 3rem; margin-bottom: 1rem;
-            color: var(--matrix-green); font-weight: 400;
-            text-shadow: 0 0 20px rgba(0,255,65,0.4), 0 0 40px rgba(0,255,65,0.2);
-            letter-spacing: 4px; text-transform: uppercase;
-        }
-        .page-header h1::after {
-            content: ''; display: block; width: 80px; height: 1px;
-            background: var(--matrix-green);
-            box-shadow: 0 0 10px var(--matrix-green);
-            margin: 1rem auto 0;
+            font-family: 'Cinzel', serif;
+            font-size: 2.8rem; margin-bottom: 0.8rem;
+            color: var(--gold); font-weight: 600;
+            text-shadow: 0 0 20px rgba(212,175,55,0.4), 0 0 40px rgba(212,175,55,0.2);
+            letter-spacing: 6px; text-transform: uppercase;
+            opacity: 0; transform: translateY(20px);
+            animation: headerFadeIn 1.5s ease 3.5s forwards;
         }
         .page-header .subtitle {
-            color: var(--matrix-green-dim); font-size: 1.1rem;
-            letter-spacing: 2px; text-shadow: 0 0 10px rgba(0,255,65,0.2);
+            font-family: 'Cormorant Garamond', serif;
+            color: var(--text-secondary); font-size: 1.2rem;
+            letter-spacing: 3px; font-style: italic;
+            opacity: 0; transform: translateY(10px);
+            animation: headerFadeIn 1.5s ease 4s forwards;
+        }
+        @keyframes headerFadeIn {
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Main Content */
-        main {
-            max-width: 1200px; margin: 0 auto; padding: 3rem 2rem;
-            position: relative; z-index: 1;
+        /* Expertise Panels (desktop: absolutely positioned along curve) */
+        .expertise-panels-container {
+            position: relative; z-index: 10;
+            width: 100%; min-height: 100vh;
         }
-        .expertise-grid {
-            display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+        .expertise-panel {
+            position: absolute;
+            width: 200px;
+            background: var(--panel-bg);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(212,175,55,0.2);
+            padding: 1.2rem 1rem;
+            text-align: center;
+            opacity: 0;
+            transform: scale(0.9);
+            transition: opacity 0.6s ease, transform 0.6s ease, border-color 0.3s, box-shadow 0.3s;
+            cursor: default;
         }
-        .expertise-item {
-            background: rgba(0,255,65,0.02);
-            padding: 2rem; text-align: center;
-            border: 1px solid rgba(0,255,65,0.08);
-            transition: all 0.3s; position: relative; overflow: hidden;
+        .expertise-panel.visible {
+            opacity: 1; transform: scale(1);
         }
-        .expertise-item::before {
-            content: ''; position: absolute; top: 0; left: 0;
-            width: 100%; height: 2px;
-            background: linear-gradient(90deg, transparent, var(--matrix-green), transparent);
-            opacity: 0; transition: opacity 0.3s;
+        .expertise-panel:hover {
+            border-color: rgba(212,175,55,0.6);
+            box-shadow: 0 0 25px rgba(212,175,55,0.15), inset 0 0 15px rgba(212,175,55,0.05);
         }
-        .expertise-item:hover::before { opacity: 1; }
-        .expertise-item:hover {
-            border-color: rgba(0,255,65,0.3);
-            background: rgba(0,255,65,0.05);
-            box-shadow: 0 0 25px rgba(0,255,65,0.08);
+        .expertise-panel h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 0.95rem; margin-bottom: 0.4rem;
+            color: var(--gold); font-weight: 600;
+            letter-spacing: 1px;
         }
-        .expertise-item h3 {
-            font-size: 1.05rem; margin-bottom: 0.5rem;
-            color: var(--matrix-green); font-weight: 400;
-            letter-spacing: 1px; text-transform: uppercase;
+        .expertise-panel p {
+            font-family: 'Cormorant Garamond', serif;
+            color: var(--text-secondary); font-size: 0.95rem;
+            letter-spacing: 0.5px; font-style: italic;
         }
-        .expertise-item p {
-            color: var(--matrix-green-dark); font-size: 0.9rem;
-            letter-spacing: 0.5px;
-        }
-
-        /* Decode animation */
-        .decode-text { opacity: 0; }
-        .decode-text.revealed { opacity: 1; }
 
         /* Footer */
         footer {
-            background: rgba(0,0,0,0.9); color: var(--matrix-green-dark);
+            background: rgba(10,8,5,0.95);
+            color: var(--text-secondary);
             padding: 3rem 2rem 2rem;
-            border-top: 1px solid rgba(0,255,65,0.1);
-            position: relative; z-index: 1;
+            border-top: 1px solid rgba(212,175,55,0.15);
+            position: relative; z-index: 10;
+            font-family: 'Cormorant Garamond', serif;
         }
         .footer-content {
             max-width: 1200px; margin: 0 auto;
@@ -143,59 +155,76 @@
             gap: 3rem; margin-bottom: 2rem;
         }
         .footer-section h3 {
-            font-size: 1.1rem; margin-bottom: 1rem;
-            color: var(--matrix-green);
-            text-shadow: 0 0 8px rgba(0,255,65,0.3);
-            letter-spacing: 2px; text-transform: uppercase; font-weight: 400;
+            font-family: 'Cinzel', serif;
+            font-size: 1.05rem; margin-bottom: 1rem;
+            color: var(--gold);
+            text-shadow: 0 0 8px rgba(212,175,55,0.3);
+            letter-spacing: 2px; text-transform: uppercase; font-weight: 600;
         }
-        .footer-section p { color: var(--matrix-green-dark); line-height: 1.7; }
+        .footer-section p { color: var(--text-secondary); line-height: 1.7; }
         .footer-links { list-style: none; }
         .footer-links a {
-            color: var(--matrix-green-dark); text-decoration: none;
+            font-family: 'Share Tech Mono', monospace;
+            color: var(--gold-dark); text-decoration: none;
             display: block; padding: 0.3rem 0; transition: all 0.2s;
-            letter-spacing: 1px; font-size: 0.9rem;
+            letter-spacing: 1px; font-size: 0.85rem;
         }
         .footer-links a:hover {
-            color: var(--matrix-green);
-            text-shadow: 0 0 8px rgba(0,255,65,0.4);
+            color: var(--gold);
+            text-shadow: 0 0 8px rgba(212,175,55,0.4);
             padding-left: 0.5rem;
         }
-        .footer-links a::before { content: '> '; opacity: 0; transition: opacity 0.2s; }
+        .footer-links a::before { content: '\u03C6 '; opacity: 0; transition: opacity 0.2s; }
         .footer-links a:hover::before { opacity: 1; }
         .footer-bottom {
             max-width: 1200px; margin: 0 auto; padding-top: 2rem;
-            border-top: 1px solid rgba(0,255,65,0.1);
-            text-align: center; color: rgba(0,255,65,0.3);
-            font-size: 0.85rem; letter-spacing: 1px;
+            border-top: 1px solid rgba(212,175,55,0.1);
+            text-align: center; color: rgba(212,175,55,0.3);
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.8rem; letter-spacing: 1px;
         }
 
+        /* Mobile */
         @media (max-width: 768px) {
             .menu-toggle { display: block; }
             .nav-links { display: none; }
             .mobile-menu {
                 position: fixed; top: 60px; left: 0; right: 0;
-                background: rgba(0,0,0,0.95);
-                border-bottom: 1px solid rgba(0,255,65,0.15);
+                background: rgba(10,8,5,0.95);
+                border-bottom: 1px solid rgba(212,175,55,0.15);
                 padding: 1rem 2rem; backdrop-filter: blur(10px);
+                z-index: 200;
             }
             .mobile-menu.active { display: block; }
             .mobile-menu ul { list-style: none; }
             .mobile-menu a {
+                font-family: 'Share Tech Mono', monospace;
                 display: block; padding: 0.8rem 0; text-decoration: none;
-                color: var(--matrix-green-dark);
-                border-bottom: 1px solid rgba(0,255,65,0.05);
-                letter-spacing: 1px; text-transform: uppercase; font-size: 0.9rem;
+                color: var(--gold-dark);
+                border-bottom: 1px solid rgba(212,175,55,0.08);
+                letter-spacing: 1px; text-transform: uppercase; font-size: 0.85rem;
             }
-            .mobile-menu a:hover { color: var(--matrix-green); text-shadow: 0 0 8px rgba(0,255,65,0.4); }
-            .page-header h1 { font-size: 2.2rem; }
-            .expertise-grid { grid-template-columns: 1fr; }
+            .mobile-menu a:hover { color: var(--gold); text-shadow: 0 0 8px rgba(212,175,55,0.4); }
+            .page-header h1 { font-size: 2rem; letter-spacing: 3px; }
+            .page-header .subtitle { font-size: 1rem; }
+            .expertise-panels-container {
+                position: relative; min-height: auto;
+                padding: 1rem 1rem 2rem;
+            }
+            .expertise-panel {
+                position: relative !important;
+                width: 100% !important;
+                left: auto !important; top: auto !important;
+                margin-bottom: 1rem;
+                opacity: 1; transform: scale(1);
+            }
             .footer-content { grid-template-columns: 1fr; gap: 2rem; }
         }
     </style>
 </head>
 <body>
-    <canvas id="matrixCanvas"></canvas>
-    <div class="scanlines"></div>
+    <canvas id="dragonCanvas"></canvas>
+    <canvas id="decorCanvas"></canvas>
 
     <nav>
         <div class="nav-container">
@@ -223,26 +252,24 @@
     </nav>
 
     <div class="page-header">
-        <h1 class="decode-text" data-decode-delay="300" data-decode-speed="40">Areas of Expertise</h1>
-        <p class="subtitle decode-text" data-decode-delay="1200" data-decode-speed="30">Spanning the breadth of human knowledge</p>
+        <h1>Areas of Expertise</h1>
+        <p class="subtitle">Spanning the breadth of human knowledge</p>
     </div>
 
-    <main>
-        <div class="expertise-grid">
-            <div class="expertise-item"><h3>Ancient Civilizations</h3><p>Mesopotamia to Mesoamerica</p></div>
-            <div class="expertise-item"><h3>Medieval Studies</h3><p>European & Islamic traditions</p></div>
-            <div class="expertise-item"><h3>Renaissance Art</h3><p>Techniques & provenance</p></div>
-            <div class="expertise-item"><h3>Natural Sciences</h3><p>Biology, Chemistry, Physics</p></div>
-            <div class="expertise-item"><h3>Ancient Languages</h3><p>Latin, Greek, Sanskrit</p></div>
-            <div class="expertise-item"><h3>Philosophy</h3><p>Western & Eastern traditions</p></div>
-            <div class="expertise-item"><h3>Rare Books</h3><p>Bibliography & authentication</p></div>
-            <div class="expertise-item"><h3>Maritime History</h3><p>Navigation & exploration</p></div>
-            <div class="expertise-item"><h3>Cryptography</h3><p>Historical & modern codes</p></div>
-            <div class="expertise-item"><h3>Numismatics</h3><p>Currency & economic history</p></div>
-            <div class="expertise-item"><h3>Folklore & Mythology</h3><p>Global oral traditions</p></div>
-            <div class="expertise-item"><h3>Esoteric Studies</h3><p>Alchemy, mysticism, occult</p></div>
-        </div>
-    </main>
+    <div class="expertise-panels-container" id="panelsContainer">
+        <div class="expertise-panel" data-index="0"><h3>Ancient Civilizations</h3><p>Mesopotamia to Mesoamerica</p></div>
+        <div class="expertise-panel" data-index="1"><h3>Medieval Studies</h3><p>European &amp; Islamic traditions</p></div>
+        <div class="expertise-panel" data-index="2"><h3>Renaissance Art</h3><p>Techniques &amp; provenance</p></div>
+        <div class="expertise-panel" data-index="3"><h3>Natural Sciences</h3><p>Biology, Chemistry, Physics</p></div>
+        <div class="expertise-panel" data-index="4"><h3>Ancient Languages</h3><p>Latin, Greek, Sanskrit</p></div>
+        <div class="expertise-panel" data-index="5"><h3>Philosophy</h3><p>Western &amp; Eastern traditions</p></div>
+        <div class="expertise-panel" data-index="6"><h3>Rare Books</h3><p>Bibliography &amp; authentication</p></div>
+        <div class="expertise-panel" data-index="7"><h3>Maritime History</h3><p>Navigation &amp; exploration</p></div>
+        <div class="expertise-panel" data-index="8"><h3>Cryptography</h3><p>Historical &amp; modern codes</p></div>
+        <div class="expertise-panel" data-index="9"><h3>Numismatics</h3><p>Currency &amp; economic history</p></div>
+        <div class="expertise-panel" data-index="10"><h3>Folklore &amp; Mythology</h3><p>Global oral traditions</p></div>
+        <div class="expertise-panel" data-index="11"><h3>Esoteric Studies</h3><p>Alchemy, mysticism, occult</p></div>
+    </div>
 
     <footer>
         <div class="footer-content">
@@ -276,56 +303,541 @@
     </footer>
 
     <script>
-        // Matrix Rain
-        const canvas = document.getElementById('matrixCanvas');
-        const ctx = canvas.getContext('2d');
-        function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
-        resizeCanvas(); window.addEventListener('resize', resizeCanvas);
-        const matrixChars = 'アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        const fontSize = 14; let columns, drops;
-        function initDrops() { columns = Math.floor(canvas.width / fontSize); drops = []; for (let i = 0; i < columns; i++) drops[i] = Math.random() * -100; }
-        initDrops(); window.addEventListener('resize', initDrops);
-        function drawMatrix() {
-            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)'; ctx.fillRect(0, 0, canvas.width, canvas.height);
-            for (let i = 0; i < drops.length; i++) {
-                const char = matrixChars[Math.floor(Math.random() * matrixChars.length)];
-                const x = i * fontSize, y = drops[i] * fontSize;
-                if (Math.random() > 0.98) { ctx.fillStyle = '#ffffff'; ctx.shadowColor = '#00ff41'; ctx.shadowBlur = 15; }
-                else { const r = Math.random(); ctx.fillStyle = r > 0.9 ? '#00ff41' : r > 0.6 ? '#00cc33' : '#008f11'; ctx.shadowColor = 'transparent'; ctx.shadowBlur = 0; }
-                ctx.font = fontSize + 'px monospace'; ctx.fillText(char, x, y);
-                if (y > canvas.height && Math.random() > 0.975) drops[i] = 0; drops[i]++;
+    (function() {
+        'use strict';
+
+        // --- Configuration ---
+        const PHI = (1 + Math.sqrt(5)) / 2;
+        const isMobile = window.innerWidth < 768;
+        const ITERATIONS = isMobile ? 10 : 14;
+        const PARTICLE_COUNT = isMobile ? 50 : 250;
+        const SPARKLE_COUNT = isMobile ? 20 : 80;
+        const DRAW_DURATION = 3500; // ms
+        const PANEL_COUNT = 12;
+        const CURVE_PADDING = 80;
+
+        // Golden dragon parameters
+        const r1 = 1 / Math.sqrt(1 + PHI * PHI);
+        const r2 = PHI / Math.sqrt(1 + PHI * PHI);
+        const theta1 = Math.atan(PHI);
+        const theta2 = Math.PI - Math.atan(1 / PHI);
+
+        // --- Canvas setup ---
+        const dragonCanvas = document.getElementById('dragonCanvas');
+        const decorCanvas = document.getElementById('decorCanvas');
+        const dCtx = dragonCanvas.getContext('2d');
+        const decCtx = decorCanvas.getContext('2d');
+
+        let W, H;
+        function resizeCanvases() {
+            W = window.innerWidth;
+            H = window.innerHeight;
+            dragonCanvas.width = W; dragonCanvas.height = H;
+            decorCanvas.width = W; decorCanvas.height = H;
+        }
+        resizeCanvases();
+
+        // --- Generate Golden Dragon Curve (IFS) ---
+        function generateGoldenDragon(iterations) {
+            let segments = [{x0: 0, y0: 0, x1: 1, y1: 0, dir: 1}];
+
+            for (let iter = 0; iter < iterations; iter++) {
+                const newSegments = [];
+                for (const seg of segments) {
+                    const dx = seg.x1 - seg.x0;
+                    const dy = seg.y1 - seg.y0;
+
+                    if (seg.dir === 1) {
+                        // T1: rotate by theta1, scale by r1
+                        const mx = seg.x0 + r1 * (dx * Math.cos(theta1) - dy * Math.sin(theta1));
+                        const my = seg.y0 + r1 * (dx * Math.sin(theta1) + dy * Math.cos(theta1));
+                        newSegments.push({x0: seg.x0, y0: seg.y0, x1: mx, y1: my, dir: 1});
+                        newSegments.push({x0: mx, y0: my, x1: seg.x1, y1: seg.y1, dir: -1});
+                    } else {
+                        // T2: rotate by -theta2 from end, scale by r2
+                        const mx = seg.x1 + r2 * (-dx * Math.cos(theta2) - (-dy) * Math.sin(theta2));
+                        const my = seg.y1 + r2 * (-dx * Math.sin(theta2) + (-dy) * Math.cos(theta2));
+                        newSegments.push({x0: seg.x0, y0: seg.y0, x1: mx, y1: my, dir: 1});
+                        newSegments.push({x0: mx, y0: my, x1: seg.x1, y1: seg.y1, dir: -1});
+                    }
+                }
+                segments = newSegments;
             }
-            requestAnimationFrame(drawMatrix);
-        }
-        drawMatrix();
 
-        // Decode Effect
-        const scrambleChars = '01アイウエオ!@#$%カキクケコ10サシスセソ';
-        function decodeElement(el) {
-            const delay = parseInt(el.dataset.decodeDelay) || 0;
-            const speed = parseInt(el.dataset.decodeSpeed) || 30;
-            const text = el.textContent;
-            setTimeout(() => { el.classList.add('revealed'); decodeSimpleText(el, text, speed, 0); }, delay);
+            // Build a polyline from segments
+            const polyline = [{x: segments[0].x0, y: segments[0].y0}];
+            for (const seg of segments) {
+                polyline.push({x: seg.x1, y: seg.y1});
+            }
+            return polyline;
         }
-        function decodeSimpleText(el, text, speed, extraDelay) {
-            const chars = text.split(''), settled = new Array(chars.length).fill(false); let cur = 0;
-            el.textContent = chars.map(c => c === ' ' ? ' ' : scrambleChars[Math.floor(Math.random() * scrambleChars.length)]).join('');
-            setTimeout(() => {
-                const iv = setInterval(() => {
-                    let r = '';
-                    for (let i = 0; i < chars.length; i++) { if (settled[i]) r += chars[i]; else if (chars[i] === ' ') { r += ' '; settled[i] = true; } else r += scrambleChars[Math.floor(Math.random() * scrambleChars.length)]; }
-                    el.textContent = r;
-                    if (cur < chars.length) { settled[cur] = true; cur++; while (cur < chars.length && chars[cur] === ' ') { settled[cur] = true; cur++; } }
-                    if (cur >= chars.length) { clearInterval(iv); el.textContent = text; }
-                }, speed);
-            }, extraDelay);
-        }
-        document.addEventListener('DOMContentLoaded', () => { document.querySelectorAll('.decode-text').forEach(el => decodeElement(el)); });
 
-        // Mobile Menu
-        const menuToggle = document.getElementById('menuToggle'), mobileMenu = document.getElementById('mobileMenu');
-        menuToggle.addEventListener('click', function(e) { e.stopPropagation(); mobileMenu.classList.toggle('active'); menuToggle.innerHTML = mobileMenu.classList.contains('active') ? '&#10005;' : '&#9776;'; });
-        document.addEventListener('click', function(e) { if (!e.target.closest('nav')) { mobileMenu.classList.remove('active'); menuToggle.innerHTML = '&#9776;'; } });
+        let dragonPoints = generateGoldenDragon(ITERATIONS);
+
+        // --- Fit to viewport ---
+        function fitToViewport(points) {
+            let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+            for (const p of points) {
+                if (p.x < minX) minX = p.x;
+                if (p.x > maxX) maxX = p.x;
+                if (p.y < minY) minY = p.y;
+                if (p.y > maxY) maxY = p.y;
+            }
+
+            const curveW = maxX - minX;
+            const curveH = maxY - minY;
+            const padX = CURVE_PADDING;
+            const padY = CURVE_PADDING + 60; // extra top for nav
+            const scaleX = (W - padX * 2) / curveW;
+            const scaleY = (H - padY * 2) / curveH;
+            const scale = Math.min(scaleX, scaleY);
+
+            const offX = (W - curveW * scale) / 2 - minX * scale;
+            const offY = (H - curveH * scale) / 2 - minY * scale + 30;
+
+            const fitted = points.map(p => ({
+                x: p.x * scale + offX,
+                y: p.y * scale + offY
+            }));
+
+            return fitted;
+        }
+
+        let fittedPoints = fitToViewport(dragonPoints);
+
+        // --- Compute arc lengths and anchor points ---
+        let arcLengths = [];
+        let totalArcLength = 0;
+
+        function computeArcLengths() {
+            arcLengths = [0];
+            totalArcLength = 0;
+            for (let i = 1; i < fittedPoints.length; i++) {
+                const dx = fittedPoints[i].x - fittedPoints[i-1].x;
+                const dy = fittedPoints[i].y - fittedPoints[i-1].y;
+                totalArcLength += Math.sqrt(dx * dx + dy * dy);
+                arcLengths.push(totalArcLength);
+            }
+        }
+        computeArcLengths();
+
+        // Find point at given arc length fraction
+        function pointAtFraction(frac) {
+            const targetLen = frac * totalArcLength;
+            let lo = 0, hi = arcLengths.length - 1;
+            while (lo < hi - 1) {
+                const mid = (lo + hi) >> 1;
+                if (arcLengths[mid] < targetLen) lo = mid; else hi = mid;
+            }
+            const segLen = arcLengths[hi] - arcLengths[lo];
+            const t = segLen > 0 ? (targetLen - arcLengths[lo]) / segLen : 0;
+            return {
+                x: fittedPoints[lo].x + t * (fittedPoints[hi].x - fittedPoints[lo].x),
+                y: fittedPoints[lo].y + t * (fittedPoints[hi].y - fittedPoints[lo].y),
+                segIndex: lo
+            };
+        }
+
+        // 12 anchors at equal arc-length intervals
+        const anchors = [];
+        for (let i = 0; i < PANEL_COUNT; i++) {
+            const frac = (i + 0.5) / PANEL_COUNT;
+            const pt = pointAtFraction(frac);
+            const startSeg = Math.floor((i / PANEL_COUNT) * (fittedPoints.length - 1));
+            const endSeg = Math.floor(((i + 1) / PANEL_COUNT) * (fittedPoints.length - 1));
+            anchors.push({
+                x: pt.x, y: pt.y,
+                startSeg: startSeg,
+                endSeg: endSeg,
+                panelX: 0, panelY: 0
+            });
+        }
+
+        // --- Position panels with collision relaxation ---
+        const panels = document.querySelectorAll('.expertise-panel');
+        const panelW = 200, panelH = 85;
+
+        function positionPanels() {
+            if (isMobile) return;
+
+            // Initial positions: offset from anchor
+            for (let i = 0; i < anchors.length; i++) {
+                const a = anchors[i];
+                // Alternate sides to spread panels
+                const angle = (i / anchors.length) * Math.PI * 2 + Math.PI / 4;
+                const dist = 120;
+                a.panelX = a.x + Math.cos(angle) * dist - panelW / 2;
+                a.panelY = a.y + Math.sin(angle) * dist - panelH / 2;
+            }
+
+            // Force-directed relaxation
+            for (let iter = 0; iter < 100; iter++) {
+                for (let i = 0; i < anchors.length; i++) {
+                    for (let j = i + 1; j < anchors.length; j++) {
+                        const a = anchors[i], b = anchors[j];
+                        const cx1 = a.panelX + panelW / 2, cy1 = a.panelY + panelH / 2;
+                        const cx2 = b.panelX + panelW / 2, cy2 = b.panelY + panelH / 2;
+
+                        const overlapX = (panelW + 20) - Math.abs(cx1 - cx2);
+                        const overlapY = (panelH + 15) - Math.abs(cy1 - cy2);
+
+                        if (overlapX > 0 && overlapY > 0) {
+                            const pushX = overlapX / 2 * (cx1 < cx2 ? -1 : 1);
+                            const pushY = overlapY / 2 * (cy1 < cy2 ? -1 : 1);
+
+                            if (overlapX < overlapY) {
+                                a.panelX += pushX * 0.6;
+                                b.panelX -= pushX * 0.6;
+                            } else {
+                                a.panelY += pushY * 0.6;
+                                b.panelY -= pushY * 0.6;
+                            }
+                        }
+                    }
+
+                    // Keep in viewport
+                    const a = anchors[i];
+                    a.panelX = Math.max(10, Math.min(W - panelW - 10, a.panelX));
+                    a.panelY = Math.max(70, Math.min(H - panelH - 10, a.panelY));
+                }
+            }
+
+            // Apply positions
+            panels.forEach((panel, i) => {
+                if (i < anchors.length) {
+                    panel.style.left = anchors[i].panelX + 'px';
+                    panel.style.top = anchors[i].panelY + 'px';
+                }
+            });
+        }
+
+        // Set container height on desktop
+        function setContainerHeight() {
+            if (isMobile) return;
+            const container = document.getElementById('panelsContainer');
+            container.style.height = H + 'px';
+            container.style.position = 'relative';
+        }
+
+        setContainerHeight();
+        positionPanels();
+
+        // --- Particles ---
+        class Particle {
+            constructor() { this.reset(); }
+            reset() {
+                this.progress = Math.random();
+                this.speed = (0.0001 + Math.random() * 0.0003) * (isMobile ? 1.5 : 1);
+                this.size = 1 + Math.random() * 2;
+                this.alpha = 0.3 + Math.random() * 0.5;
+                this.trail = [];
+                this.trailMax = 6 + Math.floor(Math.random() * 8);
+            }
+            update() {
+                this.progress += this.speed;
+                if (this.progress >= 1) this.reset();
+
+                const pt = pointAtFraction(this.progress);
+                this.trail.unshift({x: pt.x, y: pt.y});
+                if (this.trail.length > this.trailMax) this.trail.pop();
+            }
+        }
+
+        const particles = [];
+        for (let i = 0; i < PARTICLE_COUNT; i++) particles.push(new Particle());
+
+        // --- Sparkles ---
+        class Sparkle {
+            constructor() { this.reset(); }
+            reset() {
+                const frac = Math.random();
+                const pt = pointAtFraction(frac);
+                this.x = pt.x + (Math.random() - 0.5) * 40;
+                this.y = pt.y + (Math.random() - 0.5) * 40;
+                this.life = 0;
+                this.maxLife = 40 + Math.random() * 60;
+                this.size = 1 + Math.random() * 2.5;
+            }
+            update() {
+                this.life++;
+                if (this.life >= this.maxLife) this.reset();
+            }
+            getAlpha() {
+                const t = this.life / this.maxLife;
+                return t < 0.3 ? t / 0.3 : (1 - t) / 0.7;
+            }
+        }
+
+        const sparkles = [];
+        for (let i = 0; i < SPARKLE_COUNT; i++) {
+            const s = new Sparkle();
+            s.life = Math.random() * s.maxLife;
+            sparkles.push(s);
+        }
+
+        // --- Draw state ---
+        let drawProgress = 0;
+        let drawStartTime = null;
+        let drawComplete = false;
+        let hoveredPanel = -1;
+
+        // --- Panel hover ---
+        panels.forEach((panel, i) => {
+            panel.addEventListener('mouseenter', () => { hoveredPanel = i; });
+            panel.addEventListener('mouseleave', () => { hoveredPanel = -1; });
+        });
+
+        // --- Decoration canvas (golden spiral + phi grid) ---
+        function drawDecoration() {
+            decCtx.clearRect(0, 0, W, H);
+
+            // Phi grid lines
+            decCtx.strokeStyle = 'rgba(212,175,55,0.04)';
+            decCtx.lineWidth = 1;
+
+            // Vertical phi divisions
+            const phiPositions = [1/PHI, 1 - 1/PHI, 1/(PHI*PHI), 1 - 1/(PHI*PHI)];
+            phiPositions.forEach(f => {
+                decCtx.beginPath();
+                decCtx.moveTo(f * W, 0);
+                decCtx.lineTo(f * W, H);
+                decCtx.stroke();
+
+                decCtx.beginPath();
+                decCtx.moveTo(0, f * H);
+                decCtx.lineTo(W, f * H);
+                decCtx.stroke();
+            });
+
+            // Golden spiral watermark (very subtle)
+            decCtx.strokeStyle = 'rgba(212,175,55,0.03)';
+            decCtx.lineWidth = 1.5;
+            decCtx.beginPath();
+            let spiralX = W * 0.5, spiralY = H * 0.5;
+            let spiralR = Math.min(W, H) * 0.3;
+            let spiralAngle = 0;
+
+            for (let i = 0; i < 720; i++) {
+                const a = (spiralAngle * Math.PI) / 180;
+                const r = spiralR * Math.pow(PHI, -spiralAngle / 360);
+                const sx = spiralX + r * Math.cos(a);
+                const sy = spiralY + r * Math.sin(a);
+
+                if (i === 0) decCtx.moveTo(sx, sy);
+                else decCtx.lineTo(sx, sy);
+
+                spiralAngle += 2;
+            }
+            decCtx.stroke();
+        }
+
+        drawDecoration();
+
+        // --- Main render loop ---
+        function render(now) {
+            requestAnimationFrame(render);
+
+            if (!drawStartTime) drawStartTime = now;
+            const elapsed = now - drawStartTime;
+
+            dCtx.clearRect(0, 0, W, H);
+
+            // Progress of draw animation
+            if (!drawComplete) {
+                drawProgress = Math.min(1, elapsed / DRAW_DURATION);
+                if (drawProgress >= 1) {
+                    drawComplete = true;
+                    showPanelsSequentially();
+                }
+            }
+
+            const pointsToDraw = Math.floor(drawProgress * fittedPoints.length);
+
+            // --- Draw the dragon curve ---
+            // Base curve (dim)
+            if (pointsToDraw > 1) {
+                dCtx.beginPath();
+                dCtx.moveTo(fittedPoints[0].x, fittedPoints[0].y);
+                for (let i = 1; i < pointsToDraw; i++) {
+                    dCtx.lineTo(fittedPoints[i].x, fittedPoints[i].y);
+                }
+                dCtx.strokeStyle = 'rgba(184,134,11,0.35)';
+                dCtx.lineWidth = 1.5;
+                dCtx.stroke();
+
+                // Glow layer
+                dCtx.beginPath();
+                dCtx.moveTo(fittedPoints[0].x, fittedPoints[0].y);
+                for (let i = 1; i < pointsToDraw; i++) {
+                    dCtx.lineTo(fittedPoints[i].x, fittedPoints[i].y);
+                }
+                dCtx.strokeStyle = 'rgba(212,175,55,0.12)';
+                dCtx.lineWidth = 4;
+                dCtx.stroke();
+            }
+
+            // Draw pen head glow during intro
+            if (!drawComplete && pointsToDraw > 0 && pointsToDraw < fittedPoints.length) {
+                const tip = fittedPoints[pointsToDraw - 1];
+                const gradient = dCtx.createRadialGradient(tip.x, tip.y, 0, tip.x, tip.y, 25);
+                gradient.addColorStop(0, 'rgba(232,201,103,0.8)');
+                gradient.addColorStop(0.3, 'rgba(212,175,55,0.4)');
+                gradient.addColorStop(1, 'rgba(212,175,55,0)');
+                dCtx.beginPath();
+                dCtx.arc(tip.x, tip.y, 25, 0, Math.PI * 2);
+                dCtx.fillStyle = gradient;
+                dCtx.fill();
+
+                // Bright core
+                dCtx.beginPath();
+                dCtx.arc(tip.x, tip.y, 3, 0, Math.PI * 2);
+                dCtx.fillStyle = '#E8C967';
+                dCtx.fill();
+            }
+
+            // --- Highlight hovered segment ---
+            if (hoveredPanel >= 0 && hoveredPanel < anchors.length && drawComplete) {
+                const a = anchors[hoveredPanel];
+                dCtx.beginPath();
+                const start = Math.max(0, a.startSeg);
+                const end = Math.min(fittedPoints.length - 1, a.endSeg);
+                if (start < fittedPoints.length) {
+                    dCtx.moveTo(fittedPoints[start].x, fittedPoints[start].y);
+                    for (let i = start + 1; i <= end; i++) {
+                        dCtx.lineTo(fittedPoints[i].x, fittedPoints[i].y);
+                    }
+                    dCtx.strokeStyle = 'rgba(232,201,103,0.8)';
+                    dCtx.lineWidth = 3;
+                    dCtx.shadowColor = '#E8C967';
+                    dCtx.shadowBlur = 15;
+                    dCtx.stroke();
+                    dCtx.shadowBlur = 0;
+                }
+            }
+
+            // --- Connector lines (dashed) from anchor to panel ---
+            if (drawComplete && !isMobile) {
+                dCtx.setLineDash([4, 6]);
+                for (let i = 0; i < anchors.length; i++) {
+                    const a = anchors[i];
+                    const pcx = a.panelX + panelW / 2;
+                    const pcy = a.panelY + panelH / 2;
+
+                    const alpha = hoveredPanel === i ? 0.6 : 0.2;
+                    dCtx.beginPath();
+                    dCtx.moveTo(a.x, a.y);
+                    dCtx.lineTo(pcx, pcy);
+                    dCtx.strokeStyle = `rgba(212,175,55,${alpha})`;
+                    dCtx.lineWidth = 1;
+                    dCtx.stroke();
+
+                    // Small circle at anchor
+                    dCtx.beginPath();
+                    dCtx.arc(a.x, a.y, 3, 0, Math.PI * 2);
+                    dCtx.fillStyle = `rgba(212,175,55,${alpha + 0.2})`;
+                    dCtx.fill();
+                }
+                dCtx.setLineDash([]);
+            }
+
+            // --- Particles (after draw completes) ---
+            if (drawComplete) {
+                for (const p of particles) {
+                    p.update();
+
+                    if (p.trail.length > 1) {
+                        for (let t = 1; t < p.trail.length; t++) {
+                            const trailAlpha = p.alpha * (1 - t / p.trail.length) * 0.6;
+                            dCtx.beginPath();
+                            dCtx.moveTo(p.trail[t-1].x, p.trail[t-1].y);
+                            dCtx.lineTo(p.trail[t].x, p.trail[t].y);
+                            dCtx.strokeStyle = `rgba(232,201,103,${trailAlpha})`;
+                            dCtx.lineWidth = p.size * (1 - t / p.trail.length);
+                            dCtx.stroke();
+                        }
+                    }
+
+                    if (p.trail.length > 0) {
+                        dCtx.beginPath();
+                        dCtx.arc(p.trail[0].x, p.trail[0].y, p.size, 0, Math.PI * 2);
+                        dCtx.fillStyle = `rgba(232,201,103,${p.alpha})`;
+                        dCtx.fill();
+                    }
+                }
+
+                // --- Sparkles ---
+                for (const s of sparkles) {
+                    s.update();
+                    const a = s.getAlpha() * 0.6;
+                    if (a > 0.01) {
+                        dCtx.beginPath();
+                        dCtx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
+                        dCtx.fillStyle = `rgba(212,175,55,${a})`;
+                        dCtx.fill();
+                    }
+                }
+            }
+        }
+
+        requestAnimationFrame(render);
+
+        // --- Show panels after draw ---
+        function showPanelsSequentially() {
+            if (isMobile) {
+                panels.forEach(p => p.classList.add('visible'));
+                return;
+            }
+            panels.forEach((panel, i) => {
+                setTimeout(() => panel.classList.add('visible'), i * 100);
+            });
+        }
+
+        // On mobile, show immediately
+        if (isMobile) {
+            panels.forEach(p => p.classList.add('visible'));
+        }
+
+        // --- Handle resize ---
+        let resizeTimeout;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                resizeCanvases();
+                fittedPoints = fitToViewport(dragonPoints);
+                computeArcLengths();
+
+                // Recompute anchors
+                for (let i = 0; i < PANEL_COUNT; i++) {
+                    const frac = (i + 0.5) / PANEL_COUNT;
+                    const pt = pointAtFraction(frac);
+                    anchors[i].x = pt.x;
+                    anchors[i].y = pt.y;
+                    anchors[i].startSeg = Math.floor((i / PANEL_COUNT) * (fittedPoints.length - 1));
+                    anchors[i].endSeg = Math.floor(((i + 1) / PANEL_COUNT) * (fittedPoints.length - 1));
+                }
+
+                setContainerHeight();
+                positionPanels();
+                drawDecoration();
+            }, 200);
+        });
+
+        // --- Mobile menu ---
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+        menuToggle.addEventListener('click', function(e) {
+            e.stopPropagation();
+            mobileMenu.classList.toggle('active');
+            menuToggle.innerHTML = mobileMenu.classList.contains('active') ? '&#10005;' : '&#9776;';
+        });
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('nav')) {
+                mobileMenu.classList.remove('active');
+                menuToggle.innerHTML = '&#9776;';
+            }
+        });
+
+    })();
     </script>
 </body>
 </html>

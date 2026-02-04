@@ -5,231 +5,431 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact - SeldomSought</title>
     <meta name="description" content="Get in touch with SeldomSought for consultation.">
-    <meta name="theme-color" content="#00ff41"/>
+    <meta name="theme-color" content="#2d5a35"/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        :root {
-            --matrix-green: #00ff41;
-            --matrix-green-dim: #00cc33;
-            --matrix-green-dark: #008f11;
+        *{margin:0;padding:0;box-sizing:border-box}
+        :root{
+            --forest-deep:#080e08;
+            --forest-dark:#101a10;
+            --forest-mid:#1a2e1a;
+            --canopy:#2d5a35;
+            --canopy-light:#4a8a55;
+            --canopy-bright:#6ab070;
+            --moss:#3a6648;
+            --bark:#6b5040;
+            --bark-light:#8b7355;
+            --firefly:#e0d050;
+            --firefly-glow:rgba(224,208,80,0.4);
+            --creek:#4a8a9a;
+            --creek-light:#6abacc;
+            --ember:#c06030;
+            --ember-glow:rgba(192,96,48,0.25);
+            --text:#c0d4b8;
+            --text-dim:#7a9a72;
+            --text-bright:#e0ece0;
+            --panel-bg:rgba(8,14,8,0.92);
+            --panel-border:rgba(58,102,72,0.5)
         }
-        body {
-            font-family: 'Share Tech Mono', monospace;
-            color: var(--matrix-green); background: #000;
-            line-height: 1.6; overflow-x: hidden;
+        body{
+            font-family:'Share Tech Mono',monospace;
+            color:var(--text);background:var(--forest-deep);
+            line-height:1.6;overflow-x:hidden
         }
-        #matrixCanvas {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            z-index: 0; pointer-events: none;
-        }
-        .scanlines {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            pointer-events: none; z-index: 99;
-            background: repeating-linear-gradient(0deg, rgba(0,0,0,0.03) 0px, rgba(0,0,0,0.03) 1px, transparent 1px, transparent 3px);
-        }
-
-        /* Navigation */
-        nav {
-            position: fixed; top: 0; width: 100%;
-            background: rgba(0,0,0,0.85);
-            border-bottom: 1px solid rgba(0,255,65,0.15);
-            z-index: 100; backdrop-filter: blur(10px);
-        }
-        .nav-container {
-            max-width: 1200px; margin: 0 auto; padding: 1.2rem 2rem;
-            display: flex; justify-content: space-between; align-items: center;
-        }
-        .logo {
-            font-size: 1.5rem; color: var(--matrix-green); text-decoration: none;
-            text-shadow: 0 0 10px rgba(0,255,65,0.5), 0 0 20px rgba(0,255,65,0.3);
-            letter-spacing: 2px;
-        }
-        .nav-links { display: flex; gap: 2rem; list-style: none; }
-        .nav-links a {
-            text-decoration: none; color: var(--matrix-green-dark);
-            font-size: 0.9rem; letter-spacing: 1px; text-transform: uppercase;
-            transition: all 0.3s; position: relative;
-        }
-        .nav-links a:hover { color: var(--matrix-green); text-shadow: 0 0 8px rgba(0,255,65,0.6); }
-        .nav-links a::after {
-            content: ''; position: absolute; bottom: -4px; left: 0;
-            width: 0; height: 1px; background: var(--matrix-green);
-            box-shadow: 0 0 5px var(--matrix-green); transition: width 0.3s;
-        }
-        .nav-links a:hover::after { width: 100%; }
-        .menu-toggle {
-            display: none; background: none;
-            border: 1px solid var(--matrix-green-dark);
-            font-size: 1.5rem; cursor: pointer; color: var(--matrix-green);
-            padding: 0.2rem 0.5rem;
-        }
-        .mobile-menu { display: none; }
-
-        /* Page Header */
-        .page-header {
-            padding: 8rem 2rem 3rem; text-align: center;
-            position: relative; z-index: 1;
-        }
-        .page-header h1 {
-            font-size: 3rem; margin-bottom: 1rem;
-            color: var(--matrix-green); font-weight: 400;
-            text-shadow: 0 0 20px rgba(0,255,65,0.4), 0 0 40px rgba(0,255,65,0.2);
-            letter-spacing: 4px; text-transform: uppercase;
-        }
-        .page-header h1::after {
-            content: ''; display: block; width: 80px; height: 1px;
-            background: var(--matrix-green);
-            box-shadow: 0 0 10px var(--matrix-green);
-            margin: 1rem auto 0;
-        }
-        .page-header .subtitle {
-            color: var(--matrix-green-dim); font-size: 1.1rem;
-            letter-spacing: 2px; text-shadow: 0 0 10px rgba(0,255,65,0.2);
+        .sr-only{
+            position:absolute;width:1px;height:1px;padding:0;margin:-1px;
+            overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0
         }
 
-        /* Contact Content */
-        main {
-            max-width: 700px; margin: 0 auto; padding: 3rem 2rem;
-            position: relative; z-index: 1;
+        /* === ASCII Scene Layer === */
+        .ascii-scene{
+            position:fixed;top:0;left:0;width:100%;height:100%;
+            z-index:0;pointer-events:none;overflow:hidden;
+            transition:opacity 0.5s
         }
-        .contact-box {
-            background: rgba(0,255,65,0.02);
-            padding: 3rem; text-align: center;
-            border: 1px solid rgba(0,255,65,0.1);
-            border-top: 2px solid rgba(0,255,65,0.3);
+        .canopy-pre{
+            position:absolute;top:55px;left:0;width:100%;
+            font-size:13px;line-height:1.15;
+            color:var(--canopy);opacity:0.55;
+            white-space:pre;overflow:hidden
         }
-        .contact-box h2 {
-            margin-bottom: 1.5rem; color: var(--matrix-green);
-            font-weight: 400; font-size: 1.5rem;
-            letter-spacing: 3px; text-transform: uppercase;
-            text-shadow: 0 0 10px rgba(0,255,65,0.3);
+        .canopy-pre .star{color:var(--firefly);opacity:0.7}
+        .canopy-pre .trunk{color:var(--bark);opacity:0.5}
+
+        .creek-pre{
+            position:absolute;bottom:0;left:0;width:100%;
+            font-size:13px;line-height:1.2;white-space:pre;overflow:hidden;
+            background:linear-gradient(90deg,var(--creek) 0%,var(--creek-light) 20%,var(--creek) 40%,var(--creek-light) 60%,var(--creek) 80%,var(--creek-light) 100%);
+            background-size:300% 100%;
+            -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+            background-clip:text;
+            animation:creek-flow 10s linear infinite;opacity:0.45
         }
-        .contact-box p {
-            margin-bottom: 2rem; line-height: 1.8;
-            color: var(--matrix-green-dark);
-        }
-        .contact-form {
-            display: flex; gap: 1rem; justify-content: center;
-        }
-        .contact-form input {
-            flex: 1; max-width: 400px;
-            padding: 1rem 1.5rem;
-            background: rgba(0,255,65,0.03);
-            border: 1px solid rgba(0,255,65,0.2);
-            color: var(--matrix-green);
-            font-family: 'Share Tech Mono', monospace;
-            font-size: 1rem; letter-spacing: 1px;
-            outline: none; transition: all 0.3s;
-        }
-        .contact-form input::placeholder {
-            color: var(--matrix-green-dark);
-        }
-        .contact-form input:focus {
-            border-color: var(--matrix-green);
-            box-shadow: 0 0 15px rgba(0,255,65,0.15);
-            background: rgba(0,255,65,0.05);
-        }
-        .contact-form button {
-            padding: 1rem 2rem;
-            background: transparent;
-            color: var(--matrix-green);
-            border: 1px solid var(--matrix-green);
-            font-family: 'Share Tech Mono', monospace;
-            font-size: 0.95rem; letter-spacing: 2px;
-            text-transform: uppercase; cursor: pointer;
-            transition: all 0.3s;
-            box-shadow: 0 0 10px rgba(0,255,65,0.1);
-        }
-        .contact-form button:hover {
-            background: rgba(0,255,65,0.1);
-            box-shadow: 0 0 20px rgba(0,255,65,0.25);
-            text-shadow: 0 0 8px rgba(0,255,65,0.5);
+        @keyframes creek-flow{
+            0%{background-position:0% 0%}
+            100%{background-position:300% 0%}
         }
 
-        /* Terminal prompt style */
-        .terminal-prompt {
-            margin-top: 2rem; text-align: left;
-            color: var(--matrix-green-dark); font-size: 0.85rem;
-            letter-spacing: 1px;
+        /* Fireflies */
+        .firefly{
+            position:fixed;width:3px;height:3px;border-radius:50%;
+            background:var(--firefly);
+            box-shadow:0 0 4px var(--firefly),0 0 10px var(--firefly-glow);
+            animation:ff-glow var(--dur,3s) ease-in-out var(--delay,0s) infinite;
+            pointer-events:none;z-index:5
         }
-        .terminal-prompt span {
-            color: var(--matrix-green);
-        }
-
-        /* Decode animation */
-        .decode-text { opacity: 0; }
-        .decode-text.revealed { opacity: 1; }
-
-        /* Footer */
-        footer {
-            background: rgba(0,0,0,0.9); color: var(--matrix-green-dark);
-            padding: 3rem 2rem 2rem;
-            border-top: 1px solid rgba(0,255,65,0.1);
-            position: relative; z-index: 1;
-        }
-        .footer-content {
-            max-width: 1200px; margin: 0 auto;
-            display: grid; grid-template-columns: 2fr 1fr 1fr;
-            gap: 3rem; margin-bottom: 2rem;
-        }
-        .footer-section h3 {
-            font-size: 1.1rem; margin-bottom: 1rem;
-            color: var(--matrix-green);
-            text-shadow: 0 0 8px rgba(0,255,65,0.3);
-            letter-spacing: 2px; text-transform: uppercase; font-weight: 400;
-        }
-        .footer-section p { color: var(--matrix-green-dark); line-height: 1.7; }
-        .footer-links { list-style: none; }
-        .footer-links a {
-            color: var(--matrix-green-dark); text-decoration: none;
-            display: block; padding: 0.3rem 0; transition: all 0.2s;
-            letter-spacing: 1px; font-size: 0.9rem;
-        }
-        .footer-links a:hover {
-            color: var(--matrix-green);
-            text-shadow: 0 0 8px rgba(0,255,65,0.4);
-            padding-left: 0.5rem;
-        }
-        .footer-links a::before { content: '> '; opacity: 0; transition: opacity 0.2s; }
-        .footer-links a:hover::before { opacity: 1; }
-        .footer-bottom {
-            max-width: 1200px; margin: 0 auto; padding-top: 2rem;
-            border-top: 1px solid rgba(0,255,65,0.1);
-            text-align: center; color: rgba(0,255,65,0.3);
-            font-size: 0.85rem; letter-spacing: 1px;
+        @keyframes ff-glow{
+            0%,100%{opacity:0.08;box-shadow:0 0 2px var(--firefly)}
+            50%{opacity:0.85;box-shadow:0 0 6px var(--firefly),0 0 14px var(--firefly-glow)}
         }
 
-        @media (max-width: 768px) {
-            .menu-toggle { display: block; }
-            .nav-links { display: none; }
-            .mobile-menu {
-                position: fixed; top: 60px; left: 0; right: 0;
-                background: rgba(0,0,0,0.95);
-                border-bottom: 1px solid rgba(0,255,65,0.15);
-                padding: 1rem 2rem; backdrop-filter: blur(10px);
+        /* === Mode Toggle === */
+        .mode-toggle{
+            position:fixed;top:70px;right:16px;z-index:150;
+            background:var(--panel-bg);border:1px solid var(--panel-border);
+            color:var(--text-dim);font-family:'Share Tech Mono',monospace;
+            font-size:0.7rem;padding:3px 10px;cursor:pointer;
+            transition:all 0.3s;letter-spacing:1px
+        }
+        .mode-toggle:hover{color:var(--text);border-color:var(--canopy-light)}
+        .mode-toggle:focus-visible{outline:2px solid var(--canopy-light);outline-offset:2px}
+
+        /* === Navigation === */
+        nav{
+            position:fixed;top:0;width:100%;
+            background:rgba(8,14,8,0.9);
+            border-bottom:1px solid rgba(58,102,72,0.2);
+            z-index:200;backdrop-filter:blur(10px)
+        }
+        .nav-container{
+            max-width:1200px;margin:0 auto;padding:1.2rem 2rem;
+            display:flex;justify-content:space-between;align-items:center
+        }
+        .logo{
+            font-size:1.5rem;color:var(--canopy-bright);text-decoration:none;
+            text-shadow:0 0 10px rgba(106,176,112,0.5),0 0 20px rgba(106,176,112,0.2);
+            letter-spacing:2px
+        }
+        .nav-links{display:flex;gap:2rem;list-style:none}
+        .nav-links a{
+            text-decoration:none;color:var(--moss);
+            font-size:0.9rem;letter-spacing:1px;text-transform:uppercase;
+            transition:all 0.3s;position:relative
+        }
+        .nav-links a:hover{color:var(--canopy-bright);text-shadow:0 0 8px rgba(106,176,112,0.5)}
+        .nav-links a::after{
+            content:'';position:absolute;bottom:-4px;left:0;
+            width:0;height:1px;background:var(--canopy-bright);
+            box-shadow:0 0 5px var(--canopy-bright);transition:width 0.3s
+        }
+        .nav-links a:hover::after{width:100%}
+        .nav-links a:focus-visible{outline:2px solid var(--canopy-light);outline-offset:4px}
+        .menu-toggle{
+            display:none;background:none;
+            border:1px solid var(--moss);
+            font-size:1.5rem;cursor:pointer;color:var(--canopy-bright);
+            padding:0.2rem 0.5rem
+        }
+        .mobile-menu{display:none}
+
+        /* === Page Header === */
+        .page-header{
+            padding:8rem 2rem 2rem;text-align:center;
+            position:relative;z-index:10
+        }
+        .page-header h1{
+            font-size:2.8rem;margin-bottom:0.8rem;
+            color:var(--canopy-bright);font-weight:400;
+            text-shadow:0 0 20px rgba(106,176,112,0.35),0 0 40px rgba(106,176,112,0.15);
+            letter-spacing:4px;text-transform:uppercase
+        }
+        .page-header h1::after{
+            content:'~ \00b7 ~';display:block;font-size:1rem;
+            color:var(--moss);margin:0.8rem auto 0;letter-spacing:8px
+        }
+        .page-header .subtitle{
+            color:var(--text-dim);font-size:1.05rem;
+            letter-spacing:2px;text-shadow:0 0 10px rgba(106,176,112,0.15)
+        }
+
+        /* === Main Content === */
+        main{
+            max-width:700px;margin:0 auto;padding:2rem 2rem 4rem;
+            position:relative;z-index:10
+        }
+
+        /* ASCII Panel */
+        .ascii-panel{
+            position:relative;
+            background:var(--panel-bg);
+            background-image:radial-gradient(circle,rgba(58,102,72,0.03) 1px,transparent 1px);
+            background-size:20px 20px;
+            border:1px solid var(--panel-border);
+            backdrop-filter:blur(6px);
+            transition:border-color 0.4s,box-shadow 0.4s
+        }
+
+        /* Panel corner decorations */
+        .panel-corner{
+            position:absolute;color:var(--canopy);font-size:13px;
+            line-height:1;pointer-events:none;opacity:0.6;
+            transition:opacity 0.3s,color 0.3s
+        }
+        .panel-corner.tl{top:-9px;left:8px}
+        .panel-corner.tr{top:-9px;right:8px}
+        .panel-corner.bl{bottom:-9px;left:8px}
+        .panel-corner.br{bottom:-9px;right:8px}
+        .ascii-panel:hover .panel-corner{
+            opacity:1;color:var(--canopy-light);
+            animation:rustle 0.4s ease-in-out
+        }
+        @keyframes rustle{
+            0%,100%{transform:translateX(0)}
+            25%{transform:translateX(2px)}
+            75%{transform:translateX(-2px)}
+        }
+
+        /* Contact Panel */
+        .contact-panel{padding:2.5rem 2rem;margin-bottom:2rem}
+        .contact-panel:hover{
+            border-color:rgba(192,96,48,0.4);
+            box-shadow:0 0 20px var(--ember-glow)
+        }
+        .contact-panel.field-focused{
+            border-color:rgba(106,176,112,0.5);
+            box-shadow:0 0 15px rgba(106,176,112,0.1)
+        }
+        .contact-panel.bloom{
+            border-color:var(--firefly) !important;
+            box-shadow:0 0 30px var(--firefly-glow),0 0 60px rgba(224,208,80,0.1) !important
+        }
+        .contact-panel h2{
+            text-align:center;margin-bottom:1.2rem;
+            color:var(--canopy-bright);font-weight:400;font-size:1.4rem;
+            letter-spacing:3px;text-transform:uppercase;
+            text-shadow:0 0 10px rgba(106,176,112,0.25)
+        }
+        .panel-intro{
+            text-align:center;margin-bottom:1.8rem;
+            line-height:1.8;color:var(--text-dim)
+        }
+
+        /* Contact Form */
+        .form-group{display:flex;gap:0.8rem;justify-content:center}
+        .input-wrapper{position:relative;flex:1;max-width:400px}
+        .lantern{
+            position:absolute;left:-20px;top:50%;
+            transform:translateY(-50%);
+            color:var(--canopy);font-size:14px;
+            opacity:0;transition:opacity 0.4s,color 0.4s,text-shadow 0.4s;
+            pointer-events:none
+        }
+        .contact-form input:focus ~ .lantern{
+            opacity:1;color:var(--firefly);
+            text-shadow:0 0 8px var(--firefly-glow)
+        }
+        .contact-form input{
+            width:100%;padding:0.9rem 1.2rem;
+            background:rgba(16,26,16,0.8);
+            border:1px solid var(--panel-border);
+            color:var(--text-bright);
+            font-family:'Share Tech Mono',monospace;
+            font-size:0.95rem;letter-spacing:1px;
+            outline:none;transition:all 0.3s
+        }
+        .contact-form input::placeholder{color:var(--text-dim);opacity:0.6}
+        .contact-form input:focus{
+            border-color:var(--canopy-light);
+            box-shadow:0 0 12px rgba(74,138,85,0.2);
+            background:rgba(20,34,20,0.9)
+        }
+        .contact-form input:focus-visible{
+            outline:2px solid var(--canopy-light);outline-offset:2px
+        }
+        .contact-form button{
+            padding:0.9rem 1.8rem;background:transparent;
+            color:var(--canopy-bright);border:1px solid var(--canopy);
+            font-family:'Share Tech Mono',monospace;
+            font-size:0.9rem;letter-spacing:2px;
+            text-transform:uppercase;cursor:pointer;
+            transition:all 0.3s;white-space:nowrap
+        }
+        .contact-form button:hover{
+            background:rgba(45,90,53,0.2);
+            border-color:var(--canopy-light);
+            box-shadow:0 0 15px rgba(74,138,85,0.2);
+            text-shadow:0 0 6px rgba(106,176,112,0.4)
+        }
+        .contact-form button:focus-visible{
+            outline:2px solid var(--canopy-light);outline-offset:2px
+        }
+
+        /* Form Error */
+        .form-error{
+            text-align:center;color:var(--ember);
+            font-size:0.85rem;margin-top:0.8rem;
+            min-height:1.4em;opacity:0;transition:opacity 0.3s
+        }
+        .form-error.visible{opacity:1}
+
+        /* Vine Growth */
+        .vine-growth{
+            text-align:center;margin:1.2rem 0 0.4rem;
+            letter-spacing:2px;line-height:1;font-size:13px;
+            min-height:1em
+        }
+        .vine-segment{
+            color:var(--forest-dark);
+            transition:color 0.4s,text-shadow 0.4s
+        }
+        .vine-segment.grown{
+            color:var(--canopy);
+            text-shadow:0 0 4px rgba(74,138,85,0.3)
+        }
+
+        /* Terminal Prompt */
+        .terminal-prompt{
+            margin-top:1rem;text-align:left;
+            color:var(--text-dim);font-size:0.82rem;
+            letter-spacing:1px;padding:0.5rem 0
+        }
+        .prompt-user{color:var(--canopy-bright)}
+        .prompt-success{color:var(--canopy-light)}
+        .cursor-blink{animation:blink 1s step-end infinite}
+        @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+
+        /* Trail Sign */
+        .trail-sign{text-align:center;padding:0}
+        .trail-sign .sign-art{
+            color:var(--bark);font-size:13px;
+            line-height:1.2;margin:0;opacity:0.6;
+            white-space:pre
+        }
+        .trail-sign .sign-content{padding:1.2rem 1.5rem}
+        .trail-sign h3{
+            font-weight:400;font-size:1.1rem;
+            color:var(--canopy-bright);letter-spacing:3px;
+            text-transform:uppercase;margin-bottom:0.8rem;
+            text-shadow:0 0 8px rgba(106,176,112,0.2)
+        }
+        .contact-methods{list-style:none}
+        .contact-methods li{
+            padding:0.3rem 0;color:var(--text-dim);
+            font-size:0.9rem;letter-spacing:1px
+        }
+        .contact-methods a{
+            color:var(--canopy-light);text-decoration:none;transition:all 0.2s
+        }
+        .contact-methods a:hover{
+            color:var(--canopy-bright);
+            text-shadow:0 0 6px rgba(106,176,112,0.4)
+        }
+        .contact-methods a:focus-visible{
+            outline:2px solid var(--canopy-light);outline-offset:2px
+        }
+
+        /* === Footer === */
+        footer{
+            background:rgba(8,14,8,0.95);color:var(--text-dim);
+            padding:3rem 2rem 2rem;
+            border-top:1px solid rgba(58,102,72,0.15);
+            position:relative;z-index:10
+        }
+        .footer-content{
+            max-width:1200px;margin:0 auto;
+            display:grid;grid-template-columns:2fr 1fr 1fr;
+            gap:3rem;margin-bottom:2rem
+        }
+        .footer-section h3{
+            font-size:1.1rem;margin-bottom:1rem;
+            color:var(--canopy-bright);
+            text-shadow:0 0 8px rgba(106,176,112,0.25);
+            letter-spacing:2px;text-transform:uppercase;font-weight:400
+        }
+        .footer-section p{color:var(--text-dim);line-height:1.7}
+        .footer-links{list-style:none}
+        .footer-links a{
+            color:var(--text-dim);text-decoration:none;
+            display:block;padding:0.3rem 0;transition:all 0.2s;
+            letter-spacing:1px;font-size:0.9rem
+        }
+        .footer-links a:hover{
+            color:var(--canopy-bright);
+            text-shadow:0 0 8px rgba(106,176,112,0.35);
+            padding-left:0.5rem
+        }
+        .footer-links a::before{content:'~ ';opacity:0;transition:opacity 0.2s}
+        .footer-links a:hover::before{opacity:1}
+        .footer-links a:focus-visible{outline:2px solid var(--canopy-light);outline-offset:2px}
+        .footer-bottom{
+            max-width:1200px;margin:0 auto;padding-top:2rem;
+            border-top:1px solid rgba(58,102,72,0.1);
+            text-align:center;color:rgba(106,176,112,0.3);
+            font-size:0.85rem;letter-spacing:1px
+        }
+
+        /* === Standard Mode === */
+        body.standard-mode .ascii-scene{opacity:0;pointer-events:none}
+        body.standard-mode .panel-corner{display:none}
+        body.standard-mode .vine-growth{display:none}
+        body.standard-mode .sign-art{display:none}
+        body.standard-mode .contact-panel{border-radius:4px}
+        body.standard-mode .trail-sign{border-radius:4px;padding:1.2rem 1.5rem}
+
+        /* === Reduced Motion === */
+        @media(prefers-reduced-motion:reduce){
+            *,*::before,*::after{
+                animation-duration:0.01ms !important;
+                animation-iteration-count:1 !important;
+                transition-duration:0.01ms !important
             }
-            .mobile-menu.active { display: block; }
-            .mobile-menu ul { list-style: none; }
-            .mobile-menu a {
-                display: block; padding: 0.8rem 0; text-decoration: none;
-                color: var(--matrix-green-dark);
-                border-bottom: 1px solid rgba(0,255,65,0.05);
-                letter-spacing: 1px; text-transform: uppercase; font-size: 0.9rem;
+            .creek-pre{animation:none;background-size:100% 100%}
+            .firefly{display:none}
+        }
+
+        /* === Mobile === */
+        @media(max-width:768px){
+            .menu-toggle{display:block}
+            .nav-links{display:none}
+            .mobile-menu{
+                position:fixed;top:60px;left:0;right:0;
+                background:rgba(8,14,8,0.95);
+                border-bottom:1px solid rgba(58,102,72,0.15);
+                padding:1rem 2rem;backdrop-filter:blur(10px);
+                z-index:200
             }
-            .mobile-menu a:hover { color: var(--matrix-green); text-shadow: 0 0 8px rgba(0,255,65,0.4); }
-            .page-header h1 { font-size: 2.2rem; }
-            .contact-form { flex-direction: column; }
-            .contact-form input { max-width: 100%; }
-            .footer-content { grid-template-columns: 1fr; gap: 2rem; }
+            .mobile-menu.active{display:block}
+            .mobile-menu ul{list-style:none}
+            .mobile-menu a{
+                display:block;padding:0.8rem 0;text-decoration:none;
+                color:var(--moss);
+                border-bottom:1px solid rgba(58,102,72,0.08);
+                letter-spacing:1px;text-transform:uppercase;font-size:0.9rem
+            }
+            .mobile-menu a:hover{color:var(--canopy-bright);text-shadow:0 0 8px rgba(106,176,112,0.4)}
+            .page-header h1{font-size:2rem}
+            .form-group{flex-direction:column}
+            .input-wrapper{max-width:100%}
+            .contact-form button{width:100%}
+            .mode-toggle{top:68px;right:70px}
+            .panel-corner{display:none}
+            .lantern{display:none}
+            .footer-content{grid-template-columns:1fr;gap:2rem}
         }
     </style>
 </head>
 <body>
-    <canvas id="matrixCanvas"></canvas>
-    <div class="scanlines"></div>
+    <!-- ASCII Scene (decorative, hidden from screen readers) -->
+    <div class="ascii-scene" id="asciiScene" aria-hidden="true">
+        <pre class="canopy-pre" id="canopyPre"></pre>
+        <div id="fireflyContainer"></div>
+        <pre class="creek-pre" id="creekPre"></pre>
+    </div>
+
+    <!-- Mode Toggle -->
+    <button class="mode-toggle" id="modeToggle" aria-label="Toggle ASCII mode" aria-pressed="true"></button>
 
     <nav>
         <div class="nav-container">
@@ -257,21 +457,53 @@
     </nav>
 
     <div class="page-header">
-        <h1 class="decode-text" data-decode-delay="300" data-decode-speed="40">Get in Touch</h1>
-        <p class="subtitle decode-text" data-decode-delay="1200" data-decode-speed="30">Connect with us to unlock rare knowledge</p>
+        <h1>Get in Touch</h1>
+        <p class="subtitle">Connect with us to unlock rare knowledge</p>
     </div>
 
     <main>
-        <div class="contact-box">
+        <div class="contact-panel ascii-panel" id="contactPanel">
+            <div class="panel-corner tl" aria-hidden="true">&#9484;&#9472;&#9472; &#183; &#9472;&#9472;</div>
+            <div class="panel-corner tr" aria-hidden="true">&#9472;&#9472; &#183; &#9472;&#9472;&#9488;</div>
+
             <h2>Book a Consultation</h2>
-            <p>Subscribe to receive monthly insights into fascinating research discoveries, or reach out for a personalized consultation.</p>
-            <form class="contact-form" onsubmit="return false;">
-                <input type="email" placeholder="your_email@address.com" required>
-                <button type="submit">Subscribe</button>
+            <p class="panel-intro">Subscribe to receive monthly insights into fascinating research discoveries, or reach out for a personalized consultation.</p>
+
+            <form class="contact-form" id="contactForm" onsubmit="return false;">
+                <div class="form-group">
+                    <div class="input-wrapper">
+                        <label for="emailInput" class="sr-only">Email address</label>
+                        <input type="email" id="emailInput" placeholder="your_email@address.com" required>
+                        <span class="lantern" aria-hidden="true">&#9672;</span>
+                    </div>
+                    <button type="submit">Subscribe</button>
+                </div>
             </form>
-            <div class="terminal-prompt">
-                <span>seldomsought</span>@mainframe:~$ awaiting_input<span class="cursor-blink">_</span>
+
+            <div class="form-error" id="formError" role="alert" aria-live="polite"></div>
+
+            <div class="vine-growth" id="vineGrowth" aria-hidden="true"><span class="vine-segment">&#9472;</span><span class="vine-segment">&#183;</span><span class="vine-segment">&#9472;</span><span class="vine-segment">&#9588;</span><span class="vine-segment">&#9472;</span><span class="vine-segment">&#183;</span><span class="vine-segment">&#9472;</span><span class="vine-segment">&#9588;</span><span class="vine-segment">&#9472;</span><span class="vine-segment">&#183;</span><span class="vine-segment">&#9472;</span><span class="vine-segment">&#9588;</span><span class="vine-segment">&#9472;</span><span class="vine-segment">&#183;</span><span class="vine-segment">&#9472;</span><span class="vine-segment">&#9588;</span><span class="vine-segment">&#9472;</span><span class="vine-segment">&#183;</span><span class="vine-segment">&#9472;</span><span class="vine-segment">&#9588;</span></div>
+
+            <div class="terminal-prompt" id="terminalPrompt">
+                <span class="prompt-user">seldomsought</span>@grove:~$ awaiting_input<span class="cursor-blink">_</span>
             </div>
+
+            <div class="panel-corner bl" aria-hidden="true">&#9492;&#9472;&#9472; &#183; &#9472;&#9472;</div>
+            <div class="panel-corner br" aria-hidden="true">&#9472;&#9472; &#183; &#9472;&#9472;&#9496;</div>
+        </div>
+
+        <div class="trail-sign ascii-panel">
+            <pre class="sign-art" aria-hidden="true">     .&#9472;&#9472; &#183; &#9472;&#9472; &#183; &#9472;&#9472; &#183; &#9472;&#9472;.</pre>
+            <div class="sign-content">
+                <h3>Find the Grove</h3>
+                <ul class="contact-methods">
+                    <li><span aria-hidden="true">&#10022;</span> <a href="index.html">seldomsought.com</a></li>
+                    <li><span aria-hidden="true">&#9993;</span> Reach out via the form above</li>
+                </ul>
+            </div>
+            <pre class="sign-art" aria-hidden="true">     '&#9472;&#9472; &#183; &#9472;&#9472; &#183; &#9472;&#9472; &#183; &#9472;&#9472;'</pre>
+            <pre class="sign-art" aria-hidden="true">            &#9553;
+            &#9553;</pre>
         </div>
     </main>
 
@@ -307,65 +539,319 @@
     </footer>
 
     <script>
-        // Matrix Rain
-        const canvas = document.getElementById('matrixCanvas');
-        const ctx = canvas.getContext('2d');
-        function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
-        resizeCanvas(); window.addEventListener('resize', resizeCanvas);
-        const matrixChars = 'アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        const fontSize = 14; let columns, drops;
-        function initDrops() { columns = Math.floor(canvas.width / fontSize); drops = []; for (let i = 0; i < columns; i++) drops[i] = Math.random() * -100; }
-        initDrops(); window.addEventListener('resize', initDrops);
-        function drawMatrix() {
-            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)'; ctx.fillRect(0, 0, canvas.width, canvas.height);
-            for (let i = 0; i < drops.length; i++) {
-                const char = matrixChars[Math.floor(Math.random() * matrixChars.length)];
-                const x = i * fontSize, y = drops[i] * fontSize;
-                if (Math.random() > 0.98) { ctx.fillStyle = '#ffffff'; ctx.shadowColor = '#00ff41'; ctx.shadowBlur = 15; }
-                else { const r = Math.random(); ctx.fillStyle = r > 0.9 ? '#00ff41' : r > 0.6 ? '#00cc33' : '#008f11'; ctx.shadowColor = 'transparent'; ctx.shadowBlur = 0; }
-                ctx.font = fontSize + 'px monospace'; ctx.fillText(char, x, y);
-                if (y > canvas.height && Math.random() > 0.975) drops[i] = 0; drops[i]++;
+    (function(){
+        'use strict';
+
+        // --- Config ---
+        var REDUCED_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var IS_MOBILE = window.innerWidth < 768;
+        var FF_COUNT = IS_MOBILE ? 8 : 18;
+
+        // --- State ---
+        var asciiMode = localStorage.getItem('ss-ascii') !== 'false';
+        var mouseX = -1, mouseY = -1;
+        var fireflies = [];
+
+        // --- DOM ---
+        var body = document.body;
+        var modeBtn = document.getElementById('modeToggle');
+        var canopyPre = document.getElementById('canopyPre');
+        var creekPre = document.getElementById('creekPre');
+        var ffContainer = document.getElementById('fireflyContainer');
+        var panel = document.getElementById('contactPanel');
+        var emailIn = document.getElementById('emailInput');
+        var form = document.getElementById('contactForm');
+        var prompt = document.getElementById('terminalPrompt');
+        var formErr = document.getElementById('formError');
+        var vineSegs = document.querySelectorAll('.vine-segment');
+
+        // --- Seeded RNG (deterministic canopy) ---
+        function mkRng(seed){
+            var s = seed;
+            return function(){
+                s = (s * 1103515245 + 12345) & 0x7fffffff;
+                return s / 0x7fffffff;
+            };
+        }
+
+        // --- Generate Canopy ---
+        function genCanopy(){
+            var cw = 7.8;
+            var cols = Math.ceil(window.innerWidth / cw) + 10;
+            var rng = mkRng(42);
+            var lines = [];
+
+            // Sky line 1
+            var l = '';
+            for(var i=0;i<cols;i++){
+                var r=rng();
+                l += r<0.025?'*':r<0.06?'\u00b7':r<0.10?'.':' ';
             }
-            requestAnimationFrame(drawMatrix);
-        }
-        drawMatrix();
+            lines.push(l);
 
-        // Decode Effect
-        const scrambleChars = '01アイウエオ!@#$%カキクケコ10サシスセソ';
-        function decodeElement(el) {
-            const delay = parseInt(el.dataset.decodeDelay) || 0;
-            const speed = parseInt(el.dataset.decodeSpeed) || 30;
-            const text = el.textContent;
-            setTimeout(() => { el.classList.add('revealed'); decodeSimpleText(el, text, speed, 0); }, delay);
-        }
-        function decodeSimpleText(el, text, speed, extraDelay) {
-            const chars = text.split(''), settled = new Array(chars.length).fill(false); let cur = 0;
-            el.textContent = chars.map(c => c === ' ' ? ' ' : scrambleChars[Math.floor(Math.random() * scrambleChars.length)]).join('');
-            setTimeout(() => {
-                const iv = setInterval(() => {
-                    let r = '';
-                    for (let i = 0; i < chars.length; i++) { if (settled[i]) r += chars[i]; else if (chars[i] === ' ') { r += ' '; settled[i] = true; } else r += scrambleChars[Math.floor(Math.random() * scrambleChars.length)]; }
-                    el.textContent = r;
-                    if (cur < chars.length) { settled[cur] = true; cur++; while (cur < chars.length && chars[cur] === ' ') { settled[cur] = true; cur++; } }
-                    if (cur >= chars.length) { clearInterval(iv); el.textContent = text; }
-                }, speed);
-            }, extraDelay);
-        }
-        document.addEventListener('DOMContentLoaded', () => { document.querySelectorAll('.decode-text').forEach(el => decodeElement(el)); });
+            // Sky line 2
+            l='';
+            for(var i=0;i<cols;i++){
+                var r=rng();
+                l += r<0.015?'*':r<0.04?'.':' ';
+            }
+            lines.push(l);
 
-        // Contact Form
-        document.querySelector('.contact-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const email = this.querySelector('input[type="email"]').value;
-            const prompt = document.querySelector('.terminal-prompt');
-            prompt.innerHTML = '<span>seldomsought</span>@mainframe:~$ subscribe --email ' + email + '<br>> Subscription confirmed. Welcome to the network.';
-            this.reset();
+            // Tree crowns - /\ at intervals
+            var treePos = [];
+            for(var t=3;t<cols-3;t+=8){
+                var off = Math.floor(rng()*3)-1;
+                treePos.push(t+off);
+            }
+
+            // Crown tips
+            var arr = [];
+            for(var i=0;i<cols;i++) arr[i]=' ';
+            for(var j=0;j<treePos.length;j++){
+                var p=treePos[j];
+                if(p>=0&&p<cols) arr[p]='/';
+                if(p+1>=0&&p+1<cols) arr[p+1]='\\';
+            }
+            lines.push(arr.join(''));
+
+            // Wider crown
+            arr=[];
+            for(var i=0;i<cols;i++) arr[i]=' ';
+            for(var j=0;j<treePos.length;j++){
+                var p=treePos[j];
+                for(var d=-1;d<=2;d++){
+                    var x=p+d;
+                    if(x>=0&&x<cols){
+                        if(d===-1) arr[x]='/';
+                        else if(d===2) arr[x]='\\';
+                        else arr[x]=rng()<0.7?'#':'.';
+                    }
+                }
+            }
+            lines.push(arr.join(''));
+
+            // Wide foliage
+            arr=[];
+            for(var i=0;i<cols;i++) arr[i]=' ';
+            for(var j=0;j<treePos.length;j++){
+                var p=treePos[j];
+                for(var d=-2;d<=3;d++){
+                    var x=p+d;
+                    if(x>=0&&x<cols){
+                        if(d===-2) arr[x]='/';
+                        else if(d===3) arr[x]='\\';
+                        else arr[x]=rng()<0.5?'#':rng()<0.5?'%':'.';
+                    }
+                }
+            }
+            lines.push(arr.join(''));
+
+            // Widest foliage
+            arr=[];
+            for(var i=0;i<cols;i++) arr[i]=' ';
+            for(var j=0;j<treePos.length;j++){
+                var p=treePos[j];
+                for(var d=-3;d<=4;d++){
+                    var x=p+d;
+                    if(x>=0&&x<cols){
+                        if(d===-3||d===4) arr[x]=rng()<0.4?'.':' ';
+                        else arr[x]=rng()<0.45?'#':rng()<0.4?'%':'.';
+                    }
+                }
+            }
+            lines.push(arr.join(''));
+
+            // Trunks
+            arr=[];
+            for(var i=0;i<cols;i++) arr[i]=' ';
+            for(var j=0;j<treePos.length;j++){
+                var p=treePos[j];
+                if(p>=0&&p<cols) arr[p]='|';
+                if(p+1>=0&&p+1<cols) arr[p+1]='|';
+            }
+            lines.push(arr.join(''));
+            lines.push(arr.join(''));
+
+            canopyPre.textContent = lines.join('\n');
+        }
+
+        // --- Generate Creek ---
+        function genCreek(){
+            var cw = 7.8;
+            var cols = Math.ceil(window.innerWidth / cw) + 10;
+            var l1='', l2='';
+            for(var i=0;i<cols;i++){
+                var c1=i%6;
+                l1 += c1===0||c1===3?'~':c1===2||c1===5?'\u00b7':' ';
+                var c2=(i+3)%6;
+                l2 += c2===0||c2===3?'\u00b7':c2===2||c2===5?'~':' ';
+            }
+            creekPre.textContent = l1+'\n'+l2;
+        }
+
+        // --- Fireflies ---
+        function createFireflies(){
+            for(var i=0;i<FF_COUNT;i++){
+                var el = document.createElement('div');
+                el.className = 'firefly';
+                var dur = 2+Math.random()*3;
+                var delay = Math.random()*4;
+                el.style.setProperty('--dur', dur+'s');
+                el.style.setProperty('--delay', delay+'s');
+
+                var ff = {
+                    el:el,
+                    x:Math.random()*window.innerWidth,
+                    y:Math.random()*window.innerHeight*0.7,
+                    vx:0, vy:0,
+                    homeX:Math.random()*window.innerWidth,
+                    homeY:Math.random()*window.innerHeight*0.7
+                };
+                el.style.left = ff.x+'px';
+                el.style.top = ff.y+'px';
+                ffContainer.appendChild(el);
+                fireflies.push(ff);
+            }
+        }
+
+        function tickFireflies(){
+            if(REDUCED_MOTION||!asciiMode){
+                requestAnimationFrame(tickFireflies);
+                return;
+            }
+            for(var i=0;i<fireflies.length;i++){
+                var ff = fireflies[i];
+                // Cursor attraction
+                if(mouseX>0){
+                    var dx=mouseX-ff.x, dy=mouseY-ff.y;
+                    var dist=Math.sqrt(dx*dx+dy*dy);
+                    if(dist<200&&dist>10){
+                        var force=(200-dist)/200*0.12;
+                        ff.vx+=dx/dist*force;
+                        ff.vy+=dy/dist*force;
+                    }
+                }
+                // Home pull
+                ff.vx+=(ff.homeX-ff.x)*0.0004;
+                ff.vy+=(ff.homeY-ff.y)*0.0004;
+                // Drift
+                ff.vx+=(Math.random()-0.5)*0.12;
+                ff.vy+=(Math.random()-0.5)*0.12;
+                // Damp
+                ff.vx*=0.96; ff.vy*=0.96;
+                // Move
+                ff.x+=ff.vx; ff.y+=ff.vy;
+                // Bounds
+                if(ff.x<0)ff.vx+=0.3;
+                if(ff.x>window.innerWidth)ff.vx-=0.3;
+                if(ff.y<0)ff.vy+=0.3;
+                if(ff.y>window.innerHeight)ff.vy-=0.3;
+
+                ff.el.style.left=ff.x+'px';
+                ff.el.style.top=ff.y+'px';
+            }
+            requestAnimationFrame(tickFireflies);
+        }
+
+        // --- Vine Growth ---
+        function updateVine(){
+            var len = emailIn.value.length;
+            var progress = Math.min(len/25, 1);
+            var active = Math.floor(progress * vineSegs.length);
+            for(var i=0;i<vineSegs.length;i++){
+                if(i<active) vineSegs[i].classList.add('grown');
+                else vineSegs[i].classList.remove('grown');
+            }
+        }
+
+        // --- Focus/Blur ---
+        emailIn.addEventListener('focus', function(){
+            panel.classList.add('field-focused');
+        });
+        emailIn.addEventListener('blur', function(){
+            panel.classList.remove('field-focused');
+        });
+        emailIn.addEventListener('input', function(){
+            updateVine();
+            if(formErr.classList.contains('visible'))
+                formErr.classList.remove('visible');
         });
 
-        // Mobile Menu
-        const menuToggle = document.getElementById('menuToggle'), mobileMenu = document.getElementById('mobileMenu');
-        menuToggle.addEventListener('click', function(e) { e.stopPropagation(); mobileMenu.classList.toggle('active'); menuToggle.innerHTML = mobileMenu.classList.contains('active') ? '&#10005;' : '&#9776;'; });
-        document.addEventListener('click', function(e) { if (!e.target.closest('nav')) { mobileMenu.classList.remove('active'); menuToggle.innerHTML = '&#9776;'; } });
+        // --- Form Submit (preserved behavior + bloom) ---
+        form.addEventListener('submit', function(e){
+            e.preventDefault();
+
+            if(!emailIn.validity.valid){
+                formErr.innerHTML = '<span aria-hidden="true">!! </span>Please enter a valid email address';
+                formErr.classList.add('visible');
+                return;
+            }
+            formErr.classList.remove('visible');
+
+            // Preserved behavior
+            var email = emailIn.value;
+            prompt.innerHTML = '<span class="prompt-user">seldomsought</span>@grove:~$ subscribe --email ' + email + '<br><span class="prompt-success">&gt; Subscription confirmed. Welcome to the grove.</span>';
+
+            // Bloom
+            panel.classList.add('bloom');
+            setTimeout(function(){ panel.classList.remove('bloom'); }, 3000);
+
+            form.reset();
+            // Reset vine
+            for(var i=0;i<vineSegs.length;i++) vineSegs[i].classList.remove('grown');
+        });
+
+        // --- Mode Toggle ---
+        function setMode(ascii){
+            asciiMode = ascii;
+            body.classList.toggle('standard-mode', !ascii);
+            localStorage.setItem('ss-ascii', ascii?'true':'false');
+            modeBtn.textContent = ascii ? '\u25C8 ASCII' : '\u25A1 Standard';
+            modeBtn.setAttribute('aria-pressed', String(ascii));
+        }
+        modeBtn.addEventListener('click', function(){ setMode(!asciiMode); });
+        setMode(asciiMode);
+
+        // --- Mouse tracking ---
+        document.addEventListener('mousemove', function(e){
+            mouseX=e.clientX; mouseY=e.clientY;
+        });
+        document.addEventListener('mouseleave', function(){
+            mouseX=-1; mouseY=-1;
+        });
+
+        // --- Init ---
+        genCanopy();
+        genCreek();
+        createFireflies();
+        if(!REDUCED_MOTION) requestAnimationFrame(tickFireflies);
+
+        // --- Resize ---
+        var resizeTimer;
+        window.addEventListener('resize', function(){
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(function(){
+                genCanopy();
+                genCreek();
+            }, 250);
+        });
+
+        // --- Mobile Menu (preserved) ---
+        var menuToggle = document.getElementById('menuToggle');
+        var mobileMenu = document.getElementById('mobileMenu');
+        menuToggle.addEventListener('click', function(e){
+            e.stopPropagation();
+            mobileMenu.classList.toggle('active');
+            menuToggle.innerHTML = mobileMenu.classList.contains('active') ? '&#10005;' : '&#9776;';
+        });
+        document.addEventListener('click', function(e){
+            if(!e.target.closest('nav')){
+                mobileMenu.classList.remove('active');
+                menuToggle.innerHTML = '&#9776;';
+            }
+        });
+
+    })();
     </script>
 </body>
 </html>
