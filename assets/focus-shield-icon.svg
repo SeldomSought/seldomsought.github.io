@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" fill="none" aria-label="Focus Shield icon">
+  <!-- Shield outline -->
+  <path
+    d="M40 6 L68 18 L68 40 C68 56 56 68 40 74 C24 68 12 56 12 40 L12 18 Z"
+    stroke="#b8860b"
+    stroke-width="2"
+    fill="rgba(184,134,11,0.08)"
+  />
+  <!-- Inner shield border -->
+  <path
+    d="M40 13 L61 23 L61 40 C61 52.5 52 62 40 67 C28 62 19 52.5 19 40 L19 23 Z"
+    stroke="rgba(184,134,11,0.35)"
+    stroke-width="1"
+    fill="none"
+  />
+  <!-- Clock face — circle -->
+  <circle cx="40" cy="40" r="12" stroke="#b8860b" stroke-width="1.5" fill="none" />
+  <!-- Clock tick marks -->
+  <line x1="40" y1="29" x2="40" y2="31.5" stroke="#b8860b" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="40" y1="48.5" x2="40" y2="51" stroke="#b8860b" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="29" y1="40" x2="31.5" y2="40" stroke="#b8860b" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="48.5" y1="40" x2="51" y2="40" stroke="#b8860b" stroke-width="1.5" stroke-linecap="round"/>
+  <!-- Hour hand pointing to ~10 o'clock (30 min mark) -->
+  <line x1="40" y1="40" x2="34.5" y2="34.5" stroke="#e8e2d9" stroke-width="1.5" stroke-linecap="round"/>
+  <!-- Minute hand pointing to 12 -->
+  <line x1="40" y1="40" x2="40" y2="31.5" stroke="#b8860b" stroke-width="1.5" stroke-linecap="round"/>
+  <!-- Center dot -->
+  <circle cx="40" cy="40" r="1.5" fill="#b8860b" />
+</svg>
