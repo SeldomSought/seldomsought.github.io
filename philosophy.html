@@ -289,19 +289,26 @@
             padding: 4px 14px; letter-spacing: 3px;
         }
 
-        /* 4× DESKTOP SCALING ≥1024px */
+        /* DESKTOP SCALING ≥1024px
+           H1 grows freely with viewport — no tight cap so it fills the banner on wide screens.
+           Tweak the vw value (13vw) to adjust how aggressively it scales. */
         @media (min-width: 1024px) {
             .gc-main-title {
-                font-size: clamp(5rem, 9vw, 8rem);
-                letter-spacing: 8px;
+                font-size: clamp(5rem, 13vw, 16rem);
+                letter-spacing: clamp(6px, 0.6vw, 16px);
+                line-height: 1.0;
                 text-shadow:
                     5px 5px 0 var(--gc-accent-mag),
                     10px 10px 0 rgba(255,0,255,0.3),
-                    0 0 50px rgba(255,255,0,0.55),
-                    0 0 100px rgba(255,255,0,0.2);
+                    0 0 60px rgba(255,255,0,0.6),
+                    0 0 120px rgba(255,255,0,0.2);
             }
             .gc-hero {
-                padding: 3rem 1.5rem 2.5rem;
+                padding: 3.5rem 2rem 3rem;
+            }
+            .gc-hero-subtitle {
+                font-size: clamp(0.85rem, 1.4vw, 1.2rem);
+                letter-spacing: 5px;
             }
         }
 
@@ -681,7 +688,7 @@
         <div class="gc-hero">
             <span class="gc-hero-stars" aria-hidden="true">★ ★ ★</span>
             <h1 class="gc-main-title">Our Philosophy</h1>
-            <p class="gc-hero-subtitle">Terran Command // Sector 7 // Briefing Protocol</p>
+            <p class="gc-hero-subtitle">Brand · Marketing · Consulting</p>
             <div class="gc-visitor-counter" aria-label="Visitor count: 13,847">
                 👁 VISITORS: <span>013,847</span>
             </div>
@@ -753,16 +760,16 @@
                     </div>
                 </div>
                 <div class="retro-window-body">
-                    <p>This page explains how we think about brand, marketing, and business growth. Six units below. Click them if you want. Or just read. Either way you're already here.</p>
-                    <p><strong>Quick nav:</strong> Command Center → Supply Depot → Comsat Station → Science Vessel → Siege Tank → Battlecruiser. You'll understand when you get there.</p>
+                    <p>What follows is how we think about brand, marketing, and business growth. Six principles. Read in order or jump around — it all connects.</p>
+                    <p><strong>Quick nav:</strong> The Foundation → Execution → The Principle → Real Traction → Systems Thinking → Full-Service Stack.</p>
                 </div>
             </div>
 
-            <!-- Node 0: Command Center -->
-            <div class="gc-section-header-strip" aria-hidden="true"><h2>★ Command Center ★</h2></div>
+            <!-- Node 0: The Foundation -->
+            <div class="gc-section-header-strip" aria-hidden="true"><h2>★ The Foundation ★</h2></div>
             <div class="retro-window" role="region" aria-labelledby="win-title-0">
                 <div class="retro-window-titlebar">
-                    <span class="retro-window-title" id="win-title-0">🏛 Command Center — HQ // TIER 1</span>
+                    <span class="retro-window-title" id="win-title-0">🎯 The Foundation — Start Here</span>
                     <div class="retro-window-controls" aria-hidden="true">
                         <div class="retro-window-btn min">_</div>
                         <div class="retro-window-btn max">□</div>
@@ -775,11 +782,11 @@
             </div>
             <div class="gc-star-divider" aria-hidden="true">★ ✦ ★ ✦ ★ ✦ ★ ✦ ★ ✦ ★</div>
 
-            <!-- Node 1: Supply Depot -->
-            <div class="gc-section-header-strip" aria-hidden="true"><h2>★ Supply Depot ★</h2></div>
+            <!-- Node 1: Execution -->
+            <div class="gc-section-header-strip" aria-hidden="true"><h2>★ Execution ★</h2></div>
             <div class="retro-window dark" role="region" aria-labelledby="win-title-1">
                 <div class="retro-window-titlebar">
-                    <span class="retro-window-title" id="win-title-1">📦 Supply Depot — SUPPORT // TIER 1</span>
+                    <span class="retro-window-title" id="win-title-1">⚡ End-to-End Execution</span>
                     <div class="retro-window-controls" aria-hidden="true">
                         <div class="retro-window-btn min">_</div>
                         <div class="retro-window-btn max">□</div>
@@ -792,11 +799,11 @@
             </div>
             <div class="gc-divider" aria-hidden="true" style="margin:0.6rem 0"></div>
 
-            <!-- Node 2: Comsat Station -->
-            <div class="gc-section-header-strip" aria-hidden="true"><h2>★ Comsat Station ★</h2></div>
+            <!-- Node 2: The Principle -->
+            <div class="gc-section-header-strip" aria-hidden="true"><h2>★ The Principle ★</h2></div>
             <div class="retro-window mag dark" role="region" aria-labelledby="win-title-2">
                 <div class="retro-window-titlebar">
-                    <span class="retro-window-title" id="win-title-2">📡 Comsat Station — SCAN // TIER 2</span>
+                    <span class="retro-window-title" id="win-title-2">💡 The Guiding Principle</span>
                     <div class="retro-window-controls" aria-hidden="true">
                         <div class="retro-window-btn min">_</div>
                         <div class="retro-window-btn max">□</div>
@@ -811,11 +818,11 @@
             </div>
             <div class="gc-star-divider" aria-hidden="true">✦ ✧ ✦ ✧ ✦ ✧ ✦ ✧ ✦ ✧ ✦</div>
 
-            <!-- Node 3: Science Vessel -->
-            <div class="gc-section-header-strip" aria-hidden="true"><h2>★ Science Vessel ★</h2></div>
+            <!-- Node 3: Real Traction -->
+            <div class="gc-section-header-strip" aria-hidden="true"><h2>★ Real Traction ★</h2></div>
             <div class="retro-window" role="region" aria-labelledby="win-title-3">
                 <div class="retro-window-titlebar">
-                    <span class="retro-window-title" id="win-title-3">🔬 Science Vessel — DETECTOR // TIER 3</span>
+                    <span class="retro-window-title" id="win-title-3">📈 Real Market Traction</span>
                     <div class="retro-window-controls" aria-hidden="true">
                         <div class="retro-window-btn min">_</div>
                         <div class="retro-window-btn max">□</div>
@@ -828,11 +835,11 @@
             </div>
             <div class="gc-divider" aria-hidden="true" style="margin:0.6rem 0"></div>
 
-            <!-- Node 4: Siege Tank -->
-            <div class="gc-section-header-strip" aria-hidden="true"><h2>★ Siege Tank ★</h2></div>
+            <!-- Node 4: Systems Thinking -->
+            <div class="gc-section-header-strip" aria-hidden="true"><h2>★ Systems Thinking ★</h2></div>
             <div class="retro-window dark" role="region" aria-labelledby="win-title-4">
                 <div class="retro-window-titlebar">
-                    <span class="retro-window-title" id="win-title-4">⚔ Siege Tank — MECH // TIER 2</span>
+                    <span class="retro-window-title" id="win-title-4">🔧 Systems Thinking</span>
                     <div class="retro-window-controls" aria-hidden="true">
                         <div class="retro-window-btn min">_</div>
                         <div class="retro-window-btn max">□</div>
@@ -846,11 +853,11 @@
             </div>
             <div class="gc-star-divider" aria-hidden="true">★ ✦ ★ ✦ ★ ✦ ★ ✦ ★ ✦ ★</div>
 
-            <!-- Node 5: Battlecruiser -->
-            <div class="gc-section-header-strip" aria-hidden="true"><h2>★ Battlecruiser ★</h2></div>
+            <!-- Node 5: Full-Service -->
+            <div class="gc-section-header-strip" aria-hidden="true"><h2>★ Full-Service ★</h2></div>
             <div class="retro-window gold" role="region" aria-labelledby="win-title-5">
                 <div class="retro-window-titlebar">
-                    <span class="retro-window-title" id="win-title-5">🚀 Battlecruiser — FLAGSHIP // TIER 3</span>
+                    <span class="retro-window-title" id="win-title-5">🏆 The Full-Service Stack</span>
                     <div class="retro-window-controls" aria-hidden="true">
                         <div class="retro-window-btn min">_</div>
                         <div class="retro-window-btn max">□</div>
