@@ -1,0 +1,1293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects - SeldomSought</title>
+    <meta name="description" content="Tools built to shift behavior toward intention. Independent software projects from SeldomSought, starting with Focus Shield — a Chrome extension that limits passive social media consumption.">
+    <meta name="theme-color" content="#0b0b0c"/>
+
+    <!-- Open Graph -->
+    <meta property="og:site_name" content="SeldomSought"/>
+    <meta property="og:title" content="Projects — SeldomSought"/>
+    <meta property="og:description" content="Tools built to shift behavior toward intention. Starting with Focus Shield — a Chrome extension that limits passive social media consumption to 30 minutes a day."/>
+    <meta property="og:type" content="website"/>
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:title" content="Projects — SeldomSought"/>
+    <meta name="twitter:description" content="Tools built to shift behavior toward intention. Starting with Focus Shield — a Chrome extension that limits passive social media consumption to 30 minutes a day."/>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+
+    <style>
+        /* ── Reset ──────────────────────────────────────────────────────────── */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        /* ── Design tokens ──────────────────────────────────────────────────── */
+        :root {
+            --bg:            #0b0b0c;
+            --bg-panel:      rgba(18, 16, 13, 0.96);
+            --bg-panel-hover:rgba(24, 21, 17, 0.98);
+            --text:          #e8e2d9;
+            --text-dim:      rgba(232, 226, 217, 0.45);
+            --text-mid:      rgba(232, 226, 217, 0.70);
+            --amber:         #b8860b;
+            --amber-light:   #d4a017;
+            --amber-dim:     rgba(184, 134, 11, 0.20);
+            --amber-border:  rgba(184, 134, 11, 0.22);
+            --amber-border-h:rgba(184, 134, 11, 0.55);
+            --red-dim:       rgba(180, 60, 40, 0.18);
+            --red-text:      #c0624a;
+            --green-dim:     rgba(60, 140, 80, 0.18);
+            --green-text:    #5a9e6f;
+            --grid-line:     rgba(232, 226, 217, 0.025);
+        }
+
+        /* ── Base ───────────────────────────────────────────────────────────── */
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Share Tech Mono', monospace;
+            color: var(--text);
+            background: var(--bg);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* ── Subtle background grid ─────────────────────────────────────────── */
+        .bg-grid {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            background:
+                repeating-linear-gradient(0deg,   var(--grid-line) 0px, var(--grid-line) 1px, transparent 1px, transparent 60px),
+                repeating-linear-gradient(90deg,  var(--grid-line) 0px, var(--grid-line) 1px, transparent 1px, transparent 60px);
+        }
+
+        /* ── Navigation ─────────────────────────────────────────────────────── */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(11, 11, 12, 0.88);
+            border-bottom: 1px solid var(--amber-border);
+            z-index: 200;
+            backdrop-filter: blur(12px);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.2rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            font-weight: 500;
+            color: var(--text);
+            text-decoration: none;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-family: 'Share Tech Mono', monospace;
+            text-decoration: none;
+            color: var(--text-dim);
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: color 0.25s;
+            position: relative;
+        }
+
+        .nav-links a:hover,
+        .nav-links a[aria-current="page"] {
+            color: var(--text);
+        }
+
+        .nav-links a[aria-current="page"]::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: var(--amber);
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: 1px solid var(--amber-border);
+            font-size: 1.3rem;
+            cursor: pointer;
+            color: var(--text);
+            padding: 0.2rem 0.5rem;
+        }
+
+        .mobile-menu { display: none; }
+
+        /* ── Hero ───────────────────────────────────────────────────────────── */
+        .proj-hero {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 9rem 2rem 4rem;
+            border-bottom: 1px solid var(--amber-border);
+        }
+
+        .proj-hero-inner {
+            max-width: 640px;
+        }
+
+        .proj-hero-eyebrow {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.72rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--amber);
+            margin-bottom: 1.2rem;
+        }
+
+        .proj-hero h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 4rem;
+            font-weight: 400;
+            color: var(--text);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            line-height: 1;
+            margin-bottom: 1.4rem;
+        }
+
+        .proj-hero-subtitle {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.25rem;
+            font-style: italic;
+            color: var(--text-mid);
+            line-height: 1.7;
+            margin-bottom: 1.8rem;
+            max-width: 540px;
+        }
+
+        .proj-hero-current {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.78rem;
+            color: var(--text-dim);
+            letter-spacing: 1px;
+        }
+
+        .proj-hero-current span {
+            color: var(--amber-light);
+        }
+
+        /* ── Grid section ───────────────────────────────────────────────────── */
+        .proj-grid-section {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem 6rem;
+        }
+
+        .proj-section-label {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            margin-bottom: 2.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .proj-section-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--amber-border);
+        }
+
+        /* ── Project grid ───────────────────────────────────────────────────── */
+        .proj-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+            gap: 1px;
+            background: var(--amber-border);
+            border: 1px solid var(--amber-border);
+        }
+
+        /* ── Project card ───────────────────────────────────────────────────── */
+        .proj-card {
+            background: var(--bg-panel);
+            padding: 2rem 2rem 1.8rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            cursor: pointer;
+            border: none;
+            text-align: left;
+            color: var(--text);
+            font-family: 'Share Tech Mono', monospace;
+            transition: background 0.25s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .proj-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 2px;
+            background: linear-gradient(90deg, transparent, var(--amber), transparent);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .proj-card:hover,
+        .proj-card:focus-visible {
+            background: var(--bg-panel-hover);
+            outline: none;
+        }
+
+        .proj-card:hover::before,
+        .proj-card:focus-visible::before {
+            opacity: 1;
+        }
+
+        /* Card header row */
+        .proj-card-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-bottom: 1.4rem;
+        }
+
+        .proj-card-icon {
+            width: 52px;
+            height: 52px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--amber-border);
+            background: var(--amber-dim);
+        }
+
+        .proj-card-icon img,
+        .proj-card-icon svg {
+            width: 36px;
+            height: 36px;
+        }
+
+        .proj-card-status {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.65rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 0.2rem 0.55rem;
+            border: 1px solid;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .proj-card-status.live {
+            color: var(--green-text);
+            border-color: var(--green-text);
+            background: var(--green-dim);
+        }
+
+        .proj-card-status.beta {
+            color: var(--amber-light);
+            border-color: var(--amber-light);
+            background: var(--amber-dim);
+        }
+
+        .proj-card-status.private {
+            color: var(--text-dim);
+            border-color: rgba(232, 226, 217, 0.15);
+            background: rgba(232, 226, 217, 0.04);
+        }
+
+        /* Card body */
+        .proj-card-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.55rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            color: var(--text);
+            margin-bottom: 0.5rem;
+            line-height: 1.15;
+        }
+
+        .proj-card-tagline {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1rem;
+            font-style: italic;
+            color: var(--text-mid);
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+
+        .proj-card-excerpt {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.78rem;
+            color: var(--text-dim);
+            line-height: 1.75;
+            margin-bottom: 1.5rem;
+            flex: 1;
+        }
+
+        /* Card tags */
+        .proj-card-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .proj-tag {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.62rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            border: 1px solid rgba(232, 226, 217, 0.1);
+            padding: 0.18rem 0.5rem;
+        }
+
+        /* Card CTA */
+        .proj-card-cta {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--amber);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: gap 0.2s;
+            margin-top: auto;
+        }
+
+        .proj-card:hover .proj-card-cta,
+        .proj-card:focus-visible .proj-card-cta {
+            gap: 0.8rem;
+            color: var(--amber-light);
+        }
+
+        .proj-card-cta::after {
+            content: '→';
+        }
+
+        /* ── Modal overlay ──────────────────────────────────────────────────── */
+        .proj-modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(11, 11, 12, 0.82);
+            z-index: 500;
+            display: flex;
+            align-items: flex-start;
+            justify-content: flex-end;
+            backdrop-filter: blur(4px);
+        }
+
+        .proj-modal-overlay[hidden] {
+            display: none;
+        }
+
+        .proj-modal {
+            position: relative;
+            width: min(780px, 100vw);
+            height: 100vh;
+            background: #110f0c;
+            border-left: 1px solid var(--amber-border);
+            overflow-y: auto;
+            overflow-x: hidden;
+            overscroll-behavior: contain;
+            display: flex;
+            flex-direction: column;
+            animation: slideIn 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to   { transform: translateX(0);    opacity: 1; }
+        }
+
+        /* Modal close */
+        .proj-modal-close {
+            position: sticky;
+            top: 0;
+            left: 0;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            background: rgba(17, 15, 12, 0.92);
+            border: none;
+            border-bottom: 1px solid var(--amber-border);
+            color: var(--text-dim);
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.72rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            padding: 1rem 1.8rem;
+            width: 100%;
+            text-align: left;
+            transition: color 0.2s, background 0.2s;
+        }
+
+        .proj-modal-close:hover {
+            color: var(--text);
+            background: rgba(24, 21, 17, 0.98);
+        }
+
+        .proj-modal-close:focus-visible {
+            outline: 1px solid var(--amber);
+            outline-offset: -2px;
+        }
+
+        .proj-modal-close-x {
+            font-size: 1rem;
+            opacity: 0.6;
+        }
+
+        /* Modal body */
+        .proj-modal-body {
+            padding: 2.5rem 2.5rem 4rem;
+            flex: 1;
+        }
+
+        /* ── Modal sections ─────────────────────────────────────────────────── */
+
+        /* Modal header */
+        .modal-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.4rem;
+            margin-bottom: 2.5rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--amber-border);
+        }
+
+        .modal-icon {
+            width: 64px;
+            height: 64px;
+            flex-shrink: 0;
+            border: 1px solid var(--amber-border);
+            background: var(--amber-dim);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-icon img,
+        .modal-icon svg {
+            width: 44px;
+            height: 44px;
+        }
+
+        .modal-header-meta {
+            flex: 1;
+        }
+
+        .modal-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.2rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            color: var(--text);
+            line-height: 1.1;
+            margin-bottom: 0.5rem;
+        }
+
+        .modal-tagline {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 1.05rem;
+            color: var(--text-mid);
+            line-height: 1.5;
+            margin-bottom: 0.9rem;
+        }
+
+        .modal-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .modal-status {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.63rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 0.2rem 0.6rem;
+            border: 1px solid;
+        }
+
+        .modal-status.live    { color: var(--green-text); border-color: var(--green-text); background: var(--green-dim); }
+        .modal-status.beta    { color: var(--amber-light); border-color: var(--amber-light); background: var(--amber-dim); }
+        .modal-status.private { color: var(--text-dim); border-color: rgba(232,226,217,0.15); background: rgba(232,226,217,0.04); }
+
+        .modal-platform {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.62rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            border: 1px solid rgba(232, 226, 217, 0.1);
+            padding: 0.18rem 0.5rem;
+        }
+
+        .modal-updated {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.65rem;
+            color: var(--text-dim);
+            letter-spacing: 1px;
+            margin-left: auto;
+            white-space: nowrap;
+        }
+
+        /* Section blocks */
+        .modal-section {
+            margin-bottom: 2.5rem;
+        }
+
+        .modal-section-label {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.65rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--amber);
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .modal-section-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--amber-border);
+        }
+
+        .modal-section-body {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            color: var(--text-mid);
+            line-height: 1.8;
+        }
+
+        /* How it works steps */
+        .modal-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .modal-step {
+            display: grid;
+            grid-template-columns: 2.5rem 1fr;
+            gap: 0 1rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--amber-border);
+        }
+
+        .modal-step:last-child {
+            border-bottom: none;
+        }
+
+        .modal-step-num {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            font-weight: 500;
+            color: var(--amber);
+            line-height: 1;
+            padding-top: 0.1rem;
+        }
+
+        .modal-step-title {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.78rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--text);
+            margin-bottom: 0.3rem;
+        }
+
+        .modal-step-desc {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1rem;
+            color: var(--text-mid);
+            line-height: 1.7;
+        }
+
+        /* Features list */
+        .modal-features {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.1rem;
+        }
+
+        .modal-features li {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.05rem;
+            color: var(--text-mid);
+            line-height: 1.7;
+            padding: 0.55rem 0;
+            border-bottom: 1px solid var(--amber-border);
+            display: flex;
+            align-items: baseline;
+            gap: 0.8rem;
+        }
+
+        .modal-features li:last-child { border-bottom: none; }
+
+        .modal-features li::before {
+            content: '—';
+            color: var(--amber);
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.8rem;
+            flex-shrink: 0;
+        }
+
+        /* Screenshots */
+        .modal-screenshots {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 0.8rem;
+        }
+
+        .modal-screenshots img {
+            width: 100%;
+            height: auto;
+            border: 1px solid var(--amber-border);
+            display: block;
+        }
+
+        .modal-screenshots-placeholder {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.72rem;
+            color: var(--text-dim);
+            letter-spacing: 1px;
+            padding: 2rem;
+            border: 1px dashed rgba(232, 226, 217, 0.1);
+            text-align: center;
+        }
+
+        /* Links */
+        .modal-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+
+        .modal-link-btn {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--amber);
+            border: 1px solid var(--amber-border);
+            padding: 0.6rem 1.2rem;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.2s;
+            background: transparent;
+            cursor: pointer;
+        }
+
+        .modal-link-btn:hover {
+            border-color: var(--amber-light);
+            color: var(--amber-light);
+            background: var(--amber-dim);
+        }
+
+        .modal-link-btn:focus-visible {
+            outline: 1px solid var(--amber);
+            outline-offset: 2px;
+        }
+
+        .modal-coming-soon {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.72rem;
+            color: var(--text-dim);
+            letter-spacing: 1px;
+            font-style: normal;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* ── Empty state ────────────────────────────────────────────────────── */
+        .proj-empty {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.82rem;
+            color: var(--text-dim);
+            letter-spacing: 1px;
+            padding: 3rem;
+            border: 1px solid var(--amber-border);
+            text-align: center;
+        }
+
+        /* ── Footer ─────────────────────────────────────────────────────────── */
+        footer {
+            background: rgba(8, 7, 5, 0.98);
+            color: var(--text-dim);
+            padding: 3rem 2rem 2rem;
+            border-top: 1px solid var(--amber-border);
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            color: var(--text);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 400;
+        }
+
+        .footer-section p {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.78rem;
+            color: var(--text-dim);
+            line-height: 1.7;
+        }
+
+        .footer-links { list-style: none; }
+
+        .footer-links a {
+            font-family: 'Share Tech Mono', monospace;
+            color: var(--text-dim);
+            text-decoration: none;
+            display: block;
+            padding: 0.3rem 0;
+            transition: all 0.2s;
+            letter-spacing: 1px;
+            font-size: 0.78rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--text);
+            padding-left: 0.5rem;
+        }
+
+        .footer-links a::before { content: '> '; opacity: 0; transition: opacity 0.2s; }
+        .footer-links a:hover::before { opacity: 1; }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 2rem;
+            border-top: 1px solid var(--amber-border);
+            text-align: center;
+            font-family: 'Share Tech Mono', monospace;
+            color: rgba(232, 226, 217, 0.15);
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+        }
+
+        /* ── Responsive ─────────────────────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .menu-toggle { display: block; }
+            .nav-links   { display: none; }
+
+            .mobile-menu {
+                position: fixed;
+                top: 60px; left: 0; right: 0;
+                background: rgba(11, 11, 12, 0.97);
+                border-bottom: 1px solid var(--amber-border);
+                padding: 1rem 2rem;
+                backdrop-filter: blur(12px);
+            }
+
+            .mobile-menu.active { display: block; }
+            .mobile-menu ul { list-style: none; }
+
+            .mobile-menu a {
+                display: block;
+                padding: 0.8rem 0;
+                text-decoration: none;
+                font-family: 'Share Tech Mono', monospace;
+                color: var(--text-dim);
+                border-bottom: 1px solid rgba(232, 226, 217, 0.05);
+                letter-spacing: 1px;
+                text-transform: uppercase;
+                font-size: 0.85rem;
+                transition: color 0.2s;
+            }
+
+            .mobile-menu a:hover { color: var(--text); }
+
+            .proj-hero { padding: 7rem 1.5rem 3rem; }
+            .proj-hero h1 { font-size: 2.8rem; }
+            .proj-hero-subtitle { font-size: 1.1rem; }
+            .proj-grid-section { padding: 3rem 1.5rem 4rem; }
+            .proj-grid { grid-template-columns: 1fr; }
+
+            .proj-modal { width: 100vw; border-left: none; border-top: 1px solid var(--amber-border); }
+            .proj-modal-body { padding: 1.8rem 1.5rem 3rem; }
+            .modal-header { flex-direction: column; gap: 1rem; }
+            .modal-name { font-size: 1.8rem; }
+            .modal-updated { margin-left: 0; }
+
+            .footer-content { grid-template-columns: 1fr; gap: 2rem; }
+        }
+
+        @media (max-width: 480px) {
+            .proj-hero h1 { font-size: 2.2rem; letter-spacing: 2px; }
+            .proj-grid { grid-template-columns: 1fr; }
+        }
+
+        /* ── Focus visible global ───────────────────────────────────────────── */
+        :focus-visible {
+            outline: 1px solid var(--amber);
+            outline-offset: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-grid" aria-hidden="true"></div>
+
+    <!-- ── Navigation ──────────────────────────────────────────────────────── -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">SeldomSought</a>
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="philosophy.html">Philosophy</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="expertise.html">Expertise</a></li>
+                <li><a href="projects.html" aria-current="page">Projects</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+        <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="philosophy.html">Philosophy</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="expertise.html">Expertise</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- ── Hero ────────────────────────────────────────────────────────────── -->
+    <header class="proj-hero">
+        <div class="proj-hero-inner">
+            <p class="proj-hero-eyebrow">SeldomSought / Projects</p>
+            <h1>Projects</h1>
+            <p class="proj-hero-subtitle">
+                Tools built to shift behavior toward intention. Independent software
+                that treats your attention as something worth protecting.
+            </p>
+            <p class="proj-hero-current">
+                Currently building: <span>Focus Shield</span>
+            </p>
+        </div>
+    </header>
+
+    <!-- ── Project grid ────────────────────────────────────────────────────── -->
+    <main class="proj-grid-section">
+        <p class="proj-section-label" aria-label="Projects section">All Projects</p>
+        <div class="proj-grid" id="projGrid" role="list">
+            <!-- Rendered by JavaScript from projects-data.js -->
+        </div>
+    </main>
+
+    <!-- ── Modal overlay ───────────────────────────────────────────────────── -->
+    <div
+        class="proj-modal-overlay"
+        id="projOverlay"
+        hidden
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modalProjectName"
+    >
+        <div class="proj-modal" id="projModal" tabindex="-1">
+            <button class="proj-modal-close" id="modalClose" aria-label="Close project details">
+                <span class="proj-modal-close-x">&#10005;</span>
+                Close
+            </button>
+            <div class="proj-modal-body" id="modalBody">
+                <!-- Populated by renderModal() -->
+            </div>
+        </div>
+    </div>
+
+    <!-- ── Footer ──────────────────────────────────────────────────────────── -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>SeldomSought</h3>
+                <p>Brand image, marketing strategy, and business consulting for brands built to stand out.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Navigate</h3>
+                <ul class="footer-links">
+                    <li><a href="philosophy.html">Philosophy</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="expertise.html">Expertise</a></li>
+                    <li><a href="projects.html">Projects</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Services</h3>
+                <ul class="footer-links">
+                    <li><a href="services.html">Brand Image</a></li>
+                    <li><a href="services.html">SEO &amp; AEO</a></li>
+                    <li><a href="services.html">Guerrilla Marketing</a></li>
+                    <li><a href="services.html">Copywriting</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 SeldomSought. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- ── Data source ─────────────────────────────────────────────────────── -->
+    <script src="projects-data.js"></script>
+
+    <!-- ── Page logic ──────────────────────────────────────────────────────── -->
+    <script>
+    (function () {
+        'use strict';
+
+        // ── DOM refs ────────────────────────────────────────────────────────
+        var grid      = document.getElementById('projGrid');
+        var overlay   = document.getElementById('projOverlay');
+        var modal     = document.getElementById('projModal');
+        var modalBody = document.getElementById('modalBody');
+        var closeBtn  = document.getElementById('modalClose');
+
+        // ── Helpers ─────────────────────────────────────────────────────────
+        function escapeHtml(str) {
+            return String(str)
+                .replace(/&/g,'&amp;')
+                .replace(/</g,'&lt;')
+                .replace(/>/g,'&gt;')
+                .replace(/"/g,'&quot;');
+        }
+
+        function statusClass(s) {
+            return { Live: 'live', Beta: 'beta', Private: 'private' }[s] || 'private';
+        }
+
+        // ── Render all cards ────────────────────────────────────────────────
+        function renderCards() {
+            if (!PROJECTS || !PROJECTS.length) {
+                grid.innerHTML = '<div class="proj-empty">No projects yet. Check back soon.</div>';
+                return;
+            }
+
+            PROJECTS.forEach(function (p) {
+                var btn = document.createElement('button');
+                btn.className    = 'proj-card';
+                btn.setAttribute('role', 'listitem');
+                btn.setAttribute('aria-label', 'View details for ' + p.name);
+                btn.dataset.id   = p.id;
+
+                var tagsHtml = p.platforms.map(function (t) {
+                    return '<span class="proj-tag">' + escapeHtml(t) + '</span>';
+                }).join('');
+
+                var iconHtml = p.icon
+                    ? '<img src="' + escapeHtml(p.icon) + '" alt="' + escapeHtml(p.name) + ' icon" width="36" height="36">'
+                    : '<svg viewBox="0 0 36 36" fill="none" aria-hidden="true"><rect x="4" y="4" width="28" height="28" stroke="currentColor" stroke-width="1.5" fill="none" opacity="0.4"/></svg>';
+
+                btn.innerHTML = '\
+                    <div class="proj-card-header">\
+                        <div class="proj-card-icon">' + iconHtml + '</div>\
+                        <span class="proj-card-status ' + statusClass(p.status) + '" aria-label="Status: ' + escapeHtml(p.status) + '">' + escapeHtml(p.status) + '</span>\
+                    </div>\
+                    <h2 class="proj-card-name">' + escapeHtml(p.name) + '</h2>\
+                    <p class="proj-card-tagline">' + escapeHtml(p.tagline) + '</p>\
+                    <p class="proj-card-excerpt">' + escapeHtml(p.excerpt) + '</p>\
+                    <div class="proj-card-tags">' + tagsHtml + '</div>\
+                    <span class="proj-card-cta" aria-hidden="true">View Project</span>';
+
+                btn.addEventListener('click', function () { openProject(p.id); });
+                grid.appendChild(btn);
+            });
+        }
+
+        // ── Build modal HTML ─────────────────────────────────────────────────
+        function buildModalHTML(p) {
+            var sc  = statusClass(p.status);
+            var iconHtml = p.icon
+                ? '<img src="' + escapeHtml(p.icon) + '" alt="' + escapeHtml(p.name) + ' icon" width="44" height="44">'
+                : '<svg viewBox="0 0 44 44" fill="none" aria-hidden="true"><rect x="4" y="4" width="36" height="36" stroke="currentColor" stroke-width="1.5" fill="none" opacity="0.4"/></svg>';
+
+            var platformPills = p.platforms.map(function (t) {
+                return '<span class="modal-platform">' + escapeHtml(t) + '</span>';
+            }).join('');
+
+            // Problem
+            var problemHTML = p.problem
+                ? '<div class="modal-section">'
+                    + '<p class="modal-section-label">The Problem</p>'
+                    + '<p class="modal-section-body">' + escapeHtml(p.problem) + '</p>'
+                  + '</div>'
+                : '';
+
+            // Solution
+            var solutionHTML = p.solution
+                ? '<div class="modal-section">'
+                    + '<p class="modal-section-label">The Solution</p>'
+                    + '<p class="modal-section-body">' + escapeHtml(p.solution) + '</p>'
+                  + '</div>'
+                : '';
+
+            // How it works
+            var stepsHTML = '';
+            if (p.howItWorks && p.howItWorks.length) {
+                var steps = p.howItWorks.map(function (s) {
+                    return '<div class="modal-step">'
+                        + '<span class="modal-step-num">' + s.step + '</span>'
+                        + '<div>'
+                            + '<p class="modal-step-title">' + escapeHtml(s.title) + '</p>'
+                            + '<p class="modal-step-desc">' + escapeHtml(s.desc) + '</p>'
+                        + '</div>'
+                    + '</div>';
+                }).join('');
+                stepsHTML = '<div class="modal-section">'
+                    + '<p class="modal-section-label">How It Works</p>'
+                    + '<div class="modal-steps">' + steps + '</div>'
+                + '</div>';
+            }
+
+            // Features
+            var featuresHTML = '';
+            if (p.features && p.features.length) {
+                var items = p.features.map(function (f) {
+                    return '<li>' + escapeHtml(f) + '</li>';
+                }).join('');
+                featuresHTML = '<div class="modal-section">'
+                    + '<p class="modal-section-label">Key Features</p>'
+                    + '<ul class="modal-features">' + items + '</ul>'
+                + '</div>';
+            }
+
+            // Screenshots
+            var screenshotsHTML = '';
+            if (p.screenshots && p.screenshots.length) {
+                var imgs = p.screenshots.map(function (src, i) {
+                    return '<img src="' + escapeHtml(src) + '" alt="' + escapeHtml(p.name) + ' screenshot ' + (i + 1) + '" loading="lazy">';
+                }).join('');
+                screenshotsHTML = '<div class="modal-section">'
+                    + '<p class="modal-section-label">Screenshots</p>'
+                    + '<div class="modal-screenshots">' + imgs + '</div>'
+                + '</div>';
+            }
+
+            // Links
+            var linksHTML = '';
+            if (p.links) {
+                var linkDefs = [
+                    { key: 'chromeStore', label: 'Chrome Web Store', icon: '↗' },
+                    { key: 'github',      label: 'GitHub',           icon: '↗' },
+                    { key: 'website',     label: 'Website',          icon: '↗' },
+                    { key: 'demo',        label: 'Demo Video',       icon: '▶' },
+                ];
+                var hasAny = linkDefs.some(function (d) { return p.links[d.key]; });
+
+                var linkItems = linkDefs.map(function (d) {
+                    if (p.links[d.key]) {
+                        return '<a class="modal-link-btn" href="' + escapeHtml(p.links[d.key]) + '" target="_blank" rel="noopener noreferrer">'
+                            + d.icon + ' ' + d.label
+                        + '</a>';
+                    }
+                    return '<span class="modal-coming-soon">' + d.label + ' — coming soon</span>';
+                }).join('');
+
+                linksHTML = '<div class="modal-section">'
+                    + '<p class="modal-section-label">Links</p>'
+                    + '<div class="modal-links">' + linkItems + '</div>'
+                + '</div>';
+            }
+
+            return '\
+                <div class="modal-header">\
+                    <div class="modal-icon">' + iconHtml + '</div>\
+                    <div class="modal-header-meta">\
+                        <h2 class="modal-name" id="modalProjectName">' + escapeHtml(p.name) + '</h2>\
+                        <p class="modal-tagline">' + escapeHtml(p.tagline) + '</p>\
+                        <div class="modal-pills">\
+                            <span class="modal-status ' + sc + '">' + escapeHtml(p.status) + '</span>\
+                            ' + platformPills + '\
+                            <span class="modal-updated">Updated ' + escapeHtml(p.lastUpdated) + '</span>\
+                        </div>\
+                    </div>\
+                </div>\
+                ' + problemHTML
+                  + solutionHTML
+                  + stepsHTML
+                  + featuresHTML
+                  + screenshotsHTML
+                  + linksHTML;
+        }
+
+        // ── Modal open/close ─────────────────────────────────────────────────
+        var previousFocus = null;
+
+        function openProject(id) {
+            var project = PROJECTS.find(function (p) { return p.id === id; });
+            if (!project) return;
+
+            previousFocus = document.activeElement;
+            modalBody.innerHTML = buildModalHTML(project);
+            overlay.hidden = false;
+            document.body.style.overflow = 'hidden';
+
+            // Focus the modal panel
+            modal.focus();
+
+            // Trap focus inside modal
+            modal.addEventListener('keydown', trapFocus);
+        }
+
+        function closeModal() {
+            overlay.hidden = true;
+            document.body.style.overflow = '';
+            modal.removeEventListener('keydown', trapFocus);
+            if (previousFocus) previousFocus.focus();
+        }
+
+        // ── Focus trap ───────────────────────────────────────────────────────
+        function trapFocus(e) {
+            if (e.key !== 'Tab') return;
+            var focusable = modal.querySelectorAll(
+                'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+            );
+            var first = focusable[0];
+            var last  = focusable[focusable.length - 1];
+
+            if (e.shiftKey) {
+                if (document.activeElement === first) {
+                    e.preventDefault();
+                    last.focus();
+                }
+            } else {
+                if (document.activeElement === last) {
+                    e.preventDefault();
+                    first.focus();
+                }
+            }
+        }
+
+        // ── Hash routing ─────────────────────────────────────────────────────
+        function handleHash() {
+            var hash = location.hash.slice(1);
+            if (hash) {
+                openProject(hash);
+            } else {
+                if (!overlay.hidden) closeModal();
+            }
+        }
+
+        function openProjectWithHash(id) {
+            history.pushState({ projectId: id }, '', '#' + id);
+            openProject(id);
+        }
+
+        function closeModalWithHash() {
+            history.pushState(null, '', location.pathname);
+            closeModal();
+        }
+
+        // Re-wire card clicks to use hash routing
+        function rewireCards() {
+            grid.querySelectorAll('.proj-card').forEach(function (btn) {
+                btn.onclick = function () { openProjectWithHash(btn.dataset.id); };
+            });
+        }
+
+        // ── Events ───────────────────────────────────────────────────────────
+        closeBtn.addEventListener('click', closeModalWithHash);
+
+        overlay.addEventListener('click', function (e) {
+            if (e.target === overlay) closeModalWithHash();
+        });
+
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape' && !overlay.hidden) closeModalWithHash();
+        });
+
+        window.addEventListener('popstate', handleHash);
+
+        // ── Mobile menu ──────────────────────────────────────────────────────
+        var menuToggle  = document.getElementById('menuToggle');
+        var mobileMenu  = document.getElementById('mobileMenu');
+
+        menuToggle.addEventListener('click', function (e) {
+            e.stopPropagation();
+            var open = mobileMenu.classList.toggle('active');
+            menuToggle.setAttribute('aria-expanded', String(open));
+            mobileMenu.setAttribute('aria-hidden', String(!open));
+            menuToggle.innerHTML = open ? '&#10005;' : '&#9776;';
+        });
+
+        document.addEventListener('click', function (e) {
+            if (!e.target.closest('nav')) {
+                mobileMenu.classList.remove('active');
+                menuToggle.setAttribute('aria-expanded', 'false');
+                mobileMenu.setAttribute('aria-hidden', 'true');
+                menuToggle.innerHTML = '&#9776;';
+            }
+        });
+
+        // ── Init ─────────────────────────────────────────────────────────────
+        renderCards();
+        rewireCards();
+        handleHash(); // open modal if page loaded with a hash
+    })();
+    </script>
+</body>
+</html>
