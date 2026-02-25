@@ -289,22 +289,19 @@
             padding: 4px 14px; letter-spacing: 3px;
         }
 
-        /* DESKTOP SCALING ≥1024px
-           H1 grows freely with viewport — no tight cap so it fills the banner on wide screens.
-           Tweak the vw value (13vw) to adjust how aggressively it scales. */
+        /* DESKTOP SCALING ≥1024px — matches sitewide standard */
         @media (min-width: 1024px) {
             .gc-main-title {
-                font-size: clamp(5rem, 13vw, 16rem);
-                letter-spacing: clamp(6px, 0.6vw, 16px);
-                line-height: 1.0;
+                font-size: clamp(3.5rem, 4.5vw, 5rem);
+                letter-spacing: 8px;
                 text-shadow:
                     5px 5px 0 var(--gc-accent-mag),
                     10px 10px 0 rgba(255,0,255,0.3),
-                    0 0 60px rgba(255,255,0,0.6),
-                    0 0 120px rgba(255,255,0,0.2);
+                    0 0 50px rgba(255,255,0,0.55),
+                    0 0 100px rgba(255,255,0,0.2);
             }
             .gc-hero {
-                padding: 3.5rem 2rem 3rem;
+                padding: 3rem 1.5rem 2.5rem;
             }
             .gc-hero-subtitle {
                 font-size: clamp(0.85rem, 1.4vw, 1.2rem);
