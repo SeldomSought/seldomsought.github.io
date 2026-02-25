@@ -1139,8 +1139,9 @@
             var linksHTML = '';
             if (p.links) {
                 var linkDefs = [
+                    { key: 'download',    label: 'Download',         icon: '↓', download: true },
                     { key: 'chromeStore', label: 'Chrome Web Store', icon: '↗' },
-                    { key: 'github',      label: 'GitHub',           icon: '↗' },
+                    { key: 'github',      label: 'View on GitHub',   icon: '↗' },
                     { key: 'website',     label: 'Website',          icon: '↗' },
                     { key: 'demo',        label: 'Demo Video',       icon: '▶' },
                 ];
@@ -1148,11 +1149,14 @@
 
                 var linkItems = linkDefs.map(function (d) {
                     if (p.links[d.key]) {
-                        return '<a class="modal-link-btn" href="' + escapeHtml(p.links[d.key]) + '" target="_blank" rel="noopener noreferrer">'
+                        var attrs = d.download
+                            ? ' download'
+                            : ' target="_blank" rel="noopener noreferrer"';
+                        return '<a class="modal-link-btn" href="' + escapeHtml(p.links[d.key]) + '"' + attrs + '>'
                             + d.icon + ' ' + d.label
                         + '</a>';
                     }
-                    return '<span class="modal-coming-soon">' + d.label + ' — coming soon</span>';
+                    return '';
                 }).join('');
 
                 linksHTML = '<div class="modal-section">'
