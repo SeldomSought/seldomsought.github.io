@@ -435,11 +435,53 @@
         }
 
         @media (min-width: 1024px) {
-            h1 { font-size: clamp(3.5rem, 4.5vw, 5rem); }
-            .nav-container { padding-top: 1.5rem; padding-bottom: 1.5rem; }
-            .logo { font-size: 2rem; }
-            .nav-links { gap: 2.5rem; }
-            .nav-links a { font-size: 1rem; }
+            /* ── Nav — anchored, premium feel (80–96px height) ── */
+            .nav-container {
+                padding: 1.75rem 2.5rem;
+            }
+            .logo {
+                font-size: clamp(1.625rem, 2vw, 2.25rem); /* 26–36px */
+                letter-spacing: 3px;
+            }
+            .nav-links {
+                gap: clamp(1.25rem, 2vw, 2.125rem); /* 20–34px */
+            }
+            .nav-links a {
+                font-size: clamp(0.875rem, 1.1vw, 1.125rem); /* 14–18px */
+                letter-spacing: 1.5px;
+            }
+
+            /* ── Hero — fills viewport, commands attention ── */
+            .hero {
+                padding: 9rem 3rem 5rem;
+            }
+            .hero-content {
+                max-width: 1050px;
+            }
+            h1 {
+                font-size: clamp(4rem, 8vw, 7.5rem); /* 64–120px */
+                letter-spacing: 10px;
+                margin-bottom: 2rem;
+            }
+            h1::after {
+                width: 180px;
+            }
+            .tagline {
+                font-size: clamp(1.125rem, 1.75vw, 1.75rem); /* 18–28px */
+                margin-bottom: 3rem;
+            }
+            .hero .description {
+                font-size: clamp(1rem, 1.3vw, 1.375rem); /* 16–22px */
+                max-width: 800px;
+                margin-bottom: 3.5rem;
+            }
+            .btn {
+                font-size: clamp(1rem, 1.2vw, 1.25rem); /* 16–20px */
+                padding: 1rem 1.75rem;
+            }
+            .buttons {
+                gap: 2rem;
+            }
         }
     </style>
 </head>
