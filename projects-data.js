@@ -74,10 +74,11 @@ const PROJECTS = [
     ],
 
     links: {
-      chromeStore: null,   // e.g. 'https://chromewebstore.google.com/detail/...'
-      github:      null,   // e.g. 'https://github.com/yourhandle/focus-shield'
-      website:     null,   // e.g. 'https://focusshield.app'
-      demo:        null,   // e.g. 'https://www.youtube.com/watch?v=...'
+      download:    'projects/focus-shield/focus-shield.zip',
+      chromeStore: null,
+      github:      'https://github.com/SeldomSought/Focus-Shield',
+      website:     null,
+      demo:        null,
     },
 
     lastUpdated: 'Feb 2026',
