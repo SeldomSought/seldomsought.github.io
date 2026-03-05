@@ -159,7 +159,7 @@
 
         .proj-hero-eyebrow {
             font-family: 'Share Tech Mono', monospace;
-            font-size: 0.72rem;
+            font-size: 0.82rem;
             letter-spacing: 3px;
             text-transform: uppercase;
             color: var(--amber);
@@ -189,7 +189,7 @@
 
         .proj-hero-current {
             font-family: 'Share Tech Mono', monospace;
-            font-size: 0.78rem;
+            font-size: 0.88rem;
             color: var(--text-dim);
             letter-spacing: 1px;
         }
@@ -209,7 +209,7 @@
 
         .proj-section-label {
             font-family: 'Share Tech Mono', monospace;
-            font-size: 0.7rem;
+            font-size: 0.82rem;
             letter-spacing: 3px;
             text-transform: uppercase;
             color: var(--text-dim);
@@ -301,7 +301,7 @@
 
         .proj-card-status {
             font-family: 'Share Tech Mono', monospace;
-            font-size: 0.65rem;
+            font-size: 0.78rem;
             letter-spacing: 2px;
             text-transform: uppercase;
             padding: 0.2rem 0.55rem;
@@ -350,7 +350,7 @@
 
         .proj-card-excerpt {
             font-family: 'Share Tech Mono', monospace;
-            font-size: 0.78rem;
+            font-size: 0.9rem;
             color: var(--text-dim);
             line-height: 1.75;
             margin-bottom: 1.5rem;
@@ -367,7 +367,7 @@
 
         .proj-tag {
             font-family: 'Share Tech Mono', monospace;
-            font-size: 0.62rem;
+            font-size: 0.78rem;
             letter-spacing: 1px;
             text-transform: uppercase;
             color: var(--text-dim);
@@ -378,7 +378,7 @@
         /* Card CTA */
         .proj-card-cta {
             font-family: 'Share Tech Mono', monospace;
-            font-size: 0.75rem;
+            font-size: 0.875rem;
             letter-spacing: 2px;
             text-transform: uppercase;
             color: var(--amber);
@@ -448,7 +448,7 @@
             border-bottom: 1px solid var(--amber-border);
             color: var(--text-dim);
             font-family: 'Share Tech Mono', monospace;
-            font-size: 0.72rem;
+            font-size: 0.85rem;
             letter-spacing: 2px;
             text-transform: uppercase;
             cursor: pointer;
@@ -540,7 +540,7 @@
 
         .modal-status {
             font-family: 'Share Tech Mono', monospace;
-            font-size: 0.63rem;
+            font-size: 0.78rem;
             letter-spacing: 2px;
             text-transform: uppercase;
             padding: 0.2rem 0.6rem;
@@ -553,7 +553,7 @@
 
         .modal-platform {
             font-family: 'Share Tech Mono', monospace;
-            font-size: 0.62rem;
+            font-size: 0.78rem;
             letter-spacing: 1px;
             text-transform: uppercase;
             color: var(--text-dim);
@@ -563,7 +563,7 @@
 
         .modal-updated {
             font-family: 'Share Tech Mono', monospace;
-            font-size: 0.65rem;
+            font-size: 0.78rem;
             color: var(--text-dim);
             letter-spacing: 1px;
             margin-left: auto;
@@ -577,7 +577,7 @@
 
         .modal-section-label {
             font-family: 'Share Tech Mono', monospace;
-            font-size: 0.65rem;
+            font-size: 0.82rem;
             letter-spacing: 3px;
             text-transform: uppercase;
             color: var(--amber);
@@ -631,7 +631,7 @@
 
         .modal-step-title {
             font-family: 'Share Tech Mono', monospace;
-            font-size: 0.78rem;
+            font-size: 0.875rem;
             letter-spacing: 1px;
             text-transform: uppercase;
             color: var(--text);
@@ -691,7 +691,7 @@
 
         .modal-screenshots-placeholder {
             font-family: 'Share Tech Mono', monospace;
-            font-size: 0.72rem;
+            font-size: 0.85rem;
             color: var(--text-dim);
             letter-spacing: 1px;
             padding: 2rem;
@@ -708,7 +708,7 @@
 
         .modal-link-btn {
             font-family: 'Share Tech Mono', monospace;
-            font-size: 0.75rem;
+            font-size: 0.875rem;
             letter-spacing: 2px;
             text-transform: uppercase;
             color: var(--amber);
@@ -736,7 +736,7 @@
 
         .modal-coming-soon {
             font-family: 'Share Tech Mono', monospace;
-            font-size: 0.72rem;
+            font-size: 0.85rem;
             color: var(--text-dim);
             letter-spacing: 1px;
             font-style: normal;
@@ -884,16 +884,26 @@
         }
 
         @media (min-width: 1024px) {
-            .proj-hero h1 { font-size: clamp(3.5rem, 4.5vw, 5rem); }
-            .nav-container { padding: 2rem 5rem; max-width: none; }
-            .logo { font-size: 2.6rem; }
-            .nav-links { gap: 3.25rem; }
-            .nav-links a { font-size: 1.3rem; }
+            .proj-hero h1       { font-size: clamp(3.5rem, 4.5vw, 5rem); }
+            .nav-container      { padding: 2rem 5rem; max-width: none; }
+            .logo               { font-size: 2.6rem; }
+            .nav-links          { gap: 3.25rem; }
+            .nav-links a        { font-size: 1.3rem; }
+
+            /* ── Hero eyebrow / meta ── */
+            .proj-hero-eyebrow  { font-size: 1rem; }
+            .proj-hero-current  { font-size: 1rem; }
+            .proj-section-label { font-size: 0.95rem; }
+
             /* ── Card text ── */
             .proj-card-excerpt  { font-size: 1.1rem; }
             .proj-card-tagline  { font-size: 1.15rem; }
-            .proj-card-tag      { font-size: 0.8rem; }
-            .proj-card-status   { font-size: 0.82rem; }
+            .proj-tag           { font-size: 0.85rem; }
+            .proj-card-status   { font-size: 0.88rem; }
+            .proj-card-cta      { font-size: 1rem; }
+
+            /* ── Modal chrome ── */
+            .proj-modal-close   { font-size: 0.95rem; }
 
             /* ── Modal body text ── */
             .modal-tagline        { font-size: 1.25rem; line-height: 1.6; }
@@ -901,10 +911,13 @@
             .modal-step-title     { font-size: 1rem; }
             .modal-step-desc      { font-size: 1.15rem; line-height: 1.65; }
             .modal-features li    { font-size: 1.15rem; line-height: 1.65; }
-            .modal-section-label  { font-size: 0.85rem; }
-            .modal-platform       { font-size: 0.82rem; }
-            .modal-status         { font-size: 0.82rem; }
-            .modal-updated        { font-size: 0.82rem; }
+            .modal-section-label  { font-size: 0.95rem; }
+            .modal-platform       { font-size: 0.88rem; }
+            .modal-status         { font-size: 0.88rem; }
+            .modal-updated        { font-size: 0.88rem; }
+            .modal-link-btn       { font-size: 0.95rem; }
+            .modal-coming-soon    { font-size: 0.9rem; }
+            .modal-screenshots-placeholder { font-size: 0.9rem; }
         }
     </style>
 </head>
