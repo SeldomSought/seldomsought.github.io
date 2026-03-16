@@ -96,6 +96,51 @@ The commitment lock goes further: have an accountability partner set a passphras
     lastUpdated: 'Mar 2026',
   },
 
+  {
+    id: 'psychometrics-battery',
+    name: 'Psychometric Battery',
+    tagline: 'A research-grade personality assessment built from scratch — open methodology, no black boxes.',
+    excerpt: 'A full HEXACO six-factor personality assessment with forced-choice ranking blocks. Novel, non-copyrighted items. Scores entirely in your browser — no data leaves your device.',
+    status: 'Beta',
+    platforms: ['Web App', 'Personality', 'Psychometrics'],
+    icon: null,
+
+    screenshots: [],
+
+    problem: `Most personality assessments are either proprietary black boxes (you pay, get a label, never see the math) or academically inaccessible instruments locked behind licensing walls. The items are decades old, the scoring models are opaque, and the outputs are designed for HR departments rather than genuine self-knowledge.`,
+
+    solution: `A ground-up psychometric battery using the HEXACO six-factor model — the most scientifically defensible personality framework available — with novel, non-copyrighted items written to modern standards. The assessment runs entirely in your browser with no data transmission. Scoring is transparent, reports are plain-language, and the full methodology is open on GitHub.
+
+The battery includes: a 96-item HEXACO short-form across 6 domains and 24 facets; 10 forced-choice ranking blocks designed to suppress social desirability bias; and a full results dashboard with radar chart, percentile scores, facet-level breakdown, and an integrated profile narrative.`,
+
+    howItWorks: [
+      { step: 1, title: 'Module 1 — HEXACO personality', desc: '96 items, 8 per page. Rate each statement on a 1–5 scale from how accurately it describes you. Covers Honesty-Humility, Emotionality, eXtraversion, Agreeableness, Conscientiousness, and Openness.' },
+      { step: 2, title: 'Module 2 — Forced-choice blocks', desc: '10 triplets. Rank three statements from most to least like you. Designed to detect and correct acquiescence and impression-management bias that standard Likert items can\'t catch.' },
+      { step: 3, title: 'Scoring', desc: 'All scoring happens locally in your browser. Likert items are reverse-scored where needed. FC data is weighted at 30% of the composite. Scores convert to T-scores (M=50, SD=10) and approximate population percentiles.' },
+      { step: 4, title: 'Results', desc: 'Radar chart across all 6 domains. Per-domain bar with percentile, T-score, band label, and a full narrative. Facet-level breakdown for all 24 facets. Integrated profile summary.' },
+    ],
+
+    features: [
+      'HEXACO six-factor model — the most well-validated personality framework',
+      '96 novel, non-copyrighted items — 4 per facet, 24 facets across 6 domains',
+      '10 forced-choice triplets — acquiescence-resistant ranking format',
+      'Fully client-side — no data transmitted, no accounts, no tracking',
+      'Facet-level scores for all 24 facets, not just domain composites',
+      'Radar chart + bar charts + integrated narrative report',
+      'Full methodology and item bank open-sourced on GitHub',
+    ],
+
+    links: {
+      download:    null,
+      chromeStore: null,
+      github:      'https://github.com/SeldomSought/Psychometrics-Assessment-Battery',
+      website:     null,
+      demo:        'projects/psychometrics-battery/index.html',
+    },
+
+    lastUpdated: 'Mar 2026',
+  },
+
   // ─── Add your next project here ─────────────────────────────────────────────
   // {
   //   id: 'your-project-id',        // URL-safe, lowercase, hyphenated
