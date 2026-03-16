@@ -1,0 +1,1201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Psychometric Assessment — SeldomSought</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg:            #0b0b0c;
+      --bg-panel:      rgba(18,16,13,0.96);
+      --bg-panel-2:    rgba(24,21,17,0.98);
+      --text:          #e8e2d9;
+      --text-dim:      rgba(232,226,217,0.45);
+      --text-mid:      rgba(232,226,217,0.70);
+      --amber:         #b8860b;
+      --amber-light:   #d4a017;
+      --amber-dim:     rgba(184,134,11,0.15);
+      --amber-border:  rgba(184,134,11,0.22);
+      --amber-border-h:rgba(184,134,11,0.55);
+      --grid-line:     rgba(232,226,217,0.025);
+      --green:         #5a9e6f;
+      --green-dim:     rgba(60,140,80,0.15);
+      --red:           #c0624a;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Share Tech Mono', monospace;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.6;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .bg-grid {
+      position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      background:
+        repeating-linear-gradient(0deg,   var(--grid-line) 0, var(--grid-line) 1px, transparent 1px, transparent 60px),
+        repeating-linear-gradient(90deg,  var(--grid-line) 0, var(--grid-line) 1px, transparent 1px, transparent 60px);
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; width: 100%;
+      background: rgba(11,11,12,0.88);
+      border-bottom: 1px solid var(--amber-border);
+      z-index: 200; backdrop-filter: blur(12px);
+    }
+    .nav-inner {
+      max-width: 1100px; margin: 0 auto;
+      padding: 1rem 2rem;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem; font-weight: 500;
+      color: var(--text); text-decoration: none;
+      letter-spacing: 3px; text-transform: uppercase;
+    }
+    .nav-back {
+      font-size: 0.78rem; letter-spacing: 2px; text-transform: uppercase;
+      color: var(--text-dim); text-decoration: none;
+      border: 1px solid var(--amber-border); padding: 0.4rem 0.9rem;
+      transition: all 0.2s;
+    }
+    .nav-back:hover { color: var(--amber); border-color: var(--amber-border-h); }
+
+    /* ── WRAPPER ── */
+    .wrapper {
+      position: relative; z-index: 1;
+      max-width: 780px; margin: 0 auto;
+      padding: 0 1.5rem 6rem;
+    }
+
+    /* ── PROGRESS BAR ── */
+    .progress-bar-wrap {
+      position: fixed; top: 57px; left: 0; right: 0;
+      height: 2px; z-index: 199; background: rgba(184,134,11,0.1);
+    }
+    .progress-bar-fill {
+      height: 100%; background: var(--amber);
+      transition: width 0.4s ease; width: 0%;
+    }
+
+    /* ── SCREEN BASE ── */
+    .screen { display: none; padding-top: 5.5rem; }
+    .screen.active { display: block; }
+
+    /* ── WELCOME ── */
+    .welcome-eyebrow {
+      font-size: 0.78rem; letter-spacing: 3px; text-transform: uppercase;
+      color: var(--amber); margin-bottom: 1.2rem; margin-top: 2rem;
+    }
+    .welcome-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.4rem, 6vw, 3.8rem);
+      font-weight: 400; letter-spacing: 4px; text-transform: uppercase;
+      color: var(--text); line-height: 1.05; margin-bottom: 1.6rem;
+    }
+    .welcome-subtitle {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem; font-style: italic;
+      color: var(--text-mid); line-height: 1.75; margin-bottom: 2.4rem;
+      max-width: 580px;
+    }
+    .meta-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1px; background: var(--amber-border);
+      border: 1px solid var(--amber-border);
+      margin-bottom: 2.8rem;
+    }
+    .meta-cell {
+      background: var(--bg-panel); padding: 1.2rem 1.4rem;
+    }
+    .meta-label { font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text-dim); margin-bottom: 0.35rem; }
+    .meta-value { font-size: 1rem; color: var(--amber-light); }
+    .module-list { list-style: none; margin-bottom: 2.8rem; }
+    .module-list li {
+      display: flex; align-items: flex-start; gap: 0.9rem;
+      padding: 0.9rem 0; border-bottom: 1px solid rgba(184,134,11,0.1);
+      font-size: 0.88rem; color: var(--text-mid);
+    }
+    .module-list li:last-child { border-bottom: none; }
+    .module-num {
+      flex-shrink: 0; width: 24px; height: 24px;
+      background: var(--amber-dim); border: 1px solid var(--amber-border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.72rem; color: var(--amber);
+    }
+    .consent-note {
+      font-size: 0.78rem; color: var(--text-dim); letter-spacing: 0.5px;
+      line-height: 1.7; padding: 1rem 1.2rem;
+      border: 1px solid var(--amber-border);
+      background: var(--amber-dim); margin-bottom: 2rem;
+    }
+
+    /* ── BUTTONS ── */
+    .btn {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.82rem; letter-spacing: 2px; text-transform: uppercase;
+      border: 1px solid var(--amber-border);
+      padding: 0.85rem 2rem; cursor: pointer;
+      transition: all 0.2s; background: transparent; color: var(--amber);
+    }
+    .btn:hover { background: var(--amber-dim); border-color: var(--amber-border-h); color: var(--amber-light); }
+    .btn:focus-visible { outline: 1px solid var(--amber); outline-offset: 2px; }
+    .btn-primary { background: var(--amber-dim); border-color: var(--amber); }
+    .btn-primary:hover { background: rgba(184,134,11,0.28); }
+    .btn-sm { padding: 0.55rem 1.2rem; font-size: 0.75rem; }
+    .btn-ghost { border-color: rgba(232,226,217,0.15); color: var(--text-dim); }
+    .btn-ghost:hover { border-color: var(--amber-border); color: var(--text-mid); background: transparent; }
+    .btn-row { display: flex; gap: 0.8rem; flex-wrap: wrap; align-items: center; }
+
+    /* ── SECTION HEADER ── */
+    .section-header { margin-bottom: 2rem; padding-bottom: 1.2rem; border-bottom: 1px solid var(--amber-border); }
+    .section-eyebrow { font-size: 0.72rem; letter-spacing: 3px; text-transform: uppercase; color: var(--amber); margin-bottom: 0.6rem; }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.9rem; font-weight: 400; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--text); line-height: 1.1;
+    }
+    .section-desc { font-size: 0.85rem; color: var(--text-dim); margin-top: 0.5rem; line-height: 1.7; }
+
+    /* ── PAGE COUNTER ── */
+    .page-counter {
+      font-size: 0.72rem; letter-spacing: 2px; color: var(--text-dim);
+      margin-bottom: 1.6rem; text-transform: uppercase;
+    }
+    .page-counter span { color: var(--amber); }
+
+    /* ── LIKERT ITEMS ── */
+    .item-block {
+      background: var(--bg-panel); border: 1px solid var(--amber-border);
+      padding: 1.4rem 1.6rem; margin-bottom: 1rem;
+      transition: border-color 0.2s;
+    }
+    .item-block.answered { border-color: rgba(184,134,11,0.35); }
+    .item-text {
+      font-size: 0.92rem; color: var(--text); line-height: 1.65;
+      margin-bottom: 1.1rem;
+    }
+    .item-id { font-size: 0.68rem; color: var(--text-dim); letter-spacing: 1px; margin-bottom: 0.5rem; }
+    .likert-row {
+      display: flex; gap: 0.5rem; flex-wrap: wrap;
+    }
+    .likert-opt { display: none; }
+    .likert-label {
+      flex: 1; min-width: 52px;
+      display: flex; flex-direction: column; align-items: center; gap: 0.3rem;
+      cursor: pointer; padding: 0.5rem 0.3rem;
+      border: 1px solid rgba(184,134,11,0.15);
+      transition: all 0.18s; background: transparent;
+      text-align: center;
+    }
+    .likert-label:hover { border-color: var(--amber-border-h); background: var(--amber-dim); }
+    .likert-label .lval {
+      font-size: 0.95rem; color: var(--amber-light); font-weight: 500;
+    }
+    .likert-label .lname {
+      font-size: 0.6rem; letter-spacing: 0.5px; text-transform: uppercase;
+      color: var(--text-dim); line-height: 1.3;
+    }
+    .likert-opt:checked + .likert-label {
+      border-color: var(--amber); background: var(--amber-dim);
+    }
+    .likert-opt:checked + .likert-label .lval { color: var(--amber-light); }
+    .likert-opt:checked + .likert-label .lname { color: var(--text-mid); }
+
+    /* ── FC BLOCKS ── */
+    .fc-block { margin-bottom: 2.4rem; }
+    .fc-block-header {
+      font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase;
+      color: var(--text-dim); margin-bottom: 1rem;
+      display: flex; align-items: center; gap: 0.8rem;
+    }
+    .fc-block-header::after { content: ''; flex: 1; height: 1px; background: var(--amber-border); }
+    .fc-stmt {
+      background: var(--bg-panel); border: 1px solid var(--amber-border);
+      padding: 1.1rem 1.4rem; margin-bottom: 0.6rem;
+      display: flex; align-items: flex-start; gap: 1rem;
+      transition: border-color 0.2s; cursor: grab; user-select: none;
+    }
+    .fc-stmt:active { cursor: grabbing; }
+    .fc-stmt.ranked-1 { border-color: var(--amber); background: rgba(184,134,11,0.12); }
+    .fc-stmt.ranked-2 { border-color: rgba(184,134,11,0.5); background: rgba(184,134,11,0.06); }
+    .fc-stmt.ranked-3 { border-color: rgba(184,134,11,0.25); }
+    .fc-rank-badge {
+      flex-shrink: 0; width: 28px; height: 28px;
+      border: 1px solid var(--amber-border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.78rem; color: var(--text-dim);
+      transition: all 0.2s;
+    }
+    .fc-stmt.ranked-1 .fc-rank-badge { background: var(--amber); color: #000; border-color: var(--amber); }
+    .fc-stmt.ranked-2 .fc-rank-badge { background: var(--amber-dim); color: var(--amber-light); border-color: var(--amber); }
+    .fc-stmt.ranked-3 .fc-rank-badge { color: var(--text-dim); }
+    .fc-stmt-text { font-size: 0.88rem; color: var(--text); line-height: 1.6; }
+    .fc-instructions {
+      font-size: 0.78rem; color: var(--text-dim); letter-spacing: 0.5px;
+      margin-bottom: 1.4rem; padding: 0.8rem 1rem;
+      border: 1px solid var(--amber-border); background: var(--amber-dim);
+    }
+
+    /* ── RESULTS ── */
+    .results-header { margin-bottom: 2.4rem; }
+    .results-header h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 400; letter-spacing: 4px; text-transform: uppercase;
+      color: var(--text); margin-bottom: 0.6rem;
+    }
+    .results-date { font-size: 0.72rem; color: var(--text-dim); letter-spacing: 2px; text-transform: uppercase; }
+
+    .domain-section { margin-bottom: 3rem; }
+    .domain-section-label {
+      font-size: 0.72rem; letter-spacing: 3px; text-transform: uppercase;
+      color: var(--text-dim); margin-bottom: 1.4rem;
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .domain-section-label::after { content: ''; flex: 1; height: 1px; background: var(--amber-border); }
+
+    .domain-card {
+      background: var(--bg-panel); border: 1px solid var(--amber-border);
+      padding: 1.4rem 1.6rem; margin-bottom: 1px;
+    }
+    .domain-card-header {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      margin-bottom: 0.9rem;
+    }
+    .domain-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem; font-weight: 400; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--text);
+    }
+    .domain-code {
+      font-size: 0.72rem; letter-spacing: 1px; color: var(--amber);
+      background: var(--amber-dim); border: 1px solid var(--amber-border);
+      padding: 0.2rem 0.6rem;
+    }
+    .bar-wrap { position: relative; height: 4px; background: rgba(232,226,217,0.08); margin-bottom: 0.6rem; }
+    .bar-fill {
+      position: absolute; left: 0; top: 0; height: 100%;
+      background: linear-gradient(90deg, var(--amber), var(--amber-light));
+      transition: width 0.8s cubic-bezier(0.16,1,0.3,1);
+    }
+    .bar-fill.low  { background: linear-gradient(90deg, #8a6a3a, #b08040); }
+    .bar-fill.high { background: linear-gradient(90deg, var(--amber), var(--amber-light)); }
+    .domain-meta {
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.72rem; color: var(--text-dim); letter-spacing: 1px;
+      margin-bottom: 1rem;
+    }
+    .score-pct { font-size: 0.85rem; color: var(--amber-light); }
+    .band-label { text-transform: uppercase; letter-spacing: 1px; }
+    .domain-narrative { font-size: 0.85rem; color: var(--text-mid); line-height: 1.75; }
+
+    .facet-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 0.5rem; margin-top: 1rem;
+    }
+    .facet-row { display: flex; flex-direction: column; gap: 0.25rem; }
+    .facet-label-row {
+      display: flex; justify-content: space-between;
+      font-size: 0.68rem; color: var(--text-dim); letter-spacing: 0.5px;
+    }
+    .facet-name { color: var(--text-dim); }
+    .facet-score { color: var(--amber); }
+    .facet-bar { height: 2px; background: rgba(232,226,217,0.08); }
+    .facet-bar-fill { height: 100%; background: rgba(184,134,11,0.5); transition: width 0.7s ease; }
+
+    /* Radar chart */
+    .radar-wrap { display: flex; justify-content: center; margin: 2rem 0; }
+    .radar-svg { max-width: 320px; width: 100%; }
+
+    /* Integration card */
+    .integration-card {
+      background: var(--bg-panel-2); border: 1px solid var(--amber-border);
+      padding: 1.6rem; margin-bottom: 2rem;
+    }
+    .integration-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem; font-weight: 400; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--text); margin-bottom: 1rem;
+    }
+    .integration-body { font-size: 0.85rem; color: var(--text-mid); line-height: 1.8; }
+
+    /* Score table */
+    .score-table { width: 100%; border-collapse: collapse; margin-bottom: 1.4rem; font-size: 0.8rem; }
+    .score-table th {
+      text-align: left; font-size: 0.68rem; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--text-dim);
+      padding: 0.6rem 0.8rem; border-bottom: 1px solid var(--amber-border);
+    }
+    .score-table td { padding: 0.6rem 0.8rem; border-bottom: 1px solid rgba(184,134,11,0.08); }
+    .score-table tr:last-child td { border-bottom: none; }
+    .score-table .td-score { color: var(--amber-light); font-size: 0.9rem; }
+    .score-table .td-band { color: var(--text-dim); font-size: 0.72rem; letter-spacing: 1px; text-transform: uppercase; }
+
+    /* ── TRANSITIONS ── */
+    .fade-in { animation: fadeIn 0.35s ease forwards; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* ── TOAST ── */
+    .toast {
+      position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%);
+      background: var(--bg-panel-2); border: 1px solid var(--amber-border);
+      padding: 0.7rem 1.4rem; font-size: 0.78rem; letter-spacing: 1px;
+      color: var(--text-dim); z-index: 999; opacity: 0; pointer-events: none;
+      transition: opacity 0.3s;
+    }
+    .toast.show { opacity: 1; pointer-events: auto; }
+
+    /* ── DIVIDER ── */
+    .divider { border: none; border-top: 1px solid var(--amber-border); margin: 2rem 0; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      .meta-grid { grid-template-columns: 1fr; }
+      .facet-grid { grid-template-columns: 1fr; }
+      .likert-label .lname { font-size: 0.55rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="bg-grid" aria-hidden="true"></div>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/index.html" class="nav-logo">SeldomSought</a>
+    <a href="/projects.html" class="nav-back">← Projects</a>
+  </div>
+</nav>
+
+<div class="progress-bar-wrap"><div class="progress-bar-fill" id="progressFill"></div></div>
+
+<div class="wrapper">
+
+  <!-- ── SCREEN 0: WELCOME ── -->
+  <div class="screen active" id="screen-welcome">
+    <div class="fade-in">
+      <p class="welcome-eyebrow">SeldomSought / Projects / Psychometric Battery</p>
+      <h1 class="welcome-title">Know Thyself</h1>
+      <p class="welcome-subtitle">
+        A research-grade personality assessment built on the HEXACO six-factor model,
+        supplemented by forced-choice blocks resistant to social-desirability bias.
+        Raw scores, facet-level detail, and a plain-language profile at the end.
+      </p>
+
+      <div class="meta-grid">
+        <div class="meta-cell">
+          <div class="meta-label">Modules</div>
+          <div class="meta-value">2</div>
+        </div>
+        <div class="meta-cell">
+          <div class="meta-label">Items</div>
+          <div class="meta-value">106</div>
+        </div>
+        <div class="meta-cell">
+          <div class="meta-label">Est. time</div>
+          <div class="meta-value">20–25 min</div>
+        </div>
+      </div>
+
+      <ul class="module-list">
+        <li>
+          <span class="module-num">1</span>
+          <div>
+            <strong style="color:var(--text)">HEXACO Personality Profile</strong> — 96 items across 6 domains and 24 facets.
+            Rate how accurately each statement describes you on a 1–5 scale.
+          </div>
+        </li>
+        <li>
+          <span class="module-num">2</span>
+          <div>
+            <strong style="color:var(--text)">Forced-Choice Ranking</strong> — 10 triplets.
+            Rank three statements from most to least like you.
+            Designed to detect and correct for acquiescence and impression management.
+          </div>
+        </li>
+      </ul>
+
+      <div class="consent-note">
+        For personal use only. No data leaves your browser — all scoring happens locally and nothing is transmitted or stored externally.
+        Results are shown once and not saved. Take notes if you want to keep them.
+      </div>
+
+      <div class="btn-row">
+        <button class="btn btn-primary" onclick="startAssessment()">Begin Assessment →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SCREEN 1: HEXACO INSTRUCTIONS ── -->
+  <div class="screen" id="screen-hexaco-intro">
+    <div class="section-header">
+      <p class="section-eyebrow">Module 1 of 2</p>
+      <h2 class="section-title">Personality Profile</h2>
+      <p class="section-desc">HEXACO Six-Factor Model — Short Form (96 items)</p>
+    </div>
+    <p style="font-size:0.88rem;color:var(--text-mid);line-height:1.8;margin-bottom:1.4rem;">
+      You will see 96 statements presented 8 at a time (12 pages). For each statement, select
+      how accurately it describes you using the 5-point scale below.
+    </p>
+    <div class="meta-grid" style="margin-bottom:1.8rem;">
+      <div class="meta-cell"><div class="meta-label">1</div><div class="meta-value" style="font-size:0.8rem;">Strongly<br>Disagree</div></div>
+      <div class="meta-cell"><div class="meta-label">2</div><div class="meta-value" style="font-size:0.8rem;">Disagree</div></div>
+      <div class="meta-cell"><div class="meta-label">3</div><div class="meta-value" style="font-size:0.8rem;">Neither</div></div>
+      <div class="meta-cell"><div class="meta-label">4</div><div class="meta-value" style="font-size:0.8rem;">Agree</div></div>
+      <div class="meta-cell"><div class="meta-label">5</div><div class="meta-value" style="font-size:0.8rem;">Strongly<br>Agree</div></div>
+    </div>
+    <p style="font-size:0.8rem;color:var(--text-dim);margin-bottom:2rem;line-height:1.7;">
+      Answer based on how you actually are, not how you'd like to be. There are no right or wrong answers.
+      Your first instinct is usually best — don't overthink.
+    </p>
+    <button class="btn btn-primary" onclick="goToHexacoPage(0)">Start →</button>
+  </div>
+
+  <!-- ── SCREEN 2: HEXACO ITEMS (dynamic) ── -->
+  <div class="screen" id="screen-hexaco-items">
+    <div id="hexaco-page-content"></div>
+    <div class="btn-row" style="margin-top:1.6rem;">
+      <button class="btn btn-ghost btn-sm" id="btnHexacoPrev" onclick="hexacoPrevPage()">← Back</button>
+      <button class="btn btn-primary" id="btnHexacoNext" onclick="hexacoNextPage()">Next →</button>
+    </div>
+  </div>
+
+  <!-- ── SCREEN 3: FC INSTRUCTIONS ── -->
+  <div class="screen" id="screen-fc-intro">
+    <div class="section-header">
+      <p class="section-eyebrow">Module 2 of 2</p>
+      <h2 class="section-title">Forced Choice</h2>
+      <p class="section-desc">Thurstonian Ranking Blocks — 10 triplets</p>
+    </div>
+    <p style="font-size:0.88rem;color:var(--text-mid);line-height:1.8;margin-bottom:1.4rem;">
+      Each block shows three statements. Click the statements in order:
+    </p>
+    <ul style="font-size:0.85rem;color:var(--text-mid);list-style:none;margin-bottom:1.8rem;">
+      <li style="padding:0.5rem 0;border-bottom:1px solid rgba(184,134,11,0.1);">
+        <span style="color:var(--amber)">1st click</span> — the statement most like you
+      </li>
+      <li style="padding:0.5rem 0;border-bottom:1px solid rgba(184,134,11,0.1);">
+        <span style="color:var(--amber)">2nd click</span> — the statement somewhat like you
+      </li>
+      <li style="padding:0.5rem 0;">
+        <span style="color:var(--amber)">3rd click</span> — the statement least like you
+      </li>
+    </ul>
+    <p style="font-size:0.8rem;color:var(--text-dim);margin-bottom:2rem;line-height:1.7;">
+      You must rank all three before proceeding. To change a ranking, click the statement again
+      to reset the block.
+    </p>
+    <button class="btn btn-primary" onclick="goToFCBlock(0)">Start →</button>
+  </div>
+
+  <!-- ── SCREEN 4: FC ITEMS (dynamic) ── -->
+  <div class="screen" id="screen-fc-items">
+    <div id="fc-block-content"></div>
+    <div class="btn-row" style="margin-top:1.6rem;">
+      <button class="btn btn-ghost btn-sm" id="btnFCPrev" onclick="fcPrevBlock()">← Back</button>
+      <button class="btn btn-primary" id="btnFCNext" onclick="fcNextBlock()" disabled>Next →</button>
+    </div>
+  </div>
+
+  <!-- ── SCREEN 5: CALCULATING ── -->
+  <div class="screen" id="screen-calculating">
+    <div style="min-height:60vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;">
+      <p class="section-eyebrow" style="margin-bottom:1.2rem;">Processing</p>
+      <h2 style="font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:400;letter-spacing:4px;text-transform:uppercase;color:var(--text);margin-bottom:1rem;">
+        Scoring Your Responses
+      </h2>
+      <p style="font-size:0.82rem;color:var(--text-dim);letter-spacing:1px;" id="calcStatus">Calibrating domains...</p>
+    </div>
+  </div>
+
+  <!-- ── SCREEN 6: RESULTS ── -->
+  <div class="screen" id="screen-results">
+    <div id="results-content"></div>
+  </div>
+
+</div><!-- /wrapper -->
+
+<div class="toast" id="toast"></div>
+
+<script>
+'use strict';
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// DATA — HEXACO SHORT FORM (96 items)
+// ═══════════════════════════════════════════════════════════════════════════════
+const ITEMS = [
+  {id:'H1_01',d:'H',f:'H1',t:'I say what I genuinely think, even when my opinion isn\'t what others want to hear.',k:'std'},
+  {id:'H1_02',d:'H',f:'H1',t:'I adjust my expressed opinions depending on who I\'m talking to.',k:'rev'},
+  {id:'H1_03',d:'H',f:'H1',t:'I present myself to others exactly as I am, without embellishment.',k:'std'},
+  {id:'H1_04',d:'H',f:'H1',t:'I sometimes tell people what they want to hear rather than what I actually believe.',k:'rev'},
+  {id:'H2_01',d:'H',f:'H2',t:'I would not take credit for something I didn\'t do, even if no one would find out.',k:'std'},
+  {id:'H2_02',d:'H',f:'H2',t:'I occasionally bend the rules when it benefits me and the risk of getting caught is low.',k:'rev'},
+  {id:'H2_03',d:'H',f:'H2',t:'I hold myself to the same standards I expect of others.',k:'std'},
+  {id:'H2_04',d:'H',f:'H2',t:'If a cashier gave me too much change, I would likely keep it.',k:'rev'},
+  {id:'H3_01',d:'H',f:'H3',t:'I don\'t place much value on owning expensive or luxurious things.',k:'std'},
+  {id:'H3_02',d:'H',f:'H3',t:'I would be willing to compromise my ethics if the financial reward were large enough.',k:'rev'},
+  {id:'H3_03',d:'H',f:'H3',t:'Being wealthy is not something I think about much.',k:'std'},
+  {id:'H3_04',d:'H',f:'H3',t:'I sometimes feel envious of people who have more material things than I do.',k:'rev'},
+  {id:'H4_01',d:'H',f:'H4',t:'I don\'t think of myself as particularly special compared to other people.',k:'std'},
+  {id:'H4_02',d:'H',f:'H4',t:'I deserve more recognition than people typically give me.',k:'rev'},
+  {id:'H4_03',d:'H',f:'H4',t:'I am uncomfortable when others lavish me with excessive praise.',k:'std'},
+  {id:'H4_04',d:'H',f:'H4',t:'People who don\'t know me well would probably be impressed by my credentials.',k:'rev'},
+  {id:'E1_01',d:'E',f:'E1',t:'The possibility of physical harm is enough to deter me from risky activities.',k:'std'},
+  {id:'E1_02',d:'E',f:'E1',t:'I rarely worry about getting hurt in dangerous situations.',k:'rev'},
+  {id:'E1_03',d:'E',f:'E1',t:'I am more cautious about personal safety than most people I know.',k:'std'},
+  {id:'E1_04',d:'E',f:'E1',t:'Extreme sports or high-risk activities appeal to me.',k:'rev'},
+  {id:'E2_01',d:'E',f:'E2',t:'I worry a great deal about things that might go wrong in the future.',k:'std'},
+  {id:'E2_02',d:'E',f:'E2',t:'I tend not to stress about problems until they actually occur.',k:'rev'},
+  {id:'E2_03',d:'E',f:'E2',t:'I feel nervous or uneasy even when things seem to be going fine.',k:'std'},
+  {id:'E2_04',d:'E',f:'E2',t:'I rarely find myself lying awake at night because of worry.',k:'rev'},
+  {id:'E3_01',d:'E',f:'E3',t:'When I\'m under a lot of pressure, I need emotional support from others.',k:'std'},
+  {id:'E3_02',d:'E',f:'E3',t:'I cope with stress just as well when I\'m alone as when others are around.',k:'rev'},
+  {id:'E3_03',d:'E',f:'E3',t:'I find it hard to deal with difficult situations without someone to lean on.',k:'std'},
+  {id:'E3_04',d:'E',f:'E3',t:'I rarely need reassurance when facing personal challenges.',k:'rev'},
+  {id:'E4_01',d:'E',f:'E4',t:'I feel strong emotional connections to the people I care about.',k:'std'},
+  {id:'E4_02',d:'E',f:'E4',t:'I tend not to get emotionally invested in other people\'s problems.',k:'rev'},
+  {id:'E4_03',d:'E',f:'E4',t:'The welfare of my close friends and family affects me deeply.',k:'std'},
+  {id:'E4_04',d:'E',f:'E4',t:'I don\'t typically feel moved by others\' distress or sadness.',k:'rev'},
+  {id:'X1_01',d:'X',f:'X1',t:'I feel comfortable and confident in most social situations.',k:'std'},
+  {id:'X1_02',d:'X',f:'X1',t:'I often feel that others are judging me negatively in social settings.',k:'rev'},
+  {id:'X1_03',d:'X',f:'X1',t:'I generally like the person I am when I\'m interacting with others.',k:'std'},
+  {id:'X1_04',d:'X',f:'X1',t:'I am sometimes embarrassed by my own behavior in group settings.',k:'rev'},
+  {id:'X2_01',d:'X',f:'X2',t:'I am comfortable speaking up in front of large groups of people.',k:'std'},
+  {id:'X2_02',d:'X',f:'X2',t:'I avoid situations where I might be the center of attention.',k:'rev'},
+  {id:'X2_03',d:'X',f:'X2',t:'Meeting new people in social situations comes easily to me.',k:'std'},
+  {id:'X2_04',d:'X',f:'X2',t:'I feel awkward and self-conscious when I have to lead a group discussion.',k:'rev'},
+  {id:'X3_01',d:'X',f:'X3',t:'I enjoy spending time in social gatherings and group activities.',k:'std'},
+  {id:'X3_02',d:'X',f:'X3',t:'I find prolonged social interaction draining.',k:'rev'},
+  {id:'X3_03',d:'X',f:'X3',t:'I actively seek out opportunities to be around other people.',k:'std'},
+  {id:'X3_04',d:'X',f:'X3',t:'I prefer to spend my free time alone rather than with others.',k:'rev'},
+  {id:'X4_01',d:'X',f:'X4',t:'I tend to have an enthusiastic and upbeat attitude most of the time.',k:'std'},
+  {id:'X4_02',d:'X',f:'X4',t:'People rarely describe me as particularly energetic or animated.',k:'rev'},
+  {id:'X4_03',d:'X',f:'X4',t:'I am often the person who keeps a group\'s energy and spirits up.',k:'std'},
+  {id:'X4_04',d:'X',f:'X4',t:'My mood tends to be fairly flat and subdued on most days.',k:'rev'},
+  {id:'A1_01',d:'A',f:'A1',t:'I am willing to forgive people who have treated me badly if they apologize sincerely.',k:'std'},
+  {id:'A1_02',d:'A',f:'A1',t:'I hold onto resentment toward people who have wronged me.',k:'rev'},
+  {id:'A1_03',d:'A',f:'A1',t:'Once someone has apologized genuinely, I let go of what they did.',k:'std'},
+  {id:'A1_04',d:'A',f:'A1',t:'I find it difficult to move past feelings of anger toward someone who hurt me.',k:'rev'},
+  {id:'A2_01',d:'A',f:'A2',t:'I try to be gentle when criticizing others, even when they need honest feedback.',k:'std'},
+  {id:'A2_02',d:'A',f:'A2',t:'I am comfortable giving people blunt, unfiltered feedback.',k:'rev'},
+  {id:'A2_03',d:'A',f:'A2',t:'I choose my words carefully when discussing sensitive topics with others.',k:'std'},
+  {id:'A2_04',d:'A',f:'A2',t:'I can be quite harsh in my assessments of others when they have made mistakes.',k:'rev'},
+  {id:'A3_01',d:'A',f:'A3',t:'I am open to changing my mind when someone presents a compelling argument.',k:'std'},
+  {id:'A3_02',d:'A',f:'A3',t:'I find it frustrating when people challenge my opinions and beliefs.',k:'rev'},
+  {id:'A3_03',d:'A',f:'A3',t:'I try to see merit in different perspectives, even ones I disagree with.',k:'std'},
+  {id:'A3_04',d:'A',f:'A3',t:'I tend to stick firmly to my position once I have formed an opinion.',k:'rev'},
+  {id:'A4_01',d:'A',f:'A4',t:'I stay calm and composed when dealing with slow or frustrating processes.',k:'std'},
+  {id:'A4_02',d:'A',f:'A4',t:'I get irritated quickly when people are inefficient or make repeated mistakes.',k:'rev'},
+  {id:'A4_03',d:'A',f:'A4',t:'I handle delays and setbacks without losing my temper.',k:'std'},
+  {id:'A4_04',d:'A',f:'A4',t:'I find myself becoming annoyed when others don\'t do things correctly.',k:'rev'},
+  {id:'C1_01',d:'C',f:'C1',t:'I keep my belongings and workspace tidy and well-organized.',k:'std'},
+  {id:'C1_02',d:'C',f:'C1',t:'Clutter and disorganization don\'t particularly bother me.',k:'rev'},
+  {id:'C1_03',d:'C',f:'C1',t:'I prefer to have a clear system for managing my tasks and responsibilities.',k:'std'},
+  {id:'C1_04',d:'C',f:'C1',t:'My personal space is often messy or disorganized.',k:'rev'},
+  {id:'C2_01',d:'C',f:'C2',t:'I work hard and consistently on tasks until they are completed.',k:'std'},
+  {id:'C2_02',d:'C',f:'C2',t:'I often lose momentum or interest in tasks before finishing them.',k:'rev'},
+  {id:'C2_03',d:'C',f:'C2',t:'I put in significant effort even when no one is watching.',k:'std'},
+  {id:'C2_04',d:'C',f:'C2',t:'I sometimes take shortcuts rather than doing things thoroughly.',k:'rev'},
+  {id:'C3_01',d:'C',f:'C3',t:'I have high standards for the quality of my own work.',k:'std'},
+  {id:'C3_02',d:'C',f:'C3',t:'I am generally satisfied with work that is good enough, even if it\'s not perfect.',k:'rev'},
+  {id:'C3_03',d:'C',f:'C3',t:'I notice and am bothered by small mistakes or imperfections in my work.',k:'std'},
+  {id:'C3_04',d:'C',f:'C3',t:'I don\'t often go back to refine or polish work once I\'ve completed it.',k:'rev'},
+  {id:'C4_01',d:'C',f:'C4',t:'I think carefully about the consequences of my decisions before acting.',k:'std'},
+  {id:'C4_02',d:'C',f:'C4',t:'I sometimes act impulsively without thinking through the implications.',k:'rev'},
+  {id:'C4_03',d:'C',f:'C4',t:'I consider long-term outcomes, not just immediate benefits, when making choices.',k:'std'},
+  {id:'C4_04',d:'C',f:'C4',t:'I tend to make decisions quickly, often without fully thinking them through.',k:'rev'},
+  {id:'O1_01',d:'O',f:'O1',t:'I am moved or affected by beautiful music, visual art, or poetry.',k:'std'},
+  {id:'O1_02',d:'O',f:'O1',t:'I don\'t particularly notice or care about the aesthetic quality of my surroundings.',k:'rev'},
+  {id:'O1_03',d:'O',f:'O1',t:'I find beauty in everyday things that others often overlook.',k:'std'},
+  {id:'O1_04',d:'O',f:'O1',t:'Art, music, and literature hold little interest for me.',k:'rev'},
+  {id:'O2_01',d:'O',f:'O2',t:'I enjoy reading or learning about topics that have nothing to do with my daily life.',k:'std'},
+  {id:'O2_02',d:'O',f:'O2',t:'I am content with the knowledge I already have and rarely seek out new ideas.',k:'rev'},
+  {id:'O2_03',d:'O',f:'O2',t:'I find myself wondering about how things work, even when the topic isn\'t practical.',k:'std'},
+  {id:'O2_04',d:'O',f:'O2',t:'I rarely seek out information beyond what\'s necessary for my immediate tasks.',k:'rev'},
+  {id:'O3_01',d:'O',f:'O3',t:'I often come up with original ideas or novel approaches to problems.',k:'std'},
+  {id:'O3_02',d:'O',f:'O3',t:'I tend to stick to conventional methods rather than inventing new ones.',k:'rev'},
+  {id:'O3_03',d:'O',f:'O3',t:'I find creative expression or experimentation genuinely satisfying.',k:'std'},
+  {id:'O3_04',d:'O',f:'O3',t:'People don\'t typically describe me as imaginative or creative.',k:'rev'},
+  {id:'O4_01',d:'O',f:'O4',t:'I find myself drawn to ideas and people that don\'t fit conventional molds.',k:'std'},
+  {id:'O4_02',d:'O',f:'O4',t:'I prefer to follow established norms rather than challenge them.',k:'rev'},
+  {id:'O4_03',d:'O',f:'O4',t:'I question accepted assumptions and conventional wisdom regularly.',k:'std'},
+  {id:'O4_04',d:'O',f:'O4',t:'I feel more comfortable with familiar, traditional ways of doing things.',k:'rev'}
+];
+
+// FC blocks (10 representative blocks)
+const FC_BLOCKS = [
+  {id:'B001',A:{d:'H',t:'I stay honest about my opinions even when it costs me social approval.'},B:{d:'E',t:'I feel anxious about negative outcomes even when things are currently going smoothly.'},C:{d:'X',t:'I am at ease introducing myself to strangers in social situations.'}},
+  {id:'B011',A:{d:'H',t:'I hold myself to the same ethical standards I expect from others.'},B:{d:'A',t:'I remain patient with people who are slow or make repeated mistakes.'},C:{d:'C',t:'I keep my living and working spaces neat and organized.'}},
+  {id:'B021',A:{d:'E',t:'I need emotional reassurance from others when things get difficult.'},B:{d:'X',t:'I often find myself seeking out the company of others in my free time.'},C:{d:'O',t:'I am drawn to philosophical questions and abstract ideas.'}},
+  {id:'B031',A:{d:'H',t:'I present myself authentically without managing others\' impressions of me.'},B:{d:'E',t:'I feel deep concern for the wellbeing of people close to me.'},C:{d:'A',t:'I maintain my composure even when others are slow or inefficient.'}},
+  {id:'B041',A:{d:'H',t:'I\'m transparent about who I am and don\'t play a different role for different audiences.'},B:{d:'E',t:'I experience worry and anxiety more than most people I know.'},C:{d:'C',t:'I follow through on commitments even when no one would notice if I didn\'t.'}},
+  {id:'B051',A:{d:'X',t:'I feel energized and enthusiastic in most areas of my life.'},B:{d:'A',t:'I would rather forgive than carry a grudge.'},C:{d:'O',t:'I actively seek out creative and novel approaches to problems.'}},
+  {id:'B061',A:{d:'H',t:'Avoiding acquisitiveness is something I feel genuine about, not just performative.'},B:{d:'X',t:'I am comfortable being singled out or called upon in group settings.'},C:{d:'O',t:'I appreciate beauty in art, music, and nature more than most.'}},
+  {id:'B071',A:{d:'E',t:'I am more aware of and cautious about physical risk than most people I know.'},B:{d:'A',t:'I soften my language when I know what I need to say might be painful.'},C:{d:'C',t:'I plan carefully and rarely act on impulse when it matters.'}},
+  {id:'B081',A:{d:'H',t:'I don\'t consider myself particularly important or impressive compared to others.'},B:{d:'A',t:'I update my views when someone gives me a strong counterargument.'},C:{d:'O',t:'I am drawn to unconventional people, art, and ways of living.'}},
+  {id:'B091',A:{d:'E',t:'I am highly emotionally connected to the people who matter most to me.'},B:{d:'X',t:'I generally feel good about myself in social situations.'},C:{d:'C',t:'I hold my work to a high standard and notice when quality slips.'}}
+];
+
+const DOMAIN_META = {
+  H: { name: 'Honesty-Humility',  code: 'H', facets: ['H1','H2','H3','H4'], facetNames: ['Sincerity','Fairness','Greed-Avoidance','Modesty'] },
+  E: { name: 'Emotionality',      code: 'E', facets: ['E1','E2','E3','E4'], facetNames: ['Fearfulness','Anxiety','Dependence','Sentimentality'] },
+  X: { name: 'eXtraversion',      code: 'X', facets: ['X1','X2','X3','X4'], facetNames: ['Social Self-Est.','Social Boldness','Sociability','Liveliness'] },
+  A: { name: 'Agreeableness',     code: 'A', facets: ['A1','A2','A3','A4'], facetNames: ['Forgivingness','Gentleness','Flexibility','Patience'] },
+  C: { name: 'Conscientiousness', code: 'C', facets: ['C1','C2','C3','C4'], facetNames: ['Organization','Diligence','Perfectionism','Prudence'] },
+  O: { name: 'Openness',          code: 'O', facets: ['O1','O2','O3','O4'], facetNames: ['Aesthetic Apprec.','Inquisitiveness','Creativity','Unconventionality'] }
+};
+
+const DOMAIN_ORDER = ['H','E','X','A','C','O'];
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// STATE
+// ═══════════════════════════════════════════════════════════════════════════════
+const PAGE_SIZE = 8;
+const TOTAL_HEXACO_PAGES = Math.ceil(ITEMS.length / PAGE_SIZE);
+let currentHexacoPage = 0;
+let currentFCBlock    = 0;
+
+const responses  = {}; // itemId → raw value 1-5
+const fcRankings = {}; // blockId → {A:rank,B:rank,C:rank}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// NAVIGATION
+// ═══════════════════════════════════════════════════════════════════════════════
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  const el = document.getElementById('screen-' + id);
+  el.classList.add('active');
+  el.querySelector('.fade-in') && (el.querySelector('.fade-in').style.animation = 'none', requestAnimationFrame(() => { el.querySelector('.fade-in').style.animation = ''; }));
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  updateProgress();
+}
+
+function updateProgress() {
+  const answeredItems = Object.keys(responses).length;
+  const rankedBlocks  = Object.keys(fcRankings).filter(k => fcRankings[k] && Object.keys(fcRankings[k]).length === 3).length;
+  const total = ITEMS.length + FC_BLOCKS.length;
+  const done  = answeredItems + rankedBlocks;
+  document.getElementById('progressFill').style.width = (done / total * 100) + '%';
+}
+
+function startAssessment() { showScreen('hexaco-intro'); }
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// HEXACO PAGING
+// ═══════════════════════════════════════════════════════════════════════════════
+function goToHexacoPage(pageIdx) {
+  currentHexacoPage = pageIdx;
+  const start = pageIdx * PAGE_SIZE;
+  const slice = ITEMS.slice(start, start + PAGE_SIZE);
+  const container = document.getElementById('hexaco-page-content');
+
+  let html = `<div class="section-header">
+    <p class="section-eyebrow">Module 1 — Personality Profile</p>
+    <h2 class="section-title">HEXACO</h2>
+  </div>
+  <p class="page-counter">Page <span>${pageIdx + 1}</span> of <span>${TOTAL_HEXACO_PAGES}</span> &nbsp;·&nbsp; Items ${start + 1}–${Math.min(start + PAGE_SIZE, ITEMS.length)} of ${ITEMS.length}</p>`;
+
+  slice.forEach(item => {
+    const saved = responses[item.id];
+    const labels = ['SD','D','N','A','SA'];
+    let opts = '';
+    for (let v = 1; v <= 5; v++) {
+      const checked = saved === v ? 'checked' : '';
+      opts += `<input type="radio" class="likert-opt" name="${item.id}" id="${item.id}_${v}" value="${v}" ${checked}>
+               <label class="likert-label" for="${item.id}_${v}">
+                 <span class="lval">${v}</span>
+                 <span class="lname">${labels[v-1]}</span>
+               </label>`;
+    }
+    html += `<div class="item-block ${saved ? 'answered' : ''}" id="block-${item.id}">
+      <div class="item-text">${item.t}</div>
+      <div class="likert-row">${opts}</div>
+    </div>`;
+  });
+
+  container.innerHTML = html;
+
+  // Attach listeners
+  slice.forEach(item => {
+    for (let v = 1; v <= 5; v++) {
+      const inp = document.getElementById(`${item.id}_${v}`);
+      if (inp) inp.addEventListener('change', () => {
+        responses[item.id] = v;
+        document.getElementById(`block-${item.id}`).classList.add('answered');
+        updateProgress();
+      });
+    }
+  });
+
+  document.getElementById('btnHexacoPrev').style.visibility = pageIdx === 0 ? 'hidden' : 'visible';
+  document.getElementById('btnHexacoNext').textContent = pageIdx === TOTAL_HEXACO_PAGES - 1 ? 'Continue to FC →' : 'Next →';
+
+  showScreen('hexaco-items');
+}
+
+function hexacoNextPage() {
+  const start = currentHexacoPage * PAGE_SIZE;
+  const slice = ITEMS.slice(start, start + PAGE_SIZE);
+  const unanswered = slice.filter(item => !responses[item.id]);
+
+  if (unanswered.length > 0) {
+    showToast(`Please answer all ${unanswered.length} remaining item${unanswered.length > 1 ? 's' : ''} before continuing.`);
+    // highlight unanswered
+    unanswered.forEach(item => {
+      const block = document.getElementById(`block-${item.id}`);
+      if (block) { block.style.borderColor = 'rgba(192,98,74,0.6)'; setTimeout(() => block.style.borderColor = '', 2000); }
+    });
+    return;
+  }
+
+  if (currentHexacoPage < TOTAL_HEXACO_PAGES - 1) {
+    goToHexacoPage(currentHexacoPage + 1);
+  } else {
+    showScreen('fc-intro');
+  }
+}
+
+function hexacoPrevPage() {
+  if (currentHexacoPage > 0) goToHexacoPage(currentHexacoPage - 1);
+  else showScreen('hexaco-intro');
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// FORCED CHOICE
+// ═══════════════════════════════════════════════════════════════════════════════
+function goToFCBlock(idx) {
+  currentFCBlock = idx;
+  const block = FC_BLOCKS[idx];
+  const saved = fcRankings[block.id] || {};
+  const container = document.getElementById('fc-block-content');
+
+  let html = `<div class="section-header">
+    <p class="section-eyebrow">Module 2 — Forced Choice</p>
+    <h2 class="section-title">Block ${idx + 1} of ${FC_BLOCKS.length}</h2>
+  </div>
+  <div class="fc-instructions">
+    Click statements in order: <strong style="color:var(--amber)">most like you → somewhat like you → least like you</strong>.
+    Click any ranked statement to reset the block.
+  </div>
+  <div class="fc-block">`;
+
+  ['A','B','C'].forEach(key => {
+    const rank = saved[key] || 0;
+    const rankClass = rank > 0 ? `ranked-${rank}` : '';
+    html += `<div class="fc-stmt ${rankClass}" id="fc-stmt-${block.id}-${key}" data-block="${block.id}" data-key="${key}" onclick="handleFCClick('${block.id}','${key}')">
+      <div class="fc-rank-badge">${rank || '—'}</div>
+      <div class="fc-stmt-text">${block[key].t}</div>
+    </div>`;
+  });
+
+  html += `</div>`;
+  container.innerHTML = html;
+
+  document.getElementById('btnFCPrev').style.visibility = idx === 0 ? 'hidden' : 'visible';
+  document.getElementById('btnFCNext').textContent = idx === FC_BLOCKS.length - 1 ? 'See Results →' : 'Next →';
+  updateFCNextBtn(block.id);
+
+  showScreen('fc-items');
+}
+
+function handleFCClick(blockId, key) {
+  const saved = fcRankings[blockId] || {};
+  // If already ranked, reset entire block
+  if (saved[key]) {
+    fcRankings[blockId] = {};
+    goToFCBlock(currentFCBlock);
+    return;
+  }
+  const usedRanks = Object.values(saved);
+  const nextRank = usedRanks.length + 1;
+  if (!fcRankings[blockId]) fcRankings[blockId] = {};
+  fcRankings[blockId][key] = nextRank;
+
+  // Update visual
+  const el = document.getElementById(`fc-stmt-${blockId}-${key}`);
+  el.className = `fc-stmt ranked-${nextRank}`;
+  el.querySelector('.fc-rank-badge').textContent = nextRank;
+
+  updateFCNextBtn(blockId);
+  updateProgress();
+}
+
+function updateFCNextBtn(blockId) {
+  const saved = fcRankings[blockId] || {};
+  const complete = Object.keys(saved).length === 3;
+  document.getElementById('btnFCNext').disabled = !complete;
+}
+
+function fcNextBlock() {
+  const block = FC_BLOCKS[currentFCBlock];
+  if (!fcRankings[block.id] || Object.keys(fcRankings[block.id]).length < 3) {
+    showToast('Please rank all three statements before continuing.');
+    return;
+  }
+  if (currentFCBlock < FC_BLOCKS.length - 1) {
+    goToFCBlock(currentFCBlock + 1);
+  } else {
+    calculateAndShow();
+  }
+}
+
+function fcPrevBlock() {
+  if (currentFCBlock > 0) goToFCBlock(currentFCBlock - 1);
+  else showScreen('fc-intro');
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// SCORING
+// ═══════════════════════════════════════════════════════════════════════════════
+function calculateAndShow() {
+  showScreen('calculating');
+  const statuses = ['Calibrating domains...','Scoring facets...','Integrating FC data...','Applying normative conversion...','Building profile...'];
+  let i = 0;
+  const statusEl = document.getElementById('calcStatus');
+  const iv = setInterval(() => {
+    statusEl.textContent = statuses[Math.min(i++, statuses.length - 1)];
+  }, 350);
+
+  setTimeout(() => {
+    clearInterval(iv);
+    const scores = scoreAll();
+    renderResults(scores);
+    showScreen('results');
+  }, 2200);
+}
+
+function scoreAll() {
+  // ── Likert domain & facet scores ──
+  const facetRaw = {}; // facet → [scored values]
+  ITEMS.forEach(item => {
+    const raw = responses[item.id] || 3; // default neutral if skipped
+    const val = item.k === 'rev' ? (6 - raw) : raw;
+    if (!facetRaw[item.f]) facetRaw[item.f] = [];
+    facetRaw[item.f].push(val);
+  });
+
+  const facetMean = {};
+  Object.keys(facetRaw).forEach(f => {
+    facetMean[f] = facetRaw[f].reduce((a,b) => a+b, 0) / facetRaw[f].length;
+  });
+
+  const domainLikert = {};
+  DOMAIN_ORDER.forEach(d => {
+    const meta = DOMAIN_META[d];
+    const vals = meta.facets.map(f => facetMean[f]);
+    domainLikert[d] = vals.reduce((a,b) => a+b, 0) / vals.length;
+  });
+
+  // ── FC domain scores (rank 1=+2, 2=+1, 3=+0) ──
+  const fcPoints = {H:0,E:0,X:0,A:0,C:0,O:0};
+  const fcCount  = {H:0,E:0,X:0,A:0,C:0,O:0};
+  FC_BLOCKS.forEach(block => {
+    const saved = fcRankings[block.id] || {};
+    ['A','B','C'].forEach(key => {
+      const rank = saved[key] || 2;
+      const pts  = rank === 1 ? 2 : rank === 2 ? 1 : 0;
+      const d    = block[key].d;
+      fcPoints[d] += pts;
+      fcCount[d]  += 1;
+    });
+  });
+  const fcMean = {};
+  DOMAIN_ORDER.forEach(d => { fcMean[d] = fcCount[d] > 0 ? fcPoints[d] / fcCount[d] : 1; });
+  // FC mean range 0-2, normalize to 1-5 scale
+  DOMAIN_ORDER.forEach(d => { fcMean[d] = (fcMean[d] / 2) * 4 + 1; });
+
+  // ── Composite: 70% Likert + 30% FC ──
+  const composite = {};
+  DOMAIN_ORDER.forEach(d => { composite[d] = 0.7 * domainLikert[d] + 0.3 * fcMean[d]; });
+
+  // ── Convert to T-score (M=3, SD≈0.8 on Likert → T=50±10) ──
+  const tScores = {};
+  const pctiles = {};
+  DOMAIN_ORDER.forEach(d => {
+    const z = (composite[d] - 3.0) / 0.75;
+    tScores[d] = Math.round(50 + 10 * z);
+    pctiles[d] = Math.round(normCDF(z) * 100);
+    pctiles[d] = Math.max(1, Math.min(99, pctiles[d]));
+  });
+
+  return { facetMean, domainLikert, composite, tScores, pctiles };
+}
+
+function normCDF(z) {
+  const a1=0.254829592,a2=-0.284496736,a3=1.421413741,a4=-1.453152027,a5=1.061405429,p=0.3275911;
+  const sign = z < 0 ? -1 : 1;
+  const x = Math.abs(z) / Math.sqrt(2);
+  const t = 1 / (1 + p * x);
+  const y = 1 - (((((a5*t + a4)*t) + a3)*t + a2)*t + a1) * t * Math.exp(-x*x);
+  return 0.5 * (1 + sign * y);
+}
+
+function getBand(pct) {
+  if (pct <= 7)  return 'Exceptionally Low';
+  if (pct <= 16) return 'Very Low';
+  if (pct <= 29) return 'Low Average';
+  if (pct <= 70) return 'Average';
+  if (pct <= 83) return 'High Average';
+  if (pct <= 92) return 'High';
+  return 'Exceptionally High';
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// NARRATIVES
+// ═══════════════════════════════════════════════════════════════════════════════
+const NARRATIVES = {
+  H: {
+    low:  'Your scores on Honesty-Humility suggest a pragmatic, self-interested orientation. You may be more willing than most to shade the truth or bend rules when the benefit is meaningful and detection is unlikely. Status, wealth, and prestige are motivating forces for you. This orientation can be a strength in competitive environments but increases risk in roles requiring unconditional ethical compliance.',
+    avg:  'Your Honesty-Humility sits in the average range — you hold fairly conventional ethical standards without being rigidly rule-bound. You weigh honesty and fairness against practical considerations, which is typical. You are neither markedly exploitative nor self-sacrificingly principled.',
+    high: 'You score high on Honesty-Humility, meaning you genuinely don\'t manipulate others, avoid exploiting loopholes for personal gain, and feel little pull toward status or material excess. You tend to present yourself authentically rather than managing impressions. This profile is associated with trustworthiness and low corruption risk in positions of authority.'
+  },
+  E: {
+    low:  'Low Emotionality indicates emotional resilience and low anxiety sensitivity. You don\'t need others\' emotional support to function under pressure, rarely feel fearful, and are unlikely to become overwrought when things go wrong. This is advantageous in high-stress roles. The tradeoff is that you may be less attuned to your own emotional signals and less empathically resonant in close relationships.',
+    avg:  'Your Emotionality is in the average range — you experience a typical level of worry, emotional sensitivity, and need for connection. You feel things without being overwhelmed by them, and lean on others in normal proportion during hard times.',
+    high: 'High Emotionality means you feel things intensely. Worry, anxiety about future outcomes, and a strong need for emotional closeness are features of your profile. You are deeply empathic and form strong attachments. In environments with chronic unpredictability or social isolation, this profile may amplify stress. In roles requiring relational depth, it is a significant strength.'
+  },
+  X: {
+    low:  'You score low on eXtraversion, suggesting a preference for solitude or small groups over large social gatherings, lower social confidence, and a less expressive, energetic style. Introverted people often have rich inner lives and perform best in roles that don\'t demand continuous high-volume social output. This is a descriptive profile, not a deficiency.',
+    avg:  'Your eXtraversion is average — you enjoy social interaction without requiring it to feel energized, feel reasonably comfortable in groups, and have a moderate degree of social boldness. You\'re neither notably shy nor notably gregarious.',
+    high: 'High eXtraversion marks you as genuinely energized by social contact, comfortable in the spotlight, socially confident, and typically described by others as lively and engaging. You are likely at your best in environments with high human contact and group activity. Environments requiring extended solitary work may feel depleting over time.'
+  },
+  A: {
+    low:  'Low Agreeableness in the HEXACO model reflects a tendency toward directness, competitiveness, and being hard to provoke but also hard to placate. You are less patient with inefficiency, less inclined toward forgiveness, and more comfortable with direct confrontation than most. In adversarial or high-accountability environments this can be effective; in relational or team-heavy contexts it may create friction.',
+    avg:  'Your Agreeableness sits in the average range. You balance directness with tact, can forgive without finding it trivial, and generally adapt your patience to the situation. You\'re neither markedly conflict-avoidant nor notably combative.',
+    high: 'High Agreeableness means you are patient, forgiving, gentle in criticism, and genuinely flexible when confronted with different views. You invest in relational harmony and find forgiveness natural. In team-intensive or people-facing roles this is a consistent asset. A potential watch-out: high-A individuals sometimes suppress accurate negative feedback or defer to group consensus when independent judgment would serve better.'
+  },
+  C: {
+    low:  'Low Conscientiousness indicates a more spontaneous, flexible, and less self-disciplined style. You may find sustained effort toward distant goals harder to maintain, prefer flexibility over structure, and be less bothered by imperfection. Roles with high variety, low routine, and creative latitude tend to suit this profile better than highly structured, compliance-heavy environments.',
+    avg:  'Your Conscientiousness is average — you meet your commitments without being rigid, maintain reasonable order, and set workable personal standards. You balance effort with flexibility in a typical way.',
+    high: 'High Conscientiousness marks you as organized, thorough, hardworking, and deliberate. You hold high standards for your own output, plan carefully, and follow through consistently. This profile is one of the strongest predictors of performance across occupational domains. A watch-out: in contexts requiring rapid iteration, tolerance of ambiguity, or "good enough" outputs, high Conscientiousness can become a source of friction or inefficiency.'
+  },
+  O: {
+    low:  'Low Openness suggests a practical, conventional, and concrete orientation. Abstract ideas, aesthetic experience, and unconventional thinking hold less appeal relative to most. You tend to prefer proven methods and familiar frameworks. This grounds you in practical reality and makes you reliable in execution-focused roles, though highly abstract or innovative environments may feel less natural.',
+    avg:  'Your Openness is average — you engage with new ideas and aesthetic experience in proportion without being either dogmatically conventional or restlessly experimental. You are curious within bounds and appreciate novelty without requiring it.',
+    high: 'High Openness marks you as intellectually curious, aesthetically sensitive, and drawn to ideas, creativity, and unconventional perspectives. You seek novelty, question assumptions, and find experimental or creative contexts stimulating. Roles requiring sustained creative output, novel problem-solving, or tolerance of ambiguity suit this profile well. Highly structured, rule-based, or routine environments are likely to feel constraining.'
+  }
+};
+
+function getNarrative(domain, pct) {
+  if (pct <= 29)       return NARRATIVES[domain].low;
+  else if (pct <= 70)  return NARRATIVES[domain].avg;
+  else                 return NARRATIVES[domain].high;
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// RENDER RESULTS
+// ═══════════════════════════════════════════════════════════════════════════════
+function renderResults(scores) {
+  const now = new Date();
+  const dateStr = now.toLocaleDateString('en-US', { year:'numeric', month:'long', day:'numeric' });
+
+  // Sort domains by percentile for integration narrative
+  const sorted = DOMAIN_ORDER.slice().sort((a,b) => scores.pctiles[b] - scores.pctiles[a]);
+  const top2   = sorted.slice(0,2);
+  const bot2   = sorted.slice(-2);
+
+  let html = `<div class="results-header fade-in">
+    <h1>Your Profile</h1>
+    <p class="results-date">Assessment completed ${dateStr}</p>
+  </div>`;
+
+  // Radar chart
+  html += buildRadarChart(scores.pctiles);
+
+  // Score summary table
+  html += `<div class="domain-section fade-in">
+    <p class="domain-section-label">Score Summary</p>
+    <table class="score-table">
+      <thead><tr>
+        <th>Domain</th><th>T-Score</th><th>Percentile</th><th>Band</th>
+      </tr></thead>
+      <tbody>`;
+  DOMAIN_ORDER.forEach(d => {
+    html += `<tr>
+      <td style="color:var(--text)">${DOMAIN_META[d].name}</td>
+      <td class="td-score">${scores.tScores[d]}</td>
+      <td class="td-score">${scores.pctiles[d]}th</td>
+      <td class="td-band">${getBand(scores.pctiles[d])}</td>
+    </tr>`;
+  });
+  html += `</tbody></table></div>`;
+
+  // Domain detail cards
+  html += `<div class="domain-section fade-in"><p class="domain-section-label">Domain Profiles</p>`;
+  DOMAIN_ORDER.forEach(d => {
+    const meta = DOMAIN_META[d];
+    const pct  = scores.pctiles[d];
+    const band = getBand(pct);
+    const barClass = pct >= 70 ? 'high' : pct <= 30 ? 'low' : '';
+
+    html += `<div class="domain-card">
+      <div class="domain-card-header">
+        <div class="domain-name">${meta.name}</div>
+        <span class="domain-code">${d}</span>
+      </div>
+      <div class="bar-wrap"><div class="bar-fill ${barClass}" style="width:0%" data-target="${pct}%"></div></div>
+      <div class="domain-meta">
+        <span class="score-pct">${pct}th percentile · T = ${scores.tScores[d]}</span>
+        <span class="band-label">${band}</span>
+      </div>
+      <p class="domain-narrative">${getNarrative(d, pct)}</p>
+      <div class="facet-grid">`;
+
+    meta.facets.forEach((f, i) => {
+      const fMean = scores.facetMean[f] || 3;
+      const fPct  = Math.round(Math.max(1, Math.min(99, normCDF((fMean - 3) / 0.75) * 100)));
+      html += `<div class="facet-row">
+        <div class="facet-label-row">
+          <span class="facet-name">${meta.facetNames[i]}</span>
+          <span class="facet-score">${fPct}th</span>
+        </div>
+        <div class="facet-bar"><div class="facet-bar-fill" style="width:${fPct}%"></div></div>
+      </div>`;
+    });
+
+    html += `</div></div>`;
+  });
+  html += `</div>`;
+
+  // Integration narrative
+  const topNames = top2.map(d => DOMAIN_META[d].name).join(' and ');
+  const botNames = bot2.map(d => DOMAIN_META[d].name).join(' and ');
+  const topPcts  = top2.map(d => scores.pctiles[d]);
+  const botPcts  = bot2.map(d => scores.pctiles[d]);
+
+  let integText = `Your highest-scoring domains are <strong style="color:var(--amber-light)">${topNames}</strong> `;
+  integText += `(${topPcts[0]}th and ${topPcts[1]}th percentile respectively). `;
+  integText += `Your lowest-scoring domains are <strong style="color:var(--text-mid)">${botNames}</strong> `;
+  integText += `(${botPcts[0]}th and ${botPcts[1]}th percentile). `;
+
+  // Profile shape description
+  const maxPct = Math.max(...DOMAIN_ORDER.map(d => scores.pctiles[d]));
+  const minPct = Math.min(...DOMAIN_ORDER.map(d => scores.pctiles[d]));
+  const range  = maxPct - minPct;
+
+  if (range < 20) {
+    integText += `The overall profile is notably flat — your domain scores are closely clustered, suggesting a balanced and consistent personality expression across contexts. Profiles of this shape are less common and may indicate genuine breadth, or may warrant a follow-up with a longer-form battery to resolve facet-level variation that domain composites obscure.`;
+  } else if (range > 50) {
+    integText += `The profile is highly differentiated — you express markedly different levels across the six domains. This kind of pronounced shape is common in individuals with strong, stable self-concepts and clear personal priorities. It also means your behavior will vary substantially across contexts that activate different domain demands.`;
+  } else {
+    integText += `The profile shows moderate differentiation — meaningful variation across domains without extreme spikes. This is the most common profile shape and suggests adaptive flexibility paired with some stable personality anchors.`;
+  }
+
+  html += `<div class="integration-card fade-in">
+    <h3 class="integration-title">Profile Integration</h3>
+    <p class="integration-body">${integText}</p>
+  </div>`;
+
+  // Limitations
+  html += `<div style="font-size:0.75rem;color:var(--text-dim);line-height:1.8;padding:1.2rem 1.4rem;border:1px solid rgba(184,134,11,0.1);margin-bottom:2rem;">
+    <strong style="color:var(--text-dim);letter-spacing:1px;text-transform:uppercase;font-size:0.68rem;">Limitations</strong><br>
+    These scores are derived from a self-report short-form battery without normative calibration on a representative sample. Percentile ranks are approximations based on standard HEXACO population parameters and should not be treated as actuarial. This assessment is for personal reflection only — not for clinical diagnosis, hiring decisions, or medical purposes. Scores can change over time and across life circumstances.
+  </div>`;
+
+  // Restart
+  html += `<div class="btn-row">
+    <button class="btn btn-ghost" onclick="restartAssessment()">Retake Assessment</button>
+    <a href="/projects.html" class="btn btn-ghost">← Back to Projects</a>
+  </div>`;
+
+  document.getElementById('results-content').innerHTML = html;
+
+  // Animate bars after render
+  requestAnimationFrame(() => {
+    document.querySelectorAll('.bar-fill[data-target]').forEach(el => {
+      setTimeout(() => el.style.width = el.dataset.target, 100);
+    });
+  });
+}
+
+function buildRadarChart(pctiles) {
+  const cx = 160, cy = 160, r = 110;
+  const labels = DOMAIN_ORDER.map(d => DOMAIN_META[d].name.split('-')[0].toUpperCase());
+  const n = 6;
+  const step = (2 * Math.PI) / n;
+  const offset = -Math.PI / 2;
+
+  // Grid rings
+  let rings = '';
+  [0.25, 0.5, 0.75, 1].forEach(frac => {
+    const pts = Array.from({length:n}, (_,i) => {
+      const a = offset + i * step;
+      return `${cx + frac * r * Math.cos(a)},${cy + frac * r * Math.sin(a)}`;
+    }).join(' ');
+    rings += `<polygon points="${pts}" fill="none" stroke="rgba(184,134,11,0.12)" stroke-width="1"/>`;
+  });
+
+  // Axes
+  let axes = '';
+  for (let i = 0; i < n; i++) {
+    const a = offset + i * step;
+    axes += `<line x1="${cx}" y1="${cy}" x2="${cx + r * Math.cos(a)}" y2="${cy + r * Math.sin(a)}" stroke="rgba(184,134,11,0.15)" stroke-width="1"/>`;
+  }
+
+  // Data polygon
+  const dataPoints = DOMAIN_ORDER.map((d,i) => {
+    const frac = pctiles[d] / 100;
+    const a    = offset + i * step;
+    return `${cx + frac * r * Math.cos(a)},${cy + frac * r * Math.sin(a)}`;
+  });
+  const dataPoly = dataPoints.join(' ');
+
+  // Labels
+  let lbls = '';
+  DOMAIN_ORDER.forEach((d,i) => {
+    const a   = offset + i * step;
+    const lx  = cx + (r + 22) * Math.cos(a);
+    const ly  = cy + (r + 22) * Math.sin(a);
+    const anchor = Math.abs(Math.cos(a)) < 0.1 ? 'middle' : (Math.cos(a) < 0 ? 'end' : 'start');
+    lbls += `<text x="${lx}" y="${ly + 4}" text-anchor="${anchor}" font-size="9" fill="rgba(184,134,11,0.7)" font-family="'Share Tech Mono',monospace" letter-spacing="1">${DOMAIN_META[d].code}</text>`;
+  });
+
+  // Dot markers
+  let dots = '';
+  dataPoints.forEach(pt => {
+    const [x,y] = pt.split(',');
+    dots += `<circle cx="${x}" cy="${y}" r="3" fill="var(--amber)" opacity="0.9"/>`;
+  });
+
+  return `<div class="radar-wrap fade-in">
+    <svg class="radar-svg" viewBox="0 0 320 320" xmlns="http://www.w3.org/2000/svg">
+      ${rings}${axes}
+      <polygon points="${dataPoly}" fill="rgba(184,134,11,0.12)" stroke="var(--amber)" stroke-width="1.5"/>
+      ${dots}${lbls}
+    </svg>
+  </div>`;
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// UTILITIES
+// ═══════════════════════════════════════════════════════════════════════════════
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+function restartAssessment() {
+  Object.keys(responses).forEach(k => delete responses[k]);
+  Object.keys(fcRankings).forEach(k => delete fcRankings[k]);
+  currentHexacoPage = 0;
+  currentFCBlock    = 0;
+  document.getElementById('progressFill').style.width = '0%';
+  showScreen('welcome');
+}
+</script>
+</body>
+</html>
