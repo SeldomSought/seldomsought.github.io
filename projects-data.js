@@ -141,6 +141,47 @@ The battery includes: a 96-item HEXACO short-form across 6 domains and 24 facets
     lastUpdated: 'Mar 2026',
   },
 
+  {
+    id: 'curated-feed',
+    name: 'Curated Feed',
+    tagline: 'An Instagram archive sequenced by hue — not time.',
+    excerpt: 'Every post from @seldomsought arranged by color to create a continuous shifting gradient across the feed. Photography, found objects, and everyday moments choreographed as a single chromatic journey.',
+    status: 'Live',
+    platforms: ['Photography', 'Curation', 'Instagram'],
+    icon: null,
+
+    screenshots: [],
+
+    problem: `Instagram orders content by time. That's the wrong axis for a curated aesthetic account. Chronological sorting shows you individual moments — it hides the thing that makes a deliberately built feed worth studying: the color story, the eye behind it, the gradual shift in tone and mood across hundreds of posts.`,
+
+    solution: `Every post from @seldomsought has been sequenced not by date, but by color — arranged so the feed drifts continuously across the spectrum. Muted interior photography flows into botanical greens, into warm amber, into deep evening shadow, into chalk and linen. The grid becomes a gradient. The archive becomes an argument about what it means to look at the world with intention.`,
+
+    howItWorks: [
+      { step: 1, title: 'Post by post', desc: 'Each image was individually evaluated for its dominant hue and tonal weight — warm, cool, saturated, desaturated, light, dark.' },
+      { step: 2, title: 'Color sequencing', desc: 'Posts were manually ordered to create smooth transitions between neighboring images in the grid, avoiding jarring jumps in hue or luminosity.' },
+      { step: 3, title: 'Grid geometry', desc: 'Instagram\'s 3-column grid means each row of three images must work as a visual unit, and each image must also read well adjacent to its vertical neighbors.' },
+      { step: 4, title: 'Ongoing curation', desc: 'New posts are placed where they fit the gradient, not when they were taken. Content is subordinate to composition.' },
+    ],
+
+    features: [
+      'Manually sequenced — every transition hand-evaluated, no algorithm',
+      'Horizontal scroll gallery showing the full gradient journey',
+      'Three-column grid geometry preserved from the live Instagram feed',
+      'Photography spans interiors, botanicals, objects, landscape, and texture',
+    ],
+
+    links: {
+      download:    null,
+      chromeStore: null,
+      github:      null,
+      website:     'https://www.instagram.com/seldomsought',
+      demo:        'projects/curated-feed/',
+      demoLabel:   'View Gallery',
+    },
+
+    lastUpdated: 'Mar 2026',
+  },
+
   // ─── Add your next project here ─────────────────────────────────────────────
   // {
   //   id: 'your-project-id',        // URL-safe, lowercase, hyphenated
