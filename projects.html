@@ -1172,7 +1172,7 @@
                     { key: 'chromeStore', label: 'Chrome Web Store', icon: '↗' },
                     { key: 'github',      label: 'View on GitHub',   icon: '↗' },
                     { key: 'website',     label: 'Website',          icon: '↗' },
-                    { key: 'demo',        label: 'Take Assessment',  icon: '→', sameTab: true },
+                    { key: 'demo',        label: p.links.demoLabel || 'Take Assessment',  icon: '→', sameTab: true },
                 ];
                 var hasAny = linkDefs.some(function (d) { return p.links[d.key]; });
 

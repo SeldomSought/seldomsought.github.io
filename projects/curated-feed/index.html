@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curated Feed — SeldomSought</title>
+    <meta name="description" content="Every post from @seldomsought arranged by color — a continuous shifting gradient across the feed.">
+    <meta name="theme-color" content="#0b0b0c"/>
+
+    <!-- Open Graph -->
+    <meta property="og:site_name" content="SeldomSought"/>
+    <meta property="og:title" content="Curated Feed — SeldomSought"/>
+    <meta property="og:description" content="Every post from @seldomsought sequenced by hue into a single shifting gradient."/>
+    <meta property="og:type" content="website"/>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+
+    <style>
+        /* ── Reset ──────────────────────────────────────────────────────────── */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        /* ── Design tokens ──────────────────────────────────────────────────── */
+        :root {
+            --bg:              #0b0b0c;
+            --text:            #e8e2d9;
+            --text-dim:        rgba(232, 226, 217, 0.45);
+            --text-mid:        rgba(232, 226, 217, 0.70);
+            --amber:           #b8860b;
+            --amber-light:     #d4a017;
+            --amber-dim:       rgba(184, 134, 11, 0.18);
+            --amber-border:    rgba(184, 134, 11, 0.22);
+            --amber-border-h:  rgba(184, 134, 11, 0.55);
+            --grid-line:       rgba(232, 226, 217, 0.025);
+            --cell-gap:        2px;
+            --cell-size:       min(30vw, 320px);
+        }
+
+        @media (max-width: 600px) {
+            :root { --cell-size: calc((100vw - var(--cell-gap) * 2) / 3); }
+        }
+
+        /* ── Base ───────────────────────────────────────────────────────────── */
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Share Tech Mono', monospace;
+            color: var(--text);
+            background: var(--bg);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* ── Background grid ────────────────────────────────────────────────── */
+        .bg-grid {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            background:
+                repeating-linear-gradient(0deg,   var(--grid-line) 0, var(--grid-line) 1px, transparent 1px, transparent 60px),
+                repeating-linear-gradient(90deg,  var(--grid-line) 0, var(--grid-line) 1px, transparent 1px, transparent 60px);
+        }
+
+        /* ── Navigation ─────────────────────────────────────────────────────── */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(11, 11, 12, 0.88);
+            border-bottom: 1px solid var(--amber-border);
+            z-index: 200;
+            backdrop-filter: blur(12px);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.2rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            font-weight: 500;
+            color: var(--text);
+            text-decoration: none;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.82rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover, .nav-links a[aria-current] { color: var(--text); }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: 1px solid var(--amber-border);
+            color: var(--text);
+            font-size: 1.1rem;
+            padding: 0.4rem 0.7rem;
+            cursor: pointer;
+        }
+
+        .mobile-menu { display: none; }
+
+        /* ── Hero ───────────────────────────────────────────────────────────── */
+        .feed-hero {
+            position: relative;
+            z-index: 1;
+            padding: 9rem 2rem 4rem;
+            text-align: center;
+        }
+
+        .feed-hero-inner {
+            max-width: 680px;
+            margin: 0 auto;
+        }
+
+        .feed-eyebrow {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.78rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--amber);
+            margin-bottom: 1.2rem;
+        }
+
+        .feed-hero h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.8rem, 5vw, 4.5rem);
+            font-weight: 400;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--text);
+            line-height: 1.1;
+            margin-bottom: 1.2rem;
+        }
+
+        .feed-desc {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: clamp(1.1rem, 2vw, 1.3rem);
+            color: var(--text-mid);
+            line-height: 1.65;
+            margin-bottom: 1.8rem;
+        }
+
+        .feed-ig-link {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.82rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--amber);
+            border: 1px solid var(--amber-border);
+            padding: 0.55rem 1.2rem;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.2s;
+        }
+
+        .feed-ig-link:hover {
+            border-color: var(--amber-border-h);
+            color: var(--amber-light);
+            background: var(--amber-dim);
+        }
+
+        /* ── Gallery section ────────────────────────────────────────────────── */
+        .feed-gallery-section {
+            position: relative;
+            z-index: 1;
+            padding: 0 0 5rem;
+        }
+
+        /* Meta bar */
+        .gallery-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem 1rem;
+            max-width: none;
+        }
+
+        .gallery-count {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.78rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-dim);
+        }
+
+        .gallery-hint {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.78rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-dim);
+        }
+
+        /* Gallery wrapper: positions arrows outside the strip */
+        .gallery-wrapper {
+            position: relative;
+            display: flex;
+            align-items: stretch;
+        }
+
+        /* Nav arrows */
+        .gallery-nav-btn {
+            position: relative;
+            z-index: 10;
+            flex-shrink: 0;
+            width: 48px;
+            background: rgba(11, 11, 12, 0.9);
+            border: none;
+            border-top: 1px solid var(--amber-border);
+            border-bottom: 1px solid var(--amber-border);
+            color: var(--amber);
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .gallery-nav-btn:hover { background: var(--amber-dim); color: var(--amber-light); }
+        .gallery-nav-btn:disabled { opacity: 0.2; cursor: default; }
+        .gallery-nav-btn:focus-visible { outline: 1px solid var(--amber); outline-offset: -2px; }
+
+        .gallery-prev { border-left: 1px solid var(--amber-border); }
+        .gallery-next { border-right: 1px solid var(--amber-border); }
+
+        /* The strip: 3-row grid scrolling horizontally */
+        .gallery-strip {
+            flex: 1;
+            display: grid;
+            grid-template-rows: repeat(3, var(--cell-size));
+            grid-auto-flow: column;
+            grid-auto-columns: var(--cell-size);
+            gap: var(--cell-gap);
+            overflow-x: scroll;
+            overflow-y: hidden;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            border-top: 1px solid var(--amber-border);
+            border-bottom: 1px solid var(--amber-border);
+            /* Hide scrollbar visually */
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .gallery-strip::-webkit-scrollbar { display: none; }
+
+        /* Gallery images */
+        .gallery-img {
+            display: block;
+            width: var(--cell-size);
+            height: var(--cell-size);
+            object-fit: cover;
+            cursor: pointer;
+            scroll-snap-align: start;
+            transition: opacity 0.18s;
+            background: rgba(232, 226, 217, 0.04);
+        }
+
+        .gallery-img:hover { opacity: 0.82; }
+
+        /* Empty placeholder tiles */
+        .gallery-placeholder {
+            width: var(--cell-size);
+            height: var(--cell-size);
+            background: rgba(232, 226, 217, 0.03);
+            border: 1px dashed rgba(232, 226, 217, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .gallery-placeholder-inner {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.7rem;
+            letter-spacing: 1px;
+            color: rgba(232, 226, 217, 0.15);
+            text-align: center;
+            padding: 1rem;
+            line-height: 1.8;
+        }
+
+        /* Progress bar */
+        .gallery-progress-wrap {
+            height: 2px;
+            background: rgba(232, 226, 217, 0.07);
+            margin: 0;
+        }
+
+        .gallery-progress-bar {
+            height: 100%;
+            background: var(--amber);
+            width: 0%;
+            transition: width 0.1s linear;
+        }
+
+        /* Empty state */
+        .gallery-empty {
+            grid-column: 1 / -1;
+            grid-row: 1 / -1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 100%;
+            padding: 4rem 3rem;
+            border: 1px dashed var(--amber-border);
+            margin: 0 48px;
+        }
+
+        .gallery-empty-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 1.1rem;
+            color: var(--text-dim);
+            text-align: center;
+            line-height: 1.8;
+            max-width: 500px;
+        }
+
+        .gallery-empty-text code {
+            font-family: 'Share Tech Mono', monospace;
+            font-style: normal;
+            font-size: 0.82rem;
+            color: var(--amber);
+            background: var(--amber-dim);
+            padding: 0.1rem 0.4rem;
+        }
+
+        /* ── Lightbox ───────────────────────────────────────────────────────── */
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            z-index: 900;
+            background: rgba(6, 5, 4, 0.95);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            backdrop-filter: blur(8px);
+        }
+
+        .lightbox[hidden] { display: none; }
+
+        .lightbox-img {
+            max-width: min(90vw, 900px);
+            max-height: 80vh;
+            object-fit: contain;
+            display: block;
+        }
+
+        .lightbox-controls {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin-top: 1.2rem;
+        }
+
+        .lightbox-btn {
+            background: none;
+            border: 1px solid var(--amber-border);
+            color: var(--amber);
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 1rem;
+            letter-spacing: 2px;
+            padding: 0.5rem 1.1rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .lightbox-btn:hover { background: var(--amber-dim); color: var(--amber-light); border-color: var(--amber-border-h); }
+        .lightbox-btn:focus-visible { outline: 1px solid var(--amber); outline-offset: 2px; }
+        .lightbox-btn:disabled { opacity: 0.25; cursor: default; }
+
+        .lightbox-counter {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.78rem;
+            letter-spacing: 2px;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            min-width: 80px;
+            text-align: center;
+        }
+
+        .lightbox-close {
+            position: fixed;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: none;
+            border: 1px solid var(--amber-border);
+            color: var(--text-dim);
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.82rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 0.45rem 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.2s;
+        }
+
+        .lightbox-close:hover { color: var(--text); border-color: var(--amber-border-h); background: rgba(232,226,217,0.05); }
+        .lightbox-close:focus-visible { outline: 1px solid var(--amber); outline-offset: 2px; }
+
+        /* ── About section ──────────────────────────────────────────────────── */
+        .feed-about {
+            position: relative;
+            z-index: 1;
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 4rem 2rem 3rem;
+            border-top: 1px solid var(--amber-border);
+        }
+
+        .feed-about-label {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.78rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--amber);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .feed-about-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--amber-border);
+        }
+
+        .feed-about p {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.15rem;
+            color: var(--text-mid);
+            line-height: 1.75;
+            margin-bottom: 1.2rem;
+        }
+
+        .feed-about p:last-child { margin-bottom: 0; }
+
+        /* ── Footer ─────────────────────────────────────────────────────────── */
+        footer {
+            background: rgba(8, 7, 5, 0.98);
+            color: var(--text-dim);
+            padding: 4rem 2.5rem 2.5rem;
+            border-top: 1px solid var(--amber-border);
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .footer-section h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            margin-bottom: 1.3rem;
+            color: var(--text);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 400;
+        }
+
+        .footer-section p {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 1rem;
+            color: var(--text-dim);
+            line-height: 1.7;
+        }
+
+        .footer-links { list-style: none; }
+
+        .footer-links a {
+            font-family: 'Share Tech Mono', monospace;
+            color: var(--text-dim);
+            text-decoration: none;
+            display: block;
+            padding: 0.4rem 0;
+            transition: all 0.2s;
+            letter-spacing: 1px;
+            font-size: 1rem;
+        }
+
+        .footer-links a:hover { color: var(--text); padding-left: 0.5rem; }
+        .footer-links a::before { content: '> '; opacity: 0; transition: opacity 0.2s; }
+        .footer-links a:hover::before { opacity: 1; }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 2.5rem;
+            border-top: 1px solid var(--amber-border);
+            text-align: center;
+            font-family: 'Share Tech Mono', monospace;
+            color: rgba(232, 226, 217, 0.15);
+            font-size: 1rem;
+            letter-spacing: 1px;
+        }
+
+        /* ── Responsive ─────────────────────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .menu-toggle { display: block; }
+            .nav-links   { display: none; }
+
+            .mobile-menu {
+                display: none;
+                position: fixed;
+                top: 60px; left: 0; right: 0;
+                background: rgba(11, 11, 12, 0.97);
+                border-bottom: 1px solid var(--amber-border);
+                padding: 1rem 2rem;
+                backdrop-filter: blur(12px);
+                z-index: 199;
+            }
+
+            .mobile-menu.active { display: block; }
+            .mobile-menu ul { list-style: none; }
+
+            .mobile-menu a {
+                display: block;
+                padding: 0.8rem 0;
+                text-decoration: none;
+                font-family: 'Share Tech Mono', monospace;
+                color: var(--text-dim);
+                border-bottom: 1px solid rgba(232, 226, 217, 0.05);
+                letter-spacing: 1px;
+                text-transform: uppercase;
+                font-size: 0.85rem;
+                transition: color 0.2s;
+            }
+
+            .mobile-menu a:hover { color: var(--text); }
+
+            .feed-hero { padding: 7rem 1.5rem 3rem; }
+            .gallery-nav-btn { width: 36px; }
+            .footer-content { grid-template-columns: 1fr; gap: 2rem; }
+        }
+
+        @media (min-width: 1024px) {
+            html { font-size: 18px; }
+            .nav-container  { padding: 2rem 5rem; max-width: none; }
+            .logo           { font-size: 2.6rem; }
+            .nav-links      { gap: 3.25rem; }
+            .nav-links a    { font-size: 1.3rem; }
+            .feed-eyebrow   { font-size: 1rem; }
+            .gallery-count,
+            .gallery-hint   { font-size: 0.9rem; }
+        }
+
+        :focus-visible { outline: 1px solid var(--amber); outline-offset: 3px; }
+    </style>
+</head>
+<body>
+    <div class="bg-grid" aria-hidden="true"></div>
+
+    <!-- ── Navigation ──────────────────────────────────────────────────────── -->
+    <nav>
+        <div class="nav-container">
+            <a href="../../index.html" class="logo">SeldomSought</a>
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="../../index.html">Home</a></li>
+                <li><a href="../../philosophy.html">Philosophy</a></li>
+                <li><a href="../../services.html">Services</a></li>
+                <li><a href="../../expertise.html">Expertise</a></li>
+                <li><a href="../../projects.html" aria-current="page">Projects</a></li>
+                <li><a href="../../faq.html">FAQ</a></li>
+                <li><a href="../../contact.html">Contact</a></li>
+            </ul>
+        </div>
+        <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+            <ul>
+                <li><a href="../../index.html">Home</a></li>
+                <li><a href="../../philosophy.html">Philosophy</a></li>
+                <li><a href="../../services.html">Services</a></li>
+                <li><a href="../../expertise.html">Expertise</a></li>
+                <li><a href="../../projects.html">Projects</a></li>
+                <li><a href="../../faq.html">FAQ</a></li>
+                <li><a href="../../contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- ── Hero ────────────────────────────────────────────────────────────── -->
+    <header class="feed-hero">
+        <div class="feed-hero-inner">
+            <p class="feed-eyebrow">SeldomSought / Projects / Curated Feed</p>
+            <h1>Curated Feed</h1>
+            <p class="feed-desc">
+                Every post from @seldomsought arranged by color — not time.
+                A continuous gradient built from photography, found objects,
+                and ordinary moments observed with intention.
+            </p>
+            <a href="https://www.instagram.com/seldomsought" target="_blank" rel="noopener noreferrer" class="feed-ig-link">
+                ↗ @seldomsought
+            </a>
+        </div>
+    </header>
+
+    <!-- ── Gallery ─────────────────────────────────────────────────────────── -->
+    <section class="feed-gallery-section" aria-label="Feed gallery">
+        <div class="gallery-meta">
+            <span class="gallery-count" id="galleryCount"></span>
+            <span class="gallery-hint" id="galleryHint">scroll to explore &nbsp;↔</span>
+        </div>
+
+        <div class="gallery-wrapper">
+            <button class="gallery-nav-btn gallery-prev" id="galleryPrev" aria-label="Scroll left">&#8592;</button>
+            <div class="gallery-strip" id="galleryStrip" role="list" aria-label="Curated feed images" tabindex="0"></div>
+            <button class="gallery-nav-btn gallery-next" id="galleryNext" aria-label="Scroll right">&#8594;</button>
+        </div>
+
+        <div class="gallery-progress-wrap">
+            <div class="gallery-progress-bar" id="galleryProgressBar"></div>
+        </div>
+    </section>
+
+    <!-- ── About ───────────────────────────────────────────────────────────── -->
+    <section class="feed-about" aria-label="About the feed">
+        <p class="feed-about-label">On curation</p>
+        <p>
+            Instagram orders content by time. That's the wrong axis for an account
+            built around a visual eye. Chronological sorting shows you individual moments —
+            it hides what makes a deliberately built feed worth studying: the color story,
+            the gradual drift in tone and mood across hundreds of posts.
+        </p>
+        <p>
+            Every image here has been placed where it fits the gradient, not when it was taken.
+            Content is subordinate to composition. The grid becomes a single sustained argument
+            about what it means to look at the world with intention.
+        </p>
+    </section>
+
+    <!-- ── Lightbox ────────────────────────────────────────────────────────── -->
+    <div class="lightbox" id="lightbox" hidden role="dialog" aria-modal="true" aria-label="Image viewer">
+        <button class="lightbox-close" id="lightboxClose" aria-label="Close image viewer">&#10005; Close</button>
+        <img class="lightbox-img" id="lightboxImg" src="" alt="">
+        <div class="lightbox-controls">
+            <button class="lightbox-btn" id="lightboxPrev" aria-label="Previous image">&#8592;</button>
+            <span class="lightbox-counter" id="lightboxCounter"></span>
+            <button class="lightbox-btn" id="lightboxNext" aria-label="Next image">&#8594;</button>
+        </div>
+    </div>
+
+    <!-- ── Footer ──────────────────────────────────────────────────────────── -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>SeldomSought</h3>
+                <p>Brand image, marketing strategy, and business consulting for brands built to stand out.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Navigate</h3>
+                <ul class="footer-links">
+                    <li><a href="../../philosophy.html">Philosophy</a></li>
+                    <li><a href="../../services.html">Services</a></li>
+                    <li><a href="../../expertise.html">Expertise</a></li>
+                    <li><a href="../../projects.html">Projects</a></li>
+                    <li><a href="../../faq.html">FAQ</a></li>
+                    <li><a href="../../contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Services</h3>
+                <ul class="footer-links">
+                    <li><a href="../../services.html">Brand Image</a></li>
+                    <li><a href="../../services.html">SEO &amp; AEO</a></li>
+                    <li><a href="../../services.html">Guerrilla Marketing</a></li>
+                    <li><a href="../../services.html">Copywriting</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 SeldomSought. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+    (function () {
+        'use strict';
+
+        // ─────────────────────────────────────────────────────────────────────
+        // FEED IMAGES
+        // ─────────────────────────────────────────────────────────────────────
+        // Add your Instagram photos here in the order you want them to appear
+        // (left-to-right = the color gradient journey).
+        //
+        // SETUP:
+        //   1. Export your Instagram photos (Settings > Account > Download your data)
+        //   2. Drop them in the  images/  folder next to this file
+        //   3. Add each filename to the array below, e.g.:
+        //        { src: 'images/001.jpg', alt: '' }
+        //   4. Order them as you want the gradient to read left → right
+        //
+        // The gallery fills column-by-column (3 rows tall), so:
+        //   images[0] = top-left, images[1] = middle-left, images[2] = bottom-left,
+        //   images[3] = top of column 2, etc.
+        // ─────────────────────────────────────────────────────────────────────
+        var FEED_IMAGES = [
+            // { src: 'images/001.jpg', alt: '' },
+            // { src: 'images/002.jpg', alt: '' },
+            // { src: 'images/003.jpg', alt: '' },
+            // ...
+        ];
+
+        // ── DOM refs ────────────────────────────────────────────────────────
+        var strip        = document.getElementById('galleryStrip');
+        var progressBar  = document.getElementById('galleryProgressBar');
+        var countEl      = document.getElementById('galleryCount');
+        var hintEl       = document.getElementById('galleryHint');
+        var prevBtn      = document.getElementById('galleryPrev');
+        var nextBtn      = document.getElementById('galleryNext');
+        var lightbox     = document.getElementById('lightbox');
+        var lbImg        = document.getElementById('lightboxImg');
+        var lbCounter    = document.getElementById('lightboxCounter');
+        var lbClose      = document.getElementById('lightboxClose');
+        var lbPrev       = document.getElementById('lightboxPrev');
+        var lbNext       = document.getElementById('lightboxNext');
+
+        var currentLbIdx = 0;
+
+        // ── Compute cell size from CSS var ───────────────────────────────────
+        function cellSize() {
+            return parseFloat(getComputedStyle(document.documentElement)
+                .getPropertyValue('--cell-size').trim()) || 280;
+        }
+
+        // ── Build gallery ────────────────────────────────────────────────────
+        function buildGallery() {
+            strip.innerHTML = '';
+
+            if (!FEED_IMAGES.length) {
+                renderEmpty();
+                countEl.textContent = '0 images';
+                hintEl.style.display = 'none';
+                prevBtn.disabled = true;
+                nextBtn.disabled = true;
+                return;
+            }
+
+            countEl.textContent = FEED_IMAGES.length + ' image' + (FEED_IMAGES.length !== 1 ? 's' : '');
+
+            FEED_IMAGES.forEach(function (img, i) {
+                var el = document.createElement('img');
+                el.className      = 'gallery-img';
+                el.src            = img.src;
+                el.alt            = img.alt || ('Image ' + (i + 1));
+                el.loading        = 'lazy';
+                el.setAttribute('role', 'listitem');
+                el.setAttribute('tabindex', '0');
+                el.dataset.index  = i;
+                el.addEventListener('click', function () { openLightbox(i); });
+                el.addEventListener('keydown', function (e) {
+                    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openLightbox(i); }
+                });
+                strip.appendChild(el);
+            });
+
+            updateNav();
+        }
+
+        function renderEmpty() {
+            var wrap = document.createElement('div');
+            wrap.className = 'gallery-empty';
+            wrap.innerHTML =
+                '<p class="gallery-empty-text">' +
+                    'No images yet.<br><br>' +
+                    'Drop your photos in the <code>images/</code> folder, ' +
+                    'then add them to the <code>FEED_IMAGES</code> array ' +
+                    'at the top of this page\'s script.' +
+                '</p>';
+            strip.appendChild(wrap);
+        }
+
+        // ── Scroll navigation ────────────────────────────────────────────────
+        function pageWidth() {
+            var cs = cellSize();
+            var gap = 2; // --cell-gap in px
+            // 3 columns per "page" — or however many fit
+            var cols = Math.max(1, Math.floor(strip.clientWidth / (cs + gap)));
+            return cols * (cs + gap);
+        }
+
+        function scrollBy(direction) {
+            strip.scrollBy({ left: direction * pageWidth(), behavior: 'smooth' });
+        }
+
+        function updateNav() {
+            if (!FEED_IMAGES.length) return;
+            prevBtn.disabled = strip.scrollLeft <= 0;
+            nextBtn.disabled = strip.scrollLeft + strip.clientWidth >= strip.scrollWidth - 1;
+
+            var pct = strip.scrollWidth <= strip.clientWidth
+                ? 100
+                : (strip.scrollLeft / (strip.scrollWidth - strip.clientWidth)) * 100;
+            progressBar.style.width = pct + '%';
+        }
+
+        prevBtn.addEventListener('click', function () { scrollBy(-1); });
+        nextBtn.addEventListener('click', function () { scrollBy(1); });
+        strip.addEventListener('scroll', updateNav, { passive: true });
+
+        // Keyboard navigation on the strip
+        strip.addEventListener('keydown', function (e) {
+            if (e.key === 'ArrowRight') { e.preventDefault(); scrollBy(1); }
+            if (e.key === 'ArrowLeft')  { e.preventDefault(); scrollBy(-1); }
+        });
+
+        // ── Lightbox ─────────────────────────────────────────────────────────
+        function openLightbox(idx) {
+            currentLbIdx = idx;
+            showLightboxImage();
+            lightbox.hidden = false;
+            lbClose.focus();
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            lightbox.hidden = true;
+            document.body.style.overflow = '';
+            // Return focus to the clicked image
+            var imgs = strip.querySelectorAll('.gallery-img');
+            if (imgs[currentLbIdx]) imgs[currentLbIdx].focus();
+        }
+
+        function showLightboxImage() {
+            var img = FEED_IMAGES[currentLbIdx];
+            lbImg.src = img.src;
+            lbImg.alt = img.alt || ('Image ' + (currentLbIdx + 1));
+            lbCounter.textContent = (currentLbIdx + 1) + ' / ' + FEED_IMAGES.length;
+            lbPrev.disabled = currentLbIdx === 0;
+            lbNext.disabled = currentLbIdx === FEED_IMAGES.length - 1;
+        }
+
+        lbClose.addEventListener('click', closeLightbox);
+        lbPrev.addEventListener('click', function () {
+            if (currentLbIdx > 0) { currentLbIdx--; showLightboxImage(); }
+        });
+        lbNext.addEventListener('click', function () {
+            if (currentLbIdx < FEED_IMAGES.length - 1) { currentLbIdx++; showLightboxImage(); }
+        });
+
+        // Click backdrop to close
+        lightbox.addEventListener('click', function (e) {
+            if (e.target === lightbox) closeLightbox();
+        });
+
+        // Keyboard: ESC closes, arrow keys navigate
+        document.addEventListener('keydown', function (e) {
+            if (lightbox.hidden) return;
+            if (e.key === 'Escape')      { closeLightbox(); }
+            if (e.key === 'ArrowLeft')   { lbPrev.click(); }
+            if (e.key === 'ArrowRight')  { lbNext.click(); }
+        });
+
+        // ── Mobile nav ───────────────────────────────────────────────────────
+        var menuToggle = document.getElementById('menuToggle');
+        var mobileMenu = document.getElementById('mobileMenu');
+
+        menuToggle.addEventListener('click', function () {
+            var open = mobileMenu.classList.toggle('active');
+            menuToggle.setAttribute('aria-expanded', open);
+            mobileMenu.setAttribute('aria-hidden', !open);
+        });
+
+        // ── Init ─────────────────────────────────────────────────────────────
+        buildGallery();
+        updateNav();
+    }());
+    </script>
+</body>
+</html>
