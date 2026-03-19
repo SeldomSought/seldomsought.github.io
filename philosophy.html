@@ -22,6 +22,24 @@
              --gc-anim-spin      : spinner/construction speed
              --gc-anim-blink     : blink/pulse speed
         ========================================= */
+        :root {
+            --fs-hero:        clamp(3rem, 8vw, 7.5rem);
+            --fs-h1:          clamp(2.6rem, 5vw, 4.5rem);
+            --fs-h2:          clamp(1.6rem, 2.5vw, 2.2rem);
+            --fs-h3:          clamp(1.15rem, 1.8vw, 1.45rem);
+            --fs-body-lg:     clamp(1.05rem, 1.4vw, 1.25rem);
+            --fs-body:        clamp(1rem, 1.2vw, 1.15rem);
+            --fs-small:       clamp(0.875rem, 1vw, 0.95rem);
+            --fs-label:       clamp(0.8rem, 0.9vw, 0.88rem);
+            --fs-nav:         clamp(0.92rem, 1vw, 1rem);
+            --lh-tight:       1.15;
+            --lh-snug:        1.35;
+            --lh-copy:        1.7;
+            --lh-relaxed:     1.8;
+            --content-narrow: 65ch;
+            --content-wide:   82ch;
+        }
+
         body.retro-geocities {
             --gc-bg:             #000033;
             --gc-text:           #ccffcc;
@@ -167,7 +185,7 @@
         }
         body.retro-geocities .logo {
             font-family: Arial, Helvetica, sans-serif;
-            font-size: 1.1rem; font-weight: 900;
+            font-size: clamp(1.1rem, 1.5rem, 1.8rem); font-weight: 900;
             color: var(--gc-accent-yellow); text-decoration: none;
             letter-spacing: 2px; text-transform: uppercase;
             text-shadow: 2px 2px 0 var(--gc-accent-mag), 0 0 12px rgba(255,255,0,0.5);
@@ -179,7 +197,7 @@
             display: block; text-decoration: underline;
             color: var(--gc-link);
             font-family: Arial, Helvetica, sans-serif;
-            font-size: 0.72rem; letter-spacing: 0.5px;
+            font-size: var(--fs-nav); letter-spacing: 0.5px;
             text-transform: uppercase; padding: 0.3rem 0.75rem;
             border-right: 1px solid rgba(0,255,255,0.2);
             transition: background 0.1s, color 0.1s;
@@ -277,7 +295,7 @@
         }
         .gc-hero-subtitle {
             font-family: 'Courier New', Courier, monospace;
-            font-size: clamp(0.65rem, 2vw, 0.88rem);
+            font-size: clamp(0.95rem, 1.5vw, 1.15rem);
             color: var(--gc-accent-cyan); letter-spacing: 3px;
             text-transform: uppercase; margin-bottom: 1rem;
         }
@@ -289,6 +307,10 @@
             padding: 4px 14px; letter-spacing: 3px;
         }
 
+        @media (min-width: 768px) and (max-width: 1023px) {
+            html { font-size: 17px; }
+        }
+
         /* DESKTOP SCALING ≥1024px — matches sitewide standard */
         @media (min-width: 1024px) {
             html { font-size: 18px; }
@@ -298,7 +320,7 @@
             .retro-window-body { font-size: 1rem; }
             .retro-window.read-first .retro-window-body { font-size: 0.92rem; }
             .gc-main-title {
-                font-size: clamp(3.5rem, 4.5vw, 5rem);
+                font-size: clamp(3.5rem, 5vw, 6rem);
                 letter-spacing: 8px;
                 text-shadow:
                     5px 5px 0 var(--gc-accent-mag),
@@ -409,7 +431,7 @@
         }
         .gc-section-header-strip h2 {
             font-family: Arial, Helvetica, sans-serif; font-weight: 900;
-            font-size: clamp(0.85rem, 2.5vw, 1.1rem);
+            font-size: clamp(1.1rem, 2vw, 1.4rem);
             color: #000; text-transform: uppercase;
             letter-spacing: 3px;
             text-shadow: 1px 1px 0 rgba(255,255,255,0.4);
@@ -454,7 +476,7 @@
         .retro-window-body {
             padding: 1rem 1.1rem;
             background: #f0f0f0; color: #111;
-            font-size: 0.88rem; line-height: 1.65;
+            font-size: clamp(1rem, 1.3vw, 1.15rem); line-height: var(--lh-copy);
         }
         .retro-window-body p         { margin-bottom: 0.55rem; }
         .retro-window-body p:last-child { margin-bottom: 0; }

@@ -31,7 +31,22 @@
             --text-dim:#7a9a72;
             --text-bright:#e0ece0;
             --panel-bg:rgba(8,14,8,0.92);
-            --panel-border:rgba(58,102,72,0.5)
+            --panel-border:rgba(58,102,72,0.5);
+            --fs-hero:        clamp(3rem, 8vw, 7.5rem);
+            --fs-h1:          clamp(2.6rem, 5vw, 4.5rem);
+            --fs-h2:          clamp(1.6rem, 2.5vw, 2.2rem);
+            --fs-h3:          clamp(1.15rem, 1.8vw, 1.45rem);
+            --fs-body-lg:     clamp(1.05rem, 1.4vw, 1.25rem);
+            --fs-body:        clamp(1rem, 1.2vw, 1.15rem);
+            --fs-small:       clamp(0.875rem, 1vw, 0.95rem);
+            --fs-label:       clamp(0.8rem, 0.9vw, 0.88rem);
+            --fs-nav:         clamp(0.92rem, 1vw, 1rem);
+            --lh-tight:       1.15;
+            --lh-snug:        1.35;
+            --lh-copy:        1.7;
+            --lh-relaxed:     1.8;
+            --content-narrow: 65ch;
+            --content-wide:   82ch
         }
         body{
             font-family:'Share Tech Mono',monospace;
@@ -108,14 +123,14 @@
             display:flex;justify-content:space-between;align-items:center
         }
         .logo{
-            font-size:1.5rem;color:var(--canopy-bright);text-decoration:none;
+            font-size:clamp(1.5rem, 2vw, 1.8rem);color:var(--canopy-bright);text-decoration:none;
             text-shadow:0 0 10px rgba(106,176,112,0.5),0 0 20px rgba(106,176,112,0.2);
             letter-spacing:2px
         }
         .nav-links{display:flex;gap:2rem;list-style:none}
         .nav-links a{
             text-decoration:none;color:var(--moss);
-            font-size:0.9rem;letter-spacing:1px;text-transform:uppercase;
+            font-size:var(--fs-nav);letter-spacing:1px;text-transform:uppercase;
             transition:all 0.3s;position:relative
         }
         .nav-links a:hover{color:var(--canopy-bright);text-shadow:0 0 8px rgba(106,176,112,0.5)}
@@ -140,7 +155,7 @@
             position:relative;z-index:10
         }
         .page-header h1{
-            font-size:2.8rem;margin-bottom:0.8rem;
+            font-size:clamp(2.8rem, 5vw, 4rem);margin-bottom:0.8rem;
             color:var(--canopy-bright);font-weight:400;
             text-shadow:0 0 20px rgba(106,176,112,0.35),0 0 40px rgba(106,176,112,0.15);
             letter-spacing:4px;text-transform:uppercase
@@ -150,8 +165,9 @@
             color:var(--moss);margin:0.8rem auto 0;letter-spacing:8px
         }
         .page-header .subtitle{
-            color:var(--text-dim);font-size:1.05rem;
-            letter-spacing:2px;text-shadow:0 0 10px rgba(106,176,112,0.15)
+            color:var(--text-dim);font-size:clamp(1.05rem, 1.8vw, 1.35rem);
+            letter-spacing:2px;text-shadow:0 0 10px rgba(106,176,112,0.15);
+            line-height:var(--lh-copy)
         }
 
         /* === Main Content === */
@@ -207,13 +223,15 @@
         }
         .contact-panel h2{
             text-align:center;margin-bottom:1.2rem;
-            color:var(--canopy-bright);font-weight:400;font-size:1.4rem;
+            color:var(--canopy-bright);font-weight:400;font-size:clamp(1.3rem, 2vw, 1.65rem);
             letter-spacing:3px;text-transform:uppercase;
-            text-shadow:0 0 10px rgba(106,176,112,0.25)
+            text-shadow:0 0 10px rgba(106,176,112,0.25);
+            line-height:var(--lh-snug)
         }
         .panel-intro{
             text-align:center;margin-bottom:1.8rem;
-            line-height:1.8;color:var(--text-dim)
+            font-size:clamp(1rem, 1.3vw, 1.2rem);
+            line-height:var(--lh-relaxed);color:var(--text-dim)
         }
 
         /* Contact Form */
@@ -236,7 +254,7 @@
             border:1px solid var(--panel-border);
             color:var(--text-bright);
             font-family:'Share Tech Mono',monospace;
-            font-size:0.95rem;letter-spacing:1px;
+            font-size:1rem;letter-spacing:1px;
             outline:none;transition:all 0.3s
         }
         .contact-form input::placeholder{color:var(--text-dim);opacity:0.6}
@@ -317,7 +335,7 @@
         .contact-methods{list-style:none}
         .contact-methods li{
             padding:0.3rem 0;color:var(--text-dim);
-            font-size:0.9rem;letter-spacing:1px
+            font-size:clamp(1rem, 1.3vw, 1.15rem);letter-spacing:1px
         }
         .contact-methods a{
             color:var(--canopy-light);text-decoration:none;transition:all 0.2s
@@ -417,6 +435,10 @@
             .panel-corner{display:none}
             .lantern{display:none}
             .footer-content{grid-template-columns:1fr;gap:2rem}
+        }
+
+        @media (min-width: 768px) and (max-width: 1023px) {
+            html { font-size: 17px; }
         }
 
         @media (min-width: 1024px) {

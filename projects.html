@@ -44,6 +44,21 @@
             --green-dim:     rgba(60, 140, 80, 0.18);
             --green-text:    #5a9e6f;
             --grid-line:     rgba(232, 226, 217, 0.025);
+            --fs-hero:        clamp(3rem, 8vw, 7.5rem);
+            --fs-h1:          clamp(2.6rem, 5vw, 4.5rem);
+            --fs-h2:          clamp(1.6rem, 2.5vw, 2.2rem);
+            --fs-h3:          clamp(1.15rem, 1.8vw, 1.45rem);
+            --fs-body-lg:     clamp(1.05rem, 1.4vw, 1.25rem);
+            --fs-body:        clamp(1rem, 1.2vw, 1.15rem);
+            --fs-small:       clamp(0.875rem, 1vw, 0.95rem);
+            --fs-label:       clamp(0.8rem, 0.9vw, 0.88rem);
+            --fs-nav:         clamp(0.92rem, 1vw, 1rem);
+            --lh-tight:       1.15;
+            --lh-snug:        1.35;
+            --lh-copy:        1.7;
+            --lh-relaxed:     1.8;
+            --content-narrow: 65ch;
+            --content-wide:   82ch;
         }
 
         /* ── Base ───────────────────────────────────────────────────────────── */
@@ -91,7 +106,7 @@
 
         .logo {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1.4rem;
+            font-size: clamp(1.4rem, 1.8vw, 1.7rem);
             font-weight: 500;
             color: var(--text);
             text-decoration: none;
@@ -109,7 +124,7 @@
             font-family: 'Share Tech Mono', monospace;
             text-decoration: none;
             color: var(--text-dim);
-            font-size: 0.8rem;
+            font-size: var(--fs-nav);
             letter-spacing: 1px;
             text-transform: uppercase;
             transition: color 0.25s;
@@ -168,7 +183,7 @@
 
         .proj-hero h1 {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 4rem;
+            font-size: clamp(3rem, 7vw, 5rem);
             font-weight: 400;
             color: var(--text);
             letter-spacing: 4px;
@@ -179,10 +194,10 @@
 
         .proj-hero-subtitle {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1.25rem;
+            font-size: clamp(1.2rem, 1.8vw, 1.5rem);
             font-style: italic;
             color: var(--text-mid);
-            line-height: 1.7;
+            line-height: var(--lh-copy);
             margin-bottom: 1.8rem;
             max-width: 540px;
         }
@@ -331,7 +346,7 @@
         /* Card body */
         .proj-card-name {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1.55rem;
+            font-size: clamp(1.4rem, 2vw, 1.75rem);
             font-weight: 500;
             letter-spacing: 1px;
             color: var(--text);
@@ -341,18 +356,18 @@
 
         .proj-card-tagline {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1rem;
+            font-size: clamp(1rem, 1.3vw, 1.2rem);
             font-style: italic;
             color: var(--text-mid);
             margin-bottom: 1rem;
-            line-height: 1.5;
+            line-height: var(--lh-snug);
         }
 
         .proj-card-excerpt {
             font-family: 'Share Tech Mono', monospace;
-            font-size: 0.9rem;
+            font-size: clamp(0.95rem, 1.1vw, 1.05rem);
             color: var(--text-dim);
-            line-height: 1.75;
+            line-height: var(--lh-copy);
             margin-bottom: 1.5rem;
             flex: 1;
         }
@@ -514,7 +529,7 @@
 
         .modal-name {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 2.2rem;
+            font-size: clamp(1.8rem, 3vw, 2.4rem);
             font-weight: 500;
             letter-spacing: 2px;
             color: var(--text);
@@ -525,7 +540,7 @@
         .modal-tagline {
             font-family: 'Cormorant Garamond', serif;
             font-style: italic;
-            font-size: 1.05rem;
+            font-size: clamp(1.05rem, 1.5vw, 1.3rem);
             color: var(--text-mid);
             line-height: 1.5;
             margin-bottom: 0.9rem;
@@ -596,9 +611,9 @@
 
         .modal-section-body {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1.1rem;
+            font-size: clamp(1.05rem, 1.3vw, 1.2rem);
             color: var(--text-mid);
-            line-height: 1.8;
+            line-height: var(--lh-copy);
         }
 
         /* How it works steps */
@@ -881,6 +896,10 @@
         :focus-visible {
             outline: 1px solid var(--amber);
             outline-offset: 3px;
+        }
+
+        @media (min-width: 768px) and (max-width: 1023px) {
+            html { font-size: 17px; }
         }
 
         @media (min-width: 1024px) {

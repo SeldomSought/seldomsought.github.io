@@ -15,6 +15,21 @@
             --matrix-green: #00ff41;
             --matrix-green-dim: #00cc33;
             --matrix-green-dark: #008f11;
+            --fs-hero:        clamp(3rem, 8vw, 7.5rem);
+            --fs-h1:          clamp(2.6rem, 5vw, 4.5rem);
+            --fs-h2:          clamp(1.6rem, 2.5vw, 2.2rem);
+            --fs-h3:          clamp(1.15rem, 1.8vw, 1.45rem);
+            --fs-body-lg:     clamp(1.05rem, 1.4vw, 1.25rem);
+            --fs-body:        clamp(1rem, 1.2vw, 1.15rem);
+            --fs-small:       clamp(0.875rem, 1vw, 0.95rem);
+            --fs-label:       clamp(0.8rem, 0.9vw, 0.88rem);
+            --fs-nav:         clamp(0.92rem, 1vw, 1rem);
+            --lh-tight:       1.15;
+            --lh-snug:        1.35;
+            --lh-copy:        1.7;
+            --lh-relaxed:     1.8;
+            --content-narrow: 65ch;
+            --content-wide:   82ch;
         }
         body {
             font-family: 'Share Tech Mono', monospace;
@@ -43,14 +58,14 @@
             display: flex; justify-content: space-between; align-items: center;
         }
         .logo {
-            font-size: 1.5rem; color: var(--matrix-green); text-decoration: none;
+            font-size: clamp(1.5rem, 2vw, 1.8rem); color: var(--matrix-green); text-decoration: none;
             text-shadow: 0 0 10px rgba(0,255,65,0.5), 0 0 20px rgba(0,255,65,0.3);
             letter-spacing: 2px;
         }
         .nav-links { display: flex; gap: 2rem; list-style: none; }
         .nav-links a {
             text-decoration: none; color: var(--matrix-green-dark);
-            font-size: 0.9rem; letter-spacing: 1px; text-transform: uppercase;
+            font-size: var(--fs-nav); letter-spacing: 1px; text-transform: uppercase;
             transition: all 0.3s; position: relative;
         }
         .nav-links a:hover { color: var(--matrix-green); text-shadow: 0 0 8px rgba(0,255,65,0.6); }
@@ -74,7 +89,7 @@
             position: relative; z-index: 1;
         }
         .page-header h1 {
-            font-size: 3rem; margin-bottom: 1rem;
+            font-size: clamp(2.5rem, 6vw, 4rem); margin-bottom: 1rem;
             color: var(--matrix-green); font-weight: 400;
             text-shadow: 0 0 20px rgba(0,255,65,0.4), 0 0 40px rgba(0,255,65,0.2);
             letter-spacing: 4px; text-transform: uppercase;
@@ -86,8 +101,9 @@
             margin: 1rem auto 0;
         }
         .page-header .subtitle {
-            color: var(--matrix-green-dim); font-size: 1.1rem;
+            color: var(--matrix-green-dim); font-size: clamp(1.1rem, 1.8vw, 1.35rem);
             letter-spacing: 2px; text-shadow: 0 0 10px rgba(0,255,65,0.2);
+            line-height: var(--lh-copy);
         }
 
         /* FAQ Content */
@@ -110,11 +126,12 @@
             box-shadow: 0 0 20px rgba(0,255,65,0.05);
         }
         .faq-question {
-            font-size: 1rem; padding: 1.5rem 2rem;
+            font-size: clamp(1.05rem, 1.5vw, 1.3rem); padding: 1.5rem 2rem;
             cursor: pointer; display: flex;
             justify-content: space-between; align-items: center;
             color: var(--matrix-green-dim);
             letter-spacing: 1px; transition: all 0.3s;
+            line-height: var(--lh-snug);
         }
         .faq-question:hover {
             color: var(--matrix-green);
@@ -147,10 +164,11 @@
             padding: 0 2rem 1.5rem;
         }
         .faq-answer p {
-            font-size: 1rem;
-            color: var(--matrix-green-dark); line-height: 1.8;
+            font-size: clamp(1rem, 1.3vw, 1.15rem);
+            color: var(--matrix-green-dark); line-height: var(--lh-relaxed);
             padding-left: 1.2rem;
             border-left: 1px solid rgba(0,255,65,0.15);
+            max-width: var(--content-wide);
         }
 
         /* Decode animation */
@@ -218,6 +236,10 @@
             .footer-content { grid-template-columns: 1fr; gap: 2rem; }
         }
 
+        @media (min-width: 768px) and (max-width: 1023px) {
+            html { font-size: 17px; }
+        }
+
         @media (min-width: 1024px) {
             html { font-size: 18px; }
             .page-header h1 { font-size: clamp(3.5rem, 4.5vw, 5rem); }
@@ -225,7 +247,7 @@
             .logo { font-size: 2.6rem; }
             .nav-links { gap: 3.25rem; }
             .nav-links a { font-size: 1.3rem; }
-            .faq-question { font-size: 1.2rem; }
+            .faq-question { font-size: clamp(1.1rem, 1.5vw, 1.35rem); }
             .faq-answer p { font-size: 1.1rem; line-height: 1.75; }
             .page-header .subtitle { font-size: 1.15rem; }
         }

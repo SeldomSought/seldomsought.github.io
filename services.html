@@ -26,6 +26,21 @@
             --text-dim: rgba(255,255,255,0.3);
             --panel-bg: rgba(10,22,40,0.85);
             --panel-border: rgba(79,195,247,0.15);
+            --fs-hero:        clamp(3rem, 8vw, 7.5rem);
+            --fs-h1:          clamp(2.6rem, 5vw, 4.5rem);
+            --fs-h2:          clamp(1.6rem, 2.5vw, 2.2rem);
+            --fs-h3:          clamp(1.15rem, 1.8vw, 1.45rem);
+            --fs-body-lg:     clamp(1.05rem, 1.4vw, 1.25rem);
+            --fs-body:        clamp(1rem, 1.2vw, 1.15rem);
+            --fs-small:       clamp(0.875rem, 1vw, 0.95rem);
+            --fs-label:       clamp(0.8rem, 0.9vw, 0.88rem);
+            --fs-nav:         clamp(0.92rem, 1vw, 1rem);
+            --lh-tight:       1.15;
+            --lh-snug:        1.35;
+            --lh-copy:        1.7;
+            --lh-relaxed:     1.8;
+            --content-narrow: 65ch;
+            --content-wide:   82ch;
         }
 
         body {
@@ -68,7 +83,7 @@
         }
         .logo {
             font-family: 'Share Tech Mono', monospace;
-            font-size: 1.4rem; color: var(--current-cold);
+            font-size: clamp(1.4rem, 1.8vw, 1.7rem); color: var(--current-cold);
             text-decoration: none; letter-spacing: 2px;
             text-shadow: 0 0 10px rgba(79,195,247,0.4);
         }
@@ -76,7 +91,7 @@
         .nav-links a {
             text-decoration: none; color: var(--text-secondary);
             font-family: 'Share Tech Mono', monospace;
-            font-size: 0.8rem; letter-spacing: 1px;
+            font-size: var(--fs-nav); letter-spacing: 1px;
             text-transform: uppercase; transition: all 0.3s;
         }
         .nav-links a:hover {
@@ -154,15 +169,16 @@
         }
         .page-header h1 {
             font-family: 'Inter', sans-serif;
-            font-weight: 300; font-size: 2.2rem;
+            font-weight: 300; font-size: clamp(2.4rem, 5vw, 3.5rem);
             color: var(--text-primary);
             letter-spacing: 3px; text-transform: uppercase;
             margin-bottom: 0.5rem;
         }
         .page-header .subtitle {
             font-family: 'Share Tech Mono', monospace;
-            font-size: 0.9rem; color: var(--text-dim);
+            font-size: clamp(1rem, 1.5vw, 1.2rem); color: var(--text-dim);
             letter-spacing: 2px; text-transform: uppercase;
+            line-height: var(--lh-copy);
         }
 
         /* Service panels */
@@ -216,15 +232,15 @@
         }
 
         .service-panel h3 {
-            font-weight: 400; font-size: 1.15rem;
+            font-weight: 400; font-size: clamp(1.15rem, 1.8vw, 1.4rem);
             color: var(--text-primary);
             margin-bottom: 0.6rem; letter-spacing: 0.5px;
         }
 
         .service-panel p {
-            font-size: 0.95rem; color: var(--text-secondary);
-            line-height: 1.7; margin-bottom: 1.2rem;
-            font-weight: 300;
+            font-size: clamp(1rem, 1.3vw, 1.2rem); color: var(--text-secondary);
+            line-height: var(--lh-copy); margin-bottom: 1.2rem;
+            font-weight: 300; max-width: var(--content-wide);
         }
 
         .service-list {
@@ -232,7 +248,7 @@
         }
         .service-list li {
             font-family: 'Share Tech Mono', monospace;
-            font-size: 0.875rem; color: var(--text-dim);
+            font-size: clamp(0.95rem, 1.2vw, 1.1rem); color: var(--text-dim);
             padding: 0.3rem 0;
             letter-spacing: 0.5px;
             border-bottom: 1px solid rgba(255,255,255,0.03);
@@ -323,6 +339,10 @@
             .legend { display: none; }
             .source-label { display: none; }
             .footer-content { grid-template-columns: 1fr; gap: 1.5rem; }
+        }
+
+        @media (min-width: 768px) and (max-width: 1023px) {
+            html { font-size: 17px; }
         }
 
         @media (min-width: 1024px) {

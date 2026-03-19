@@ -20,6 +20,21 @@
             --text-primary: #E8DCC8;
             --text-secondary: rgba(212,175,55,0.7);
             --panel-bg: rgba(15,12,8,0.88);
+            --fs-hero:        clamp(3rem, 8vw, 7.5rem);
+            --fs-h1:          clamp(2.6rem, 5vw, 4.5rem);
+            --fs-h2:          clamp(1.6rem, 2.5vw, 2.2rem);
+            --fs-h3:          clamp(1.15rem, 1.8vw, 1.45rem);
+            --fs-body-lg:     clamp(1.05rem, 1.4vw, 1.25rem);
+            --fs-body:        clamp(1rem, 1.2vw, 1.15rem);
+            --fs-small:       clamp(0.875rem, 1vw, 0.95rem);
+            --fs-label:       clamp(0.8rem, 0.9vw, 0.88rem);
+            --fs-nav:         clamp(0.92rem, 1vw, 1rem);
+            --lh-tight:       1.15;
+            --lh-snug:        1.35;
+            --lh-copy:        1.7;
+            --lh-relaxed:     1.8;
+            --content-narrow: 65ch;
+            --content-wide:   82ch;
         }
         body {
             font-family: 'Cormorant Garamond', serif;
@@ -52,7 +67,7 @@
         }
         .logo {
             font-family: 'Cinzel', serif;
-            font-size: 1.5rem; color: var(--gold); text-decoration: none;
+            font-size: clamp(1.5rem, 2vw, 1.8rem); color: var(--gold); text-decoration: none;
             text-shadow: 0 0 10px rgba(212,175,55,0.5), 0 0 20px rgba(212,175,55,0.3);
             letter-spacing: 3px;
         }
@@ -60,7 +75,7 @@
         .nav-links a {
             font-family: 'Share Tech Mono', monospace;
             text-decoration: none; color: var(--gold-dark);
-            font-size: 0.85rem; letter-spacing: 1px; text-transform: uppercase;
+            font-size: var(--fs-nav); letter-spacing: 1px; text-transform: uppercase;
             transition: all 0.3s; position: relative;
         }
         .nav-links a:hover { color: var(--gold); text-shadow: 0 0 8px rgba(212,175,55,0.6); }
@@ -85,7 +100,7 @@
         }
         .page-header h1 {
             font-family: 'Cinzel', serif;
-            font-size: 2.8rem; margin-bottom: 0.8rem;
+            font-size: clamp(2.8rem, 5vw, 4rem); margin-bottom: 0.8rem;
             color: var(--gold); font-weight: 600;
             text-shadow: 0 0 20px rgba(212,175,55,0.4), 0 0 40px rgba(212,175,55,0.2);
             letter-spacing: 6px; text-transform: uppercase;
@@ -94,8 +109,9 @@
         }
         .page-header .subtitle {
             font-family: 'Cormorant Garamond', serif;
-            color: var(--text-secondary); font-size: 1.2rem;
+            color: var(--text-secondary); font-size: clamp(1.15rem, 2vw, 1.45rem);
             letter-spacing: 3px; font-style: italic;
+            line-height: var(--lh-copy);
             opacity: 0; transform: translateY(10px);
             animation: headerFadeIn 1.5s ease 4s forwards;
         }
@@ -130,14 +146,15 @@
         }
         .expertise-panel h3 {
             font-family: 'Cinzel', serif;
-            font-size: 0.95rem; margin-bottom: 0.4rem;
+            font-size: clamp(1.05rem, 1.6vw, 1.3rem); margin-bottom: 0.4rem;
             color: var(--gold); font-weight: 600;
-            letter-spacing: 1px;
+            letter-spacing: 1px; line-height: var(--lh-snug);
         }
         .expertise-panel p {
             font-family: 'Cormorant Garamond', serif;
-            color: var(--text-secondary); font-size: 0.95rem;
+            color: var(--text-secondary); font-size: clamp(1rem, 1.3vw, 1.2rem);
             letter-spacing: 0.5px; font-style: italic;
+            line-height: var(--lh-copy);
         }
 
         /* Footer */
@@ -219,6 +236,10 @@
                 opacity: 1; transform: scale(1);
             }
             .footer-content { grid-template-columns: 1fr; gap: 2rem; }
+        }
+
+        @media (min-width: 768px) and (max-width: 1023px) {
+            html { font-size: 17px; }
         }
 
         @media (min-width: 1024px) {
