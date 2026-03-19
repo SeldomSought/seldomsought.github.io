@@ -362,10 +362,54 @@
     .divider { border: none; border-top: 1px solid var(--amber-border); margin: 2rem 0; }
 
     /* ── RESPONSIVE ── */
+    /* ── INTAKE FORM ── */
+    .intake-section { margin-bottom: 2.4rem; }
+    .intake-section h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem; font-weight: 400; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--text); margin-bottom: 0.4rem;
+    }
+    .intake-subtitle { font-size: 0.78rem; color: var(--text-dim); margin-bottom: 1.4rem; letter-spacing: 0.5px; line-height: 1.75; }
+    .intake-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 0.8rem; }
+    .intake-group { display: flex; flex-direction: column; gap: 0.4rem; }
+    .intake-label { font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text-dim); }
+    .intake-input {
+      background: var(--bg-panel); border: 1px solid var(--amber-border);
+      color: var(--text); font-family: 'Share Tech Mono', monospace;
+      font-size: 0.9rem; padding: 0.72rem 1rem; outline: none;
+      transition: border-color 0.2s; width: 100%;
+    }
+    .intake-input:focus { border-color: var(--amber-border-h); }
+    .intake-input::placeholder { color: var(--text-dim); opacity: 0.55; }
+    .intake-input[type="date"]::-webkit-calendar-picker-indicator { filter: invert(0.6); cursor: pointer; }
+    .intake-error { font-size: 0.72rem; color: var(--red); letter-spacing: 1px; margin-top: 0.3rem; display: none; }
+    .intake-error.show { display: block; }
+
+    /* ── COSMIC PROFILE ── */
+    .cosmic-card { background: var(--bg-panel-2); border: 1px solid var(--amber-border); margin-bottom: 2rem; }
+    .cosmic-card-header { padding: 1.2rem 1.6rem; border-bottom: 1px solid var(--amber-border); }
+    .cosmic-eyebrow { font-size: 0.72rem; letter-spacing: 3px; text-transform: uppercase; color: var(--amber); margin-bottom: 0.3rem; }
+    .cosmic-title { font-family: 'Cormorant Garamond', serif; font-size: 1.45rem; font-weight: 400; letter-spacing: 2px; text-transform: uppercase; color: var(--text); }
+    .cosmic-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--amber-border); border-bottom: 1px solid var(--amber-border); }
+    .cosmic-cell { background: var(--bg-panel); padding: 1rem 1.2rem; }
+    .cosmic-cell-label { font-size: 0.65rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text-dim); margin-bottom: 0.3rem; }
+    .cosmic-cell-value { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: var(--amber-light); font-weight: 400; }
+    .cosmic-cell-sub { font-size: 0.65rem; color: var(--text-dim); letter-spacing: 0.5px; margin-top: 0.2rem; }
+    .cosmic-body { padding: 1.4rem 1.6rem; }
+    .cosmic-synthesis { font-size: 0.88rem; color: var(--text-mid); line-height: 1.85; margin-bottom: 0.6rem; }
+    .cosmic-section-divider {
+      font-size: 0.65rem; letter-spacing: 3px; text-transform: uppercase;
+      color: var(--amber); margin: 1.2rem 0 0.7rem;
+      display: flex; align-items: center; gap: 0.6rem;
+    }
+    .cosmic-section-divider::after { content: ''; flex: 1; height: 1px; background: var(--amber-border); }
+
     @media (max-width: 600px) {
       .meta-grid { grid-template-columns: 1fr; }
       .facet-grid { grid-template-columns: 1fr; }
       .likert-label .lname { font-size: 0.58rem; }
+      .intake-grid { grid-template-columns: 1fr; }
+      .cosmic-grid { grid-template-columns: repeat(2, 1fr); }
     }
 
     @media (min-width: 1024px) {
@@ -394,6 +438,15 @@
       .score-table th { font-size: 0.78rem; }
       .results-date { font-size: 0.82rem; }
       .domain-section-label { font-size: 0.82rem; }
+      .intake-label { font-size: 0.82rem; }
+      .intake-input { font-size: 1rem; }
+      .intake-error { font-size: 0.78rem; }
+      .cosmic-eyebrow { font-size: 0.82rem; }
+      .cosmic-cell-label { font-size: 0.72rem; }
+      .cosmic-cell-value { font-size: 1.35rem; }
+      .cosmic-cell-sub { font-size: 0.72rem; }
+      .cosmic-synthesis { font-size: 1rem; line-height: 1.85; }
+      .cosmic-section-divider { font-size: 0.75rem; }
     }
   </style>
 </head>
@@ -454,6 +507,22 @@
           </div>
         </li>
       </ul>
+
+      <div class="intake-section">
+        <h3>Your Reading</h3>
+        <p class="intake-subtitle">Enter your name and date of birth to generate a numerology and astrology reading woven into your results. All processing is local — nothing leaves your browser.</p>
+        <div class="intake-grid">
+          <div class="intake-group">
+            <label class="intake-label" for="inputName">Full Name</label>
+            <input class="intake-input" type="text" id="inputName" placeholder="First Last" autocomplete="off" spellcheck="false">
+          </div>
+          <div class="intake-group">
+            <label class="intake-label" for="inputDOB">Date of Birth</label>
+            <input class="intake-input" type="date" id="inputDOB">
+          </div>
+        </div>
+        <p class="intake-error" id="intakeError"></p>
+      </div>
 
       <div class="consent-note">
         For personal use only. No data leaves your browser — all scoring happens locally and nothing is transmitted or stored externally.
@@ -718,7 +787,33 @@ function updateProgress() {
   document.getElementById('progressFill').style.width = (done / total * 100) + '%';
 }
 
-function startAssessment() { showScreen('hexaco-intro'); }
+// Intake data
+let userName = '';
+let userDOB  = null; // 'YYYY-MM-DD' string
+
+function startAssessment() {
+  const nameEl = document.getElementById('inputName');
+  const dobEl  = document.getElementById('inputDOB');
+  const errEl  = document.getElementById('intakeError');
+  const name = (nameEl.value || '').trim();
+  const dob  = (dobEl.value || '').trim();
+
+  if (!name || !dob) {
+    errEl.textContent = 'Please enter your full name and date of birth to continue.';
+    errEl.classList.add('show');
+    return;
+  }
+  const dobDate = new Date(dob + 'T12:00:00');
+  if (isNaN(dobDate.getTime()) || dobDate >= new Date()) {
+    errEl.textContent = 'Please enter a valid date of birth.';
+    errEl.classList.add('show');
+    return;
+  }
+  errEl.classList.remove('show');
+  userName = name;
+  userDOB  = dob;
+  showScreen('hexaco-intro');
+}
 
 // ═══════════════════════════════════════════════════════════════════════════════
 // HEXACO PAGING
@@ -889,7 +984,7 @@ function fcPrevBlock() {
 // ═══════════════════════════════════════════════════════════════════════════════
 function calculateAndShow() {
   showScreen('calculating');
-  const statuses = ['Calibrating domains...','Scoring facets...','Integrating FC data...','Applying normative conversion...','Building profile...'];
+  const statuses = ['Calibrating domains...','Scoring facets...','Integrating FC data...','Applying normative conversion...', userDOB ? 'Charting cosmic signature...' : 'Building profile...','Building profile...'];
   let i = 0;
   const statusEl = document.getElementById('calcStatus');
   const iv = setInterval(() => {
@@ -1034,8 +1129,9 @@ function renderResults(scores) {
   const top2   = sorted.slice(0,2);
   const bot2   = sorted.slice(-2);
 
+  const firstName = userName ? userName.split(' ')[0] : '';
   let html = `<div class="results-header fade-in">
-    <h1>Your Profile</h1>
+    <h1>${firstName ? `Profile — ${firstName}` : 'Your Profile'}</h1>
     <p class="results-date">Assessment completed ${dateStr}</p>
   </div>`;
 
@@ -1126,6 +1222,9 @@ function renderResults(scores) {
     <p class="integration-body">${integText}</p>
   </div>`;
 
+  // Cosmic profile (only if name/DOB provided)
+  html += renderCosmicProfile(scores);
+
   // Limitations
   html += `<div style="font-size:0.75rem;color:var(--text-dim);line-height:1.8;padding:1.2rem 1.4rem;border:1px solid rgba(184,134,11,0.1);margin-bottom:2rem;">
     <strong style="color:var(--text-dim);letter-spacing:1px;text-transform:uppercase;font-size:0.68rem;">Limitations</strong><br>
@@ -1207,6 +1306,228 @@ function buildRadarChart(pctiles) {
 }
 
 // ═══════════════════════════════════════════════════════════════════════════════
+// NUMEROLOGY & ASTROLOGY ENGINE
+// ═══════════════════════════════════════════════════════════════════════════════
+const PYTH = {A:1,B:2,C:3,D:4,E:5,F:6,G:7,H:8,I:9,J:1,K:2,L:3,M:4,N:5,O:6,P:7,Q:8,R:9,S:1,T:2,U:3,V:4,W:5,X:6,Y:7,Z:8};
+const VOWELS = new Set(['A','E','I','O','U']);
+
+function reduceNum(n, keepMaster) {
+  if (keepMaster && (n === 11 || n === 22 || n === 33)) return n;
+  while (n > 9) {
+    n = String(n).split('').reduce((a,d) => a + parseInt(d), 0);
+    if (keepMaster && (n === 11 || n === 22 || n === 33)) return n;
+  }
+  return n;
+}
+
+function lifePathNumber(dob) {
+  const d = new Date(dob + 'T12:00:00');
+  const parts = [d.getFullYear(), d.getMonth() + 1, d.getDate()];
+  const sum = parts.map(n => reduceNum(n, false)).reduce((a,b) => a+b, 0);
+  return reduceNum(sum, true);
+}
+
+function expressionNumber(name) {
+  const letters = name.toUpperCase().replace(/[^A-Z]/g, '');
+  const sum = letters.split('').reduce((a,ch) => a + (PYTH[ch] || 0), 0);
+  return reduceNum(sum || 1, true);
+}
+
+function soulUrgeNumber(name) {
+  const letters = name.toUpperCase().replace(/[^A-Z]/g, '').split('');
+  const sum = letters.filter(ch => VOWELS.has(ch)).reduce((a,ch) => a + (PYTH[ch] || 0), 0);
+  return reduceNum(sum || 1, true);
+}
+
+function birthDayNumber(dob) {
+  const day = new Date(dob + 'T12:00:00').getDate();
+  if (day === 11 || day === 22) return day;
+  return reduceNum(day, false);
+}
+
+const ASTRO_SIGNS = [
+  {name:'Aries',       symbol:'♈', el:'Fire',  mod:'Cardinal', ruler:'Mars',    m1:3,  d1:21, m2:4,  d2:19},
+  {name:'Taurus',      symbol:'♉', el:'Earth', mod:'Fixed',    ruler:'Venus',   m1:4,  d1:20, m2:5,  d2:20},
+  {name:'Gemini',      symbol:'♊', el:'Air',   mod:'Mutable',  ruler:'Mercury', m1:5,  d1:21, m2:6,  d2:20},
+  {name:'Cancer',      symbol:'♋', el:'Water', mod:'Cardinal', ruler:'Moon',    m1:6,  d1:21, m2:7,  d2:22},
+  {name:'Leo',         symbol:'♌', el:'Fire',  mod:'Fixed',    ruler:'Sun',     m1:7,  d1:23, m2:8,  d2:22},
+  {name:'Virgo',       symbol:'♍', el:'Earth', mod:'Mutable',  ruler:'Mercury', m1:8,  d1:23, m2:9,  d2:22},
+  {name:'Libra',       symbol:'♎', el:'Air',   mod:'Cardinal', ruler:'Venus',   m1:9,  d1:23, m2:10, d2:22},
+  {name:'Scorpio',     symbol:'♏', el:'Water', mod:'Fixed',    ruler:'Pluto',   m1:10, d1:23, m2:11, d2:21},
+  {name:'Sagittarius', symbol:'♐', el:'Fire',  mod:'Mutable',  ruler:'Jupiter', m1:11, d1:22, m2:12, d2:21},
+  {name:'Capricorn',   symbol:'♑', el:'Earth', mod:'Cardinal', ruler:'Saturn',  m1:12, d1:22, m2:1,  d2:19},
+  {name:'Aquarius',    symbol:'♒', el:'Air',   mod:'Fixed',    ruler:'Uranus',  m1:1,  d1:20, m2:2,  d2:18},
+  {name:'Pisces',      symbol:'♓', el:'Water', mod:'Mutable',  ruler:'Neptune', m1:2,  d1:19, m2:3,  d2:20},
+];
+
+function getSunSign(dob) {
+  const d = new Date(dob + 'T12:00:00');
+  const m = d.getMonth() + 1, day = d.getDate();
+  for (const s of ASTRO_SIGNS) {
+    if (s.m1 === s.m2) {
+      if (m === s.m1 && day >= s.d1 && day <= s.d2) return s;
+    } else if (s.m1 > s.m2) { // wraps year (Capricorn)
+      if ((m === s.m1 && day >= s.d1) || (m === s.m2 && day <= s.d2)) return s;
+    } else {
+      if ((m === s.m1 && day >= s.d1) || (m === s.m2 && day <= s.d2)) return s;
+    }
+  }
+  return ASTRO_SIGNS[0];
+}
+
+const CHINESE_ANIMALS = ['Rat','Ox','Tiger','Rabbit','Dragon','Snake','Horse','Goat','Monkey','Rooster','Dog','Pig'];
+const CHINESE_GLYPHS  = {Rat:'鼠',Ox:'牛',Tiger:'虎',Rabbit:'兔',Dragon:'龙',Snake:'蛇',Horse:'马',Goat:'羊',Monkey:'猴',Rooster:'鸡',Dog:'狗',Pig:'猪'};
+
+function getChineseSign(dob) {
+  const year = new Date(dob + 'T12:00:00').getFullYear();
+  return CHINESE_ANIMALS[((year - 1900) % 12 + 12) % 12];
+}
+
+const LP_DESC = {
+  1:  {title:'The Leader',       phrase:'independent authority, original thinking, and self-determined direction'},
+  2:  {title:'The Mediator',     phrase:'cooperative sensitivity, diplomacy, and instinctive partnership'},
+  3:  {title:'The Creator',      phrase:'expressive vitality, creative communication, and social optimism'},
+  4:  {title:'The Builder',      phrase:'disciplined structure, methodical reliability, and enduring foundations'},
+  5:  {title:'The Explorer',     phrase:'adaptive freedom, sensory curiosity, and dynamic restlessness'},
+  6:  {title:'The Nurturer',     phrase:'responsible care, domestic harmony, and protective devotion'},
+  7:  {title:'The Seeker',       phrase:'analytical depth, solitary inquiry, and spiritual discernment'},
+  8:  {title:'The Achiever',     phrase:'material mastery, executive ambition, and pragmatic authority'},
+  9:  {title:'The Humanitarian', phrase:'universal compassion, idealistic service, and distilled wisdom'},
+  11: {title:'The Illuminator',  phrase:'heightened intuition, spiritual vision, and inspirational sensitivity'},
+  22: {title:'The Architect',    phrase:'master-level building, pragmatic idealism, and large-scale systemic impact'},
+  33: {title:'The Teacher',      phrase:'compassionate guidance, selfless nurturing, and transformative presence'},
+};
+
+const ELEMENT_PROSE = {
+  Fire:  'assertive momentum, instinctive drive, and radiant self-expression',
+  Earth: 'grounded pragmatism, patient endurance, and material reliability',
+  Air:   'intellectual agility, social fluency, and conceptual versatility',
+  Water: 'emotional depth, empathic resonance, and intuitive permeability',
+};
+
+const MODALITY_PROSE = {
+  Cardinal: 'you initiate — moving toward new territory, generating forward momentum, and beginning cycles',
+  Fixed:    'you sustain — deepening, stabilizing, and persisting; once committed, you hold the course',
+  Mutable:  'you adapt — synthesizing, transitioning, and integrating; change is your native state',
+};
+
+// HEXACO domains most resonant with each sign (empirically mapped)
+const SIGN_HEXACO = {
+  Aries:       {res:['X','C'], ten:['A']},
+  Taurus:      {res:['C','H'], ten:['O']},
+  Gemini:      {res:['O','X'], ten:['C']},
+  Cancer:      {res:['E','A'], ten:['H']},
+  Leo:         {res:['X','O'], ten:['H']},
+  Virgo:       {res:['C','A'], ten:['X']},
+  Libra:       {res:['A','X'], ten:['E']},
+  Scorpio:     {res:['E','O'], ten:['H']},
+  Sagittarius: {res:['O','X'], ten:['C']},
+  Capricorn:   {res:['C','H'], ten:['E']},
+  Aquarius:    {res:['O','X'], ten:['A']},
+  Pisces:      {res:['E','A'], ten:['C']},
+};
+
+// Life path → most resonant HEXACO domain
+const LP_HEXACO = {1:'X',2:'A',3:'O',4:'C',5:'O',6:'A',7:'O',8:'C',9:'H',11:'E',22:'C',33:'A'};
+
+function buildCosmicCrossRef(sign, lp, scores) {
+  const sm  = SIGN_HEXACO[sign.name] || {res:[],ten:[]};
+  const lpD = LP_HEXACO[lp] || LP_HEXACO[reduceNum(lp, false)];
+  const lines = [];
+
+  const resHit = sm.res.filter(d => scores.pctiles[d] >= 65);
+  const tenHit = sm.ten.filter(d => scores.pctiles[d] <= 35);
+
+  if (resHit.length > 0) {
+    lines.push(`Your ${sign.name} signature amplifies your elevated ${resHit.map(d => DOMAIN_META[d].name).join(' and ')} — traits ${sign.name} channels through ${ELEMENT_PROSE[sign.el].split(',')[0].trim()}.`);
+  } else {
+    lines.push(`Your ${sign.name} signature is oriented toward ${ELEMENT_PROSE[sign.el]} — an archetype that runs alongside your measured personality structure rather than directly reinforcing a single dominant axis.`);
+  }
+
+  if (tenHit.length > 0) {
+    lines.push(`Where ${sign.name} archetypes typically lean into ${tenHit.map(d => DOMAIN_META[d].name).join(' and ')}, your profile trends differently — a productive tension that often marks a consciously developed counter-tendency.`);
+  }
+
+  if (lpD) {
+    const pct = scores.pctiles[lpD];
+    if (pct >= 65) {
+      lines.push(`Life Path ${lp} — ${LP_DESC[lp] ? LP_DESC[lp].title : ''} — finds strong confirmation in your ${DOMAIN_META[lpD].name} score (${pct}th percentile). The numerological archetype of ${LP_DESC[lp] ? LP_DESC[lp].phrase : ''} is empirically legible in how you present across this domain.`);
+    } else if (pct <= 35) {
+      lines.push(`Life Path ${lp} — ${LP_DESC[lp] ? LP_DESC[lp].title : ''} — maps most naturally to ${DOMAIN_META[lpD].name}, where your measured score is lower. This divergence can point toward an aspirational orientation: energies you gravitate toward or seek that haven't yet fully consolidated in your baseline dispositional profile.`);
+    } else {
+      lines.push(`Life Path ${lp} — ${LP_DESC[lp] ? LP_DESC[lp].title : ''} — carries the energy of ${LP_DESC[lp] ? LP_DESC[lp].phrase : ''}. Your personality profile neither strongly confirms nor contradicts this archetype, suggesting the life path theme operates as an undercurrent rather than a dominant axis of expression.`);
+    }
+  }
+
+  return lines.join(' ');
+}
+
+function renderCosmicProfile(scores) {
+  if (!userName || !userDOB) return '';
+
+  const sign    = getSunSign(userDOB);
+  const lp      = lifePathNumber(userDOB);
+  const expr    = expressionNumber(userName);
+  const soul    = soulUrgeNumber(userName);
+  const bdNum   = birthDayNumber(userDOB);
+  const chSign  = getChineseSign(userDOB);
+  const lpInfo  = LP_DESC[lp] || LP_DESC[reduceNum(lp, false)] || LP_DESC[1];
+  const crossRef = buildCosmicCrossRef(sign, lp, scores);
+
+  const firstName = userName.split(' ')[0];
+  const fmtLP   = (lp   === 11 || lp   === 22 || lp   === 33) ? `${lp} ✦` : String(lp);
+  const fmtExpr = (expr === 11 || expr === 22 || expr === 33) ? `${expr} ✦` : String(expr);
+  const fmtSoul = (soul === 11 || soul === 22 || soul === 33) ? `${soul} ✦` : String(soul);
+
+  return `<div class="cosmic-card fade-in">
+    <div class="cosmic-card-header">
+      <p class="cosmic-eyebrow">Cosmic Profile</p>
+      <h3 class="cosmic-title">${firstName}</h3>
+    </div>
+    <div class="cosmic-grid">
+      <div class="cosmic-cell">
+        <div class="cosmic-cell-label">Sun Sign</div>
+        <div class="cosmic-cell-value">${sign.symbol} ${sign.name}</div>
+        <div class="cosmic-cell-sub">${sign.el} · ${sign.mod}</div>
+      </div>
+      <div class="cosmic-cell">
+        <div class="cosmic-cell-label">Ruling Planet</div>
+        <div class="cosmic-cell-value">${sign.ruler}</div>
+        <div class="cosmic-cell-sub">${sign.el} element</div>
+      </div>
+      <div class="cosmic-cell">
+        <div class="cosmic-cell-label">Chinese Sign</div>
+        <div class="cosmic-cell-value">${CHINESE_GLYPHS[chSign]} ${chSign}</div>
+        <div class="cosmic-cell-sub">Year of the ${chSign}</div>
+      </div>
+      <div class="cosmic-cell">
+        <div class="cosmic-cell-label">Life Path</div>
+        <div class="cosmic-cell-value">${fmtLP}</div>
+        <div class="cosmic-cell-sub">${lpInfo.title}</div>
+      </div>
+      <div class="cosmic-cell">
+        <div class="cosmic-cell-label">Expression</div>
+        <div class="cosmic-cell-value">${fmtExpr}</div>
+        <div class="cosmic-cell-sub">Destiny number</div>
+      </div>
+      <div class="cosmic-cell">
+        <div class="cosmic-cell-label">Soul Urge</div>
+        <div class="cosmic-cell-value">${fmtSoul}</div>
+        <div class="cosmic-cell-sub">Heart's desire · Day ${bdNum}</div>
+      </div>
+    </div>
+    <div class="cosmic-body">
+      <p class="cosmic-section-divider">Modality &amp; Element</p>
+      <p class="cosmic-synthesis">${sign.mod} modality: ${MODALITY_PROSE[sign.mod]}. The ${sign.el} element grounds this through ${ELEMENT_PROSE[sign.el]}.</p>
+      <p class="cosmic-section-divider">Personality × Cosmos</p>
+      <p class="cosmic-synthesis">${crossRef}</p>
+      <p class="cosmic-section-divider">Numerology Synopsis</p>
+      <p class="cosmic-synthesis">Life Path ${fmtLP} (${lpInfo.phrase}) describes the overarching terrain of your lifetime. Expression ${fmtExpr} reflects how that energy manifests outwardly through your name and presence. Soul Urge ${fmtSoul} points to the inner motivational current — what you are drawn toward independent of external validation. These three numbers in combination form the numerological through-line of the reading; where they converge with your HEXACO profile, the signal is especially reliable. Where they diverge, treat the divergence as information about development and aspiration rather than contradiction.</p>
+    </div>
+  </div>`;
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
 // UTILITIES
 // ═══════════════════════════════════════════════════════════════════════════════
 function showToast(msg) {
@@ -1221,6 +1542,8 @@ function restartAssessment() {
   Object.keys(fcRankings).forEach(k => delete fcRankings[k]);
   currentHexacoPage = 0;
   currentFCBlock    = 0;
+  userName = '';
+  userDOB  = null;
   document.getElementById('progressFill').style.width = '0%';
   showScreen('welcome');
 }
