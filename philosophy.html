@@ -23,19 +23,21 @@
              --gc-anim-blink     : blink/pulse speed
         ========================================= */
         :root {
-            --fs-hero:        clamp(3rem, 8vw, 7.5rem);
-            --fs-h1:          clamp(2.6rem, 5vw, 4.5rem);
-            --fs-h2:          clamp(1.6rem, 2.5vw, 2.2rem);
-            --fs-h3:          clamp(1.15rem, 1.8vw, 1.45rem);
-            --fs-body-lg:     clamp(1.05rem, 1.4vw, 1.25rem);
-            --fs-body:        clamp(1rem, 1.2vw, 1.15rem);
-            --fs-small:       clamp(0.875rem, 1vw, 0.95rem);
-            --fs-label:       clamp(0.8rem, 0.9vw, 0.88rem);
-            --fs-nav:         clamp(0.92rem, 1vw, 1rem);
-            --lh-tight:       1.15;
-            --lh-snug:        1.35;
-            --lh-copy:        1.7;
-            --lh-relaxed:     1.8;
+            --fs-display: clamp(4rem, 9vw, 9.5rem);
+            --fs-h1:      clamp(3rem, 6.5vw, 7rem);
+            --fs-h2:      clamp(2rem, 3.5vw, 3.5rem);
+            --fs-h3:      clamp(1.4rem, 2.2vw, 2.2rem);
+            --fs-h4:      clamp(1.1rem, 1.6vw, 1.6rem);
+            --fs-body-lg: clamp(1.1rem, 1.5vw, 1.4rem);
+            --fs-body:    clamp(1rem, 1.25vw, 1.25rem);
+            --fs-small:   clamp(0.85rem, 1vw, 1rem);
+            --fs-label:   clamp(0.78rem, 0.9vw, 0.9rem);
+            --fs-nav:     clamp(0.95rem, 1.1vw, 1.2rem);
+            --fs-btn:     clamp(1rem, 1.2vw, 1.2rem);
+            --lh-tight:   1.1;
+            --lh-snug:    1.3;
+            --lh-copy:    1.7;
+            --lh-relaxed: 1.8;
             --content-narrow: 65ch;
             --content-wide:   82ch;
         }
@@ -316,11 +318,11 @@
             html { font-size: 18px; }
             body.retro-geocities .nav-container { padding: 1.2rem 5rem; max-width: none; }
             body.retro-geocities .logo { font-size: 2.35rem; }
-            body.retro-geocities .nav-links a { font-size: 1.3rem; padding: 0.65rem 1.3rem; }
-            .retro-window-body { font-size: 1rem; }
+            body.retro-geocities .nav-links a { font-size: clamp(1.25rem, 1.5vw, 1.5rem); padding: 0.65rem 1.3rem; }
+            .retro-window-body { font-size: clamp(1.05rem, 1.4vw, 1.4rem); }
             .retro-window.read-first .retro-window-body { font-size: 0.92rem; }
             .gc-main-title {
-                font-size: clamp(3.5rem, 5vw, 6rem);
+                font-size: clamp(3.5rem, 6.5vw, 7rem);
                 letter-spacing: 8px;
                 text-shadow:
                     5px 5px 0 var(--gc-accent-mag),
@@ -332,7 +334,7 @@
                 padding: 3rem 1.5rem 2.5rem;
             }
             .gc-hero-subtitle {
-                font-size: clamp(0.85rem, 1.4vw, 1.2rem);
+                font-size: clamp(1.1rem, 1.6vw, 1.5rem);
                 letter-spacing: 5px;
             }
         }
@@ -476,7 +478,7 @@
         .retro-window-body {
             padding: 1rem 1.1rem;
             background: #f0f0f0; color: #111;
-            font-size: clamp(1rem, 1.3vw, 1.15rem); line-height: var(--lh-copy);
+            font-size: clamp(1.05rem, 1.4vw, 1.4rem); line-height: var(--lh-copy);
         }
         .retro-window-body p         { margin-bottom: 0.55rem; }
         .retro-window-body p:last-child { margin-bottom: 0; }
