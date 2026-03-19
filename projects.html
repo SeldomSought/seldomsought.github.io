@@ -44,6 +44,21 @@
             --green-dim:     rgba(60, 140, 80, 0.18);
             --green-text:    #5a9e6f;
             --grid-line:     rgba(232, 226, 217, 0.025);
+            --fs-hero:        clamp(3rem, 8vw, 7.5rem);
+            --fs-h1:          clamp(2.6rem, 5vw, 4.5rem);
+            --fs-h2:          clamp(1.6rem, 2.5vw, 2.2rem);
+            --fs-h3:          clamp(1.15rem, 1.8vw, 1.45rem);
+            --fs-body-lg:     clamp(1.05rem, 1.4vw, 1.25rem);
+            --fs-body:        clamp(1rem, 1.2vw, 1.15rem);
+            --fs-small:       clamp(0.875rem, 1vw, 0.95rem);
+            --fs-label:       clamp(0.8rem, 0.9vw, 0.88rem);
+            --fs-nav:         clamp(0.92rem, 1vw, 1rem);
+            --lh-tight:       1.15;
+            --lh-snug:        1.35;
+            --lh-copy:        1.7;
+            --lh-relaxed:     1.8;
+            --content-narrow: 65ch;
+            --content-wide:   82ch;
         }
 
         /* ── Base ───────────────────────────────────────────────────────────── */
@@ -91,7 +106,7 @@
 
         .logo {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1.4rem;
+            font-size: clamp(1.4rem, 1.8vw, 1.7rem);
             font-weight: 500;
             color: var(--text);
             text-decoration: none;
@@ -109,7 +124,7 @@
             font-family: 'Share Tech Mono', monospace;
             text-decoration: none;
             color: var(--text-dim);
-            font-size: 0.8rem;
+            font-size: var(--fs-nav);
             letter-spacing: 1px;
             text-transform: uppercase;
             transition: color 0.25s;
@@ -168,7 +183,7 @@
 
         .proj-hero h1 {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 4rem;
+            font-size: clamp(3rem, 7vw, 5rem);
             font-weight: 400;
             color: var(--text);
             letter-spacing: 4px;
@@ -179,10 +194,10 @@
 
         .proj-hero-subtitle {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1.25rem;
+            font-size: clamp(1.2rem, 1.8vw, 1.5rem);
             font-style: italic;
             color: var(--text-mid);
-            line-height: 1.7;
+            line-height: var(--lh-copy);
             margin-bottom: 1.8rem;
             max-width: 540px;
         }
@@ -331,7 +346,7 @@
         /* Card body */
         .proj-card-name {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1.55rem;
+            font-size: clamp(1.4rem, 2vw, 1.75rem);
             font-weight: 500;
             letter-spacing: 1px;
             color: var(--text);
@@ -341,18 +356,18 @@
 
         .proj-card-tagline {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1rem;
+            font-size: clamp(1rem, 1.3vw, 1.2rem);
             font-style: italic;
             color: var(--text-mid);
             margin-bottom: 1rem;
-            line-height: 1.5;
+            line-height: var(--lh-snug);
         }
 
         .proj-card-excerpt {
             font-family: 'Share Tech Mono', monospace;
-            font-size: 0.9rem;
+            font-size: clamp(0.95rem, 1.1vw, 1.05rem);
             color: var(--text-dim);
-            line-height: 1.75;
+            line-height: var(--lh-copy);
             margin-bottom: 1.5rem;
             flex: 1;
         }
@@ -514,7 +529,7 @@
 
         .modal-name {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 2.2rem;
+            font-size: clamp(1.8rem, 3vw, 2.4rem);
             font-weight: 500;
             letter-spacing: 2px;
             color: var(--text);
@@ -525,7 +540,7 @@
         .modal-tagline {
             font-family: 'Cormorant Garamond', serif;
             font-style: italic;
-            font-size: 1.05rem;
+            font-size: clamp(1.05rem, 1.5vw, 1.3rem);
             color: var(--text-mid);
             line-height: 1.5;
             margin-bottom: 0.9rem;
@@ -596,9 +611,9 @@
 
         .modal-section-body {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1.1rem;
+            font-size: clamp(1.05rem, 1.3vw, 1.2rem);
             color: var(--text-mid);
-            line-height: 1.8;
+            line-height: var(--lh-copy);
         }
 
         /* How it works steps */
@@ -883,6 +898,10 @@
             outline-offset: 3px;
         }
 
+        @media (min-width: 768px) and (max-width: 1023px) {
+            html { font-size: 17px; }
+        }
+
         @media (min-width: 1024px) {
             html { font-size: 18px; }
             .proj-hero h1       { font-size: clamp(3.5rem, 4.5vw, 5rem); }
@@ -983,6 +1002,19 @@
         }
 
         .modal-feed-img:hover { opacity: 0.82; }
+
+        .modal-feed-loading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: calc(3 * var(--mf-cell, 140px));
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.78rem;
+            letter-spacing: 2px;
+            color: var(--text-dim);
+            text-transform: uppercase;
+        }
 
         .modal-feed-progress-wrap {
             height: 2px;
@@ -1355,25 +1387,23 @@
                 + '</div>';
             }
 
-            // Feed gallery (inline horizontal strip for image-curation projects)
+            // Feed gallery (inline horizontal strip — populated by initFeedGallery)
             var feedGalleryHTML = '';
-            if (p.galleryImages && p.galleryImages.length) {
-                var feedImgs = p.galleryImages.map(function (img, i) {
-                    return '<img class="modal-feed-img" src="' + escapeHtml(img.src) + '"'
-                        + ' alt="' + escapeHtml(img.alt || ('Image ' + (i + 1))) + '"'
-                        + ' loading="lazy" data-mf-index="' + i + '">';
-                }).join('');
+            if (p.beholdFeedId || (p.galleryImages && p.galleryImages.length)) {
+                var stripInner = p.beholdFeedId
+                    ? '<div class="modal-feed-loading" id="mfLoading">Loading feed&#8230;</div>'
+                    : '';
 
                 feedGalleryHTML = '<div class="modal-section">'
                     + '<p class="modal-section-label">The Feed</p>'
                     + '<div class="modal-feed-wrapper">'
-                        + '<button class="modal-feed-nav modal-feed-nav--prev" id="mfPrev" aria-label="Scroll left">&#8592;</button>'
-                        + '<div class="modal-feed-strip" id="mfStrip" role="list">' + feedImgs + '</div>'
-                        + '<button class="modal-feed-nav modal-feed-nav--next" id="mfNext" aria-label="Scroll right">&#8594;</button>'
+                        + '<button class="modal-feed-nav modal-feed-nav--prev" id="mfPrev" disabled aria-label="Scroll left">&#8592;</button>'
+                        + '<div class="modal-feed-strip" id="mfStrip" role="list">' + stripInner + '</div>'
+                        + '<button class="modal-feed-nav modal-feed-nav--next" id="mfNext" disabled aria-label="Scroll right">&#8594;</button>'
                     + '</div>'
                     + '<div class="modal-feed-progress-wrap"><div class="modal-feed-progress" id="mfProgress"></div></div>'
                     + '</div>'
-                    // Lightbox lives here; position:fixed lifts it above the modal visually
+                    // Lightbox — position:fixed so it floats above the modal
                     + '<div class="mf-lightbox" id="mfLightbox" hidden role="dialog" aria-modal="true" aria-label="Image viewer">'
                         + '<button class="mf-lb-close" id="mfLbClose" aria-label="Close">&#10005; Close</button>'
                         + '<img class="mf-lightbox-img" id="mfLbImg" src="" alt="">'
@@ -1409,7 +1439,8 @@
 
         // ── Feed gallery initialiser (runs after modal HTML is injected) ────────
         function initFeedGallery(project) {
-            if (!project.galleryImages || !project.galleryImages.length) return;
+            var hasFeed = project.beholdFeedId || (project.galleryImages && project.galleryImages.length);
+            if (!hasFeed) return;
 
             var strip   = modalBody.querySelector('#mfStrip');
             var prev    = modalBody.querySelector('#mfPrev');
@@ -1424,10 +1455,10 @@
 
             if (!strip) return;
 
-            var images = project.galleryImages;
+            var images = [];
             var curIdx = 0;
 
-            // Scroll nav
+            // ── Scroll nav ───────────────────────────────────────────────────
             function updateNav() {
                 prev.disabled = strip.scrollLeft <= 0;
                 next.disabled = strip.scrollLeft + strip.clientWidth >= strip.scrollWidth - 1;
@@ -1445,20 +1476,14 @@
             prev.addEventListener('click', function () { strip.scrollBy({ left: -pageScroll(), behavior: 'smooth' }); });
             next.addEventListener('click', function () { strip.scrollBy({ left:  pageScroll(), behavior: 'smooth' }); });
             strip.addEventListener('scroll', updateNav, { passive: true });
-            updateNav();
 
-            // Lightbox
-            function openLb(idx) {
-                curIdx = idx;
-                showLbImg();
-                lb.hidden = false;
-                lbClose.focus();
-            }
+            // ── Lightbox ─────────────────────────────────────────────────────
+            function openLb(idx) { curIdx = idx; showLbImg(); lb.hidden = false; lbClose.focus(); }
 
             function closeLb() {
                 lb.hidden = true;
-                var imgs = strip.querySelectorAll('.modal-feed-img');
-                if (imgs[curIdx]) imgs[curIdx].focus();
+                var els = strip.querySelectorAll('.modal-feed-img');
+                if (els[curIdx]) els[curIdx].focus();
             }
 
             function showLbImg() {
@@ -1469,16 +1494,11 @@
                 lbNext.disabled = curIdx === images.length - 1;
             }
 
-            strip.querySelectorAll('.modal-feed-img').forEach(function (img) {
-                img.addEventListener('click', function () { openLb(parseInt(img.dataset.mfIndex, 10)); });
-            });
-
             lbClose.addEventListener('click', closeLb);
             lbPrev.addEventListener('click', function () { if (curIdx > 0) { curIdx--; showLbImg(); } });
             lbNext.addEventListener('click', function () { if (curIdx < images.length - 1) { curIdx++; showLbImg(); } });
             lb.addEventListener('click', function (e) { if (e.target === lb) closeLb(); });
 
-            // ESC closes lightbox before it reaches the modal ESC handler (capture phase)
             function lbKeyHandler(e) {
                 if (lb.hidden) return;
                 if (e.key === 'Escape')     { e.stopImmediatePropagation(); closeLb(); }
@@ -1487,7 +1507,6 @@
             }
             document.addEventListener('keydown', lbKeyHandler, true);
 
-            // Clean up the capture listener when the modal closes
             var cleanupObs = new MutationObserver(function () {
                 if (overlay.hidden) {
                     document.removeEventListener('keydown', lbKeyHandler, true);
@@ -1495,6 +1514,55 @@
                 }
             });
             cleanupObs.observe(overlay, { attributes: true, attributeFilter: ['hidden'] });
+
+            // ── Populate strip with image elements ───────────────────────────
+            function populateStrip(imgList) {
+                images = imgList;
+                var loading = strip.querySelector('#mfLoading');
+                if (loading) strip.removeChild(loading);
+
+                imgList.forEach(function (img, i) {
+                    var el = document.createElement('img');
+                    el.className       = 'modal-feed-img';
+                    el.src             = img.src;
+                    el.alt             = img.alt || ('Image ' + (i + 1));
+                    el.loading         = 'lazy';
+                    el.tabIndex        = 0;
+                    el.dataset.mfIndex = i;
+                    el.addEventListener('click', function () { openLb(i); });
+                    el.addEventListener('keydown', function (e) {
+                        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openLb(i); }
+                    });
+                    strip.appendChild(el);
+                });
+                updateNav();
+            }
+
+            // ── Source: Behold.so API or static galleryImages array ──────────
+            if (project.beholdFeedId) {
+                fetch('https://feeds.behold.so/' + project.beholdFeedId)
+                    .then(function (r) { if (!r.ok) throw new Error('fetch failed'); return r.json(); })
+                    .then(function (posts) {
+                        var imgList = posts
+                            .filter(function (post) {
+                                return post.mediaType === 'IMAGE' || post.mediaType === 'CAROUSEL_ALBUM';
+                            })
+                            .map(function (post) {
+                                return {
+                                    src: post.mediaUrl || post.thumbnailUrl,
+                                    alt: post.caption ? post.caption.slice(0, 120) : '',
+                                    permalink: post.permalink,
+                                };
+                            });
+                        populateStrip(imgList);
+                    })
+                    .catch(function () {
+                        var loading = strip.querySelector('#mfLoading');
+                        if (loading) loading.textContent = 'Could not load feed. Check your Behold Feed ID.';
+                    });
+            } else {
+                populateStrip(project.galleryImages || []);
+            }
         }
 
         // ── Modal open/close ─────────────────────────────────────────────────

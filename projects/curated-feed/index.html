@@ -720,27 +720,19 @@
         'use strict';
 
         // ─────────────────────────────────────────────────────────────────────
-        // FEED IMAGES
+        // CONFIGURATION
         // ─────────────────────────────────────────────────────────────────────
-        // Add your Instagram photos here in the order you want them to appear
-        // (left-to-right = the color gradient journey).
-        //
-        // SETUP:
-        //   1. Export your Instagram photos (Settings > Account > Download your data)
-        //   2. Drop them in the  images/  folder next to this file
-        //   3. Add each filename to the array below, e.g.:
-        //        { src: 'images/001.jpg', alt: '' }
-        //   4. Order them as you want the gradient to read left → right
-        //
-        // The gallery fills column-by-column (3 rows tall), so:
-        //   images[0] = top-left, images[1] = middle-left, images[2] = bottom-left,
-        //   images[3] = top of column 2, etc.
-        // ─────────────────────────────────────────────────────────────────────
+        // OPTION A — Behold.so (recommended, pulls live from Instagram, free):
+        //   1. Sign up at behold.so
+        //   2. Connect @seldomsought
+        //   3. Copy your Feed ID and paste it below
+        var BEHOLD_FEED_ID = '';   // e.g. 'AbCdEfGhIjKlMnOp'
+
+        // OPTION B — Self-hosted (manual export, gradient order you define):
+        //   Leave BEHOLD_FEED_ID empty and list images here instead.
+        //   Drop files in the images/ folder next to this file.
         var FEED_IMAGES = [
             // { src: 'images/001.jpg', alt: '' },
-            // { src: 'images/002.jpg', alt: '' },
-            // { src: 'images/003.jpg', alt: '' },
-            // ...
         ];
 
         // ── DOM refs ────────────────────────────────────────────────────────
@@ -766,10 +758,10 @@
         }
 
         // ── Build gallery ────────────────────────────────────────────────────
-        function buildGallery() {
+        function buildGallery(imgList) {
             strip.innerHTML = '';
 
-            if (!FEED_IMAGES.length) {
+            if (!imgList || !imgList.length) {
                 renderEmpty();
                 countEl.textContent = '0 images';
                 hintEl.style.display = 'none';
@@ -778,9 +770,9 @@
                 return;
             }
 
-            countEl.textContent = FEED_IMAGES.length + ' image' + (FEED_IMAGES.length !== 1 ? 's' : '');
+            countEl.textContent = imgList.length + ' image' + (imgList.length !== 1 ? 's' : '');
 
-            FEED_IMAGES.forEach(function (img, i) {
+            imgList.forEach(function (img, i) {
                 var el = document.createElement('img');
                 el.className      = 'gallery-img';
                 el.src            = img.src;
@@ -805,9 +797,9 @@
             wrap.innerHTML =
                 '<p class="gallery-empty-text">' +
                     'No images yet.<br><br>' +
-                    'Drop your photos in the <code>images/</code> folder, ' +
-                    'then add them to the <code>FEED_IMAGES</code> array ' +
-                    'at the top of this page\'s script.' +
+                    'Set <code>BEHOLD_FEED_ID</code> to your Behold.so Feed ID ' +
+                    'to pull directly from Instagram, or add images manually ' +
+                    'to the <code>FEED_IMAGES</code> array.' +
                 '</p>';
             strip.appendChild(wrap);
         }
@@ -826,7 +818,6 @@
         }
 
         function updateNav() {
-            if (!FEED_IMAGES.length) return;
             prevBtn.disabled = strip.scrollLeft <= 0;
             nextBtn.disabled = strip.scrollLeft + strip.clientWidth >= strip.scrollWidth - 1;
 
@@ -864,12 +855,12 @@
         }
 
         function showLightboxImage() {
-            var img = FEED_IMAGES[currentLbIdx];
+            var img = activeImages[currentLbIdx];
             lbImg.src = img.src;
             lbImg.alt = img.alt || ('Image ' + (currentLbIdx + 1));
-            lbCounter.textContent = (currentLbIdx + 1) + ' / ' + FEED_IMAGES.length;
+            lbCounter.textContent = (currentLbIdx + 1) + ' / ' + activeImages.length;
             lbPrev.disabled = currentLbIdx === 0;
-            lbNext.disabled = currentLbIdx === FEED_IMAGES.length - 1;
+            lbNext.disabled = currentLbIdx === activeImages.length - 1;
         }
 
         lbClose.addEventListener('click', closeLightbox);
@@ -877,7 +868,7 @@
             if (currentLbIdx > 0) { currentLbIdx--; showLightboxImage(); }
         });
         lbNext.addEventListener('click', function () {
-            if (currentLbIdx < FEED_IMAGES.length - 1) { currentLbIdx++; showLightboxImage(); }
+            if (currentLbIdx < activeImages.length - 1) { currentLbIdx++; showLightboxImage(); }
         });
 
         // Click backdrop to close
@@ -904,8 +895,40 @@
         });
 
         // ── Init ─────────────────────────────────────────────────────────────
-        buildGallery();
-        updateNav();
+        var activeImages = [];  // set by buildGallery, used by lightbox
+
+        // Wrap buildGallery so it also sets activeImages
+        var _origBuild = buildGallery;
+        buildGallery = function (imgList) {
+            activeImages = imgList || [];
+            _origBuild(imgList);
+        };
+
+        if (BEHOLD_FEED_ID) {
+            countEl.textContent = 'Loading\u2026';
+            fetch('https://feeds.behold.so/' + BEHOLD_FEED_ID)
+                .then(function (r) { if (!r.ok) throw new Error('fetch failed'); return r.json(); })
+                .then(function (posts) {
+                    var imgList = posts
+                        .filter(function (p) { return p.mediaType === 'IMAGE' || p.mediaType === 'CAROUSEL_ALBUM'; })
+                        .map(function (p) {
+                            return {
+                                src: p.mediaUrl || p.thumbnailUrl,
+                                alt: p.caption ? p.caption.slice(0, 120) : '',
+                                permalink: p.permalink,
+                            };
+                        });
+                    buildGallery(imgList);
+                    updateNav();
+                })
+                .catch(function () {
+                    countEl.textContent = 'Could not load feed';
+                    buildGallery([]);
+                });
+        } else {
+            buildGallery(FEED_IMAGES);
+            updateNav();
+        }
     }());
     </script>
 </body>
