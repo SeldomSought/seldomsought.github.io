@@ -422,7 +422,7 @@
             background: #110f0c;
             border-left: 1px solid var(--amber-border);
             overflow-y: auto;
-            overflow-x: hidden;
+            overflow-x: clip;      /* clip instead of hidden so position:sticky still works */
             overscroll-behavior: contain;
             display: flex;
             flex-direction: column;
@@ -920,6 +920,165 @@
             .modal-coming-soon    { font-size: 0.9rem; }
             .modal-screenshots-placeholder { font-size: 0.9rem; }
         }
+
+        /* ── Modal inline feed gallery ──────────────────────────────────────── */
+        .modal-feed-wrapper {
+            display: flex;
+            align-items: stretch;
+            margin: 0 -2.5rem;         /* bleed past modal body padding */
+        }
+
+        .modal-feed-nav {
+            flex-shrink: 0;
+            width: 36px;
+            background: rgba(11, 11, 12, 0.9);
+            border: none;
+            border-top: 1px solid var(--amber-border);
+            border-bottom: 1px solid var(--amber-border);
+            color: var(--amber);
+            font-size: 0.9rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .modal-feed-nav:hover  { background: var(--amber-dim); color: var(--amber-light); }
+        .modal-feed-nav:disabled { opacity: 0.2; cursor: default; }
+        .modal-feed-nav:focus-visible { outline: 1px solid var(--amber); outline-offset: -2px; }
+        .modal-feed-nav--prev  { border-left: 1px solid var(--amber-border); }
+        .modal-feed-nav--next  { border-right: 1px solid var(--amber-border); }
+
+        .modal-feed-strip {
+            --mf-cell: 140px;
+            flex: 1;
+            display: grid;
+            grid-template-rows: repeat(3, var(--mf-cell));
+            grid-auto-flow: column;
+            grid-auto-columns: var(--mf-cell);
+            gap: 2px;
+            overflow-x: scroll;
+            overflow-y: hidden;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            border-top: 1px solid var(--amber-border);
+            border-bottom: 1px solid var(--amber-border);
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .modal-feed-strip::-webkit-scrollbar { display: none; }
+
+        .modal-feed-img {
+            display: block;
+            width: var(--mf-cell);
+            height: var(--mf-cell);
+            object-fit: cover;
+            scroll-snap-align: start;
+            cursor: pointer;
+            transition: opacity 0.18s;
+            background: rgba(232, 226, 217, 0.04);
+        }
+
+        .modal-feed-img:hover { opacity: 0.82; }
+
+        .modal-feed-progress-wrap {
+            height: 2px;
+            background: rgba(232, 226, 217, 0.07);
+            margin: 0 -2.5rem;         /* bleed to match wrapper */
+        }
+
+        .modal-feed-progress {
+            height: 100%;
+            background: var(--amber);
+            width: 0%;
+            transition: width 0.12s linear;
+        }
+
+        /* Match .proj-modal-body's 768px padding breakpoint (1.5rem sides) */
+        @media (max-width: 768px) {
+            .modal-feed-wrapper       { margin: 0 -1.5rem; }
+            .modal-feed-progress-wrap { margin: 0 -1.5rem; }
+            .modal-feed-strip         { --mf-cell: 110px;  }
+        }
+
+        /* ── Feed lightbox (sits above modal, z-index 600) ───────────────────── */
+        .mf-lightbox {
+            position: fixed;
+            inset: 0;
+            z-index: 600;
+            background: rgba(6, 5, 4, 0.96);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .mf-lightbox[hidden] { display: none; }
+
+        .mf-lightbox-img {
+            max-width: min(88vw, 880px);
+            max-height: 78vh;
+            object-fit: contain;
+            display: block;
+        }
+
+        .mf-lightbox-controls {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-top: 1.2rem;
+        }
+
+        .mf-lb-btn {
+            background: none;
+            border: 1px solid var(--amber-border);
+            color: var(--amber);
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            padding: 0.45rem 1rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .mf-lb-btn:hover { background: var(--amber-dim); color: var(--amber-light); border-color: var(--amber-border-h); }
+        .mf-lb-btn:disabled { opacity: 0.25; cursor: default; }
+        .mf-lb-btn:focus-visible { outline: 1px solid var(--amber); outline-offset: 2px; }
+
+        .mf-lb-counter {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--text-dim);
+            letter-spacing: 2px;
+            min-width: 70px;
+            text-align: center;
+        }
+
+        .mf-lb-close {
+            position: fixed;
+            top: 1.2rem;
+            right: 1.2rem;
+            background: none;
+            border: 1px solid var(--amber-border);
+            color: var(--text-dim);
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.78rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 0.4rem 0.9rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            transition: all 0.2s;
+        }
+
+        .mf-lb-close:hover { color: var(--text); border-color: var(--amber-border-h); }
+        .mf-lb-close:focus-visible { outline: 1px solid var(--amber); outline-offset: 2px; }
     </style>
 </head>
 <body>
@@ -1196,6 +1355,36 @@
                 + '</div>';
             }
 
+            // Feed gallery (inline horizontal strip for image-curation projects)
+            var feedGalleryHTML = '';
+            if (p.galleryImages && p.galleryImages.length) {
+                var feedImgs = p.galleryImages.map(function (img, i) {
+                    return '<img class="modal-feed-img" src="' + escapeHtml(img.src) + '"'
+                        + ' alt="' + escapeHtml(img.alt || ('Image ' + (i + 1))) + '"'
+                        + ' loading="lazy" data-mf-index="' + i + '">';
+                }).join('');
+
+                feedGalleryHTML = '<div class="modal-section">'
+                    + '<p class="modal-section-label">The Feed</p>'
+                    + '<div class="modal-feed-wrapper">'
+                        + '<button class="modal-feed-nav modal-feed-nav--prev" id="mfPrev" aria-label="Scroll left">&#8592;</button>'
+                        + '<div class="modal-feed-strip" id="mfStrip" role="list">' + feedImgs + '</div>'
+                        + '<button class="modal-feed-nav modal-feed-nav--next" id="mfNext" aria-label="Scroll right">&#8594;</button>'
+                    + '</div>'
+                    + '<div class="modal-feed-progress-wrap"><div class="modal-feed-progress" id="mfProgress"></div></div>'
+                    + '</div>'
+                    // Lightbox lives here; position:fixed lifts it above the modal visually
+                    + '<div class="mf-lightbox" id="mfLightbox" hidden role="dialog" aria-modal="true" aria-label="Image viewer">'
+                        + '<button class="mf-lb-close" id="mfLbClose" aria-label="Close">&#10005; Close</button>'
+                        + '<img class="mf-lightbox-img" id="mfLbImg" src="" alt="">'
+                        + '<div class="mf-lightbox-controls">'
+                            + '<button class="mf-lb-btn" id="mfLbPrev" aria-label="Previous">&#8592;</button>'
+                            + '<span class="mf-lb-counter" id="mfLbCounter"></span>'
+                            + '<button class="mf-lb-btn" id="mfLbNext" aria-label="Next">&#8594;</button>'
+                        + '</div>'
+                    + '</div>';
+            }
+
             return '\
                 <div class="modal-header">\
                     <div class="modal-icon">' + iconHtml + '</div>\
@@ -1209,12 +1398,103 @@
                         </div>\
                     </div>\
                 </div>\
-                ' + problemHTML
+                ' + feedGalleryHTML
+                  + problemHTML
                   + solutionHTML
                   + stepsHTML
                   + featuresHTML
                   + screenshotsHTML
                   + linksHTML;
+        }
+
+        // ── Feed gallery initialiser (runs after modal HTML is injected) ────────
+        function initFeedGallery(project) {
+            if (!project.galleryImages || !project.galleryImages.length) return;
+
+            var strip   = modalBody.querySelector('#mfStrip');
+            var prev    = modalBody.querySelector('#mfPrev');
+            var next    = modalBody.querySelector('#mfNext');
+            var prog    = modalBody.querySelector('#mfProgress');
+            var lb      = modalBody.querySelector('#mfLightbox');
+            var lbImg   = modalBody.querySelector('#mfLbImg');
+            var lbCnt   = modalBody.querySelector('#mfLbCounter');
+            var lbClose = modalBody.querySelector('#mfLbClose');
+            var lbPrev  = modalBody.querySelector('#mfLbPrev');
+            var lbNext  = modalBody.querySelector('#mfLbNext');
+
+            if (!strip) return;
+
+            var images = project.galleryImages;
+            var curIdx = 0;
+
+            // Scroll nav
+            function updateNav() {
+                prev.disabled = strip.scrollLeft <= 0;
+                next.disabled = strip.scrollLeft + strip.clientWidth >= strip.scrollWidth - 1;
+                var pct = strip.scrollWidth <= strip.clientWidth ? 100
+                    : (strip.scrollLeft / (strip.scrollWidth - strip.clientWidth)) * 100;
+                prog.style.width = pct + '%';
+            }
+
+            function pageScroll() {
+                var cellW = parseFloat(getComputedStyle(strip).getPropertyValue('--mf-cell')) || 140;
+                var cols  = Math.max(1, Math.floor(strip.clientWidth / (cellW + 2)));
+                return cols * (cellW + 2);
+            }
+
+            prev.addEventListener('click', function () { strip.scrollBy({ left: -pageScroll(), behavior: 'smooth' }); });
+            next.addEventListener('click', function () { strip.scrollBy({ left:  pageScroll(), behavior: 'smooth' }); });
+            strip.addEventListener('scroll', updateNav, { passive: true });
+            updateNav();
+
+            // Lightbox
+            function openLb(idx) {
+                curIdx = idx;
+                showLbImg();
+                lb.hidden = false;
+                lbClose.focus();
+            }
+
+            function closeLb() {
+                lb.hidden = true;
+                var imgs = strip.querySelectorAll('.modal-feed-img');
+                if (imgs[curIdx]) imgs[curIdx].focus();
+            }
+
+            function showLbImg() {
+                lbImg.src = images[curIdx].src;
+                lbImg.alt = images[curIdx].alt || ('Image ' + (curIdx + 1));
+                lbCnt.textContent = (curIdx + 1) + ' / ' + images.length;
+                lbPrev.disabled = curIdx === 0;
+                lbNext.disabled = curIdx === images.length - 1;
+            }
+
+            strip.querySelectorAll('.modal-feed-img').forEach(function (img) {
+                img.addEventListener('click', function () { openLb(parseInt(img.dataset.mfIndex, 10)); });
+            });
+
+            lbClose.addEventListener('click', closeLb);
+            lbPrev.addEventListener('click', function () { if (curIdx > 0) { curIdx--; showLbImg(); } });
+            lbNext.addEventListener('click', function () { if (curIdx < images.length - 1) { curIdx++; showLbImg(); } });
+            lb.addEventListener('click', function (e) { if (e.target === lb) closeLb(); });
+
+            // ESC closes lightbox before it reaches the modal ESC handler (capture phase)
+            function lbKeyHandler(e) {
+                if (lb.hidden) return;
+                if (e.key === 'Escape')     { e.stopImmediatePropagation(); closeLb(); }
+                if (e.key === 'ArrowLeft')  { lbPrev.click(); }
+                if (e.key === 'ArrowRight') { lbNext.click(); }
+            }
+            document.addEventListener('keydown', lbKeyHandler, true);
+
+            // Clean up the capture listener when the modal closes
+            var cleanupObs = new MutationObserver(function () {
+                if (overlay.hidden) {
+                    document.removeEventListener('keydown', lbKeyHandler, true);
+                    cleanupObs.disconnect();
+                }
+            });
+            cleanupObs.observe(overlay, { attributes: true, attributeFilter: ['hidden'] });
         }
 
         // ── Modal open/close ─────────────────────────────────────────────────
@@ -1228,6 +1508,8 @@
             modalBody.innerHTML = buildModalHTML(project);
             overlay.hidden = false;
             document.body.style.overflow = 'hidden';
+
+            initFeedGallery(project);
 
             // Focus the modal panel
             modal.focus();
