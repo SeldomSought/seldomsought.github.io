@@ -404,6 +404,49 @@
     }
     .cosmic-section-divider::after { content: ''; flex: 1; height: 1px; background: var(--amber-border); }
 
+    /* ── VALUES PROFILE ── */
+    .values-bar-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-top: 0.6rem; }
+    .values-bar-row { display: flex; flex-direction: column; gap: 0.25rem; }
+    .values-label-row { display: flex; justify-content: space-between; font-size: 0.68rem; color: var(--text-dim); letter-spacing: 0.5px; }
+    .values-name { color: var(--text-dim); }
+    .values-score { color: var(--amber); }
+    .values-bar { height: 2px; background: rgba(232,226,217,0.08); }
+    .values-bar-fill { height: 100%; background: rgba(184,134,11,0.5); transition: width 0.7s ease; }
+
+    /* ── ATTACHMENT ── */
+    .attach-style-badge {
+      display: inline-block; font-size: 0.72rem; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--amber);
+      background: var(--amber-dim); border: 1px solid var(--amber-border);
+      padding: 0.25rem 0.7rem; margin-bottom: 0.8rem;
+    }
+
+    /* ── CAREER FIT ── */
+    .career-grid { display: flex; flex-direction: column; gap: 0.4rem; margin-top: 0.6rem; }
+    .career-row { display: flex; justify-content: space-between; align-items: center; padding: 0.55rem 0; border-bottom: 1px solid rgba(184,134,11,0.08); font-size: 0.82rem; }
+    .career-row:last-child { border-bottom: none; }
+    .career-domain { color: var(--text-mid); }
+    .career-traits { font-size: 0.68rem; color: var(--text-dim); letter-spacing: 0.5px; margin-top: 0.2rem; }
+    .fit-pill {
+      font-size: 0.65rem; letter-spacing: 1.5px; text-transform: uppercase;
+      padding: 0.2rem 0.55rem; border: 1px solid;
+      white-space: nowrap; flex-shrink: 0;
+    }
+    .fit-pill.high     { color: var(--amber-light); border-color: var(--amber-border); background: var(--amber-dim); }
+    .fit-pill.good     { color: var(--green); border-color: rgba(90,158,111,0.3); background: rgba(60,140,80,0.1); }
+    .fit-pill.moderate { color: var(--text-dim); border-color: rgba(232,226,217,0.15); background: transparent; }
+    .fit-pill.lower    { color: rgba(192,98,74,0.7); border-color: rgba(192,98,74,0.2); background: rgba(192,98,74,0.06); }
+    .career-row-inner { flex: 1; }
+
+    /* ── SHADOW PROFILE ── */
+    .shadow-item { padding: 0.7rem 0; border-bottom: 1px solid rgba(184,134,11,0.08); }
+    .shadow-item:last-child { border-bottom: none; }
+    .shadow-label { font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase; color: var(--amber); margin-bottom: 0.3rem; }
+    .shadow-desc { font-size: 0.85rem; color: var(--text-mid); line-height: 1.75; }
+
+    /* ── SUPP MODULE ── */
+    .supp-scale-note { font-size: 0.78rem; color: var(--text-dim); letter-spacing: 0.5px; line-height: 1.7; padding: 0.75rem 1rem; border: 1px solid var(--amber-border); background: var(--amber-dim); margin-bottom: 1.6rem; }
+
     @media (max-width: 600px) {
       .meta-grid { grid-template-columns: 1fr; }
       .facet-grid { grid-template-columns: 1fr; }
@@ -491,7 +534,7 @@
       .cosmic-card-header { padding: 1.4rem 2rem; }
       .cosmic-eyebrow { font-size: 0.88rem; }
       .cosmic-title { font-size: 1.75rem; }
-      .cosmic-grid { grid-template-columns: repeat(4, 1fr); }
+      .cosmic-grid { grid-template-columns: repeat(5, 1fr); }
       .cosmic-cell { padding: 1.3rem 1.5rem; }
       .cosmic-cell-label { font-size: 0.75rem; }
       .cosmic-cell-value { font-size: 1.4rem; }
@@ -499,6 +542,15 @@
       .cosmic-body { padding: 1.8rem 2rem; }
       .cosmic-synthesis { font-size: 1.05rem; line-height: 1.88; }
       .cosmic-section-divider { font-size: 0.8rem; margin: 1.5rem 0 0.9rem; }
+
+      /* Values / Attachment / Career / Shadow desktop */
+      .values-label-row { font-size: 0.78rem; }
+      .career-row { font-size: 0.95rem; padding: 0.65rem 0; }
+      .career-traits { font-size: 0.78rem; }
+      .fit-pill { font-size: 0.75rem; }
+      .shadow-label { font-size: 0.82rem; }
+      .shadow-desc { font-size: 1.02rem; line-height: 1.85; }
+      .attach-style-badge { font-size: 0.82rem; }
     }
   </style>
 </head>
@@ -530,15 +582,15 @@
       <div class="meta-grid">
         <div class="meta-cell">
           <div class="meta-label">Modules</div>
-          <div class="meta-value">2</div>
+          <div class="meta-value">3</div>
         </div>
         <div class="meta-cell">
           <div class="meta-label">Items</div>
-          <div class="meta-value">126</div>
+          <div class="meta-value">142</div>
         </div>
         <div class="meta-cell">
           <div class="meta-label">Est. time</div>
-          <div class="meta-value">25–35 min</div>
+          <div class="meta-value">30–40 min</div>
         </div>
       </div>
 
@@ -553,9 +605,16 @@
         <li>
           <span class="module-num">2</span>
           <div>
-            <strong style="color:var(--text)">Forced-Choice Ranking</strong> — 10 triplets.
+            <strong style="color:var(--text)">Forced-Choice Ranking</strong> — 30 triplets.
             Rank three statements from most to least like you.
             Designed to detect and correct for acquiescence and impression management.
+          </div>
+        </li>
+        <li>
+          <span class="module-num">3</span>
+          <div>
+            <strong style="color:var(--text)">Values &amp; Attachment</strong> — 16 items across two brief scales.
+            Map your core motivational values hierarchy and your primary attachment orientation.
           </div>
         </li>
       </ul>
@@ -658,7 +717,40 @@
     </div>
   </div>
 
-  <!-- ── SCREEN 5: CALCULATING ── -->
+  <!-- ── SCREEN 5: SUPP INTRO ── -->
+  <div class="screen" id="screen-supp-intro">
+    <div class="section-header">
+      <p class="section-eyebrow" id="supp-intro-eyebrow">Module 3 of 3</p>
+      <h2 class="section-title">Values &amp; Attachment</h2>
+      <p class="section-desc">Two brief supplemental scales — 16 items total</p>
+    </div>
+    <p style="font-size:0.88rem;color:var(--text-mid);line-height:1.8;margin-bottom:1.4rem;">
+      The next 16 items cover two distinct dimensions not captured by the HEXACO personality profile:
+    </p>
+    <ul style="font-size:0.85rem;color:var(--text-mid);list-style:none;margin-bottom:1.8rem;">
+      <li style="padding:0.5rem 0;border-bottom:1px solid rgba(184,134,11,0.1);">
+        <span style="color:var(--amber)">Values (10 items)</span> — How much each of 10 core values guides your life. Rated on a 1–5 importance scale. Reveals your motivational hierarchy.
+      </li>
+      <li style="padding:0.5rem 0;">
+        <span style="color:var(--amber)">Attachment (6 items)</span> — How you tend to relate in close emotional bonds. Produces an attachment orientation (Secure / Preoccupied / Dismissing / Fearful-Avoidant).
+      </li>
+    </ul>
+    <p style="font-size:0.8rem;color:var(--text-dim);margin-bottom:2rem;line-height:1.7;">
+      Answer honestly based on your actual patterns, not how you wish you were. There are no right or wrong answers.
+    </p>
+    <button class="btn btn-primary" onclick="goToSuppPage(0)">Start →</button>
+  </div>
+
+  <!-- ── SCREEN 6: SUPP ITEMS (dynamic) ── -->
+  <div class="screen" id="screen-supp-items">
+    <div id="supp-page-content"></div>
+    <div class="btn-row" style="margin-top:1.6rem;">
+      <button class="btn btn-ghost btn-sm" id="btnSuppPrev" onclick="suppPrevPage()">← Back</button>
+      <button class="btn btn-primary" id="btnSuppNext" onclick="suppNextPage()">Next →</button>
+    </div>
+  </div>
+
+  <!-- ── SCREEN 7: CALCULATING ── -->
   <div class="screen" id="screen-calculating">
     <div style="min-height:60vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;">
       <p class="section-eyebrow" style="margin-bottom:1.2rem;">Processing</p>
@@ -669,7 +761,7 @@
     </div>
   </div>
 
-  <!-- ── SCREEN 6: RESULTS ── -->
+  <!-- ── SCREEN 8: RESULTS ── -->
   <div class="screen" id="screen-results">
     <div id="results-content"></div>
   </div>
@@ -819,6 +911,33 @@ const FC_BLOCKS = [
   {id:'B291',A:{d:'O',t:'I find routine and predictability less satisfying than variety and novelty.'},B:{d:'H',t:'I do not present different versions of myself in different social settings.'},C:{d:'A',t:'I find genuine satisfaction in helping others even when there is nothing in it for me.'}}
 ];
 
+// ─── VALUES ITEMS (Schwartz 10 Basic Human Values) ───────────────────────────
+const VALUES_ITEMS = [
+  {id:'V01',v:'Achievement',    t:'Having ambitious personal goals and demonstrating competence in what I do is important to me.'},
+  {id:'V02',v:'Benevolence',    t:'Being genuinely available to the people I care most about — their wellbeing matters deeply to me.'},
+  {id:'V03',v:'Conformity',     t:'I believe in following rules and meeting the expectations others hold for me as a member of my community.'},
+  {id:'V04',v:'Hedonism',       t:'Enjoying pleasure and living well are things I genuinely value in my daily life.'},
+  {id:'V05',v:'Power',          t:'Having authority, influence, and control over outcomes and resources matters to me.'},
+  {id:'V06',v:'Security',       t:'Living in a stable, safe, and predictable environment is a genuine priority for me.'},
+  {id:'V07',v:'Self-Direction', t:'Making my own choices and acting on my own judgment, without being directed by others, is essential to me.'},
+  {id:'V08',v:'Stimulation',    t:'Excitement, novelty, and variety are things I actively seek — a life without change feels flat.'},
+  {id:'V09',v:'Tradition',      t:'Respecting and honoring cultural, family, and personal traditions is genuinely meaningful to me.'},
+  {id:'V10',v:'Universalism',   t:'I care about fairness, the welfare of all people, and the protection of the natural world — not just my own circle.'},
+];
+
+// ─── ATTACHMENT ITEMS ────────────────────────────────────────────────────────
+const ATTACH_ITEMS = [
+  {id:'AT01',dim:'secure',   k:'std', t:'I find it relatively easy to become emotionally close to others and feel comfortable depending on them.'},
+  {id:'AT02',dim:'anxious',  k:'std', t:'I worry that the people I am close to do not value me as much as I value them.'},
+  {id:'AT03',dim:'avoidant', k:'std', t:'I am uncomfortable when others want to be very emotionally close to me.'},
+  {id:'AT04',dim:'secure',   k:'std', t:'I am comfortable with others depending on me, and I don\'t mind leaning on them in return.'},
+  {id:'AT05',dim:'anxious',  k:'std', t:'I fear that if I get too close to someone, they will eventually withdraw or reject me.'},
+  {id:'AT06',dim:'avoidant', k:'std', t:'I deliberately keep emotional distance from others, even people I genuinely care about.'},
+];
+
+const SUPP_ITEMS = [...VALUES_ITEMS, ...ATTACH_ITEMS]; // 16 items total
+const SUPP_PAGE_SIZE = 8;
+
 const DOMAIN_META = {
   H: { name: 'Honesty-Humility',  code: 'H', facets: ['H1','H2','H3','H4'], facetNames: ['Sincerity','Fairness','Greed-Avoidance','Modesty'] },
   E: { name: 'Emotionality',      code: 'E', facets: ['E1','E2','E3','E4'], facetNames: ['Fearfulness','Anxiety','Dependence','Sentimentality'] },
@@ -840,6 +959,8 @@ let currentFCBlock    = 0;
 
 const responses  = {}; // itemId → raw value 1-5
 const fcRankings = {}; // blockId → {A:rank,B:rank,C:rank}
+const valueResponses  = {}; // V01-V10 → 1-5
+const attachResponses = {}; // AT01-AT06 → 1-5
 
 // ═══════════════════════════════════════════════════════════════════════════════
 // NAVIGATION
@@ -856,8 +977,9 @@ function showScreen(id) {
 function updateProgress() {
   const answeredItems = Object.keys(responses).length;
   const rankedBlocks  = Object.keys(fcRankings).filter(k => fcRankings[k] && Object.keys(fcRankings[k]).length === 3).length;
-  const total = ITEMS.length + FC_BLOCKS.length;
-  const done  = answeredItems + rankedBlocks;
+  const suppAnswered  = Object.keys(valueResponses).length + Object.keys(attachResponses).length;
+  const total = ITEMS.length + FC_BLOCKS.length + SUPP_ITEMS.length;
+  const done  = answeredItems + rankedBlocks + suppAnswered;
   document.getElementById('progressFill').style.width = (done / total * 100) + '%';
 }
 
@@ -889,9 +1011,11 @@ function startAssessment() {
   // Personalize static intro screens
   const firstName = name.split(' ')[0];
   const hEyebrow = document.getElementById('hexaco-intro-eyebrow');
-  if (hEyebrow) hEyebrow.textContent = firstName + ' · Module 1 of 2';
+  if (hEyebrow) hEyebrow.textContent = firstName + ' · Module 1 of 3';
   const fcEyebrow = document.getElementById('fc-intro-eyebrow');
-  if (fcEyebrow) fcEyebrow.textContent = firstName + ' · Module 2 of 2';
+  if (fcEyebrow) fcEyebrow.textContent = firstName + ' · Module 2 of 3';
+  const suppEyebrow = document.getElementById('supp-intro-eyebrow');
+  if (suppEyebrow) suppEyebrow.textContent = firstName + ' · Module 3 of 3';
   showScreen('hexaco-intro');
 }
 
@@ -1052,7 +1176,7 @@ function fcNextBlock() {
   if (currentFCBlock < FC_BLOCKS.length - 1) {
     goToFCBlock(currentFCBlock + 1);
   } else {
-    calculateAndShow();
+    showScreen('supp-intro');
   }
 }
 
@@ -1062,11 +1186,111 @@ function fcPrevBlock() {
 }
 
 // ═══════════════════════════════════════════════════════════════════════════════
+// SUPPLEMENTAL SCALES (Values + Attachment)
+// ═══════════════════════════════════════════════════════════════════════════════
+let currentSuppPage = 0;
+
+function goToSuppPage(pageIdx) {
+  currentSuppPage = pageIdx;
+  const start = pageIdx * SUPP_PAGE_SIZE;
+  const slice = SUPP_ITEMS.slice(start, start + SUPP_PAGE_SIZE);
+  const totalPages = Math.ceil(SUPP_ITEMS.length / SUPP_PAGE_SIZE);
+  const container = document.getElementById('supp-page-content');
+
+  const _fn = userName ? userName.split(' ')[0] + ' · ' : '';
+  const isValuesPage = slice[0] && slice[0].id.startsWith('V');
+  const isAttachPage = slice[0] && slice[0].id.startsWith('AT');
+
+  let scaleNote = '';
+  if (isValuesPage) {
+    scaleNote = `<div class="supp-scale-note">Rate how much each value genuinely guides your life — not how much you think it <em>should</em>, but how much it actually does. 1 = Not at all · 5 = Very much.</div>`;
+  } else {
+    scaleNote = `<div class="supp-scale-note">Rate how accurately each statement describes you in close relationships. 1 = Strongly Disagree · 5 = Strongly Agree.</div>`;
+  }
+
+  let html = `<div class="section-header">
+    <p class="section-eyebrow">${_fn}Module 3 — Values &amp; Attachment</p>
+    <h2 class="section-title">${isAttachPage ? 'Attachment' : 'Values'}</h2>
+  </div>
+  <p class="page-counter">Page <span>${pageIdx + 1}</span> of <span>${totalPages}</span></p>
+  ${scaleNote}`;
+
+  slice.forEach(item => {
+    const store   = item.id.startsWith('V') ? valueResponses : attachResponses;
+    const saved   = store[item.id];
+    const labels  = item.id.startsWith('V')
+      ? ['None','Little','Some','Much','Core']
+      : ['SD','D','N','A','SA'];
+    let opts = '';
+    for (let v = 1; v <= 5; v++) {
+      const checked = saved === v ? 'checked' : '';
+      opts += `<input type="radio" class="likert-opt" name="${item.id}" id="${item.id}_${v}" value="${v}" ${checked}>
+               <label class="likert-label" for="${item.id}_${v}">
+                 <span class="lval">${v}</span>
+                 <span class="lname">${labels[v-1]}</span>
+               </label>`;
+    }
+    html += `<div class="item-block ${saved ? 'answered' : ''}" id="block-${item.id}">
+      <div class="item-text">${item.t}</div>
+      <div class="likert-row">${opts}</div>
+    </div>`;
+  });
+
+  container.innerHTML = html;
+
+  slice.forEach(item => {
+    const store = item.id.startsWith('V') ? valueResponses : attachResponses;
+    for (let v = 1; v <= 5; v++) {
+      const inp = document.getElementById(`${item.id}_${v}`);
+      if (inp) inp.addEventListener('change', () => {
+        store[item.id] = v;
+        document.getElementById(`block-${item.id}`).classList.add('answered');
+        updateProgress();
+      });
+    }
+  });
+
+  document.getElementById('btnSuppPrev').style.visibility = pageIdx === 0 ? 'hidden' : 'visible';
+  document.getElementById('btnSuppNext').textContent = pageIdx === totalPages - 1 ? 'See Results →' : 'Next →';
+  showScreen('supp-items');
+}
+
+function suppNextPage() {
+  const start = currentSuppPage * SUPP_PAGE_SIZE;
+  const slice = SUPP_ITEMS.slice(start, start + SUPP_PAGE_SIZE);
+  const unanswered = slice.filter(item => {
+    const store = item.id.startsWith('V') ? valueResponses : attachResponses;
+    return !store[item.id];
+  });
+
+  if (unanswered.length > 0) {
+    showToast(`Please answer all ${unanswered.length} remaining item${unanswered.length > 1 ? 's' : ''} before continuing.`);
+    unanswered.forEach(item => {
+      const block = document.getElementById(`block-${item.id}`);
+      if (block) { block.style.borderColor = 'rgba(192,98,74,0.6)'; setTimeout(() => block.style.borderColor = '', 2000); }
+    });
+    return;
+  }
+
+  const totalPages = Math.ceil(SUPP_ITEMS.length / SUPP_PAGE_SIZE);
+  if (currentSuppPage < totalPages - 1) {
+    goToSuppPage(currentSuppPage + 1);
+  } else {
+    calculateAndShow();
+  }
+}
+
+function suppPrevPage() {
+  if (currentSuppPage > 0) goToSuppPage(currentSuppPage - 1);
+  else showScreen('supp-intro');
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
 // SCORING
 // ═══════════════════════════════════════════════════════════════════════════════
 function calculateAndShow() {
   showScreen('calculating');
-  const statuses = ['Calibrating domains...','Scoring facets...','Integrating FC data...','Applying normative conversion...', userDOB ? 'Charting cosmic signature...' : 'Building profile...','Building profile...'];
+  const statuses = ['Calibrating domains...','Scoring facets...','Integrating FC data...','Applying normative conversion...','Mapping values profile...','Analyzing attachment patterns...', userDOB ? 'Charting cosmic signature...' : 'Building profile...'];
   let i = 0;
   const statusEl = document.getElementById('calcStatus');
   const iv = setInterval(() => {
@@ -1135,7 +1359,9 @@ function scoreAll() {
     pctiles[d] = Math.max(1, Math.min(99, pctiles[d]));
   });
 
-  return { facetMean, domainLikert, composite, tScores, pctiles };
+  const valueScores  = scoreValues();
+  const attachResult = scoreAttachment();
+  return { facetMean, domainLikert, composite, tScores, pctiles, valueScores, attachResult };
 }
 
 function normCDF(z) {
@@ -1155,6 +1381,36 @@ function getBand(pct) {
   if (pct <= 83) return 'High Average';
   if (pct <= 92) return 'High';
   return 'Exceptionally High';
+}
+
+function scoreValues() {
+  const scores = {};
+  VALUES_ITEMS.forEach(item => {
+    scores[item.v] = valueResponses[item.id] || 3;
+  });
+  const sorted = Object.entries(scores).sort((a,b) => b[1] - a[1]);
+  return { scores, top3: sorted.slice(0,3), bottom3: sorted.slice(-3).reverse() };
+}
+
+function scoreAttachment() {
+  const anxScore = ((attachResponses['AT02'] || 3) + (attachResponses['AT05'] || 3)) / 2;
+  const avoScore = ((attachResponses['AT03'] || 3) + (attachResponses['AT06'] || 3)) / 2;
+
+  let style, desc;
+  if (avoScore < 3.0 && anxScore < 3.0) {
+    style = 'Secure';
+    desc = 'You are comfortable with emotional closeness and interdependence. You neither fear abandonment excessively nor withdraw from intimacy. Secure attachment is associated with relationship satisfaction, effective conflict resolution, and emotional resilience. You likely feel that closeness is available to you and that others are generally reliable.';
+  } else if (avoScore < 3.0 && anxScore >= 3.0) {
+    style = 'Preoccupied';
+    desc = 'You seek closeness and connection, but worry about whether others truly value you as much as you value them. This preoccupation with the reliability of attachment figures can amplify relational anxiety and create cycles of reassurance-seeking. Your emotional responsiveness is a genuine strength; the development edge is building a more stable internal sense of your own worth independent of others\' reactions.';
+  } else if (avoScore >= 3.0 && anxScore < 3.0) {
+    style = 'Dismissing';
+    desc = 'You tend toward self-sufficiency and keep emotional distance even in close relationships. You are less likely to rely on others or allow them to rely heavily on you. This independence is genuinely adaptive in many contexts — it supports autonomy, reduces vulnerability to abandonment, and allows clear-eyed decision-making. The development edge is increasing tolerance for interdependence without experiencing it as a loss of self.';
+  } else {
+    style = 'Fearful-Avoidant';
+    desc = 'You experience both a desire for closeness and significant discomfort with it — wanting connection but expecting it to become threatening or disappointing. This tension often produces inconsistent relational behavior and can make intimacy feel both necessary and dangerous. This pattern is frequently associated with experiences of loss or unpredictability in early attachment relationships and tends to respond well to intentional relational work.';
+  }
+  return { anxScore, avoScore, style, desc };
 }
 
 // ═══════════════════════════════════════════════════════════════════════════════
@@ -1232,6 +1488,28 @@ function renderResults(scores) {
     ${facetHighlights.bottom.map(f => `<div style="display:flex;justify-content:space-between;align-items:center;padding:0.5rem 0;border-bottom:1px solid rgba(184,134,11,0.08);"><span style="font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--text)">${f.name} <span style="font-size:0.75rem;color:var(--text-dim);letter-spacing:1px">${DOMAIN_META[f.domain].name}</span></span><span style="color:var(--text-dim);font-size:0.92rem">${f.pct}th</span></div>`).join('')}
   </div>`;
 
+  // Values Profile card
+  if (scores.valueScores) {
+    const vs = scores.valueScores;
+    html += `<div class="integration-card fade-in" style="margin-bottom:2rem;">
+      <p style="font-size:0.72rem;letter-spacing:3px;text-transform:uppercase;color:var(--amber);margin-bottom:0.6rem">Values Profile</p>
+      <p style="font-size:0.72rem;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);margin-bottom:0.4rem">Highest</p>
+      <div class="values-bar-grid">
+        ${vs.top3.map(([v, score]) => `<div class="values-bar-row">
+          <div class="values-label-row"><span class="values-name">${v}</span><span class="values-score">${score}/5</span></div>
+          <div class="values-bar"><div class="values-bar-fill" style="width:${(score/5)*100}%"></div></div>
+        </div>`).join('')}
+      </div>
+      <p style="font-size:0.72rem;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);margin:0.8rem 0 0.4rem">Lowest</p>
+      <div class="values-bar-grid">
+        ${vs.bottom3.map(([v, score]) => `<div class="values-bar-row">
+          <div class="values-label-row"><span class="values-name">${v}</span><span class="values-score">${score}/5</span></div>
+          <div class="values-bar"><div class="values-bar-fill" style="width:${(score/5)*100}%;background:rgba(184,134,11,0.3)"></div></div>
+        </div>`).join('')}
+      </div>
+    </div>`;
+  }
+
   // Radar chart
   html += buildRadarChart(scores.pctiles);
 
@@ -1290,6 +1568,13 @@ function renderResults(scores) {
   });
   html += `</div>`;
 
+  // Relationship Profile
+  const relLines = getRelationshipProfile(scores);
+  html += `<div class="integration-card fade-in" style="margin-bottom:2rem;">
+    <p style="font-size:0.72rem;letter-spacing:3px;text-transform:uppercase;color:var(--amber);margin-bottom:1rem">Relationship Profile</p>
+    ${relLines.map(l => `<p class="integration-body" style="margin-bottom:0.9rem;padding-bottom:0.9rem;border-bottom:1px solid rgba(184,134,11,0.08);">${l}</p>`).join('')}
+  </div>`;
+
   // Integration narrative
   const topNames = top2.map(d => DOMAIN_META[d].name).join(' and ');
   const botNames = bot2.map(d => DOMAIN_META[d].name).join(' and ');
@@ -1319,8 +1604,53 @@ function renderResults(scores) {
     <p class="integration-body">${integText}</p>
   </div>`;
 
+  // Shadow Profile
+  const shadows = getShadowProfile(scores);
+  html += `<div class="integration-card fade-in" style="margin-bottom:2rem;">
+    <h3 class="integration-title">Under Pressure</h3>
+    <p class="integration-body" style="margin-bottom:1rem;font-size:0.8rem;color:var(--text-dim)">Patterns most likely to emerge under sustained stress or threat — derived from your HEXACO profile shape.</p>
+    ${shadows.map(s => `<div class="shadow-item"><div class="shadow-label">${s.label}</div><div class="shadow-desc">${s.desc}</div></div>`).join('')}
+  </div>`;
+
+  // Career Fit
+  const careerFit = getCareerFit(scores);
+  html += `<div class="integration-card fade-in" style="margin-bottom:2rem;">
+    <h3 class="integration-title">Career Domain Fit</h3>
+    <p class="integration-body" style="margin-bottom:1rem;font-size:0.8rem;color:var(--text-dim)">Fit ratings derived from established occupational correlates of your HEXACO profile. Not prescriptive — treats personality as one input among many.</p>
+    <div class="career-grid">
+      ${careerFit.map(d => `<div class="career-row">
+        <div class="career-row-inner">
+          <div class="career-domain">${d.name}</div>
+          <div class="career-traits">${d.traits}</div>
+        </div>
+        <span class="fit-pill ${d.level}">${d.label}</span>
+      </div>`).join('')}
+    </div>
+  </div>`;
+
+  // Attachment Style
+  if (scores.attachResult) {
+    const at = scores.attachResult;
+    html += `<div class="integration-card fade-in" style="margin-bottom:2rem;">
+      <p style="font-size:0.72rem;letter-spacing:3px;text-transform:uppercase;color:var(--amber);margin-bottom:0.8rem">Attachment Style</p>
+      <div class="attach-style-badge">${at.style}</div>
+      <p class="integration-body">${at.desc}</p>
+    </div>`;
+  }
+
   // Cosmic profile (only if name/DOB provided)
   html += renderCosmicProfile(scores);
+
+  // Values × Personality Cross-Reference
+  if (scores.valueScores) {
+    const crossText = getValuesCrossRef(scores.valueScores, scores);
+    if (crossText) {
+      html += `<div class="integration-card fade-in" style="margin-bottom:2rem;">
+        <h3 class="integration-title">Values × Personality</h3>
+        <p class="integration-body">${crossText}</p>
+      </div>`;
+    }
+  }
 
   // Limitations
   html += `<div style="font-size:0.75rem;color:var(--text-dim);line-height:1.8;padding:1.2rem 1.4rem;border:1px solid rgba(184,134,11,0.1);margin-bottom:2rem;">
@@ -1440,6 +1770,16 @@ function birthDayNumber(dob) {
   const day = new Date(dob + 'T12:00:00').getDate();
   if (day === 11 || day === 22) return day;
   return reduceNum(day, false);
+}
+
+function personalityNumber(name) {
+  const letters = name.toUpperCase().replace(/[^A-Z]/g, '');
+  const sum = letters.split('').filter(ch => !VOWELS.has(ch)).reduce((a,ch) => a + (PYTH[ch] || 0), 0);
+  return reduceNum(sum || 1, true);
+}
+
+function maturityNumber(lp, expr) {
+  return reduceNum(lp + expr, true);
 }
 
 const ASTRO_SIGNS = [
@@ -1615,6 +1955,10 @@ function renderCosmicProfile(scores) {
   const fmtLP   = (lp   === 11 || lp   === 22 || lp   === 33) ? `${lp} ✦` : String(lp);
   const fmtExpr = (expr === 11 || expr === 22 || expr === 33) ? `${expr} ✦` : String(expr);
   const fmtSoul = (soul === 11 || soul === 22 || soul === 33) ? `${soul} ✦` : String(soul);
+  const persNum = personalityNumber(userName);
+  const matNum  = maturityNumber(lp, expr);
+  const fmtPers = (persNum === 11 || persNum === 22 || persNum === 33) ? `${persNum} ✦` : String(persNum);
+  const fmtMat  = (matNum  === 11 || matNum  === 22 || matNum  === 33) ? `${matNum} ✦`  : String(matNum);
 
   return `<div class="cosmic-card fade-in">
     <div class="cosmic-card-header">
@@ -1662,6 +2006,16 @@ function renderCosmicProfile(scores) {
         <div class="cosmic-cell-value">${fmtPY}</div>
         <div class="cosmic-cell-sub">Current cycle energy</div>
       </div>
+      <div class="cosmic-cell">
+        <div class="cosmic-cell-label">Personality</div>
+        <div class="cosmic-cell-value">${fmtPers}</div>
+        <div class="cosmic-cell-sub">Outer presence · Consonants</div>
+      </div>
+      <div class="cosmic-cell">
+        <div class="cosmic-cell-label">Maturity</div>
+        <div class="cosmic-cell-value">${fmtMat}</div>
+        <div class="cosmic-cell-sub">Life Path + Expression</div>
+      </div>
     </div>
     <div class="cosmic-body">
       <p class="cosmic-section-divider">Modality &amp; Element</p>
@@ -1671,7 +2025,7 @@ function renderCosmicProfile(scores) {
       <p class="cosmic-section-divider">Chinese Element &amp; Personal Year</p>
       <p class="cosmic-synthesis">${chElement} element (${CHINESE_ELEMENT_TRAITS[chElement]}). Your Personal Year ${fmtPY} carries the energy of ${pyInfo}. These two variables operate on different timescales: the Chinese element is a fixed, lifelong signature; the personal year shifts annually and reflects the dominant developmental theme of the current twelve-month cycle.</p>
       <p class="cosmic-section-divider">Numerology Synopsis</p>
-      <p class="cosmic-synthesis">Life Path ${fmtLP} (${lpInfo.phrase}) describes the overarching terrain of your lifetime. Expression ${fmtExpr} reflects how that energy manifests outwardly through your name and presence. Soul Urge ${fmtSoul} points to the inner motivational current — what you are drawn toward independent of external validation. These three numbers in combination form the numerological through-line of the reading; where they converge with your HEXACO profile, the signal is especially reliable. Where they diverge, treat the divergence as information about development and aspiration rather than contradiction.</p>
+      <p class="cosmic-synthesis">Life Path ${fmtLP} (${lpInfo.phrase}) describes the overarching terrain of your lifetime. Expression ${fmtExpr} reflects how that energy manifests outwardly through your name and presence. Soul Urge ${fmtSoul} points to the inner motivational current — what you are drawn toward independent of external validation. Personality Number ${fmtPers} describes the first impression you project to others — the face seen before depth is established. Maturity Number ${fmtMat} represents the synthesized destination your Life Path and Expression converge toward, typically becoming the dominant influence in the second half of life. Where these five numbers converge with your HEXACO profile and values map, the signal is especially reliable. Where they diverge, treat the divergence as information about development and aspiration rather than contradiction.</p>
     </div>
   </div>`;
 }
@@ -1719,6 +2073,186 @@ function getTopBottomFacets(scores) {
 }
 
 // ═══════════════════════════════════════════════════════════════════════════════
+// DERIVED RESULT SECTIONS
+// ═══════════════════════════════════════════════════════════════════════════════
+function getShadowProfile(scores) {
+  const p = scores.pctiles;
+  const items = [];
+
+  if (p.H <= 30)
+    items.push({label:'Ethical pragmatism under pressure', desc:'When stakes are high and oversight is low, there is a tendency to rationalize rule-bending as situationally justified rather than problematic. Worth monitoring in high-autonomy, high-reward environments where the cost of a small ethical compromise appears low.'});
+
+  if (p.E >= 70 && p.C <= 40)
+    items.push({label:'Emotional flooding', desc:'High emotional sensitivity combined with lower self-regulatory discipline creates conditions for overwhelm cascades — surges of feeling that temporarily disrupt organized action. Structured routines and pre-committed response plans reduce this risk substantially.'});
+
+  if (p.E >= 70 && p.A <= 35)
+    items.push({label:'Reactive defensiveness', desc:'Emotional intensity without an agreeable buffer can produce sharp interpersonal reactions during conflict — a tendency to either close off or strike out when feeling criticized or abandoned. Slowing down the loop between stimulus and response is the primary leverage point.'});
+
+  if (p.X >= 70 && p.A <= 35)
+    items.push({label:'Dominance under threat', desc:'Social confidence combined with low agreeableness can harden into controlling or confrontational behavior when you feel cornered or challenged. The assertiveness that serves you well in most contexts can become coercive under sufficient threat.'});
+
+  if (p.C >= 75 && p.A <= 35)
+    items.push({label:'Perfectionist friction', desc:'High personal standards applied through a lens of low patience create significant interpersonal friction — a tendency to impose your standards on others when stress is elevated. The gap between what you expect and what others deliver widens under pressure.'});
+
+  if (p.C >= 75 && p.O <= 30)
+    items.push({label:'Rigidity under uncertainty', desc:'Structure-seeking and conventional thinking can become brittle when circumstances demand improvisation or when established methods fail. Novel, ambiguous situations — particularly under time pressure — are the most likely trigger for this pattern.'});
+
+  if (p.O >= 70 && p.C <= 30)
+    items.push({label:'Unanchored ideation', desc:'Strong openness without commensurate discipline produces a pattern of generative but incomplete output — ideas that are rich in conception but inconsistently followed through. Novelty fades before execution completes.'});
+
+  if (p.H <= 30 && p.X >= 65)
+    items.push({label:'Impression management escalation', desc:'Social confidence paired with a flexible relationship to self-presentation can drift into performative self-construction — becoming skilled at projecting the version of yourself most useful in any context, with authenticity as the casualty.'});
+
+  if (items.length === 0)
+    items.push({label:'Balanced stress profile', desc:'Your personality profile does not show the extreme domain combinations most predictive of problematic stress-response patterns. This suggests a broader adaptive range and more evenly distributed risk under pressure. No dominant shadow theme emerges from this profile.'});
+
+  return items;
+}
+
+function getCareerFit(scores) {
+  const p = scores.pctiles;
+
+  function fitScore(weights) {
+    // weights: array of [percentile, multiplier, direction] where direction is 'high' or 'low'
+    let total = 0, max = 0;
+    weights.forEach(([pct, mult, dir]) => {
+      max += mult * 3;
+      if (dir === 'high') total += mult * (pct >= 65 ? 3 : pct >= 45 ? 2 : pct >= 30 ? 1 : 0);
+      else                total += mult * (pct <= 35 ? 3 : pct <= 55 ? 2 : pct <= 70 ? 1 : 0);
+    });
+    return Math.round(total / max * 100);
+  }
+
+  const domains = [
+    {
+      name: 'Creative & Design',
+      traits: 'Openness, aesthetic sensitivity, unconventionality',
+      score: fitScore([[p.O,3,'high'],[p.X,1,'high'],[p.H,1,'high']])
+    },
+    {
+      name: 'Research & Analysis',
+      traits: 'Openness, conscientiousness, low emotionality',
+      score: fitScore([[p.O,3,'high'],[p.C,2,'high'],[p.E,1,'low']])
+    },
+    {
+      name: 'Leadership & Strategy',
+      traits: 'Extraversion, conscientiousness, honesty-humility',
+      score: fitScore([[p.X,3,'high'],[p.C,2,'high'],[p.H,2,'high']])
+    },
+    {
+      name: 'Healthcare & Helping',
+      traits: 'Agreeableness, emotionality, conscientiousness',
+      score: fitScore([[p.A,3,'high'],[p.E,2,'high'],[p.C,1,'high']])
+    },
+    {
+      name: 'Law & Compliance',
+      traits: 'Honesty-humility, conscientiousness, precision',
+      score: fitScore([[p.H,3,'high'],[p.C,3,'high'],[p.A,1,'high']])
+    },
+    {
+      name: 'Technology & Engineering',
+      traits: 'Openness, conscientiousness, analytical depth',
+      score: fitScore([[p.O,2,'high'],[p.C,3,'high'],[p.E,1,'low']])
+    },
+    {
+      name: 'Entrepreneurship',
+      traits: 'Extraversion, openness, resilience, integrity',
+      score: fitScore([[p.X,2,'high'],[p.O,2,'high'],[p.H,2,'high'],[p.E,1,'low']])
+    },
+    {
+      name: 'Education & Mentorship',
+      traits: 'Agreeableness, openness, extraversion',
+      score: fitScore([[p.A,3,'high'],[p.O,2,'high'],[p.X,2,'high']])
+    }
+  ];
+
+  domains.sort((a,b) => b.score - a.score);
+
+  return domains.map(d => ({
+    ...d,
+    level: d.score >= 72 ? 'high' : d.score >= 55 ? 'good' : d.score >= 38 ? 'moderate' : 'lower',
+    label: d.score >= 72 ? 'High Fit' : d.score >= 55 ? 'Good Fit' : d.score >= 38 ? 'Moderate' : 'Lower Fit'
+  }));
+}
+
+function getRelationshipProfile(scores) {
+  const p = scores.pctiles;
+  const lines = [];
+
+  // Emotional availability
+  if (p.E >= 65)
+    lines.push('Emotionally present and deeply invested — you feel your close relationships intensely and are attuned to shifts in others\' states. Partners and friends experience you as genuinely responsive. The development edge is maintaining that attunement without becoming over-reactive to relational friction.');
+  else if (p.E <= 35)
+    lines.push('Emotionally self-contained — you bring stability and independence to relationships but may need to apply deliberate intention to signal vulnerability and emotional availability. Partners may perceive emotional distance that isn\'t indifference, but rather a different bandwidth for relational expressiveness.');
+  else
+    lines.push('Emotionally balanced — present without being overwhelming, self-sufficient without being detached. You tend to regulate well in relational contexts and are unlikely to be experienced as either emotionally cold or emotionally destabilizing.');
+
+  // Conflict style
+  if (p.A >= 65)
+    lines.push('In conflict, you default to de-escalation, patience, and active repair — an asset in most relationships, but one that can suppress legitimate grievances over time. The risk is accumulated resentment from deferred honesty.');
+  else if (p.A <= 35)
+    lines.push('In conflict, you are direct and hold your position under pressure. This clarity serves important functions — it surfaces real issues rather than papering over them — but can be experienced as hard-edged by partners who need more relational softening during difficult conversations.');
+  else
+    lines.push('In conflict, you are reasonably direct and reasonably patient — able to advocate without escalation in most circumstances.');
+
+  // Trust and authenticity
+  if (p.H >= 65)
+    lines.push('You tend to be consistent and authentic with close others — what they see is reliably what they get. This predictability builds the kind of trust that deepens over time rather than requiring constant verification.');
+  else if (p.H <= 35)
+    lines.push('You tend to manage the version of yourself that others see, adapting your presentation to context. In close relationships, this can create a subtle legibility gap — partners may sense that full transparency is held back even when nothing specific is concealed.');
+
+  // Social energy and intimacy needs
+  if (p.X >= 65)
+    lines.push('You bring social warmth and energy to shared space — likely initiating connection, animating group dynamics, and making others feel welcomed into your orbit.');
+  else if (p.X <= 35)
+    lines.push('You need meaningful solitude to recharge and function at your best. Relationships that demand continuous social output will feel depleting over time. Partners who understand and respect your need for restorative space will find you more engaged and present when you do show up.');
+
+  return lines;
+}
+
+function getValuesCrossRef(valueScores, scores) {
+  const p = scores.pctiles;
+  const lines = [];
+  const top3Values = valueScores.top3.map(([v]) => v);
+  const vsMap = valueScores.scores;
+
+  // Power vs H
+  if (vsMap['Power'] >= 4 && p.H >= 65)
+    lines.push('A high valuation of Power alongside elevated Honesty-Humility is a notable combination — you seek influence but are oriented toward principled rather than self-serving exercise of it. This aligns with ethical leadership profiles.');
+  else if (vsMap['Power'] >= 4 && p.H <= 35)
+    lines.push('Valuing Power combined with lower Honesty-Humility warrants awareness: the drive for authority without strong ethical constraint is the combination most associated with exploitative outcomes in positions of responsibility.');
+
+  // Self-Direction vs C
+  if (vsMap['Self-Direction'] >= 4 && p.C >= 70)
+    lines.push('Strong self-direction values combined with high conscientiousness produce genuine autonomy — not just a preference for independence, but the disciplined follow-through to make it work without external scaffolding.');
+  else if (vsMap['Self-Direction'] >= 4 && p.C <= 35)
+    lines.push('Valuing independence strongly while scoring lower on conscientiousness can create a gap between the autonomy you seek and your capacity to sustain it under your own direction. Structure — even self-imposed structure — tends to improve outcomes here.');
+
+  // Universalism vs A
+  if (vsMap['Universalism'] >= 4 && p.A >= 65)
+    lines.push('Your high Universalism values and elevated Agreeableness are mutually reinforcing — your care for others extends from the immediate circle outward to a broader human concern, and your relational patience gives that concern practical traction.');
+
+  // Security vs E
+  if (vsMap['Security'] >= 4 && p.E >= 65)
+    lines.push('A strong value placed on security, combined with elevated emotional sensitivity, can heighten the impact of instability or change — real and perceived threats register more acutely. Environments that offer predictability and relational consistency are likely to support your best functioning.');
+
+  // Achievement vs C
+  if (vsMap['Achievement'] >= 4 && p.C >= 65)
+    lines.push('Achievement values backed by high conscientiousness form one of the strongest performance combinations in personality research — the ambition is there and so is the organized follow-through to materialize it.');
+  else if (vsMap['Achievement'] >= 4 && p.C <= 35)
+    lines.push('Strong achievement motivation with lower conscientiousness suggests ambition that outpaces structure. The goals are compelling; the scaffolding to reach them in a disciplined way is the limiting variable.');
+
+  // Stimulation vs O
+  if (vsMap['Stimulation'] >= 4 && p.O >= 65)
+    lines.push('Valuing stimulation and novelty, combined with high openness, points to a profile that genuinely thrives under conditions of change, variety, and intellectual challenge. Stability-heavy environments are likely to feel constraining over time.');
+
+  if (lines.length === 0)
+    lines.push('Your values and personality profile are broadly consistent — no strong divergences between what you prioritize and how your dispositional traits are measured. This alignment typically produces coherent, legible behavior: others tend to see what you intend to project.');
+
+  return lines.join(' ');
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
 // UTILITIES
 // ═══════════════════════════════════════════════════════════════════════════════
 function showToast(msg) {
@@ -1733,6 +2267,9 @@ function restartAssessment() {
   Object.keys(fcRankings).forEach(k => delete fcRankings[k]);
   currentHexacoPage = 0;
   currentFCBlock    = 0;
+  currentSuppPage = 0;
+  Object.keys(valueResponses).forEach(k => delete valueResponses[k]);
+  Object.keys(attachResponses).forEach(k => delete attachResponses[k]);
   userName = '';
   userDOB  = null;
   document.getElementById('progressFill').style.width = '0%';
