@@ -152,6 +152,18 @@ The battery includes: a 96-item HEXACO short-form across 6 domains and 24 facets
 
     screenshots: [],
 
+    // ── Inline feed gallery ────────────────────────────────────────────────
+    // Add image paths here (relative to the site root) in gradient order.
+    // These appear as a scrollable strip directly in the project modal.
+    // Export your photos from Instagram (Settings → Account → Download your data),
+    // drop them in  projects/curated-feed/images/ , then list them below.
+    //
+    // Example:
+    //   { src: 'projects/curated-feed/images/001.jpg', alt: '' },
+    galleryImages: [
+        // { src: 'projects/curated-feed/images/001.jpg', alt: '' },
+    ],
+
     problem: `Instagram orders content by time. That's the wrong axis for a curated aesthetic account. Chronological sorting shows you individual moments — it hides the thing that makes a deliberately built feed worth studying: the color story, the eye behind it, the gradual shift in tone and mood across hundreds of posts.`,
 
     solution: `Every post from @seldomsought has been sequenced not by date, but by color — arranged so the feed drifts continuously across the spectrum. Muted interior photography flows into botanical greens, into warm amber, into deep evening shadow, into chalk and linen. The grid becomes a gradient. The archive becomes an argument about what it means to look at the world with intention.`,
