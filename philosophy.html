@@ -24,16 +24,16 @@
         ========================================= */
         :root {
             --fs-display: clamp(4rem, 9vw, 9.5rem);
-            --fs-h1:      clamp(3rem, 6.5vw, 7rem);
-            --fs-h2:      clamp(2rem, 3.5vw, 3.5rem);
-            --fs-h3:      clamp(1.4rem, 2.2vw, 2.2rem);
-            --fs-h4:      clamp(1.1rem, 1.6vw, 1.6rem);
-            --fs-body-lg: clamp(1.1rem, 1.5vw, 1.4rem);
-            --fs-body:    clamp(1rem, 1.25vw, 1.25rem);
+            --fs-h1:      clamp(3rem, 7vw, 7.5rem);
+            --fs-h2:      clamp(2rem, 3.8vw, 4rem);
+            --fs-h3:      clamp(1.4rem, 2.4vw, 2.5rem);
+            --fs-h4:      clamp(1.1rem, 1.8vw, 1.9rem);
+            --fs-body-lg: clamp(1.1rem, 1.65vw, 1.75rem);
+            --fs-body:    clamp(1rem, 1.4vw, 1.5rem);
             --fs-small:   clamp(0.85rem, 1vw, 1rem);
             --fs-label:   clamp(0.78rem, 0.9vw, 0.9rem);
             --fs-nav:     clamp(0.95rem, 1.1vw, 1.2rem);
-            --fs-btn:     clamp(1rem, 1.2vw, 1.2rem);
+            --fs-btn:     clamp(1rem, 1.35vw, 1.35rem);
             --lh-tight:   1.1;
             --lh-snug:    1.3;
             --lh-copy:    1.7;
@@ -316,13 +316,16 @@
         /* DESKTOP SCALING ≥1024px — matches sitewide standard */
         @media (min-width: 1024px) {
             html { font-size: 18px; }
+            /* ── Nav ── */
             body.retro-geocities .nav-container { padding: 1.2rem 5rem; max-width: none; }
-            body.retro-geocities .logo { font-size: 2.35rem; }
-            body.retro-geocities .nav-links a { font-size: clamp(1.25rem, 1.5vw, 1.5rem); padding: 0.65rem 1.3rem; }
-            .retro-window-body { font-size: clamp(1.05rem, 1.4vw, 1.4rem); }
-            .retro-window.read-first .retro-window-body { font-size: 0.92rem; }
+            body.retro-geocities .logo          { font-size: 2.35rem; }
+            body.retro-geocities .nav-links a   { font-size: clamp(1.25rem, 1.5vw, 1.5rem); padding: 0.65rem 1.3rem; }
+            /* ── Main content readability ── */
+            .retro-window-body                  { font-size: clamp(1.1rem, 1.65vw, 1.75rem); }
+            .retro-window.read-first .retro-window-body { font-size: 0.92rem; } /* intentionally small */
+            /* ── Hero title ── */
             .gc-main-title {
-                font-size: clamp(3.5rem, 6.5vw, 7rem);
+                font-size: clamp(3.5rem, 7vw, 7.5rem);
                 letter-spacing: 8px;
                 text-shadow:
                     5px 5px 0 var(--gc-accent-mag),
@@ -330,13 +333,8 @@
                     0 0 50px rgba(255,255,0,0.55),
                     0 0 100px rgba(255,255,0,0.2);
             }
-            .gc-hero {
-                padding: 3rem 1.5rem 2.5rem;
-            }
-            .gc-hero-subtitle {
-                font-size: clamp(1.1rem, 1.6vw, 1.5rem);
-                letter-spacing: 5px;
-            }
+            .gc-hero                            { padding: 3rem 1.5rem 2.5rem; }
+            .gc-hero-subtitle                   { font-size: clamp(1.2rem, 1.8vw, 1.75rem); letter-spacing: 5px; }
         }
 
         /* =========================================
@@ -440,9 +438,9 @@
             line-height: 1.2;
         }
         @media (min-width: 1024px) {
-            .gc-section-header-strip { padding: 6px 1.2rem; }
+            .gc-section-header-strip { padding: 8px 1.4rem; }
             .gc-section-header-strip h2 {
-                font-size: clamp(2.5rem, 4.5vw, 4rem);
+                font-size: clamp(2.5rem, 4.5vw, 5rem);
                 letter-spacing: 5px;
             }
         }
