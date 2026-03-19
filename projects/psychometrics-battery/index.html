@@ -414,39 +414,91 @@
 
     @media (min-width: 1024px) {
       html { font-size: 18px; }
-      .nav-logo { font-size: 1.6rem; }
-      .nav-back { font-size: 0.88rem; padding: 0.5rem 1rem; }
-      .welcome-subtitle { font-size: 1.35rem; }
-      .meta-label { font-size: 0.82rem; }
-      .module-list li { font-size: 1rem; }
-      .module-num { font-size: 0.82rem; }
-      .consent-note { font-size: 0.88rem; }
-      .btn { font-size: 0.95rem; padding: 0.95rem 2.2rem; }
-      .btn-sm { font-size: 0.85rem; }
-      .section-eyebrow { font-size: 0.82rem; }
-      .section-desc { font-size: 1rem; line-height: 1.75; }
-      .page-counter { font-size: 0.82rem; }
-      .item-text { font-size: 1rem; line-height: 1.7; }
-      .item-id { font-size: 0.78rem; }
-      .likert-label .lname { font-size: 0.72rem; }
-      .fc-block-header { font-size: 0.82rem; }
-      .fc-stmt-text { font-size: 1rem; line-height: 1.65; }
-      .fc-instructions { font-size: 0.9rem; }
-      .domain-narrative { font-size: 1rem; line-height: 1.8; }
-      .integration-body { font-size: 1rem; line-height: 1.8; }
-      .score-table { font-size: 0.9rem; }
-      .score-table th { font-size: 0.78rem; }
-      .results-date { font-size: 0.82rem; }
-      .domain-section-label { font-size: 0.82rem; }
-      .intake-label { font-size: 0.82rem; }
-      .intake-input { font-size: 1rem; }
-      .intake-error { font-size: 0.78rem; }
-      .cosmic-eyebrow { font-size: 0.82rem; }
-      .cosmic-cell-label { font-size: 0.72rem; }
-      .cosmic-cell-value { font-size: 1.35rem; }
-      .cosmic-cell-sub { font-size: 0.72rem; }
-      .cosmic-synthesis { font-size: 1rem; line-height: 1.85; }
-      .cosmic-section-divider { font-size: 0.75rem; }
+
+      /* Layout */
+      .wrapper { max-width: 960px; padding: 0 3rem 8rem; }
+      .screen { padding-top: 6.5rem; }
+      .progress-bar-wrap { height: 3px; top: 62px; }
+
+      /* Nav */
+      .nav-inner { max-width: 1200px; padding: 1.2rem 4rem; }
+      .nav-logo { font-size: 1.7rem; }
+      .nav-back { font-size: 0.9rem; padding: 0.6rem 1.2rem; }
+
+      /* Welcome */
+      .welcome-subtitle { font-size: 1.45rem; line-height: 1.8; }
+      .meta-label { font-size: 0.85rem; }
+      .meta-value { font-size: 1.15rem; }
+      .meta-cell { padding: 1.5rem 1.8rem; }
+      .module-list li { font-size: 1.05rem; padding: 1.1rem 0; }
+      .module-num { width: 30px; height: 30px; font-size: 0.85rem; }
+      .consent-note { font-size: 0.92rem; line-height: 1.75; }
+
+      /* Intake */
+      .intake-section h3 { font-size: 1.45rem; }
+      .intake-subtitle { font-size: 0.92rem; }
+      .intake-label { font-size: 0.85rem; }
+      .intake-input { font-size: 1rem; padding: 0.85rem 1.2rem; }
+      .intake-error { font-size: 0.82rem; }
+
+      /* Buttons */
+      .btn { font-size: 1rem; padding: 1.05rem 2.5rem; letter-spacing: 2px; }
+      .btn-sm { font-size: 0.9rem; padding: 0.7rem 1.5rem; }
+
+      /* Section headers */
+      .section-eyebrow { font-size: 0.88rem; letter-spacing: 3px; }
+      .section-title { font-size: 2.4rem; }
+      .section-desc { font-size: 1.05rem; line-height: 1.75; }
+      .section-header { margin-bottom: 2.5rem; padding-bottom: 1.5rem; }
+      .page-counter { font-size: 0.88rem; margin-bottom: 2rem; }
+
+      /* Likert items — core desktop experience */
+      .item-block { padding: 1.8rem 2.2rem; margin-bottom: 1.2rem; }
+      .item-text { font-size: 1.12rem; line-height: 1.78; margin-bottom: 1.5rem; }
+      .item-id { font-size: 0.8rem; }
+      .likert-row { gap: 0.75rem; flex-wrap: nowrap; }
+      .likert-label { min-width: 88px; padding: 0.9rem 0.5rem; gap: 0.5rem; border-radius: 0; }
+      .likert-label .lval { font-size: 1.35rem; }
+      .likert-label .lname { font-size: 0.78rem; letter-spacing: 0.5px; }
+
+      /* FC */
+      .fc-instructions { font-size: 0.98rem; padding: 1.1rem 1.5rem; line-height: 1.75; }
+      .fc-stmt { padding: 1.4rem 1.8rem; margin-bottom: 0.7rem; }
+      .fc-stmt-text { font-size: 1.08rem; line-height: 1.72; }
+      .fc-rank-badge { width: 36px; height: 36px; font-size: 0.9rem; }
+      .fc-block-header { font-size: 0.88rem; }
+      .fc-block { margin-bottom: 2.8rem; }
+
+      /* Results */
+      .results-date { font-size: 0.88rem; }
+      .domain-section-label { font-size: 0.88rem; }
+      .radar-svg { max-width: 440px; }
+      .domain-card { padding: 1.8rem 2.2rem; }
+      .domain-name { font-size: 1.55rem; }
+      .domain-narrative { font-size: 1.05rem; line-height: 1.88; }
+      .domain-meta { font-size: 0.82rem; margin-bottom: 1.3rem; }
+      .score-pct { font-size: 0.98rem; }
+      .score-table { font-size: 0.95rem; }
+      .score-table th { font-size: 0.85rem; letter-spacing: 2px; }
+      .score-table td { padding: 0.75rem 1rem; }
+      .score-table th { padding: 0.75rem 1rem; }
+      .integration-card { padding: 2rem 2.2rem; }
+      .integration-title { font-size: 1.55rem; }
+      .integration-body { font-size: 1.05rem; line-height: 1.88; }
+      .facet-label-row { font-size: 0.75rem; }
+
+      /* Cosmic */
+      .cosmic-card-header { padding: 1.4rem 2rem; }
+      .cosmic-eyebrow { font-size: 0.88rem; }
+      .cosmic-title { font-size: 1.75rem; }
+      .cosmic-grid { grid-template-columns: repeat(4, 1fr); }
+      .cosmic-cell { padding: 1.3rem 1.5rem; }
+      .cosmic-cell-label { font-size: 0.75rem; }
+      .cosmic-cell-value { font-size: 1.4rem; }
+      .cosmic-cell-sub { font-size: 0.75rem; }
+      .cosmic-body { padding: 1.8rem 2rem; }
+      .cosmic-synthesis { font-size: 1.05rem; line-height: 1.88; }
+      .cosmic-section-divider { font-size: 0.8rem; margin: 1.5rem 0 0.9rem; }
     }
   </style>
 </head>
@@ -482,11 +534,11 @@
         </div>
         <div class="meta-cell">
           <div class="meta-label">Items</div>
-          <div class="meta-value">106</div>
+          <div class="meta-value">126</div>
         </div>
         <div class="meta-cell">
           <div class="meta-label">Est. time</div>
-          <div class="meta-value">20–25 min</div>
+          <div class="meta-value">25–35 min</div>
         </div>
       </div>
 
@@ -538,7 +590,7 @@
   <!-- ── SCREEN 1: HEXACO INSTRUCTIONS ── -->
   <div class="screen" id="screen-hexaco-intro">
     <div class="section-header">
-      <p class="section-eyebrow">Module 1 of 2</p>
+      <p class="section-eyebrow" id="hexaco-intro-eyebrow">Module 1 of 2</p>
       <h2 class="section-title">Personality Profile</h2>
       <p class="section-desc">HEXACO Six-Factor Model — Short Form (96 items)</p>
     </div>
@@ -572,7 +624,7 @@
   <!-- ── SCREEN 3: FC INSTRUCTIONS ── -->
   <div class="screen" id="screen-fc-intro">
     <div class="section-header">
-      <p class="section-eyebrow">Module 2 of 2</p>
+      <p class="section-eyebrow" id="fc-intro-eyebrow">Module 2 of 2</p>
       <h2 class="section-title">Forced Choice</h2>
       <p class="section-desc">Thurstonian Ranking Blocks — 10 triplets</p>
     </div>
@@ -742,7 +794,29 @@ const FC_BLOCKS = [
   {id:'B061',A:{d:'H',t:'Avoiding acquisitiveness is something I feel genuine about, not just performative.'},B:{d:'X',t:'I am comfortable being singled out or called upon in group settings.'},C:{d:'O',t:'I appreciate beauty in art, music, and nature more than most.'}},
   {id:'B071',A:{d:'E',t:'I am more aware of and cautious about physical risk than most people I know.'},B:{d:'A',t:'I soften my language when I know what I need to say might be painful.'},C:{d:'C',t:'I plan carefully and rarely act on impulse when it matters.'}},
   {id:'B081',A:{d:'H',t:'I don\'t consider myself particularly important or impressive compared to others.'},B:{d:'A',t:'I update my views when someone gives me a strong counterargument.'},C:{d:'O',t:'I am drawn to unconventional people, art, and ways of living.'}},
-  {id:'B091',A:{d:'E',t:'I am highly emotionally connected to the people who matter most to me.'},B:{d:'X',t:'I generally feel good about myself in social situations.'},C:{d:'C',t:'I hold my work to a high standard and notice when quality slips.'}}
+  {id:'B091',A:{d:'E',t:'I am highly emotionally connected to the people who matter most to me.'},B:{d:'X',t:'I generally feel good about myself in social situations.'},C:{d:'C',t:'I hold my work to a high standard and notice when quality slips.'}},
+
+  // Additional blocks — all 20 domain-pair combinations covered
+  {id:'B101',A:{d:'H',t:'I do not let self-interest cloud my judgment about what is right.'},B:{d:'E',t:'I find it hard to switch off emotionally after upsetting experiences.'},C:{d:'O',t:'I tend to see familiar situations from unusual or novel angles.'}},
+  {id:'B111',A:{d:'H',t:'I am not easily swayed by flattery or special treatment.'},B:{d:'X',t:'I tend to take initiative in conversations I find meaningful.'},C:{d:'A',t:'I give people the benefit of the doubt before forming a negative opinion.'}},
+  {id:'B121',A:{d:'H',t:'I would rather lose an advantage than gain it through deception.'},B:{d:'X',t:'I seek out leadership roles or step up when no one else does.'},C:{d:'C',t:'I rarely leave important tasks until the last minute.'}},
+  {id:'B131',A:{d:'H',t:'I hold myself to consistent ethical standards regardless of who is watching.'},B:{d:'C',t:'I work best when I have a clear plan and organized schedule.'},C:{d:'O',t:'I am genuinely curious about cultures, traditions, and ideas different from my own.'}},
+  {id:'B141',A:{d:'E',t:'I feel uneasy in situations I cannot predict or control.'},B:{d:'X',t:'I rarely feel awkward or out of place in new social environments.'},C:{d:'A',t:'I express disagreement through calm discussion rather than withdrawal or anger.'}},
+  {id:'B151',A:{d:'E',t:'My mood is significantly affected by how well my close relationships are going.'},B:{d:'A',t:'I adapt my position when I realize I have been wrong.'},C:{d:'O',t:'I regularly seek out books, ideas, or experiences that expand my worldview.'}},
+  {id:'B161',A:{d:'E',t:'Physical safety and personal risk are things I think about more than most.'},B:{d:'C',t:'I tend to finish projects even when my initial enthusiasm has faded.'},C:{d:'O',t:'I enjoy exploring ideas that have no clear practical application.'}},
+  {id:'B171',A:{d:'X',t:'I feel genuinely at ease in most social situations.'},B:{d:'A',t:'I rarely hold resentment toward people who have wronged me.'},C:{d:'C',t:'I consistently meet my own standards without needing external accountability.'}},
+  {id:'B181',A:{d:'X',t:'I often feel a sense of vitality and enthusiasm for daily activities.'},B:{d:'C',t:'I think through long-term consequences before making significant decisions.'},C:{d:'O',t:'I find experimental or unconventional approaches more interesting than proven ones.'}},
+  {id:'B191',A:{d:'A',t:'I go out of my way to accommodate people even when it is inconvenient.'},B:{d:'C',t:'I hold myself to high standards of accuracy and thoroughness.'},C:{d:'O',t:'I am drawn to questions that do not have clear or definitive answers.'}},
+  {id:'B201',A:{d:'H',t:'I acknowledge my mistakes openly rather than deflecting responsibility.'},B:{d:'E',t:'I notice and respond strongly to the emotional states of people around me.'},C:{d:'X',t:'I feel recharged and energized after spending time with a group of people.'}},
+  {id:'B211',A:{d:'H',t:'I treat rules as binding on myself even when breaking them would benefit me.'},B:{d:'A',t:'I would rather take a loss than damage an important relationship.'},C:{d:'O',t:'I am genuinely excited by ideas that challenge what I thought I knew.'}},
+  {id:'B221',A:{d:'E',t:'I process difficult feelings by talking them through with people I trust.'},B:{d:'X',t:'I am confident speaking my mind in front of people I do not know well.'},C:{d:'C',t:'I rarely start tasks without having a sense of how I will complete them.'}},
+  {id:'B231',A:{d:'H',t:'Status and recognition matter less to me than doing work I genuinely believe in.'},B:{d:'X',t:'I find group energy motivating rather than draining.'},C:{d:'A',t:'I make real efforts to see situations from the other person\'s point of view.'}},
+  {id:'B241',A:{d:'E',t:'I am more sensitive to criticism than most people I know.'},B:{d:'A',t:'I tend to be gentle when delivering feedback that might be difficult to hear.'},C:{d:'C',t:'I review my work carefully before considering it finished.'}},
+  {id:'B251',A:{d:'H',t:'I do not exaggerate my abilities or achievements even when it would benefit me.'},B:{d:'E',t:'My emotional reactions to events tend to linger longer than I would like.'},C:{d:'A',t:'I remain calm and patient when others make mistakes that affect me.'}},
+  {id:'B261',A:{d:'X',t:'I look forward to events where I will meet people I do not yet know.'},B:{d:'O',t:'I am more drawn to abstract thinking than to practical, concrete tasks.'},C:{d:'C',t:'I notice when my environment is becoming disorganized and act to restore order.'}},
+  {id:'B271',A:{d:'H',t:'I hold myself to the same ethical standards with people I like as with those I do not.'},B:{d:'O',t:'I often make connections between ideas that others have not linked before.'},C:{d:'A',t:'I make a deliberate effort to understand people I initially disagree with.'}},
+  {id:'B281',A:{d:'E',t:'I feel a strong sense of responsibility toward the people I care most about.'},B:{d:'C',t:'I am methodical and systematic in how I approach complex problems.'},C:{d:'X',t:'I enjoy being in environments with a lot of social activity and interaction.'}},
+  {id:'B291',A:{d:'O',t:'I find routine and predictability less satisfying than variety and novelty.'},B:{d:'H',t:'I do not present different versions of myself in different social settings.'},C:{d:'A',t:'I find genuine satisfaction in helping others even when there is nothing in it for me.'}}
 ];
 
 const DOMAIN_META = {
@@ -812,6 +886,12 @@ function startAssessment() {
   errEl.classList.remove('show');
   userName = name;
   userDOB  = dob;
+  // Personalize static intro screens
+  const firstName = name.split(' ')[0];
+  const hEyebrow = document.getElementById('hexaco-intro-eyebrow');
+  if (hEyebrow) hEyebrow.textContent = firstName + ' · Module 1 of 2';
+  const fcEyebrow = document.getElementById('fc-intro-eyebrow');
+  if (fcEyebrow) fcEyebrow.textContent = firstName + ' · Module 2 of 2';
   showScreen('hexaco-intro');
 }
 
@@ -824,8 +904,9 @@ function goToHexacoPage(pageIdx) {
   const slice = ITEMS.slice(start, start + PAGE_SIZE);
   const container = document.getElementById('hexaco-page-content');
 
+  const _fn = userName ? userName.split(' ')[0] + ' · ' : '';
   let html = `<div class="section-header">
-    <p class="section-eyebrow">Module 1 — Personality Profile</p>
+    <p class="section-eyebrow">${_fn}Module 1 — Personality Profile</p>
     <h2 class="section-title">HEXACO</h2>
   </div>
   <p class="page-counter">Page <span>${pageIdx + 1}</span> of <span>${TOTAL_HEXACO_PAGES}</span> &nbsp;·&nbsp; Items ${start + 1}–${Math.min(start + PAGE_SIZE, ITEMS.length)} of ${ITEMS.length}</p>`;
@@ -904,8 +985,9 @@ function goToFCBlock(idx) {
   const saved = fcRankings[block.id] || {};
   const container = document.getElementById('fc-block-content');
 
+  const _fcFn = userName ? userName.split(' ')[0] + ' · ' : '';
   let html = `<div class="section-header">
-    <p class="section-eyebrow">Module 2 — Forced Choice</p>
+    <p class="section-eyebrow">${_fcFn}Module 2 — Forced Choice</p>
     <h2 class="section-title">Block ${idx + 1} of ${FC_BLOCKS.length}</h2>
   </div>
   <div class="fc-instructions">
@@ -1130,9 +1212,24 @@ function renderResults(scores) {
   const bot2   = sorted.slice(-2);
 
   const firstName = userName ? userName.split(' ')[0] : '';
+  const profileType = getProfileType(scores);
+  const facetHighlights = getTopBottomFacets(scores);
+
   let html = `<div class="results-header fade-in">
     <h1>${firstName ? `Profile — ${firstName}` : 'Your Profile'}</h1>
     <p class="results-date">Assessment completed ${dateStr}</p>
+  </div>
+  <div class="integration-card fade-in" style="margin-bottom:1.2rem;border-color:rgba(184,134,11,0.4)">
+    <p style="font-size:0.72rem;letter-spacing:3px;text-transform:uppercase;color:var(--amber);margin-bottom:0.5rem">Profile Type</p>
+    <h3 class="integration-title">${profileType.name}</h3>
+    <p class="integration-body">${profileType.desc}</p>
+  </div>
+  <div class="integration-card fade-in" style="margin-bottom:2rem;">
+    <p style="font-size:0.72rem;letter-spacing:3px;text-transform:uppercase;color:var(--amber);margin-bottom:1rem">Facet Highlights</p>
+    <p style="font-size:0.75rem;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);margin-bottom:0.5rem">Highest</p>
+    ${facetHighlights.top.map(f => `<div style="display:flex;justify-content:space-between;align-items:center;padding:0.5rem 0;border-bottom:1px solid rgba(184,134,11,0.08);"><span style="font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--text)">${f.name} <span style="font-size:0.75rem;color:var(--text-dim);letter-spacing:1px">${DOMAIN_META[f.domain].name}</span></span><span style="color:var(--amber-light);font-size:0.92rem">${f.pct}th</span></div>`).join('')}
+    <p style="font-size:0.75rem;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);margin:1rem 0 0.5rem">Lowest</p>
+    ${facetHighlights.bottom.map(f => `<div style="display:flex;justify-content:space-between;align-items:center;padding:0.5rem 0;border-bottom:1px solid rgba(184,134,11,0.08);"><span style="font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--text)">${f.name} <span style="font-size:0.75rem;color:var(--text-dim);letter-spacing:1px">${DOMAIN_META[f.domain].name}</span></span><span style="color:var(--text-dim);font-size:0.92rem">${f.pct}th</span></div>`).join('')}
   </div>`;
 
   // Radar chart
@@ -1383,6 +1480,42 @@ function getChineseSign(dob) {
   return CHINESE_ANIMALS[((year - 1900) % 12 + 12) % 12];
 }
 
+function getPersonalYear(dob) {
+  const d = new Date(dob + 'T12:00:00');
+  const now = new Date();
+  const sum = (d.getMonth() + 1) + d.getDate() + now.getFullYear();
+  return reduceNum(sum, true);
+}
+
+const CHINESE_ELEMENTS = {0:'Metal',1:'Metal',2:'Water',3:'Water',4:'Wood',5:'Wood',6:'Fire',7:'Fire',8:'Earth',9:'Earth'};
+const CHINESE_ELEMENT_TRAITS = {
+  Metal: 'determined, principled, and resolute — strength forged through refinement',
+  Water: 'perceptive, adaptive, and fluid — wisdom through depth and flow',
+  Wood:  'expansive, idealistic, and growth-oriented — vitality through connection',
+  Fire:  'passionate, dynamic, and radiant — energy through action and warmth',
+  Earth: 'stable, nurturing, and grounded — endurance through patience and care',
+};
+
+function getChineseElement(dob) {
+  const lastDigit = new Date(dob + 'T12:00:00').getFullYear() % 10;
+  return CHINESE_ELEMENTS[lastDigit];
+}
+
+const PY_DESC = {
+  1:  'initiation and independence — a year of new beginnings and establishing personal direction',
+  2:  'cooperation and patience — a year of partnership, receptivity, and relational deepening',
+  3:  'expression and expansion — a year of creativity, social engagement, and outward growth',
+  4:  'foundation and discipline — a year of methodical work, structure, and long-term building',
+  5:  'change and freedom — a year of transition, unexpected opportunity, and dynamic movement',
+  6:  'responsibility and harmony — a year of nurturing, commitment, and service to others',
+  7:  'reflection and discernment — a year of inner work, analysis, and spiritual inquiry',
+  8:  'ambition and authority — a year of material focus, achievement, and executive action',
+  9:  'completion and release — a year of finishing cycles, integration, and universal perspective',
+  11: 'illumination and intuition — a master year of heightened sensitivity and inspired vision',
+  22: 'master building — a year of large-scale ambition, systemic work, and lasting impact',
+  33: 'master teaching — a year of compassionate service, guidance, and transformative presence',
+};
+
 const LP_DESC = {
   1:  {title:'The Leader',       phrase:'independent authority, original thinking, and self-determined direction'},
   2:  {title:'The Mediator',     phrase:'cooperative sensitivity, diplomacy, and instinctive partnership'},
@@ -1470,7 +1603,11 @@ function renderCosmicProfile(scores) {
   const expr    = expressionNumber(userName);
   const soul    = soulUrgeNumber(userName);
   const bdNum   = birthDayNumber(userDOB);
-  const chSign  = getChineseSign(userDOB);
+  const chSign    = getChineseSign(userDOB);
+  const chElement = getChineseElement(userDOB);
+  const pyNum     = getPersonalYear(userDOB);
+  const pyInfo    = PY_DESC[pyNum] || PY_DESC[reduceNum(pyNum, false)] || PY_DESC[1];
+  const fmtPY     = (pyNum === 11 || pyNum === 22 || pyNum === 33) ? `${pyNum} ✦` : String(pyNum);
   const lpInfo  = LP_DESC[lp] || LP_DESC[reduceNum(lp, false)] || LP_DESC[1];
   const crossRef = buildCosmicCrossRef(sign, lp, scores);
 
@@ -1498,7 +1635,12 @@ function renderCosmicProfile(scores) {
       <div class="cosmic-cell">
         <div class="cosmic-cell-label">Chinese Sign</div>
         <div class="cosmic-cell-value">${CHINESE_GLYPHS[chSign]} ${chSign}</div>
-        <div class="cosmic-cell-sub">Year of the ${chSign}</div>
+        <div class="cosmic-cell-sub">${chElement} element</div>
+      </div>
+      <div class="cosmic-cell">
+        <div class="cosmic-cell-label">Chinese Element</div>
+        <div class="cosmic-cell-value">${chElement}</div>
+        <div class="cosmic-cell-sub">${CHINESE_ELEMENT_TRAITS[chElement].split(' — ')[0]}</div>
       </div>
       <div class="cosmic-cell">
         <div class="cosmic-cell-label">Life Path</div>
@@ -1515,16 +1657,65 @@ function renderCosmicProfile(scores) {
         <div class="cosmic-cell-value">${fmtSoul}</div>
         <div class="cosmic-cell-sub">Heart's desire · Day ${bdNum}</div>
       </div>
+      <div class="cosmic-cell">
+        <div class="cosmic-cell-label">Personal Year</div>
+        <div class="cosmic-cell-value">${fmtPY}</div>
+        <div class="cosmic-cell-sub">Current cycle energy</div>
+      </div>
     </div>
     <div class="cosmic-body">
       <p class="cosmic-section-divider">Modality &amp; Element</p>
       <p class="cosmic-synthesis">${sign.mod} modality: ${MODALITY_PROSE[sign.mod]}. The ${sign.el} element grounds this through ${ELEMENT_PROSE[sign.el]}.</p>
       <p class="cosmic-section-divider">Personality × Cosmos</p>
       <p class="cosmic-synthesis">${crossRef}</p>
+      <p class="cosmic-section-divider">Chinese Element &amp; Personal Year</p>
+      <p class="cosmic-synthesis">${chElement} element (${CHINESE_ELEMENT_TRAITS[chElement]}). Your Personal Year ${fmtPY} carries the energy of ${pyInfo}. These two variables operate on different timescales: the Chinese element is a fixed, lifelong signature; the personal year shifts annually and reflects the dominant developmental theme of the current twelve-month cycle.</p>
       <p class="cosmic-section-divider">Numerology Synopsis</p>
       <p class="cosmic-synthesis">Life Path ${fmtLP} (${lpInfo.phrase}) describes the overarching terrain of your lifetime. Expression ${fmtExpr} reflects how that energy manifests outwardly through your name and presence. Soul Urge ${fmtSoul} points to the inner motivational current — what you are drawn toward independent of external validation. These three numbers in combination form the numerological through-line of the reading; where they converge with your HEXACO profile, the signal is especially reliable. Where they diverge, treat the divergence as information about development and aspiration rather than contradiction.</p>
     </div>
   </div>`;
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// PROFILE TYPE
+// ═══════════════════════════════════════════════════════════════════════════════
+const PROFILE_TYPES = {
+  'H+C': {name:'The Principled Architect',    desc:'You combine strong ethical standards with disciplined execution. You hold yourself to a high bar and rarely compromise on either integrity or quality. Others experience you as reliable and trustworthy in high-stakes contexts.'},
+  'H+A': {name:'The Trusted Ally',            desc:'You are honest and kind in equal measure — a rare combination. You tell the truth without cruelty, keep commitments without fanfare, and build trust through consistency rather than performance.'},
+  'H+O': {name:'The Authentic Thinker',       desc:'You combine intellectual curiosity with a strong aversion to self-deception. You pursue ideas wherever they lead and resist the impulse to conform your beliefs to what\'s socially convenient.'},
+  'H+E': {name:'The Sincere Empath',          desc:'You feel things deeply and express yourself authentically. You don\'t perform emotions or manage impressions — what you feel is what you show, and what you say is what you mean.'},
+  'H+X': {name:'The Candid Leader',           desc:'You bring social confidence without the social games. You can hold a room without manipulating it, and people sense that your self-presentation is genuine rather than performed.'},
+  'E+C': {name:'The Careful Protector',       desc:'You are emotionally attuned and structurally disciplined — a combination that often produces someone who cares deeply about outcomes and works carefully to safeguard them. You feel the weight of responsibility and carry it systematically.'},
+  'E+A': {name:'The Compassionate Guide',     desc:'You are deeply empathic and genuinely invested in the wellbeing of others. You make people feel seen and accompanied, and you extend patience and understanding without requiring reciprocity.'},
+  'E+O': {name:'The Sensitive Explorer',      desc:'You combine emotional depth with intellectual curiosity — a pairing that often generates rich inner experience, strong aesthetic sensibility, and an appetite for meaning-making. You feel the world vividly and think about it in original ways.'},
+  'E+X': {name:'The Expressive Connector',    desc:'You are emotionally vivid and socially engaged. You bring warmth and energy into interactions, feel things intensely, and make others feel the force of your presence and care.'},
+  'X+C': {name:'The Driven Achiever',         desc:'You are socially confident and highly disciplined — a combination that positions you well in competitive, goal-oriented environments. You execute with energy and track record with consistency.'},
+  'X+A': {name:'The Collaborative Leader',    desc:'You lead through inclusion rather than dominance. You are socially fluent, patient with people, and genuinely interested in drawing out others rather than monopolizing the stage.'},
+  'X+O': {name:'The Creative Catalyst',       desc:'You combine social energy with intellectual openness — a profile common in people who generate momentum around novel ideas. You can sell the vision and generate the ideas simultaneously.'},
+  'A+C': {name:'The Reliable Partner',        desc:'You are patient, thorough, and dependable. People can count on you to do what you said you would do, to treat them fairly, and to show up with quality rather than just good intentions.'},
+  'A+O': {name:'The Empathic Innovator',      desc:'You are open to others\' perspectives and open to new ideas in equal measure. You combine humane concern with intellectual flexibility — you want things to be better and are genuinely curious about how.'},
+  'C+O': {name:'The Systematic Explorer',     desc:'You apply rigorous thinking to unconventional territory. You are neither rigidly conventional nor casually speculative — you explore ideas carefully, build on them methodically, and hold yourself to high standards of reasoning.'},
+};
+
+function getProfileType(scores) {
+  const sorted = DOMAIN_ORDER.slice().sort((a,b) => scores.pctiles[b] - scores.pctiles[a]);
+  const top2 = sorted.slice(0,2).sort(); // alphabetical for key lookup
+  const key = top2[0] + '+' + top2[1];
+  return PROFILE_TYPES[key] || {name:'Integrated Profile', desc:'Your profile shows a balanced expression across domains without a single dominant axis — a shape associated with contextual flexibility and broad adaptive range.'};
+}
+
+function getTopBottomFacets(scores) {
+  // Returns top and bottom facet across all domains
+  const allFacets = [];
+  DOMAIN_ORDER.forEach(d => {
+    DOMAIN_META[d].facets.forEach((f, i) => {
+      const mean = scores.facetMean[f] || 3;
+      const pct  = Math.round(Math.max(1, Math.min(99, normCDF((mean - 3) / 0.75) * 100)));
+      allFacets.push({facet: f, name: DOMAIN_META[d].facetNames[i], domain: d, pct});
+    });
+  });
+  allFacets.sort((a,b) => b.pct - a.pct);
+  return {top: allFacets.slice(0,3), bottom: allFacets.slice(-3).reverse()};
 }
 
 // ═══════════════════════════════════════════════════════════════════════════════

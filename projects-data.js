@@ -152,18 +152,6 @@ The battery includes: a 96-item HEXACO short-form across 6 domains and 24 facets
 
     screenshots: [],
 
-    // ── Inline feed gallery ────────────────────────────────────────────────
-    // OPTION A — Behold.so (recommended, live Instagram sync, free tier)
-    //   1. Sign up at behold.so
-    //   2. Connect @seldomsought
-    //   3. Copy your Feed ID and paste it below
-    //   The gallery will fetch and render automatically.
-    beholdFeedId: '',   // e.g. 'AbCdEfGhIjKlMnOp'
-
-    // OPTION B — Self-hosted (manual export from Instagram)
-    //   Paste image paths below; leave beholdFeedId empty to use these instead.
-    galleryImages: [],
-
     problem: `Instagram orders content by time. That's the wrong axis for a curated aesthetic account. Chronological sorting shows you individual moments — it hides the thing that makes a deliberately built feed worth studying: the color story, the eye behind it, the gradual shift in tone and mood across hundreds of posts.`,
 
     solution: `Every post from @seldomsought has been sequenced not by date, but by color — arranged so the feed drifts continuously across the spectrum. Muted interior photography flows into botanical greens, into warm amber, into deep evening shadow, into chalk and linen. The grid becomes a gradient. The archive becomes an argument about what it means to look at the world with intention.`,
@@ -177,7 +165,6 @@ The battery includes: a 96-item HEXACO short-form across 6 domains and 24 facets
 
     features: [
       'Manually sequenced — every transition hand-evaluated, no algorithm',
-      'Horizontal scroll gallery showing the full gradient journey',
       'Three-column grid geometry preserved from the live Instagram feed',
       'Photography spans interiors, botanicals, objects, landscape, and texture',
     ],
@@ -187,8 +174,7 @@ The battery includes: a 96-item HEXACO short-form across 6 domains and 24 facets
       chromeStore: null,
       github:      null,
       website:     'https://www.instagram.com/seldomsought',
-      demo:        'projects/curated-feed/',
-      demoLabel:   'View Gallery',
+      demo:        null,
     },
 
     lastUpdated: 'Mar 2026',
