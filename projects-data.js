@@ -99,35 +99,41 @@ The commitment lock goes further: have an accountability partner set a passphras
   {
     id: 'psychometrics-battery',
     name: 'Psychometric Battery',
-    tagline: 'A research-grade personality assessment built from scratch — open methodology, no black boxes.',
-    excerpt: 'A full HEXACO six-factor personality assessment with forced-choice ranking blocks. Novel, non-copyrighted items. Scores entirely in your browser — no data leaves your device.',
+    tagline: 'A multi-dimensional self-assessment built from scratch — personality, values, attachment, and cosmic profile in one session.',
+    excerpt: 'A 142-item battery covering HEXACO personality (6 domains, 24 facets), forced-choice ranking, Schwartz values hierarchy, and attachment style. Results include a profile type, shadow tendencies, career fit, relationship profile, and an integrated cosmic reading. Everything runs in your browser — no accounts, no data transmitted.',
     status: 'Beta',
     platforms: ['Web App', 'Personality', 'Psychometrics'],
     icon: null,
 
     screenshots: [],
 
-    problem: `Most personality assessments are either proprietary black boxes (you pay, get a label, never see the math) or academically inaccessible instruments locked behind licensing walls. The items are decades old, the scoring models are opaque, and the outputs are designed for HR departments rather than genuine self-knowledge.`,
+    problem: `Most personality assessments are either proprietary black boxes (you pay, get a label, never see the math) or academically inaccessible instruments locked behind licensing walls. They measure one dimension — usually personality traits — and stop there, ignoring the motivational values that drive behavior, the attachment patterns that shape relationships, and the broader context that makes a profile actually useful for self-knowledge.`,
 
-    solution: `A ground-up psychometric battery using the HEXACO six-factor model — the most scientifically defensible personality framework available — with novel, non-copyrighted items written to modern standards. The assessment runs entirely in your browser with no data transmission. Scoring is transparent, reports are plain-language, and the full methodology is open on GitHub.
+    solution: `A ground-up psychometric battery that integrates four distinct measurement frameworks into a single session. Novel, non-copyrighted items written to modern standards. All scoring is client-side and transparent. The result isn't a single label — it's a multi-layered profile with actionable cross-references between what you are, what you value, how you attach, and where your blind spots emerge under pressure.
 
-The battery includes: a 96-item HEXACO short-form across 6 domains and 24 facets; 10 forced-choice ranking blocks designed to suppress social desirability bias; and a full results dashboard with radar chart, percentile scores, facet-level breakdown, and an integrated profile narrative.`,
+The battery covers: HEXACO six-factor personality (96 items, 24 facets); 30 forced-choice ranking blocks designed to suppress social desirability bias; Schwartz 10 Basic Human Values; and an attachment style brief screen. Results layer in a profile archetype, facet highlights, shadow/stress tendencies, career domain fit, relationship profile, and an integrated cosmic reading drawn from Western astrology, Chinese zodiac, and Pythagorean numerology.`,
 
     howItWorks: [
-      { step: 1, title: 'Module 1 — HEXACO personality', desc: '96 items, 8 per page. Rate each statement on a 1–5 scale from how accurately it describes you. Covers Honesty-Humility, Emotionality, eXtraversion, Agreeableness, Conscientiousness, and Openness.' },
-      { step: 2, title: 'Module 2 — Forced-choice blocks', desc: '10 triplets. Rank three statements from most to least like you. Designed to detect and correct acquiescence and impression-management bias that standard Likert items can\'t catch.' },
-      { step: 3, title: 'Scoring', desc: 'All scoring happens locally in your browser. Likert items are reverse-scored where needed. FC data is weighted at 30% of the composite. Scores convert to T-scores (M=50, SD=10) and approximate population percentiles.' },
-      { step: 4, title: 'Results', desc: 'Radar chart across all 6 domains. Per-domain bar with percentile, T-score, band label, and a full narrative. Facet-level breakdown for all 24 facets. Integrated profile summary.' },
+      { step: 1, title: 'Module 1 — HEXACO personality', desc: '96 items across 6 domains and 24 facets. Rate each statement 1–5 on how accurately it describes you. Covers Honesty-Humility, Emotionality, eXtraversion, Agreeableness, Conscientiousness, and Openness. Keyboard navigation supported: press 1–5 to answer, ↑↓ to move, Enter to advance.' },
+      { step: 2, title: 'Module 2 — Forced-choice ranking', desc: '30 triplets spanning all 20 three-domain combinations. Rank three statements from most to least like you. Weighted at 30% of the composite score to suppress acquiescence and impression-management bias that Likert scales can\'t catch.' },
+      { step: 3, title: 'Module 3 — Values & Attachment', desc: '10 Schwartz values items rated by importance (Achievement, Benevolence, Self-Direction, Universalism, and six more) plus a 6-item attachment brief screen yielding Secure, Preoccupied, Dismissing, or Fearful-Avoidant orientation.' },
+      { step: 4, title: 'Scoring', desc: 'All scoring is local — nothing leaves your browser. Likert items are reverse-scored where needed. HEXACO+FC composite converts to T-scores (M=50, SD=10) and population percentiles across all 24 facets. Values ranked by importance. Attachment classified on a 2-axis anxiety×avoidance model.' },
+      { step: 5, title: 'Results', desc: 'Profile Type (15 archetypes by top-2 HEXACO domains), Facet Highlights (top and bottom 3 across all 24 facets), radar chart, domain narratives, Relationship Profile, Under Pressure (shadow tendencies), Career Domain Fit (8 domains), Attachment Style narrative, Cosmic Profile (sun sign, Chinese zodiac + element, Life Path, Expression, Soul Urge, Personality Number, Maturity Number, Personal Year), and Values×Personality cross-reference.' },
     ],
 
     features: [
-      'HEXACO six-factor model — the most well-validated personality framework',
-      '96 novel, non-copyrighted items — 4 per facet, 24 facets across 6 domains',
-      '10 forced-choice triplets — acquiescence-resistant ranking format',
+      '142 items across 3 modules — HEXACO, forced-choice, values, and attachment',
+      'HEXACO six-factor model — 96 novel items across 6 domains and 24 facets',
+      '30 forced-choice triplets — full coverage of all 20 three-domain combinations',
+      'Schwartz 10 Basic Human Values hierarchy — what you want, not just who you are',
+      'Attachment style classification — Secure / Preoccupied / Dismissing / Fearful-Avoidant',
+      '15 profile archetypes keyed by your top-2 HEXACO domains',
+      'Shadow / Under Pressure profile — stress-response patterns derived from domain extremes',
+      'Career Domain Fit — 8 domains rated from established occupational personality correlates',
+      'Relationship Profile — emotional availability, conflict style, trust, social energy',
+      'Cosmic Profile — sun sign, Chinese zodiac, 5 Pythagorean numerology numbers',
+      'Keyboard navigation — press 1–5 to answer, auto-scroll to next item',
       'Fully client-side — no data transmitted, no accounts, no tracking',
-      'Facet-level scores for all 24 facets, not just domain composites',
-      'Radar chart + bar charts + integrated narrative report',
-      'Full methodology and item bank open-sourced on GitHub',
     ],
 
     links: {
@@ -136,6 +142,8 @@ The battery includes: a 96-item HEXACO short-form across 6 domains and 24 facets
       github:      'https://github.com/SeldomSought/Psychometrics-Assessment-Battery',
       website:     null,
       demo:        'projects/psychometrics-battery/index.html',
+      demoLabel:   'Take Assessment',
+      demoSameTab: true,
     },
 
     lastUpdated: 'Mar 2026',
@@ -174,6 +182,84 @@ The battery includes: a 96-item HEXACO short-form across 6 domains and 24 facets
       chromeStore: null,
       github:      null,
       website:     'https://www.instagram.com/seldomsought',
+      demo:        null,
+    },
+
+    lastUpdated: 'Mar 2026',
+  },
+
+  {
+    id: 'bookmark-mirror',
+    name: 'Bookmark Mirror',
+    tagline: 'Your bookmarks are a fingerprint. This reads it.',
+    excerpt: 'A Chrome extension that scrapes your Twitter/X bookmarks and generates a deep psychological profile — completely offline. Big Five personality traits, Schwartz values, LIWC linguistic analysis, cognitive style, topic velocity, and more. No API key, no server, no data leaving your device.',
+    status: 'Beta',
+    platforms: ['Chrome Extension', 'Twitter / X', 'Psychometrics'],
+    icon: null,
+
+    screenshots: [],
+
+    problem: `What you save is more revealing than what you say. Bookmarks are unperformed — you're not curating for an audience when you hit that button at 1 AM. They're an unguarded record of what actually caught your attention: the ideas that made you pause, the arguments you wanted to revisit, the things that resonated before you had words for why.
+
+Most people have hundreds of them and have never examined the pattern. Twitter offers no analysis. Third-party tools require API access, OAuth, account permissions, and trust in a server somewhere that now holds a map of your interior life.`,
+
+    solution: `Bookmark Mirror runs entirely inside your browser. It injects a content script into your bookmarks page, scrolls through everything you've saved, and extracts structured data locally — no API, no login, no server call. The inference engine then runs a multi-dimensional psychological analysis directly in the extension's service worker and writes the result to IndexedDB, where it stays on your device.
+
+The analysis is grounded in validated psychometric frameworks: Big Five (OCEAN) personality traits inferred from topic patterns and behavioral signals, Schwartz Basic Human Values clustered across four higher-order dimensions, and a LIWC-inspired linguistic profile that scores your analytical thinking, authenticity, cognitive complexity, and emotional tone from the words in the content you chose to save.
+
+The result isn't a personality quiz. It's a mirror.`,
+
+    howItWorks: [
+      {
+        step: 1,
+        title: 'Install and open bookmarks',
+        desc: 'Load the unpacked extension in Chrome. Click the popup and hit "Analyze My Bookmarks." The extension opens your Twitter/X bookmarks tab.',
+      },
+      {
+        step: 2,
+        title: 'Self-driving scraper',
+        desc: 'A content script injects into the bookmarks page and runs its own capture loop — scrolling, expanding truncated text, extracting tweet text, author, timestamp, engagement metrics, view counts, media, links, hashtags, quoted tweets, and pronouns. A port keepalive resists Chrome\'s background tab throttling.',
+      },
+      {
+        step: 3,
+        title: 'Real-time inference',
+        desc: 'Batches of bookmarks stream to the service worker as they\'re captured. An inference engine classifies each tweet across a 23-topic taxonomy, accumulates psycholinguistic signals, and builds temporal, author, and vocabulary profiles incrementally.',
+      },
+      {
+        step: 4,
+        title: 'Deep analysis on completion',
+        desc: 'When scraping finishes, the engine runs full psychometric analysis: Big Five (OCEAN) personality inference, Schwartz Values profiling, LIWC linguistic dimensions, cognitive style, emotional landscape, intellectual character, social orientation, hidden patterns, blind spots, and topic velocity.',
+      },
+      {
+        step: 5,
+        title: 'Profile rendered locally',
+        desc: 'Results are saved to IndexedDB and a full-page profile opens automatically. Everything is rendered client-side from data that never left your browser.',
+      },
+    ],
+
+    features: [
+      'Fully offline — no API key, no OAuth, no server, no data transmission',
+      'Big Five (OCEAN) personality profile — inferred from topic patterns and behavioral signals',
+      'Schwartz (1992) Basic Human Values — four higher-order motivational clusters',
+      'LIWC-inspired linguistic profile — analytical thinking, clout, authenticity, cognitive complexity, emotional tone',
+      'Topic velocity — which interests are rising or fading over your bookmark history',
+      '23-topic taxonomy with weighted keyword matching and Shannon entropy diversity scoring',
+      'Cognitive style (8 dimensions), emotional landscape, intellectual character, social orientation',
+      'Hidden pattern detection: night mind, niche hunter, single-author dependency, question collector',
+      'Blind spot identification across 8 psychological domains',
+      'Archetype assignment from 11 archetypes based on convergence of psychometric dimensions',
+      'Temporal rhythm: hourly distribution chart, peak hour/day, time persona, trend',
+      'Author profiling: trust concentration, loyalty vs. exploration, authority bias',
+      'Vocabulary analysis: richness, word cloud, hashtag frequency, top mentions',
+      'Hash-based deduplication — robust across slow loads and repeated scrolls',
+      'Port keepalive architecture for reliable operation in background tabs',
+    ],
+
+    links: {
+      download:    null,
+      chromeStore: null,
+      github:      'https://github.com/SeldomSought/Twitter-bookmark-analyzer',
+      website:     null,
       demo:        null,
     },
 
