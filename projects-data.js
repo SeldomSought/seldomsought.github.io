@@ -188,6 +188,84 @@ The battery covers: HEXACO six-factor personality (96 items, 24 facets); 30 forc
     lastUpdated: 'Mar 2026',
   },
 
+  {
+    id: 'bookmark-mirror',
+    name: 'Bookmark Mirror',
+    tagline: 'Your bookmarks are a fingerprint. This reads it.',
+    excerpt: 'A Chrome extension that scrapes your Twitter/X bookmarks and generates a deep psychological profile — completely offline. Big Five personality traits, Schwartz values, LIWC linguistic analysis, cognitive style, topic velocity, and more. No API key, no server, no data leaving your device.',
+    status: 'Beta',
+    platforms: ['Chrome Extension', 'Twitter / X', 'Psychometrics'],
+    icon: null,
+
+    screenshots: [],
+
+    problem: `What you save is more revealing than what you say. Bookmarks are unperformed — you're not curating for an audience when you hit that button at 1 AM. They're an unguarded record of what actually caught your attention: the ideas that made you pause, the arguments you wanted to revisit, the things that resonated before you had words for why.
+
+Most people have hundreds of them and have never examined the pattern. Twitter offers no analysis. Third-party tools require API access, OAuth, account permissions, and trust in a server somewhere that now holds a map of your interior life.`,
+
+    solution: `Bookmark Mirror runs entirely inside your browser. It injects a content script into your bookmarks page, scrolls through everything you've saved, and extracts structured data locally — no API, no login, no server call. The inference engine then runs a multi-dimensional psychological analysis directly in the extension's service worker and writes the result to IndexedDB, where it stays on your device.
+
+The analysis is grounded in validated psychometric frameworks: Big Five (OCEAN) personality traits inferred from topic patterns and behavioral signals, Schwartz Basic Human Values clustered across four higher-order dimensions, and a LIWC-inspired linguistic profile that scores your analytical thinking, authenticity, cognitive complexity, and emotional tone from the words in the content you chose to save.
+
+The result isn't a personality quiz. It's a mirror.`,
+
+    howItWorks: [
+      {
+        step: 1,
+        title: 'Install and open bookmarks',
+        desc: 'Load the unpacked extension in Chrome. Click the popup and hit "Analyze My Bookmarks." The extension opens your Twitter/X bookmarks tab.',
+      },
+      {
+        step: 2,
+        title: 'Self-driving scraper',
+        desc: 'A content script injects into the bookmarks page and runs its own capture loop — scrolling, expanding truncated text, extracting tweet text, author, timestamp, engagement metrics, view counts, media, links, hashtags, quoted tweets, and pronouns. A port keepalive resists Chrome\'s background tab throttling.',
+      },
+      {
+        step: 3,
+        title: 'Real-time inference',
+        desc: 'Batches of bookmarks stream to the service worker as they\'re captured. An inference engine classifies each tweet across a 23-topic taxonomy, accumulates psycholinguistic signals, and builds temporal, author, and vocabulary profiles incrementally.',
+      },
+      {
+        step: 4,
+        title: 'Deep analysis on completion',
+        desc: 'When scraping finishes, the engine runs full psychometric analysis: Big Five (OCEAN) personality inference, Schwartz Values profiling, LIWC linguistic dimensions, cognitive style, emotional landscape, intellectual character, social orientation, hidden patterns, blind spots, and topic velocity.',
+      },
+      {
+        step: 5,
+        title: 'Profile rendered locally',
+        desc: 'Results are saved to IndexedDB and a full-page profile opens automatically. Everything is rendered client-side from data that never left your browser.',
+      },
+    ],
+
+    features: [
+      'Fully offline — no API key, no OAuth, no server, no data transmission',
+      'Big Five (OCEAN) personality profile — inferred from topic patterns and behavioral signals',
+      'Schwartz (1992) Basic Human Values — four higher-order motivational clusters',
+      'LIWC-inspired linguistic profile — analytical thinking, clout, authenticity, cognitive complexity, emotional tone',
+      'Topic velocity — which interests are rising or fading over your bookmark history',
+      '23-topic taxonomy with weighted keyword matching and Shannon entropy diversity scoring',
+      'Cognitive style (8 dimensions), emotional landscape, intellectual character, social orientation',
+      'Hidden pattern detection: night mind, niche hunter, single-author dependency, question collector',
+      'Blind spot identification across 8 psychological domains',
+      'Archetype assignment from 11 archetypes based on convergence of psychometric dimensions',
+      'Temporal rhythm: hourly distribution chart, peak hour/day, time persona, trend',
+      'Author profiling: trust concentration, loyalty vs. exploration, authority bias',
+      'Vocabulary analysis: richness, word cloud, hashtag frequency, top mentions',
+      'Hash-based deduplication — robust across slow loads and repeated scrolls',
+      'Port keepalive architecture for reliable operation in background tabs',
+    ],
+
+    links: {
+      download:    null,
+      chromeStore: null,
+      github:      'https://github.com/SeldomSought/Twitter-bookmark-analyzer',
+      website:     null,
+      demo:        null,
+    },
+
+    lastUpdated: 'Mar 2026',
+  },
+
   // ─── Add your next project here ─────────────────────────────────────────────
   // {
   //   id: 'your-project-id',        // URL-safe, lowercase, hyphenated
