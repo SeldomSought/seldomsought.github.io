@@ -99,35 +99,41 @@ The commitment lock goes further: have an accountability partner set a passphras
   {
     id: 'psychometrics-battery',
     name: 'Psychometric Battery',
-    tagline: 'A research-grade personality assessment built from scratch — open methodology, no black boxes.',
-    excerpt: 'A full HEXACO six-factor personality assessment with forced-choice ranking blocks. Novel, non-copyrighted items. Scores entirely in your browser — no data leaves your device.',
+    tagline: 'A multi-dimensional self-assessment built from scratch — personality, values, attachment, and cosmic profile in one session.',
+    excerpt: 'A 142-item battery covering HEXACO personality (6 domains, 24 facets), forced-choice ranking, Schwartz values hierarchy, and attachment style. Results include a profile type, shadow tendencies, career fit, relationship profile, and an integrated cosmic reading. Everything runs in your browser — no accounts, no data transmitted.',
     status: 'Beta',
     platforms: ['Web App', 'Personality', 'Psychometrics'],
     icon: null,
 
     screenshots: [],
 
-    problem: `Most personality assessments are either proprietary black boxes (you pay, get a label, never see the math) or academically inaccessible instruments locked behind licensing walls. The items are decades old, the scoring models are opaque, and the outputs are designed for HR departments rather than genuine self-knowledge.`,
+    problem: `Most personality assessments are either proprietary black boxes (you pay, get a label, never see the math) or academically inaccessible instruments locked behind licensing walls. They measure one dimension — usually personality traits — and stop there, ignoring the motivational values that drive behavior, the attachment patterns that shape relationships, and the broader context that makes a profile actually useful for self-knowledge.`,
 
-    solution: `A ground-up psychometric battery using the HEXACO six-factor model — the most scientifically defensible personality framework available — with novel, non-copyrighted items written to modern standards. The assessment runs entirely in your browser with no data transmission. Scoring is transparent, reports are plain-language, and the full methodology is open on GitHub.
+    solution: `A ground-up psychometric battery that integrates four distinct measurement frameworks into a single session. Novel, non-copyrighted items written to modern standards. All scoring is client-side and transparent. The result isn't a single label — it's a multi-layered profile with actionable cross-references between what you are, what you value, how you attach, and where your blind spots emerge under pressure.
 
-The battery includes: a 96-item HEXACO short-form across 6 domains and 24 facets; 10 forced-choice ranking blocks designed to suppress social desirability bias; and a full results dashboard with radar chart, percentile scores, facet-level breakdown, and an integrated profile narrative.`,
+The battery covers: HEXACO six-factor personality (96 items, 24 facets); 30 forced-choice ranking blocks designed to suppress social desirability bias; Schwartz 10 Basic Human Values; and an attachment style brief screen. Results layer in a profile archetype, facet highlights, shadow/stress tendencies, career domain fit, relationship profile, and an integrated cosmic reading drawn from Western astrology, Chinese zodiac, and Pythagorean numerology.`,
 
     howItWorks: [
-      { step: 1, title: 'Module 1 — HEXACO personality', desc: '96 items, 8 per page. Rate each statement on a 1–5 scale from how accurately it describes you. Covers Honesty-Humility, Emotionality, eXtraversion, Agreeableness, Conscientiousness, and Openness.' },
-      { step: 2, title: 'Module 2 — Forced-choice blocks', desc: '10 triplets. Rank three statements from most to least like you. Designed to detect and correct acquiescence and impression-management bias that standard Likert items can\'t catch.' },
-      { step: 3, title: 'Scoring', desc: 'All scoring happens locally in your browser. Likert items are reverse-scored where needed. FC data is weighted at 30% of the composite. Scores convert to T-scores (M=50, SD=10) and approximate population percentiles.' },
-      { step: 4, title: 'Results', desc: 'Radar chart across all 6 domains. Per-domain bar with percentile, T-score, band label, and a full narrative. Facet-level breakdown for all 24 facets. Integrated profile summary.' },
+      { step: 1, title: 'Module 1 — HEXACO personality', desc: '96 items across 6 domains and 24 facets. Rate each statement 1–5 on how accurately it describes you. Covers Honesty-Humility, Emotionality, eXtraversion, Agreeableness, Conscientiousness, and Openness. Keyboard navigation supported: press 1–5 to answer, ↑↓ to move, Enter to advance.' },
+      { step: 2, title: 'Module 2 — Forced-choice ranking', desc: '30 triplets spanning all 20 three-domain combinations. Rank three statements from most to least like you. Weighted at 30% of the composite score to suppress acquiescence and impression-management bias that Likert scales can\'t catch.' },
+      { step: 3, title: 'Module 3 — Values & Attachment', desc: '10 Schwartz values items rated by importance (Achievement, Benevolence, Self-Direction, Universalism, and six more) plus a 6-item attachment brief screen yielding Secure, Preoccupied, Dismissing, or Fearful-Avoidant orientation.' },
+      { step: 4, title: 'Scoring', desc: 'All scoring is local — nothing leaves your browser. Likert items are reverse-scored where needed. HEXACO+FC composite converts to T-scores (M=50, SD=10) and population percentiles across all 24 facets. Values ranked by importance. Attachment classified on a 2-axis anxiety×avoidance model.' },
+      { step: 5, title: 'Results', desc: 'Profile Type (15 archetypes by top-2 HEXACO domains), Facet Highlights (top and bottom 3 across all 24 facets), radar chart, domain narratives, Relationship Profile, Under Pressure (shadow tendencies), Career Domain Fit (8 domains), Attachment Style narrative, Cosmic Profile (sun sign, Chinese zodiac + element, Life Path, Expression, Soul Urge, Personality Number, Maturity Number, Personal Year), and Values×Personality cross-reference.' },
     ],
 
     features: [
-      'HEXACO six-factor model — the most well-validated personality framework',
-      '96 novel, non-copyrighted items — 4 per facet, 24 facets across 6 domains',
-      '10 forced-choice triplets — acquiescence-resistant ranking format',
+      '142 items across 3 modules — HEXACO, forced-choice, values, and attachment',
+      'HEXACO six-factor model — 96 novel items across 6 domains and 24 facets',
+      '30 forced-choice triplets — full coverage of all 20 three-domain combinations',
+      'Schwartz 10 Basic Human Values hierarchy — what you want, not just who you are',
+      'Attachment style classification — Secure / Preoccupied / Dismissing / Fearful-Avoidant',
+      '15 profile archetypes keyed by your top-2 HEXACO domains',
+      'Shadow / Under Pressure profile — stress-response patterns derived from domain extremes',
+      'Career Domain Fit — 8 domains rated from established occupational personality correlates',
+      'Relationship Profile — emotional availability, conflict style, trust, social energy',
+      'Cosmic Profile — sun sign, Chinese zodiac, 5 Pythagorean numerology numbers',
+      'Keyboard navigation — press 1–5 to answer, auto-scroll to next item',
       'Fully client-side — no data transmitted, no accounts, no tracking',
-      'Facet-level scores for all 24 facets, not just domain composites',
-      'Radar chart + bar charts + integrated narrative report',
-      'Full methodology and item bank open-sourced on GitHub',
     ],
 
     links: {
@@ -136,6 +142,8 @@ The battery includes: a 96-item HEXACO short-form across 6 domains and 24 facets
       github:      'https://github.com/SeldomSought/Psychometrics-Assessment-Battery',
       website:     null,
       demo:        'projects/psychometrics-battery/index.html',
+      demoLabel:   'Take Assessment',
+      demoSameTab: true,
     },
 
     lastUpdated: 'Mar 2026',
