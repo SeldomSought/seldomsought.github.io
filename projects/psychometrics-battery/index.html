@@ -346,7 +346,8 @@
 
     /* ── TRANSITIONS ── */
     .fade-in { animation: fadeIn 0.35s ease forwards; }
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeIn { from { opacity: 0; transform: translateX(14px); } to { opacity: 1; transform: none; } }
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
 
     /* ── TOAST ── */
     .toast {
@@ -447,6 +448,140 @@
     /* ── SUPP MODULE ── */
     .supp-scale-note { font-size: 0.78rem; color: var(--text-dim); letter-spacing: 0.5px; line-height: 1.7; padding: 0.75rem 1rem; border: 1px solid var(--amber-border); background: var(--amber-dim); margin-bottom: 1.6rem; }
 
+    /* ── ITEM KEYBOARD FOCUS ── */
+    .item-block.kb-active {
+      border-color: rgba(184,134,11,0.5);
+      box-shadow: inset 3px 0 0 var(--amber);
+    }
+    .item-block.kb-active .item-text { color: var(--text); }
+
+    /* ── PAGE DOTS ── */
+    .page-dots {
+      display: flex; gap: 0.4rem; align-items: center;
+      margin-bottom: 1.6rem;
+    }
+    .page-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: rgba(184,134,11,0.18); border: 1px solid var(--amber-border);
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .page-dot.done { background: var(--amber); border-color: var(--amber); }
+    .answered-count {
+      font-size: 0.68rem; letter-spacing: 2px; text-transform: uppercase;
+      color: var(--text-dim); margin-left: 0.6rem;
+    }
+    .answered-count span { color: var(--amber); }
+
+    /* ── ITEM NUMBER ── */
+    .item-num {
+      font-size: 0.65rem; letter-spacing: 2px; text-transform: uppercase;
+      color: var(--text-dim); margin-bottom: 0.4rem;
+    }
+
+    /* ── KB HINT ── */
+    .kb-hint {
+      font-size: 0.62rem; letter-spacing: 1.5px; text-transform: uppercase;
+      color: var(--text-dim); opacity: 0.6; margin-top: 0.5rem;
+      text-align: center;
+    }
+
+    /* ── MODULE STEPS ── */
+    .module-steps {
+      position: fixed; top: 60px; left: 0; right: 0;
+      z-index: 198; background: rgba(11,11,12,0.88);
+      border-bottom: 1px solid rgba(184,134,11,0.12);
+      backdrop-filter: blur(12px);
+      display: none; justify-content: center; align-items: center;
+      gap: 0; padding: 0;
+    }
+    .module-steps.visible { display: flex; }
+    .step-item {
+      font-size: 0.62rem; letter-spacing: 2px; text-transform: uppercase;
+      color: var(--text-dim); padding: 0.5rem 1.2rem;
+      border-right: 1px solid rgba(184,134,11,0.1);
+      transition: color 0.2s;
+    }
+    .step-item:last-child { border-right: none; }
+    .step-item.active { color: var(--amber); }
+    .step-item.done { color: rgba(184,134,11,0.5); }
+    .step-item.done::before { content: '✓ '; }
+
+    /* ── CALCULATING SPINNER ── */
+    .calc-spinner {
+      width: 44px; height: 44px;
+      border: 2px solid var(--amber-border);
+      border-top-color: var(--amber);
+      border-radius: 50%;
+      animation: calcSpin 0.9s linear infinite;
+      margin: 0 auto 2rem;
+    }
+    @keyframes calcSpin { to { transform: rotate(360deg); } }
+
+    /* ── CONFIRMATION MODAL ── */
+    .modal-overlay {
+      position: fixed; inset: 0; z-index: 600;
+      background: rgba(11,11,12,0.85); backdrop-filter: blur(6px);
+      display: none; align-items: center; justify-content: center;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal-box {
+      background: var(--bg-panel-2); border: 1px solid var(--amber-border);
+      padding: 2rem 2.2rem; max-width: 420px; width: 90%;
+      animation: fadeInUp 0.25s ease;
+    }
+    .modal-msg {
+      font-size: 0.88rem; color: var(--text-mid); line-height: 1.75;
+      margin-bottom: 0;
+    }
+    .modal-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem; font-weight: 400; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--text); margin-bottom: 0.8rem;
+    }
+
+    /* ── FC BLOCK STATUS ── */
+    .fc-block-status {
+      font-size: 0.65rem; letter-spacing: 2px; text-transform: uppercase;
+      color: var(--text-dim); margin-top: 0.6rem; text-align: center;
+    }
+    .fc-block-status.complete { color: var(--green); }
+
+    /* ── RESULTS NAV ── */
+    .results-nav {
+      position: sticky; top: 62px; z-index: 150;
+      background: rgba(11,11,12,0.92); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--amber-border);
+      display: flex; gap: 0; overflow-x: auto;
+      scrollbar-width: none; margin: 0 -1.5rem 2rem;
+      padding: 0 1.5rem;
+      animation: fadeInUp 0.3s ease;
+    }
+    .results-nav::-webkit-scrollbar { display: none; }
+    .results-nav-link {
+      font-size: 0.62rem; letter-spacing: 2px; text-transform: uppercase;
+      color: var(--text-dim); text-decoration: none;
+      padding: 0.65rem 0.9rem; white-space: nowrap;
+      border-bottom: 2px solid transparent;
+      transition: color 0.2s, border-color 0.2s;
+      flex-shrink: 0;
+    }
+    .results-nav-link:hover { color: var(--amber); border-bottom-color: var(--amber-border-h); }
+
+    /* ── PRINT ── */
+    @media print {
+      .bg-grid, nav, .progress-bar-wrap, .module-steps,
+      .results-nav, .btn-row, .toast, .modal-overlay { display: none !important; }
+      body { background: #fff; color: #111; font-family: Georgia, serif; }
+      .screen { padding-top: 0 !important; }
+      .wrapper { max-width: 100%; padding: 1rem 2rem; }
+      .domain-card, .integration-card, .cosmic-card { border: 1px solid #ccc; background: #fff; break-inside: avoid; }
+      .bar-fill { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .domain-narrative, .integration-body, .cosmic-synthesis { color: #333; }
+      .domain-name, .integration-title { color: #111; }
+      .results-header h1 { color: #111; }
+      .facet-bar-fill, .values-bar-fill { background: #999; -webkit-print-color-adjust: exact; }
+    }
+
     @media (max-width: 600px) {
       .meta-grid { grid-template-columns: 1fr; }
       .facet-grid { grid-template-columns: 1fr; }
@@ -460,8 +595,15 @@
 
       /* Layout */
       .wrapper { max-width: 960px; padding: 0 3rem 8rem; }
-      .screen { padding-top: 6.5rem; }
+      .screen { padding-top: 7.5rem; }
       .progress-bar-wrap { height: 3px; top: 62px; }
+      .module-steps { top: 65px; }
+      .results-nav { top: 65px; margin: 0 -3rem 2.4rem; padding: 0 3rem; }
+      .results-nav-link { font-size: 0.75rem; padding: 0.75rem 1.1rem; }
+      .page-dot { width: 10px; height: 10px; }
+      .answered-count { font-size: 0.78rem; }
+      .step-item { font-size: 0.72rem; padding: 0.55rem 1.5rem; }
+      .calc-spinner { width: 54px; height: 54px; margin-bottom: 2.4rem; }
 
       /* Nav */
       .nav-inner { max-width: 1200px; padding: 1.2rem 4rem; }
@@ -565,6 +707,24 @@
 </nav>
 
 <div class="progress-bar-wrap"><div class="progress-bar-fill" id="progressFill"></div></div>
+
+<div class="module-steps" id="moduleSteps">
+  <div class="step-item" id="step-hexaco">HEXACO</div>
+  <div class="step-item" id="step-fc">Forced Choice</div>
+  <div class="step-item" id="step-supp">Values &amp; Attachment</div>
+  <div class="step-item" id="step-results">Results</div>
+</div>
+
+<div class="modal-overlay" id="confirmOverlay">
+  <div class="modal-box">
+    <p class="modal-title" id="confirmTitle">Confirm</p>
+    <p class="modal-msg" id="confirmMsg"></p>
+    <div class="btn-row" style="margin-top:1.4rem;justify-content:flex-end;">
+      <button class="btn btn-ghost btn-sm" onclick="cancelConfirm()">Cancel</button>
+      <button class="btn btn-primary btn-sm" id="confirmOkBtn">Confirm</button>
+    </div>
+  </div>
+</div>
 
 <div class="wrapper">
 
@@ -753,11 +913,12 @@
   <!-- ── SCREEN 7: CALCULATING ── -->
   <div class="screen" id="screen-calculating">
     <div style="min-height:60vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;">
-      <p class="section-eyebrow" style="margin-bottom:1.2rem;">Processing</p>
-      <h2 style="font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:400;letter-spacing:4px;text-transform:uppercase;color:var(--text);margin-bottom:1rem;">
+      <div class="calc-spinner"></div>
+      <p class="section-eyebrow" style="margin-bottom:1rem;">Processing</p>
+      <h2 style="font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:400;letter-spacing:4px;text-transform:uppercase;color:var(--text);margin-bottom:1.2rem;">
         Scoring Your Responses
       </h2>
-      <p style="font-size:0.82rem;color:var(--text-dim);letter-spacing:1px;" id="calcStatus">Calibrating domains...</p>
+      <p style="font-size:0.82rem;color:var(--text-dim);letter-spacing:1px;max-width:280px;line-height:1.7;" id="calcStatus">Calibrating domains...</p>
     </div>
   </div>
 
@@ -972,6 +1133,8 @@ function showScreen(id) {
   el.querySelector('.fade-in') && (el.querySelector('.fade-in').style.animation = 'none', requestAnimationFrame(() => { el.querySelector('.fade-in').style.animation = ''; }));
   window.scrollTo({ top: 0, behavior: 'smooth' });
   updateProgress();
+  if (id !== 'hexaco-items' && id !== 'supp-items') teardownKbListener();
+  updateModuleSteps(id);
 }
 
 function updateProgress() {
@@ -1029,11 +1192,14 @@ function goToHexacoPage(pageIdx) {
   const container = document.getElementById('hexaco-page-content');
 
   const _fn = userName ? userName.split(' ')[0] + ' · ' : '';
+  const dotsHtml = Array.from({length: slice.length}, (_, i) => `<div class="page-dot" id="dot-${slice[i].id}"></div>`).join('');
   let html = `<div class="section-header">
     <p class="section-eyebrow">${_fn}Module 1 — Personality Profile</p>
     <h2 class="section-title">HEXACO</h2>
+    <p class="section-desc">Page ${pageIdx + 1} of ${TOTAL_HEXACO_PAGES} &nbsp;·&nbsp; Items ${start + 1}–${Math.min(start + PAGE_SIZE, ITEMS.length)}</p>
   </div>
-  <p class="page-counter">Page <span>${pageIdx + 1}</span> of <span>${TOTAL_HEXACO_PAGES}</span> &nbsp;·&nbsp; Items ${start + 1}–${Math.min(start + PAGE_SIZE, ITEMS.length)} of ${ITEMS.length}</p>`;
+  <div class="page-dots" id="pageDots">${dotsHtml}<span class="answered-count"><span>0</span> / ${slice.length} answered</span></div>
+  <p class="kb-hint">Keys 1–5 to answer · ↑↓ to navigate · Enter to advance</p>`;
 
   slice.forEach(item => {
     const saved = responses[item.id];
@@ -1047,7 +1213,9 @@ function goToHexacoPage(pageIdx) {
                  <span class="lname">${labels[v-1]}</span>
                </label>`;
     }
+    const itemNum = start + slice.indexOf(item) + 1;
     html += `<div class="item-block ${saved ? 'answered' : ''}" id="block-${item.id}">
+      <div class="item-num">Question ${itemNum}</div>
       <div class="item-text">${item.t}</div>
       <div class="likert-row">${opts}</div>
     </div>`;
@@ -1061,11 +1229,24 @@ function goToHexacoPage(pageIdx) {
       const inp = document.getElementById(`${item.id}_${v}`);
       if (inp) inp.addEventListener('change', () => {
         responses[item.id] = v;
-        document.getElementById(`block-${item.id}`).classList.add('answered');
+        const block = document.getElementById(`block-${item.id}`);
+        block.classList.add('answered');
+        block.classList.remove('kb-active');
         updateProgress();
+        updateDots(slice);
+        const next = updateKbActive(slice);
+        if (next) {
+          const nextEl = document.getElementById('block-' + next.id);
+          if (nextEl) setTimeout(() => nextEl.scrollIntoView({ behavior: 'smooth', block: 'center' }), 80);
+        }
       });
     }
   });
+
+  // Initialize dots and kb
+  updateDots(slice);
+  updateKbActive(slice);
+  setupKbListener(slice, hexacoNextPage);
 
   document.getElementById('btnHexacoPrev').style.visibility = pageIdx === 0 ? 'hidden' : 'visible';
   document.getElementById('btnHexacoNext').textContent = pageIdx === TOTAL_HEXACO_PAGES - 1 ? 'Continue to FC →' : 'Next →';
@@ -1085,6 +1266,9 @@ function hexacoNextPage() {
       const block = document.getElementById(`block-${item.id}`);
       if (block) { block.style.borderColor = 'rgba(192,98,74,0.6)'; setTimeout(() => block.style.borderColor = '', 2000); }
     });
+    // Scroll to first unanswered
+    const firstUnans = document.getElementById(`block-${unanswered[0].id}`);
+    if (firstUnans) firstUnans.scrollIntoView({ behavior: 'smooth', block: 'center' });
     return;
   }
 
@@ -1140,16 +1324,24 @@ function goToFCBlock(idx) {
 }
 
 function handleFCClick(blockId, key) {
-  const saved = fcRankings[blockId] || {};
-  // If already ranked, reset entire block
+  if (!fcRankings[blockId]) fcRankings[blockId] = {};
+  const saved = fcRankings[blockId];
+
   if (saved[key]) {
-    fcRankings[blockId] = {};
+    // Remove this rank, compact higher ranks down
+    const removedRank = saved[key];
+    const newRankings = {};
+    Object.entries(saved).forEach(([k, r]) => {
+      if (k === key) return;
+      newRankings[k] = r > removedRank ? r - 1 : r;
+    });
+    fcRankings[blockId] = newRankings;
     goToFCBlock(currentFCBlock);
     return;
   }
+
   const usedRanks = Object.values(saved);
   const nextRank = usedRanks.length + 1;
-  if (!fcRankings[blockId]) fcRankings[blockId] = {};
   fcRankings[blockId][key] = nextRank;
 
   // Update visual
@@ -1159,6 +1351,24 @@ function handleFCClick(blockId, key) {
 
   updateFCNextBtn(blockId);
   updateProgress();
+
+  // Show completion status
+  const complete = Object.keys(fcRankings[blockId]).length === 3;
+  let status = document.getElementById('fc-status-' + blockId);
+  if (!status) {
+    status = document.createElement('p');
+    status.id = 'fc-status-' + blockId;
+    status.className = 'fc-block-status';
+    const fcBlock = document.getElementById(`fc-stmt-${blockId}-A`)?.closest('.fc-block');
+    if (fcBlock) fcBlock.appendChild(status);
+  }
+  if (complete) {
+    status.textContent = 'Block complete ✓';
+    status.className = 'fc-block-status complete';
+  } else {
+    status.textContent = `${Object.keys(fcRankings[blockId]).length} of 3 ranked`;
+    status.className = 'fc-block-status';
+  }
 }
 
 function updateFCNextBtn(blockId) {
@@ -1208,11 +1418,14 @@ function goToSuppPage(pageIdx) {
     scaleNote = `<div class="supp-scale-note">Rate how accurately each statement describes you in close relationships. 1 = Strongly Disagree · 5 = Strongly Agree.</div>`;
   }
 
+  const dotsHtml = Array.from({length: slice.length}, (_, i) => `<div class="page-dot" id="dot-${slice[i].id}"></div>`).join('');
   let html = `<div class="section-header">
     <p class="section-eyebrow">${_fn}Module 3 — Values &amp; Attachment</p>
     <h2 class="section-title">${isAttachPage ? 'Attachment' : 'Values'}</h2>
+    <p class="section-desc">Page ${pageIdx + 1} of ${totalPages}</p>
   </div>
-  <p class="page-counter">Page <span>${pageIdx + 1}</span> of <span>${totalPages}</span></p>
+  <div class="page-dots" id="pageDots">${dotsHtml}<span class="answered-count"><span>0</span> / ${slice.length} answered</span></div>
+  <p class="kb-hint">Keys 1–5 to answer · ↑↓ to navigate · Enter to advance</p>
   ${scaleNote}`;
 
   slice.forEach(item => {
@@ -1230,7 +1443,9 @@ function goToSuppPage(pageIdx) {
                  <span class="lname">${labels[v-1]}</span>
                </label>`;
     }
+    const suppItemNum = pageIdx * SUPP_PAGE_SIZE + slice.indexOf(item) + 1;
     html += `<div class="item-block ${saved ? 'answered' : ''}" id="block-${item.id}">
+      <div class="item-num">Question ${suppItemNum}</div>
       <div class="item-text">${item.t}</div>
       <div class="likert-row">${opts}</div>
     </div>`;
@@ -1244,11 +1459,24 @@ function goToSuppPage(pageIdx) {
       const inp = document.getElementById(`${item.id}_${v}`);
       if (inp) inp.addEventListener('change', () => {
         store[item.id] = v;
-        document.getElementById(`block-${item.id}`).classList.add('answered');
+        const block = document.getElementById(`block-${item.id}`);
+        block.classList.add('answered');
+        block.classList.remove('kb-active');
         updateProgress();
+        updateDots(slice);
+        const next = updateKbActive(slice);
+        if (next) {
+          const nextEl = document.getElementById('block-' + next.id);
+          if (nextEl) setTimeout(() => nextEl.scrollIntoView({ behavior: 'smooth', block: 'center' }), 80);
+        }
       });
     }
   });
+
+  // Initialize dots and kb
+  updateDots(slice);
+  updateKbActive(slice);
+  setupKbListener(slice, suppNextPage);
 
   document.getElementById('btnSuppPrev').style.visibility = pageIdx === 0 ? 'hidden' : 'visible';
   document.getElementById('btnSuppNext').textContent = pageIdx === totalPages - 1 ? 'See Results →' : 'Next →';
@@ -1471,16 +1699,27 @@ function renderResults(scores) {
   const profileType = getProfileType(scores);
   const facetHighlights = getTopBottomFacets(scores);
 
-  let html = `<div class="results-header fade-in">
+  const navLinks = [
+    {href:'#rn-profile', label:'Profile'},
+    {href:'#rn-facets', label:'Facets'},
+    {href:'#rn-domains', label:'Domains'},
+    {href:'#rn-relationship', label:'Relationships'},
+    {href:'#rn-shadow', label:'Under Pressure'},
+    {href:'#rn-career', label:'Career'},
+    ...(scores.attachResult ? [{href:'#rn-attachment', label:'Attachment'}] : []),
+    ...(userName && userDOB ? [{href:'#rn-cosmic', label:'Cosmic'}] : []),
+  ];
+  let html = `<div class="results-nav">${navLinks.map(l => `<a class="results-nav-link" href="${l.href}">${l.label}</a>`).join('')}</div>
+  <div class="results-header fade-in">
     <h1>${firstName ? `Profile — ${firstName}` : 'Your Profile'}</h1>
     <p class="results-date">Assessment completed ${dateStr}</p>
   </div>
-  <div class="integration-card fade-in" style="margin-bottom:1.2rem;border-color:rgba(184,134,11,0.4)">
+  <div class="integration-card fade-in" id="rn-profile" style="margin-bottom:1.2rem;border-color:rgba(184,134,11,0.4)">
     <p style="font-size:0.72rem;letter-spacing:3px;text-transform:uppercase;color:var(--amber);margin-bottom:0.5rem">Profile Type</p>
     <h3 class="integration-title">${profileType.name}</h3>
     <p class="integration-body">${profileType.desc}</p>
   </div>
-  <div class="integration-card fade-in" style="margin-bottom:2rem;">
+  <div class="integration-card fade-in" id="rn-facets" style="margin-bottom:2rem;">
     <p style="font-size:0.72rem;letter-spacing:3px;text-transform:uppercase;color:var(--amber);margin-bottom:1rem">Facet Highlights</p>
     <p style="font-size:0.75rem;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);margin-bottom:0.5rem">Highest</p>
     ${facetHighlights.top.map(f => `<div style="display:flex;justify-content:space-between;align-items:center;padding:0.5rem 0;border-bottom:1px solid rgba(184,134,11,0.08);"><span style="font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--text)">${f.name} <span style="font-size:0.75rem;color:var(--text-dim);letter-spacing:1px">${DOMAIN_META[f.domain].name}</span></span><span style="color:var(--amber-light);font-size:0.92rem">${f.pct}th</span></div>`).join('')}
@@ -1532,7 +1771,7 @@ function renderResults(scores) {
   html += `</tbody></table></div>`;
 
   // Domain detail cards
-  html += `<div class="domain-section fade-in"><p class="domain-section-label">Domain Profiles</p>`;
+  html += `<div class="domain-section fade-in" id="rn-domains"><p class="domain-section-label">Domain Profiles</p>`;
   DOMAIN_ORDER.forEach(d => {
     const meta = DOMAIN_META[d];
     const pct  = scores.pctiles[d];
@@ -1570,7 +1809,7 @@ function renderResults(scores) {
 
   // Relationship Profile
   const relLines = getRelationshipProfile(scores);
-  html += `<div class="integration-card fade-in" style="margin-bottom:2rem;">
+  html += `<div class="integration-card fade-in" id="rn-relationship" style="margin-bottom:2rem;">
     <p style="font-size:0.72rem;letter-spacing:3px;text-transform:uppercase;color:var(--amber);margin-bottom:1rem">Relationship Profile</p>
     ${relLines.map(l => `<p class="integration-body" style="margin-bottom:0.9rem;padding-bottom:0.9rem;border-bottom:1px solid rgba(184,134,11,0.08);">${l}</p>`).join('')}
   </div>`;
@@ -1606,7 +1845,7 @@ function renderResults(scores) {
 
   // Shadow Profile
   const shadows = getShadowProfile(scores);
-  html += `<div class="integration-card fade-in" style="margin-bottom:2rem;">
+  html += `<div class="integration-card fade-in" id="rn-shadow" style="margin-bottom:2rem;">
     <h3 class="integration-title">Under Pressure</h3>
     <p class="integration-body" style="margin-bottom:1rem;font-size:0.8rem;color:var(--text-dim)">Patterns most likely to emerge under sustained stress or threat — derived from your HEXACO profile shape.</p>
     ${shadows.map(s => `<div class="shadow-item"><div class="shadow-label">${s.label}</div><div class="shadow-desc">${s.desc}</div></div>`).join('')}
@@ -1614,7 +1853,7 @@ function renderResults(scores) {
 
   // Career Fit
   const careerFit = getCareerFit(scores);
-  html += `<div class="integration-card fade-in" style="margin-bottom:2rem;">
+  html += `<div class="integration-card fade-in" id="rn-career" style="margin-bottom:2rem;">
     <h3 class="integration-title">Career Domain Fit</h3>
     <p class="integration-body" style="margin-bottom:1rem;font-size:0.8rem;color:var(--text-dim)">Fit ratings derived from established occupational correlates of your HEXACO profile. Not prescriptive — treats personality as one input among many.</p>
     <div class="career-grid">
@@ -1631,7 +1870,7 @@ function renderResults(scores) {
   // Attachment Style
   if (scores.attachResult) {
     const at = scores.attachResult;
-    html += `<div class="integration-card fade-in" style="margin-bottom:2rem;">
+    html += `<div class="integration-card fade-in" id="rn-attachment" style="margin-bottom:2rem;">
       <p style="font-size:0.72rem;letter-spacing:3px;text-transform:uppercase;color:var(--amber);margin-bottom:0.8rem">Attachment Style</p>
       <div class="attach-style-badge">${at.style}</div>
       <p class="integration-body">${at.desc}</p>
@@ -1659,7 +1898,10 @@ function renderResults(scores) {
   </div>`;
 
   // Restart
-  html += `<div class="btn-row">
+  html += `<div class="btn-row" style="margin-bottom:0.8rem;">
+    <button class="btn btn-ghost btn-sm" onclick="window.print()">↓ Print Results</button>
+  </div>
+  <div class="btn-row">
     <button class="btn btn-ghost" onclick="restartAssessment()">Retake Assessment</button>
     <a href="/projects.html" class="btn btn-ghost">← Back to Projects</a>
   </div>`;
@@ -1960,7 +2202,7 @@ function renderCosmicProfile(scores) {
   const fmtPers = (persNum === 11 || persNum === 22 || persNum === 33) ? `${persNum} ✦` : String(persNum);
   const fmtMat  = (matNum  === 11 || matNum  === 22 || matNum  === 33) ? `${matNum} ✦`  : String(matNum);
 
-  return `<div class="cosmic-card fade-in">
+  return `<div class="cosmic-card fade-in" id="rn-cosmic">
     <div class="cosmic-card-header">
       <p class="cosmic-eyebrow">Cosmic Profile</p>
       <h3 class="cosmic-title">${firstName}</h3>
@@ -2262,7 +2504,134 @@ function showToast(msg) {
   setTimeout(() => t.classList.remove('show'), 3000);
 }
 
+// ─── Module step indicator ────────────────────────────────────────────────────
+const STEP_MAP = {
+  'welcome':       null,
+  'hexaco-intro':  'hexaco',
+  'hexaco-items':  'hexaco',
+  'fc-intro':      'fc',
+  'fc-items':      'fc',
+  'supp-intro':    'supp',
+  'supp-items':    'supp',
+  'calculating':   'supp',
+  'results':       'results',
+};
+const STEP_ORDER = ['hexaco','fc','supp','results'];
+
+function updateModuleSteps(screenId) {
+  const bar = document.getElementById('moduleSteps');
+  if (!bar) return;
+  const active = STEP_MAP[screenId];
+  if (!active) { bar.classList.remove('visible'); return; }
+  bar.classList.add('visible');
+  const activeIdx = STEP_ORDER.indexOf(active);
+  STEP_ORDER.forEach((s, i) => {
+    const el = document.getElementById('step-' + s);
+    if (!el) return;
+    el.className = 'step-item' + (i < activeIdx ? ' done' : i === activeIdx ? ' active' : '');
+  });
+}
+
+// ─── Custom confirm modal ─────────────────────────────────────────────────────
+let _confirmCb = null;
+function showConfirm(title, msg, onConfirm) {
+  document.getElementById('confirmTitle').textContent = title;
+  document.getElementById('confirmMsg').textContent = msg;
+  _confirmCb = onConfirm;
+  const btn = document.getElementById('confirmOkBtn');
+  btn.onclick = () => { cancelConfirm(); if (_confirmCb) _confirmCb(); };
+  document.getElementById('confirmOverlay').classList.add('open');
+}
+function cancelConfirm() {
+  document.getElementById('confirmOverlay').classList.remove('open');
+  _confirmCb = null;
+}
+
+// ─── Keyboard navigation for Likert pages ────────────────────────────────────
+function getItemStore(item) {
+  if (item.id.startsWith('V')) return valueResponses;
+  if (item.id.startsWith('AT')) return attachResponses;
+  return responses;
+}
+
+function updateKbActive(slice) {
+  slice.forEach(item => {
+    const el = document.getElementById('block-' + item.id);
+    if (el) el.classList.remove('kb-active');
+  });
+  const first = slice.find(item => !getItemStore(item)[item.id]);
+  if (first) {
+    const el = document.getElementById('block-' + first.id);
+    if (el) el.classList.add('kb-active');
+  }
+  return first || null;
+}
+
+function updateDots(slice) {
+  const wrap = document.getElementById('pageDots');
+  if (!wrap) return;
+  let answered = 0;
+  const dots = wrap.querySelectorAll('.page-dot');
+  slice.forEach((item, i) => {
+    const done = !!getItemStore(item)[item.id];
+    if (done) answered++;
+    if (dots[i]) dots[i].classList.toggle('done', done);
+  });
+  const counter = wrap.querySelector('.answered-count');
+  if (counter) counter.innerHTML = `<span>${answered}</span> / ${slice.length} answered`;
+}
+
+function setupKbListener(slice, nextFn) {
+  if (window._kbListener) document.removeEventListener('keydown', window._kbListener);
+  window._kbListener = function(e) {
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.tagName === 'BUTTON') return;
+    const n = parseInt(e.key);
+    if (n >= 1 && n <= 5) {
+      const active = document.querySelector('.kb-active');
+      if (!active) return;
+      const itemId = active.id.replace('block-', '');
+      const radio = document.getElementById(itemId + '_' + n);
+      if (radio) { radio.checked = true; radio.dispatchEvent(new Event('change')); }
+    } else if (e.key === 'Enter') {
+      e.preventDefault();
+      nextFn();
+    } else if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+      e.preventDefault();
+      const active = document.querySelector('.kb-active');
+      if (!active) return;
+      const idx = slice.findIndex(it => 'block-' + it.id === active.id);
+      if (idx < slice.length - 1) {
+        active.classList.remove('kb-active');
+        const next = document.getElementById('block-' + slice[idx + 1].id);
+        if (next) { next.classList.add('kb-active'); next.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+      }
+    } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+      e.preventDefault();
+      const active = document.querySelector('.kb-active');
+      if (!active) return;
+      const idx = slice.findIndex(it => 'block-' + it.id === active.id);
+      if (idx > 0) {
+        active.classList.remove('kb-active');
+        const prev = document.getElementById('block-' + slice[idx - 1].id);
+        if (prev) { prev.classList.add('kb-active'); prev.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+      }
+    }
+  };
+  document.addEventListener('keydown', window._kbListener);
+}
+
+function teardownKbListener() {
+  if (window._kbListener) { document.removeEventListener('keydown', window._kbListener); window._kbListener = null; }
+}
+
 function restartAssessment() {
+  showConfirm(
+    'Start Over',
+    'This will clear all your responses. Your results will be lost.',
+    _doRestart
+  );
+}
+function _doRestart() {
   Object.keys(responses).forEach(k => delete responses[k]);
   Object.keys(fcRankings).forEach(k => delete fcRankings[k]);
   currentHexacoPage = 0;
