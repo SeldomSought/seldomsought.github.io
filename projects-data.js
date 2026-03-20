@@ -256,7 +256,7 @@ The result isn't a personality quiz. It's a mirror.`,
     ],
 
     links: {
-      download:    null,
+      download:    'projects/bookmark-mirror/bookmark-mirror.zip',
       chromeStore: null,
       github:      'https://github.com/SeldomSought/Twitter-bookmark-analyzer',
       website:     null,
