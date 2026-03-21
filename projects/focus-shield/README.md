@@ -1,6 +1,6 @@
 # Focus Shield
 
-**Version:** 2.0.0
+**Version:** 2.1.1
 **Type:** Chrome Extension (Manifest V3)
 **Platforms:** Twitter / X · Instagram · YouTube · Reddit · Facebook
 
@@ -12,12 +12,12 @@
 
 Focus Shield is not yet on the Chrome Web Store. Install it directly in a few steps:
 
-1. **Download** `focus-shield.zip` from this page (or the [Releases](../../releases) tab).
-2. **Unzip** the file anywhere on your computer — you'll get a folder called `focus-shield (6)`.
+1. **Download** `focus-shield.zip` from this page (or the [Releases](https://github.com/SeldomSought/Focus-Shield/releases) tab).
+2. **Unzip** the file anywhere on your computer — you'll get a folder called `extension`.
 3. Open Chrome and go to **`chrome://extensions`**.
 4. Enable **Developer mode** (toggle in the top-right corner).
 5. Click **"Load unpacked"**.
-6. Select the unzipped `focus-shield (6)` folder.
+6. Select the unzipped `extension` folder.
 7. The Focus Shield icon will appear in your Chrome toolbar. Done.
 
 > **Note:** Because it's loaded unpacked, Chrome may show a "developer mode extension" warning on startup. This is normal and safe — the extension contains no tracking, no network calls, and no data collection.
@@ -32,6 +32,8 @@ Focus Shield is not yet on the Chrome Web Store. Install it directly in a few st
 | Bookmarks / Saved | Always accessible — no time limit |
 | Posting / Replies | Always on — creation is never blocked |
 | Reset | Automatically resets at midnight |
+| Commitment lock | Passphrase-based lock prevents disabling outside a session |
+| Escape interrupt | Opening chrome://extensions while locked triggers a high-friction popup |
 | Data collected | None |
 
 ---
