@@ -501,6 +501,7 @@
     .modal-scroll {
         padding: 2.8rem 2.5rem 3.5rem;
         max-height: 88vh; overflow-y: auto; overflow-x: hidden;
+        -webkit-overflow-scrolling: touch;
         overscroll-behavior: contain;
         scrollbar-width: thin;
         scrollbar-color: rgba(93,228,244,0.2) transparent;
@@ -943,9 +944,24 @@
         .proj-capsule--wide { grid-column: span 1; }
         .proj-capsule--hero { min-height: 280px; }
 
-        .proj-overlay { padding: 1.5rem 0.75rem 2rem; }
-        .proj-modal   { border-radius: var(--r-lg); }
-        .modal-scroll { padding: 2rem 1.5rem 3rem; max-height: none; }
+        .proj-overlay {
+            padding: 1rem 0.75rem;
+            overflow: hidden; /* let modal-scroll handle scrolling, not the fixed overlay */
+            align-items: center;
+        }
+        .proj-modal {
+            border-radius: 28px;
+            max-height: calc(100dvh - 2rem);
+            display: flex; flex-direction: column;
+            overflow: hidden;
+        }
+        .modal-scroll {
+            padding: 2rem 1.5rem 3rem;
+            flex: 1;
+            max-height: none;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
         .modal-masthead { flex-direction: column; gap: 1rem; padding-right: 4rem; }
 
         .modal-feed-wrapper       { margin: 0 -1.5rem; }
