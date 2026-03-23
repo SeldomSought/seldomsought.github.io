@@ -3,488 +3,677 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact - SeldomSought</title>
-    <meta name="description" content="Start a conversation about brand image, marketing strategy, SEO, AEO, copywriting, or business consulting with SeldomSought.">
-    <meta name="theme-color" content="#2d5a35"/>
+    <title>Contact — SeldomSought</title>
+    <meta name="description" content="Open a line of correspondence with SeldomSought. Brand image, strategy, SEO, and consulting inquiries welcome.">
+    <meta name="theme-color" content="#07050e"/>
+    <meta property="og:site_name" content="SeldomSought"/>
+    <meta property="og:title" content="Contact — SeldomSought"/>
+    <meta property="og:description" content="Open a line of correspondence with SeldomSought."/>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=IM+Fell+English:ital@0;1&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+
     <style>
-        *{margin:0;padding:0;box-sizing:border-box}
-        :root{
-            --forest-deep:#080e08;
-            --forest-dark:#101a10;
-            --forest-mid:#1a2e1a;
-            --canopy:#2d5a35;
-            --canopy-light:#4a8a55;
-            --canopy-bright:#6ab070;
-            --moss:#3a6648;
-            --bark:#6b5040;
-            --bark-light:#8b7355;
-            --firefly:#e0d050;
-            --firefly-glow:rgba(224,208,80,0.4);
-            --creek:#4a8a9a;
-            --creek-light:#6abacc;
-            --ember:#c06030;
-            --ember-glow:rgba(192,96,48,0.25);
-            --text:#c0d4b8;
-            --text-dim:#7a9a72;
-            --text-bright:#e0ece0;
-            --panel-bg:rgba(8,14,8,0.92);
-            --panel-border:rgba(58,102,72,0.5);
-            --fs-display: clamp(4rem, 9vw, 9.5rem);
-            --fs-h1:      clamp(3rem, 7vw, 7.5rem);
-            --fs-h2:      clamp(2rem, 3.8vw, 4rem);
-            --fs-h3:      clamp(1.4rem, 2.4vw, 2.5rem);
-            --fs-h4:      clamp(1.1rem, 1.8vw, 1.9rem);
-            --fs-body-lg: clamp(1.1rem, 1.65vw, 1.75rem);
-            --fs-body:    clamp(1rem, 1.4vw, 1.5rem);
-            --fs-small:   clamp(0.85rem, 1vw, 1rem);
-            --fs-label:   clamp(0.78rem, 0.9vw, 0.9rem);
-            --fs-nav:     clamp(0.95rem, 1.1vw, 1.2rem);
-            --fs-btn:     clamp(1rem, 1.35vw, 1.35rem);
-            --lh-tight:   1.1;
-            --lh-snug:    1.3;
-            --lh-copy:    1.7;
-            --lh-relaxed: 1.8;
-            --content-narrow: 65ch;
-            --content-wide:   82ch
-        }
-        body{
-            font-family:'Share Tech Mono',monospace;
-            color:var(--text);background:var(--forest-deep);
-            line-height:1.6;overflow-x:hidden
-        }
-        .sr-only{
-            position:absolute;width:1px;height:1px;padding:0;margin:-1px;
-            overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0
-        }
+    /* ═══════════════════════════════════════════════════════════════
+       RESET
+    ═══════════════════════════════════════════════════════════════ */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    img { display: block; max-width: 100%; }
+    button { font: inherit; cursor: pointer; }
 
-        /* === ASCII Scene Layer === */
-        .ascii-scene{
-            position:fixed;top:0;left:0;width:100%;height:100%;
-            z-index:0;pointer-events:none;overflow:hidden;
-            transition:opacity 0.5s
-        }
-        .canopy-pre{
-            position:absolute;top:55px;left:0;width:100%;
-            font-size:13px;line-height:1.15;
-            color:var(--canopy);opacity:0.55;
-            white-space:pre;overflow:hidden
-        }
-        .canopy-pre .star{color:var(--firefly);opacity:0.7}
-        .canopy-pre .trunk{color:var(--bark);opacity:0.5}
+    /* ═══════════════════════════════════════════════════════════════
+       TOKENS
+    ═══════════════════════════════════════════════════════════════ */
+    :root {
+        --ink:           #07050e;
+        --ink-panel:     rgba(9, 7, 18, 0.96);
+        --ink-raised:    rgba(13, 10, 24, 0.85);
 
-        .creek-pre{
-            position:absolute;bottom:0;left:0;width:100%;
-            font-size:13px;line-height:1.2;white-space:pre;overflow:hidden;
-            background:linear-gradient(90deg,var(--creek) 0%,var(--creek-light) 20%,var(--creek) 40%,var(--creek-light) 60%,var(--creek) 80%,var(--creek-light) 100%);
-            background-size:300% 100%;
-            -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-            background-clip:text;
-            animation:creek-flow 10s linear infinite;opacity:0.45
-        }
-        @keyframes creek-flow{
-            0%{background-position:0% 0%}
-            100%{background-position:300% 0%}
-        }
+        --parchment:     #cdc3a4;
+        --parchment-dim: #66604c;
+        --parchment-br:  #ede5cc;
 
-        /* Fireflies */
-        .firefly{
-            position:fixed;width:3px;height:3px;border-radius:50%;
-            background:var(--firefly);
-            box-shadow:0 0 4px var(--firefly),0 0 10px var(--firefly-glow);
-            animation:ff-glow var(--dur,3s) ease-in-out var(--delay,0s) infinite;
-            pointer-events:none;z-index:5
-        }
-        @keyframes ff-glow{
-            0%,100%{opacity:0.08;box-shadow:0 0 2px var(--firefly)}
-            50%{opacity:0.85;box-shadow:0 0 6px var(--firefly),0 0 14px var(--firefly-glow)}
-        }
+        --gold:          #c09030;
+        --gold-lt:       #e0b848;
+        --gold-b:        rgba(192, 144, 48, 0.28);
+        --gold-bh:       rgba(192, 144, 48, 0.66);
+        --gold-glow:     rgba(192, 144, 48, 0.16);
+        --gold-dim:      rgba(192, 144, 48, 0.06);
 
-        /* === Mode Toggle === */
-        .mode-toggle{
-            position:fixed;top:70px;right:16px;z-index:150;
-            background:var(--panel-bg);border:1px solid var(--panel-border);
-            color:var(--text-dim);font-family:'Share Tech Mono',monospace;
-            font-size:0.82rem;padding:3px 10px;cursor:pointer;
-            transition:all 0.3s;letter-spacing:1px
-        }
-        .mode-toggle:hover{color:var(--text);border-color:var(--canopy-light)}
-        .mode-toggle:focus-visible{outline:2px solid var(--canopy-light);outline-offset:2px}
+        --phosphor:      #34cc80;
+        --phosphor-b:    rgba(52, 204, 128, 0.28);
+        --phosphor-glow: rgba(52, 204, 128, 0.16);
 
-        /* === Navigation === */
-        nav{
-            position:fixed;top:0;width:100%;
-            background:rgba(8,14,8,0.9);
-            border-bottom:1px solid rgba(58,102,72,0.2);
-            z-index:200;backdrop-filter:blur(10px)
-        }
-        .nav-container{
-            max-width:1200px;margin:0 auto;padding:1.2rem 2rem;
-            display:flex;justify-content:space-between;align-items:center
-        }
-        .logo{
-            font-size:clamp(1.5rem, 2vw, 1.8rem);color:var(--canopy-bright);text-decoration:none;
-            text-shadow:0 0 10px rgba(106,176,112,0.5),0 0 20px rgba(106,176,112,0.2);
-            letter-spacing:2px
-        }
-        .nav-links{display:flex;gap:2rem;list-style:none}
-        .nav-links a{
-            text-decoration:none;color:var(--moss);
-            font-size:var(--fs-nav);letter-spacing:1px;text-transform:uppercase;
-            transition:all 0.3s;position:relative
-        }
-        .nav-links a:hover{color:var(--canopy-bright);text-shadow:0 0 8px rgba(106,176,112,0.5)}
-        .nav-links a::after{
-            content:'';position:absolute;bottom:-4px;left:0;
-            width:0;height:1px;background:var(--canopy-bright);
-            box-shadow:0 0 5px var(--canopy-bright);transition:width 0.3s
-        }
-        .nav-links a:hover::after{width:100%}
-        .nav-links a:focus-visible{outline:2px solid var(--canopy-light);outline-offset:4px}
-        .menu-toggle{
-            display:none;background:none;
-            border:1px solid var(--moss);
-            font-size:1.5rem;cursor:pointer;color:var(--canopy-bright);
-            padding:0.2rem 0.5rem
-        }
-        .mobile-menu{display:none}
+        --crimson:       #9c1818;
+        --crimson-glow:  rgba(156, 24, 24, 0.22);
 
-        /* === Page Header === */
-        .page-header{
-            padding:8rem 2rem 2rem;text-align:center;
-            position:relative;z-index:10
-        }
-        .page-header h1{
-            font-size:clamp(2.8rem, 5vw, 4rem);margin-bottom:0.8rem;
-            color:var(--canopy-bright);font-weight:400;
-            text-shadow:0 0 20px rgba(106,176,112,0.35),0 0 40px rgba(106,176,112,0.15);
-            letter-spacing:4px;text-transform:uppercase
-        }
-        .page-header h1::after{
-            content:'~ \00b7 ~';display:block;font-size:1rem;
-            color:var(--moss);margin:0.8rem auto 0;letter-spacing:8px
-        }
-        .page-header .subtitle{
-            color:var(--text-dim);font-size:clamp(1.05rem, 1.8vw, 1.35rem);
-            letter-spacing:2px;text-shadow:0 0 10px rgba(106,176,112,0.15);
-            line-height:var(--lh-copy)
-        }
+        --smooth: cubic-bezier(0.16, 1, 0.3, 1);
+    }
 
-        /* === Main Content === */
-        main{
-            max-width:700px;margin:0 auto;padding:2rem 2rem 4rem;
-            position:relative;z-index:10
-        }
+    /* ═══════════════════════════════════════════════════════════════
+       BASE
+    ═══════════════════════════════════════════════════════════════ */
+    html { scroll-behavior: smooth; }
 
-        /* ASCII Panel */
-        .ascii-panel{
-            position:relative;
-            background:var(--panel-bg);
-            background-image:radial-gradient(circle,rgba(58,102,72,0.03) 1px,transparent 1px);
-            background-size:20px 20px;
-            border:1px solid var(--panel-border);
-            backdrop-filter:blur(6px);
-            transition:border-color 0.4s,box-shadow 0.4s
-        }
+    body {
+        font-family: 'Share Tech Mono', monospace;
+        background: var(--ink);
+        color: var(--parchment);
+        line-height: 1.65;
+        overflow-x: hidden;
+        min-height: 100vh;
+    }
 
-        /* Panel corner decorations */
-        .panel-corner{
-            position:absolute;color:var(--canopy);font-size:13px;
-            line-height:1;pointer-events:none;opacity:0.6;
-            transition:opacity 0.3s,color 0.3s
-        }
-        .panel-corner.tl{top:-9px;left:8px}
-        .panel-corner.tr{top:-9px;right:8px}
-        .panel-corner.bl{bottom:-9px;left:8px}
-        .panel-corner.br{bottom:-9px;right:8px}
-        .ascii-panel:hover .panel-corner{
-            opacity:1;color:var(--canopy-light);
-            animation:rustle 0.4s ease-in-out
-        }
-        @keyframes rustle{
-            0%,100%{transform:translateX(0)}
-            25%{transform:translateX(2px)}
-            75%{transform:translateX(-2px)}
-        }
+    .sr-only {
+        position: absolute; width: 1px; height: 1px; padding: 0;
+        margin: -1px; overflow: hidden; clip: rect(0,0,0,0);
+        white-space: nowrap; border: 0;
+    }
 
-        /* Contact Panel */
-        .contact-panel{padding:2.5rem 2rem;margin-bottom:2rem}
-        .contact-panel:hover{
-            border-color:rgba(192,96,48,0.4);
-            box-shadow:0 0 20px var(--ember-glow)
-        }
-        .contact-panel.field-focused{
-            border-color:rgba(106,176,112,0.5);
-            box-shadow:0 0 15px rgba(106,176,112,0.1)
-        }
-        .contact-panel.bloom{
-            border-color:var(--firefly) !important;
-            box-shadow:0 0 30px var(--firefly-glow),0 0 60px rgba(224,208,80,0.1) !important
-        }
-        .contact-panel h2{
-            text-align:center;margin-bottom:1.2rem;
-            color:var(--canopy-bright);font-weight:400;font-size:clamp(1.3rem, 2vw, 1.65rem);
-            letter-spacing:3px;text-transform:uppercase;
-            text-shadow:0 0 10px rgba(106,176,112,0.25);
-            line-height:var(--lh-snug)
-        }
-        .panel-intro{
-            text-align:center;margin-bottom:1.8rem;
-            font-size:clamp(1rem, 1.3vw, 1.2rem);
-            line-height:var(--lh-relaxed);color:var(--text-dim)
-        }
+    /* ═══════════════════════════════════════════════════════════════
+       BACKGROUND
+    ═══════════════════════════════════════════════════════════════ */
+    .bg-atmos {
+        position: fixed; inset: 0; z-index: 0; pointer-events: none;
+        background:
+            radial-gradient(ellipse 65% 50% at 14% 48%, rgba(192,144,48,0.07) 0%, transparent 62%),
+            radial-gradient(ellipse 45% 38% at 84% 18%, rgba(52,204,128,0.04) 0%, transparent 56%),
+            radial-gradient(ellipse 55% 48% at 52% 96%, rgba(192,144,48,0.05) 0%, transparent 56%);
+    }
 
-        /* Contact Form */
-        .form-group{display:flex;gap:0.8rem;justify-content:center}
-        .input-wrapper{position:relative;flex:1;max-width:400px}
-        .lantern{
-            position:absolute;left:-20px;top:50%;
-            transform:translateY(-50%);
-            color:var(--canopy);font-size:14px;
-            opacity:0;transition:opacity 0.4s,color 0.4s,text-shadow 0.4s;
-            pointer-events:none
-        }
-        .contact-form input:focus ~ .lantern{
-            opacity:1;color:var(--firefly);
-            text-shadow:0 0 8px var(--firefly-glow)
-        }
-        .contact-form input{
-            width:100%;padding:0.9rem 1.2rem;
-            background:rgba(16,26,16,0.8);
-            border:1px solid var(--panel-border);
-            color:var(--text-bright);
-            font-family:'Share Tech Mono',monospace;
-            font-size:1rem;letter-spacing:1px;
-            outline:none;transition:all 0.3s
-        }
-        .contact-form input::placeholder{color:var(--text-dim);opacity:0.6}
-        .contact-form input:focus{
-            border-color:var(--canopy-light);
-            box-shadow:0 0 12px rgba(74,138,85,0.2);
-            background:rgba(20,34,20,0.9)
-        }
-        .contact-form input:focus-visible{
-            outline:2px solid var(--canopy-light);outline-offset:2px
-        }
-        .contact-form button{
-            padding:0.9rem 1.8rem;background:transparent;
-            color:var(--canopy-bright);border:1px solid var(--canopy);
-            font-family:'Share Tech Mono',monospace;
-            font-size:0.9rem;letter-spacing:2px;
-            text-transform:uppercase;cursor:pointer;
-            transition:all 0.3s;white-space:nowrap
-        }
-        .contact-form button:hover{
-            background:rgba(45,90,53,0.2);
-            border-color:var(--canopy-light);
-            box-shadow:0 0 15px rgba(74,138,85,0.2);
-            text-shadow:0 0 6px rgba(106,176,112,0.4)
-        }
-        .contact-form button:focus-visible{
-            outline:2px solid var(--canopy-light);outline-offset:2px
-        }
+    /* Dot grid */
+    .bg-grid {
+        position: fixed; inset: 0; z-index: 0; pointer-events: none;
+        background-image: radial-gradient(circle, rgba(192,144,48,0.09) 1px, transparent 1px);
+        background-size: 40px 40px;
+        opacity: 0.45;
+    }
 
-        /* Form Error */
-        .form-error{
-            text-align:center;color:var(--ember);
-            font-size:0.85rem;margin-top:0.8rem;
-            min-height:1.4em;opacity:0;transition:opacity 0.3s
-        }
-        .form-error.visible{opacity:1}
+    /* Scanlines */
+    .bg-scan {
+        position: fixed; inset: 0; z-index: 0; pointer-events: none;
+        background: repeating-linear-gradient(
+            0deg,
+            transparent 0, transparent 2px,
+            rgba(0, 0, 0, 0.10) 2px, rgba(0, 0, 0, 0.10) 3px
+        );
+        opacity: 0.55;
+    }
 
-        /* Vine Growth */
-        .vine-growth{
-            text-align:center;margin:1.2rem 0 0.4rem;
-            letter-spacing:2px;line-height:1;font-size:13px;
-            min-height:1em
-        }
-        .vine-segment{
-            color:var(--forest-dark);
-            transition:color 0.4s,text-shadow 0.4s
-        }
-        .vine-segment.grown{
-            color:var(--canopy);
-            text-shadow:0 0 4px rgba(74,138,85,0.3)
-        }
+    /* Vignette */
+    .bg-vignette {
+        position: fixed; inset: 0; z-index: 0; pointer-events: none;
+        background: radial-gradient(ellipse 100% 100% at 50% 50%, transparent 38%, rgba(7,5,14,0.84) 100%);
+    }
 
-        /* Terminal Prompt */
-        .terminal-prompt{
-            margin-top:1rem;text-align:left;
-            color:var(--text-dim);font-size:0.82rem;
-            letter-spacing:1px;padding:0.5rem 0
-        }
-        .prompt-user{color:var(--canopy-bright)}
-        .prompt-success{color:var(--canopy-light)}
-        .cursor-blink{animation:blink 1s step-end infinite}
-        @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+    /* ═══════════════════════════════════════════════════════════════
+       NAVIGATION
+    ═══════════════════════════════════════════════════════════════ */
+    .cipher-nav {
+        position: fixed; top: 0; width: 100%; z-index: 300;
+        background: rgba(5, 4, 12, 0.90);
+        backdrop-filter: blur(24px) saturate(1.2);
+        -webkit-backdrop-filter: blur(24px) saturate(1.2);
+        border-bottom: 1px solid var(--gold-b);
+    }
 
-        /* Trail Sign */
-        .trail-sign{text-align:center;padding:0}
-        .trail-sign .sign-art{
-            color:var(--bark);font-size:13px;
-            line-height:1.2;margin:0;opacity:0.6;
-            white-space:pre
-        }
-        .trail-sign .sign-content{padding:1.2rem 1.5rem}
-        .trail-sign h3{
-            font-weight:400;font-size:1.1rem;
-            color:var(--canopy-bright);letter-spacing:3px;
-            text-transform:uppercase;margin-bottom:0.8rem;
-            text-shadow:0 0 8px rgba(106,176,112,0.2)
-        }
-        .contact-methods{list-style:none}
-        .contact-methods li{
-            padding:0.3rem 0;color:var(--text-dim);
-            font-size:clamp(1rem, 1.3vw, 1.15rem);letter-spacing:1px
-        }
-        .contact-methods a{
-            color:var(--canopy-light);text-decoration:none;transition:all 0.2s
-        }
-        .contact-methods a:hover{
-            color:var(--canopy-bright);
-            text-shadow:0 0 6px rgba(106,176,112,0.4)
-        }
-        .contact-methods a:focus-visible{
-            outline:2px solid var(--canopy-light);outline-offset:2px
-        }
+    .nav-inner {
+        max-width: 1380px; margin: 0 auto;
+        padding: 0.92rem 2.5rem;
+        display: flex; justify-content: space-between; align-items: center;
+    }
 
-        /* === Footer === */
-        footer{
-            background:rgba(8,14,8,0.95);color:var(--text-dim);
-            padding:4rem 2.5rem 2.5rem;
-            border-top:1px solid rgba(58,102,72,0.15);
-            position:relative;z-index:10
-        }
-        .footer-content{
-            max-width:1200px;margin:0 auto;
-            display:grid;grid-template-columns:2fr 1fr 1fr;
-            gap:4rem;margin-bottom:2.5rem
-        }
-        .footer-section h3{
-            font-size:1.4rem;margin-bottom:1.3rem;
-            color:var(--canopy-bright);
-            text-shadow:0 0 8px rgba(106,176,112,0.25);
-            letter-spacing:2px;text-transform:uppercase;font-weight:400
-        }
-        .footer-section p{color:var(--text-dim);line-height:1.7}
-        .footer-links{list-style:none}
-        .footer-links a{
-            color:var(--text-dim);text-decoration:none;
-            display:block;padding:0.4rem 0;transition:all 0.2s;
-            letter-spacing:1px;font-size:1.2rem
-        }
-        .footer-links a:hover{
-            color:var(--canopy-bright);
-            text-shadow:0 0 8px rgba(106,176,112,0.35);
-            padding-left:0.5rem
-        }
-        .footer-links a::before{content:'~ ';opacity:0;transition:opacity 0.2s}
-        .footer-links a:hover::before{opacity:1}
-        .footer-links a:focus-visible{outline:2px solid var(--canopy-light);outline-offset:2px}
-        .footer-bottom{
-            max-width:1200px;margin:0 auto;padding-top:2.5rem;
-            border-top:1px solid rgba(58,102,72,0.1);
-            text-align:center;color:rgba(106,176,112,0.3);
-            font-size:1.1rem;letter-spacing:1px
-        }
+    .nav-brand {
+        font-family: 'Cinzel', serif;
+        font-size: clamp(1.05rem, 1.5vw, 1.35rem);
+        font-weight: 600; letter-spacing: 4px; text-transform: uppercase;
+        color: var(--gold); text-decoration: none;
+        text-shadow: 0 0 20px var(--gold-glow);
+        transition: color 0.22s;
+    }
+    .nav-brand:hover { color: var(--gold-lt); }
 
-        /* === Standard Mode === */
-        body.standard-mode .ascii-scene{opacity:0;pointer-events:none}
-        body.standard-mode .panel-corner{display:none}
-        body.standard-mode .vine-growth{display:none}
-        body.standard-mode .sign-art{display:none}
-        body.standard-mode .contact-panel{border-radius:4px}
-        body.standard-mode .trail-sign{border-radius:4px;padding:1.2rem 1.5rem}
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+        font-family: 'Share Tech Mono', monospace;
+        font-size: 0.70rem; letter-spacing: 2px; text-transform: uppercase;
+        color: var(--parchment-dim); text-decoration: none;
+        transition: color 0.22s; position: relative;
+    }
+    .nav-links a:hover,
+    .nav-links a[aria-current="page"] { color: var(--gold-lt); }
+    .nav-links a[aria-current="page"]::after {
+        content: ''; position: absolute; bottom: -4px; left: 0; right: 0;
+        height: 1px; background: var(--gold);
+        box-shadow: 0 0 6px var(--gold-glow);
+    }
+    .nav-links a:focus-visible { outline: 1px solid var(--gold); outline-offset: 3px; }
 
-        /* === Reduced Motion === */
-        @media(prefers-reduced-motion:reduce){
-            *,*::before,*::after{
-                animation-duration:0.01ms !important;
-                animation-iteration-count:1 !important;
-                transition-duration:0.01ms !important
-            }
-            .creek-pre{animation:none;background-size:100% 100%}
-            .firefly{display:none}
-        }
+    .nav-menu-btn {
+        display: none; background: none;
+        border: 1px solid var(--gold-b); color: var(--gold);
+        padding: 0.24rem 0.58rem; font-size: 1.1rem;
+        transition: border-color 0.2s;
+    }
+    .nav-menu-btn:hover { border-color: var(--gold-bh); }
 
-        /* === Mobile === */
-        @media(max-width:768px){
-            .menu-toggle{display:block}
-            .nav-links{display:none}
-            .mobile-menu{
-                position:fixed;top:60px;left:0;right:0;
-                background:rgba(8,14,8,0.95);
-                border-bottom:1px solid rgba(58,102,72,0.15);
-                padding:1rem 2rem;backdrop-filter:blur(10px);
-                z-index:200
-            }
-            .mobile-menu.active{display:block}
-            .mobile-menu ul{list-style:none}
-            .mobile-menu a{
-                display:block;padding:0.8rem 0;text-decoration:none;
-                color:var(--moss);
-                border-bottom:1px solid rgba(58,102,72,0.08);
-                letter-spacing:1px;text-transform:uppercase;font-size:0.9rem
-            }
-            .mobile-menu a:hover{color:var(--canopy-bright);text-shadow:0 0 8px rgba(106,176,112,0.4)}
-            .page-header h1{font-size:2rem}
-            .form-group{flex-direction:column}
-            .input-wrapper{max-width:100%}
-            .contact-form button{width:100%}
-            .mode-toggle{top:68px;right:70px}
-            .panel-corner{display:none}
-            .lantern{display:none}
-            .footer-content{grid-template-columns:1fr;gap:2rem}
-        }
+    .nav-mobile { display: none; }
 
-        @media (min-width: 768px) and (max-width: 1023px) {
-            html { font-size: 17px; }
-        }
+    /* ═══════════════════════════════════════════════════════════════
+       INVOCATION HERO
+    ═══════════════════════════════════════════════════════════════ */
+    .invocation {
+        position: relative; z-index: 1;
+        padding: 6.5rem 2.5rem 0;
+        max-width: 1380px; margin: 0 auto;
+    }
 
-        @media (min-width: 1024px) {
-            html { font-size: 18px; }
-            /* ── Nav ── */
-            .nav-container         { padding: 2rem 5rem; max-width: none; }
-            .logo                  { font-size: 2.6rem; }
-            .nav-links             { gap: 3.25rem; }
-            .nav-links a           { font-size: clamp(1.25rem, 1.5vw, 1.5rem); }
-            /* ── Page header ── */
-            .page-header h1        { font-size: clamp(3.5rem, 7vw, 7.5rem); }
-            .page-header .subtitle { font-size: clamp(1.3rem, 2vw, 2rem); }
-            /* ── Contact panel ── */
-            .contact-panel h2      { font-size: clamp(1.7rem, 2.5vw, 2.5rem); }
-            .panel-intro           { font-size: clamp(1.1rem, 1.65vw, 1.75rem); line-height: var(--lh-relaxed); }
-            .contact-methods li    { font-size: clamp(1.15rem, 1.6vw, 1.6rem); }
-            .contact-panel         { padding: 3rem 2.5rem; }
-            /* ── Footer ── */
-            .footer-section h3     { font-size: clamp(1.5rem, 1.8vw, 2rem); }
-            .footer-section p      { font-size: clamp(1rem, 1.3vw, 1.3rem); }
-            .footer-links a        { font-size: clamp(1.25rem, 1.4vw, 1.4rem); }
-            footer                 { padding: 5rem 2.5rem 3rem; }
-            .contact-form input,
-            .contact-form textarea { font-size: 1rem; }
-            .contact-form button { font-size: 1rem; }
-            .mode-toggle { font-size: 0.88rem; }
+    /* ASCII crest */
+    .crest-block {
+        text-align: center; margin-bottom: 1.8rem;
+    }
+    .crest-pre {
+        display: inline-block;
+        font-family: 'Share Tech Mono', monospace;
+        font-size: clamp(9px, 1.1vw, 12px);
+        line-height: 1.35; white-space: pre;
+        color: var(--gold); opacity: 0.62;
+        text-shadow: 0 0 14px var(--gold-glow);
+        letter-spacing: 0;
+        animation: crest-breathe 6s ease-in-out infinite;
+    }
+    @keyframes crest-breathe {
+        0%, 100% { opacity: 0.62; }
+        50%       { opacity: 0.82; text-shadow: 0 0 22px rgba(192,144,48,0.26); }
+    }
+
+    /* Title block */
+    .invocation-title-block { text-align: center; margin-bottom: 0; }
+
+    .order-kicker {
+        font-family: 'Share Tech Mono', monospace;
+        font-size: clamp(0.58rem, 0.85vw, 0.74rem);
+        letter-spacing: 6px; text-transform: uppercase;
+        color: var(--parchment-dim);
+        display: flex; align-items: center; justify-content: center; gap: 1rem;
+        margin-bottom: 0.9rem;
+    }
+    .order-kicker::before,
+    .order-kicker::after {
+        content: '──── ✦ ────';
+        color: var(--gold); opacity: 0.4; font-size: 0.68rem;
+    }
+
+    .invocation-h1 {
+        font-family: 'Cinzel', serif;
+        font-size: clamp(2.6rem, 6.5vw, 6rem);
+        font-weight: 400; letter-spacing: 8px; text-transform: uppercase;
+        line-height: 1.0;
+        color: var(--parchment-br);
+        text-shadow:
+            0 0 44px rgba(192,144,48,0.22),
+            0 0 88px rgba(192,144,48,0.08);
+        margin-bottom: 0.6rem;
+        animation: title-flicker 12s step-end infinite;
+    }
+    @keyframes title-flicker {
+        0%, 94%, 96%, 100% { opacity: 1; }
+        95% { opacity: 0.88; }
+    }
+
+    .invocation-sub {
+        font-family: 'IM Fell English', serif;
+        font-style: italic;
+        font-size: clamp(0.88rem, 1.3vw, 1.1rem);
+        color: var(--parchment-dim);
+        letter-spacing: 1px;
+        margin-bottom: 1.4rem;
+    }
+
+    /* Status bar */
+    .sys-status {
+        display: inline-flex; align-items: center; gap: 0.8rem;
+        font-family: 'Share Tech Mono', monospace;
+        font-size: 0.62rem; letter-spacing: 2.5px; text-transform: uppercase;
+        color: var(--parchment-dim);
+        border: 1px solid var(--gold-b);
+        padding: 0.3rem 1.2rem;
+        background: var(--gold-dim);
+    }
+    .status-node { color: var(--phosphor); text-shadow: 0 0 8px var(--phosphor-glow); }
+    .status-sep  { color: var(--gold); opacity: 0.35; }
+
+    .cursor-blink {
+        display: inline-block; width: 7px; height: 11px;
+        background: var(--phosphor); vertical-align: middle;
+        animation: blink 1s step-end infinite;
+        box-shadow: 0 0 6px var(--phosphor-glow);
+    }
+    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+    /* Ornamental rule */
+    .rune-rule {
+        font-family: 'Share Tech Mono', monospace;
+        font-size: clamp(0.6rem, 0.85vw, 0.76rem);
+        letter-spacing: 4px; color: var(--gold); opacity: 0.28;
+        text-align: center; padding: 1.6rem 0 0;
+        overflow: hidden; white-space: nowrap; user-select: none;
+    }
+
+    /* ═══════════════════════════════════════════════════════════════
+       DISPATCH FIELD
+    ═══════════════════════════════════════════════════════════════ */
+    .dispatch-field {
+        position: relative; z-index: 1;
+        max-width: 1380px; margin: 0 auto;
+        padding: 2rem 2.5rem 8rem;
+    }
+
+    .dispatch-grid {
+        display: grid;
+        grid-template-columns: 1fr 316px;
+        gap: 1.4rem;
+        align-items: start;
+    }
+
+    /* ─── Generic cipher panel ─── */
+    .cipher-panel {
+        background: var(--ink-panel);
+        border: 1px solid var(--gold-b);
+        position: relative;
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+        transition: border-color 0.34s, box-shadow 0.34s;
+    }
+
+    /* Top sheen */
+    .cipher-panel::before {
+        content: '';
+        position: absolute; top: 0; left: 12%; right: 12%; height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(192,144,48,0.22), transparent);
+        pointer-events: none;
+    }
+
+    /* Corner glyphs */
+    .cn { /* corner node */
+        position: absolute;
+        font-family: 'Share Tech Mono', monospace;
+        font-size: 0.68rem; line-height: 1; pointer-events: none;
+        color: var(--gold); opacity: 0.45;
+        transition: opacity 0.3s, color 0.3s;
+    }
+    .cn-tl { top: 5px; left: 8px; }
+    .cn-tr { top: 5px; right: 8px; }
+    .cn-bl { bottom: 5px; left: 8px; }
+    .cn-br { bottom: 5px; right: 8px; }
+    .cipher-panel:hover .cn,
+    .cipher-panel:focus-within .cn { opacity: 0.9; color: var(--gold-lt); }
+
+    /* Panel active glow (set by JS on form focus) */
+    .cipher-panel.panel-live {
+        border-color: rgba(192,144,48,0.50);
+        box-shadow: 0 0 40px rgba(192,144,48,0.06), inset 0 0 32px rgba(192,144,48,0.03);
+    }
+
+    /* Panel header strip */
+    .panel-hd {
+        display: flex; align-items: center; gap: 0.85rem;
+        padding: 0.82rem 1.5rem;
+        border-bottom: 1px solid var(--gold-b);
+        font-family: 'Share Tech Mono', monospace;
+        font-size: 0.65rem; letter-spacing: 3px; text-transform: uppercase;
+    }
+    .panel-hd-rune {
+        color: var(--gold); font-size: 0.88rem;
+        text-shadow: 0 0 10px var(--gold-glow);
+        flex-shrink: 0;
+    }
+    .panel-hd-title { color: var(--parchment-br); flex: 1; }
+    .panel-hd-badge {
+        font-size: 0.56rem; letter-spacing: 2px;
+        color: var(--phosphor);
+        border: 1px solid var(--phosphor-b);
+        padding: 0.08rem 0.48rem;
+        text-shadow: 0 0 6px var(--phosphor-glow);
+    }
+
+    /* ─── TRANSMISSION CONSOLE ─── */
+    .console-body { padding: 1.8rem 1.8rem 2rem; }
+
+    .console-preamble {
+        font-family: 'IM Fell English', serif;
+        font-style: italic;
+        font-size: clamp(0.88rem, 1.1vw, 1.02rem);
+        color: var(--parchment-dim); line-height: 1.76;
+        margin-bottom: 1.8rem;
+        border-left: 2px solid var(--gold-b);
+        padding-left: 1rem;
+    }
+
+    .field-row {
+        display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+    }
+
+    .field-block { display: flex; flex-direction: column; gap: 0.36rem; margin-bottom: 1rem; }
+
+    .field-label {
+        font-family: 'Share Tech Mono', monospace;
+        font-size: 0.58rem; letter-spacing: 4px; text-transform: uppercase;
+        color: var(--gold);
+        display: flex; align-items: center; gap: 0.5rem;
+    }
+    .field-label::before { content: '›'; opacity: 0.6; font-size: 0.78rem; }
+
+    .field-input,
+    .field-select,
+    .field-textarea {
+        background: rgba(7, 5, 14, 0.75);
+        border: 1px solid rgba(192,144,48,0.20);
+        border-top-color: rgba(192,144,48,0.10);
+        color: var(--parchment-br);
+        font-family: 'Share Tech Mono', monospace;
+        font-size: 0.86rem; letter-spacing: 0.5px;
+        padding: 0.72rem 0.95rem;
+        outline: none; width: 100%;
+        -webkit-appearance: none; appearance: none;
+        transition: border-color 0.26s, box-shadow 0.26s, background 0.26s;
+    }
+    .field-input::placeholder,
+    .field-textarea::placeholder { color: var(--parchment-dim); opacity: 0.45; }
+    .field-input:focus,
+    .field-select:focus,
+    .field-textarea:focus {
+        border-color: var(--gold-bh);
+        box-shadow: 0 0 0 1px rgba(192,144,48,0.18), inset 0 0 20px rgba(192,144,48,0.04);
+        background: rgba(11, 9, 22, 0.90);
+    }
+    .field-input:focus-visible,
+    .field-select:focus-visible,
+    .field-textarea:focus-visible { outline: 1px solid var(--gold); outline-offset: 2px; }
+
+    .field-select {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23c09030' stroke-width='1.4' fill='none'/%3E%3C/svg%3E");
+        background-repeat: no-repeat; background-position: right 0.9rem center; background-size: 10px;
+        padding-right: 2.4rem; cursor: pointer;
+    }
+    .field-select option { background: #0b0918; color: var(--parchment-br); }
+
+    .field-textarea { resize: vertical; min-height: 128px; line-height: 1.65; }
+
+    /* Transmit button */
+    .transmit-btn {
+        width: 100%; margin-top: 1.5rem;
+        padding: 0.95rem 2rem;
+        background: transparent;
+        border: 1px solid var(--gold-b);
+        color: var(--gold-lt);
+        font-family: 'Share Tech Mono', monospace;
+        font-size: 0.74rem; letter-spacing: 5px; text-transform: uppercase;
+        cursor: pointer; position: relative; overflow: hidden;
+        display: flex; align-items: center; justify-content: center; gap: 1rem;
+        transition: border-color 0.28s, color 0.28s, box-shadow 0.28s;
+    }
+    .transmit-btn::after {
+        content: '';
+        position: absolute; inset: 0;
+        background: linear-gradient(135deg, transparent 0%, rgba(192,144,48,0.07) 50%, transparent 100%);
+        opacity: 0; transition: opacity 0.36s;
+    }
+    .transmit-btn:hover {
+        border-color: var(--gold-bh); color: var(--parchment-br);
+        box-shadow: 0 0 32px rgba(192,144,48,0.10), inset 0 0 32px rgba(192,144,48,0.04);
+    }
+    .transmit-btn:hover::after { opacity: 1; }
+    .transmit-btn:focus-visible { outline: 1px solid var(--gold); outline-offset: 2px; }
+    .transmit-btn:disabled { opacity: 0.35; cursor: not-allowed; pointer-events: none; }
+    .btn-rune { color: var(--gold); font-size: 0.88rem; text-shadow: 0 0 8px var(--gold-glow); }
+
+    /* Form error */
+    .form-error {
+        font-family: 'Share Tech Mono', monospace;
+        font-size: 0.70rem; letter-spacing: 1.5px;
+        color: var(--crimson); text-shadow: 0 0 8px var(--crimson-glow);
+        margin-top: 0.7rem; min-height: 1.4em;
+        opacity: 0; transition: opacity 0.28s;
+    }
+    .form-error.visible { opacity: 1; }
+
+    /* Terminal prompt */
+    .terminal-line {
+        margin-top: 1.3rem; padding-top: 0.85rem;
+        border-top: 1px solid rgba(192,144,48,0.12);
+        font-family: 'Share Tech Mono', monospace;
+        font-size: 0.68rem; letter-spacing: 1.5px;
+        color: var(--parchment-dim);
+    }
+    .term-user { color: var(--phosphor); text-shadow: 0 0 6px var(--phosphor-glow); }
+    .term-node { color: var(--gold-lt); }
+
+    /* Success state */
+    .success-panel {
+        display: none; padding: 2.8rem 2rem;
+        flex-direction: column; align-items: center; gap: 1.2rem;
+        text-align: center;
+    }
+    .success-panel.visible { display: flex; }
+
+    .success-seal {
+        font-family: 'Share Tech Mono', monospace;
+        font-size: clamp(8px, 1vw, 11px); line-height: 1.32; white-space: pre;
+        color: var(--gold); opacity: 0.80; letter-spacing: 0;
+        text-shadow: 0 0 18px var(--gold-glow);
+    }
+    .success-title {
+        font-family: 'Cinzel', serif;
+        font-size: clamp(1.1rem, 2vw, 1.55rem);
+        letter-spacing: 5px; text-transform: uppercase;
+        color: var(--gold-lt);
+        text-shadow: 0 0 22px var(--gold-glow);
+    }
+    .success-body {
+        font-family: 'IM Fell English', serif; font-style: italic;
+        font-size: clamp(0.88rem, 1.1vw, 1.02rem);
+        color: var(--parchment-dim); line-height: 1.76; max-width: 400px;
+    }
+
+    /* ─── RIGHT COLUMN ─── */
+    .routes-column { display: flex; flex-direction: column; gap: 1.2rem; }
+
+    .routes-body  { padding: 1.4rem 1.5rem 1.6rem; }
+    .codex-body   { padding: 1.4rem 1.5rem; }
+    .proto-body   { padding: 1.3rem 1.5rem; }
+
+    .route-item {
+        display: flex; align-items: flex-start; gap: 0.85rem;
+        padding: 0.8rem 0; border-bottom: 1px solid rgba(192,144,48,0.10);
+    }
+    .route-item:first-child { padding-top: 0; }
+    .route-item:last-child { border-bottom: none; padding-bottom: 0; }
+
+    .route-glyph {
+        color: var(--gold); font-size: 0.88rem;
+        text-shadow: 0 0 8px var(--gold-glow);
+        flex-shrink: 0; width: 1.1rem; text-align: center; margin-top: 0.08rem;
+    }
+    .route-label {
+        font-family: 'Share Tech Mono', monospace;
+        font-size: 0.56rem; letter-spacing: 3px; text-transform: uppercase;
+        color: var(--parchment-dim); margin-bottom: 0.18rem;
+    }
+    .route-value {
+        font-family: 'Share Tech Mono', monospace;
+        font-size: 0.80rem; color: var(--parchment-br);
+    }
+    .route-value a {
+        color: var(--gold-lt); text-decoration: none;
+        transition: color 0.2s, text-shadow 0.2s;
+    }
+    .route-value a:hover { color: var(--parchment-br); text-shadow: 0 0 8px var(--gold-glow); }
+    .route-value a:focus-visible { outline: 1px solid var(--gold); outline-offset: 2px; }
+
+    .codex-text {
+        font-family: 'IM Fell English', serif;
+        font-size: clamp(0.86rem, 1.05vw, 0.96rem);
+        line-height: 1.78; color: var(--parchment-dim);
+    }
+    .codex-text em { color: var(--parchment); font-style: italic; }
+
+    .proto-row {
+        display: flex; align-items: baseline; gap: 0.7rem;
+        padding: 0.50rem 0; border-bottom: 1px solid rgba(192,144,48,0.08);
+        font-family: 'Share Tech Mono', monospace; font-size: 0.68rem;
+    }
+    .proto-row:first-child { padding-top: 0; }
+    .proto-row:last-child  { border-bottom: none; padding-bottom: 0; }
+    .proto-key { color: var(--parchment-dim); letter-spacing: 2px; text-transform: uppercase; font-size: 0.60rem; min-width: 100px; flex-shrink: 0; }
+    .proto-val { color: var(--parchment-br); }
+    .proto-val.on { color: var(--phosphor); text-shadow: 0 0 6px var(--phosphor-glow); }
+
+    /* ═══════════════════════════════════════════════════════════════
+       FOOTER
+    ═══════════════════════════════════════════════════════════════ */
+    .cipher-floor {
+        position: relative; z-index: 1;
+        background: rgba(4, 3, 10, 0.98);
+        border-top: 1px solid var(--gold-b);
+        padding: 3.5rem 2.5rem 2.5rem;
+    }
+    .floor-inner { max-width: 1380px; margin: 0 auto; }
+
+    .floor-rule {
+        font-family: 'Share Tech Mono', monospace;
+        font-size: clamp(0.58rem, 0.82vw, 0.72rem);
+        letter-spacing: 3px; color: var(--gold); opacity: 0.30;
+        text-align: center; margin-bottom: 2.8rem;
+        overflow: hidden; white-space: nowrap; user-select: none;
+    }
+
+    .floor-grid {
+        display: grid; grid-template-columns: 2fr 1fr 1fr;
+        gap: 3rem; margin-bottom: 2.5rem;
+    }
+
+    .floor-title {
+        font-family: 'Cinzel', serif;
+        font-size: 0.80rem; letter-spacing: 4px; text-transform: uppercase;
+        color: var(--gold-lt); margin-bottom: 1.1rem;
+        display: flex; align-items: center; gap: 0.7rem;
+    }
+    .floor-title::after {
+        content: ''; flex: 1; height: 1px;
+        background: linear-gradient(90deg, var(--gold-b), transparent);
+    }
+
+    .floor-desc {
+        font-family: 'IM Fell English', serif; font-style: italic;
+        font-size: clamp(0.84rem, 1.05vw, 0.96rem);
+        color: var(--parchment-dim); line-height: 1.74;
+    }
+
+    .floor-links { list-style: none; }
+    .floor-links a {
+        font-family: 'Share Tech Mono', monospace;
+        font-size: 0.70rem; letter-spacing: 2px; text-transform: uppercase;
+        color: var(--parchment-dim); text-decoration: none;
+        padding: 0.3rem 0; display: flex; align-items: center; gap: 0.5rem;
+        transition: color 0.2s;
+    }
+    .floor-links a::before { content: '›'; color: var(--gold); opacity: 0.45; transition: opacity 0.2s; }
+    .floor-links a:hover { color: var(--gold-lt); }
+    .floor-links a:hover::before { opacity: 1; }
+    .floor-links a:focus-visible { outline: 1px solid var(--gold); outline-offset: 2px; }
+
+    .floor-bottom {
+        border-top: 1px solid rgba(192,144,48,0.10); padding-top: 2rem;
+        display: flex; justify-content: space-between; align-items: center;
+        flex-wrap: wrap; gap: 1rem;
+    }
+    .floor-copy {
+        font-family: 'Share Tech Mono', monospace;
+        font-size: 0.60rem; letter-spacing: 3px; text-transform: uppercase;
+        color: var(--parchment-dim); opacity: 0.45;
+    }
+    .floor-sigil {
+        font-size: 0.72rem; letter-spacing: 3px;
+        color: var(--gold); opacity: 0.28;
+        font-family: 'Share Tech Mono', monospace;
+    }
+
+    /* ═══════════════════════════════════════════════════════════════
+       REDUCED MOTION
+    ═══════════════════════════════════════════════════════════════ */
+    @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
         }
+    }
+
+    /* ═══════════════════════════════════════════════════════════════
+       RESPONSIVE
+    ═══════════════════════════════════════════════════════════════ */
+    @media (max-width: 980px) {
+        .dispatch-grid { grid-template-columns: 1fr; }
+        .routes-column {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1rem;
+        }
+        .floor-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+    }
+
+    @media (max-width: 768px) {
+        .nav-links { display: none; }
+        .nav-menu-btn { display: block; }
+
+        .nav-mobile {
+            position: fixed; top: 50px; left: 0; right: 0;
+            background: rgba(4, 3, 10, 0.98);
+            border-bottom: 1px solid var(--gold-b);
+            padding: 1rem 2rem;
+            backdrop-filter: blur(20px); z-index: 290;
+        }
+        .nav-mobile.active { display: block; }
+        .nav-mobile ul { list-style: none; }
+        .nav-mobile a {
+            display: block; padding: 0.72rem 0;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.70rem; letter-spacing: 2px; text-transform: uppercase;
+            color: var(--parchment-dim); text-decoration: none;
+            border-bottom: 1px solid rgba(192,144,48,0.08);
+            transition: color 0.2s;
+        }
+        .nav-mobile a:hover { color: var(--gold-lt); }
+
+        .invocation  { padding: 5.5rem 1.5rem 0; }
+        .dispatch-field { padding: 1.5rem 1.5rem 5rem; }
+
+        .field-row { grid-template-columns: 1fr; }
+        .routes-column { grid-template-columns: 1fr; display: flex; }
+
+        .floor-grid { grid-template-columns: 1fr; gap: 2rem; }
+        .floor-bottom { justify-content: center; text-align: center; }
+        .cipher-floor { padding: 2.5rem 1.5rem 2rem; }
+        .crest-pre { font-size: 8px; }
+        .order-kicker::before, .order-kicker::after { display: none; }
+    }
     </style>
 </head>
 <body>
-    <!-- ASCII Scene (decorative, hidden from screen readers) -->
-    <div class="ascii-scene" id="asciiScene" aria-hidden="true">
-        <pre class="canopy-pre" id="canopyPre"></pre>
-        <div id="fireflyContainer"></div>
-        <pre class="creek-pre" id="creekPre"></pre>
-    </div>
 
-    <!-- Mode Toggle -->
-    <button class="mode-toggle" id="modeToggle" aria-label="Toggle ASCII mode" aria-pressed="true"></button>
+    <!-- Background -->
+    <div class="bg-atmos"   aria-hidden="true"></div>
+    <div class="bg-grid"    aria-hidden="true"></div>
+    <div class="bg-scan"    aria-hidden="true"></div>
+    <div class="bg-vignette" aria-hidden="true"></div>
 
-    <nav>
-        <div class="nav-container">
-            <a href="index.html" class="logo">SeldomSought</a>
-            <button class="menu-toggle" id="menuToggle">&#9776;</button>
+    <!-- ── Navigation ─────────────────────────────────────────────── -->
+    <nav class="cipher-nav">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-brand">SeldomSought</a>
+            <button class="nav-menu-btn" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="philosophy.html">Philosophy</a></li>
@@ -492,10 +681,10 @@
                 <li><a href="expertise.html">Expertise</a></li>
                 <li><a href="projects.html">Projects</a></li>
                 <li><a href="faq.html">FAQ</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="contact.html" aria-current="page">Contact</a></li>
             </ul>
         </div>
-        <div class="mobile-menu" id="mobileMenu">
+        <div class="nav-mobile" id="mobileMenu">
             <ul>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="philosophy.html">Philosophy</a></li>
@@ -503,408 +692,375 @@
                 <li><a href="expertise.html">Expertise</a></li>
                 <li><a href="projects.html">Projects</a></li>
                 <li><a href="faq.html">FAQ</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="contact.html" aria-current="page">Contact</a></li>
             </ul>
         </div>
     </nav>
 
-    <div class="page-header">
-        <h1>Get in Touch</h1>
-        <p class="subtitle">Let's talk about what you're building — and how to make it impossible to ignore</p>
-    </div>
+    <!-- ── Invocation Hero ────────────────────────────────────────── -->
+    <header class="invocation">
 
-    <main>
-        <div class="contact-panel ascii-panel" id="contactPanel">
-            <div class="panel-corner tl" aria-hidden="true">&#9484;&#9472;&#9472; &#183; &#9472;&#9472;</div>
-            <div class="panel-corner tr" aria-hidden="true">&#9472;&#9472; &#183; &#9472;&#9472;&#9488;</div>
-
-            <h2>Start a Conversation</h2>
-            <p class="panel-intro">Drop your email to start a conversation about brand image, marketing strategy, or any of our services. No spam, no pitch decks — just a real conversation.</p>
-
-            <form class="contact-form" id="contactForm" onsubmit="return false;">
-                <div class="form-group">
-                    <div class="input-wrapper">
-                        <label for="emailInput" class="sr-only">Email address</label>
-                        <input type="email" id="emailInput" placeholder="your_email@address.com" required>
-                        <span class="lantern" aria-hidden="true">&#9672;</span>
-                    </div>
-                    <button type="submit">Subscribe</button>
-                </div>
-            </form>
-
-            <div class="form-error" id="formError" role="alert" aria-live="polite"></div>
-
-            <div class="vine-growth" id="vineGrowth" aria-hidden="true"><span class="vine-segment">&#9472;</span><span class="vine-segment">&#183;</span><span class="vine-segment">&#9472;</span><span class="vine-segment">&#9588;</span><span class="vine-segment">&#9472;</span><span class="vine-segment">&#183;</span><span class="vine-segment">&#9472;</span><span class="vine-segment">&#9588;</span><span class="vine-segment">&#9472;</span><span class="vine-segment">&#183;</span><span class="vine-segment">&#9472;</span><span class="vine-segment">&#9588;</span><span class="vine-segment">&#9472;</span><span class="vine-segment">&#183;</span><span class="vine-segment">&#9472;</span><span class="vine-segment">&#9588;</span><span class="vine-segment">&#9472;</span><span class="vine-segment">&#183;</span><span class="vine-segment">&#9472;</span><span class="vine-segment">&#9588;</span></div>
-
-            <div class="terminal-prompt" id="terminalPrompt">
-                <span class="prompt-user">seldomsought</span>@grove:~$ awaiting_input<span class="cursor-blink">_</span>
-            </div>
-
-            <div class="panel-corner bl" aria-hidden="true">&#9492;&#9472;&#9472; &#183; &#9472;&#9472;</div>
-            <div class="panel-corner br" aria-hidden="true">&#9472;&#9472; &#183; &#9472;&#9472;&#9496;</div>
+        <div class="crest-block" aria-hidden="true">
+<pre class="crest-pre">
+          ◆━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━◆
+          ┃                                                 ┃
+          ┃    ✦    ⚜    ✝    ORDER  OF  THE  MARK    ✝    ⚜    ✦    ┃
+          ┃                                                 ┃
+          ◆━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━◆</pre>
         </div>
 
-        <div class="trail-sign ascii-panel">
-            <pre class="sign-art" aria-hidden="true">     .&#9472;&#9472; &#183; &#9472;&#9472; &#183; &#9472;&#9472; &#183; &#9472;&#9472;.</pre>
-            <div class="sign-content">
-                <h3>Find the Grove</h3>
-                <ul class="contact-methods">
-                    <li><span aria-hidden="true">&#10022;</span> <a href="index.html">seldomsought.com</a></li>
-                    <li><span aria-hidden="true">&#9993;</span> Reach out via the form above</li>
-                </ul>
+        <div class="invocation-title-block">
+            <div class="order-kicker">The Order of SeldomSought</div>
+            <h1 class="invocation-h1">Correspondence<br>Terminal</h1>
+            <p class="invocation-sub">Open a line. The channel is monitored.</p>
+            <div class="sys-status">
+                <span class="status-node">NODE: ACTIVE</span>
+                <span class="status-sep">·</span>
+                <span>CHANNEL: OPEN</span>
+                <span class="status-sep">·</span>
+                <span>DISPATCHES: RECEIVED</span>
+                <span class="cursor-blink" aria-hidden="true"></span>
             </div>
-            <pre class="sign-art" aria-hidden="true">     '&#9472;&#9472; &#183; &#9472;&#9472; &#183; &#9472;&#9472; &#183; &#9472;&#9472;'</pre>
-            <pre class="sign-art" aria-hidden="true">            &#9553;
-            &#9553;</pre>
+        </div>
+
+        <div class="rune-rule" aria-hidden="true">
+            ─── ✦ ─── ⚜ ─── ✝ ─── ⚔ ─── ✦ ─── ⚜ ─── ✝ ─── ⚔ ─── ✦ ─── ⚜ ─── ✝ ─── ⚔ ─── ✦ ─── ⚜ ─── ✝ ─── ⚔ ─── ✦ ───
+        </div>
+    </header>
+
+    <!-- ── Dispatch Field ─────────────────────────────────────────── -->
+    <main class="dispatch-field">
+        <div class="dispatch-grid">
+
+            <!-- LEFT: Transmission Console -->
+            <section class="cipher-panel" id="consolePanel" aria-label="Contact form">
+                <span class="cn cn-tl" aria-hidden="true">┌─</span>
+                <span class="cn cn-tr" aria-hidden="true">─┐</span>
+                <span class="cn cn-bl" aria-hidden="true">└─</span>
+                <span class="cn cn-br" aria-hidden="true">─┘</span>
+
+                <div class="panel-hd">
+                    <span class="panel-hd-rune" aria-hidden="true">⚜</span>
+                    <span class="panel-hd-title">Transmission Console</span>
+                    <span class="panel-hd-badge" aria-hidden="true">READY</span>
+                </div>
+
+                <div id="formWrapper">
+                    <div class="console-body">
+                        <p class="console-preamble">
+                            All dispatches enter a monitored channel. Inquiries regarding brand image,
+                            marketing strategy, SEO, copywriting, and consulting are welcome.
+                            Expect a return within 24 to 48 hours.
+                        </p>
+
+                        <form id="contactForm" novalidate>
+                            <div class="field-row">
+                                <div class="field-block">
+                                    <label for="fieldIdent" class="field-label">Ident</label>
+                                    <input
+                                        type="text" id="fieldIdent" name="name"
+                                        class="field-input"
+                                        placeholder="Your full name"
+                                        autocomplete="name" required
+                                    >
+                                </div>
+                                <div class="field-block">
+                                    <label for="fieldSignal" class="field-label">Signal</label>
+                                    <input
+                                        type="email" id="fieldSignal" name="email"
+                                        class="field-input"
+                                        placeholder="your@address.com"
+                                        autocomplete="email" required
+                                    >
+                                </div>
+                            </div>
+
+                            <div class="field-block">
+                                <label for="fieldMatter" class="field-label">Matter</label>
+                                <select id="fieldMatter" name="matter" class="field-select">
+                                    <option value="">— Nature of inquiry —</option>
+                                    <option value="brand">Brand Image &amp; Identity</option>
+                                    <option value="strategy">Marketing Strategy</option>
+                                    <option value="seo">SEO &amp; AEO</option>
+                                    <option value="copy">Copywriting</option>
+                                    <option value="consulting">Business Consulting</option>
+                                    <option value="other">Other / Unlisted</option>
+                                </select>
+                            </div>
+
+                            <div class="field-block">
+                                <label for="fieldDispatch" class="field-label">Dispatch</label>
+                                <textarea
+                                    id="fieldDispatch" name="message"
+                                    class="field-textarea"
+                                    placeholder="Body of transmission — describe what you're building and what you need."
+                                    required
+                                ></textarea>
+                            </div>
+
+                            <div class="form-error" id="formError" role="alert" aria-live="polite"></div>
+
+                            <button type="submit" class="transmit-btn" id="transmitBtn">
+                                <span class="btn-rune" aria-hidden="true">✦</span>
+                                Transmit Inquiry
+                                <span class="btn-rune" aria-hidden="true">✦</span>
+                            </button>
+                        </form>
+
+                        <div class="terminal-line" id="termLine">
+                            <span class="term-user">seldomsought</span>@<span class="term-node">correspondence</span>:~$ awaiting_dispatch<span class="cursor-blink" aria-hidden="true"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Success state -->
+                <div class="success-panel" id="successPanel" tabindex="-1">
+<pre class="success-seal" aria-hidden="true">
+      ╔═══════════════════════════════════════╗
+      ║   ✦   TRANSMISSION ACCEPTED   ✦      ║
+      ║   ─────────────────────────────────   ║
+      ║        SIGNAL:   RECEIVED             ║
+      ║        ROUTE:    CONFIRMED            ║
+      ║        STATUS:   DISPATCHED           ║
+      ╚═══════════════════════════════════════╝</pre>
+                    <div class="success-title">Dispatch Received</div>
+                    <p class="success-body">
+                        Your transmission has been routed to the appropriate channel.
+                        Expect a response within 24 to 48 hours. The line remains open.
+                    </p>
+                </div>
+            </section>
+
+            <!-- RIGHT: Signal Routes + Codex + Protocol -->
+            <aside class="routes-column" aria-label="Contact information">
+
+                <div class="cipher-panel">
+                    <span class="cn cn-tl" aria-hidden="true">┌─</span>
+                    <span class="cn cn-tr" aria-hidden="true">─┐</span>
+                    <span class="cn cn-bl" aria-hidden="true">└─</span>
+                    <span class="cn cn-br" aria-hidden="true">─┘</span>
+                    <div class="panel-hd">
+                        <span class="panel-hd-rune" aria-hidden="true">⚔</span>
+                        <span class="panel-hd-title">Signal Routes</span>
+                    </div>
+                    <div class="routes-body">
+                        <div class="route-item">
+                            <span class="route-glyph" aria-hidden="true">✦</span>
+                            <div>
+                                <div class="route-label">Primary Channel</div>
+                                <div class="route-value"><a href="index.html">seldomsought.com</a></div>
+                            </div>
+                        </div>
+                        <div class="route-item">
+                            <span class="route-glyph" aria-hidden="true">⚜</span>
+                            <div>
+                                <div class="route-label">Dispatch Method</div>
+                                <div class="route-value">Via form — this terminal</div>
+                            </div>
+                        </div>
+                        <div class="route-item">
+                            <span class="route-glyph" aria-hidden="true">✝</span>
+                            <div>
+                                <div class="route-label">Archive</div>
+                                <div class="route-value"><a href="https://github.com/SeldomSought" target="_blank" rel="noopener">github / SeldomSought</a></div>
+                            </div>
+                        </div>
+                        <div class="route-item">
+                            <span class="route-glyph" aria-hidden="true">◆</span>
+                            <div>
+                                <div class="route-label">Visual Record</div>
+                                <div class="route-value"><a href="https://www.instagram.com/seldomsought" target="_blank" rel="noopener">@seldomsought</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cipher-panel">
+                    <span class="cn cn-tl" aria-hidden="true">┌─</span>
+                    <span class="cn cn-tr" aria-hidden="true">─┐</span>
+                    <span class="cn cn-bl" aria-hidden="true">└─</span>
+                    <span class="cn cn-br" aria-hidden="true">─┘</span>
+                    <div class="panel-hd">
+                        <span class="panel-hd-rune" aria-hidden="true">✝</span>
+                        <span class="panel-hd-title">The Codex</span>
+                    </div>
+                    <div class="codex-body">
+                        <p class="codex-text">
+                            SeldomSought builds brands designed to be <em>impossible to ignore</em>.
+                            Brand image, marketing strategy, SEO, AEO, copywriting, and consulting —
+                            for those who understand that attention is the only currency that matters.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="cipher-panel">
+                    <span class="cn cn-tl" aria-hidden="true">┌─</span>
+                    <span class="cn cn-tr" aria-hidden="true">─┐</span>
+                    <span class="cn cn-bl" aria-hidden="true">└─</span>
+                    <span class="cn cn-br" aria-hidden="true">─┘</span>
+                    <div class="panel-hd">
+                        <span class="panel-hd-rune" aria-hidden="true">◆</span>
+                        <span class="panel-hd-title">Protocol</span>
+                    </div>
+                    <div class="proto-body">
+                        <div class="proto-row">
+                            <span class="proto-key">Response</span>
+                            <span class="proto-val">24 – 48 H</span>
+                        </div>
+                        <div class="proto-row">
+                            <span class="proto-key">Method</span>
+                            <span class="proto-val">Correspondence</span>
+                        </div>
+                        <div class="proto-row">
+                            <span class="proto-key">Channel</span>
+                            <span class="proto-val on">ACTIVE</span>
+                        </div>
+                        <div class="proto-row">
+                            <span class="proto-key">Language</span>
+                            <span class="proto-val">EN</span>
+                        </div>
+                        <div class="proto-row">
+                            <span class="proto-key">Encryption</span>
+                            <span class="proto-val">Standard</span>
+                        </div>
+                    </div>
+                </div>
+
+            </aside>
         </div>
     </main>
 
-    <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>SeldomSought</h3>
-                <p>Brand image, marketing strategy, and business consulting for brands built to stand out.</p>
+    <!-- ── Footer ─────────────────────────────────────────────────── -->
+    <footer class="cipher-floor">
+        <div class="floor-inner">
+
+            <div class="floor-rule" aria-hidden="true">
+                ──── ✦ ── ⚜ ── ✦ ── S E L D O M S O U G H T ── ✦ ── ⚜ ── ✦ ────
             </div>
-            <div class="footer-section">
-                <h3>Navigate</h3>
-                <ul class="footer-links">
-                    <li><a href="philosophy.html">Philosophy</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="expertise.html">Expertise</a></li>
-                    <li><a href="projects.html">Projects</a></li>
-                    <li><a href="faq.html">FAQ</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
+
+            <div class="floor-grid">
+                <div>
+                    <div class="floor-title">SeldomSought</div>
+                    <p class="floor-desc">Brand image, marketing strategy, and business consulting for brands built to stand out.</p>
+                </div>
+                <div>
+                    <div class="floor-title">Navigate</div>
+                    <ul class="floor-links">
+                        <li><a href="philosophy.html">Philosophy</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="expertise.html">Expertise</a></li>
+                        <li><a href="projects.html">Projects</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="floor-title">Services</div>
+                    <ul class="floor-links">
+                        <li><a href="services.html">Brand Image</a></li>
+                        <li><a href="services.html">SEO &amp; AEO</a></li>
+                        <li><a href="services.html">Guerrilla Marketing</a></li>
+                        <li><a href="services.html">Copywriting</a></li>
+                    </ul>
+                </div>
             </div>
-            <div class="footer-section">
-                <h3>Services</h3>
-                <ul class="footer-links">
-                    <li><a href="services.html">Brand Image</a></li>
-                    <li><a href="services.html">SEO &amp; AEO</a></li>
-                    <li><a href="services.html">Guerrilla Marketing</a></li>
-                    <li><a href="services.html">Copywriting</a></li>
-                </ul>
+
+            <div class="floor-bottom">
+                <span class="floor-copy">&copy; MMXXVI SeldomSought &mdash; All Rights Reserved</span>
+                <span class="floor-sigil" aria-hidden="true">✦ ⚜ ✝ ⚔ ◆</span>
             </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2024 SeldomSought. All rights reserved.</p>
         </div>
     </footer>
 
     <script>
-    (function(){
+    (function () {
         'use strict';
 
-        // --- Config ---
-        var REDUCED_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        var IS_MOBILE = window.innerWidth < 768;
-        var FF_COUNT = IS_MOBILE ? 8 : 18;
-
-        // --- State ---
-        var asciiMode = localStorage.getItem('ss-ascii') !== 'false';
-        var mouseX = -1, mouseY = -1;
-        var fireflies = [];
-
-        // --- DOM ---
-        var body = document.body;
-        var modeBtn = document.getElementById('modeToggle');
-        var canopyPre = document.getElementById('canopyPre');
-        var creekPre = document.getElementById('creekPre');
-        var ffContainer = document.getElementById('fireflyContainer');
-        var panel = document.getElementById('contactPanel');
-        var emailIn = document.getElementById('emailInput');
-        var form = document.getElementById('contactForm');
-        var prompt = document.getElementById('terminalPrompt');
-        var formErr = document.getElementById('formError');
-        var vineSegs = document.querySelectorAll('.vine-segment');
-
-        // --- Seeded RNG (deterministic canopy) ---
-        function mkRng(seed){
-            var s = seed;
-            return function(){
-                s = (s * 1103515245 + 12345) & 0x7fffffff;
-                return s / 0x7fffffff;
-            };
-        }
-
-        // --- Generate Canopy ---
-        function genCanopy(){
-            var cw = 7.8;
-            var cols = Math.ceil(window.innerWidth / cw) + 10;
-            var rng = mkRng(42);
-            var lines = [];
-
-            // Sky line 1
-            var l = '';
-            for(var i=0;i<cols;i++){
-                var r=rng();
-                l += r<0.025?'*':r<0.06?'\u00b7':r<0.10?'.':' ';
-            }
-            lines.push(l);
-
-            // Sky line 2
-            l='';
-            for(var i=0;i<cols;i++){
-                var r=rng();
-                l += r<0.015?'*':r<0.04?'.':' ';
-            }
-            lines.push(l);
-
-            // Tree crowns - /\ at intervals
-            var treePos = [];
-            for(var t=3;t<cols-3;t+=8){
-                var off = Math.floor(rng()*3)-1;
-                treePos.push(t+off);
-            }
-
-            // Crown tips
-            var arr = [];
-            for(var i=0;i<cols;i++) arr[i]=' ';
-            for(var j=0;j<treePos.length;j++){
-                var p=treePos[j];
-                if(p>=0&&p<cols) arr[p]='/';
-                if(p+1>=0&&p+1<cols) arr[p+1]='\\';
-            }
-            lines.push(arr.join(''));
-
-            // Wider crown
-            arr=[];
-            for(var i=0;i<cols;i++) arr[i]=' ';
-            for(var j=0;j<treePos.length;j++){
-                var p=treePos[j];
-                for(var d=-1;d<=2;d++){
-                    var x=p+d;
-                    if(x>=0&&x<cols){
-                        if(d===-1) arr[x]='/';
-                        else if(d===2) arr[x]='\\';
-                        else arr[x]=rng()<0.7?'#':'.';
-                    }
-                }
-            }
-            lines.push(arr.join(''));
-
-            // Wide foliage
-            arr=[];
-            for(var i=0;i<cols;i++) arr[i]=' ';
-            for(var j=0;j<treePos.length;j++){
-                var p=treePos[j];
-                for(var d=-2;d<=3;d++){
-                    var x=p+d;
-                    if(x>=0&&x<cols){
-                        if(d===-2) arr[x]='/';
-                        else if(d===3) arr[x]='\\';
-                        else arr[x]=rng()<0.5?'#':rng()<0.5?'%':'.';
-                    }
-                }
-            }
-            lines.push(arr.join(''));
-
-            // Widest foliage
-            arr=[];
-            for(var i=0;i<cols;i++) arr[i]=' ';
-            for(var j=0;j<treePos.length;j++){
-                var p=treePos[j];
-                for(var d=-3;d<=4;d++){
-                    var x=p+d;
-                    if(x>=0&&x<cols){
-                        if(d===-3||d===4) arr[x]=rng()<0.4?'.':' ';
-                        else arr[x]=rng()<0.45?'#':rng()<0.4?'%':'.';
-                    }
-                }
-            }
-            lines.push(arr.join(''));
-
-            // Trunks
-            arr=[];
-            for(var i=0;i<cols;i++) arr[i]=' ';
-            for(var j=0;j<treePos.length;j++){
-                var p=treePos[j];
-                if(p>=0&&p<cols) arr[p]='|';
-                if(p+1>=0&&p+1<cols) arr[p+1]='|';
-            }
-            lines.push(arr.join(''));
-            lines.push(arr.join(''));
-
-            canopyPre.textContent = lines.join('\n');
-        }
-
-        // --- Generate Creek ---
-        function genCreek(){
-            var cw = 7.8;
-            var cols = Math.ceil(window.innerWidth / cw) + 10;
-            var l1='', l2='';
-            for(var i=0;i<cols;i++){
-                var c1=i%6;
-                l1 += c1===0||c1===3?'~':c1===2||c1===5?'\u00b7':' ';
-                var c2=(i+3)%6;
-                l2 += c2===0||c2===3?'\u00b7':c2===2||c2===5?'~':' ';
-            }
-            creekPre.textContent = l1+'\n'+l2;
-        }
-
-        // --- Fireflies ---
-        function createFireflies(){
-            for(var i=0;i<FF_COUNT;i++){
-                var el = document.createElement('div');
-                el.className = 'firefly';
-                var dur = 2+Math.random()*3;
-                var delay = Math.random()*4;
-                el.style.setProperty('--dur', dur+'s');
-                el.style.setProperty('--delay', delay+'s');
-
-                var ff = {
-                    el:el,
-                    x:Math.random()*window.innerWidth,
-                    y:Math.random()*window.innerHeight*0.7,
-                    vx:0, vy:0,
-                    homeX:Math.random()*window.innerWidth,
-                    homeY:Math.random()*window.innerHeight*0.7
-                };
-                el.style.left = ff.x+'px';
-                el.style.top = ff.y+'px';
-                ffContainer.appendChild(el);
-                fireflies.push(ff);
-            }
-        }
-
-        function tickFireflies(){
-            if(REDUCED_MOTION||!asciiMode){
-                requestAnimationFrame(tickFireflies);
-                return;
-            }
-            for(var i=0;i<fireflies.length;i++){
-                var ff = fireflies[i];
-                // Cursor attraction
-                if(mouseX>0){
-                    var dx=mouseX-ff.x, dy=mouseY-ff.y;
-                    var dist=Math.sqrt(dx*dx+dy*dy);
-                    if(dist<200&&dist>10){
-                        var force=(200-dist)/200*0.12;
-                        ff.vx+=dx/dist*force;
-                        ff.vy+=dy/dist*force;
-                    }
-                }
-                // Home pull
-                ff.vx+=(ff.homeX-ff.x)*0.0004;
-                ff.vy+=(ff.homeY-ff.y)*0.0004;
-                // Drift
-                ff.vx+=(Math.random()-0.5)*0.12;
-                ff.vy+=(Math.random()-0.5)*0.12;
-                // Damp
-                ff.vx*=0.96; ff.vy*=0.96;
-                // Move
-                ff.x+=ff.vx; ff.y+=ff.vy;
-                // Bounds
-                if(ff.x<0)ff.vx+=0.3;
-                if(ff.x>window.innerWidth)ff.vx-=0.3;
-                if(ff.y<0)ff.vy+=0.3;
-                if(ff.y>window.innerHeight)ff.vy-=0.3;
-
-                ff.el.style.left=ff.x+'px';
-                ff.el.style.top=ff.y+'px';
-            }
-            requestAnimationFrame(tickFireflies);
-        }
-
-        // --- Vine Growth ---
-        function updateVine(){
-            var len = emailIn.value.length;
-            var progress = Math.min(len/25, 1);
-            var active = Math.floor(progress * vineSegs.length);
-            for(var i=0;i<vineSegs.length;i++){
-                if(i<active) vineSegs[i].classList.add('grown');
-                else vineSegs[i].classList.remove('grown');
-            }
-        }
-
-        // --- Focus/Blur ---
-        emailIn.addEventListener('focus', function(){
-            panel.classList.add('field-focused');
-        });
-        emailIn.addEventListener('blur', function(){
-            panel.classList.remove('field-focused');
-        });
-        emailIn.addEventListener('input', function(){
-            updateVine();
-            if(formErr.classList.contains('visible'))
-                formErr.classList.remove('visible');
-        });
-
-        // --- Form Submit (preserved behavior + bloom) ---
-        form.addEventListener('submit', function(e){
-            e.preventDefault();
-
-            if(!emailIn.validity.valid){
-                formErr.innerHTML = '<span aria-hidden="true">!! </span>Please enter a valid email address';
-                formErr.classList.add('visible');
-                return;
-            }
-            formErr.classList.remove('visible');
-
-            // Preserved behavior
-            var email = emailIn.value;
-            prompt.innerHTML = '<span class="prompt-user">seldomsought</span>@grove:~$ subscribe --email ' + email + '<br><span class="prompt-success">&gt; Subscription confirmed. Welcome to the grove.</span>';
-
-            // Bloom
-            panel.classList.add('bloom');
-            setTimeout(function(){ panel.classList.remove('bloom'); }, 3000);
-
-            form.reset();
-            // Reset vine
-            for(var i=0;i<vineSegs.length;i++) vineSegs[i].classList.remove('grown');
-        });
-
-        // --- Mode Toggle ---
-        function setMode(ascii){
-            asciiMode = ascii;
-            body.classList.toggle('standard-mode', !ascii);
-            localStorage.setItem('ss-ascii', ascii?'true':'false');
-            modeBtn.textContent = ascii ? '\u25C8 ASCII' : '\u25A1 Standard';
-            modeBtn.setAttribute('aria-pressed', String(ascii));
-        }
-        modeBtn.addEventListener('click', function(){ setMode(!asciiMode); });
-        setMode(asciiMode);
-
-        // --- Mouse tracking ---
-        document.addEventListener('mousemove', function(e){
-            mouseX=e.clientX; mouseY=e.clientY;
-        });
-        document.addEventListener('mouseleave', function(){
-            mouseX=-1; mouseY=-1;
-        });
-
-        // --- Init ---
-        genCanopy();
-        genCreek();
-        createFireflies();
-        if(!REDUCED_MOTION) requestAnimationFrame(tickFireflies);
-
-        // --- Resize ---
-        var resizeTimer;
-        window.addEventListener('resize', function(){
-            clearTimeout(resizeTimer);
-            resizeTimer = setTimeout(function(){
-                genCanopy();
-                genCreek();
-            }, 250);
-        });
-
-        // --- Mobile Menu (preserved) ---
-        var menuToggle = document.getElementById('menuToggle');
+        /* ── Mobile menu ── */
+        var menuBtn    = document.getElementById('menuToggle');
         var mobileMenu = document.getElementById('mobileMenu');
-        menuToggle.addEventListener('click', function(e){
-            e.stopPropagation();
-            mobileMenu.classList.toggle('active');
-            menuToggle.innerHTML = mobileMenu.classList.contains('active') ? '&#10005;' : '&#9776;';
+        menuBtn.addEventListener('click', function () {
+            var open = mobileMenu.classList.toggle('active');
+            menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
         });
-        document.addEventListener('click', function(e){
-            if(!e.target.closest('nav')){
-                mobileMenu.classList.remove('active');
-                menuToggle.innerHTML = '&#9776;';
+
+        /* ── Panel activation glow on form focus ── */
+        var consolePanel = document.getElementById('consolePanel');
+        consolePanel.addEventListener('focusin',  function () { consolePanel.classList.add('panel-live'); });
+        consolePanel.addEventListener('focusout', function (e) {
+            if (!consolePanel.contains(e.relatedTarget)) {
+                consolePanel.classList.remove('panel-live');
             }
         });
 
-    })();
+        /* ── Live terminal line ── */
+        var identInput = document.getElementById('fieldIdent');
+        var termLine   = document.getElementById('termLine');
+
+        function updateTerm () {
+            var name = identInput.value.trim().replace(/\s+/g, '_').toLowerCase();
+            var ident = name ? esc(name) : 'unknown';
+            termLine.innerHTML =
+                '<span class="term-user">' + ident + '</span>' +
+                '@<span class="term-node">correspondence</span>' +
+                ':~$ route_channel<span class="cursor-blink" aria-hidden="true"></span>';
+        }
+        identInput.addEventListener('input', updateTerm);
+
+        /* ── Form submission ── */
+        var form        = document.getElementById('contactForm');
+        var formErr     = document.getElementById('formError');
+        var btn         = document.getElementById('transmitBtn');
+        var formWrapper = document.getElementById('formWrapper');
+        var successPanel = document.getElementById('successPanel');
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            clearErr();
+
+            var name    = document.getElementById('fieldIdent').value.trim();
+            var email   = document.getElementById('fieldSignal').value.trim();
+            var message = document.getElementById('fieldDispatch').value.trim();
+
+            if (!name) {
+                return showErr('IDENT REQUIRED — enter your designation to proceed.', 'fieldIdent');
+            }
+            if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                return showErr('SIGNAL INVALID — a valid return address is required.', 'fieldSignal');
+            }
+            if (!message) {
+                return showErr('DISPATCH EMPTY — no body detected in transmission.', 'fieldDispatch');
+            }
+
+            btn.disabled    = true;
+            btn.textContent = 'Routing transmission…';
+
+            setTimeout(function () {
+                formWrapper.style.display = 'none';
+                successPanel.classList.add('visible');
+                successPanel.focus();
+            }, 1100);
+        });
+
+        function showErr (msg, focusId) {
+            formErr.textContent = '⚠ ' + msg;
+            formErr.classList.add('visible');
+            if (focusId) document.getElementById(focusId).focus();
+        }
+
+        function clearErr () {
+            formErr.textContent = '';
+            formErr.classList.remove('visible');
+        }
+
+        function esc (s) {
+            return s.replace(/[&<>"']/g, function (c) {
+                return { '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c];
+            });
+        }
+
+    }());
     </script>
+
 </body>
 </html>
