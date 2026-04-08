@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Projects — SeldomSought</title>
   <meta name="description" content="Tools built to shift behavior toward intention. Independent software projects from SeldomSought.">
-  <meta name="theme-color" content="#060a14"/>
+  <meta name="theme-color" content="#03060e"/>
   <meta property="og:site_name" content="SeldomSought"/>
   <meta property="og:title" content="Projects — SeldomSought"/>
   <meta property="og:description" content="Tools built to shift behavior toward intention."/>
@@ -28,13 +28,12 @@
      TOKENS
   ═══════════════════════════════════════════════════════ */
   :root {
-    --bg:       #04070f;
+    --bg:       #03060e;
     --ice:      #d8cebc;
     --ice-dim:  rgba(216,206,188,0.36);
     --ice-mid:  rgba(216,206,188,0.62);
     --amber:    #d45e22;
     --cyan:     #00c4e0;
-    --cyan-b:   rgba(0,196,224,0.20);
     --smooth:   cubic-bezier(0.16, 1, 0.3, 1);
     --spring:   cubic-bezier(0.34, 1.56, 0.64, 1);
   }
@@ -54,16 +53,17 @@
   }
 
   /* ═══════════════════════════════════════════════════════
-     DEEP SPACE NEBULA — CSS atmospheric layer
+     SPACE BACKGROUND — CSS nebula layer
   ═══════════════════════════════════════════════════════ */
-  .space-nebula {
+  .space-bg {
     position: fixed; inset: 0;
     z-index: 0; pointer-events: none;
     background:
-      radial-gradient(ellipse 65% 55% at 10% 38%, rgba(16,36,128,0.32) 0%, transparent 62%),
-      radial-gradient(ellipse 52% 48% at 84% 16%, rgba(52,10,128,0.24) 0%, transparent 58%),
-      radial-gradient(ellipse 58% 52% at 42% 92%, rgba(6,44,100,0.20) 0%, transparent 62%),
-      radial-gradient(ellipse 85% 70% at 50% 50%, rgba(6,12,40,0.55) 0%, transparent 68%);
+      radial-gradient(ellipse 70% 55% at 8% 35%, rgba(14,32,120,0.38) 0%, transparent 60%),
+      radial-gradient(ellipse 55% 50% at 88% 12%, rgba(50,8,130,0.30) 0%, transparent 55%),
+      radial-gradient(ellipse 60% 55% at 38% 95%, rgba(5,40,100,0.24) 0%, transparent 58%),
+      radial-gradient(ellipse 45% 40% at 72% 78%, rgba(12,6,55,0.22) 0%, transparent 52%),
+      #03060e;
   }
 
   /* ═══════════════════════════════════════════════════════
@@ -73,6 +73,60 @@
     position: fixed; inset: 0;
     z-index: 1; pointer-events: none;
     display: block;
+  }
+
+  /* ═══════════════════════════════════════════════════════
+     ORBIT SVG
+  ═══════════════════════════════════════════════════════ */
+  #orbitSvg {
+    position: fixed; inset: 0;
+    width: 100%; height: 100%;
+    z-index: 2; pointer-events: none;
+  }
+  .orbit-path {
+    fill: none;
+    stroke: rgba(255,255,255,0.06);
+    stroke-width: 1;
+    stroke-dasharray: 3 14;
+  }
+
+  /* ═══════════════════════════════════════════════════════
+     STAGE FADE — gradient behind title
+  ═══════════════════════════════════════════════════════ */
+  .stage-fade-top {
+    position: fixed; top: 0; left: 0; right: 0; height: 200px;
+    z-index: 110; pointer-events: none;
+    background: linear-gradient(to bottom, #03060e 0%, rgba(3,6,14,0.82) 45%, transparent 100%);
+  }
+
+  /* ═══════════════════════════════════════════════════════
+     SCENE TITLE AREA
+  ═══════════════════════════════════════════════════════ */
+  .scene-title-area {
+    position: fixed; top: 0; left: 0; right: 0;
+    padding: 28px 2rem 0;
+    text-align: center;
+    z-index: 111; pointer-events: none;
+  }
+  .scene-eyebrow {
+    display: block;
+    font-size: 0.68rem; font-weight: 400;
+    letter-spacing: 3px; text-transform: uppercase;
+    color: rgba(255,185,70,0.70);
+    margin-bottom: 0.4rem;
+  }
+  .scene-h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.8rem, 5.5vw, 6.5rem);
+    font-weight: 300; line-height: 1;
+    letter-spacing: -2px;
+    color: #fff; opacity: 0.92;
+  }
+  .scene-sub {
+    font-size: 0.80rem; font-weight: 300;
+    color: rgba(216,206,188,0.50);
+    letter-spacing: 0.5px;
+    margin-top: 0.55rem;
   }
 
   /* ═══════════════════════════════════════════════════════
@@ -112,7 +166,7 @@
   }
   .sys-menu-btn {
     display: none; background: none;
-    border: 1px solid var(--cyan-b); border-radius: 8px;
+    border: 1px solid rgba(0,196,224,0.20); border-radius: 8px;
     color: var(--ice); padding: 0.25rem 0.55rem; font-size: 1.1rem;
     transition: border-color 0.2s;
   }
@@ -120,158 +174,130 @@
   .sys-mobile-menu { display: none; }
 
   /* ═══════════════════════════════════════════════════════
-     SPACE STAGE
+     SPACE STAGE ANCHOR
   ═══════════════════════════════════════════════════════ */
-  .space-stage {
+  .space-stage-anchor {
     position: relative;
-    z-index: 2;
-    width: 100%; height: 100vh;
-    overflow: hidden;
-  }
-
-  /* Scene header — upper-left, large & airy */
-  .scene-header {
-    position: absolute;
-    top: 94px; left: 5.5%;
-    z-index: 5; pointer-events: none;
-  }
-  .scene-eyebrow {
-    display: block;
-    font-size: 0.66rem; font-weight: 400;
-    letter-spacing: 3px; text-transform: uppercase;
-    color: var(--cyan); opacity: 0.6;
-    margin-bottom: 0.55rem;
-  }
-  .scene-h1 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(3.2rem, 5.5vw, 6rem);
-    font-weight: 300; line-height: 1;
-    letter-spacing: -1px;
-    color: var(--ice); opacity: 0.90;
-  }
-  .scene-sub {
-    font-size: 0.76rem; font-weight: 300;
-    color: var(--ice-dim);
-    letter-spacing: 0.8px;
-    margin-top: 0.6rem; opacity: 0.85;
-  }
-
-  .stage-hint {
-    position: absolute;
-    bottom: 2.2rem; left: 50%;
-    transform: translateX(-50%);
-    font-size: 0.65rem; font-weight: 300;
-    letter-spacing: 2.5px; text-transform: uppercase;
-    color: var(--ice-dim); opacity: 0.35;
-    pointer-events: none; z-index: 5;
-    white-space: nowrap;
+    z-index: 1;
+    width: 100%;
+    height: 100vh;
   }
 
   /* ═══════════════════════════════════════════════════════
-     ORBIT RINGS — subtle dashed ellipses
+     SUN WRAP
   ═══════════════════════════════════════════════════════ */
-  .orbit-ring {
-    position: absolute;
-    border-radius: 50%;
-    border: 1px dashed rgba(0,196,224,0.04);
+  .sun-wrap {
+    position: fixed;
     transform: translate(-50%, -50%);
-    pointer-events: none; z-index: 1;
+    pointer-events: none;
+    z-index: 55;
+  }
+  .sun-core {
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    position: relative;
+    background: radial-gradient(circle at 38% 36%, #fff8e0 0%, #ffd060 30%, #ff7010 68%, #cc3800 100%);
+    box-shadow:
+      0 0 22px rgba(255,155,20,0.95),
+      0 0 55px rgba(255,90,5,0.55),
+      0 0 110px rgba(220,60,5,0.28),
+      0 0 220px rgba(200,50,5,0.10);
+    animation: sun-pulse 3.5s ease-in-out infinite;
+    z-index: 2;
+  }
+  .sun-c1 {
+    position: absolute;
+    inset: -22px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,155,30,0.28) 0%, transparent 70%);
+    filter: blur(6px);
+    animation: sun-pulse 3.5s ease-in-out infinite 0.4s;
+    z-index: 1;
+  }
+  .sun-c2 {
+    position: absolute;
+    inset: -60px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,100,10,0.14) 0%, transparent 65%);
+    filter: blur(14px);
+    animation: sun-pulse 5s ease-in-out infinite 1s;
+    z-index: 0;
+  }
+  .sun-c3 {
+    position: absolute;
+    inset: -120px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(200,55,8,0.07) 0%, transparent 60%);
+    filter: blur(28px);
+    z-index: -1;
+  }
+
+  @keyframes sun-pulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50%       { transform: scale(1.10); opacity: 0.88; }
   }
 
   /* ═══════════════════════════════════════════════════════
-     PLANET WRAPS — per-planet CSS variables
+     ORBIT POINTS CONTAINER
+  ═══════════════════════════════════════════════════════ */
+  #orbitPoints {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 10;
+  }
+
+  /* ═══════════════════════════════════════════════════════
+     PLANET ORBIT POINT
+  ═══════════════════════════════════════════════════════ */
+  .planet-orbit-point {
+    position: absolute;
+    transform: translate(-50%, -50%) scale(var(--d, 1));
+    pointer-events: none;
+    transition: opacity 0.4s ease, filter 0.4s ease;
+  }
+  .planet-orbit-point.dimmed {
+    opacity: 0.15;
+    filter: saturate(0.1) brightness(0.5);
+  }
+
+  /* ═══════════════════════════════════════════════════════
+     PLANET WRAP
   ═══════════════════════════════════════════════════════ */
   .planet-wrap {
-    position: absolute;
-    transform: translate(-50%, -50%);
-    cursor: pointer; z-index: 3;
-    /* width/height = var(--ps) set per planet */
+    position: relative;
     width: var(--ps); height: var(--ps);
+    pointer-events: all;
+    cursor: pointer;
   }
-
-  #pw-focus-shield {
-    left: 13%; top: 44%;
-    --ps: 170px; --rot: 20s;
-    --g0: rgba(230,130,42,0.80);
-    --g1: rgba(230,130,42,0.32);
-    --g2: rgba(230,130,42,0.09);
-    animation: float-a 8s ease-in-out infinite;
-  }
-  #pw-psychometrics-battery {
-    left: 60%; top: 24%;
-    --ps: 148px; --rot: 26s;
-    --g0: rgba(140,58,220,0.82);
-    --g1: rgba(140,58,220,0.30);
-    --g2: rgba(140,58,220,0.09);
-    animation: float-b 11s ease-in-out infinite;
-    animation-delay: -2.1s;
-  }
-  #pw-curated-feed {
-    left: 37%; top: 70%;
-    --ps: 130px; --rot: 22s;
-    --g0: rgba(18,190,222,0.80);
-    --g1: rgba(18,190,222,0.28);
-    --g2: rgba(18,190,222,0.09);
-    animation: float-c 9.5s ease-in-out infinite;
-    animation-delay: -4.2s;
-  }
-  #pw-bookmark-mirror {
-    left: 79%; top: 57%;
-    --ps: 108px; --rot: 32s;
-    --g0: rgba(96,168,222,0.78);
-    --g1: rgba(96,168,222,0.28);
-    --g2: rgba(96,168,222,0.08);
-    animation: float-d 13s ease-in-out infinite;
-    animation-delay: -6.5s;
-  }
-
-  @keyframes float-a {
-    0%,100% { transform: translate(-50%,-50%) translateY(0px); }
-    50%      { transform: translate(-50%,-50%) translateY(-14px); }
-  }
-  @keyframes float-b {
-    0%,100% { transform: translate(-50%,-50%) translateY(0px); }
-    50%      { transform: translate(-50%,-50%) translateY(-10px); }
-  }
-  @keyframes float-c {
-    0%,100% { transform: translate(-50%,-50%) translateY(0px); }
-    50%      { transform: translate(-50%,-50%) translateY(-12px); }
-  }
-  @keyframes float-d {
-    0%,100% { transform: translate(-50%,-50%) translateY(0px); }
-    50%      { transform: translate(-50%,-50%) translateY(-7px); }
-  }
+  .planet-wrap:focus-visible { outline: none; }
 
   /* ═══════════════════════════════════════════════════════
-     PLANET ATMOSPHERE — wide glowing halo
+     PLANET ATMOSPHERE
   ═══════════════════════════════════════════════════════ */
   .planet-atmosphere {
     position: absolute;
-    width:  calc(var(--ps) * 1.7);
-    height: calc(var(--ps) * 1.7);
-    top:  50%; left: 50%;
-    margin-top:  calc(var(--ps) * -0.85);
-    margin-left: calc(var(--ps) * -0.85);
+    width: calc(var(--ps) * 1.75);
+    height: calc(var(--ps) * 1.75);
+    top: 50%; left: 50%;
+    margin-top: calc(var(--ps) * -0.875);
+    margin-left: calc(var(--ps) * -0.875);
     border-radius: 50%;
-    background: radial-gradient(
-      circle at 50% 50%,
-      transparent 45%,
-      var(--g1) 66%,
-      var(--g2) 82%,
-      transparent 95%
-    );
-    filter: blur(10px);
+    background: radial-gradient(circle, transparent 44%, var(--g1) 64%, var(--g2) 80%, transparent 95%);
+    filter: blur(12px);
     opacity: 0.75;
-    pointer-events: none; z-index: 0;
+    pointer-events: none;
     transition: opacity 0.45s ease, transform 0.45s ease;
+    z-index: 0;
   }
-  .planet-wrap:hover .planet-atmosphere {
+  .planet-wrap:hover .planet-atmosphere,
+  .planet-wrap:focus-visible .planet-atmosphere {
     opacity: 1;
-    transform: scale(1.10);
+    transform: scale(1.12);
   }
 
   /* ═══════════════════════════════════════════════════════
-     PLANET SPHERE — the main ball, overflow:hidden clips surface
+     PLANET SPHERE
   ═══════════════════════════════════════════════════════ */
   .planet-sphere {
     position: absolute; inset: 0;
@@ -279,26 +305,19 @@
     overflow: hidden;
     z-index: 1;
     box-shadow:
-      0 0 36px  var(--g0),
-      0 0 80px  var(--g1),
-      0 0 160px var(--g2);
-    transition: transform 0.42s var(--spring), box-shadow 0.42s ease;
+      0 0 38px var(--g0),
+      0 0 85px var(--g1),
+      0 0 170px var(--g2);
+    transition: transform 0.44s var(--spring), box-shadow 0.44s ease;
     will-change: transform;
   }
-  .planet-wrap:hover .planet-sphere {
-    transform: scale(1.07);
-    box-shadow:
-      0 0 55px  var(--g0),
-      0 0 120px var(--g1),
-      0 0 240px var(--g2);
-  }
-  .planet-wrap:focus-visible { outline: none; }
+  .planet-wrap:hover .planet-sphere,
   .planet-wrap:focus-visible .planet-sphere {
+    transform: scale(1.09);
     box-shadow:
-      0 0 55px  var(--g0),
-      0 0 120px var(--g1),
-      0 0 240px var(--g2),
-      0 0 0 3px rgba(255,255,255,0.25);
+      0 0 53px var(--g0),
+      0 0 119px var(--g1),
+      0 0 238px var(--g2);
   }
 
   /* ═══════════════════════════════════════════════════════
@@ -316,56 +335,64 @@
     to   { transform: translateX(-50%); }
   }
 
-  /* Focus Shield — cobalt blue with amber orbital bands */
+  /* Focus Shield — cobalt ocean with amber storm bands */
   .fs-surf {
     background: repeating-linear-gradient(
       180deg,
-      #030810    0px,
-      #07152c   12px,
-      #0e2458   26px,
-      #183ea8   38px,
-      rgba(185,65,12,0.68) 46px,
-      #183ea8   54px,
-      #2858d8   68px,
-      rgba(140,48,8,0.44)  78px,
-      #183ea8   88px,
-      #0e2458  102px,
-      #07152c  115px,
-      #030810  128px
+      #020710  0px,
+      #061228  10px,
+      #0d2260  22px,
+      #1840b8  33px,
+      rgba(200,68,10,0.82) 41px,
+      rgba(175,50,6,0.65)  47px,
+      rgba(145,36,4,0.40)  52px,
+      #1840b8  58px,
+      #2560e8  70px,
+      #1840b8  80px,
+      rgba(115,32,4,0.50)  88px,
+      rgba(85,22,3,0.30)   93px,
+      #0d2260  100px,
+      #061228  112px,
+      #020710  124px
     );
   }
 
-  /* Psychometric Battery — deep violet nebula */
+  /* Psychometric Battery — deep violet nebula bands */
   .pm-surf {
     background: repeating-linear-gradient(
       180deg,
-      #04000d    0px,
-      #0c0228   14px,
-      #1c0560   30px,
-      rgba(128,28,215,0.70) 40px,
-      #340898   54px,
-      rgba(188,78,255,0.58) 62px,
-      #240670   76px,
-      rgba(96,18,178,0.42)  88px,
-      #120440  104px,
-      #04000d  118px
+      #040010  0px,
+      #0c0230  13px,
+      #1c0668  28px,
+      rgba(140,30,230,0.78)  40px,
+      rgba(190,70,255,0.62)  48px,
+      rgba(160,45,220,0.48)  55px,
+      #38099a  65px,
+      rgba(210,90,255,0.55)  73px,
+      rgba(175,55,240,0.38)  80px,
+      #220670  92px,
+      #0c0230  108px,
+      #040010  120px
     );
   }
 
-  /* Curated Feed — teal ocean aurora */
+  /* Curated Feed — teal aurora ocean */
   .cf-surf {
     background: repeating-linear-gradient(
       180deg,
-      #020b12    0px,
-      #04192e   12px,
-      #063850   28px,
-      rgba(0,162,148,0.65) 38px,
-      #0a5878   52px,
-      rgba(12,196,174,0.74) 60px,
-      #063850   74px,
-      rgba(0,118,108,0.48)  84px,
-      #04192e   98px,
-      #020b12  110px
+      #020c14  0px,
+      #051a30  12px,
+      #073c55  26px,
+      rgba(0,168,152,0.72)   36px,
+      rgba(8,200,178,0.82)   44px,
+      rgba(15,220,192,0.65)  51px,
+      rgba(0,160,142,0.48)   58px,
+      #0a5e80  68px,
+      rgba(5,185,165,0.58)   76px,
+      rgba(0,128,115,0.35)   83px,
+      #073c55  92px,
+      #051a30  106px,
+      #020c14  118px
     );
   }
 
@@ -373,35 +400,49 @@
   .bm-surf {
     background: repeating-linear-gradient(
       180deg,
-      #040c1a    0px,
-      #091830   14px,
-      rgba(98,148,215,0.48) 26px,
-      #142858   40px,
-      rgba(178,212,248,0.70) 48px,
-      #182e62   62px,
-      rgba(118,158,225,0.42) 74px,
-      #091830   88px,
-      #040c1a  102px
+      #040c1c  0px,
+      #091a34  12px,
+      rgba(88,140,215,0.55)  24px,
+      rgba(155,195,248,0.42) 32px,
+      #142e60  42px,
+      rgba(188,220,255,0.78) 50px,
+      rgba(165,205,248,0.62) 57px,
+      rgba(120,168,230,0.45) 64px,
+      #1a3268  74px,
+      rgba(98,148,220,0.38)  82px,
+      #091a34  94px,
+      #040c1c  106px
     );
   }
 
   /* ═══════════════════════════════════════════════════════
-     PLANET LIGHTING — static overlay gives 3D sphere illusion
+     PLANET LIGHTING — 5-layer photorealistic model
   ═══════════════════════════════════════════════════════ */
   .planet-lighting {
     position: absolute; inset: 0;
     background:
-      /* Key specular — top-left bright */
-      radial-gradient(circle at 27% 25%, rgba(255,255,255,0.26) 0%, transparent 38%),
-      /* Secondary fill — slight warm lift on lit side */
-      radial-gradient(circle at 34% 34%, rgba(255,255,255,0.08) 0%, transparent 52%),
-      /* Shadow — opposite corner, deep */
-      radial-gradient(circle at 74% 72%, rgba(0,0,0,0.82) 0%, transparent 50%),
-      /* Limb darkening — edges of sphere are darker */
-      radial-gradient(circle at 50% 50%, transparent 42%, rgba(0,0,0,0.62) 100%);
+      radial-gradient(circle at 26% 24%, rgba(255,255,255,0.38) 0%, rgba(255,255,255,0.10) 14%, transparent 28%),
+      radial-gradient(circle at 32% 32%, rgba(255,255,255,0.06) 0%, transparent 50%),
+      radial-gradient(ellipse 84% 100% at 75% 50%, rgba(0,0,0,0.94) 0%, rgba(0,0,0,0.50) 36%, transparent 65%),
+      radial-gradient(circle at 50% 50%, transparent 34%, rgba(0,0,0,0.80) 86%, rgba(0,0,0,0.96) 100%),
+      radial-gradient(ellipse 22% 100% at -4% 50%, rgba(200,220,255,0.10) 0%, transparent 100%);
     pointer-events: none;
     z-index: 2;
   }
+
+  /* ═══════════════════════════════════════════════════════
+     PLANET RIM LIGHTS
+  ═══════════════════════════════════════════════════════ */
+  .planet-rim {
+    position: absolute; inset: 0;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 3;
+  }
+  .fs-rim  { background: radial-gradient(circle at 73% 72%, rgba(100,165,255,0.22) 0%, transparent 38%); }
+  .pm-rim  { background: radial-gradient(circle at 73% 72%, rgba(200,100,255,0.26) 0%, transparent 38%); }
+  .cf-rim  { background: radial-gradient(circle at 73% 72%, rgba(0,210,168,0.24) 0%, transparent 38%); }
+  .bm-rim  { background: radial-gradient(circle at 73% 72%, rgba(185,225,255,0.30) 0%, transparent 38%); }
 
   /* ═══════════════════════════════════════════════════════
      FOCUS SHIELD RING — Saturn-style split ring
@@ -409,35 +450,37 @@
   .fs-ring {
     position: absolute;
     top: 50%; left: 50%;
-    width:       calc(var(--ps) * 1.75);
-    height:      calc(var(--ps) * 1.75);
-    margin-top:  calc(var(--ps) * -0.875);
-    margin-left: calc(var(--ps) * -0.875);
+    width:       calc(var(--ps) * 1.78);
+    height:      calc(var(--ps) * 1.78);
+    margin-top:  calc(var(--ps) * -0.89);
+    margin-left: calc(var(--ps) * -0.89);
     border-radius: 50%;
     background: transparent;
     box-shadow:
-      0 0 0 calc(var(--ps) * 0.054) rgba(212,90,28,0.58),
-      0 0 0 calc(var(--ps) * 0.088) rgba(212,90,28,0.22),
-      0 0 0 calc(var(--ps) * 0.125) rgba(180,68,18,0.09),
-      0 0 18px rgba(212,90,28,0.42),
-      0 0 40px rgba(212,90,28,0.12);
-    transform: scale(1, 0.21);
+      0 0 0 calc(var(--ps) * 0.055) rgba(215,92,28,0.62),
+      0 0 0 calc(var(--ps) * 0.090) rgba(215,92,28,0.25),
+      0 0 0 calc(var(--ps) * 0.128) rgba(185,72,18,0.10),
+      0 0 20px rgba(215,92,28,0.45),
+      0 0 45px rgba(215,92,28,0.14);
+    transform: scale(1, 0.20);
     pointer-events: none;
   }
   .planet-ring-back  { z-index: 0; clip-path: polygon(0% 50%, 100% 50%, 100% 100%, 0% 100%); }
   .planet-ring-front { z-index: 2; clip-path: polygon(0% 0%, 100% 0%, 100% 50%, 0% 50%); }
+  .planet-sphere     { z-index: 1; }
 
   /* ═══════════════════════════════════════════════════════
      PLANET LABELS
   ═══════════════════════════════════════════════════════ */
   .planet-label {
     position: absolute;
-    top: calc(100% + 22px);
+    top: calc(100% + 24px);
     left: 50%;
     transform: translateX(-50%) translateY(8px);
     text-align: center; white-space: nowrap;
-    pointer-events: none; opacity: 0;
-    transition: opacity 0.32s ease, transform 0.32s ease;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
   }
   .planet-wrap:hover .planet-label,
   .planet-wrap:focus-visible .planet-label {
@@ -447,14 +490,29 @@
   .label-name {
     display: block;
     font-family: 'Cormorant Garamond', serif;
-    font-size: 1.05rem; font-weight: 400;
-    letter-spacing: 0.3px; color: var(--ice);
+    font-size: 1.1rem; font-weight: 400;
+    color: var(--ice);
   }
   .label-tag {
     display: block;
     font-size: 0.62rem; font-weight: 400;
-    letter-spacing: 1.6px; text-transform: uppercase;
-    color: var(--ice-dim); margin-top: 0.18rem;
+    letter-spacing: 1.8px; text-transform: uppercase;
+    color: var(--ice-dim); margin-top: 0.2rem;
+  }
+
+  /* ═══════════════════════════════════════════════════════
+     STAGE HINT
+  ═══════════════════════════════════════════════════════ */
+  .stage-hint {
+    position: fixed;
+    bottom: 2rem; left: 50%;
+    transform: translateX(-50%);
+    z-index: 111;
+    font-size: 0.62rem; font-weight: 300;
+    letter-spacing: 2.5px; text-transform: uppercase;
+    color: var(--ice-dim); opacity: 0.35;
+    pointer-events: none;
+    white-space: nowrap;
   }
 
   /* ═══════════════════════════════════════════════════════
@@ -463,45 +521,45 @@
   .detail-panel {
     position: fixed;
     top: 0; right: 0;
-    width: 460px; max-width: 100vw;
+    width: 560px; max-width: 100vw;
     height: 100vh;
-    z-index: 100;
-    background: rgba(5, 9, 20, 0.97);
-    backdrop-filter: blur(32px) saturate(1.4);
-    -webkit-backdrop-filter: blur(32px) saturate(1.4);
+    z-index: 130;
+    background: rgba(4, 8, 20, 0.97);
+    backdrop-filter: blur(36px) saturate(1.5);
+    -webkit-backdrop-filter: blur(36px) saturate(1.5);
     border-left: 1px solid rgba(255,255,255,0.06);
     transform: translateX(100%);
-    transition: transform 0.48s var(--smooth);
+    transition: transform 0.50s var(--smooth);
     display: flex; flex-direction: column;
   }
   .detail-panel.open { transform: translateX(0); }
 
   .panel-accent {
-    height: 3px; flex-shrink: 0; width: 100%;
+    height: 4px; flex-shrink: 0; width: 100%;
     transition: background 0.3s ease;
   }
 
   .panel-close {
     position: absolute;
-    top: 14px; right: 18px;
+    top: 16px; right: 20px;
     background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.09);
+    border: 1px solid rgba(255,255,255,0.10);
     border-radius: 50%;
-    width: 34px; height: 34px;
+    width: 36px; height: 36px;
     display: flex; align-items: center; justify-content: center;
     color: var(--ice-mid); font-size: 0.80rem;
     cursor: pointer; z-index: 10;
     transition: background 0.2s, border-color 0.2s, color 0.2s;
   }
   .panel-close:hover {
-    background: rgba(255,255,255,0.09);
-    border-color: rgba(255,255,255,0.22);
+    background: rgba(255,255,255,0.10);
+    border-color: rgba(255,255,255,0.25);
     color: var(--ice);
   }
 
   .panel-scroll {
     flex: 1; overflow-y: auto; overflow-x: hidden;
-    padding: 1.8rem 2rem 5rem;
+    padding: 2rem 2.2rem 5rem;
     scrollbar-width: thin;
     scrollbar-color: rgba(255,255,255,0.09) transparent;
   }
@@ -516,7 +574,7 @@
   }
   .panel-title {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 2.4rem; font-weight: 400; line-height: 1.08;
+    font-size: 2.6rem; font-weight: 400; line-height: 1.08;
     color: var(--ice); margin-bottom: 0.6rem;
   }
   .panel-tagline {
@@ -622,18 +680,12 @@
      SCRIM
   ═══════════════════════════════════════════════════════ */
   .panel-scrim {
-    position: fixed; inset: 0; z-index: 99;
-    background: rgba(4,7,18,0.60);
+    position: fixed; inset: 0; z-index: 120;
+    background: rgba(3,6,14,0.65);
     opacity: 0; pointer-events: none;
     transition: opacity 0.42s ease;
   }
   .panel-scrim.active { opacity: 1; pointer-events: all; }
-
-  /* ═══════════════════════════════════════════════════════
-     DIMMED PLANET STATE
-  ═══════════════════════════════════════════════════════ */
-  .planet-wrap { transition: opacity 0.40s ease, filter 0.40s ease; }
-  .planet-wrap.dimmed { opacity: 0.18; filter: saturate(0.15) brightness(0.6); }
 
   /* ═══════════════════════════════════════════════════════
      FOOTER
@@ -696,36 +748,9 @@
     }
     .sys-mobile-menu a:hover { color: var(--ice); }
 
-    .space-stage {
-      height: auto; min-height: 100vh; overflow: visible;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      column-gap: 1rem; row-gap: 2.8rem;
-      align-items: start; justify-items: center;
-      padding: 108px 1.5rem 5rem;
-    }
-    .scene-header {
-      grid-column: 1 / -1;
-      position: static; transform: none;
-      text-align: center; margin-bottom: 0.5rem;
-    }
-    .scene-h1 { font-size: 2.8rem; }
-    .orbit-ring, .stage-hint { display: none; }
+    .scene-h1 { font-size: 2.8rem; letter-spacing: -1px; }
 
-    .planet-wrap {
-      position: static !important;
-      transform: none !important;
-      animation: none !important;
-      display: flex; flex-direction: column; align-items: center;
-    }
-    #pw-focus-shield          { --ps: 100px; }
-    #pw-psychometrics-battery { --ps: 88px; }
-    #pw-curated-feed          { --ps: 78px; }
-    #pw-bookmark-mirror       { --ps: 66px; }
-
-    .planet-label {
-      opacity: 1; transform: translateX(-50%) translateY(0);
-    }
+    .stage-hint { display: none; }
 
     .detail-panel {
       top: auto; bottom: 0; right: 0; left: 0;
@@ -739,10 +764,16 @@
     .sys-floor { padding: 2.5rem 1.5rem 2rem; }
     .floor-inner { gap: 2rem; }
     .floor-nav { gap: 0.45rem 1.6rem; }
+
+    /* On mobile: static planet grid layout */
+    .space-stage-anchor { height: auto; min-height: 100vh; }
+    #orbitSvg { display: none; }
+    .sun-wrap  { display: none; }
+    .stage-fade-top { height: 140px; }
+    .scene-title-area { padding-top: 20px; }
   }
 
   @media (max-width: 480px) {
-    .space-stage { padding: 100px 1rem 4rem; }
     .panel-scroll { padding: 1.2rem 1.4rem 4rem; }
     .panel-title  { font-size: 2rem; }
   }
@@ -751,8 +782,8 @@
      REDUCED MOTION
   ═══════════════════════════════════════════════════════ */
   @media (prefers-reduced-motion: reduce) {
-    .planet-wrap { animation: none !important; }
     .planet-surface { animation: none !important; }
+    .sun-core, .sun-c1, .sun-c2 { animation: none !important; }
     #starfield { display: none; }
     .detail-panel, .panel-scrim { transition: none; }
   }
@@ -760,13 +791,31 @@
 </head>
 <body>
 
-<!-- Deep space nebula CSS layer -->
-<div class="space-nebula" aria-hidden="true"></div>
+<!-- 1. Deep space nebula CSS layer -->
+<div class="space-bg" aria-hidden="true"></div>
 
-<!-- Starfield canvas -->
+<!-- 2. Starfield canvas -->
 <canvas id="starfield" aria-hidden="true"></canvas>
 
-<!-- ── Navigation ──────────────────────────────────────────────── -->
+<!-- 3. Orbit SVG -->
+<svg id="orbitSvg" aria-hidden="true">
+  <ellipse class="orbit-path" data-orbit="0"/>
+  <ellipse class="orbit-path" data-orbit="1"/>
+  <ellipse class="orbit-path" data-orbit="2"/>
+  <ellipse class="orbit-path" data-orbit="3"/>
+</svg>
+
+<!-- 4. Stage fade top gradient -->
+<div class="stage-fade-top" aria-hidden="true"></div>
+
+<!-- 5. Scene title -->
+<header class="scene-title-area" aria-hidden="true">
+  <span class="scene-eyebrow">SS / Projects</span>
+  <h1 class="scene-h1">The Work</h1>
+  <p class="scene-sub">Select a world to explore.</p>
+</header>
+
+<!-- 6. Navigation -->
 <nav class="sys-nav" id="siteNav">
   <div class="sys-nav-inner">
     <a href="index.html" class="sys-brand">SeldomSought</a>
@@ -794,100 +843,112 @@
   </div>
 </nav>
 
-<!-- ── Space Stage ──────────────────────────────────────────────── -->
-<main class="space-stage" id="spaceStage">
+<!-- 7. Sun -->
+<div class="sun-wrap" id="sunWrap" aria-hidden="true">
+  <div class="sun-c3"></div>
+  <div class="sun-c2"></div>
+  <div class="sun-c1"></div>
+  <div class="sun-core"></div>
+</div>
 
-  <!-- Scene header -->
-  <div class="scene-header" aria-hidden="true">
-    <span class="scene-eyebrow">SS / PROJECTS</span>
-    <h1 class="scene-h1">The Work</h1>
-    <p class="scene-sub">Select a world to explore.</p>
-  </div>
+<!-- Space stage height anchor (pushes footer below fold) -->
+<div class="space-stage-anchor" id="spaceStage" aria-hidden="true"></div>
 
-  <!-- Orbit decoration rings -->
-  <div class="orbit-ring" style="left:20%;top:52%;width:560px;height:220px;" aria-hidden="true"></div>
-  <div class="orbit-ring" style="left:62%;top:38%;width:420px;height:210px;" aria-hidden="true"></div>
-  <div class="orbit-ring" style="left:76%;top:62%;width:280px;height:130px;" aria-hidden="true"></div>
+<!-- 8. Orbit points container -->
+<div id="orbitPoints" aria-hidden="true">
 
-  <!-- ── Focus Shield ── -->
-  <div class="planet-wrap"
-       id="pw-focus-shield"
-       data-project="focus-shield"
-       data-glow="#e8822a"
-       tabindex="0" role="button"
-       aria-label="Focus Shield — open project details">
-    <div class="planet-atmosphere" aria-hidden="true"></div>
-    <div class="fs-ring planet-ring planet-ring-back" aria-hidden="true"></div>
-    <div class="planet-sphere" aria-hidden="true">
-      <div class="planet-surface fs-surf"></div>
-      <div class="planet-lighting"></div>
-    </div>
-    <div class="fs-ring planet-ring planet-ring-front" aria-hidden="true"></div>
-    <div class="planet-label" aria-hidden="true">
-      <span class="label-name">Focus Shield</span>
-      <span class="label-tag">Chrome Extension</span>
-    </div>
-  </div>
-
-  <!-- ── Psychometric Battery ── -->
-  <div class="planet-wrap"
-       id="pw-psychometrics-battery"
-       data-project="psychometrics-battery"
-       data-glow="#8c3cdc"
-       tabindex="0" role="button"
-       aria-label="Psychometric Battery — open project details">
-    <div class="planet-atmosphere" aria-hidden="true"></div>
-    <div class="planet-sphere" aria-hidden="true">
-      <div class="planet-surface pm-surf"></div>
-      <div class="planet-lighting"></div>
-    </div>
-    <div class="planet-label" aria-hidden="true">
-      <span class="label-name">Psychometric Battery</span>
-      <span class="label-tag">Web App · Psychometrics</span>
+  <!-- Focus Shield -->
+  <div class="planet-orbit-point" id="op-focus-shield"
+       style="--ps:130px; --rot:20s; --g0:rgba(232,130,42,0.85); --g1:rgba(232,130,42,0.35); --g2:rgba(232,130,42,0.10);">
+    <div class="planet-wrap"
+         data-project="focus-shield"
+         data-glow="#e8822a"
+         tabindex="0" role="button"
+         aria-label="Focus Shield — open project details">
+      <div class="planet-atmosphere"></div>
+      <div class="fs-ring planet-ring planet-ring-back"></div>
+      <div class="planet-sphere">
+        <div class="planet-surface fs-surf"></div>
+        <div class="planet-lighting"></div>
+        <div class="planet-rim fs-rim"></div>
+      </div>
+      <div class="fs-ring planet-ring planet-ring-front"></div>
+      <div class="planet-label">
+        <span class="label-name">Focus Shield</span>
+        <span class="label-tag">Chrome Extension</span>
+      </div>
     </div>
   </div>
 
-  <!-- ── Curated Feed ── -->
-  <div class="planet-wrap"
-       id="pw-curated-feed"
-       data-project="curated-feed"
-       data-glow="#12bede"
-       tabindex="0" role="button"
-       aria-label="Curated Feed — open project details">
-    <div class="planet-atmosphere" aria-hidden="true"></div>
-    <div class="planet-sphere" aria-hidden="true">
-      <div class="planet-surface cf-surf"></div>
-      <div class="planet-lighting"></div>
-    </div>
-    <div class="planet-label" aria-hidden="true">
-      <span class="label-name">Curated Feed</span>
-      <span class="label-tag">Photography · Instagram</span>
-    </div>
-  </div>
-
-  <!-- ── Bookmark Mirror ── -->
-  <div class="planet-wrap"
-       id="pw-bookmark-mirror"
-       data-project="bookmark-mirror"
-       data-glow="#60a8de"
-       tabindex="0" role="button"
-       aria-label="Bookmark Mirror — open project details">
-    <div class="planet-atmosphere" aria-hidden="true"></div>
-    <div class="planet-sphere" aria-hidden="true">
-      <div class="planet-surface bm-surf"></div>
-      <div class="planet-lighting"></div>
-    </div>
-    <div class="planet-label" aria-hidden="true">
-      <span class="label-name">Bookmark Mirror</span>
-      <span class="label-tag">Chrome Extension · Psychometrics</span>
+  <!-- Psychometric Battery -->
+  <div class="planet-orbit-point" id="op-psychometrics-battery"
+       style="--ps:112px; --rot:26s; --g0:rgba(140,60,220,0.88); --g1:rgba(140,60,220,0.32); --g2:rgba(140,60,220,0.09);">
+    <div class="planet-wrap"
+         data-project="psychometrics-battery"
+         data-glow="#8c3cdc"
+         tabindex="0" role="button"
+         aria-label="Psychometric Battery — open project details">
+      <div class="planet-atmosphere"></div>
+      <div class="planet-sphere">
+        <div class="planet-surface pm-surf"></div>
+        <div class="planet-lighting"></div>
+        <div class="planet-rim pm-rim"></div>
+      </div>
+      <div class="planet-label">
+        <span class="label-name">Psychometric Battery</span>
+        <span class="label-tag">Web App · Psychometrics</span>
+      </div>
     </div>
   </div>
 
-  <p class="stage-hint" aria-hidden="true">Click any world to explore the project</p>
+  <!-- Curated Feed -->
+  <div class="planet-orbit-point" id="op-curated-feed"
+       style="--ps:96px; --rot:22s; --g0:rgba(18,190,222,0.85); --g1:rgba(18,190,222,0.30); --g2:rgba(18,190,222,0.09);">
+    <div class="planet-wrap"
+         data-project="curated-feed"
+         data-glow="#12bede"
+         tabindex="0" role="button"
+         aria-label="Curated Feed — open project details">
+      <div class="planet-atmosphere"></div>
+      <div class="planet-sphere">
+        <div class="planet-surface cf-surf"></div>
+        <div class="planet-lighting"></div>
+        <div class="planet-rim cf-rim"></div>
+      </div>
+      <div class="planet-label">
+        <span class="label-name">Curated Feed</span>
+        <span class="label-tag">Photography · Instagram</span>
+      </div>
+    </div>
+  </div>
 
-</main>
+  <!-- Bookmark Mirror -->
+  <div class="planet-orbit-point" id="op-bookmark-mirror"
+       style="--ps:80px; --rot:32s; --g0:rgba(96,168,222,0.80); --g1:rgba(96,168,222,0.28); --g2:rgba(96,168,222,0.08);">
+    <div class="planet-wrap"
+         data-project="bookmark-mirror"
+         data-glow="#60a8de"
+         tabindex="0" role="button"
+         aria-label="Bookmark Mirror — open project details">
+      <div class="planet-atmosphere"></div>
+      <div class="planet-sphere">
+        <div class="planet-surface bm-surf"></div>
+        <div class="planet-lighting"></div>
+        <div class="planet-rim bm-rim"></div>
+      </div>
+      <div class="planet-label">
+        <span class="label-name">Bookmark Mirror</span>
+        <span class="label-tag">Chrome Extension · Psychometrics</span>
+      </div>
+    </div>
+  </div>
 
-<!-- ── Detail Panel ──────────────────────────────────────────────── -->
+</div>
+
+<!-- 9. Stage hint -->
+<p class="stage-hint" aria-hidden="true">Click any world to explore the project</p>
+
+<!-- 10. Detail Panel -->
 <aside class="detail-panel"
        id="detailPanel"
        aria-hidden="true"
@@ -900,9 +961,11 @@
     <div id="panelBody"></div>
   </div>
 </aside>
+
+<!-- 11. Scrim -->
 <div class="panel-scrim" id="panelScrim" aria-hidden="true"></div>
 
-<!-- ── Footer ──────────────────────────────────────────────────────── -->
+<!-- 12. Footer -->
 <footer class="sys-floor">
   <div class="floor-inner">
     <div class="floor-brand">
@@ -921,26 +984,63 @@
   </div>
 </footer>
 
+<!-- 13. Projects data -->
 <script src="projects-data.js"></script>
+
+<!-- 14. Main script -->
 <script>
 (function () {
 'use strict';
 
 /* ═══════════════════════════════════════════════════════
-   STARFIELD — hi-DPI canvas, 3 depth layers, mouse parallax
+   ORBIT CONSTANTS
+═══════════════════════════════════════════════════════ */
+var ORBITS = [
+  { id: 'focus-shield',          rxF: 0.150, ryF: 0.100, period: 12, phase: 0.30 },
+  { id: 'psychometrics-battery', rxF: 0.228, ryF: 0.152, period: 20, phase: 2.10 },
+  { id: 'curated-feed',          rxF: 0.305, ryF: 0.205, period: 30, phase: 3.80 },
+  { id: 'bookmark-mirror',       rxF: 0.375, ryF: 0.255, period: 42, phase: 5.60 },
+];
+
+var PANEL_SHIFT = 140;
+var isMobile = false;
+
+/* ═══════════════════════════════════════════════════════
+   VIEWPORT & CENTER
+═══════════════════════════════════════════════════════ */
+var W, H, cxTarget, cyTarget, cxCurrent, cyCurrent;
+
+function setDimensions() {
+  W = window.innerWidth;
+  H = window.innerHeight;
+  isMobile = W < 768;
+  cyTarget = H * 0.60;
+  if (!panelOpen) {
+    cxTarget = W / 2;
+  } else {
+    cxTarget = W / 2 - (isMobile ? PANEL_SHIFT * 0.5 : PANEL_SHIFT);
+  }
+  if (cxCurrent === undefined) {
+    cxCurrent = cxTarget;
+    cyCurrent = cyTarget;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════
+   STARFIELD — hi-DPI canvas, 3 layers, mouse parallax
 ═══════════════════════════════════════════════════════ */
 var canvas = document.getElementById('starfield');
 var ctx    = canvas.getContext('2d');
 var dpr    = Math.min(window.devicePixelRatio || 1, 2);
-var W = 0, H = 0;
+var CW = 0, CH = 0;
 var mouse  = { x: 0, y: 0, tx: 0, ty: 0 };
 var stars  = [];
-var t = 0, running = false;
+var starT  = 0;
+var starRunning = false;
 
-var LAYERS = [
-  /* count  minR  maxR  spd   opLo  opHi  par    color */
-  { n: 240, r0: 0.28, r1: 0.72, s: 0.48, oLo: 0.15, oHi: 0.50, p: 0.008, warm: false },
-  { n: 100, r0: 0.72, r1: 1.38, s: 0.85, oLo: 0.30, oHi: 0.72, p: 0.022, warm: true  },
+var STAR_LAYERS = [
+  { n: 250, r0: 0.28, r1: 0.72, s: 0.48, oLo: 0.15, oHi: 0.50, p: 0.008, warm: false },
+  { n:  90, r0: 0.72, r1: 1.38, s: 0.85, oLo: 0.30, oHi: 0.72, p: 0.022, warm: true  },
   { n:  30, r0: 1.38, r1: 2.30, s: 1.40, oLo: 0.50, oHi: 1.00, p: 0.042, warm: false },
 ];
 
@@ -948,17 +1048,18 @@ function rand(lo, hi) { return lo + Math.random() * (hi - lo); }
 
 function initStars() {
   stars = [];
-  LAYERS.forEach(function (l) {
+  STAR_LAYERS.forEach(function (l) {
     for (var i = 0; i < l.n; i++) {
       stars.push({
-        x:     rand(0, W), y: rand(0, H),
-        r:     rand(l.r0, l.r1),
+        x:      rand(0, CW),
+        y:      rand(0, CH),
+        r:      rand(l.r0, l.r1),
         baseOp: rand(l.oLo, l.oHi),
-        speed: l.s,
-        phase: rand(0, Math.PI * 2),
-        par:   l.par,
-        warm:  l.warm && Math.random() > 0.55, /* occasionally warm-tinted */
-        blue:  !l.warm && Math.random() > 0.75, /* occasionally blue-tinted */
+        speed:  l.s,
+        phase:  rand(0, Math.PI * 2),
+        par:    l.p,
+        warm:   l.warm && Math.random() > 0.55,
+        blue:   !l.warm && Math.random() > 0.75,
       });
     }
   });
@@ -969,53 +1070,113 @@ document.addEventListener('mousemove', function (e) {
   mouse.ty = (e.clientY / H - 0.5) * 2;
 });
 
-document.addEventListener('visibilitychange', function () {
-  if (!document.hidden && !running) { running = true; requestAnimationFrame(draw); }
-});
-
-function draw() {
-  if (document.hidden) { running = false; return; }
-  t += 0.016;
+function drawStars() {
+  if (document.hidden) { starRunning = false; return; }
+  starT += 0.016;
   mouse.x += (mouse.tx - mouse.x) * 0.055;
   mouse.y += (mouse.ty - mouse.y) * 0.055;
 
-  ctx.clearRect(0, 0, W * dpr, H * dpr);
+  ctx.clearRect(0, 0, CW * dpr, CH * dpr);
 
   for (var i = 0; i < stars.length; i++) {
     var s  = stars[i];
-    var px = ((s.x + mouse.x * s.par * W * 0.5) % W + W) % W;
-    var py = ((s.y + mouse.y * s.par * H * 0.5) % H + H) % H;
-    var tw = 0.55 + 0.45 * Math.sin(t * s.speed + s.phase);
+    var px = ((s.x + mouse.x * s.par * CW * 0.5) % CW + CW) % CW;
+    var py = ((s.y + mouse.y * s.par * CH * 0.5) % CH + CH) % CH;
+    var tw = 0.55 + 0.45 * Math.sin(starT * s.speed + s.phase);
     var op = s.baseOp * (0.48 + 0.52 * tw);
-
     var r = 255, g = 255, b = 255;
-    if (s.warm)  { r = 255; g = 230; b = 192; }
-    if (s.blue)  { r = 190; g = 215; b = 255; }
-
+    if (s.warm) { r = 255; g = 228; b = 190; }
+    if (s.blue) { r = 190; g = 215; b = 255; }
     ctx.beginPath();
     ctx.arc(px * dpr, py * dpr, s.r * dpr, 0, 6.2832);
     ctx.fillStyle = 'rgba(' + r + ',' + g + ',' + b + ',' + op.toFixed(3) + ')';
     ctx.fill();
   }
-  requestAnimationFrame(draw);
+  requestAnimationFrame(drawStars);
 }
 
-function resize() {
-  W = window.innerWidth;
-  H = window.innerHeight;
-  canvas.width  = W * dpr;
-  canvas.height = H * dpr;
-  canvas.style.width  = W + 'px';
-  canvas.style.height = H + 'px';
+document.addEventListener('visibilitychange', function () {
+  if (!document.hidden && !starRunning) {
+    starRunning = true;
+    requestAnimationFrame(drawStars);
+  }
+});
+
+function resizeCanvas() {
+  CW = window.innerWidth;
+  CH = window.innerHeight;
+  canvas.width  = CW * dpr;
+  canvas.height = CH * dpr;
+  canvas.style.width  = CW + 'px';
+  canvas.style.height = CH + 'px';
   initStars();
 }
-window.addEventListener('resize', resize);
-resize();
-running = true;
-requestAnimationFrame(draw);
 
 /* ═══════════════════════════════════════════════════════
-   PANEL INTERACTIONS
+   ORBITAL ANIMATION
+═══════════════════════════════════════════════════════ */
+var sunWrap   = document.getElementById('sunWrap');
+var orbitEls  = Array.from(document.querySelectorAll('#orbitSvg .orbit-path'));
+var startTime = null;
+var rafId     = null;
+
+var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+function animateFrame(ts) {
+  if (document.hidden) { rafId = null; return; }
+  if (!startTime) startTime = ts;
+  var elapsed = (ts - startTime) * 0.001;
+
+  /* lerp center */
+  cxCurrent += (cxTarget - cxCurrent) * 0.07;
+  cyCurrent += (cyTarget - cyCurrent) * 0.07;
+
+  /* move sun */
+  sunWrap.style.left = cxCurrent + 'px';
+  sunWrap.style.top  = cyCurrent + 'px';
+
+  /* update orbit SVG ellipses */
+  var mobileScale = isMobile ? 0.65 : 1.0;
+  orbitEls.forEach(function (el, i) {
+    var od = ORBITS[i];
+    el.setAttribute('cx', cxCurrent);
+    el.setAttribute('cy', cyCurrent);
+    el.setAttribute('rx', W * od.rxF * mobileScale);
+    el.setAttribute('ry', H * od.ryF * mobileScale);
+  });
+
+  /* position planets */
+  ORBITS.forEach(function (od) {
+    var el = document.getElementById('op-' + od.id);
+    if (!el) return;
+    var angle  = (elapsed / od.period) * Math.PI * 2 + od.phase;
+    var px     = cxCurrent + W * od.rxF * mobileScale * Math.cos(angle);
+    var py     = cyCurrent + H * od.ryF * mobileScale * Math.sin(angle);
+    var depth  = Math.sin(angle);
+    var depthN = (depth + 1) * 0.5;
+    var scale  = 0.76 + 0.24 * depthN;
+    var z      = 5 + Math.round(depthN * 47);
+    var opacity = 0.62 + 0.38 * depthN;
+
+    el.style.left    = px + 'px';
+    el.style.top     = py + 'px';
+    el.style.zIndex  = z;
+    el.style.setProperty('--d', scale);
+    el.style.opacity = opacity;
+  });
+
+  rafId = requestAnimationFrame(animateFrame);
+}
+
+document.addEventListener('visibilitychange', function () {
+  if (!document.hidden && !rafId && !prefersReducedMotion) {
+    startTime = null;
+    rafId = requestAnimationFrame(animateFrame);
+  }
+});
+
+/* ═══════════════════════════════════════════════════════
+   PANEL OPEN / CLOSE
 ═══════════════════════════════════════════════════════ */
 var panel       = document.getElementById('detailPanel');
 var panelBody   = document.getElementById('panelBody');
@@ -1023,9 +1184,11 @@ var panelAccent = document.getElementById('panelAccent');
 var panelScroll = document.getElementById('panelScroll');
 var panelClose  = document.getElementById('panelClose');
 var scrim       = document.getElementById('panelScrim');
-var planets     = document.querySelectorAll('.planet-wrap');
+var orbitPoints = document.querySelectorAll('.planet-orbit-point');
 
-var activeProject = null, prevFocus = null;
+var activeProject = null;
+var prevFocus     = null;
+var panelOpen     = false;
 
 function openPanel(id) {
   var data = null;
@@ -1046,9 +1209,15 @@ function openPanel(id) {
   scrim.classList.add('active');
   scrim.removeAttribute('aria-hidden');
 
-  planets.forEach(function (p) {
-    p.classList.toggle('dimmed', p.getAttribute('data-project') !== id);
+  orbitPoints.forEach(function (pt) {
+    var pw = pt.querySelector('.planet-wrap');
+    if (pw && pw.getAttribute('data-project') !== id) {
+      pt.classList.add('dimmed');
+    }
   });
+
+  panelOpen  = true;
+  cxTarget   = W / 2 - (isMobile ? PANEL_SHIFT * 0.5 : PANEL_SHIFT);
 
   panelClose.focus();
   activeProject = id;
@@ -1061,19 +1230,31 @@ function closePanel() {
   panel.setAttribute('aria-hidden', 'true');
   scrim.classList.remove('active');
   scrim.setAttribute('aria-hidden', 'true');
-  planets.forEach(function (p) { p.classList.remove('dimmed'); });
+
+  orbitPoints.forEach(function (pt) { pt.classList.remove('dimmed'); });
+
+  panelOpen     = false;
+  cxTarget      = W / 2;
   activeProject = null;
+
   if (prevFocus) { prevFocus.focus(); prevFocus = null; }
   if (window.location.hash && history.pushState) {
     history.pushState(null, '', window.location.pathname);
   }
 }
 
-planets.forEach(function (p) {
-  p.addEventListener('click', function () { prevFocus = p; openPanel(p.getAttribute('data-project')); });
+/* Planet click / keyboard */
+var planetWraps = document.querySelectorAll('.planet-wrap');
+planetWraps.forEach(function (p) {
+  p.addEventListener('click', function () {
+    prevFocus = p;
+    openPanel(p.getAttribute('data-project'));
+  });
   p.addEventListener('keydown', function (e) {
     if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault(); prevFocus = p; openPanel(p.getAttribute('data-project'));
+      e.preventDefault();
+      prevFocus = p;
+      openPanel(p.getAttribute('data-project'));
     }
   });
 });
@@ -1085,20 +1266,24 @@ document.addEventListener('keydown', function (e) {
 });
 
 /* Hash routing on load */
-if (window.location.hash) {
-  var hid = window.location.hash.slice(1);
-  for (var hi = 0; hi < PROJECTS.length; hi++) {
-    if (PROJECTS[hi].id === hid) { openPanel(hid); break; }
+(function () {
+  if (window.location.hash) {
+    var hid = window.location.hash.slice(1);
+    for (var hi = 0; hi < PROJECTS.length; hi++) {
+      if (PROJECTS[hi].id === hid) { openPanel(hid); break; }
+    }
   }
-}
+})();
 
 /* ═══════════════════════════════════════════════════════
    PANEL HTML BUILDER
 ═══════════════════════════════════════════════════════ */
 function esc(s) {
   return String(s || '')
-    .replace(/&/g,'&amp;').replace(/</g,'&lt;')
-    .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
 }
 
 function buildPanel(d) {
@@ -1132,7 +1317,9 @@ function buildPanel(d) {
   });
 
   var feats = '';
-  (d.features || []).forEach(function (f) { feats += '<li>' + esc(f) + '</li>'; });
+  (d.features || []).forEach(function (f) {
+    feats += '<li>' + esc(f) + '</li>';
+  });
 
   return (
     '<p class="panel-eyebrow">Project</p>' +
@@ -1176,6 +1363,52 @@ if (menuBtn && mobileMenu) {
       mobileMenu.classList.remove('active');
       menuBtn.setAttribute('aria-expanded', 'false');
     }
+  });
+}
+
+/* ═══════════════════════════════════════════════════════
+   RESIZE HANDLER
+═══════════════════════════════════════════════════════ */
+window.addEventListener('resize', function () {
+  resizeCanvas();
+  setDimensions();
+});
+
+/* ═══════════════════════════════════════════════════════
+   INIT
+═══════════════════════════════════════════════════════ */
+resizeCanvas();
+setDimensions();
+starRunning = true;
+requestAnimationFrame(drawStars);
+
+if (!prefersReducedMotion) {
+  rafId = requestAnimationFrame(animateFrame);
+} else {
+  /* Reduced motion: place planets statically at their initial phase angles */
+  ORBITS.forEach(function (od) {
+    var el = document.getElementById('op-' + od.id);
+    if (!el) return;
+    var angle   = od.phase;
+    var mS      = isMobile ? 0.65 : 1.0;
+    var px      = cxCurrent + W * od.rxF * mS * Math.cos(angle);
+    var py      = cyCurrent + H * od.ryF * mS * Math.sin(angle);
+    el.style.left    = px + 'px';
+    el.style.top     = py + 'px';
+    el.style.zIndex  = 30;
+    el.style.opacity = 1;
+    el.style.setProperty('--d', '1');
+  });
+  sunWrap.style.left = cxCurrent + 'px';
+  sunWrap.style.top  = cyCurrent + 'px';
+  /* update orbit SVG once */
+  orbitEls.forEach(function (el, i) {
+    var od = ORBITS[i];
+    var mS = isMobile ? 0.65 : 1.0;
+    el.setAttribute('cx', cxCurrent);
+    el.setAttribute('cy', cyCurrent);
+    el.setAttribute('rx', W * od.rxF * mS);
+    el.setAttribute('ry', H * od.ryF * mS);
   });
 }
 
