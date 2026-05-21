@@ -484,11 +484,21 @@ body {
   margin-bottom: 0.6rem;
 }
 
-/* ── card description ────────────────────────────────────── */
+/* ── card tagline + description ──────────────────────────── */
+.pcard__tagline {
+  font-family: var(--px-mono);
+  font-size: 0.68rem;
+  color: rgba(107, 200, 255, 0.55);
+  font-style: italic;
+  line-height: 1.5;
+  margin-bottom: 0.45rem;
+  letter-spacing: 0.2px;
+}
+
 .pcard__desc {
   font-family: var(--px-mono);
-  font-size: 0.73rem;
-  line-height: 1.72;
+  font-size: 0.70rem;
+  line-height: 1.75;
   color: var(--px-text-dim);
   margin-bottom: 0.75rem;
 }
