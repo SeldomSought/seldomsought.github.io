@@ -2,11 +2,15 @@
 <html lang="en">
 <head>
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="stylesheet" href="assets/css/global.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Philosophy - SeldomSought</title>
     <meta name="description" content="SeldomSought's philosophy: brand image, marketing strategy, and business consulting built on clear foundations and full-service execution.">
     <meta name="theme-color" content="#000033"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <style>
         /* =========================================
            RESET
@@ -171,56 +175,6 @@
             50%       { margin-top: -8px; }
         }
 
-        /* =========================================
-           NAVIGATION
-        ========================================= */
-        body.retro-geocities nav {
-            position: fixed; top: 0; width: 100%;
-            background: linear-gradient(180deg, #000066 0%, #000044 100%);
-            border-bottom: 3px solid var(--gc-accent-cyan);
-            box-shadow: 0 3px 0 var(--gc-accent-mag), 0 5px 0 var(--gc-accent-lime);
-            z-index: 200;
-        }
-        body.retro-geocities .nav-container {
-            max-width: 1200px; margin: 0 auto;
-            padding: 1rem 2.5rem;
-            display: flex; justify-content: space-between; align-items: center;
-        }
-        body.retro-geocities .logo {
-            font-family: Arial, Helvetica, sans-serif;
-            font-size: 1.4rem; line-height: 1; font-weight: 900;
-            color: var(--gc-accent-yellow); text-decoration: none;
-            letter-spacing: 2px; text-transform: uppercase;
-            text-shadow: 2px 2px 0 var(--gc-accent-mag), 0 0 12px rgba(255,255,0,0.5);
-        }
-        body.retro-geocities .nav-links {
-            display: flex; gap: 0; list-style: none;
-        }
-        body.retro-geocities .nav-links a {
-            display: block; text-decoration: underline;
-            color: var(--gc-link);
-            font-family: Arial, Helvetica, sans-serif;
-            font-size: var(--fs-nav); letter-spacing: 0.5px;
-            text-transform: uppercase; padding: 0.3rem 0.75rem;
-            border-right: 1px solid rgba(0,255,255,0.2);
-            transition: background 0.1s, color 0.1s;
-        }
-        body.retro-geocities .nav-links a:hover {
-            background: #000099; color: var(--gc-accent-yellow);
-        }
-        body.retro-geocities .nav-links a[aria-current="page"] {
-            color: var(--gc-accent-yellow); background: rgba(0,0,80,0.6);
-        }
-        body.retro-geocities .nav-links a:focus-visible {
-            outline: 2px solid var(--gc-accent-yellow); outline-offset: 2px;
-        }
-        body.retro-geocities .menu-toggle {
-            display: none; background: #000088;
-            border: 2px outset #8888ff;
-            font-size: 1.3rem; cursor: pointer;
-            color: var(--gc-accent-yellow); padding: 0.15rem 0.5rem;
-        }
-        body.retro-geocities .mobile-menu { display: none; }
 
         /* =========================================
            RAINBOW / GLITTER DIVIDERS
@@ -252,7 +206,10 @@
         ========================================= */
         .gc-banner {
             position: relative; z-index: 10;
-            margin-top: 50px; /* nav height */
+            margin-top: var(--site-header-height-mobile);
+        }
+        @media (min-width: 861px) {
+            .gc-banner { margin-top: var(--site-header-height); }
         }
         /* Marquee strip */
         .gc-marquee-strip {
@@ -310,17 +267,8 @@
             padding: 4px 14px; letter-spacing: 3px;
         }
 
-        @media (min-width: 768px) and (max-width: 1023px) {
-            html { font-size: 17px; }
-        }
-
         /* DESKTOP SCALING ≥1024px — matches sitewide standard */
         @media (min-width: 1024px) {
-            html { font-size: 18px; }
-            /* ── Nav ── */
-            body.retro-geocities .nav-container { padding: 1rem 2.5rem; max-width: none; }
-            body.retro-geocities .logo          { font-size: 1.4rem; }
-            body.retro-geocities .nav-links a   { font-size: 0.80rem; padding: 0.65rem 1.3rem; }
             /* ── Main content readability ── */
             .retro-window-body                  { font-size: clamp(1.1rem, 1.65vw, 1.75rem); }
             .retro-window.read-first .retro-window-body { font-size: 0.92rem; } /* intentionally small */
@@ -627,25 +575,6 @@
             .gc-construction-widget { flex: 1 1 120px; }
             /* Hide fixed badges on mobile to avoid overlap */
             .gc-artifact { display: none; }
-            /* Mobile nav */
-            body.retro-geocities .menu-toggle { display: block; }
-            body.retro-geocities .nav-links   { display: none; }
-            body.retro-geocities .mobile-menu {
-                position: fixed; top: 48px; left: 0; right: 0;
-                background: rgba(0,0,60,0.97);
-                border-bottom: 2px solid var(--gc-accent-cyan);
-                padding: 0.6rem 1.2rem; z-index: 200;
-            }
-            body.retro-geocities .mobile-menu.active { display: block; }
-            body.retro-geocities .mobile-menu ul { list-style: none; }
-            body.retro-geocities .mobile-menu a {
-                display: block; padding: 0.5rem 0;
-                text-decoration: underline; color: var(--gc-link);
-                font-family: Arial, sans-serif; font-size: 0.8rem;
-                border-bottom: 1px solid rgba(0,255,255,0.2);
-            }
-            body.retro-geocities .mobile-menu a:hover   { color: var(--gc-link-hover); }
-            body.retro-geocities .mobile-menu a:visited { color: var(--gc-link-visited); }
             /* Footer */
             body.retro-geocities .footer-content {
                 grid-template-columns: 1fr; gap: 1.2rem;
@@ -677,32 +606,33 @@
     <div class="gc-artifact gc-artifact-spinner" aria-hidden="true">✦</div>
 
     <!-- Navigation -->
-    <nav aria-label="Main navigation">
-        <div class="nav-container">
-            <a href="index.html" class="logo">SeldomSought</a>
-            <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false">&#9776;</button>
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="philosophy.html" aria-current="page">Philosophy</a></li>
-                <li><a href="services.html">Services</a></li>
-                <li><a href="expertise.html">Expertise</a></li>
-                <li><a href="projects.html">Projects</a></li>
-                <li><a href="faq.html">FAQ</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </div>
-        <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="philosophy.html" aria-current="page">Philosophy</a></li>
-                <li><a href="services.html">Services</a></li>
-                <li><a href="expertise.html">Expertise</a></li>
-                <li><a href="projects.html">Projects</a></li>
-                <li><a href="faq.html">FAQ</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
+    <header class="site-header" id="siteHeader">
+      <div class="site-header__inner">
+        <a href="index.html" class="site-header__brand">SeldomSought</a>
+        <button class="site-header__toggle" id="siteMenuToggle"
+                aria-label="Toggle navigation" aria-expanded="false"
+                aria-controls="siteMobileMenu">☰</button>
+        <nav class="site-header__nav" aria-label="Primary navigation">
+          <a href="index.html">Home</a>
+          <a href="philosophy.html">Philosophy</a>
+          <a href="services.html">Services</a>
+          <a href="expertise.html">Expertise</a>
+          <a href="projects.html">Projects</a>
+          <a href="faq.html">FAQ</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+      </div>
+      <nav class="site-header__mobile" id="siteMobileMenu"
+           aria-label="Mobile navigation" aria-hidden="true">
+        <a href="index.html">Home</a>
+        <a href="philosophy.html">Philosophy</a>
+        <a href="services.html">Services</a>
+        <a href="expertise.html">Expertise</a>
+        <a href="projects.html">Projects</a>
+        <a href="faq.html">FAQ</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </header>
 
     <!-- Banner / Hero -->
     <header class="gc-banner">
@@ -1019,25 +949,8 @@
         }
         drawStars();
 
-        /* === Mobile menu === */
-        var toggle = document.getElementById('menuToggle');
-        var menu   = document.getElementById('mobileMenu');
-        toggle.addEventListener('click', function(e) {
-            e.stopPropagation();
-            var open = menu.classList.toggle('active');
-            toggle.setAttribute('aria-expanded', open);
-            menu.setAttribute('aria-hidden', !open);
-            toggle.innerHTML = open ? '&#10005;' : '&#9776;';
-        });
-        document.addEventListener('click', function(e) {
-            if (!e.target.closest('nav')) {
-                menu.classList.remove('active');
-                toggle.setAttribute('aria-expanded', 'false');
-                menu.setAttribute('aria-hidden', 'true');
-                toggle.innerHTML = '&#9776;';
-            }
-        });
     })();
     </script>
+    <script src="assets/js/nav.js"></script>
 </body>
 </html>

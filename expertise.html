@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="stylesheet" href="assets/css/global.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Areas of Expertise - SeldomSought</title>
@@ -57,49 +58,14 @@
             z-index: 1; pointer-events: none;
         }
 
-        /* Navigation */
-        nav {
-            position: fixed; top: 0; width: 100%;
-            background: rgba(10,8,5,0.92);
-            border-bottom: 1px solid rgba(212,175,55,0.15);
-            z-index: 200; backdrop-filter: blur(10px);
-        }
-        .nav-container {
-            max-width: 1200px; margin: 0 auto; padding: 1rem 2.5rem;
-            display: flex; justify-content: space-between; align-items: center;
-        }
-        .logo {
-            font-family: 'Cinzel', serif;
-            font-size: 1.4rem; line-height: 1; color: var(--gold); text-decoration: none;
-            text-shadow: 0 0 10px rgba(212,175,55,0.5), 0 0 20px rgba(212,175,55,0.3);
-            letter-spacing: 3px;
-        }
-        .nav-links { display: flex; gap: 2rem; list-style: none; }
-        .nav-links a {
-            font-family: 'Share Tech Mono', monospace;
-            text-decoration: none; color: var(--gold-dark);
-            font-size: var(--fs-nav); letter-spacing: 1px; text-transform: uppercase;
-            transition: all 0.3s; position: relative;
-        }
-        .nav-links a:hover { color: var(--gold); text-shadow: 0 0 8px rgba(212,175,55,0.6); }
-        .nav-links a::after {
-            content: ''; position: absolute; bottom: -4px; left: 0;
-            width: 0; height: 1px; background: var(--gold);
-            box-shadow: 0 0 5px var(--gold); transition: width 0.3s;
-        }
-        .nav-links a:hover::after { width: 100%; }
-        .menu-toggle {
-            display: none; background: none;
-            border: 1px solid var(--gold-dark);
-            font-size: 1.5rem; cursor: pointer; color: var(--gold);
-            padding: 0.2rem 0.5rem;
-        }
-        .mobile-menu { display: none; }
 
         /* Page Header */
         .page-header {
-            padding: 8rem 2rem 2rem; text-align: center;
+            padding: calc(var(--site-header-height-mobile) + 4rem) 2rem 2rem; text-align: center;
             position: relative; z-index: 10;
+        }
+        @media (min-width: 861px) {
+            .page-header { padding-top: calc(var(--site-header-height) + 4rem); }
         }
         .page-header h1 {
             font-family: 'Cinzel', serif;
@@ -206,25 +172,6 @@
 
         /* Mobile */
         @media (max-width: 768px) {
-            .menu-toggle { display: block; }
-            .nav-links { display: none; }
-            .mobile-menu {
-                position: fixed; top: 60px; left: 0; right: 0;
-                background: rgba(10,8,5,0.95);
-                border-bottom: 1px solid rgba(212,175,55,0.15);
-                padding: 1rem 2rem; backdrop-filter: blur(10px);
-                z-index: 200;
-            }
-            .mobile-menu.active { display: block; }
-            .mobile-menu ul { list-style: none; }
-            .mobile-menu a {
-                font-family: 'Share Tech Mono', monospace;
-                display: block; padding: 0.8rem 0; text-decoration: none;
-                color: var(--gold-dark);
-                border-bottom: 1px solid rgba(212,175,55,0.08);
-                letter-spacing: 1px; text-transform: uppercase; font-size: 0.85rem;
-            }
-            .mobile-menu a:hover { color: var(--gold); text-shadow: 0 0 8px rgba(212,175,55,0.4); }
             .page-header h1 { font-size: 2rem; letter-spacing: 3px; }
             .page-header .subtitle { font-size: 1rem; }
             .expertise-panels-container {
@@ -241,17 +188,7 @@
             .footer-content { grid-template-columns: 1fr; gap: 2rem; }
         }
 
-        @media (min-width: 768px) and (max-width: 1023px) {
-            html { font-size: 17px; }
-        }
-
         @media (min-width: 1024px) {
-            html { font-size: 18px; }
-            /* ── Nav ── */
-            .nav-container         { padding: 1rem 2.5rem; max-width: none; }
-            .logo                  { font-size: 1.4rem; }
-            .nav-links             { gap: 3.25rem; }
-            .nav-links a           { font-size: 0.80rem; }
             /* ── Page header ── */
             .page-header h1        { font-size: clamp(3.5rem, 7vw, 7.5rem); }
             .page-header .subtitle { font-size: clamp(1.3rem, 2vw, 2rem); }
@@ -271,32 +208,33 @@
     <canvas id="dragonCanvas"></canvas>
     <canvas id="decorCanvas"></canvas>
 
-    <nav>
-        <div class="nav-container">
-            <a href="index.html" class="logo">SeldomSought</a>
-            <button class="menu-toggle" id="menuToggle">&#9776;</button>
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="philosophy.html">Philosophy</a></li>
-                <li><a href="services.html">Services</a></li>
-                <li><a href="expertise.html">Expertise</a></li>
-                <li><a href="projects.html">Projects</a></li>
-                <li><a href="faq.html">FAQ</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </div>
-        <div class="mobile-menu" id="mobileMenu">
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="philosophy.html">Philosophy</a></li>
-                <li><a href="services.html">Services</a></li>
-                <li><a href="expertise.html">Expertise</a></li>
-                <li><a href="projects.html">Projects</a></li>
-                <li><a href="faq.html">FAQ</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
+    <header class="site-header" id="siteHeader">
+      <div class="site-header__inner">
+        <a href="index.html" class="site-header__brand">SeldomSought</a>
+        <button class="site-header__toggle" id="siteMenuToggle"
+                aria-label="Toggle navigation" aria-expanded="false"
+                aria-controls="siteMobileMenu">☰</button>
+        <nav class="site-header__nav" aria-label="Primary navigation">
+          <a href="index.html">Home</a>
+          <a href="philosophy.html">Philosophy</a>
+          <a href="services.html">Services</a>
+          <a href="expertise.html">Expertise</a>
+          <a href="projects.html">Projects</a>
+          <a href="faq.html">FAQ</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+      </div>
+      <nav class="site-header__mobile" id="siteMobileMenu"
+           aria-label="Mobile navigation" aria-hidden="true">
+        <a href="index.html">Home</a>
+        <a href="philosophy.html">Philosophy</a>
+        <a href="services.html">Services</a>
+        <a href="expertise.html">Expertise</a>
+        <a href="projects.html">Projects</a>
+        <a href="faq.html">FAQ</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </header>
 
     <div class="page-header">
         <h1>Areas of Expertise</h1>
@@ -870,22 +808,8 @@
             }, 200);
         });
 
-        // --- Mobile menu ---
-        const menuToggle = document.getElementById('menuToggle');
-        const mobileMenu = document.getElementById('mobileMenu');
-        menuToggle.addEventListener('click', function(e) {
-            e.stopPropagation();
-            mobileMenu.classList.toggle('active');
-            menuToggle.innerHTML = mobileMenu.classList.contains('active') ? '&#10005;' : '&#9776;';
-        });
-        document.addEventListener('click', function(e) {
-            if (!e.target.closest('nav')) {
-                mobileMenu.classList.remove('active');
-                menuToggle.innerHTML = '&#9776;';
-            }
-        });
-
     })();
     </script>
+    <script src="assets/js/nav.js"></script>
 </body>
 </html>

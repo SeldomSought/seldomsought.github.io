@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="stylesheet" href="assets/css/global.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact — SeldomSought</title>
@@ -42,52 +43,14 @@
     }
     a { color: var(--fg); }
 
-    /* ── nav ── */
-    .site-nav {
-        position: fixed; top: 0; width: 100%;
-        background: rgba(12,12,12,0.96);
-        border-bottom: 1px solid var(--border);
-        z-index: 200;
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-    }
-    .nav-inner {
-        max-width: 1380px; margin: 0 auto;
-        padding: 1rem 2.5rem;
-        display: flex; justify-content: space-between; align-items: center;
-    }
-    .nav-brand {
-        font-size: 1.4rem; line-height: 1; letter-spacing: 3px; text-transform: uppercase;
-        color: var(--fg-br); text-decoration: none;
-        transition: color 0.2s;
-    }
-    .nav-brand:hover { color: #fff; }
-    .nav-links { list-style: none; display: flex; gap: 2rem; }
-    .nav-links a {
-        font-size: 0.70rem; letter-spacing: 2px; text-transform: uppercase;
-        color: var(--fg-dim); text-decoration: none;
-        transition: color 0.2s; position: relative;
-    }
-    .nav-links a:hover,
-    .nav-links a[aria-current="page"] { color: var(--fg-br); }
-    .nav-links a[aria-current="page"]::after {
-        content: ''; position: absolute; bottom: -4px; left: 0; right: 0;
-        height: 1px; background: var(--fg-br);
-    }
-    .nav-links a:focus-visible { outline: 1px solid var(--fg-br); outline-offset: 3px; }
-    .nav-menu-btn {
-        display: none; background: none;
-        border: 1px solid var(--border); color: var(--fg);
-        padding: 0.22rem 0.55rem; font-size: 1rem;
-        transition: border-color 0.2s;
-    }
-    .nav-menu-btn:hover { border-color: var(--border-h); }
-    .nav-mobile { display: none; }
 
     /* ── page wrapper ── */
     .page-wrap {
         max-width: 660px; margin: 0 auto;
-        padding: 7rem 2rem 6rem;
+        padding: calc(var(--site-header-height-mobile) + 3rem) 2rem 6rem;
+    }
+    @media (min-width: 861px) {
+        .page-wrap { padding-top: calc(var(--site-header-height) + 3rem); }
     }
 
     /* ── header ── */
@@ -294,24 +257,7 @@
 
     /* ── responsive ── */
     @media (max-width: 768px) {
-        .nav-links { display: none; }
-        .nav-menu-btn { display: block; }
-        .nav-mobile {
-            position: fixed; top: 50px; left: 0; right: 0;
-            background: rgba(12,12,12,0.98);
-            border-bottom: 1px solid var(--border);
-            padding: 1rem 2rem; z-index: 190;
-        }
-        .nav-mobile.active { display: block; }
-        .nav-mobile ul { list-style: none; }
-        .nav-mobile a {
-            display: block; padding: 0.7rem 0;
-            font-size: 0.70rem; letter-spacing: 2px; text-transform: uppercase;
-            color: var(--fg-dim); text-decoration: none;
-            border-bottom: 1px solid var(--border); transition: color 0.2s;
-        }
-        .nav-mobile a:hover { color: var(--fg-br); }
-        .page-wrap { padding: 5.5rem 1.5rem 4rem; }
+        .page-wrap { padding: calc(var(--site-header-height-mobile) + 1.5rem) 1.5rem 4rem; }
         .submit-row { flex-direction: column; align-items: flex-start; }
         .floor-inner { flex-direction: column; gap: 1.2rem; }
         .floor-nav { gap: 1rem; }
@@ -326,32 +272,33 @@
 <body>
 
     <!-- nav -->
-    <nav class="site-nav">
-        <div class="nav-inner">
-            <a href="index.html" class="nav-brand">SeldomSought</a>
-            <button class="nav-menu-btn" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="philosophy.html">Philosophy</a></li>
-                <li><a href="services.html">Services</a></li>
-                <li><a href="expertise.html">Expertise</a></li>
-                <li><a href="projects.html">Projects</a></li>
-                <li><a href="faq.html">FAQ</a></li>
-                <li><a href="contact.html" aria-current="page">Contact</a></li>
-            </ul>
-        </div>
-        <div class="nav-mobile" id="mobileMenu">
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="philosophy.html">Philosophy</a></li>
-                <li><a href="services.html">Services</a></li>
-                <li><a href="expertise.html">Expertise</a></li>
-                <li><a href="projects.html">Projects</a></li>
-                <li><a href="faq.html">FAQ</a></li>
-                <li><a href="contact.html" aria-current="page">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
+    <header class="site-header" id="siteHeader">
+      <div class="site-header__inner">
+        <a href="index.html" class="site-header__brand">SeldomSought</a>
+        <button class="site-header__toggle" id="siteMenuToggle"
+                aria-label="Toggle navigation" aria-expanded="false"
+                aria-controls="siteMobileMenu">☰</button>
+        <nav class="site-header__nav" aria-label="Primary navigation">
+          <a href="index.html">Home</a>
+          <a href="philosophy.html">Philosophy</a>
+          <a href="services.html">Services</a>
+          <a href="expertise.html">Expertise</a>
+          <a href="projects.html">Projects</a>
+          <a href="faq.html">FAQ</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+      </div>
+      <nav class="site-header__mobile" id="siteMobileMenu"
+           aria-label="Mobile navigation" aria-hidden="true">
+        <a href="index.html">Home</a>
+        <a href="philosophy.html">Philosophy</a>
+        <a href="services.html">Services</a>
+        <a href="expertise.html">Expertise</a>
+        <a href="projects.html">Projects</a>
+        <a href="faq.html">FAQ</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </header>
 
     <!-- main -->
     <main class="page-wrap">
@@ -472,13 +419,6 @@
     (function () {
         'use strict';
 
-        /* mobile menu */
-        var btn  = document.getElementById('menuToggle');
-        var menu = document.getElementById('mobileMenu');
-        btn.addEventListener('click', function () {
-            var open = menu.classList.toggle('active');
-            btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-        });
 
         /* live terminal ident */
         var nameIn   = document.getElementById('fName');
@@ -525,6 +465,7 @@
         }
     }());
     </script>
+    <script src="assets/js/nav.js"></script>
 
 </body>
 </html>
