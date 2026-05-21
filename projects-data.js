@@ -22,6 +22,8 @@ const PROJECTS = [
     tagline: 'Turn social media back into a tool for creation — not consumption.',
     excerpt: 'A Chrome extension that limits passive feed consumption to 30 min/day while keeping bookmarks, saved posts, and creation tools always accessible. Enforced with a commitment lock that can\'t be bypassed without an accountability partner\'s passphrase.',
     status: 'Beta',
+    category: 'Chrome Extension',
+    chips: ['30-min limit', 'Commitment lock', 'CSS suppression', 'Webhook events', 'No accounts'],
     platforms: ['Chrome Extension', 'Twitter / X', 'Reddit', 'Instagram', 'YouTube', 'Facebook'],
     icon: 'assets/focus-shield-icon.svg',
 
@@ -102,6 +104,8 @@ The commitment lock goes further: have an accountability partner set a passphras
     tagline: 'A multi-dimensional self-assessment built from scratch — personality, values, attachment, and cosmic profile in one session.',
     excerpt: 'A 142-item battery covering HEXACO personality (6 domains, 24 facets), forced-choice ranking, Schwartz values hierarchy, and attachment style. Results include a profile type, shadow tendencies, career fit, relationship profile, and an integrated cosmic reading. Everything runs in your browser — no accounts, no data transmitted.',
     status: 'Beta',
+    category: 'Web App',
+    chips: ['142 items', 'HEXACO 6-factor', 'Schwartz values', 'Attachment style', 'Client-side'],
     platforms: ['Web App', 'Personality', 'Psychometrics'],
     icon: null,
 
@@ -155,6 +159,8 @@ The battery covers: HEXACO six-factor personality (96 items, 24 facets); 30 forc
     tagline: 'An Instagram archive sequenced by hue — not time.',
     excerpt: 'Every post from @seldomsought arranged by color to create a continuous shifting gradient across the feed. Photography, found objects, and everyday moments choreographed as a single chromatic journey.',
     status: 'Live',
+    category: 'Media / Content',
+    chips: ['Color-sequenced', 'Manual curation', 'Instagram archive'],
     platforms: ['Photography', 'Curation', 'Instagram'],
     icon: null,
 
@@ -194,6 +200,8 @@ The battery covers: HEXACO six-factor personality (96 items, 24 facets); 30 forc
     tagline: 'Your bookmarks are a fingerprint. This reads it.',
     excerpt: 'A Chrome extension that scrapes your Twitter/X bookmarks and generates a deep psychological profile — completely offline. Big Five personality traits, Schwartz values, LIWC linguistic analysis, cognitive style, topic velocity, and more. No API key, no server, no data leaving your device.',
     status: 'Beta',
+    category: 'Chrome Extension',
+    chips: ['Fully offline', 'Big Five OCEAN', 'LIWC linguistic', 'Topic velocity', 'No API key'],
     platforms: ['Chrome Extension', 'Twitter / X', 'Psychometrics'],
     icon: null,
 
