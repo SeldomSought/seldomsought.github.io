@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="stylesheet" href="assets/css/global.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SeldomSought - Brand Image, Marketing Strategy & Business Consulting</title>
@@ -75,85 +76,6 @@
             pointer-events: none;
         }
 
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(0, 0, 0, 0.85);
-            border-bottom: 1px solid rgba(0, 255, 65, 0.15);
-            z-index: 100;
-            backdrop-filter: blur(10px);
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 1rem 2.5rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.4rem; line-height: 1;
-            color: var(--matrix-green);
-            text-decoration: none;
-            text-shadow: 0 0 10px rgba(0, 255, 65, 0.5), 0 0 20px rgba(0, 255, 65, 0.3);
-            letter-spacing: 2px;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--matrix-green-dark);
-            font-size: var(--fs-nav);
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            transition: all 0.3s;
-            position: relative;
-        }
-
-        .nav-links a:hover {
-            color: var(--matrix-green);
-            text-shadow: 0 0 8px rgba(0, 255, 65, 0.6);
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0;
-            height: 1px;
-            background: var(--matrix-green);
-            box-shadow: 0 0 5px var(--matrix-green);
-            transition: width 0.3s;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .menu-toggle {
-            display: none;
-            background: none;
-            border: 1px solid var(--matrix-green-dark);
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--matrix-green);
-            padding: 0.2rem 0.5rem;
-        }
-
-        .mobile-menu {
-            display: none;
-        }
-
         /* Hero */
         .hero {
             min-height: 100vh;
@@ -161,7 +83,7 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 6rem 2rem 4rem;
+            padding: calc(var(--site-header-height-mobile) + 2.25rem) 2rem 4rem;
             position: relative;
             z-index: 1;
         }
@@ -389,49 +311,6 @@
 
         /* Mobile */
         @media (max-width: 768px) {
-            .menu-toggle {
-                display: block;
-            }
-
-            .nav-links {
-                display: none;
-            }
-
-            .mobile-menu {
-                position: fixed;
-                top: 60px;
-                left: 0;
-                right: 0;
-                background: rgba(0, 0, 0, 0.95);
-                border-bottom: 1px solid rgba(0, 255, 65, 0.15);
-                padding: 1rem 2rem;
-                backdrop-filter: blur(10px);
-            }
-
-            .mobile-menu.active {
-                display: block;
-            }
-
-            .mobile-menu ul {
-                list-style: none;
-            }
-
-            .mobile-menu a {
-                display: block;
-                padding: 0.8rem 0;
-                text-decoration: none;
-                color: var(--matrix-green-dark);
-                border-bottom: 1px solid rgba(0, 255, 65, 0.05);
-                letter-spacing: 1px;
-                text-transform: uppercase;
-                font-size: 0.9rem;
-            }
-
-            .mobile-menu a:hover {
-                color: var(--matrix-green);
-                text-shadow: 0 0 8px rgba(0, 255, 65, 0.4);
-            }
-
             h1 {
                 font-size: clamp(2.2rem, 7vw, 3rem);
                 letter-spacing: 4px;
@@ -452,32 +331,10 @@
             }
         }
 
-        @media (min-width: 768px) and (max-width: 1023px) {
-            html { font-size: 17px; }
-        }
-
         @media (min-width: 1024px) {
-            html { font-size: 18px; }
-            /* ── Nav ── */
-            .nav-container {
-                padding: 1rem 2.5rem;
-                max-width: none;
-            }
-            .logo {
-                font-size: clamp(2.1rem, 2.6vw, 2.9rem);
-                letter-spacing: 3px;
-            }
-            .nav-links {
-                gap: clamp(1.6rem, 2.6vw, 2.75rem);
-            }
-            .nav-links a {
-                font-size: clamp(1.25rem, 1.5vw, 1.5rem);
-                letter-spacing: 1.5px;
-            }
-
             /* ── Hero — fills viewport, commands attention ── */
             .hero {
-                padding: 9rem 3rem 5rem;
+                padding: calc(var(--site-header-height) + 4.5rem) 3rem 5rem;
             }
             .hero-content {
                 max-width: 1050px;
@@ -518,32 +375,33 @@
     <canvas id="matrixCanvas"></canvas>
     <div class="scanlines"></div>
 
-    <nav>
-        <div class="nav-container">
-            <a href="index.html" class="logo">SeldomSought</a>
-            <button class="menu-toggle" id="menuToggle">&#9776;</button>
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="philosophy.html">Philosophy</a></li>
-                <li><a href="services.html">Services</a></li>
-                <li><a href="expertise.html">Expertise</a></li>
-                <li><a href="projects.html">Projects</a></li>
-                <li><a href="faq.html">FAQ</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </div>
-        <div class="mobile-menu" id="mobileMenu">
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="philosophy.html">Philosophy</a></li>
-                <li><a href="services.html">Services</a></li>
-                <li><a href="expertise.html">Expertise</a></li>
-                <li><a href="projects.html">Projects</a></li>
-                <li><a href="faq.html">FAQ</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
+    <header class="site-header" id="siteHeader">
+      <div class="site-header__inner">
+        <a href="index.html" class="site-header__brand">SeldomSought</a>
+        <button class="site-header__toggle" id="siteMenuToggle"
+                aria-label="Toggle navigation" aria-expanded="false"
+                aria-controls="siteMobileMenu">☰</button>
+        <nav class="site-header__nav" aria-label="Primary navigation">
+          <a href="index.html">Home</a>
+          <a href="philosophy.html">Philosophy</a>
+          <a href="services.html">Services</a>
+          <a href="expertise.html">Expertise</a>
+          <a href="projects.html">Projects</a>
+          <a href="faq.html">FAQ</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+      </div>
+      <nav class="site-header__mobile" id="siteMobileMenu"
+           aria-label="Mobile navigation" aria-hidden="true">
+        <a href="index.html">Home</a>
+        <a href="philosophy.html">Philosophy</a>
+        <a href="services.html">Services</a>
+        <a href="expertise.html">Expertise</a>
+        <a href="projects.html">Projects</a>
+        <a href="faq.html">FAQ</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </header>
 
     <section class="hero">
         <div class="hero-content">
@@ -736,22 +594,7 @@
             decodeElements.forEach(el => decodeElement(el));
         });
 
-        // ── Mobile Menu ─────────────────────────────────────────────
-        const menuToggle = document.getElementById('menuToggle');
-        const mobileMenu = document.getElementById('mobileMenu');
-
-        menuToggle.addEventListener('click', function(e) {
-            e.stopPropagation();
-            mobileMenu.classList.toggle('active');
-            menuToggle.innerHTML = mobileMenu.classList.contains('active') ? '&#10005;' : '&#9776;';
-        });
-
-        document.addEventListener('click', function(e) {
-            if (!e.target.closest('nav')) {
-                mobileMenu.classList.remove('active');
-                menuToggle.innerHTML = '&#9776;';
-            }
-        });
     </script>
+    <script src="assets/js/nav.js"></script>
 </body>
 </html>

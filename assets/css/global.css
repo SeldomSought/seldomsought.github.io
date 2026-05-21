@@ -1,0 +1,176 @@
+/* ── Global Reset ── */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+img { display: block; max-width: 100%; }
+button { font: inherit; cursor: pointer; }
+
+/* ── Site-wide variables ── */
+:root {
+  --site-header-height: 72px;
+  --site-header-height-mobile: 60px;
+  --site-max-width: 1280px;
+}
+
+/* ══════════════════════════════════════════
+   SITE HEADER
+   All sizes use px so they are immune to
+   page-level html { font-size } overrides.
+══════════════════════════════════════════ */
+.site-header {
+  position: fixed;
+  inset: 0 0 auto 0;
+  height: var(--site-header-height);
+  z-index: 1000;
+  background: rgba(6, 6, 6, 0.90);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.site-header__inner {
+  height: 100%;
+  max-width: var(--site-max-width);
+  margin: 0 auto;
+  padding: 0 clamp(16px, 3vw, 32px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.site-header__brand {
+  /* clamp(1.1rem, 1.4vw, 1.35rem) at 16px base = clamp(17.6px, 1.4vw, 21.6px) */
+  font-size: clamp(18px, 1.4vw, 22px);
+  font-family: 'Share Tech Mono', ui-monospace, 'Courier New', monospace;
+  line-height: 1;
+  white-space: nowrap;
+  text-decoration: none;
+  color: #f0f0f0;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+
+.site-header__brand:hover {
+  color: #ffffff;
+}
+
+.site-header__nav {
+  display: flex;
+  align-items: center;
+  gap: clamp(14px, 1.6vw, 22px);
+}
+
+.site-header__nav a {
+  /* clamp(0.72rem, 0.85vw, 0.86rem) at 16px base = clamp(11.5px, 0.85vw, 13.8px) */
+  font-size: clamp(11px, 0.85vw, 14px);
+  font-family: 'Share Tech Mono', ui-monospace, 'Courier New', monospace;
+  line-height: 1;
+  white-space: nowrap;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  color: rgba(240, 240, 240, 0.52);
+  transition: color 0.2s;
+  position: relative;
+}
+
+.site-header__nav a:hover,
+.site-header__nav a[aria-current="page"] {
+  color: #f0f0f0;
+}
+
+.site-header__nav a[aria-current="page"]::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.6;
+}
+
+.site-header__toggle {
+  display: none;
+  background: none;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  color: #f0f0f0;
+  font-size: 18px;
+  padding: 4px 10px;
+  line-height: 1;
+  transition: border-color 0.2s;
+}
+
+.site-header__toggle:hover {
+  border-color: rgba(255, 255, 255, 0.48);
+}
+
+/* Mobile drawer — hidden by default, shown via .is-open */
+.site-header__mobile {
+  display: none;
+  position: fixed;
+  top: var(--site-header-height-mobile);
+  left: 0;
+  right: 0;
+  background: rgba(6, 6, 6, 0.97);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: 10px 24px 16px;
+  z-index: 999;
+}
+
+.site-header__mobile.is-open {
+  display: block;
+}
+
+.site-header__mobile a {
+  display: block;
+  padding: 11px 0;
+  font-size: 13px;
+  font-family: 'Share Tech Mono', ui-monospace, 'Courier New', monospace;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: rgba(240, 240, 240, 0.56);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  transition: color 0.2s;
+}
+
+.site-header__mobile a:last-child {
+  border-bottom: none;
+}
+
+.site-header__mobile a:hover,
+.site-header__mobile a[aria-current="page"] {
+  color: #f0f0f0;
+}
+
+/* ── Mobile breakpoint ── */
+@media (max-width: 860px) {
+  .site-header {
+    height: var(--site-header-height-mobile);
+  }
+
+  .site-header__nav {
+    display: none;
+  }
+
+  .site-header__toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+/* ── Focus rings ── */
+.site-header__brand:focus-visible,
+.site-header__nav a:focus-visible,
+.site-header__toggle:focus-visible,
+.site-header__mobile a:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.65);
+  outline-offset: 3px;
+}
