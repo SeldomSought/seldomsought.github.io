@@ -1,28 +1,66 @@
-/* ── Global Reset ── */
+/* ══════════════════════════════════════════════════════
+   global.css
+   Single source of truth for the site header and
+   cross-browser normalization. Loaded on every page.
+══════════════════════════════════════════════════════ */
+
+/* ── Browser normalization ──────────────────────────
+   Prevents Chrome/Safari from auto-inflating text on
+   mobile and normalizes button/form rendering across
+   Blink, Gecko, and WebKit.
+──────────────────────────────────────────────────── */
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* ── Global reset ────────────────────────────────── */
 *, *::before, *::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-img { display: block; max-width: 100%; }
-button { font: inherit; cursor: pointer; }
 
-/* ── Site-wide variables ── */
-:root {
-  --site-header-height: 72px;
-  --site-header-height-mobile: 60px;
-  --site-max-width: 1280px;
+img { display: block; max-width: 100%; }
+
+/* All form controls inherit the page font so Chrome's
+   UA stylesheet doesn't inject its own sizing. */
+button,
+input,
+select,
+textarea {
+  font: inherit;
 }
 
-/* ══════════════════════════════════════════
+/* Strip Chrome/Safari's native button chrome so the
+   toggle renders identically across browsers. */
+button {
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  border-radius: 0;
+}
+
+/* ── Site-wide variables ─────────────────────────── */
+:root {
+  --site-header-height:        72px;
+  --site-header-height-mobile: 60px;
+  --site-max-width:            1280px;
+}
+
+/* ══════════════════════════════════════════════════
    SITE HEADER
-   All sizes use px so they are immune to
-   page-level html { font-size } overrides.
-══════════════════════════════════════════ */
+   Height is fixed by three properties (height +
+   min-height + max-height) so no child — font, icon,
+   or button — can stretch it. Vertical padding is
+   never used to create height.
+══════════════════════════════════════════════════ */
 .site-header {
   position: fixed;
   inset: 0 0 auto 0;
-  height: var(--site-header-height);
+  height:     var(--site-header-height);
+  min-height: var(--site-header-height);
+  max-height: var(--site-header-height);
   z-index: 1000;
   background: rgba(6, 6, 6, 0.90);
   border-bottom: 1px solid rgba(255, 255, 255, 0.07);
@@ -31,18 +69,22 @@ button { font: inherit; cursor: pointer; }
 }
 
 .site-header__inner {
-  height: 100%;
+  height:     var(--site-header-height);
+  min-height: var(--site-header-height);
+  max-height: var(--site-header-height);
   max-width: var(--site-max-width);
   margin: 0 auto;
-  padding: 0 clamp(16px, 3vw, 32px);
+  /* padding-block: 0 ensures no vertical padding creates height */
+  padding-block:  0;
+  padding-inline: clamp(1rem, 3vw, 2rem);
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
+/* ── Brand ───────────────────────────────────────── */
 .site-header__brand {
-  /* clamp(1.1rem, 1.4vw, 1.35rem) at 16px base = clamp(17.6px, 1.4vw, 21.6px) */
-  font-size: clamp(18px, 1.4vw, 22px);
+  font-size: clamp(1.1rem, 1.25vw, 1.35rem);
   font-family: 'Share Tech Mono', ui-monospace, 'Courier New', monospace;
   line-height: 1;
   white-space: nowrap;
@@ -53,19 +95,17 @@ button { font: inherit; cursor: pointer; }
   transition: color 0.2s;
 }
 
-.site-header__brand:hover {
-  color: #ffffff;
-}
+.site-header__brand:hover { color: #ffffff; }
 
+/* ── Desktop nav ─────────────────────────────────── */
 .site-header__nav {
   display: flex;
   align-items: center;
-  gap: clamp(14px, 1.6vw, 22px);
+  gap: clamp(0.875rem, 1.6vw, 1.375rem);
 }
 
 .site-header__nav a {
-  /* clamp(0.72rem, 0.85vw, 0.86rem) at 16px base = clamp(11.5px, 0.85vw, 13.8px) */
-  font-size: clamp(11px, 0.85vw, 14px);
+  font-size: clamp(0.72rem, 0.82vw, 0.86rem);
   font-family: 'Share Tech Mono', ui-monospace, 'Courier New', monospace;
   line-height: 1;
   white-space: nowrap;
@@ -93,22 +133,30 @@ button { font: inherit; cursor: pointer; }
   opacity: 0.6;
 }
 
+/* ── Hamburger toggle ────────────────────────────── */
+/* Hidden on desktop; exact dimensions prevent it from
+   stretching the header in any browser. */
 .site-header__toggle {
   display: none;
+  width:  42px;
+  height: 42px;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  line-height: 1;
   background: none;
   border: 1px solid rgba(255, 255, 255, 0.22);
   color: #f0f0f0;
   font-size: 18px;
-  padding: 4px 10px;
-  line-height: 1;
   transition: border-color 0.2s;
+  flex-shrink: 0;
 }
 
-.site-header__toggle:hover {
-  border-color: rgba(255, 255, 255, 0.48);
-}
+.site-header__toggle:hover { border-color: rgba(255, 255, 255, 0.48); }
 
-/* Mobile drawer — hidden by default, shown via .is-open */
+/* ── Mobile drawer ───────────────────────────────── */
+/* top pins exactly to the mobile header height so the
+   drawer opens flush regardless of browser. */
 .site-header__mobile {
   display: none;
   position: fixed;
@@ -123,15 +171,14 @@ button { font: inherit; cursor: pointer; }
   z-index: 999;
 }
 
-.site-header__mobile.is-open {
-  display: block;
-}
+.site-header__mobile.is-open { display: block; }
 
 .site-header__mobile a {
   display: block;
   padding: 11px 0;
   font-size: 13px;
   font-family: 'Share Tech Mono', ui-monospace, 'Courier New', monospace;
+  line-height: 1;
   letter-spacing: 0.10em;
   text-transform: uppercase;
   text-decoration: none;
@@ -140,33 +187,28 @@ button { font: inherit; cursor: pointer; }
   transition: color 0.2s;
 }
 
-.site-header__mobile a:last-child {
-  border-bottom: none;
-}
+.site-header__mobile a:last-child { border-bottom: none; }
 
 .site-header__mobile a:hover,
-.site-header__mobile a[aria-current="page"] {
-  color: #f0f0f0;
-}
+.site-header__mobile a[aria-current="page"] { color: #f0f0f0; }
 
-/* ── Mobile breakpoint ── */
+/* ── Mobile breakpoint ───────────────────────────── */
 @media (max-width: 860px) {
-  .site-header {
-    height: var(--site-header-height-mobile);
+  .site-header,
+  .site-header__inner {
+    height:     var(--site-header-height-mobile);
+    min-height: var(--site-header-height-mobile);
+    max-height: var(--site-header-height-mobile);
   }
 
-  .site-header__nav {
-    display: none;
-  }
+  .site-header__nav { display: none; }
 
   .site-header__toggle {
     display: inline-flex;
-    align-items: center;
-    justify-content: center;
   }
 }
 
-/* ── Focus rings ── */
+/* ── Focus rings ─────────────────────────────────── */
 .site-header__brand:focus-visible,
 .site-header__nav a:focus-visible,
 .site-header__toggle:focus-visible,
