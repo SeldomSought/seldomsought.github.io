@@ -3,15 +3,12 @@
  * ─────────────────────────────────────────────────────────────────────────────
  * HOW TO ADD A NEW PROJECT
  * ─────────────────────────────────────────────────────────────────────────────
- * 1. Copy the object below (from the opening { to its closing },)
- * 2. Paste it as a new item inside the PROJECTS array
- * 3. Fill in every field. Use null for any link you don't have yet.
- * 4. Set screenshots: [] until you have images ready, then add paths like:
- *      screenshots: ['assets/my-project-screen-1.png', 'assets/my-project-screen-2.png']
- * 5. Drop your icon file in /assets/ and update the icon field.
- * 6. Save. The Projects page reads this array and renders everything automatically.
+ * 1. Copy the template at the bottom of this file into the PROJECTS array.
+ * 2. Fill in every field. Set any missing link to null — the renderer skips nulls.
+ * 3. Keep ids stable (lowercase, hyphenated) — hash links depend on them.
  *
- * STATUS OPTIONS: 'Live' | 'Beta' | 'Private'
+ * status:   'Live' | 'Beta' | 'Private' | 'In Progress'
+ * category: 'Chrome Extension' | 'Web App' | 'Media' | 'Utility' | 'Experiment'
  * ─────────────────────────────────────────────────────────────────────────────
  */
 
@@ -19,19 +16,12 @@ const PROJECTS = [
   {
     id: 'focus-shield',
     name: 'Focus Shield',
-    tagline: 'Turn social media back into a tool for creation — not consumption.',
-    excerpt: 'A Chrome extension that limits passive feed consumption to 30 min/day while keeping bookmarks, saved posts, and creation tools always accessible. Enforced with a commitment lock that can\'t be bypassed without an accountability partner\'s passphrase.',
     status: 'Beta',
     category: 'Chrome Extension',
-    chips: ['30-min limit', 'Commitment lock', 'CSS suppression', 'Webhook events', 'No accounts'],
     platforms: ['Chrome Extension', 'Twitter / X', 'Reddit', 'Instagram', 'YouTube', 'Facebook'],
-    icon: 'assets/focus-shield-icon.svg',
 
-    // Drop in screenshot paths when ready. Leave empty to hide the section.
-    screenshots: [
-      // 'assets/focus-shield-screen-1.png',
-      // 'assets/focus-shield-screen-2.png',
-    ],
+    tagline: 'Turn social media back into a tool for creation — not consumption.',
+    shortDescription: 'A Chrome extension that limits passive feed consumption to 30 min/day while keeping bookmarks, saved posts, and creation tools always accessible. Enforced with a commitment lock that can\'t be bypassed without an accountability partner\'s passphrase.',
 
     problem: `Social platforms are engineered for passive consumption — not for you, but for them. The average person scrolls far more than they intend to, and the posts they actually saved to revisit get buried, forgotten, and never seen again. Bookmarks become a graveyard. Attention becomes a resource extracted rather than deployed.`,
 
@@ -88,11 +78,12 @@ The commitment lock goes further: have an accountability partner set a passphras
     ],
 
     links: {
-      download:    'projects/focus-shield/focus-shield.zip',
-      chromeStore: null,
-      github:      'https://github.com/SeldomSought/Focus-Shield',
-      website:     null,
       demo:        null,
+      demoLabel:   null,
+      demoSameTab: false,
+      github:      'https://github.com/SeldomSought/Focus-Shield',
+      download:    'projects/focus-shield/focus-shield.zip',
+      website:     null,
     },
 
     lastUpdated: 'Mar 2026',
@@ -101,15 +92,12 @@ The commitment lock goes further: have an accountability partner set a passphras
   {
     id: 'psychometrics-battery',
     name: 'Psychometric Battery',
-    tagline: 'A multi-dimensional self-assessment built from scratch — personality, values, attachment, and cosmic profile in one session.',
-    excerpt: 'A 142-item battery covering HEXACO personality (6 domains, 24 facets), forced-choice ranking, Schwartz values hierarchy, and attachment style. Results include a profile type, shadow tendencies, career fit, relationship profile, and an integrated cosmic reading. Everything runs in your browser — no accounts, no data transmitted.',
     status: 'Beta',
     category: 'Web App',
-    chips: ['142 items', 'HEXACO 6-factor', 'Schwartz values', 'Attachment style', 'Client-side'],
-    platforms: ['Web App', 'Personality', 'Psychometrics'],
-    icon: null,
+    platforms: ['Web App'],
 
-    screenshots: [],
+    tagline: 'A multi-dimensional self-assessment built from scratch — personality, values, attachment, and cosmic profile in one session.',
+    shortDescription: 'A 142-item battery covering HEXACO personality (6 domains, 24 facets), forced-choice ranking, Schwartz values hierarchy, and attachment style. Results include a profile type, shadow tendencies, career fit, relationship profile, and an integrated cosmic reading. Everything runs in your browser — no accounts, no data transmitted.',
 
     problem: `Most personality assessments are either proprietary black boxes (you pay, get a label, never see the math) or academically inaccessible instruments locked behind licensing walls. They measure one dimension — usually personality traits — and stop there, ignoring the motivational values that drive behavior, the attachment patterns that shape relationships, and the broader context that makes a profile actually useful for self-knowledge.`,
 
@@ -141,13 +129,12 @@ The battery covers: HEXACO six-factor personality (96 items, 24 facets); 30 forc
     ],
 
     links: {
-      download:    null,
-      chromeStore: null,
-      github:      'https://github.com/SeldomSought/Psychometrics-Assessment-Battery',
-      website:     null,
       demo:        'projects/psychometrics-battery/index.html',
       demoLabel:   'Take Assessment',
       demoSameTab: true,
+      github:      'https://github.com/SeldomSought/Psychometrics-Assessment-Battery',
+      download:    null,
+      website:     null,
     },
 
     lastUpdated: 'Mar 2026',
@@ -156,15 +143,12 @@ The battery covers: HEXACO six-factor personality (96 items, 24 facets); 30 forc
   {
     id: 'curated-feed',
     name: 'Curated Feed',
-    tagline: 'An Instagram archive sequenced by hue — not time.',
-    excerpt: 'Every post from @seldomsought arranged by color to create a continuous shifting gradient across the feed. Photography, found objects, and everyday moments choreographed as a single chromatic journey.',
     status: 'Live',
-    category: 'Media / Content',
-    chips: ['Color-sequenced', 'Manual curation', 'Instagram archive'],
-    platforms: ['Photography', 'Curation', 'Instagram'],
-    icon: null,
+    category: 'Media',
+    platforms: ['Instagram'],
 
-    screenshots: [],
+    tagline: 'An Instagram archive sequenced by hue — not time.',
+    shortDescription: 'Every post from @seldomsought arranged by color to create a continuous shifting gradient across the feed. Photography, found objects, and everyday moments choreographed as a single chromatic journey.',
 
     problem: `Instagram orders content by time. That's the wrong axis for a curated aesthetic account. Chronological sorting shows you individual moments — it hides the thing that makes a deliberately built feed worth studying: the color story, the eye behind it, the gradual shift in tone and mood across hundreds of posts.`,
 
@@ -184,11 +168,12 @@ The battery covers: HEXACO six-factor personality (96 items, 24 facets); 30 forc
     ],
 
     links: {
-      download:    null,
-      chromeStore: null,
-      github:      null,
-      website:     'https://www.instagram.com/seldomsought',
       demo:        null,
+      demoLabel:   null,
+      demoSameTab: false,
+      github:      null,
+      download:    null,
+      website:     'https://www.instagram.com/seldomsought',
     },
 
     lastUpdated: 'Mar 2026',
@@ -197,15 +182,12 @@ The battery covers: HEXACO six-factor personality (96 items, 24 facets); 30 forc
   {
     id: 'bookmark-mirror',
     name: 'Bookmark Mirror',
-    tagline: 'Your bookmarks are a fingerprint. This reads it.',
-    excerpt: 'A Chrome extension that scrapes your Twitter/X bookmarks and generates a deep psychological profile — completely offline. Big Five personality traits, Schwartz values, LIWC linguistic analysis, cognitive style, topic velocity, and more. No API key, no server, no data leaving your device.',
     status: 'Beta',
     category: 'Chrome Extension',
-    chips: ['Fully offline', 'Big Five OCEAN', 'LIWC linguistic', 'Topic velocity', 'No API key'],
-    platforms: ['Chrome Extension', 'Twitter / X', 'Psychometrics'],
-    icon: null,
+    platforms: ['Chrome Extension', 'Twitter / X'],
 
-    screenshots: [],
+    tagline: 'Your bookmarks are a fingerprint. This reads it.',
+    shortDescription: 'A Chrome extension that scrapes your Twitter/X bookmarks and generates a deep psychological profile — completely offline. Big Five personality traits, Schwartz values, LIWC linguistic analysis, cognitive style, topic velocity, and more. No API key, no server, no data leaving your device.',
 
     problem: `What you save is more revealing than what you say. Bookmarks are unperformed — you're not curating for an audience when you hit that button at 1 AM. They're an unguarded record of what actually caught your attention: the ideas that made you pause, the arguments you wanted to revisit, the things that resonated before you had words for why.
 
@@ -264,33 +246,44 @@ The result isn't a personality quiz. It's a mirror.`,
     ],
 
     links: {
-      download:    'projects/bookmark-mirror/bookmark-mirror.zip',
-      chromeStore: null,
-      github:      'https://github.com/SeldomSought/Twitter-bookmark-analyzer',
-      website:     null,
       demo:        null,
+      demoLabel:   null,
+      demoSameTab: false,
+      github:      'https://github.com/SeldomSought/Twitter-bookmark-analyzer',
+      download:    'projects/bookmark-mirror/bookmark-mirror.zip',
+      website:     null,
     },
 
     lastUpdated: 'Mar 2026',
   },
 
-  // ─── Add your next project here ─────────────────────────────────────────────
+  // ─── Template for new projects ───────────────────────────────────────────────
   // {
-  //   id: 'your-project-id',        // URL-safe, lowercase, hyphenated
+  //   id: 'your-project-id',
   //   name: 'Your Project Name',
-  //   tagline: 'One line. What it does and for whom.',
-  //   excerpt: 'Two to three sentences for the card view.',
-  //   status: 'Beta',               // 'Live' | 'Beta' | 'Private'
-  //   platforms: ['Chrome Extension'],
-  //   icon: 'assets/your-project-icon.svg',
-  //   screenshots: [],
+  //   status: 'Beta',
+  //   category: 'Web App',
+  //   platforms: ['Web App'],
+  //
+  //   tagline: 'One sentence. What it does and for whom.',
+  //   shortDescription: 'Two or three sentences for the card view.',
+  //
   //   problem: `...`,
   //   solution: `...`,
   //   howItWorks: [
   //     { step: 1, title: '...', desc: '...' },
   //   ],
   //   features: ['...'],
-  //   links: { chromeStore: null, github: null, website: null, demo: null },
-  //   lastUpdated: 'Feb 2026',
+  //
+  //   links: {
+  //     demo:        null,
+  //     demoLabel:   null,
+  //     demoSameTab: false,
+  //     github:      null,
+  //     download:    null,
+  //     website:     null,
+  //   },
+  //
+  //   lastUpdated: 'May 2026',
   // },
 ];
