@@ -1,0 +1,617 @@
+/* ════════════════════════════════════════════════════════════
+   projects.css — Molecular structure interface
+   Loaded only on projects.html. Complements global.css.
+════════════════════════════════════════════════════════════ */
+
+/* ── Design tokens ───────────────────────────────────────── */
+:root {
+  --mol-bg:          #05060a;
+  --mol-surface:     #0c0e18;
+  --mol-surface-2:   #12151f;
+  --mol-border:      rgba(255, 255, 255, 0.07);
+  --mol-border-mid:  rgba(255, 255, 255, 0.12);
+  --mol-text:        #e6e8f0;
+  --mol-text-dim:    rgba(230, 232, 240, 0.44);
+  --mol-text-faint:  rgba(230, 232, 240, 0.22);
+  --mol-green:       #9cffc5;
+  --mol-amber:       #ffbf69;
+  --mol-violet:      #b7a3ff;
+  --mol-blue:        #6bc8ff;
+  --mol-mono:        'Share Tech Mono', ui-monospace, 'Courier New', monospace;
+}
+
+/* ── Page base ───────────────────────────────────────────── */
+body {
+  background-color: var(--mol-bg);
+  color: var(--mol-text);
+  font-family: var(--mol-mono);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ── Hero ────────────────────────────────────────────────── */
+.mol-hero {
+  padding: calc(var(--site-header-height) + 4rem) 2.5rem 3.5rem;
+  max-width: 1360px;
+  margin: 0 auto;
+}
+
+.mol-hero__inner { max-width: 560px; }
+
+.mol-eyebrow {
+  font-family: var(--mol-mono);
+  font-size: 0.60rem;
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
+  color: var(--mol-green);
+  opacity: 0.60;
+  margin-bottom: 1.1rem;
+}
+
+.mol-eyebrow::before { content: '// '; opacity: 0.55; }
+
+.mol-hero h1 {
+  font-family: var(--mol-mono);
+  font-size: clamp(1.55rem, 2.8vw, 2.4rem);
+  font-weight: 400;
+  color: var(--mol-text);
+  line-height: 1.20;
+  letter-spacing: -0.2px;
+  margin-bottom: 1.1rem;
+}
+
+.mol-hero h1::after {
+  content: '';
+  display: block;
+  height: 1px;
+  width: clamp(80px, 35%, 280px);
+  background: linear-gradient(to right, rgba(156, 255, 197, 0.40), transparent);
+  margin-top: 1rem;
+}
+
+.mol-lede {
+  font-size: clamp(0.68rem, 1vw, 0.80rem);
+  line-height: 1.85;
+  color: var(--mol-text-dim);
+  max-width: 440px;
+}
+
+/* ── Stage ───────────────────────────────────────────────── */
+.mol-stage {
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 0 2.5rem 7rem;
+}
+
+/* ── Molecule field (horizontal row of all projects) ─────── */
+.mol-field {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  padding: 1rem 0 3.5rem;
+  flex-wrap: wrap;
+}
+
+/* ── Individual molecule card ────────────────────────────── */
+.mol-card {
+  flex: 0 0 auto;
+  width: 240px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.mol-card:focus-visible .mol-svg-wrap {
+  box-shadow: 0 0 0 2px rgba(156, 255, 197, 0.55);
+  border-radius: 50%;
+}
+
+/* ── SVG wrapper ─────────────────────────────────────────── */
+.mol-svg-wrap {
+  position: relative;
+  width: 240px;
+  height: 240px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mol-svg {
+  width: 240px;
+  height: 240px;
+  overflow: visible;
+  display: block;
+}
+
+/* ── SVG component hover states ──────────────────────────── */
+.mol-satellite {
+  cursor: pointer;
+  transition: none;
+}
+
+.mol-satellite .mol-sat-circle {
+  transition: stroke-opacity 0.2s ease, fill 0.2s ease;
+}
+
+.mol-satellite:hover .mol-sat-circle,
+.mol-satellite.is-active .mol-sat-circle {
+  stroke-opacity: 0.75 !important;
+  fill: rgba(255, 255, 255, 0.04);
+}
+
+.mol-satellite .mol-sat-label {
+  transition: fill-opacity 0.2s ease;
+}
+
+.mol-satellite:hover .mol-sat-label {
+  fill-opacity: 0.9 !important;
+}
+
+.mol-line {
+  transition: stroke-opacity 0.2s ease;
+}
+
+.mol-satellite.is-active ~ .mol-line,
+.mol-line.is-active {
+  stroke-opacity: 0.50 !important;
+}
+
+/* Central node hover */
+.mol-center { cursor: pointer; }
+
+.mol-central-circle {
+  transition: stroke-opacity 0.25s ease;
+}
+
+.mol-card:hover .mol-central-circle,
+.mol-card.is-active .mol-central-circle {
+  stroke-opacity: 0.80 !important;
+}
+
+.mol-central-dot {
+  transition: r 0.25s ease, fill-opacity 0.25s ease;
+}
+
+.mol-card.is-active .mol-central-dot {
+  fill-opacity: 1 !important;
+}
+
+/* ── Card meta (title / index below SVG) ─────────────────── */
+.mol-card__meta {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-top: 0.6rem;
+  padding: 0.45rem 0.8rem;
+  border: 1px solid var(--mol-border);
+  transition: border-color 0.2s ease;
+  width: 100%;
+  justify-content: center;
+  background: transparent;
+}
+
+.mol-card:hover .mol-card__meta,
+.mol-card.is-active .mol-card__meta {
+  border-color: var(--mol-border-mid);
+}
+
+.mol-card.is-active .mol-card__meta {
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.mol-card__index {
+  font-family: var(--mol-mono);
+  font-size: 0.54rem;
+  letter-spacing: 2px;
+  color: var(--mol-text-faint);
+}
+
+.mol-card__title {
+  font-family: var(--mol-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.5px;
+  color: var(--mol-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.mol-card__status-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+/* ── Detail pane ─────────────────────────────────────────── */
+.mol-detail-pane {
+  display: none;
+}
+
+.mol-detail-pane.is-open {
+  display: block;
+  border-top: 1px solid var(--mol-border);
+  margin-top: 0.5rem;
+  padding-top: 0;
+  animation: pane-in 0.34s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes pane-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.mol-panel {
+  padding: 2.5rem 0 1rem;
+}
+
+/* ── Panel header ────────────────────────────────────────── */
+.mol-panel__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--mol-border);
+  flex-wrap: wrap;
+}
+
+.mol-panel__title-block { flex: 1; min-width: 0; }
+
+.mol-panel__label {
+  font-family: var(--mol-mono);
+  font-size: 0.58rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--mol-text-faint);
+  margin-bottom: 0.55rem;
+}
+
+.mol-panel__title {
+  font-family: var(--mol-mono);
+  font-size: clamp(1.3rem, 2.2vw, 2rem);
+  font-weight: 400;
+  color: var(--mol-text);
+  letter-spacing: -0.2px;
+  line-height: 1.15;
+  margin-bottom: 0.4rem;
+}
+
+.mol-panel__subtitle {
+  font-family: var(--mol-mono);
+  font-size: 0.72rem;
+  color: var(--mol-text-dim);
+  letter-spacing: 0.3px;
+  line-height: 1.5;
+}
+
+.mol-panel__badge {
+  flex-shrink: 0;
+  font-family: var(--mol-mono);
+  font-size: 0.54rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 0.28rem 0.75rem;
+  border: 1px solid;
+  white-space: nowrap;
+  align-self: flex-start;
+  margin-top: 0.2rem;
+}
+
+.mol-panel__badge[data-status="Live"]        { color: var(--mol-green);  border-color: rgba(156, 255, 197, 0.35); background: rgba(156, 255, 197, 0.06); }
+.mol-panel__badge[data-status="Beta"]        { color: var(--mol-amber);  border-color: rgba(255, 191, 105, 0.35); background: rgba(255, 191, 105, 0.06); }
+.mol-panel__badge[data-status="In Progress"] { color: var(--mol-blue);   border-color: rgba(107, 200, 255, 0.35); background: rgba(107, 200, 255, 0.06); }
+.mol-panel__badge[data-status="Prototype"]   { color: var(--mol-blue);   border-color: rgba(107, 200, 255, 0.35); background: rgba(107, 200, 255, 0.06); }
+.mol-panel__badge[data-status="Concept"]     { color: var(--mol-violet); border-color: rgba(183, 163, 255, 0.35); background: rgba(183, 163, 255, 0.06); }
+
+/* ── Panel sections grid ─────────────────────────────────── */
+.mol-panel__sections {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 2rem 3.5rem;
+}
+
+/* Purpose takes the full first row */
+.mol-section[data-comp="purpose"] {
+  grid-column: 1 / -1;
+}
+
+/* ── Individual section ──────────────────────────────────── */
+.mol-section {
+  transition: background 0.25s ease;
+  padding: 0.1rem 0;
+}
+
+.mol-section.is-active {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.mol-section__label {
+  font-family: var(--mol-mono);
+  font-size: 0.56rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--mol-text-faint);
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.55rem;
+  border-bottom: 1px solid var(--mol-border);
+}
+
+.mol-section__label::before { content: '— '; opacity: 0.6; }
+
+.mol-section__text {
+  font-family: var(--mol-mono);
+  font-size: 0.75rem;
+  line-height: 1.90;
+  color: var(--mol-text-dim);
+  white-space: pre-line;
+}
+
+/* ── Features list ───────────────────────────────────────── */
+.mol-features {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.38rem;
+}
+
+.mol-features li {
+  font-family: var(--mol-mono);
+  font-size: 0.72rem;
+  line-height: 1.65;
+  color: var(--mol-text-dim);
+  padding-left: 1rem;
+  position: relative;
+}
+
+.mol-features li::before {
+  content: '›';
+  position: absolute;
+  left: 0;
+  color: var(--mol-text-faint);
+  font-size: 0.85em;
+  line-height: 1.75;
+}
+
+/* ── Stack chips ─────────────────────────────────────────── */
+.mol-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.mol-stack-chip {
+  display: inline-block;
+  font-family: var(--mol-mono);
+  font-size: 0.60rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--mol-text-dim);
+  border: 1px solid var(--mol-border-mid);
+  background: rgba(255, 255, 255, 0.025);
+  padding: 0.22rem 0.6rem;
+  white-space: nowrap;
+}
+
+/* ── Links ───────────────────────────────────────────────── */
+.mol-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+.mol-link {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--mol-mono);
+  font-size: 0.62rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 0.48rem 1rem;
+  min-height: 36px;
+  border: 1px solid var(--mol-border-mid);
+  color: var(--mol-text-dim);
+  background: transparent;
+  transition: color 0.15s, border-color 0.15s, background 0.15s;
+  white-space: nowrap;
+}
+
+.mol-link:hover {
+  color: var(--mol-text);
+  border-color: rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.mol-link:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.45);
+  outline-offset: 2px;
+}
+
+/* ── Status text ─────────────────────────────────────────── */
+.mol-status-text {
+  font-family: var(--mol-mono);
+  font-size: 0.70rem;
+  line-height: 1.80;
+  color: var(--mol-text-dim);
+}
+
+/* ── Divider between projects ────────────────────────────── */
+.mol-divider {
+  height: 1px;
+  background: var(--mol-border);
+  margin: 3.5rem 0;
+}
+
+/* ── Footer ──────────────────────────────────────────────── */
+.mol-footer {
+  background: var(--mol-surface);
+  border-top: 1px solid var(--mol-border);
+  padding: 3rem 2.5rem 2.5rem;
+}
+
+.mol-footer__inner {
+  max-width: 1360px;
+  margin: 0 auto;
+  display: flex;
+  align-items: flex-start;
+  gap: 2rem 5rem;
+  flex-wrap: wrap;
+}
+
+.mol-footer__brand { flex: 1; min-width: 180px; }
+
+.mol-footer__logo {
+  display: block;
+  font-family: var(--mol-mono);
+  font-size: 0.75rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(230, 232, 240, 0.40);
+  margin-bottom: 0.4rem;
+}
+
+.mol-footer__desc {
+  font-family: var(--mol-mono);
+  font-size: 0.60rem;
+  line-height: 1.75;
+  color: var(--mol-text-faint);
+  max-width: 280px;
+}
+
+.mol-footer__nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.8rem;
+  align-items: center;
+}
+
+.mol-footer__nav a {
+  font-family: var(--mol-mono);
+  font-size: 0.58rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--mol-text-faint);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.mol-footer__nav a:hover { color: var(--mol-text); }
+
+.mol-footer__copy {
+  width: 100%;
+  padding-top: 1.25rem;
+  margin-top: 0.5rem;
+  border-top: 1px solid var(--mol-border);
+  font-family: var(--mol-mono);
+  font-size: 0.52rem;
+  color: var(--mol-text-faint);
+  letter-spacing: 0.5px;
+}
+
+/* ── Tablet breakpoint ───────────────────────────────────── */
+@media (max-width: 1024px) {
+  .mol-field { gap: 1.5rem; }
+
+  .mol-card { width: 220px; }
+  .mol-svg-wrap { width: 220px; height: 220px; }
+  .mol-svg { width: 220px; height: 220px; }
+
+  .mol-panel__sections {
+    grid-template-columns: 1fr;
+    gap: 2rem 0;
+  }
+
+  .mol-section[data-comp="purpose"] { grid-column: 1; }
+}
+
+/* ── Mobile breakpoint ───────────────────────────────────── */
+@media (max-width: 860px) {
+  .mol-hero {
+    padding: calc(var(--site-header-height-mobile) + 2.5rem) 1.25rem 2.5rem;
+  }
+
+  .mol-stage { padding: 0 1.25rem 5rem; }
+
+  .mol-field {
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    padding-bottom: 0;
+  }
+
+  .mol-card {
+    width: 100%;
+    max-width: 320px;
+    margin-bottom: 0;
+  }
+
+  .mol-svg-wrap { width: 200px; height: 200px; }
+  .mol-svg { width: 200px; height: 200px; }
+
+  .mol-card__meta {
+    max-width: 320px;
+    width: 100%;
+    margin-bottom: 0;
+  }
+
+  /* On mobile, detail pane is local to each card */
+  .mol-detail-pane {
+    max-width: 100%;
+  }
+
+  .mol-panel { padding: 1.75rem 0 0.5rem; }
+
+  .mol-panel__header {
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 1.75rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .mol-panel__title { font-size: 1.25rem; }
+
+  .mol-panel__sections {
+    grid-template-columns: 1fr;
+    gap: 1.75rem 0;
+  }
+
+  .mol-section[data-comp="purpose"] { grid-column: 1; }
+
+  .mol-divider { margin: 2.5rem 0; }
+
+  .mol-footer { padding: 2.5rem 1.25rem 2rem; }
+  .mol-footer__inner { gap: 1.75rem; }
+}
+
+/* ── Narrow mobile ───────────────────────────────────────── */
+@media (max-width: 400px) {
+  .mol-hero h1 { font-size: 1.4rem; }
+  .mol-svg-wrap { width: 180px; height: 180px; }
+  .mol-svg { width: 180px; height: 180px; }
+}
+
+/* ── Reduced motion ──────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .mol-detail-pane.is-open { animation: none; }
+  .mol-satellite .mol-sat-circle,
+  .mol-satellite .mol-sat-label,
+  .mol-central-circle,
+  .mol-central-dot,
+  .mol-line,
+  .mol-link,
+  .mol-card__meta,
+  .mol-section { transition: none; }
+}
