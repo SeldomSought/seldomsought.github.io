@@ -3,821 +3,1451 @@
 <head>
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="stylesheet" href="assets/css/global.css">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Areas of Expertise - SeldomSought</title>
-    <meta name="description" content="Our expertise spans brand image, aesthetic orchestration, SEO, AEO, guerrilla marketing, business consulting, copywriting, and email/SMS marketing.">
-    <meta name="theme-color" content="#D4AF37"/>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Share+Tech+Mono&display=swap" rel="stylesheet">
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        :root {
-            --gold: #D4AF37;
-            --gold-light: #E8C967;
-            --gold-dim: #B8860B;
-            --gold-dark: #8B6914;
-            --bg: #0A0805;
-            --text-primary: #E8DCC8;
-            --text-secondary: rgba(212,175,55,0.7);
-            --panel-bg: rgba(15,12,8,0.88);
-            --fs-display: clamp(4rem, 9vw, 9.5rem);
-            --fs-h1:      clamp(3rem, 7vw, 7.5rem);
-            --fs-h2:      clamp(2rem, 3.8vw, 4rem);
-            --fs-h3:      clamp(1.4rem, 2.4vw, 2.5rem);
-            --fs-h4:      clamp(1.1rem, 1.8vw, 1.9rem);
-            --fs-body-lg: clamp(1.1rem, 1.65vw, 1.75rem);
-            --fs-body:    clamp(1rem, 1.4vw, 1.5rem);
-            --fs-small:   clamp(0.85rem, 1vw, 1rem);
-            --fs-label:   clamp(0.78rem, 0.9vw, 0.9rem);
-            --fs-nav:     clamp(0.95rem, 1.1vw, 1.2rem);
-            --fs-btn:     clamp(1rem, 1.35vw, 1.35rem);
-            --lh-tight:   1.1;
-            --lh-snug:    1.3;
-            --lh-copy:    1.7;
-            --lh-relaxed: 1.8;
-            --content-narrow: 65ch;
-            --content-wide:   82ch;
-        }
-        body {
-            font-family: 'Cormorant Garamond', serif;
-            color: var(--text-primary);
-            background: var(--bg);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Expertise — SeldomSought</title>
+  <meta name="description" content="Areas of expertise: marketing strategy, brand positioning, consumer psychology, operations, AI systems, web design, creative direction, and more.">
+  <meta name="theme-color" content="#080c09"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:            #080c09;
+      --bark-dk:       #1a1008;
+      --bark-md:       #2c1e0c;
+      --foliage-dk:    #050e07;
+      --foliage-md:    #0b1e0f;
+      --foliage-lt:    #162a1a;
+      --ground-clr:    #0c1209;
+      --cream:         #d4c9b8;
+      --text-sec:      rgba(196,183,158,0.68);
+      --text-dim:      rgba(160,148,125,0.45);
+      --panel-bg:      rgba(9,12,9,0.96);
+      --panel-border:  rgba(72,58,30,0.38);
+      --gold:          #8a6614;
+      --gold-bright:   #c49a1e;
+      --fs-display:    clamp(2.4rem,5vw,5rem);
+      --fs-h2:         clamp(1.35rem,2.2vw,2rem);
+      --fs-h3:         clamp(1.05rem,1.6vw,1.5rem);
+      --fs-body:       clamp(0.95rem,1.25vw,1.1rem);
+      --fs-small:      clamp(0.8rem,0.95vw,0.9rem);
+      --fs-label:      clamp(0.72rem,0.85vw,0.82rem);
+      --lh-tight:      1.15;
+      --lh-snug:       1.35;
+      --lh-copy:       1.72;
+    }
 
-        /* Canvases */
-        #dragonCanvas {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            z-index: 0; pointer-events: none;
-        }
-        #decorCanvas {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            z-index: 1; pointer-events: none;
-        }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+    html { scroll-behavior: smooth; }
 
-        /* Page Header */
-        .page-header {
-            padding: calc(var(--site-header-height-mobile) + 4rem) 2rem 2rem; text-align: center;
-            position: relative; z-index: 10;
-        }
-        @media (min-width: 861px) {
-            .page-header { padding-top: calc(var(--site-header-height) + 4rem); }
-        }
-        .page-header h1 {
-            font-family: 'Cinzel', serif;
-            font-size: clamp(2.8rem, 5vw, 4rem); margin-bottom: 0.8rem;
-            color: var(--gold); font-weight: 600;
-            text-shadow: 0 0 20px rgba(212,175,55,0.4), 0 0 40px rgba(212,175,55,0.2);
-            letter-spacing: 6px; text-transform: uppercase;
-            opacity: 0; transform: translateY(20px);
-            animation: headerFadeIn 1.5s ease 3.5s forwards;
-        }
-        .page-header .subtitle {
-            font-family: 'Cormorant Garamond', serif;
-            color: var(--text-secondary); font-size: clamp(1.15rem, 2vw, 1.45rem);
-            letter-spacing: 3px; font-style: italic;
-            line-height: var(--lh-copy);
-            opacity: 0; transform: translateY(10px);
-            animation: headerFadeIn 1.5s ease 4s forwards;
-        }
-        @keyframes headerFadeIn {
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @media (prefers-reduced-motion: reduce) {
-            .page-header h1,
-            .page-header .subtitle {
-                opacity: 1;
-                transform: none;
-                animation: none;
-            }
-        }
+    body {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      background: var(--bg);
+      color: var(--cream);
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
 
-        /* Expertise Panels (desktop: absolutely positioned along curve) */
-        .expertise-panels-container {
-            position: relative; z-index: 10;
-            width: 100%; min-height: 100vh;
-        }
-        .expertise-panel {
-            position: absolute;
-            width: 200px;
-            background: var(--panel-bg);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(212,175,55,0.2);
-            padding: 1.2rem 1rem;
-            text-align: center;
-            opacity: 0;
-            transform: scale(0.9);
-            transition: opacity 0.6s ease, transform 0.6s ease, border-color 0.3s, box-shadow 0.3s;
-            cursor: default;
-        }
-        .expertise-panel.visible {
-            opacity: 1; transform: scale(1);
-        }
-        .expertise-panel:hover {
-            border-color: rgba(212,175,55,0.6);
-            box-shadow: 0 0 25px rgba(212,175,55,0.15), inset 0 0 15px rgba(212,175,55,0.05);
-        }
-        .expertise-panel h3 {
-            font-family: 'Cinzel', serif;
-            font-size: clamp(1.05rem, 1.6vw, 1.3rem); margin-bottom: 0.4rem;
-            color: var(--gold); font-weight: 600;
-            letter-spacing: 1px; line-height: var(--lh-snug);
-        }
-        .expertise-panel p {
-            font-family: 'Cormorant Garamond', serif;
-            color: var(--text-secondary); font-size: clamp(1rem, 1.3vw, 1.2rem);
-            letter-spacing: 0.5px; font-style: italic;
-            line-height: var(--lh-copy);
-        }
+    /* ── noise grain overlay ── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.78' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      opacity: 0.03; pointer-events: none; z-index: 9997;
+    }
 
-        /* Footer */
-        footer {
-            background: rgba(10,8,5,0.95);
-            color: var(--text-secondary);
-            padding: 4rem 2.5rem 2.5rem;
-            border-top: 1px solid rgba(212,175,55,0.15);
-            position: relative; z-index: 10;
-            font-family: 'Cormorant Garamond', serif;
-        }
-        .footer-content {
-            max-width: 1200px; margin: 0 auto;
-            display: grid; grid-template-columns: 2fr 1fr 1fr;
-            gap: 4rem; margin-bottom: 2.5rem;
-        }
-        .footer-section h3 {
-            font-family: 'Cinzel', serif;
-            font-size: 1.35rem; margin-bottom: 1.3rem;
-            color: var(--gold);
-            text-shadow: 0 0 8px rgba(212,175,55,0.3);
-            letter-spacing: 2px; text-transform: uppercase; font-weight: 600;
-        }
-        .footer-section p { color: var(--text-secondary); line-height: 1.7; }
-        .footer-links { list-style: none; }
-        .footer-links a {
-            font-family: 'Share Tech Mono', monospace;
-            color: var(--gold-dark); text-decoration: none;
-            display: block; padding: 0.4rem 0; transition: all 0.2s;
-            letter-spacing: 1px; font-size: 1.1rem;
-        }
-        .footer-links a:hover {
-            color: var(--gold);
-            text-shadow: 0 0 8px rgba(212,175,55,0.4);
-            padding-left: 0.5rem;
-        }
-        .footer-links a::before { content: '\u03C6 '; opacity: 0; transition: opacity 0.2s; }
-        .footer-links a:hover::before { opacity: 1; }
-        .footer-bottom {
-            max-width: 1200px; margin: 0 auto; padding-top: 2.5rem;
-            border-top: 1px solid rgba(212,175,55,0.1);
-            text-align: center; color: rgba(212,175,55,0.3);
-            font-family: 'Share Tech Mono', monospace;
-            font-size: 1rem; letter-spacing: 1px;
-        }
+    /* ── scanlines ── */
+    body::after {
+      content: '';
+      position: fixed; inset: 0;
+      background: repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.018) 2px,rgba(0,0,0,0.018) 4px);
+      pointer-events: none; z-index: 9996;
+    }
 
-        /* Mobile */
-        @media (max-width: 768px) {
-            .page-header h1 { font-size: 2rem; letter-spacing: 3px; }
-            .page-header .subtitle { font-size: 1rem; }
-            .expertise-panels-container {
-                position: relative; min-height: auto;
-                padding: 1rem 1rem 2rem;
-            }
-            .expertise-panel {
-                position: relative !important;
-                width: 100% !important;
-                left: auto !important; top: auto !important;
-                margin-bottom: 1rem;
-                opacity: 1; transform: scale(1);
-            }
-            .footer-content { grid-template-columns: 1fr; gap: 2rem; }
-        }
+    /* ══ PAGE SHELL ══════════════════════════════════════════ */
+    .expertise-page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      padding-top: var(--site-header-height, 72px);
+    }
 
-        @media (min-width: 1024px) {
-            /* ── Page header ── */
-            .page-header h1        { font-size: clamp(3.5rem, 7vw, 7.5rem); }
-            .page-header .subtitle { font-size: clamp(1.3rem, 2vw, 2rem); }
-            /* ── Panel content ── */
-            .expertise-panel h3    { font-size: clamp(1.5rem, 2.5vw, 2.5rem); }
-            .expertise-panel p     { font-size: clamp(1.1rem, 1.65vw, 1.75rem); line-height: var(--lh-copy); }
-            .expertise-panel       { padding: 2rem 1.75rem; }
-            /* ── Footer ── */
-            .footer-section h3     { font-size: clamp(1.5rem, 1.8vw, 2rem); }
-            .footer-section p      { font-size: clamp(1rem, 1.3vw, 1.3rem); }
-            .footer-links a        { font-size: clamp(1.2rem, 1.4vw, 1.4rem); }
-            footer                 { padding: 5rem 2.5rem 3rem; }
-        }
-    </style>
+    @media (max-width: 860px) {
+      .expertise-page { padding-top: var(--site-header-height-mobile, 60px); }
+    }
+
+    /* ══ PAGE HEADER ════════════════════════════════════════ */
+    .page-header {
+      text-align: center;
+      padding: clamp(2.5rem,4.5vw,4.5rem) 2rem clamp(1.2rem,2.5vw,2rem);
+      position: relative; z-index: 2;
+      animation: fadeUp 1.1s ease both;
+    }
+
+    .page-header h1 {
+      font-family: 'Cinzel', serif;
+      font-size: var(--fs-display);
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      color: var(--cream);
+      line-height: var(--lh-tight);
+      margin-bottom: 0.9rem;
+    }
+
+    .page-header .subtitle {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: var(--fs-h3);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--text-sec);
+      max-width: 54ch;
+      margin: 0 auto;
+      line-height: var(--lh-snug);
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ══ MAIN ORCHARD LAYOUT ════════════════════════════════ */
+    .orchard-main {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1fr 360px;
+      grid-template-rows: 1fr auto;
+      column-gap: 0;
+      max-width: 1340px;
+      margin: 0 auto;
+      width: 100%;
+      padding: 0 clamp(0.75rem,2.5vw,2rem);
+      animation: fadeUp 1.3s 0.2s ease both;
+    }
+
+    /* ══ TREE SCENE ═════════════════════════════════════════ */
+    .tree-scene {
+      grid-column: 1;
+      grid-row: 1 / 3;
+      position: relative;
+      min-height: 620px;
+    }
+
+    #orchard-svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+      min-height: 620px;
+    }
+
+    /* ══ APPLE GROUPS ════════════════════════════════════════ */
+    .apple-group {
+      cursor: pointer;
+      opacity: 0;
+      outline: none;
+    }
+
+    .apple-group.visible {
+      opacity: 1;
+      transition: opacity 0.45s ease;
+    }
+
+    /* hover / focus body glow */
+    .apple-body { transition: filter 0.22s ease, transform 0.22s ease; }
+
+    .apple-group:hover .apple-body,
+    .apple-group:focus-visible .apple-body {
+      filter: drop-shadow(0 0 10px var(--ac, #aa3333)) brightness(1.18);
+    }
+
+    .apple-group.selected .apple-body {
+      filter: drop-shadow(0 0 16px var(--ac, #aa3333)) drop-shadow(0 0 3px rgba(255,255,255,0.4)) brightness(1.22);
+    }
+
+    /* focus ring */
+    .apple-group:focus-visible .apple-body {
+      outline: none;
+      filter: drop-shadow(0 0 0 2px white) drop-shadow(0 0 10px var(--ac, #aa3333));
+    }
+
+    /* apple label (short name tag above apple) */
+    .apple-label {
+      opacity: 0;
+      transition: opacity 0.22s ease;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .apple-group:hover .apple-label,
+    .apple-group:focus-visible .apple-label,
+    .apple-group.selected .apple-label { opacity: 1; }
+
+    /* ── idle sway animations ── */
+    @keyframes sway-a {
+      0%,100% { transform: rotate(-1.8deg); }
+      50%     { transform: rotate(1.8deg); }
+    }
+    @keyframes sway-b {
+      0%,100% { transform: rotate(-2.2deg) translateX(-1px); }
+      50%     { transform: rotate(2deg) translateX(1px); }
+    }
+    @keyframes sway-c {
+      0%,100% { transform: rotate(-1.2deg); }
+      33%     { transform: rotate(2.1deg); }
+      66%     { transform: rotate(-1.6deg); }
+    }
+
+    .sway-1 { animation: sway-a 4.2s ease-in-out infinite; }
+    .sway-2 { animation: sway-b 3.8s ease-in-out infinite; }
+    .sway-3 { animation: sway-c 5.1s ease-in-out infinite; }
+    .sway-4 { animation: sway-a 4.7s ease-in-out infinite reverse; }
+    .sway-5 { animation: sway-b 4.4s ease-in-out infinite; }
+    .sway-6 { animation: sway-c 3.6s ease-in-out infinite reverse; }
+
+    .apple-group.fallen .sway-1,
+    .apple-group.fallen .sway-2,
+    .apple-group.fallen .sway-3,
+    .apple-group.fallen .sway-4,
+    .apple-group.fallen .sway-5,
+    .apple-group.fallen .sway-6 { animation: none; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .sway-1,.sway-2,.sway-3,.sway-4,.sway-5,.sway-6 { animation: none; }
+    }
+
+    /* ══ DETAIL PANEL ════════════════════════════════════════ */
+    .detail-panel {
+      grid-column: 2;
+      grid-row: 1;
+      padding: 1.5rem 0 1.5rem 2rem;
+      display: flex;
+      align-items: flex-start;
+      min-height: 0;
+    }
+
+    .detail-card {
+      width: 100%;
+      background: var(--panel-bg);
+      border: 1px solid var(--panel-border);
+      padding: 2rem 1.8rem;
+      position: relative;
+      opacity: 0;
+      transform: translateX(16px);
+      transition: opacity 0.32s ease, transform 0.32s ease;
+      pointer-events: none;
+    }
+
+    .detail-card.visible {
+      opacity: 1;
+      transform: translateX(0);
+      pointer-events: auto;
+    }
+
+    /* corner ornaments */
+    .detail-card::before {
+      content: '';
+      position: absolute;
+      top: -1px; left: -1px;
+      width: 14px; height: 14px;
+      border-top: 1px solid var(--gold);
+      border-left: 1px solid var(--gold);
+    }
+    .detail-card::after {
+      content: '';
+      position: absolute;
+      bottom: -1px; right: -1px;
+      width: 14px; height: 14px;
+      border-bottom: 1px solid var(--gold);
+      border-right: 1px solid var(--gold);
+    }
+
+    .corner-tl {
+      position: absolute;
+      top: -1px; right: -1px;
+      width: 14px; height: 14px;
+      border-top: 1px solid var(--gold);
+      border-right: 1px solid var(--gold);
+    }
+    .corner-br {
+      position: absolute;
+      bottom: -1px; left: -1px;
+      width: 14px; height: 14px;
+      border-bottom: 1px solid var(--gold);
+      border-left: 1px solid var(--gold);
+    }
+
+    .detail-close {
+      position: absolute;
+      top: 0.9rem; right: 0.9rem;
+      background: none;
+      border: 1px solid rgba(72,58,30,0.3);
+      color: var(--text-dim);
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      padding: 0.22rem 0.55rem;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .detail-close:hover { color: var(--cream); border-color: var(--gold); }
+
+    .detail-dot {
+      width: 14px; height: 14px;
+      border-radius: 50%;
+      margin-bottom: 1.1rem;
+      display: inline-block;
+    }
+
+    .detail-title {
+      font-family: 'Cinzel', serif;
+      font-size: var(--fs-h2);
+      font-weight: 400;
+      color: var(--cream);
+      letter-spacing: 0.03em;
+      margin-bottom: 1.1rem;
+      line-height: var(--lh-snug);
+    }
+
+    .detail-desc {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1rem,1.25vw,1.12rem);
+      font-weight: 300;
+      color: var(--text-sec);
+      line-height: var(--lh-copy);
+      margin-bottom: 1.4rem;
+    }
+
+    .detail-signal {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: var(--fs-small);
+      color: var(--text-dim);
+      border-top: 1px solid rgba(72,58,30,0.28);
+      padding-top: 1rem;
+      line-height: var(--lh-copy);
+    }
+    .detail-signal::before {
+      content: '// ';
+      color: var(--gold);
+    }
+
+    /* ══ TREE CONTROLS ══════════════════════════════════════ */
+    .tree-controls {
+      grid-column: 1;
+      grid-row: 2;
+      display: flex;
+      gap: 1rem;
+      padding: 0.75rem 0 2rem;
+      justify-content: center;
+    }
+
+    .tree-btn {
+      background: none;
+      border: 1px solid rgba(72,58,30,0.45);
+      color: var(--text-dim);
+      font-family: 'Share Tech Mono', monospace;
+      font-size: var(--fs-label);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.5rem 1.3rem;
+      transition: color 0.22s, border-color 0.22s, background 0.22s;
+    }
+    .tree-btn:hover {
+      color: var(--cream);
+      border-color: var(--gold);
+      background: rgba(138,102,20,0.07);
+    }
+    .tree-btn:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 2px;
+    }
+
+    /* ══ MOBILE CHIPS ═══════════════════════════════════════ */
+    .mobile-chips {
+      display: none;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      padding: 0.5rem 1.25rem 1.5rem;
+      justify-content: center;
+    }
+
+    .apple-chip {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      background: rgba(12,18,10,0.85);
+      border: 1px solid rgba(72,58,30,0.28);
+      padding: 0.42rem 0.85rem;
+      cursor: pointer;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.74rem;
+      letter-spacing: 0.06em;
+      color: var(--text-sec);
+      transition: border-color 0.2s, color 0.2s;
+      outline: none;
+    }
+    .apple-chip:hover, .apple-chip.active {
+      border-color: var(--gold);
+      color: var(--cream);
+    }
+    .apple-chip:focus-visible {
+      outline: 1px solid var(--gold);
+      outline-offset: 2px;
+    }
+    .chip-dot {
+      width: 9px; height: 9px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* ══ MOBILE DETAIL ══════════════════════════════════════ */
+    .mobile-detail-wrap {
+      display: none;
+      padding: 0 1.25rem 2rem;
+    }
+
+    .mobile-detail-card {
+      background: var(--panel-bg);
+      border: 1px solid var(--panel-border);
+      padding: 1.6rem 1.4rem;
+      position: relative;
+      opacity: 0;
+      max-height: 0;
+      overflow: hidden;
+      transition: opacity 0.3s ease, max-height 0.4s ease;
+    }
+    .mobile-detail-card.visible {
+      opacity: 1;
+      max-height: 600px;
+    }
+    .mobile-detail-card::before {
+      content: '';
+      position: absolute; top: -1px; left: -1px;
+      width: 12px; height: 12px;
+      border-top: 1px solid var(--gold); border-left: 1px solid var(--gold);
+    }
+    .mobile-detail-card::after {
+      content: '';
+      position: absolute; bottom: -1px; right: -1px;
+      width: 12px; height: 12px;
+      border-bottom: 1px solid var(--gold); border-right: 1px solid var(--gold);
+    }
+
+    .mobile-close {
+      position: absolute;
+      top: 0.8rem; right: 0.8rem;
+      background: none;
+      border: 1px solid rgba(72,58,30,0.3);
+      color: var(--text-dim);
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      padding: 0.2rem 0.5rem;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .mobile-close:hover { color: var(--cream); border-color: var(--gold); }
+
+    /* ══ FOOTER ═════════════════════════════════════════════ */
+    .site-footer {
+      background: rgba(6,8,6,0.96);
+      border-top: 1px solid rgba(72,58,30,0.18);
+      padding: 3.5rem 2.5rem 2.5rem;
+      position: relative; z-index: 2;
+      font-family: 'Cormorant Garamond', serif;
+      color: var(--text-sec);
+    }
+
+    .footer-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 3.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .footer-col h3 {
+      font-family: 'Cinzel', serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--gold);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 1.1rem;
+    }
+
+    .footer-col p {
+      font-size: clamp(0.9rem,1.1vw,1rem);
+      line-height: var(--lh-copy);
+      color: var(--text-sec);
+    }
+
+    .footer-links { list-style: none; }
+    .footer-links a {
+      font-family: 'Share Tech Mono', monospace;
+      color: var(--gold);
+      text-decoration: none;
+      display: block;
+      padding: 0.35rem 0;
+      font-size: clamp(0.85rem,1vw,0.95rem);
+      letter-spacing: 0.06em;
+      opacity: 0.6;
+      transition: opacity 0.2s, padding-left 0.2s;
+    }
+    .footer-links a:hover { opacity: 1; padding-left: 0.4rem; }
+
+    .footer-bottom {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(72,58,30,0.12);
+      text-align: center;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.78rem;
+      letter-spacing: 0.06em;
+      color: var(--text-dim);
+    }
+
+    /* ══ RESPONSIVE ═════════════════════════════════════════ */
+    @media (max-width: 960px) {
+      .orchard-main {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto;
+      }
+      .tree-scene { grid-column: 1; grid-row: 1; min-height: 440px; }
+      .detail-panel { display: none; }
+      .tree-controls { grid-column: 1; grid-row: 2; }
+      .mobile-chips { display: flex; }
+      .mobile-detail-wrap { display: block; }
+      .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+    }
+
+    @media (max-width: 560px) {
+      .tree-scene { min-height: 320px; }
+      .tree-controls { padding-bottom: 1rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .page-header, .orchard-main { animation: none; opacity: 1; transform: none; }
+    }
+  </style>
 </head>
 <body>
-    <canvas id="dragonCanvas"></canvas>
-    <canvas id="decorCanvas"></canvas>
 
-    <header class="site-header" id="siteHeader">
-      <div class="site-header__inner">
-        <a href="index.html" class="site-header__brand">SeldomSought</a>
-        <button class="site-header__toggle" id="siteMenuToggle"
-                aria-label="Toggle navigation" aria-expanded="false"
-                aria-controls="siteMobileMenu">☰</button>
-        <nav class="site-header__nav" aria-label="Primary navigation">
-          <a href="index.html">Home</a>
-          <a href="philosophy.html">Philosophy</a>
-          <a href="services.html">Services</a>
-          <a href="expertise.html">Expertise</a>
-          <a href="projects.html">Projects</a>
-          <a href="faq.html">FAQ</a>
-          <a href="contact.html">Contact</a>
-        </nav>
-      </div>
-      <nav class="site-header__mobile" id="siteMobileMenu"
-           aria-label="Mobile navigation" aria-hidden="true">
+  <header class="site-header" id="siteHeader">
+    <div class="site-header__inner">
+      <a href="index.html" class="site-header__brand">SeldomSought</a>
+      <button class="site-header__toggle" id="siteMenuToggle"
+              aria-label="Toggle navigation" aria-expanded="false"
+              aria-controls="siteMobileMenu">☰</button>
+      <nav class="site-header__nav" aria-label="Primary navigation">
         <a href="index.html">Home</a>
         <a href="philosophy.html">Philosophy</a>
         <a href="services.html">Services</a>
-        <a href="expertise.html">Expertise</a>
+        <a href="expertise.html" aria-current="page">Expertise</a>
         <a href="projects.html">Projects</a>
         <a href="faq.html">FAQ</a>
         <a href="contact.html">Contact</a>
       </nav>
+    </div>
+    <nav class="site-header__mobile" id="siteMobileMenu"
+         aria-label="Mobile navigation" aria-hidden="true">
+      <a href="index.html">Home</a>
+      <a href="philosophy.html">Philosophy</a>
+      <a href="services.html">Services</a>
+      <a href="expertise.html" aria-current="page">Expertise</a>
+      <a href="projects.html">Projects</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <div class="expertise-page">
+
+    <header class="page-header">
+      <h1>Expertise</h1>
+      <p class="subtitle">The fruit is not the skill. The tree is the system that keeps producing it.</p>
     </header>
 
-    <div class="page-header">
-        <h1>Areas of Expertise</h1>
-        <p class="subtitle">Where strategy becomes signal</p>
+    <main class="orchard-main" id="main-content">
+
+      <!-- ── Tree Scene ── -->
+      <section class="tree-scene"
+               aria-label="Appletree of Competence — each apple is an area of expertise. Use Tab to navigate, Enter or Space to open.">
+
+        <svg id="orchard-svg"
+             viewBox="0 0 800 720"
+             role="img"
+             aria-label="A symbolic apple tree with twelve fruit, each representing a distinct area of expertise">
+          <defs>
+            <!-- bark texture -->
+            <pattern id="bark" x="0" y="0" width="8" height="10" patternUnits="userSpaceOnUse">
+              <rect width="8" height="10" fill="#1a1008"/>
+              <rect x="0" y="0" width="2" height="5" fill="#2c1e0c" opacity="0.55"/>
+              <rect x="5" y="5" width="2" height="5" fill="#2c1e0c" opacity="0.38"/>
+              <rect x="2" y="2" width="1" height="2" fill="#3a280e" opacity="0.3"/>
+            </pattern>
+
+            <!-- ground texture -->
+            <pattern id="gnd" x="0" y="0" width="6" height="6" patternUnits="userSpaceOnUse">
+              <rect width="6" height="6" fill="#0c1209"/>
+              <rect x="0" y="0" width="3" height="3" fill="#090e07" opacity="0.5"/>
+              <rect x="3" y="3" width="2" height="2" fill="#111a0e" opacity="0.4"/>
+            </pattern>
+
+            <!-- ambient glow behind tree -->
+            <radialGradient id="ambient" cx="50%" cy="48%" r="46%">
+              <stop offset="0%"   stop-color="#0f2514" stop-opacity="0.55"/>
+              <stop offset="100%" stop-color="#080c09" stop-opacity="0"/>
+            </radialGradient>
+
+            <!-- ground shadow under trunk -->
+            <radialGradient id="trunkShadow" cx="50%" cy="50%" r="50%">
+              <stop offset="0%"   stop-color="#000000" stop-opacity="0.5"/>
+              <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+
+          <!-- ambient atmosphere -->
+          <rect width="800" height="720" fill="url(#ambient)"/>
+
+          <!-- ── GROUND ── -->
+          <rect x="0" y="668" width="800" height="52" fill="url(#gnd)"/>
+          <line x1="0" y1="668" x2="800" y2="668" stroke="#192816" stroke-width="1.5" opacity="0.6"/>
+
+          <!-- ground shadow under trunk -->
+          <ellipse cx="400" cy="672" rx="105" ry="14" fill="url(#trunkShadow)"/>
+
+          <!-- ── ROOTS ── -->
+          <!-- left outer root -->
+          <polygon points="356,668 340,672 322,680 302,688 280,694 265,696 260,694 270,690 290,686 312,678 330,668 344,658" fill="url(#bark)"/>
+          <!-- left inner root -->
+          <polygon points="364,668 352,674 338,682 318,690 300,694 290,692 296,688 314,686 332,678 348,668 358,660" fill="#1a1008" opacity="0.7"/>
+          <!-- right outer root -->
+          <polygon points="444,668 460,672 478,680 498,688 520,694 535,696 540,694 530,690 510,686 488,678 470,668 456,658" fill="url(#bark)"/>
+          <!-- right inner root -->
+          <polygon points="436,668 448,674 462,682 482,690 500,694 510,692 504,688 486,686 468,678 452,668 442,660" fill="#1a1008" opacity="0.7"/>
+
+          <!-- ── TRUNK ── -->
+          <polygon points="
+            365,490 361,528 357,566 353,604 349,640 345,668
+            455,668 451,640 447,604 443,566 439,528 435,490
+          " fill="url(#bark)"/>
+          <!-- trunk highlight edge (right side catches ambient) -->
+          <polygon points="
+            418,492 420,528 422,566 424,604 426,640 428,666
+            436,666 434,640 432,604 430,566 428,528 426,492
+          " fill="#3a2810" opacity="0.3"/>
+          <!-- trunk shadow edge (left side deeper) -->
+          <polygon points="
+            365,490 363,528 360,566 357,604 354,640 352,666
+            360,666 362,640 364,604 366,566 368,528 370,492
+          " fill="#0a0804" opacity="0.45"/>
+
+          <!-- ── VISIBLE BRANCH STUBS (peek from trunk into canopy) ── -->
+          <!-- left main branch going upper-left -->
+          <polygon points="
+            364,500 355,485 340,465 320,442 298,418 272,392 248,366
+            255,360 280,386 305,412 326,436 345,459 360,480 370,496
+          " fill="url(#bark)"/>
+          <!-- left secondary branch -->
+          <polygon points="
+            320,442 308,428 288,408 266,385 245,362 228,340
+            234,335 252,357 272,380 293,403 313,423 324,438
+          " fill="#1a1008"/>
+          <!-- right main branch going upper-right -->
+          <polygon points="
+            436,500 445,485 460,465 480,442 502,418 528,392 552,366
+            558,372 532,398 506,424 484,448 464,471 450,491 430,505
+          " fill="url(#bark)"/>
+          <!-- right secondary branch -->
+          <polygon points="
+            480,442 492,428 512,408 534,385 555,362 572,340
+            566,335 548,357 528,380 507,403 487,423 476,438
+          " fill="#1a1008"/>
+          <!-- upper center branch reaching top -->
+          <polygon points="
+            390,492 384,468 376,440 368,410 362,378 360,346 365,316 380,292
+            400,282 420,292 435,316 440,346 438,378 432,410 424,440 416,468 410,492
+          " fill="#1a1008" opacity="0.5"/>
+
+          <!-- ── FOLIAGE LAYER 1 — outer / darkest ── -->
+          <polygon points="
+            355,530 318,521 282,510 250,496 220,478 196,457 174,434
+            154,408 136,382 120,352 108,322 98,290 92,258 92,226 100,196
+            114,168 134,144 158,124 184,108 214,94 246,84 280,75
+            318,69 358,64 400,62 442,64 482,69 520,75 554,84
+            586,94 616,108 642,124 666,144 686,168 700,196 708,226
+            708,258 702,290 692,322 676,352 660,382 642,408
+            622,434 600,457 576,478 550,496 518,510 482,521 445,530 400,536
+          " fill="#05100a"/>
+
+          <!-- ── FOLIAGE LAYER 2 — mid ── -->
+          <polygon points="
+            368,526 334,518 300,507 270,494 244,477 222,457 203,435
+            185,412 170,386 157,358 147,329 140,300 136,270 138,241
+            146,214 160,188 178,165 200,146 224,130 252,118 282,109
+            314,102 350,97 400,95 450,97 486,102 518,109 548,118
+            576,130 600,146 622,165 640,188 654,214 662,241
+            664,270 660,300 653,329 643,358 630,386 615,412
+            597,435 578,457 556,477 530,494 500,507 466,518 432,526 400,532
+          " fill="#0b1e0f"/>
+
+          <!-- ── FOLIAGE LAYER 3 — front / lightest, pixel-notched edge ── -->
+          <polygon points="
+            375,524 348,516 322,506 298,492 276,476 256,458 238,436
+            222,414 210,390 200,364 192,338 188,312 188,285 192,259
+            202,234 216,211 234,191 256,174 280,160 308,150 338,142
+            370,138 400,136 430,138 462,142 492,150 520,160 544,174
+            566,191 584,211 598,234 608,259 612,285 612,312
+            608,338 600,364 590,390 578,414 562,436 544,458
+            524,476 502,492 478,506 452,516 425,524 400,528
+          " fill="#162a1a"/>
+
+          <!-- foliage highlight clusters (lighter patches for depth) -->
+          <polygon points="205,215 224,202 242,208 248,225 232,238 210,234" fill="#1f3824" opacity="0.55"/>
+          <polygon points="370,100 396,95 418,103 422,122 402,131 374,125" fill="#1f3824" opacity="0.5"/>
+          <polygon points="548,210 568,198 586,205 590,223 572,235 550,230" fill="#1f3824" opacity="0.55"/>
+          <polygon points="305,155 328,147 346,155 350,172 330,180 306,174" fill="#1f3824" opacity="0.45"/>
+          <polygon points="454,152 478,145 494,154 498,170 478,178 454,172" fill="#1f3824" opacity="0.45"/>
+          <polygon points="245,348 268,338 284,348 286,366 265,374 243,366" fill="#1a3020" opacity="0.4"/>
+          <polygon points="514,348 537,338 554,348 556,366 535,374 512,366" fill="#1a3020" opacity="0.4"/>
+
+          <!-- dark inner shadow at canopy base (depth) -->
+          <ellipse cx="400" cy="528" rx="88" ry="18" fill="#030806" opacity="0.65"/>
+
+
+          <!-- ══════════════════════════════════════════════════════
+               APPLE GROUPS
+               Each group: local (0,0) = stem attachment on branch.
+               transform-box:fill-box + transform-origin:50% 0%
+               lets CSS sway rotate around the stem top.
+          ══════════════════════════════════════════════════════ -->
+
+          <!-- 1 · Marketing Strategy · crimson · far left -->
+          <g id="apple-marketing-strategy"
+             class="apple-group"
+             data-id="marketing-strategy"
+             data-sway="1"
+             tabindex="0"
+             role="button"
+             aria-label="Marketing Strategy — press Enter to view"
+             style="--ac:#7c1f1f; transform-box:fill-box; transform-origin:50% 0%">
+            <rect x="163" y="230" width="4" height="13" rx="1" fill="#1e1208"/>
+            <polygon points="167,232 180,226 172,241" fill="#1a3618"/>
+            <g class="apple-body">
+              <circle cx="165" cy="260" r="22" fill="#5e1515"/>
+              <circle cx="165" cy="260" r="22" fill="#7c1f1f" opacity="0.7"/>
+              <rect x="153" y="247" width="8" height="8" rx="1" fill="rgba(255,255,255,0.15)"/>
+              <rect x="153" y="247" width="4" height="4" rx="0" fill="rgba(255,255,255,0.26)"/>
+              <ellipse cx="165" cy="240" rx="4" ry="2.5" fill="#3a0e0e" opacity="0.5"/>
+            </g>
+            <text class="apple-label" x="165" y="219"
+                  text-anchor="middle" font-family="Share Tech Mono,monospace"
+                  font-size="9.5" letter-spacing="0.5" fill="#d4c9b8">MARKETING</text>
+          </g>
+
+          <!-- 2 · Brand Positioning · amber · upper left -->
+          <g id="apple-brand-positioning"
+             class="apple-group"
+             data-id="brand-positioning"
+             data-sway="3"
+             tabindex="0"
+             role="button"
+             aria-label="Brand Positioning — press Enter to view"
+             style="--ac:#7a5810; transform-box:fill-box; transform-origin:50% 0%">
+            <rect x="208" y="162" width="4" height="13" rx="1" fill="#1e1208"/>
+            <polygon points="212,164 226,158 218,173" fill="#1a3618"/>
+            <g class="apple-body">
+              <circle cx="210" cy="193" r="22" fill="#5c4010"/>
+              <circle cx="210" cy="193" r="22" fill="#7a5810" opacity="0.72"/>
+              <rect x="198" y="180" width="8" height="8" rx="1" fill="rgba(255,255,255,0.15)"/>
+              <rect x="198" y="180" width="4" height="4" fill="rgba(255,255,255,0.26)"/>
+              <ellipse cx="210" cy="173" rx="4" ry="2.5" fill="#3a2808" opacity="0.5"/>
+            </g>
+            <text class="apple-label" x="210" y="151"
+                  text-anchor="middle" font-family="Share Tech Mono,monospace"
+                  font-size="9.5" letter-spacing="0.5" fill="#d4c9b8">BRAND</text>
+          </g>
+
+          <!-- 3 · Consumer Psychology · mauve · left-center -->
+          <g id="apple-consumer-psychology"
+             class="apple-group"
+             data-id="consumer-psychology"
+             data-sway="2"
+             tabindex="0"
+             role="button"
+             aria-label="Consumer Psychology — press Enter to view"
+             style="--ac:#6a2838; transform-box:fill-box; transform-origin:50% 0%">
+            <rect x="290" y="120" width="4" height="13" rx="1" fill="#1e1208"/>
+            <polygon points="294,122 307,116 299,131" fill="#1a3618"/>
+            <g class="apple-body">
+              <circle cx="292" cy="151" r="22" fill="#4e1c28"/>
+              <circle cx="292" cy="151" r="22" fill="#6a2838" opacity="0.72"/>
+              <rect x="280" y="138" width="8" height="8" rx="1" fill="rgba(255,255,255,0.14)"/>
+              <rect x="280" y="138" width="4" height="4" fill="rgba(255,255,255,0.24)"/>
+              <ellipse cx="292" cy="131" rx="4" ry="2.5" fill="#2e0e18" opacity="0.5"/>
+            </g>
+            <text class="apple-label" x="292" y="108"
+                  text-anchor="middle" font-family="Share Tech Mono,monospace"
+                  font-size="9.5" letter-spacing="0.5" fill="#d4c9b8">PSYCHOLOGY</text>
+          </g>
+
+          <!-- 4 · Operations · forest green · near top left -->
+          <g id="apple-operations"
+             class="apple-group"
+             data-id="operations"
+             data-sway="5"
+             tabindex="0"
+             role="button"
+             aria-label="Operations — press Enter to view"
+             style="--ac:#2a5220; transform-box:fill-box; transform-origin:50% 0%">
+            <rect x="363" y="78" width="4" height="13" rx="1" fill="#1e1208"/>
+            <polygon points="367,80 380,74 372,89" fill="#1a3618"/>
+            <g class="apple-body">
+              <circle cx="365" cy="109" r="22" fill="#1e3e18"/>
+              <circle cx="365" cy="109" r="22" fill="#2a5220" opacity="0.72"/>
+              <rect x="353" y="96" width="8" height="8" rx="1" fill="rgba(255,255,255,0.14)"/>
+              <rect x="353" y="96" width="4" height="4" fill="rgba(255,255,255,0.24)"/>
+              <ellipse cx="365" cy="89" rx="4" ry="2.5" fill="#102810" opacity="0.55"/>
+            </g>
+            <text class="apple-label" x="365" y="66"
+                  text-anchor="middle" font-family="Share Tech Mono,monospace"
+                  font-size="9.5" letter-spacing="0.5" fill="#d4c9b8">OPS</text>
+          </g>
+
+          <!-- 5 · Sales · copper · very top -->
+          <g id="apple-sales"
+             class="apple-group"
+             data-id="sales"
+             data-sway="4"
+             tabindex="0"
+             role="button"
+             aria-label="Sales — press Enter to view"
+             style="--ac:#7a4418; transform-box:fill-box; transform-origin:50% 0%">
+            <rect x="398" y="58" width="4" height="13" rx="1" fill="#1e1208"/>
+            <polygon points="402,60 415,54 407,69" fill="#1a3618"/>
+            <g class="apple-body">
+              <circle cx="400" cy="89" r="22" fill="#5c3010"/>
+              <circle cx="400" cy="89" r="22" fill="#7a4418" opacity="0.72"/>
+              <rect x="388" y="76" width="8" height="8" rx="1" fill="rgba(255,255,255,0.15)"/>
+              <rect x="388" y="76" width="4" height="4" fill="rgba(255,255,255,0.26)"/>
+              <ellipse cx="400" cy="69" rx="4" ry="2.5" fill="#3a2008" opacity="0.5"/>
+            </g>
+            <text class="apple-label" x="400" y="46"
+                  text-anchor="middle" font-family="Share Tech Mono,monospace"
+                  font-size="9.5" letter-spacing="0.5" fill="#d4c9b8">SALES</text>
+          </g>
+
+          <!-- 6 · AI Systems · slate blue · near top right -->
+          <g id="apple-ai-systems"
+             class="apple-group"
+             data-id="ai-systems"
+             data-sway="6"
+             tabindex="0"
+             role="button"
+             aria-label="AI Systems and Automation — press Enter to view"
+             style="--ac:#28385a; transform-box:fill-box; transform-origin:50% 0%">
+            <rect x="433" y="78" width="4" height="13" rx="1" fill="#1e1208"/>
+            <polygon points="437,80 450,74 442,89" fill="#1a3618"/>
+            <g class="apple-body">
+              <circle cx="435" cy="109" r="22" fill="#1c2840"/>
+              <circle cx="435" cy="109" r="22" fill="#28385a" opacity="0.72"/>
+              <rect x="423" y="96" width="8" height="8" rx="1" fill="rgba(255,255,255,0.15)"/>
+              <rect x="423" y="96" width="4" height="4" fill="rgba(255,255,255,0.28)"/>
+              <ellipse cx="435" cy="89" rx="4" ry="2.5" fill="#101828" opacity="0.55"/>
+            </g>
+            <text class="apple-label" x="435" y="66"
+                  text-anchor="middle" font-family="Share Tech Mono,monospace"
+                  font-size="9.5" letter-spacing="0.5" fill="#d4c9b8">AI</text>
+          </g>
+
+          <!-- 7 · Web Design · teal · right-center upper -->
+          <g id="apple-web-design"
+             class="apple-group"
+             data-id="web-design"
+             data-sway="2"
+             tabindex="0"
+             role="button"
+             aria-label="Web Design and Frontend Direction — press Enter to view"
+             style="--ac:#1a4838; transform-box:fill-box; transform-origin:50% 0%">
+            <rect x="506" y="120" width="4" height="13" rx="1" fill="#1e1208"/>
+            <polygon points="510,122 524,116 516,131" fill="#1a3618"/>
+            <g class="apple-body">
+              <circle cx="508" cy="151" r="22" fill="#103428"/>
+              <circle cx="508" cy="151" r="22" fill="#1a4838" opacity="0.72"/>
+              <rect x="496" y="138" width="8" height="8" rx="1" fill="rgba(255,255,255,0.14)"/>
+              <rect x="496" y="138" width="4" height="4" fill="rgba(255,255,255,0.24)"/>
+              <ellipse cx="508" cy="131" rx="4" ry="2.5" fill="#081e18" opacity="0.55"/>
+            </g>
+            <text class="apple-label" x="508" y="108"
+                  text-anchor="middle" font-family="Share Tech Mono,monospace"
+                  font-size="9.5" letter-spacing="0.5" fill="#d4c9b8">WEB</text>
+          </g>
+
+          <!-- 8 · Creative Direction · deep plum · upper right -->
+          <g id="apple-creative-direction"
+             class="apple-group"
+             data-id="creative-direction"
+             data-sway="1"
+             tabindex="0"
+             role="button"
+             aria-label="Creative Direction — press Enter to view"
+             style="--ac:#4c1c48; transform-box:fill-box; transform-origin:50% 0%">
+            <rect x="588" y="162" width="4" height="13" rx="1" fill="#1e1208"/>
+            <polygon points="592,164 606,158 598,173" fill="#1a3618"/>
+            <g class="apple-body">
+              <circle cx="590" cy="193" r="22" fill="#380e34"/>
+              <circle cx="590" cy="193" r="22" fill="#4c1c48" opacity="0.72"/>
+              <rect x="578" y="180" width="8" height="8" rx="1" fill="rgba(255,255,255,0.14)"/>
+              <rect x="578" y="180" width="4" height="4" fill="rgba(255,255,255,0.24)"/>
+              <ellipse cx="590" cy="173" rx="4" ry="2.5" fill="#200828" opacity="0.5"/>
+            </g>
+            <text class="apple-label" x="590" y="151"
+                  text-anchor="middle" font-family="Share Tech Mono,monospace"
+                  font-size="9.5" letter-spacing="0.5" fill="#d4c9b8">CREATIVE</text>
+          </g>
+
+          <!-- 9 · Fashion / Style · tan · far right -->
+          <g id="apple-fashion-style"
+             class="apple-group"
+             data-id="fashion-style"
+             data-sway="3"
+             tabindex="0"
+             role="button"
+             aria-label="Fashion and Style Analysis — press Enter to view"
+             style="--ac:#685838; transform-box:fill-box; transform-origin:50% 0%">
+            <rect x="633" y="230" width="4" height="13" rx="1" fill="#1e1208"/>
+            <polygon points="637,232 650,226 642,241" fill="#1a3618"/>
+            <g class="apple-body">
+              <circle cx="635" cy="261" r="22" fill="#4c4028"/>
+              <circle cx="635" cy="261" r="22" fill="#685838" opacity="0.72"/>
+              <rect x="623" y="248" width="8" height="8" rx="1" fill="rgba(255,255,255,0.14)"/>
+              <rect x="623" y="248" width="4" height="4" fill="rgba(255,255,255,0.24)"/>
+              <ellipse cx="635" cy="241" rx="4" ry="2.5" fill="#302818" opacity="0.5"/>
+            </g>
+            <text class="apple-label" x="635" y="219"
+                  text-anchor="middle" font-family="Share Tech Mono,monospace"
+                  font-size="9.5" letter-spacing="0.5" fill="#d4c9b8">STYLE</text>
+          </g>
+
+          <!-- 10 · Content Strategy · sage · lower left -->
+          <g id="apple-content-strategy"
+             class="apple-group"
+             data-id="content-strategy"
+             data-sway="5"
+             tabindex="0"
+             role="button"
+             aria-label="Content Strategy — press Enter to view"
+             style="--ac:#385218; transform-box:fill-box; transform-origin:50% 0%">
+            <rect x="248" y="318" width="4" height="13" rx="1" fill="#1e1208"/>
+            <polygon points="252,320 265,314 257,329" fill="#1a3618"/>
+            <g class="apple-body">
+              <circle cx="250" cy="349" r="22" fill="#263c10"/>
+              <circle cx="250" cy="349" r="22" fill="#385218" opacity="0.72"/>
+              <rect x="238" y="336" width="8" height="8" rx="1" fill="rgba(255,255,255,0.14)"/>
+              <rect x="238" y="336" width="4" height="4" fill="rgba(255,255,255,0.24)"/>
+              <ellipse cx="250" cy="329" rx="4" ry="2.5" fill="#142808" opacity="0.55"/>
+            </g>
+            <text class="apple-label" x="250" y="306"
+                  text-anchor="middle" font-family="Share Tech Mono,monospace"
+                  font-size="9.5" letter-spacing="0.5" fill="#d4c9b8">CONTENT</text>
+          </g>
+
+          <!-- 11 · Community Building · violet · lower right -->
+          <g id="apple-community-building"
+             class="apple-group"
+             data-id="community-building"
+             data-sway="4"
+             tabindex="0"
+             role="button"
+             aria-label="Community Building — press Enter to view"
+             style="--ac:#48285e; transform-box:fill-box; transform-origin:50% 0%">
+            <rect x="548" y="318" width="4" height="13" rx="1" fill="#1e1208"/>
+            <polygon points="552,320 566,314 558,329" fill="#1a3618"/>
+            <g class="apple-body">
+              <circle cx="550" cy="349" r="22" fill="#341a44"/>
+              <circle cx="550" cy="349" r="22" fill="#48285e" opacity="0.72"/>
+              <rect x="538" y="336" width="8" height="8" rx="1" fill="rgba(255,255,255,0.14)"/>
+              <rect x="538" y="336" width="4" height="4" fill="rgba(255,255,255,0.24)"/>
+              <ellipse cx="550" cy="329" rx="4" ry="2.5" fill="#1c0e30" opacity="0.5"/>
+            </g>
+            <text class="apple-label" x="550" y="306"
+                  text-anchor="middle" font-family="Share Tech Mono,monospace"
+                  font-size="9.5" letter-spacing="0.5" fill="#d4c9b8">COMMUNITY</text>
+          </g>
+
+          <!-- 12 · Business Development · rust · center lower -->
+          <g id="apple-business-dev"
+             class="apple-group"
+             data-id="business-dev"
+             data-sway="6"
+             tabindex="0"
+             role="button"
+             aria-label="Business Development — press Enter to view"
+             style="--ac:#601c14; transform-box:fill-box; transform-origin:50% 0%">
+            <rect x="398" y="290" width="4" height="13" rx="1" fill="#1e1208"/>
+            <polygon points="402,292 416,286 408,301" fill="#1a3618"/>
+            <g class="apple-body">
+              <circle cx="400" cy="321" r="22" fill="#481008"/>
+              <circle cx="400" cy="321" r="22" fill="#601c14" opacity="0.72"/>
+              <rect x="388" y="308" width="8" height="8" rx="1" fill="rgba(255,255,255,0.14)"/>
+              <rect x="388" y="308" width="4" height="4" fill="rgba(255,255,255,0.24)"/>
+              <ellipse cx="400" cy="301" rx="4" ry="2.5" fill="#280a06" opacity="0.5"/>
+            </g>
+            <text class="apple-label" x="400" y="278"
+                  text-anchor="middle" font-family="Share Tech Mono,monospace"
+                  font-size="9.5" letter-spacing="0.5" fill="#d4c9b8">BIZ DEV</text>
+          </g>
+
+        </svg>
+      </section>
+
+      <!-- ── Detail Panel (desktop) ── -->
+      <aside class="detail-panel" id="detail-panel"
+             aria-live="polite" aria-label="Expertise detail">
+        <div class="detail-card" id="detail-card" aria-hidden="true">
+          <div class="corner-tl" aria-hidden="true"></div>
+          <div class="corner-br" aria-hidden="true"></div>
+          <button class="detail-close" id="detail-close"
+                  aria-label="Close expertise detail">close</button>
+          <div class="detail-dot" id="detail-dot" aria-hidden="true"></div>
+          <h2 class="detail-title" id="detail-title"></h2>
+          <p class="detail-desc" id="detail-desc"></p>
+          <p class="detail-signal" id="detail-signal"></p>
+        </div>
+      </aside>
+
+      <!-- ── Tree Controls ── -->
+      <div class="tree-controls" role="group" aria-label="Tree interactions">
+        <button class="tree-btn" id="shake-btn"
+                aria-label="Shake tree — causes some apples to fall">Shake Tree</button>
+        <button class="tree-btn" id="regrow-btn"
+                aria-label="Regrow — restore all apples to branches">Regrow</button>
+      </div>
+
+    </main>
+
+    <!-- ── Mobile Apple Chips ── -->
+    <div class="mobile-chips" id="mobile-chips"
+         role="group" aria-label="Select an expertise area"></div>
+
+    <!-- ── Mobile Detail ── -->
+    <div class="mobile-detail-wrap" id="mobile-detail-wrap">
+      <div class="mobile-detail-card" id="mobile-detail-card" aria-live="polite">
+        <button class="mobile-close" id="mobile-close"
+                aria-label="Close expertise detail">close</button>
+        <div class="detail-dot" id="mob-dot" aria-hidden="true"></div>
+        <h2 class="detail-title" id="mob-title"></h2>
+        <p class="detail-desc" id="mob-desc"></p>
+        <p class="detail-signal" id="mob-signal"></p>
+      </div>
     </div>
 
-    <div class="expertise-panels-container" id="panelsContainer">
-        <div class="expertise-panel" data-index="0"><h3>Brand Image</h3><p>Identity, presence, perception</p></div>
-        <div class="expertise-panel" data-index="1"><h3>Aesthetic Orchestration</h3><p>Cohesive look, feel, tone</p></div>
-        <div class="expertise-panel" data-index="2"><h3>SEO</h3><p>Organic visibility, authority</p></div>
-        <div class="expertise-panel" data-index="3"><h3>AEO</h3><p>Answer engine optimization</p></div>
-        <div class="expertise-panel" data-index="4"><h3>Guerrilla Marketing</h3><p>Unconventional, high-impact</p></div>
-        <div class="expertise-panel" data-index="5"><h3>Marketing Strategy</h3><p>Full-funnel campaign planning</p></div>
-        <div class="expertise-panel" data-index="6"><h3>Business Consulting</h3><p>Growth, positioning, direction</p></div>
-        <div class="expertise-panel" data-index="7"><h3>Copywriting</h3><p>Words that convert</p></div>
-        <div class="expertise-panel" data-index="8"><h3>Email Marketing</h3><p>Sequences, campaigns, lists</p></div>
-        <div class="expertise-panel" data-index="9"><h3>SMS Marketing</h3><p>Direct mobile engagement</p></div>
-        <div class="expertise-panel" data-index="10"><h3>Competitive Analysis</h3><p>Market gaps, positioning intel</p></div>
-        <div class="expertise-panel" data-index="11"><h3>Brand Voice</h3><p>Messaging, tone, narrative</p></div>
-    </div>
-
-    <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>SeldomSought</h3>
-                <p>Brand image, marketing strategy, and business consulting for brands built to stand out.</p>
-            </div>
-            <div class="footer-section">
-                <h3>Navigate</h3>
-                <ul class="footer-links">
-                    <li><a href="philosophy.html">Philosophy</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="expertise.html">Expertise</a></li>
-                    <li><a href="projects.html">Projects</a></li>
-                    <li><a href="faq.html">FAQ</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h3>Services</h3>
-                <ul class="footer-links">
-                    <li><a href="services.html">Brand Image</a></li>
-                    <li><a href="services.html">SEO &amp; AEO</a></li>
-                    <li><a href="services.html">Guerrilla Marketing</a></li>
-                    <li><a href="services.html">Copywriting</a></li>
-                </ul>
-            </div>
+    <!-- ── Footer ── -->
+    <footer class="site-footer">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h3>SeldomSought</h3>
+          <p>Brand positioning, marketing strategy, and creative direction for work that stands apart.</p>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2024 SeldomSought. All rights reserved.</p>
+        <div class="footer-col">
+          <h3>Navigate</h3>
+          <ul class="footer-links">
+            <li><a href="philosophy.html">Philosophy</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="expertise.html">Expertise</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
         </div>
+        <div class="footer-col">
+          <h3>Services</h3>
+          <ul class="footer-links">
+            <li><a href="services.html">Brand Positioning</a></li>
+            <li><a href="services.html">Marketing Strategy</a></li>
+            <li><a href="services.html">Creative Direction</a></li>
+            <li><a href="services.html">Web Design</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 SeldomSought. All rights reserved.</p>
+      </div>
     </footer>
 
-    <script>
-    (function() {
-        'use strict';
+  </div><!-- /.expertise-page -->
 
-        // --- Configuration ---
-        const PHI = (1 + Math.sqrt(5)) / 2;
-        const isMobile = window.innerWidth < 768;
-        const ITERATIONS = isMobile ? 10 : 14;
-        const PARTICLE_COUNT = isMobile ? 50 : 250;
-        const SPARKLE_COUNT = isMobile ? 20 : 80;
-        const DRAW_DURATION = 3500; // ms
-        const PANEL_COUNT = 12;
-        const CURVE_PADDING = 80;
+  <script>
+  (function () {
+    'use strict';
 
-        // Golden dragon parameters
-        const r1 = 1 / Math.sqrt(1 + PHI * PHI);
-        const r2 = PHI / Math.sqrt(1 + PHI * PHI);
-        const theta1 = Math.atan(PHI);
-        const theta2 = Math.PI - Math.atan(1 / PHI);
+    /* ══ DATA ══════════════════════════════════════════════════ */
+    const EXPERTISE = [
+      {
+        id: 'marketing-strategy',
+        label: 'Marketing Strategy',
+        shortLabel: 'MARKETING',
+        color: '#7c1f1f',
+        ax: 165, ay: 230,   // stem attachment (SVG coords)
+        gx: 88,  gy: 640,   // ground landing (body center)
+        sway: 1,
+        desc: 'Building campaigns around leverage, timing, audience psychology, and distribution — not empty activity.',
+        signal: 'Every campaign starts from distribution logic, not creative output.'
+      },
+      {
+        id: 'brand-positioning',
+        label: 'Brand Positioning',
+        shortLabel: 'BRAND',
+        color: '#7a5810',
+        ax: 210, ay: 162,
+        gx: 142, gy: 644,
+        sway: 3,
+        desc: 'Finding the angle that makes a thing legible, desirable, and difficult to confuse with anything else.',
+        signal: 'I look for the phrase a brand can own — not the one that sounds good in a deck.'
+      },
+      {
+        id: 'consumer-psychology',
+        label: 'Consumer Psychology',
+        shortLabel: 'PSYCHOLOGY',
+        color: '#6a2838',
+        ax: 292, ay: 120,
+        gx: 200, gy: 647,
+        sway: 2,
+        desc: 'Understanding what people say they want, what they actually respond to, and the gap between the two.',
+        signal: 'Most buying decisions are rationalized after the fact, not made through deliberation.'
+      },
+      {
+        id: 'operations',
+        label: 'Operations',
+        shortLabel: 'OPS',
+        color: '#2a5220',
+        ax: 365, ay: 78,
+        gx: 264, gy: 650,
+        sway: 5,
+        desc: 'Turning messy human systems into clear processes, accountable workflows, and repeatable execution.',
+        signal: 'If it requires a 30-minute brief every handoff, it is not a system yet.'
+      },
+      {
+        id: 'sales',
+        label: 'Sales',
+        shortLabel: 'SALES',
+        color: '#7a4418',
+        ax: 400, ay: 58,
+        gx: 324, gy: 651,
+        sway: 4,
+        desc: 'Reading the room, identifying pain, and creating enough trust for a real decision to happen.',
+        signal: 'Pressure closes bad deals. Clarity closes good ones.'
+      },
+      {
+        id: 'ai-systems',
+        label: 'AI Systems / Automation',
+        shortLabel: 'AI',
+        color: '#28385a',
+        ax: 435, ay: 78,
+        gx: 384, gy: 652,
+        sway: 6,
+        desc: 'Using AI as operational leverage: intake, research, content, routing, analysis, and execution support.',
+        signal: 'The goal is always leverage — not novelty.'
+      },
+      {
+        id: 'web-design',
+        label: 'Web Design / Frontend Direction',
+        shortLabel: 'WEB',
+        color: '#1a4838',
+        ax: 508, ay: 120,
+        gx: 424, gy: 652,
+        sway: 2,
+        desc: 'Making websites feel intentional, readable, and alive instead of assembled from dead templates.',
+        signal: 'Good web design has a posture. You feel it before you read it.'
+      },
+      {
+        id: 'creative-direction',
+        label: 'Creative Direction',
+        shortLabel: 'CREATIVE',
+        color: '#4c1c48',
+        ax: 590, ay: 162,
+        gx: 484, gy: 650,
+        sway: 1,
+        desc: 'Unifying visuals, language, tone, and symbolic structure into one coherent world.',
+        signal: 'The brief is not the vision. Someone has to hold the vision.'
+      },
+      {
+        id: 'fashion-style',
+        label: 'Fashion / Style Analysis',
+        shortLabel: 'STYLE',
+        color: '#685838',
+        ax: 635, ay: 230,
+        gx: 544, gy: 648,
+        sway: 3,
+        desc: 'Reading clothing as identity, status, psychology, proportion, material, and cultural signal.',
+        signal: 'Most people are dressed in a costume they did not consciously choose.'
+      },
+      {
+        id: 'content-strategy',
+        label: 'Content Strategy',
+        shortLabel: 'CONTENT',
+        color: '#385218',
+        ax: 250, ay: 318,
+        gx: 606, gy: 646,
+        sway: 5,
+        desc: 'Turning ideas into a repeatable publishing system that compounds attention and authority.',
+        signal: 'Content without compounding is just noise.'
+      },
+      {
+        id: 'community-building',
+        label: 'Community Building',
+        shortLabel: 'COMMUNITY',
+        color: '#48285e',
+        ax: 550, ay: 318,
+        gx: 656, gy: 644,
+        sway: 4,
+        desc: 'Creating environments where people do not just attend, but belong, contribute, and return.',
+        signal: 'A community that needs its founder to function is not yet a community.'
+      },
+      {
+        id: 'business-dev',
+        label: 'Business Development',
+        shortLabel: 'BIZ DEV',
+        color: '#601c14',
+        ax: 400, ay: 290,
+        gx: 714, gy: 640,
+        sway: 6,
+        desc: 'Finding strategic openings, building relationships, and converting loose potential into concrete opportunity.',
+        signal: 'Business development happens in the gaps between what organizations know they need.'
+      }
+    ];
 
-        // --- Canvas setup ---
-        const dragonCanvas = document.getElementById('dragonCanvas');
-        const decorCanvas = document.getElementById('decorCanvas');
-        const dCtx = dragonCanvas.getContext('2d');
-        const decCtx = decorCanvas.getContext('2d');
+    /* ══ STATE ═════════════════════════════════════════════════ */
+    let selectedId = null;
+    const fallen = new Set();
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-        let W, H;
-        function resizeCanvases() {
-            W = window.innerWidth;
-            H = window.innerHeight;
-            dragonCanvas.width = W; dragonCanvas.height = H;
-            decorCanvas.width = W; decorCanvas.height = H;
-        }
-        resizeCanvases();
+    /* ══ ELEMENT REFS ══════════════════════════════════════════ */
+    const detailCard  = document.getElementById('detail-card');
+    const detailDot   = document.getElementById('detail-dot');
+    const detailTitle = document.getElementById('detail-title');
+    const detailDesc  = document.getElementById('detail-desc');
+    const detailSig   = document.getElementById('detail-signal');
+    const detailClose = document.getElementById('detail-close');
 
-        // --- Generate Golden Dragon Curve (IFS) ---
-        function generateGoldenDragon(iterations) {
-            let segments = [{x0: 0, y0: 0, x1: 1, y1: 0, dir: 1}];
+    const mobCard  = document.getElementById('mobile-detail-card');
+    const mobDot   = document.getElementById('mob-dot');
+    const mobTitle = document.getElementById('mob-title');
+    const mobDesc  = document.getElementById('mob-desc');
+    const mobSig   = document.getElementById('mob-signal');
+    const mobClose = document.getElementById('mobile-close');
 
-            for (let iter = 0; iter < iterations; iter++) {
-                const newSegments = [];
-                for (const seg of segments) {
-                    const dx = seg.x1 - seg.x0;
-                    const dy = seg.y1 - seg.y0;
+    const shakeBtn  = document.getElementById('shake-btn');
+    const regrowBtn = document.getElementById('regrow-btn');
+    const mobileChipsContainer = document.getElementById('mobile-chips');
 
-                    if (seg.dir === 1) {
-                        // T1: rotate by theta1, scale by r1
-                        const mx = seg.x0 + r1 * (dx * Math.cos(theta1) - dy * Math.sin(theta1));
-                        const my = seg.y0 + r1 * (dx * Math.sin(theta1) + dy * Math.cos(theta1));
-                        newSegments.push({x0: seg.x0, y0: seg.y0, x1: mx, y1: my, dir: 1});
-                        newSegments.push({x0: mx, y0: my, x1: seg.x1, y1: seg.y1, dir: -1});
-                    } else {
-                        // T2: rotate by -theta2 from end, scale by r2
-                        const mx = seg.x1 + r2 * (-dx * Math.cos(theta2) - (-dy) * Math.sin(theta2));
-                        const my = seg.y1 + r2 * (-dx * Math.sin(theta2) + (-dy) * Math.cos(theta2));
-                        newSegments.push({x0: seg.x0, y0: seg.y0, x1: mx, y1: my, dir: 1});
-                        newSegments.push({x0: mx, y0: my, x1: seg.x1, y1: seg.y1, dir: -1});
-                    }
-                }
-                segments = newSegments;
-            }
+    /* ══ INIT APPLES ═══════════════════════════════════════════ */
+    EXPERTISE.forEach((data, i) => {
+      const el = document.getElementById('apple-' + data.id);
+      if (!el) return;
 
-            // Build a polyline from segments
-            const polyline = [{x: segments[0].x0, y: segments[0].y0}];
-            for (const seg of segments) {
-                polyline.push({x: seg.x1, y: seg.y1});
-            }
-            return polyline;
-        }
+      // staggered appearance
+      const delay = prefersReducedMotion ? 0 : 900 + i * 160;
+      setTimeout(() => {
+        el.classList.add('visible');
+        if (!prefersReducedMotion) el.classList.add('sway-' + data.sway);
+      }, delay);
 
-        let dragonPoints = generateGoldenDragon(ITERATIONS);
+      // click / keyboard
+      el.addEventListener('click', () => selectApple(data.id));
+      el.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); selectApple(data.id); }
+      });
+    });
 
-        // --- Fit to viewport ---
-        function fitToViewport(points) {
-            let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
-            for (const p of points) {
-                if (p.x < minX) minX = p.x;
-                if (p.x > maxX) maxX = p.x;
-                if (p.y < minY) minY = p.y;
-                if (p.y > maxY) maxY = p.y;
-            }
+    /* ══ MOBILE CHIPS ══════════════════════════════════════════ */
+    EXPERTISE.forEach(data => {
+      const chip = document.createElement('button');
+      chip.className = 'apple-chip';
+      chip.dataset.id = data.id;
+      chip.setAttribute('aria-label', data.label);
+      chip.setAttribute('tabindex', '0');
+      chip.innerHTML = `<span class="chip-dot" style="background:${data.color}"></span>${data.shortLabel}`;
+      chip.addEventListener('click', () => selectApple(data.id));
+      mobileChipsContainer.appendChild(chip);
+    });
 
-            const curveW = maxX - minX;
-            const curveH = maxY - minY;
-            const padX = CURVE_PADDING;
-            const padY = CURVE_PADDING + 60; // extra top for nav
-            const scaleX = (W - padX * 2) / curveW;
-            const scaleY = (H - padY * 2) / curveH;
-            const scale = Math.min(scaleX, scaleY);
+    /* ══ SELECT APPLE ══════════════════════════════════════════ */
+    function selectApple(id) {
+      const data = EXPERTISE.find(d => d.id === id);
+      if (!data) return;
 
-            const offX = (W - curveW * scale) / 2 - minX * scale;
-            const offY = (H - curveH * scale) / 2 - minY * scale + 30;
+      // deselect previous
+      if (selectedId) {
+        const prev = document.getElementById('apple-' + selectedId);
+        if (prev) prev.classList.remove('selected');
+        const prevChip = mobileChipsContainer.querySelector(`[data-id="${selectedId}"]`);
+        if (prevChip) prevChip.classList.remove('active');
+      }
 
-            const fitted = points.map(p => ({
-                x: p.x * scale + offX,
-                y: p.y * scale + offY
-            }));
+      selectedId = id;
 
-            return fitted;
-        }
+      const el = document.getElementById('apple-' + id);
+      if (el) el.classList.add('selected');
 
-        let fittedPoints = fitToViewport(dragonPoints);
+      const chip = mobileChipsContainer.querySelector(`[data-id="${id}"]`);
+      if (chip) chip.classList.add('active');
 
-        // --- Compute arc lengths and anchor points ---
-        let arcLengths = [];
-        let totalArcLength = 0;
+      // populate desktop panel
+      detailCard.setAttribute('aria-hidden', 'false');
+      detailDot.style.background = data.color;
+      detailTitle.textContent = data.label;
+      detailDesc.textContent = data.desc;
+      detailSig.textContent = data.signal;
+      detailCard.classList.add('visible');
 
-        function computeArcLengths() {
-            arcLengths = [0];
-            totalArcLength = 0;
-            for (let i = 1; i < fittedPoints.length; i++) {
-                const dx = fittedPoints[i].x - fittedPoints[i-1].x;
-                const dy = fittedPoints[i].y - fittedPoints[i-1].y;
-                totalArcLength += Math.sqrt(dx * dx + dy * dy);
-                arcLengths.push(totalArcLength);
-            }
-        }
-        computeArcLengths();
+      // populate mobile panel
+      mobDot.style.background = data.color;
+      mobTitle.textContent = data.label;
+      mobDesc.textContent = data.desc;
+      mobSig.textContent = data.signal;
+      mobCard.classList.add('visible');
 
-        // Find point at given arc length fraction
-        function pointAtFraction(frac) {
-            const targetLen = frac * totalArcLength;
-            let lo = 0, hi = arcLengths.length - 1;
-            while (lo < hi - 1) {
-                const mid = (lo + hi) >> 1;
-                if (arcLengths[mid] < targetLen) lo = mid; else hi = mid;
-            }
-            const segLen = arcLengths[hi] - arcLengths[lo];
-            const t = segLen > 0 ? (targetLen - arcLengths[lo]) / segLen : 0;
-            return {
-                x: fittedPoints[lo].x + t * (fittedPoints[hi].x - fittedPoints[lo].x),
-                y: fittedPoints[lo].y + t * (fittedPoints[hi].y - fittedPoints[lo].y),
-                segIndex: lo
-            };
-        }
+      // scroll mobile detail into view
+      if (window.innerWidth <= 960) {
+        setTimeout(() => mobCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 100);
+      }
+    }
 
-        // 12 anchors at equal arc-length intervals
-        const anchors = [];
-        for (let i = 0; i < PANEL_COUNT; i++) {
-            const frac = (i + 0.5) / PANEL_COUNT;
-            const pt = pointAtFraction(frac);
-            const startSeg = Math.floor((i / PANEL_COUNT) * (fittedPoints.length - 1));
-            const endSeg = Math.floor(((i + 1) / PANEL_COUNT) * (fittedPoints.length - 1));
-            anchors.push({
-                x: pt.x, y: pt.y,
-                startSeg: startSeg,
-                endSeg: endSeg,
-                panelX: 0, panelY: 0
-            });
-        }
+    /* ══ CLOSE PANEL ═══════════════════════════════════════════ */
+    function closePanel() {
+      if (selectedId) {
+        const el = document.getElementById('apple-' + selectedId);
+        if (el) el.classList.remove('selected');
+        const chip = mobileChipsContainer.querySelector(`[data-id="${selectedId}"]`);
+        if (chip) chip.classList.remove('active');
+        selectedId = null;
+      }
+      detailCard.classList.remove('visible');
+      detailCard.setAttribute('aria-hidden', 'true');
+      mobCard.classList.remove('visible');
+    }
 
-        // --- Position panels with collision relaxation ---
-        const panels = document.querySelectorAll('.expertise-panel');
-        const panelW = 200, panelH = 85;
+    detailClose.addEventListener('click', closePanel);
+    mobClose.addEventListener('click', closePanel);
 
-        function positionPanels() {
-            if (isMobile) return;
+    /* ══ FALL ANIMATION ════════════════════════════════════════ */
+    function dropApple(data) {
+      if (fallen.has(data.id)) return;
+      fallen.add(data.id);
 
-            // Initial positions: offset from anchor
-            for (let i = 0; i < anchors.length; i++) {
-                const a = anchors[i];
-                // Alternate sides to spread panels
-                const angle = (i / anchors.length) * Math.PI * 2 + Math.PI / 4;
-                const dist = 120;
-                a.panelX = a.x + Math.cos(angle) * dist - panelW / 2;
-                a.panelY = a.y + Math.sin(angle) * dist - panelH / 2;
-            }
+      const el = document.getElementById('apple-' + data.id);
+      if (!el) return;
 
-            // Force-directed relaxation
-            for (let iter = 0; iter < 100; iter++) {
-                for (let i = 0; i < anchors.length; i++) {
-                    for (let j = i + 1; j < anchors.length; j++) {
-                        const a = anchors[i], b = anchors[j];
-                        const cx1 = a.panelX + panelW / 2, cy1 = a.panelY + panelH / 2;
-                        const cx2 = b.panelX + panelW / 2, cy2 = b.panelY + panelH / 2;
+      // remove sway
+      el.classList.remove('sway-1','sway-2','sway-3','sway-4','sway-5','sway-6');
 
-                        const overlapX = (panelW + 20) - Math.abs(cx1 - cx2);
-                        const overlapY = (panelH + 15) - Math.abs(cy1 - cy2);
+      // target offset from stem attachment to ground landing (body center at gy, which is ay+30 when at rest)
+      const dx = data.gx - data.ax;
+      const dy = data.gy - (data.ay + 30);
 
-                        if (overlapX > 0 && overlapY > 0) {
-                            const pushX = overlapX / 2 * (cx1 < cx2 ? -1 : 1);
-                            const pushY = overlapY / 2 * (cy1 < cy2 ? -1 : 1);
+      if (prefersReducedMotion) {
+        el.style.transform = `translate(${dx}px,${dy}px) rotate(-4deg)`;
+        el.classList.add('fallen');
+        return;
+      }
 
-                            if (overlapX < overlapY) {
-                                a.panelX += pushX * 0.6;
-                                b.panelX -= pushX * 0.6;
-                            } else {
-                                a.panelY += pushY * 0.6;
-                                b.panelY -= pushY * 0.6;
-                            }
-                        }
-                    }
+      const duration = 750;
+      const startTime = performance.now();
+      const arcX = (Math.random() - 0.5) * 30; // slight lateral drift
 
-                    // Keep in viewport
-                    const a = anchors[i];
-                    a.panelX = Math.max(10, Math.min(W - panelW - 10, a.panelX));
-                    a.panelY = Math.max(70, Math.min(H - panelH - 10, a.panelY));
-                }
-            }
+      function easeIn(t) { return t * t * t; }
+      function easeOut(t) { return 1 - Math.pow(1 - t, 2); }
 
-            // Apply positions
-            panels.forEach((panel, i) => {
-                if (i < anchors.length) {
-                    panel.style.left = anchors[i].panelX + 'px';
-                    panel.style.top = anchors[i].panelY + 'px';
-                }
-            });
-        }
+      function tick(now) {
+        const t = Math.min((now - startTime) / duration, 1);
 
-        // Set container height on desktop
-        function setContainerHeight() {
-            if (isMobile) return;
-            const container = document.getElementById('panelsContainer');
-            container.style.height = H + 'px';
-            container.style.position = 'relative';
-        }
-
-        setContainerHeight();
-        positionPanels();
-
-        // --- Particles ---
-        class Particle {
-            constructor() { this.reset(); }
-            reset() {
-                this.progress = Math.random();
-                this.speed = (0.0001 + Math.random() * 0.0003) * (isMobile ? 1.5 : 1);
-                this.size = 1 + Math.random() * 2;
-                this.alpha = 0.3 + Math.random() * 0.5;
-                this.trail = [];
-                this.trailMax = 6 + Math.floor(Math.random() * 8);
-            }
-            update() {
-                this.progress += this.speed;
-                if (this.progress >= 1) this.reset();
-
-                const pt = pointAtFraction(this.progress);
-                this.trail.unshift({x: pt.x, y: pt.y});
-                if (this.trail.length > this.trailMax) this.trail.pop();
-            }
-        }
-
-        const particles = [];
-        for (let i = 0; i < PARTICLE_COUNT; i++) particles.push(new Particle());
-
-        // --- Sparkles ---
-        class Sparkle {
-            constructor() { this.reset(); }
-            reset() {
-                const frac = Math.random();
-                const pt = pointAtFraction(frac);
-                this.x = pt.x + (Math.random() - 0.5) * 40;
-                this.y = pt.y + (Math.random() - 0.5) * 40;
-                this.life = 0;
-                this.maxLife = 40 + Math.random() * 60;
-                this.size = 1 + Math.random() * 2.5;
-            }
-            update() {
-                this.life++;
-                if (this.life >= this.maxLife) this.reset();
-            }
-            getAlpha() {
-                const t = this.life / this.maxLife;
-                return t < 0.3 ? t / 0.3 : (1 - t) / 0.7;
-            }
-        }
-
-        const sparkles = [];
-        for (let i = 0; i < SPARKLE_COUNT; i++) {
-            const s = new Sparkle();
-            s.life = Math.random() * s.maxLife;
-            sparkles.push(s);
-        }
-
-        // --- Draw state ---
-        let drawProgress = 0;
-        let drawStartTime = null;
-        let drawComplete = false;
-        let hoveredPanel = -1;
-
-        // --- Panel hover ---
-        panels.forEach((panel, i) => {
-            panel.addEventListener('mouseenter', () => { hoveredPanel = i; });
-            panel.addEventListener('mouseleave', () => { hoveredPanel = -1; });
-        });
-
-        // --- Decoration canvas (golden spiral + phi grid) ---
-        function drawDecoration() {
-            decCtx.clearRect(0, 0, W, H);
-
-            // Phi grid lines
-            decCtx.strokeStyle = 'rgba(212,175,55,0.04)';
-            decCtx.lineWidth = 1;
-
-            // Vertical phi divisions
-            const phiPositions = [1/PHI, 1 - 1/PHI, 1/(PHI*PHI), 1 - 1/(PHI*PHI)];
-            phiPositions.forEach(f => {
-                decCtx.beginPath();
-                decCtx.moveTo(f * W, 0);
-                decCtx.lineTo(f * W, H);
-                decCtx.stroke();
-
-                decCtx.beginPath();
-                decCtx.moveTo(0, f * H);
-                decCtx.lineTo(W, f * H);
-                decCtx.stroke();
-            });
-
-            // Golden spiral watermark (very subtle)
-            decCtx.strokeStyle = 'rgba(212,175,55,0.03)';
-            decCtx.lineWidth = 1.5;
-            decCtx.beginPath();
-            let spiralX = W * 0.5, spiralY = H * 0.5;
-            let spiralR = Math.min(W, H) * 0.3;
-            let spiralAngle = 0;
-
-            for (let i = 0; i < 720; i++) {
-                const a = (spiralAngle * Math.PI) / 180;
-                const r = spiralR * Math.pow(PHI, -spiralAngle / 360);
-                const sx = spiralX + r * Math.cos(a);
-                const sy = spiralY + r * Math.sin(a);
-
-                if (i === 0) decCtx.moveTo(sx, sy);
-                else decCtx.lineTo(sx, sy);
-
-                spiralAngle += 2;
-            }
-            decCtx.stroke();
+        // y: ease in (gravity)
+        const ty = easeIn(t);
+        // x: ease out (drift)
+        const tx = easeOut(t);
+        // bounce: overshoot then settle
+        let bounce = 0;
+        if (t > 0.78) {
+          const bt = (t - 0.78) / 0.22;
+          bounce = Math.sin(bt * Math.PI) * -12 * (1 - bt);
         }
 
-        drawDecoration();
+        const cx = tx * dx + arcX * Math.sin(t * Math.PI);
+        const cy = ty * dy + bounce;
+        const rot = t * -6 + Math.sin(t * Math.PI * 2) * 3;
 
-        // --- Main render loop ---
-        function render(now) {
-            requestAnimationFrame(render);
+        el.style.transform = `translate(${cx}px,${cy}px) rotate(${rot}deg)`;
 
-            if (!drawStartTime) drawStartTime = now;
-            const elapsed = now - drawStartTime;
-
-            dCtx.clearRect(0, 0, W, H);
-
-            // Progress of draw animation
-            if (!drawComplete) {
-                drawProgress = Math.min(1, elapsed / DRAW_DURATION);
-                if (drawProgress >= 1) {
-                    drawComplete = true;
-                    showPanelsSequentially();
-                }
-            }
-
-            const pointsToDraw = Math.floor(drawProgress * fittedPoints.length);
-
-            // --- Draw the dragon curve ---
-            // Base curve (dim)
-            if (pointsToDraw > 1) {
-                dCtx.beginPath();
-                dCtx.moveTo(fittedPoints[0].x, fittedPoints[0].y);
-                for (let i = 1; i < pointsToDraw; i++) {
-                    dCtx.lineTo(fittedPoints[i].x, fittedPoints[i].y);
-                }
-                dCtx.strokeStyle = 'rgba(184,134,11,0.35)';
-                dCtx.lineWidth = 1.5;
-                dCtx.stroke();
-
-                // Glow layer
-                dCtx.beginPath();
-                dCtx.moveTo(fittedPoints[0].x, fittedPoints[0].y);
-                for (let i = 1; i < pointsToDraw; i++) {
-                    dCtx.lineTo(fittedPoints[i].x, fittedPoints[i].y);
-                }
-                dCtx.strokeStyle = 'rgba(212,175,55,0.12)';
-                dCtx.lineWidth = 4;
-                dCtx.stroke();
-            }
-
-            // Draw pen head glow during intro
-            if (!drawComplete && pointsToDraw > 0 && pointsToDraw < fittedPoints.length) {
-                const tip = fittedPoints[pointsToDraw - 1];
-                const gradient = dCtx.createRadialGradient(tip.x, tip.y, 0, tip.x, tip.y, 25);
-                gradient.addColorStop(0, 'rgba(232,201,103,0.8)');
-                gradient.addColorStop(0.3, 'rgba(212,175,55,0.4)');
-                gradient.addColorStop(1, 'rgba(212,175,55,0)');
-                dCtx.beginPath();
-                dCtx.arc(tip.x, tip.y, 25, 0, Math.PI * 2);
-                dCtx.fillStyle = gradient;
-                dCtx.fill();
-
-                // Bright core
-                dCtx.beginPath();
-                dCtx.arc(tip.x, tip.y, 3, 0, Math.PI * 2);
-                dCtx.fillStyle = '#E8C967';
-                dCtx.fill();
-            }
-
-            // --- Highlight hovered segment ---
-            if (hoveredPanel >= 0 && hoveredPanel < anchors.length && drawComplete) {
-                const a = anchors[hoveredPanel];
-                dCtx.beginPath();
-                const start = Math.max(0, a.startSeg);
-                const end = Math.min(fittedPoints.length - 1, a.endSeg);
-                if (start < fittedPoints.length) {
-                    dCtx.moveTo(fittedPoints[start].x, fittedPoints[start].y);
-                    for (let i = start + 1; i <= end; i++) {
-                        dCtx.lineTo(fittedPoints[i].x, fittedPoints[i].y);
-                    }
-                    dCtx.strokeStyle = 'rgba(232,201,103,0.8)';
-                    dCtx.lineWidth = 3;
-                    dCtx.shadowColor = '#E8C967';
-                    dCtx.shadowBlur = 15;
-                    dCtx.stroke();
-                    dCtx.shadowBlur = 0;
-                }
-            }
-
-            // --- Connector lines (dashed) from anchor to panel ---
-            if (drawComplete && !isMobile) {
-                dCtx.setLineDash([4, 6]);
-                for (let i = 0; i < anchors.length; i++) {
-                    const a = anchors[i];
-                    const pcx = a.panelX + panelW / 2;
-                    const pcy = a.panelY + panelH / 2;
-
-                    const alpha = hoveredPanel === i ? 0.6 : 0.2;
-                    dCtx.beginPath();
-                    dCtx.moveTo(a.x, a.y);
-                    dCtx.lineTo(pcx, pcy);
-                    dCtx.strokeStyle = `rgba(212,175,55,${alpha})`;
-                    dCtx.lineWidth = 1;
-                    dCtx.stroke();
-
-                    // Small circle at anchor
-                    dCtx.beginPath();
-                    dCtx.arc(a.x, a.y, 3, 0, Math.PI * 2);
-                    dCtx.fillStyle = `rgba(212,175,55,${alpha + 0.2})`;
-                    dCtx.fill();
-                }
-                dCtx.setLineDash([]);
-            }
-
-            // --- Particles (after draw completes) ---
-            if (drawComplete) {
-                for (const p of particles) {
-                    p.update();
-
-                    if (p.trail.length > 1) {
-                        for (let t = 1; t < p.trail.length; t++) {
-                            const trailAlpha = p.alpha * (1 - t / p.trail.length) * 0.6;
-                            dCtx.beginPath();
-                            dCtx.moveTo(p.trail[t-1].x, p.trail[t-1].y);
-                            dCtx.lineTo(p.trail[t].x, p.trail[t].y);
-                            dCtx.strokeStyle = `rgba(232,201,103,${trailAlpha})`;
-                            dCtx.lineWidth = p.size * (1 - t / p.trail.length);
-                            dCtx.stroke();
-                        }
-                    }
-
-                    if (p.trail.length > 0) {
-                        dCtx.beginPath();
-                        dCtx.arc(p.trail[0].x, p.trail[0].y, p.size, 0, Math.PI * 2);
-                        dCtx.fillStyle = `rgba(232,201,103,${p.alpha})`;
-                        dCtx.fill();
-                    }
-                }
-
-                // --- Sparkles ---
-                for (const s of sparkles) {
-                    s.update();
-                    const a = s.getAlpha() * 0.6;
-                    if (a > 0.01) {
-                        dCtx.beginPath();
-                        dCtx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
-                        dCtx.fillStyle = `rgba(212,175,55,${a})`;
-                        dCtx.fill();
-                    }
-                }
-            }
+        if (t < 1) {
+          requestAnimationFrame(tick);
+        } else {
+          el.style.transform = `translate(${dx}px,${dy}px) rotate(-4deg)`;
+          el.classList.add('fallen');
         }
+      }
 
-        requestAnimationFrame(render);
+      requestAnimationFrame(tick);
+    }
 
-        // --- Show panels after draw ---
-        function showPanelsSequentially() {
-            if (isMobile) {
-                panels.forEach(p => p.classList.add('visible'));
-                return;
-            }
-            panels.forEach((panel, i) => {
-                setTimeout(() => panel.classList.add('visible'), i * 100);
-            });
-        }
+    /* ══ SHAKE TREE ════════════════════════════════════════════ */
+    shakeBtn.addEventListener('click', () => {
+      const available = EXPERTISE.filter(d => !fallen.has(d.id));
+      if (available.length === 0) return;
 
-        // On mobile, show immediately
-        if (isMobile) {
-            panels.forEach(p => p.classList.add('visible'));
-        }
+      const count = Math.min(3, available.length);
+      const picks = available.sort(() => 0.5 - Math.random()).slice(0, count);
+      picks.forEach((data, i) => {
+        setTimeout(() => dropApple(data), i * 220);
+      });
+    });
 
-        // --- Handle resize ---
-        let resizeTimeout;
-        window.addEventListener('resize', () => {
-            clearTimeout(resizeTimeout);
-            resizeTimeout = setTimeout(() => {
-                resizeCanvases();
-                fittedPoints = fitToViewport(dragonPoints);
-                computeArcLengths();
+    /* ══ REGROW ════════════════════════════════════════════════ */
+    regrowBtn.addEventListener('click', () => {
+      fallen.forEach(id => {
+        const data = EXPERTISE.find(d => d.id === id);
+        const el = document.getElementById('apple-' + id);
+        if (!el || !data) return;
 
-                // Recompute anchors
-                for (let i = 0; i < PANEL_COUNT; i++) {
-                    const frac = (i + 0.5) / PANEL_COUNT;
-                    const pt = pointAtFraction(frac);
-                    anchors[i].x = pt.x;
-                    anchors[i].y = pt.y;
-                    anchors[i].startSeg = Math.floor((i / PANEL_COUNT) * (fittedPoints.length - 1));
-                    anchors[i].endSeg = Math.floor(((i + 1) / PANEL_COUNT) * (fittedPoints.length - 1));
-                }
+        el.style.transition = 'opacity 0.28s ease';
+        el.style.opacity = '0';
 
-                setContainerHeight();
-                positionPanels();
-                drawDecoration();
-            }, 200);
-        });
+        setTimeout(() => {
+          el.style.transform = '';
+          el.classList.remove('fallen');
+          el.style.opacity = '0';
 
-    })();
-    </script>
-    <script src="assets/js/nav.js"></script>
+          if (!prefersReducedMotion) el.classList.add('sway-' + data.sway);
+
+          requestAnimationFrame(() => {
+            el.style.transition = 'opacity 0.45s ease';
+            el.style.opacity = '1';
+            setTimeout(() => { el.style.transition = ''; el.style.opacity = ''; }, 450);
+          });
+        }, 300);
+      });
+
+      fallen.clear();
+    });
+
+    /* ══ AUTO-DROP (a few apples after load) ══════════════════ */
+    if (!prefersReducedMotion) {
+      const autoDropIds = ['content-strategy', 'fashion-style'];
+      autoDropIds.forEach((id, i) => {
+        const data = EXPERTISE.find(d => d.id === id);
+        if (data) setTimeout(() => dropApple(data), 3800 + i * 900);
+      });
+    }
+
+    /* ══ KEYBOARD NAV — Escape closes panel ══════════════════ */
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closePanel();
+    });
+
+  })();
+  </script>
+
+  <script src="assets/js/nav.js"></script>
 </body>
 </html>
