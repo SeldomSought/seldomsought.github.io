@@ -13,7 +13,6 @@
   <meta property="og:title" content="Projects — SeldomSought"/>
   <meta property="og:description" content="Tools built to shift behavior toward intention."/>
   <meta property="og:type" content="website"/>
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
@@ -49,122 +48,33 @@
   </nav>
 </header>
 
-<main class="projects-os">
+<main class="mol-page">
 
   <!-- Hero -->
-  <section class="projects-hero">
-    <div class="hero-inner">
-      <p class="eyebrow">SeldomSought / Projects</p>
+  <section class="mol-hero">
+    <div class="mol-hero__inner">
+      <p class="mol-eyebrow">SeldomSought / Projects</p>
       <h1>Independent Tools for Directed Attention</h1>
-      <p class="lede">A working archive of experiments, utilities, and behavioral systems built to make the internet less passive.</p>
+      <p class="mol-lede">A working archive of experiments, utilities, and behavioral systems built to make the internet less passive. Select a molecule to explore.</p>
     </div>
   </section>
 
-  <!-- Console: sidebar + grid -->
-  <section class="projects-console" aria-label="Project filters and index">
-
-    <!-- Sidebar -->
-    <aside class="projects-sidebar" aria-label="Project filters">
-
-      <!-- Decorative sigil -->
-      <div class="sigil-wrap" aria-hidden="true">
-        <svg class="sigil" width="48" height="48" viewBox="0 0 48 48" fill="none">
-          <rect x="0"  y="0"  width="6" height="6" fill="currentColor" opacity="0.8"/>
-          <rect x="42" y="0"  width="6" height="6" fill="currentColor" opacity="0.8"/>
-          <rect x="0"  y="42" width="6" height="6" fill="currentColor" opacity="0.8"/>
-          <rect x="42" y="42" width="6" height="6" fill="currentColor" opacity="0.8"/>
-          <rect x="23" y="8"  width="2" height="32" fill="currentColor" opacity="0.30"/>
-          <rect x="8"  y="23" width="32" height="2"  fill="currentColor" opacity="0.30"/>
-          <polygon points="24,13 35,24 24,35 13,24" stroke="currentColor" stroke-width="1.5" opacity="0.65"/>
-          <rect x="21" y="21" width="6" height="6" fill="currentColor" opacity="0.90"/>
-          <rect x="22" y="0"  width="4" height="4" fill="currentColor" opacity="1"/>
-          <rect x="22" y="44" width="4" height="4" fill="currentColor" opacity="1"/>
-          <rect x="0"  y="22" width="4" height="4" fill="currentColor" opacity="1"/>
-          <rect x="44" y="22" width="4" height="4" fill="currentColor" opacity="1"/>
-        </svg>
-        <span class="sigil-label">SS-PROJECTS</span>
-      </div>
-
-      <!-- System status -->
-      <div class="sidebar-panel sidebar-panel--status">
-        <div class="sidebar-panel__head">Sys Status</div>
-        <div class="sidebar-status-node">
-          <span class="status-dot" aria-hidden="true"></span>
-          <span>Archive Node Online</span>
-        </div>
-        <div class="sidebar-stats">
-          <div class="sidebar-stat">
-            <span class="sidebar-stat__label">Total</span>
-            <span class="sidebar-stat__val" id="stat-total">000</span>
-          </div>
-          <div class="sidebar-stat">
-            <span class="sidebar-stat__label">Live</span>
-            <span class="sidebar-stat__val" id="stat-live">000</span>
-          </div>
-          <div class="sidebar-stat">
-            <span class="sidebar-stat__label">Beta</span>
-            <span class="sidebar-stat__val sidebar-stat__val--beta" id="stat-beta">000</span>
-          </div>
-          <div class="sidebar-stat">
-            <span class="sidebar-stat__label">Private</span>
-            <span class="sidebar-stat__val sidebar-stat__val--priv" id="stat-priv">000</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Filter Index -->
-      <div class="sidebar-panel sidebar-panel--filters">
-        <div class="sidebar-panel__head">Filter Index
-          <span class="filter-results-label">— <span id="filter-results">0</span> showing</span>
-        </div>
-        <div class="sidebar-filters" role="group" aria-label="Filter projects by status or type">
-          <button class="filter-btn active" data-filter="all"              aria-pressed="true">All              <span class="filter-count">0</span></button>
-          <button class="filter-btn"        data-filter="Live"             aria-pressed="false">Live             <span class="filter-count">0</span></button>
-          <button class="filter-btn"        data-filter="Beta"             aria-pressed="false">Beta             <span class="filter-count">0</span></button>
-          <button class="filter-btn"        data-filter="Private"          aria-pressed="false">Private          <span class="filter-count">0</span></button>
-          <button class="filter-btn"        data-filter="Chrome Extension" aria-pressed="false">Chrome Ext       <span class="filter-count">0</span></button>
-          <button class="filter-btn"        data-filter="Web App"          aria-pressed="false">Web App          <span class="filter-count">0</span></button>
-          <button class="filter-btn"        data-filter="Media / Content"  aria-pressed="false">Media            <span class="filter-count">0</span></button>
-        </div>
-      </div>
-
-      <!-- Legend -->
-      <div class="sidebar-panel sidebar-panel--legend">
-        <div class="sidebar-panel__head">Legend</div>
-        <div class="legend">
-          <div class="legend-item">
-            <span class="legend-swatch legend-swatch--live" aria-hidden="true"></span>
-            <span>Live — Deployed &amp; available</span>
-          </div>
-          <div class="legend-item">
-            <span class="legend-swatch legend-swatch--beta" aria-hidden="true"></span>
-            <span>Beta — Functional, in testing</span>
-          </div>
-          <div class="legend-item">
-            <span class="legend-swatch legend-swatch--priv" aria-hidden="true"></span>
-            <span>Private — Early stage</span>
-          </div>
-        </div>
-      </div>
-
-    </aside>
-
-    <!-- Project grid — populated by JS -->
-    <section class="projects-grid" id="projectsGrid" aria-label="Projects">
-    </section>
-
+  <!-- Molecular stage — populated by JS -->
+  <section class="mol-stage" id="molStage" aria-label="Projects">
+    <div class="mol-field" id="molField" role="list"></div>
+    <div class="mol-detail-pane" id="molDetailPane" aria-live="polite"></div>
   </section>
 
 </main>
 
 <!-- Footer -->
-<footer class="px-floor">
-  <div class="px-floor-inner">
-    <div class="px-floor-brand">
-      <span class="px-floor-logo">SeldomSought</span>
-      <p class="px-floor-desc">Brand image, marketing strategy, and business consulting for brands built to stand out.</p>
+<footer class="mol-footer">
+  <div class="mol-footer__inner">
+    <div class="mol-footer__brand">
+      <span class="mol-footer__logo">SeldomSought</span>
+      <p class="mol-footer__desc">Brand image, marketing strategy, and business consulting for brands built to stand out.</p>
     </div>
-    <nav class="px-floor-nav" aria-label="Footer navigation">
+    <nav class="mol-footer__nav" aria-label="Footer navigation">
       <a href="philosophy.html">Philosophy</a>
       <a href="services.html">Services</a>
       <a href="expertise.html">Expertise</a>
@@ -172,7 +82,7 @@
       <a href="faq.html">FAQ</a>
       <a href="contact.html">Contact</a>
     </nav>
-    <div class="px-floor-copy">&copy; 2025 SeldomSought. All rights reserved.</div>
+    <div class="mol-footer__copy">&copy; 2025 SeldomSought. All rights reserved.</div>
   </div>
 </footer>
 
@@ -182,247 +92,458 @@
 (function () {
   'use strict';
 
-  var grid = document.getElementById('projectsGrid');
-  if (!grid || typeof PROJECTS === 'undefined') return;
+  /* ─────────────────────────────────────────────────────────
+     MOLECULAR RENDERER
+     Builds SVG molecule diagrams from the PROJECTS data array.
+     Each project gets a central node + 5 satellite nodes.
+  ───────────────────────────────────────────────────────── */
 
-  /* ── helpers ───────────────────────────────────── */
+  /* SVG geometry constants */
+  var VB   = 400;         /* viewBox width & height */
+  var CX   = 200;         /* center x */
+  var CY   = 200;         /* center y */
+  var OR   = 112;         /* orbit radius (center → satellite center) */
+  var CR   = 40;          /* central node radius */
+  var SR   = 22;          /* satellite node radius */
+  var LBL_OFFSET = 15;    /* label offset beyond satellite edge */
+
+  /* Status → accent color mapping */
+  var STATUS_COLOR = {
+    'Live':        '#9cffc5',
+    'Beta':        '#ffbf69',
+    'In Progress': '#6bc8ff',
+    'Prototype':   '#6bc8ff',
+    'Concept':     '#b7a3ff',
+  };
+
+  /* Component type → symbol rendered inside satellite */
+  var COMP_SYMBOL = {
+    'purpose':  '◆',
+    'features': '≡',
+    'stack':    '{}',
+    'links':    '↗',
+    'status':   '◉',
+  };
+
+  /* ── Math helpers ──────────────────────────────────────── */
+  function rad(deg) { return deg * Math.PI / 180; }
+  function cos(deg) { return Math.cos(rad(deg)); }
+  function sin(deg) { return Math.sin(rad(deg)); }
+  function fmt(n)   { return n.toFixed(2); }
+
   function esc(s) {
-    return String(s || '')
+    return String(s == null ? '' : s)
       .replace(/&/g,  '&amp;')
       .replace(/</g,  '&lt;')
       .replace(/>/g,  '&gt;')
       .replace(/"/g,  '&quot;');
   }
 
-  function pad(n) { return String(n).padStart(3, '0'); }
+  /* ── Compute satellite geometry ──────────────────────────
+     Evenly distributes n satellites starting at the top (-90°).
+     Returns an array of objects with positions for:
+       - satellite center (sx, sy)
+       - connection line start (lx1,ly1) at central node edge
+       - connection line end (lx2,ly2) at satellite node edge
+       - label position (labX, labY) with text-anchor
+  ───────────────────────────────────────────────────────── */
+  function computeSatellites(components) {
+    var n = components.length;
+    return components.map(function (comp, i) {
+      var angleDeg = -90 + (360 / n) * i;
 
-  function setTxt(id, val) {
-    var el = document.getElementById(id);
-    if (el) el.textContent = val;
+      /* Satellite center */
+      var sx = CX + OR * cos(angleDeg);
+      var sy = CY + OR * sin(angleDeg);
+
+      /* Direction unit vector from center to satellite */
+      var dx = sx - CX;
+      var dy = sy - CY;
+      var len = Math.sqrt(dx * dx + dy * dy);
+      var nx = dx / len;
+      var ny = dy / len;
+
+      /* Connection line endpoints (edge to edge) */
+      var lx1 = CX + nx * CR;
+      var ly1 = CY + ny * CR;
+      var lx2 = sx - nx * SR;
+      var ly2 = sy - ny * SR;
+
+      /* Label position radially outside satellite */
+      var labX = sx + nx * (SR + LBL_OFFSET);
+      var labY = sy + ny * (SR + LBL_OFFSET);
+      var labAnchor = nx > 0.3 ? 'start' : nx < -0.3 ? 'end' : 'middle';
+
+      return {
+        sx: sx, sy: sy,
+        lx1: lx1, ly1: ly1, lx2: lx2, ly2: ly2,
+        labX: labX, labY: labY, labAnchor: labAnchor,
+        comp: comp, nx: nx, ny: ny
+      };
+    });
   }
 
-  /* ── card builder ──────────────────────────────── */
-  function buildCard(d, idx) {
-    var numId      = pad(idx + 1);
-    var statusCls  = d.status === 'Live' ? 'badge--live' :
-                     d.status === 'Beta' ? 'badge--beta' : 'badge--priv';
-    var lk         = d.links || {};
-    var platforms  = (d.platforms || []).slice(0, 2).join(' · ');
+  /* ── Build SVG for one project ───────────────────────────
+     Returns an SVG string with:
+       - radial ambient glow
+       - dashed orbital ring
+       - connection lines
+       - satellite nodes (interactive)
+       - central node (interactive)
+  ───────────────────────────────────────────────────────── */
+  function buildMoleculeSVG(project) {
+    var color = STATUS_COLOR[project.status] || '#9cffc5';
+    var sats  = computeSatellites(project.components || []);
+    var pid   = project.id;
+    var gId   = 'cg-' + pid;
 
-    /* chips */
-    var chipsHtml = (d.chips || []).map(function (c) {
-      return '<span class="chip">' + esc(c) + '</span>';
-    }).join('');
+    var parts = [];
 
-    /* card-level CTAs */
-    var ctaHtml = '';
-    if (lk.demo) {
-      var tgt = lk.demoSameTab ? '' : 'target="_blank" rel="noopener"';
-      ctaHtml += '<a href="' + esc(lk.demo) + '" ' + tgt +
-                 ' class="pcard__cta pcard__cta--primary">' + esc(lk.demoLabel || 'Live Demo') + '</a>';
-    }
-    if (lk.download) {
-      ctaHtml += '<a href="' + esc(lk.download) +
-                 '" class="pcard__cta pcard__cta--primary">Download</a>';
-    }
-    if (lk.github) {
-      ctaHtml += '<a href="' + esc(lk.github) +
-                 '" target="_blank" rel="noopener" class="pcard__cta">GitHub</a>';
-    }
-    if (lk.website) {
-      ctaHtml += '<a href="' + esc(lk.website) +
-                 '" target="_blank" rel="noopener" class="pcard__cta">Website</a>';
-    }
-    ctaHtml += '<button class="pcard__dossier-btn" ' +
-               'aria-expanded="false" aria-controls="dossier-' + esc(d.id) + '">' +
-               'View Dossier <span class="dossier-arrow" aria-hidden="true">&#x25BC;</span></button>';
+    /* Open SVG */
+    parts.push(
+      '<svg class="mol-svg" viewBox="0 0 ' + VB + ' ' + VB + '"',
+      ' role="img" aria-label="' + esc(project.title) + ' molecule diagram"',
+      ' focusable="false">'
+    );
 
-    /* dossier steps */
-    var stepsHtml = (d.howItWorks || []).map(function (s) {
-      return '<div class="dossier__step">' +
-               '<span class="dossier__step-num" aria-hidden="true">' + s.step + '</span>' +
-               '<div class="dossier__step-body">' +
-                 '<strong>' + esc(s.title) + '</strong>' +
-                 '<p>' + esc(s.desc) + '</p>' +
-               '</div>' +
-             '</div>';
-    }).join('');
+    /* Defs: radial gradient for center glow */
+    parts.push(
+      '<defs>',
+        '<radialGradient id="' + gId + '" cx="50%" cy="50%" r="50%">',
+          '<stop offset="0%" stop-color="' + color + '" stop-opacity="0.10"/>',
+          '<stop offset="100%" stop-color="' + color + '" stop-opacity="0"/>',
+        '</radialGradient>',
+      '</defs>'
+    );
 
-    /* dossier features */
-    var featsHtml = (d.features || []).map(function (f) {
-      return '<li>' + esc(f) + '</li>';
-    }).join('');
+    /* Ambient glow disk */
+    parts.push(
+      '<circle cx="' + CX + '" cy="' + CY + '" r="' + (OR + 24) + '"',
+      ' fill="url(#' + gId + ')"/>'
+    );
 
-    /* dossier links */
-    var dossierLinksHtml = '';
-    if (lk.demo) {
-      var tgt2 = lk.demoSameTab ? '' : 'target="_blank" rel="noopener"';
-      dossierLinksHtml += '<a href="' + esc(lk.demo) + '" ' + tgt2 +
-                          ' class="dossier__link dossier__link--primary">' +
-                          esc(lk.demoLabel || 'Live Demo') + '</a>';
-    }
-    if (lk.download)
-      dossierLinksHtml += '<a href="' + esc(lk.download) +
-                          '" class="dossier__link dossier__link--primary">Download</a>';
-    if (lk.github)
-      dossierLinksHtml += '<a href="' + esc(lk.github) +
-                          '" target="_blank" rel="noopener" class="dossier__link">GitHub</a>';
-    if (lk.website)
-      dossierLinksHtml += '<a href="' + esc(lk.website) +
-                          '" target="_blank" rel="noopener" class="dossier__link">Website</a>';
+    /* Orbital ring */
+    parts.push(
+      '<circle cx="' + CX + '" cy="' + CY + '" r="' + OR + '"',
+      ' fill="none"',
+      ' stroke="' + color + '" stroke-width="0.5" stroke-opacity="0.10"',
+      ' stroke-dasharray="3 8"/>'
+    );
+
+    /* Connection lines */
+    sats.forEach(function (s) {
+      parts.push(
+        '<line class="mol-line" data-comp="' + esc(s.comp.id) + '"',
+        ' x1="' + fmt(s.lx1) + '" y1="' + fmt(s.ly1) + '"',
+        ' x2="' + fmt(s.lx2) + '" y2="' + fmt(s.ly2) + '"',
+        ' stroke="' + color + '" stroke-width="0.75" stroke-opacity="0.18"/>'
+      );
+    });
+
+    /* Satellite nodes */
+    sats.forEach(function (s) {
+      var sym = COMP_SYMBOL[s.comp.type] || '·';
+      parts.push(
+        '<g class="mol-satellite" data-comp="' + esc(s.comp.id) + '"',
+        ' role="button" tabindex="0"',
+        ' aria-label="' + esc(s.comp.label) + ': click to view section">',
+
+        /* Outer halo ring */
+        '<circle cx="' + fmt(s.sx) + '" cy="' + fmt(s.sy) + '"',
+        ' r="' + (SR + 6) + '"',
+        ' fill="none" stroke="' + color + '" stroke-width="0.5" stroke-opacity="0.06"/>',
+
+        /* Main satellite circle */
+        '<circle class="mol-sat-circle"',
+        ' cx="' + fmt(s.sx) + '" cy="' + fmt(s.sy) + '"',
+        ' r="' + SR + '"',
+        ' fill="#0c0e18" stroke="' + color + '" stroke-width="1"',
+        ' stroke-opacity="0.28"/>',
+
+        /* Symbol inside */
+        '<text x="' + fmt(s.sx) + '" y="' + fmt(s.sy + 4.5) + '"',
+        ' text-anchor="middle"',
+        ' font-family="Share Tech Mono, monospace"',
+        ' font-size="12" fill="' + color + '" fill-opacity="0.65"',
+        ' class="mol-sat-icon">' + esc(sym) + '</text>',
+
+        /* Label outside */
+        '<text class="mol-sat-label"',
+        ' x="' + fmt(s.labX) + '" y="' + fmt(s.labY + 3.5) + '"',
+        ' text-anchor="' + s.labAnchor + '"',
+        ' font-family="Share Tech Mono, monospace"',
+        ' font-size="9.5" letter-spacing="1.5"',
+        ' fill="' + color + '" fill-opacity="0.38">' + esc(s.comp.label.toUpperCase()) + '</text>',
+
+        '</g>'
+      );
+    });
+
+    /* Central node (drawn on top) */
+    parts.push(
+      '<g class="mol-center" role="button" tabindex="0"',
+      ' aria-label="' + esc(project.title) + ' — click to expand">',
+
+      /* Outer pulse ring */
+      '<circle cx="' + CX + '" cy="' + CY + '"',
+      ' r="' + (CR + 10) + '"',
+      ' fill="none" stroke="' + color + '" stroke-width="0.5" stroke-opacity="0.08"/>',
+
+      /* Main circle */
+      '<circle class="mol-central-circle"',
+      ' cx="' + CX + '" cy="' + CY + '"',
+      ' r="' + CR + '"',
+      ' fill="#0c0e18" stroke="' + color + '" stroke-width="1.5"',
+      ' stroke-opacity="0.42"/>',
+
+      /* Inner accent dot */
+      '<circle class="mol-central-dot"',
+      ' cx="' + CX + '" cy="' + CY + '"',
+      ' r="4"',
+      ' fill="' + color + '" fill-opacity="0.80"/>',
+
+      '</g>'
+    );
+
+    parts.push('</svg>');
+    return parts.join('');
+  }
+
+  /* ── Build detail panel for one project ──────────────────
+     Generates the HTML content shown in #molDetailPane.
+  ───────────────────────────────────────────────────────── */
+  function buildDetailPanel(project) {
+    var index   = String(PROJECTS.indexOf(project) + 1).padStart(2, '0');
+    var parts   = [];
+
+    parts.push('<div class="mol-panel" id="panel-' + esc(project.id) + '">');
+
+    /* Header */
+    parts.push(
+      '<header class="mol-panel__header">',
+        '<div class="mol-panel__title-block">',
+          '<p class="mol-panel__label">' + index + ' — ' + esc(project.category) + '</p>',
+          '<h2 class="mol-panel__title">' + esc(project.title) + '</h2>',
+          '<p class="mol-panel__subtitle">' + esc(project.subtitle || '') + '</p>',
+        '</div>',
+        '<span class="mol-panel__badge" data-status="' + esc(project.status) + '">' + esc(project.status) + '</span>',
+      '</header>'
+    );
+
+    /* Sections */
+    parts.push('<div class="mol-panel__sections">');
+
+    (project.components || []).forEach(function (comp) {
+      parts.push(
+        '<section class="mol-section" id="sec-' + esc(project.id) + '-' + esc(comp.id) + '"',
+        ' data-comp="' + esc(comp.id) + '">',
+        '<h3 class="mol-section__label">' + esc(comp.label) + '</h3>',
+        '<div class="mol-section__body">'
+      );
+
+      if (comp.type === 'features' && Array.isArray(comp.content)) {
+        parts.push('<ul class="mol-features">');
+        comp.content.forEach(function (f) {
+          parts.push('<li>' + esc(f) + '</li>');
+        });
+        parts.push('</ul>');
+
+      } else if (comp.type === 'stack' && Array.isArray(comp.content)) {
+        parts.push('<div class="mol-stack">');
+        comp.content.forEach(function (s) {
+          parts.push('<span class="mol-stack-chip">' + esc(s) + '</span>');
+        });
+        parts.push('</div>');
+
+      } else if (comp.type === 'links' && Array.isArray(comp.content)) {
+        parts.push('<div class="mol-links">');
+        comp.content.forEach(function (lnk) {
+          var target = lnk.sameTab ? '' : ' target="_blank" rel="noopener"';
+          parts.push(
+            '<a href="' + esc(lnk.href) + '"' + target +
+            ' class="mol-link">' + esc(lnk.label) + '</a>'
+          );
+        });
+        parts.push('</div>');
+
+      } else if (comp.type === 'status') {
+        parts.push('<p class="mol-status-text">' + esc(String(comp.content)) + '</p>');
+
+      } else {
+        parts.push('<p class="mol-section__text">' + esc(String(comp.content)) + '</p>');
+      }
+
+      parts.push('</div></section>');
+    });
+
+    parts.push('</div>'); /* .mol-panel__sections */
+    parts.push('</div>'); /* .mol-panel */
+
+    return parts.join('');
+  }
+
+  /* ── Build a molecule card element ───────────────────────
+     Returns an HTML string for one .mol-card.
+  ───────────────────────────────────────────────────────── */
+  function buildCard(project, idx) {
+    var num   = String(idx + 1).padStart(2, '0');
+    var color = STATUS_COLOR[project.status] || '#9cffc5';
 
     return [
-      '<article class="pcard"',
-        ' data-status="'   + esc(d.status)       + '"',
-        ' data-category="' + esc(d.category || '') + '"',
-        ' id="card-'       + esc(d.id)             + '">',
-        '<div class="pcard__id-tag" aria-hidden="true">ID: ' + numId + '</div>',
-        '<header class="pcard__head">',
-          '<h2 class="pcard__name">' + esc(d.name) + '</h2>',
-          '<span class="pcard__badge ' + statusCls + '">' + esc(d.status) + '</span>',
-        '</header>',
-        '<div class="pcard__platform">' + esc(platforms) + '</div>',
-        '<p class="pcard__tagline">' + esc(d.tagline) + '</p>',
-        '<p class="pcard__desc">' + esc(d.shortDescription || d.tagline) + '</p>',
-        chipsHtml ? '<div class="pcard__chips">' + chipsHtml + '</div>' : '',
-        '<div class="pcard__actions">' + ctaHtml + '</div>',
-        '<section class="pcard__dossier" id="dossier-' + esc(d.id) + '" hidden>',
-          '<div class="dossier__inner">',
-            '<div class="dossier__section">',
-              '<h3 class="dossier__label">The Problem</h3>',
-              '<p class="dossier__text">' + esc(d.problem) + '</p>',
-            '</div>',
-            '<div class="dossier__section">',
-              '<h3 class="dossier__label">The Solution</h3>',
-              '<p class="dossier__text">' + esc(d.solution) + '</p>',
-            '</div>',
-            stepsHtml ? [
-              '<div class="dossier__section">',
-                '<h3 class="dossier__label">How It Works</h3>',
-                '<div class="dossier__steps">' + stepsHtml + '</div>',
-              '</div>'
-            ].join('') : '',
-            featsHtml ? [
-              '<div class="dossier__section">',
-                '<h3 class="dossier__label">Features</h3>',
-                '<ul class="dossier__features">' + featsHtml + '</ul>',
-              '</div>'
-            ].join('') : '',
-            dossierLinksHtml ? '<div class="dossier__links">' + dossierLinksHtml + '</div>' : '',
-            '<span class="dossier__updated">Last updated ' + esc(d.lastUpdated) + '</span>',
-          '</div>',
-        '</section>',
-      '</article>'
+      '<div class="mol-card" id="mol-' + esc(project.id) + '"',
+      ' role="listitem" tabindex="0"',
+      ' data-id="' + esc(project.id) + '"',
+      ' data-status="' + esc(project.status) + '"',
+      ' aria-label="' + esc(project.title) + '">',
+        '<div class="mol-svg-wrap">',
+          buildMoleculeSVG(project),
+        '</div>',
+        '<div class="mol-card__meta">',
+          '<span class="mol-card__index">' + num + '</span>',
+          '<span class="mol-card__title">' + esc(project.title) + '</span>',
+          '<span class="mol-card__status-dot" style="background:' + color + '; opacity:0.75;"></span>',
+        '</div>',
+      '</div>'
     ].join('');
   }
 
-  /* ── render ────────────────────────────────────── */
-  grid.innerHTML = PROJECTS.map(buildCard).join('');
+  /* ── State ───────────────────────────────────────────────
+     activeId: currently selected project id or null
+  ───────────────────────────────────────────────────────── */
+  var activeId = null;
+  var field    = document.getElementById('molField');
+  var detPane  = document.getElementById('molDetailPane');
 
-  /* ── sidebar counts ────────────────────────────── */
-  var total = PROJECTS.length;
-  var live  = PROJECTS.filter(function (p) { return p.status === 'Live';    }).length;
-  var beta  = PROJECTS.filter(function (p) { return p.status === 'Beta';    }).length;
-  var priv  = PROJECTS.filter(function (p) { return p.status === 'Private'; }).length;
+  if (!field || !detPane || typeof PROJECTS === 'undefined') return;
 
-  setTxt('stat-total', pad(total));
-  setTxt('stat-live',  pad(live));
-  setTxt('stat-beta',  pad(beta));
-  setTxt('stat-priv',  pad(priv));
+  /* Render all molecule cards */
+  field.innerHTML = PROJECTS.map(buildCard).join('');
 
-  /* ── filter button counts ──────────────────────── */
-  var filterBtns = Array.from(document.querySelectorAll('.filter-btn[data-filter]'));
-  filterBtns.forEach(function (btn) {
-    var f       = btn.getAttribute('data-filter');
-    var countEl = btn.querySelector('.filter-count');
-    if (!countEl) return;
-    var count;
-    if (f === 'all') {
-      count = total;
-    } else if (f === 'Live' || f === 'Beta' || f === 'Private') {
-      count = PROJECTS.filter(function (p) { return p.status === f; }).length;
-    } else {
-      count = PROJECTS.filter(function (p) { return p.category === f; }).length;
+  /* ── Select a project ────────────────────────────────────
+     Updates the detail pane and marks the active card.
+     Restarts the pane-in animation on every switch by toggling
+     the .is-open class with a forced reflow between states.
+  ───────────────────────────────────────────────────────── */
+  function selectProject(id) {
+    /* Deactivate previous */
+    if (activeId) {
+      var prev = document.getElementById('mol-' + activeId);
+      if (prev) prev.classList.remove('is-active');
     }
-    countEl.textContent = count;
-  });
 
-  setTxt('filter-results', total);
+    /* Same project → deselect */
+    if (activeId === id) {
+      activeId = null;
+      detPane.classList.remove('is-open');
+      detPane.innerHTML = '';
+      return;
+    }
 
-  /* ── filtering ─────────────────────────────────── */
-  var cards = Array.from(document.querySelectorAll('.pcard'));
+    activeId = id;
+    var project = PROJECTS.filter(function (p) { return p.id === id; })[0];
+    if (!project) return;
 
-  function closeAllDossiers() {
-    document.querySelectorAll('.pcard__dossier-btn[aria-expanded="true"]').forEach(function (b) {
-      b.setAttribute('aria-expanded', 'false');
-      var arrow = b.querySelector('.dossier-arrow');
-      if (arrow) arrow.innerHTML = '&#x25BC;';
-      var d = document.getElementById(b.getAttribute('aria-controls'));
-      if (d) d.hidden = true;
+    /* Activate card */
+    var card = document.getElementById('mol-' + id);
+    if (card) card.classList.add('is-active');
+
+    /* Collapse → update content → expand (forces animation restart) */
+    detPane.classList.remove('is-open');
+    void detPane.offsetWidth; /* force reflow */
+    detPane.innerHTML = buildDetailPanel(project);
+    detPane.classList.add('is-open');
+
+    /* Scroll into view on mobile */
+    if (window.innerWidth <= 860) {
+      setTimeout(function () {
+        detPane.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }, 80);
+    }
+  }
+
+  /* ── Jump to a section within the detail pane ────────────
+     Opens the pane if needed, then highlights the section.
+  ───────────────────────────────────────────────────────── */
+  function jumpToSection(projectId, compId) {
+    /* Open if not already active */
+    if (activeId !== projectId) {
+      selectProject(projectId);
+    }
+
+    /* Wait for DOM to settle, then highlight */
+    requestAnimationFrame(function () {
+      var secId = 'sec-' + projectId + '-' + compId;
+      var sec   = document.getElementById(secId);
+      if (!sec) return;
+
+      /* Clear other highlights */
+      detPane.querySelectorAll('.mol-section.is-active').forEach(function (el) {
+        el.classList.remove('is-active');
+      });
+
+      sec.classList.add('is-active');
+      sec.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+      setTimeout(function () {
+        sec.classList.remove('is-active');
+      }, 1600);
     });
   }
 
-  filterBtns.forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      filterBtns.forEach(function (b) {
-        b.classList.remove('active');
-        b.setAttribute('aria-pressed', 'false');
-      });
-      btn.classList.add('active');
-      btn.setAttribute('aria-pressed', 'true');
-
-      closeAllDossiers();
-
-      var f = btn.getAttribute('data-filter');
-      var visible = 0;
-      cards.forEach(function (card) {
-        var show = f === 'all' ||
-                   card.dataset.status   === f ||
-                   card.dataset.category === f;
-        card.hidden = !show;
-        if (show) visible++;
-      });
-      setTxt('filter-results', visible);
-    });
-  });
-
-  /* ── dossier toggle ────────────────────────────── */
+  /* ── Event delegation ────────────────────────────────────
+     Handles clicks on:
+       .mol-card (anywhere) → selectProject
+       .mol-satellite       → jumpToSection (stops propagation)
+       .mol-center          → selectProject via card click
+  ───────────────────────────────────────────────────────── */
   document.addEventListener('click', function (e) {
-    var btn = e.target.closest('.pcard__dossier-btn');
-    if (!btn) return;
 
-    var id      = btn.getAttribute('aria-controls');
-    var dossier = id ? document.getElementById(id) : null;
-    if (!dossier) return;
+    /* Satellite click — jump to section */
+    var sat = e.target.closest('.mol-satellite');
+    if (sat) {
+      var satSvg  = sat.closest('.mol-svg');
+      var satCard = satSvg && satSvg.closest('.mol-card');
+      if (satCard) {
+        e.stopPropagation();
+        jumpToSection(satCard.dataset.id, sat.dataset.comp);
+      }
+      return;
+    }
 
-    var isOpen = btn.getAttribute('aria-expanded') === 'true';
-
-    /* collapse any other open dossier */
-    document.querySelectorAll('.pcard__dossier-btn[aria-expanded="true"]').forEach(function (b) {
-      if (b === btn) return;
-      b.setAttribute('aria-expanded', 'false');
-      var a = b.querySelector('.dossier-arrow');
-      if (a) a.innerHTML = '&#x25BC;';
-      var other = document.getElementById(b.getAttribute('aria-controls'));
-      if (other) other.hidden = true;
-    });
-
-    if (isOpen) {
-      btn.setAttribute('aria-expanded', 'false');
-      dossier.hidden = true;
-      var arrow = btn.querySelector('.dossier-arrow');
-      if (arrow) arrow.innerHTML = '&#x25BC;';
-    } else {
-      btn.setAttribute('aria-expanded', 'true');
-      dossier.hidden = false;
-      var arrow = btn.querySelector('.dossier-arrow');
-      if (arrow) arrow.innerHTML = '&#x25B2;';
-      setTimeout(function () {
-        var card = btn.closest('.pcard');
-        if (card) card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-      }, 60);
+    /* Card click (includes central node) — toggle project */
+    var card = e.target.closest('.mol-card');
+    if (card && card.dataset.id) {
+      selectProject(card.dataset.id);
+      return;
     }
   });
+
+  /* ── Keyboard support ────────────────────────────────────
+     Enter/Space on .mol-card, .mol-center, .mol-satellite.
+  ───────────────────────────────────────────────────────── */
+  document.addEventListener('keydown', function (e) {
+    if (e.key !== 'Enter' && e.key !== ' ') return;
+
+    var sat = e.target.closest('.mol-satellite');
+    if (sat) {
+      e.preventDefault();
+      sat.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+      return;
+    }
+
+    var card = e.target.closest('.mol-card');
+    if (card) {
+      e.preventDefault();
+      card.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+    }
+  });
+
+  /* ── Auto-select first project on load ───────────────────
+     Gives the page immediate content on desktop.
+  ───────────────────────────────────────────────────────── */
+  if (PROJECTS.length > 0 && window.innerWidth > 860) {
+    selectProject(PROJECTS[0].id);
+  }
 
 }());
 </script>
