@@ -2,890 +2,1526 @@
 <html lang="en">
 <head>
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Areas of Expertise - SeldomSought</title>
-    <meta name="description" content="Our expertise spans brand image, aesthetic orchestration, SEO, AEO, guerrilla marketing, business consulting, copywriting, and email/SMS marketing.">
-    <meta name="theme-color" content="#D4AF37"/>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Share+Tech+Mono&display=swap" rel="stylesheet">
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        :root {
-            --gold: #D4AF37;
-            --gold-light: #E8C967;
-            --gold-dim: #B8860B;
-            --gold-dark: #8B6914;
-            --bg: #0A0805;
-            --text-primary: #E8DCC8;
-            --text-secondary: rgba(212,175,55,0.7);
-            --panel-bg: rgba(15,12,8,0.88);
-            --fs-display: clamp(4rem, 9vw, 9.5rem);
-            --fs-h1:      clamp(3rem, 7vw, 7.5rem);
-            --fs-h2:      clamp(2rem, 3.8vw, 4rem);
-            --fs-h3:      clamp(1.4rem, 2.4vw, 2.5rem);
-            --fs-h4:      clamp(1.1rem, 1.8vw, 1.9rem);
-            --fs-body-lg: clamp(1.1rem, 1.65vw, 1.75rem);
-            --fs-body:    clamp(1rem, 1.4vw, 1.5rem);
-            --fs-small:   clamp(0.85rem, 1vw, 1rem);
-            --fs-label:   clamp(0.78rem, 0.9vw, 0.9rem);
-            --fs-nav:     clamp(0.95rem, 1.1vw, 1.2rem);
-            --fs-btn:     clamp(1rem, 1.35vw, 1.35rem);
-            --lh-tight:   1.1;
-            --lh-snug:    1.3;
-            --lh-copy:    1.7;
-            --lh-relaxed: 1.8;
-            --content-narrow: 65ch;
-            --content-wide:   82ch;
-        }
-        body {
-            font-family: 'Cormorant Garamond', serif;
-            color: var(--text-primary);
-            background: var(--bg);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
+  <link rel="stylesheet" href="assets/css/global.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Expertise — SeldomSought</title>
+  <meta name="description" content="The Pantheon of Competence — twelve domains of expertise in marketing, brand, operations, AI, design, and creative direction.">
+  <meta name="theme-color" content="#07090c"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <style>
 
-        /* Canvases */
-        #dragonCanvas {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            z-index: 0; pointer-events: none;
-        }
-        #decorCanvas {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            z-index: 1; pointer-events: none;
-        }
+    /* ══════════════════════════════════════════════════════════
+       PANTHEON — base tokens
+    ══════════════════════════════════════════════════════════ */
+    :root {
+      --bg:           #07090c;
+      --gold:         #8c7452;
+      --gold-bright:  #c4a86a;
+      --gold-light:   #d4b87c;
+      --gold-dim:     rgba(140,116,82,0.28);
+      --cream:        #cec5b0;
+      --text-sec:     rgba(195,183,152,0.62);
+      --text-dim:     rgba(150,138,112,0.4);
+      --ring:         rgba(138,114,78,0.2);
+      --ring-hi:      rgba(196,168,106,0.55);
+      --panel-bg:     rgba(7,9,12,0.97);
+      --panel-bdr:    rgba(96,76,42,0.34);
+      --glow-col:     rgba(196,168,106,0.45);
+      --node-bg:      rgba(7,9,12,0.82);
+      --node-stroke:  rgba(138,114,78,0.45);
+      --node-active:  rgba(196,168,106,0.7);
+      --fs-display:   clamp(2.2rem,4.5vw,4.5rem);
+      --fs-h2:        clamp(1.3rem,2vw,1.9rem);
+      --fs-h3:        clamp(1.05rem,1.5vw,1.45rem);
+      --fs-body:      clamp(0.95rem,1.15vw,1.05rem);
+      --fs-small:     clamp(0.8rem,0.9vw,0.88rem);
+      --fs-label:     clamp(0.7rem,0.82vw,0.78rem);
+      --lh-tight:     1.15;
+      --lh-snug:      1.35;
+      --lh-copy:      1.75;
+    }
 
-        /* Navigation */
-        nav {
-            position: fixed; top: 0; width: 100%;
-            background: rgba(10,8,5,0.92);
-            border-bottom: 1px solid rgba(212,175,55,0.15);
-            z-index: 200; backdrop-filter: blur(10px);
-        }
-        .nav-container {
-            max-width: 1200px; margin: 0 auto; padding: 1rem 2.5rem;
-            display: flex; justify-content: space-between; align-items: center;
-        }
-        .logo {
-            font-family: 'Cinzel', serif;
-            font-size: 1.4rem; line-height: 1; color: var(--gold); text-decoration: none;
-            text-shadow: 0 0 10px rgba(212,175,55,0.5), 0 0 20px rgba(212,175,55,0.3);
-            letter-spacing: 3px;
-        }
-        .nav-links { display: flex; gap: 2rem; list-style: none; }
-        .nav-links a {
-            font-family: 'Share Tech Mono', monospace;
-            text-decoration: none; color: var(--gold-dark);
-            font-size: var(--fs-nav); letter-spacing: 1px; text-transform: uppercase;
-            transition: all 0.3s; position: relative;
-        }
-        .nav-links a:hover { color: var(--gold); text-shadow: 0 0 8px rgba(212,175,55,0.6); }
-        .nav-links a::after {
-            content: ''; position: absolute; bottom: -4px; left: 0;
-            width: 0; height: 1px; background: var(--gold);
-            box-shadow: 0 0 5px var(--gold); transition: width 0.3s;
-        }
-        .nav-links a:hover::after { width: 100%; }
-        .menu-toggle {
-            display: none; background: none;
-            border: 1px solid var(--gold-dark);
-            font-size: 1.5rem; cursor: pointer; color: var(--gold);
-            padding: 0.2rem 0.5rem;
-        }
-        .mobile-menu { display: none; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
 
-        /* Page Header */
-        .page-header {
-            padding: 8rem 2rem 2rem; text-align: center;
-            position: relative; z-index: 10;
-        }
-        .page-header h1 {
-            font-family: 'Cinzel', serif;
-            font-size: clamp(2.8rem, 5vw, 4rem); margin-bottom: 0.8rem;
-            color: var(--gold); font-weight: 600;
-            text-shadow: 0 0 20px rgba(212,175,55,0.4), 0 0 40px rgba(212,175,55,0.2);
-            letter-spacing: 6px; text-transform: uppercase;
-            opacity: 0; transform: translateY(20px);
-            animation: headerFadeIn 1.5s ease 3.5s forwards;
-        }
-        .page-header .subtitle {
-            font-family: 'Cormorant Garamond', serif;
-            color: var(--text-secondary); font-size: clamp(1.15rem, 2vw, 1.45rem);
-            letter-spacing: 3px; font-style: italic;
-            line-height: var(--lh-copy);
-            opacity: 0; transform: translateY(10px);
-            animation: headerFadeIn 1.5s ease 4s forwards;
-        }
-        @keyframes headerFadeIn {
-            to { opacity: 1; transform: translateY(0); }
-        }
+    body {
+      background: var(--bg);
+      color: var(--cream);
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
 
-        /* Expertise Panels (desktop: absolutely positioned along curve) */
-        .expertise-panels-container {
-            position: relative; z-index: 10;
-            width: 100%; min-height: 100vh;
-        }
-        .expertise-panel {
-            position: absolute;
-            width: 200px;
-            background: var(--panel-bg);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(212,175,55,0.2);
-            padding: 1.2rem 1rem;
-            text-align: center;
-            opacity: 0;
-            transform: scale(0.9);
-            transition: opacity 0.6s ease, transform 0.6s ease, border-color 0.3s, box-shadow 0.3s;
-            cursor: default;
-        }
-        .expertise-panel.visible {
-            opacity: 1; transform: scale(1);
-        }
-        .expertise-panel:hover {
-            border-color: rgba(212,175,55,0.6);
-            box-shadow: 0 0 25px rgba(212,175,55,0.15), inset 0 0 15px rgba(212,175,55,0.05);
-        }
-        .expertise-panel h3 {
-            font-family: 'Cinzel', serif;
-            font-size: clamp(1.05rem, 1.6vw, 1.3rem); margin-bottom: 0.4rem;
-            color: var(--gold); font-weight: 600;
-            letter-spacing: 1px; line-height: var(--lh-snug);
-        }
-        .expertise-panel p {
-            font-family: 'Cormorant Garamond', serif;
-            color: var(--text-secondary); font-size: clamp(1rem, 1.3vw, 1.2rem);
-            letter-spacing: 0.5px; font-style: italic;
-            line-height: var(--lh-copy);
-        }
+    /* stone-grain noise */
+    body::before {
+      content: '';
+      position: fixed; inset: 0; z-index: 9997; pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      opacity: 0.032;
+    }
 
-        /* Footer */
-        footer {
-            background: rgba(10,8,5,0.95);
-            color: var(--text-secondary);
-            padding: 4rem 2.5rem 2.5rem;
-            border-top: 1px solid rgba(212,175,55,0.15);
-            position: relative; z-index: 10;
-            font-family: 'Cormorant Garamond', serif;
-        }
-        .footer-content {
-            max-width: 1200px; margin: 0 auto;
-            display: grid; grid-template-columns: 2fr 1fr 1fr;
-            gap: 4rem; margin-bottom: 2.5rem;
-        }
-        .footer-section h3 {
-            font-family: 'Cinzel', serif;
-            font-size: 1.35rem; margin-bottom: 1.3rem;
-            color: var(--gold);
-            text-shadow: 0 0 8px rgba(212,175,55,0.3);
-            letter-spacing: 2px; text-transform: uppercase; font-weight: 600;
-        }
-        .footer-section p { color: var(--text-secondary); line-height: 1.7; }
-        .footer-links { list-style: none; }
-        .footer-links a {
-            font-family: 'Share Tech Mono', monospace;
-            color: var(--gold-dark); text-decoration: none;
-            display: block; padding: 0.4rem 0; transition: all 0.2s;
-            letter-spacing: 1px; font-size: 1.1rem;
-        }
-        .footer-links a:hover {
-            color: var(--gold);
-            text-shadow: 0 0 8px rgba(212,175,55,0.4);
-            padding-left: 0.5rem;
-        }
-        .footer-links a::before { content: '\u03C6 '; opacity: 0; transition: opacity 0.2s; }
-        .footer-links a:hover::before { opacity: 1; }
-        .footer-bottom {
-            max-width: 1200px; margin: 0 auto; padding-top: 2.5rem;
-            border-top: 1px solid rgba(212,175,55,0.1);
-            text-align: center; color: rgba(212,175,55,0.3);
-            font-family: 'Share Tech Mono', monospace;
-            font-size: 1rem; letter-spacing: 1px;
-        }
+    /* fine crosshatch texture */
+    body::after {
+      content: '';
+      position: fixed; inset: 0; z-index: 9996; pointer-events: none;
+      background-image:
+        repeating-linear-gradient(0deg,  transparent, transparent 3px, rgba(255,255,255,0.006) 3px, rgba(255,255,255,0.006) 4px),
+        repeating-linear-gradient(90deg, transparent, transparent 5px, rgba(255,255,255,0.004) 5px, rgba(255,255,255,0.004) 6px);
+    }
 
-        /* Mobile */
-        @media (max-width: 768px) {
-            .menu-toggle { display: block; }
-            .nav-links { display: none; }
-            .mobile-menu {
-                position: fixed; top: 60px; left: 0; right: 0;
-                background: rgba(10,8,5,0.95);
-                border-bottom: 1px solid rgba(212,175,55,0.15);
-                padding: 1rem 2rem; backdrop-filter: blur(10px);
-                z-index: 200;
-            }
-            .mobile-menu.active { display: block; }
-            .mobile-menu ul { list-style: none; }
-            .mobile-menu a {
-                font-family: 'Share Tech Mono', monospace;
-                display: block; padding: 0.8rem 0; text-decoration: none;
-                color: var(--gold-dark);
-                border-bottom: 1px solid rgba(212,175,55,0.08);
-                letter-spacing: 1px; text-transform: uppercase; font-size: 0.85rem;
-            }
-            .mobile-menu a:hover { color: var(--gold); text-shadow: 0 0 8px rgba(212,175,55,0.4); }
-            .page-header h1 { font-size: 2rem; letter-spacing: 3px; }
-            .page-header .subtitle { font-size: 1rem; }
-            .expertise-panels-container {
-                position: relative; min-height: auto;
-                padding: 1rem 1rem 2rem;
-            }
-            .expertise-panel {
-                position: relative !important;
-                width: 100% !important;
-                left: auto !important; top: auto !important;
-                margin-bottom: 1rem;
-                opacity: 1; transform: scale(1);
-            }
-            .footer-content { grid-template-columns: 1fr; gap: 2rem; }
-        }
+    /* ══ PAGE SHELL ══════════════════════════════════════════ */
+    .pantheon-page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      padding-top: var(--site-header-height, 72px);
+    }
+    @media (max-width: 860px) {
+      .pantheon-page { padding-top: var(--site-header-height-mobile, 60px); }
+    }
 
-        @media (min-width: 768px) and (max-width: 1023px) {
-            html { font-size: 17px; }
-        }
+    /* ══ PAGE HEADER ═════════════════════════════════════════ */
+    .pantheon-header {
+      text-align: center;
+      padding: clamp(2.5rem,4vw,4rem) 2rem clamp(1rem,2vw,1.5rem);
+      animation: fadeUp 1s ease both;
+    }
+    .pantheon-header h1 {
+      font-family: 'Cinzel', serif;
+      font-size: var(--fs-display);
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      color: var(--cream);
+      line-height: var(--lh-tight);
+      margin-bottom: 0.55rem;
+    }
+    .pantheon-tagline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(0.85rem,1.1vw,1rem);
+      font-style: italic;
+      letter-spacing: 0.22em;
+      color: var(--text-dim);
+      text-transform: uppercase;
+    }
 
-        @media (min-width: 1024px) {
-            html { font-size: 18px; }
-            /* ── Nav ── */
-            .nav-container         { padding: 1rem 2.5rem; max-width: none; }
-            .logo                  { font-size: 1.4rem; }
-            .nav-links             { gap: 3.25rem; }
-            .nav-links a           { font-size: 0.80rem; }
-            /* ── Page header ── */
-            .page-header h1        { font-size: clamp(3.5rem, 7vw, 7.5rem); }
-            .page-header .subtitle { font-size: clamp(1.3rem, 2vw, 2rem); }
-            /* ── Panel content ── */
-            .expertise-panel h3    { font-size: clamp(1.5rem, 2.5vw, 2.5rem); }
-            .expertise-panel p     { font-size: clamp(1.1rem, 1.65vw, 1.75rem); line-height: var(--lh-copy); }
-            .expertise-panel       { padding: 2rem 1.75rem; }
-            /* ── Footer ── */
-            .footer-section h3     { font-size: clamp(1.5rem, 1.8vw, 2rem); }
-            .footer-section p      { font-size: clamp(1rem, 1.3vw, 1.3rem); }
-            .footer-links a        { font-size: clamp(1.2rem, 1.4vw, 1.4rem); }
-            footer                 { padding: 5rem 2.5rem 3rem; }
-        }
-    </style>
+    @keyframes fadeUp {
+      from { opacity:0; transform:translateY(10px); }
+      to   { opacity:1; transform:translateY(0); }
+    }
+
+    /* ══ STAGE ═══════════════════════════════════════════════ */
+    .pantheon-stage {
+      flex: 1;
+      display: flex;
+      align-items: flex-start;
+      gap: 0;
+      max-width: 1320px;
+      margin: 0 auto;
+      width: 100%;
+      padding: 0 clamp(0.75rem,2.5vw,2rem) clamp(1.5rem,3vw,3rem);
+      animation: fadeUp 1.2s 0.15s ease both;
+    }
+
+    /* ══ DIAGRAM WRAP ════════════════════════════════════════ */
+    .diagram-wrap {
+      flex: 0 0 auto;
+      width: min(600px, 56vw);
+      position: relative;
+    }
+    #pantheon-svg {
+      width: 100%;
+      display: block;
+      overflow: visible;
+    }
+
+    /* ── Rotating ring ── */
+    .rotating-ring {
+      transform-origin: 400px 400px;
+      animation: ring-rotate 100s linear infinite;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .rotating-ring { animation: none; }
+    }
+    @keyframes ring-rotate {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+
+    /* ── Constellation shimmer ── */
+    .const-pt {
+      animation: const-flicker var(--dur, 4s) var(--del, 0s) ease-in-out infinite;
+    }
+    @keyframes const-flicker {
+      0%,100% { opacity: var(--lo, 0.12); }
+      50%      { opacity: var(--hi, 0.45); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .const-pt { animation: none; opacity: 0.18; }
+    }
+
+    /* ── Domain node base states ── */
+    .domain-node { cursor: pointer; outline: none; }
+
+    .node-bg {
+      fill: var(--node-bg);
+      stroke: var(--node-stroke);
+      stroke-width: 1;
+      transition: stroke 0.22s, stroke-width 0.22s;
+    }
+    .node-halo {
+      fill: none;
+      stroke: var(--ring-hi);
+      stroke-width: 1.5;
+      opacity: 0;
+      transition: opacity 0.22s;
+    }
+    .node-sigil {
+      stroke: rgba(196,165,100,0.5);
+      stroke-width: 1.3;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      fill: none;
+      transition: stroke 0.22s;
+    }
+    .node-label {
+      fill: var(--text-dim);
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      transition: fill 0.22s;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    /* hover state */
+    .domain-node:hover .node-bg,
+    .domain-node:focus-visible .node-bg {
+      stroke: var(--gold-bright);
+      stroke-width: 1.5;
+    }
+    .domain-node:hover .node-halo,
+    .domain-node:focus-visible .node-halo {
+      opacity: 0.45;
+    }
+    .domain-node:hover .node-sigil,
+    .domain-node:focus-visible .node-sigil {
+      stroke: var(--gold-bright);
+    }
+    .domain-node:hover .node-label,
+    .domain-node:focus-visible .node-label {
+      fill: var(--cream);
+    }
+    .domain-node:focus-visible .node-bg {
+      stroke: white;
+      stroke-width: 2;
+    }
+
+    /* active / selected state */
+    .domain-node.active .node-bg {
+      stroke: var(--node-active);
+      stroke-width: 1.5;
+    }
+    .domain-node.active .node-halo {
+      opacity: 0.7;
+    }
+    .domain-node.active .node-sigil {
+      stroke: var(--gold-light);
+    }
+    .domain-node.active .node-label {
+      fill: var(--gold-light);
+    }
+
+    /* connection line */
+    .conn-line {
+      stroke: var(--gold-bright);
+      stroke-width: 1;
+      fill: none;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+    .conn-line.visible {
+      opacity: 1;
+    }
+
+    /* center text in SVG */
+    .center-title {
+      font-family: 'Cinzel', serif;
+      font-size: 14px;
+      letter-spacing: 3px;
+      fill: var(--gold-bright);
+      text-transform: uppercase;
+      text-anchor: middle;
+    }
+    .center-sub {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 11px;
+      font-style: italic;
+      fill: rgba(196,168,106,0.55);
+      text-anchor: middle;
+    }
+    .ambient-label {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      fill: rgba(138,114,78,0.22);
+      text-anchor: middle;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    /* ══ DETAIL PANEL ════════════════════════════════════════ */
+    .detail-panel {
+      flex: 1;
+      min-width: 320px;
+      max-width: 430px;
+      padding: 0 0 0 2.5rem;
+      position: sticky;
+      top: calc(var(--site-header-height, 72px) + 1.5rem);
+    }
+
+    .panel-card {
+      background: var(--panel-bg);
+      border: 1px solid var(--panel-bdr);
+      padding: 2.2rem 2rem;
+      position: relative;
+      opacity: 0;
+      transform: translateX(14px);
+      transition: opacity 0.32s ease, transform 0.32s ease;
+      pointer-events: none;
+    }
+    .panel-card.visible {
+      opacity: 1;
+      transform: translateX(0);
+      pointer-events: auto;
+    }
+
+    /* corner ornaments */
+    .panel-card::before {
+      content: '';
+      position: absolute; top: -1px; left: -1px;
+      width: 14px; height: 14px;
+      border-top: 1px solid var(--gold); border-left: 1px solid var(--gold);
+    }
+    .panel-card::after {
+      content: '';
+      position: absolute; bottom: -1px; right: -1px;
+      width: 14px; height: 14px;
+      border-bottom: 1px solid var(--gold); border-right: 1px solid var(--gold);
+    }
+    .panel-corner-tr {
+      position: absolute; top: -1px; right: -1px;
+      width: 14px; height: 14px;
+      border-top: 1px solid var(--gold); border-right: 1px solid var(--gold);
+    }
+    .panel-corner-bl {
+      position: absolute; bottom: -1px; left: -1px;
+      width: 14px; height: 14px;
+      border-bottom: 1px solid var(--gold); border-left: 1px solid var(--gold);
+    }
+
+    .panel-close {
+      position: absolute; top: 1rem; right: 1rem;
+      background: none;
+      border: 1px solid rgba(96,76,42,0.3);
+      color: var(--text-dim);
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.68rem; letter-spacing: 0.1em;
+      padding: 0.2rem 0.5rem;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .panel-close:hover { color: var(--cream); border-color: var(--gold); }
+    .panel-close:focus-visible {
+      outline: 1px solid var(--gold); outline-offset: 2px;
+    }
+
+    .panel-index {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      margin-bottom: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    .panel-index::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: rgba(96,76,42,0.25);
+    }
+
+    .panel-mythic {
+      font-family: 'Cinzel', serif;
+      font-size: var(--fs-h2);
+      font-weight: 400;
+      color: var(--cream);
+      letter-spacing: 0.04em;
+      line-height: var(--lh-snug);
+      margin-bottom: 0.35rem;
+    }
+
+    .panel-plain {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      opacity: 0.7;
+    }
+
+    .panel-rule {
+      border: none;
+      border-top: 1px solid rgba(96,76,42,0.25);
+      margin: 0 0 1.4rem;
+    }
+
+    .panel-desc {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1rem,1.2vw,1.1rem);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--text-sec);
+      line-height: var(--lh-copy);
+      margin-bottom: 1.5rem;
+    }
+
+    .panel-section-head {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.22em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 0.55rem;
+      opacity: 0.65;
+    }
+
+    .panel-section-body {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(0.9rem,1.05vw,0.98rem);
+      color: var(--text-sec);
+      line-height: var(--lh-copy);
+      margin-bottom: 1.3rem;
+    }
+
+    .panel-signal {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: var(--fs-small);
+      color: var(--text-dim);
+      border-top: 1px solid rgba(96,76,42,0.22);
+      padding-top: 1rem;
+      line-height: var(--lh-copy);
+    }
+    .panel-signal::before {
+      content: '◆ ';
+      color: var(--gold);
+      opacity: 0.6;
+    }
+
+    /* ══ MOBILE DOMAIN INDEX ══════════════════════════════════ */
+    .mobile-index { display: none; }
+
+    .mobile-emblem-wrap {
+      display: flex;
+      justify-content: center;
+      padding: 0 1rem 1.5rem;
+    }
+    .mobile-emblem {
+      max-width: 220px;
+      width: 100%;
+      opacity: 0.7;
+    }
+
+    .domain-row {
+      border-bottom: 1px solid rgba(96,76,42,0.15);
+      overflow: hidden;
+    }
+    .domain-row-head {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 1.25rem;
+      cursor: pointer;
+      background: none;
+      border: none;
+      width: 100%;
+      text-align: left;
+      transition: background 0.18s;
+    }
+    .domain-row-head:hover { background: rgba(138,114,78,0.05); }
+    .domain-row-head:focus-visible {
+      outline: 1px solid var(--gold);
+      outline-offset: -2px;
+    }
+    .domain-row-head.active { background: rgba(138,114,78,0.08); }
+
+    .row-index {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+      color: var(--text-dim);
+      min-width: 2rem;
+      flex-shrink: 0;
+    }
+    .row-sigil-wrap {
+      width: 28px; height: 28px;
+      flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .row-sigil-wrap svg {
+      width: 22px; height: 22px;
+      overflow: visible;
+    }
+    .row-text { flex: 1; }
+    .row-mythic {
+      font-family: 'Cinzel', serif;
+      font-size: 0.82rem;
+      font-weight: 400;
+      color: var(--cream);
+      letter-spacing: 0.04em;
+      display: block;
+      line-height: 1.2;
+      margin-bottom: 0.15rem;
+    }
+    .row-plain {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+      color: var(--text-dim);
+      text-transform: uppercase;
+    }
+    .row-chevron {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--gold);
+      opacity: 0.5;
+      transition: opacity 0.2s, transform 0.2s;
+      flex-shrink: 0;
+    }
+    .domain-row-head.active .row-chevron {
+      opacity: 0.85;
+      transform: rotate(90deg);
+    }
+
+    .domain-row-detail {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease;
+    }
+    .domain-row-detail.open { max-height: 680px; }
+
+    .mobile-panel-inner {
+      padding: 1.2rem 1.25rem 1.5rem 3.8rem;
+      border-top: 1px solid rgba(96,76,42,0.12);
+      background: rgba(0,0,0,0.2);
+    }
+    .mobile-panel-inner .panel-mythic { font-size: 1.05rem; margin-bottom: 0.25rem; }
+    .mobile-panel-inner .panel-plain  { font-size: 0.62rem; margin-bottom: 1rem; }
+    .mobile-panel-inner .panel-desc   { font-size: 0.95rem; margin-bottom: 1rem; }
+    .mobile-panel-inner .panel-section-head { font-size: 0.6rem; }
+    .mobile-panel-inner .panel-section-body { font-size: 0.88rem; margin-bottom: 1rem; }
+    .mobile-panel-inner .panel-signal { font-size: 0.76rem; }
+
+    /* ══ FOOTER ══════════════════════════════════════════════ */
+    .site-footer {
+      background: rgba(5,7,9,0.97);
+      border-top: 1px solid rgba(96,76,42,0.16);
+      padding: 3.5rem 2.5rem 2.5rem;
+      font-family: 'Cormorant Garamond', serif;
+      color: var(--text-sec);
+    }
+    .footer-grid {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: 2fr 1fr 1fr;
+      gap: 3rem; margin-bottom: 2.5rem;
+    }
+    .footer-col h3 {
+      font-family: 'Cinzel', serif;
+      font-size: 1rem; font-weight: 600;
+      color: var(--gold); letter-spacing: 2px;
+      text-transform: uppercase; margin-bottom: 1rem;
+    }
+    .footer-col p { font-size: 0.92rem; line-height: 1.7; }
+    .footer-links { list-style: none; }
+    .footer-links a {
+      font-family: 'Share Tech Mono', monospace;
+      color: var(--gold); text-decoration: none;
+      display: block; padding: 0.3rem 0;
+      font-size: 0.85rem; letter-spacing: 0.06em;
+      opacity: 0.55; transition: opacity 0.2s, padding-left 0.2s;
+    }
+    .footer-links a:hover { opacity: 1; padding-left: 0.4rem; }
+    .footer-bottom {
+      max-width: 1200px; margin: 0 auto;
+      padding-top: 1.8rem; border-top: 1px solid rgba(96,76,42,0.1);
+      text-align: center;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.72rem; letter-spacing: 0.06em; color: var(--text-dim);
+    }
+
+    /* ══ RESPONSIVE ══════════════════════════════════════════ */
+    @media (max-width: 960px) {
+      .pantheon-stage {
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+      }
+      .diagram-wrap {
+        width: min(480px, 94vw);
+      }
+      .detail-panel { display: none; }
+      .mobile-index {
+        display: block;
+        width: 100%;
+        max-width: 680px;
+        margin: 1rem auto 0;
+        border-top: 1px solid rgba(96,76,42,0.15);
+      }
+      .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+    }
+
+    @media (max-width: 500px) {
+      .diagram-wrap { width: min(340px, 96vw); }
+      .pantheon-header h1 { font-size: 1.9rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .pantheon-header, .pantheon-stage { animation: none; opacity: 1; transform: none; }
+    }
+
+  </style>
 </head>
 <body>
-    <canvas id="dragonCanvas"></canvas>
-    <canvas id="decorCanvas"></canvas>
 
-    <nav>
-        <div class="nav-container">
-            <a href="index.html" class="logo">SeldomSought</a>
-            <button class="menu-toggle" id="menuToggle">&#9776;</button>
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="philosophy.html">Philosophy</a></li>
-                <li><a href="services.html">Services</a></li>
-                <li><a href="expertise.html">Expertise</a></li>
-                <li><a href="projects.html">Projects</a></li>
-                <li><a href="faq.html">FAQ</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </div>
-        <div class="mobile-menu" id="mobileMenu">
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="philosophy.html">Philosophy</a></li>
-                <li><a href="services.html">Services</a></li>
-                <li><a href="expertise.html">Expertise</a></li>
-                <li><a href="projects.html">Projects</a></li>
-                <li><a href="faq.html">FAQ</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </div>
+  <header class="site-header" id="siteHeader">
+    <div class="site-header__inner">
+      <a href="index.html" class="site-header__brand">SeldomSought</a>
+      <button class="site-header__toggle" id="siteMenuToggle"
+              aria-label="Toggle navigation" aria-expanded="false"
+              aria-controls="siteMobileMenu">☰</button>
+      <nav class="site-header__nav" aria-label="Primary navigation">
+        <a href="index.html">Home</a>
+        <a href="philosophy.html">Philosophy</a>
+        <a href="services.html">Services</a>
+        <a href="expertise.html" aria-current="page">Expertise</a>
+        <a href="projects.html">Projects</a>
+        <a href="faq.html">FAQ</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+    <nav class="site-header__mobile" id="siteMobileMenu"
+         aria-label="Mobile navigation" aria-hidden="true">
+      <a href="index.html">Home</a>
+      <a href="philosophy.html">Philosophy</a>
+      <a href="services.html">Services</a>
+      <a href="expertise.html" aria-current="page">Expertise</a>
+      <a href="projects.html">Projects</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html">Contact</a>
     </nav>
+  </header>
 
-    <div class="page-header">
-        <h1>Areas of Expertise</h1>
-        <p class="subtitle">Where strategy becomes signal</p>
-    </div>
+  <div class="pantheon-page">
 
-    <div class="expertise-panels-container" id="panelsContainer">
-        <div class="expertise-panel" data-index="0"><h3>Brand Image</h3><p>Identity, presence, perception</p></div>
-        <div class="expertise-panel" data-index="1"><h3>Aesthetic Orchestration</h3><p>Cohesive look, feel, tone</p></div>
-        <div class="expertise-panel" data-index="2"><h3>SEO</h3><p>Organic visibility, authority</p></div>
-        <div class="expertise-panel" data-index="3"><h3>AEO</h3><p>Answer engine optimization</p></div>
-        <div class="expertise-panel" data-index="4"><h3>Guerrilla Marketing</h3><p>Unconventional, high-impact</p></div>
-        <div class="expertise-panel" data-index="5"><h3>Marketing Strategy</h3><p>Full-funnel campaign planning</p></div>
-        <div class="expertise-panel" data-index="6"><h3>Business Consulting</h3><p>Growth, positioning, direction</p></div>
-        <div class="expertise-panel" data-index="7"><h3>Copywriting</h3><p>Words that convert</p></div>
-        <div class="expertise-panel" data-index="8"><h3>Email Marketing</h3><p>Sequences, campaigns, lists</p></div>
-        <div class="expertise-panel" data-index="9"><h3>SMS Marketing</h3><p>Direct mobile engagement</p></div>
-        <div class="expertise-panel" data-index="10"><h3>Competitive Analysis</h3><p>Market gaps, positioning intel</p></div>
-        <div class="expertise-panel" data-index="11"><h3>Brand Voice</h3><p>Messaging, tone, narrative</p></div>
-    </div>
+    <header class="pantheon-header">
+      <h1>Expertise</h1>
+      <p class="pantheon-tagline">The Pantheon of Competence</p>
+    </header>
 
-    <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>SeldomSought</h3>
-                <p>Brand image, marketing strategy, and business consulting for brands built to stand out.</p>
-            </div>
-            <div class="footer-section">
-                <h3>Navigate</h3>
-                <ul class="footer-links">
-                    <li><a href="philosophy.html">Philosophy</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="expertise.html">Expertise</a></li>
-                    <li><a href="projects.html">Projects</a></li>
-                    <li><a href="faq.html">FAQ</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h3>Services</h3>
-                <ul class="footer-links">
-                    <li><a href="services.html">Brand Image</a></li>
-                    <li><a href="services.html">SEO &amp; AEO</a></li>
-                    <li><a href="services.html">Guerrilla Marketing</a></li>
-                    <li><a href="services.html">Copywriting</a></li>
-                </ul>
-            </div>
+    <main class="pantheon-stage" id="main-content">
+
+      <!-- ── Circular Diagram ── -->
+      <div class="diagram-wrap"
+           aria-label="Pantheon diagram — twelve expertise domains arranged as a symbolic wheel. Navigate with Tab and Enter.">
+
+        <svg id="pantheon-svg" viewBox="0 0 800 800"
+             role="group" aria-label="Expertise pantheon">
+          <defs>
+            <!-- ambient center glow -->
+            <radialGradient id="ctr-glow" cx="50%" cy="50%" r="50%">
+              <stop offset="0%"   stop-color="#0f1a20" stop-opacity="0.85"/>
+              <stop offset="100%" stop-color="#07090c" stop-opacity="0"/>
+            </radialGradient>
+            <!-- active node glow filter -->
+            <filter id="node-glow" x="-60%" y="-60%" width="220%" height="220%">
+              <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="blur"/>
+              <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+            </filter>
+            <!-- subtle ring glow -->
+            <filter id="ring-glow" x="-20%" y="-20%" width="140%" height="140%">
+              <feGaussianBlur in="SourceGraphic" stdDeviation="2.5"/>
+            </filter>
+            <!-- connection line glow -->
+            <filter id="line-glow" x="-30%" y="-30%" width="160%" height="160%">
+              <feGaussianBlur in="SourceGraphic" stdDeviation="2"/>
+            </filter>
+          </defs>
+
+          <!-- ── Atmospheric background ── -->
+          <circle cx="400" cy="400" r="360" fill="url(#ctr-glow)"/>
+
+          <!-- ── Outer rings ── -->
+          <circle cx="400" cy="400" r="325" fill="none" stroke="rgba(138,114,78,0.08)" stroke-width="0.5"/>
+          <circle cx="400" cy="400" r="318" fill="none" stroke="rgba(138,114,78,0.14)" stroke-width="0.5"/>
+          <circle cx="400" cy="400" r="308" fill="none" stroke="rgba(138,114,78,0.1)"  stroke-width="0.5"/>
+
+          <!-- ── Rotating dashed ring ── -->
+          <g class="rotating-ring">
+            <circle cx="400" cy="400" r="300" fill="none"
+                    stroke="rgba(138,114,78,0.25)" stroke-width="1"
+                    stroke-dasharray="5 7"/>
+          </g>
+
+          <!-- ── Tick marks ring — generated by JS ── -->
+          <g id="tick-ring" aria-hidden="true"></g>
+
+          <!-- ── Radial domain dividers ── -->
+          <!-- Faint lines from domain ring to outer ring at each 30° -->
+          <g id="radial-dividers" aria-hidden="true"></g>
+
+          <!-- ── Constellation dust — generated by JS ── -->
+          <g id="const-layer" aria-hidden="true"></g>
+
+          <!-- ── Domain ring reference circle ── -->
+          <circle cx="400" cy="400" r="282" fill="none" stroke="rgba(138,114,78,0.18)" stroke-width="0.5"/>
+
+          <!-- ── Inner rings ── -->
+          <circle cx="400" cy="400" r="230" fill="none" stroke="rgba(138,114,78,0.18)" stroke-width="0.5"/>
+          <circle cx="400" cy="400" r="218" fill="none" stroke="rgba(138,114,78,0.1)"  stroke-width="0.5"/>
+
+          <!-- ── Ambient dimension labels at r=175 ── -->
+          <!-- placed at 45° intervals (intercardinal: between domain nodes) -->
+          <text class="ambient-label" x="400"  y="228">PERCEPTION</text>
+          <text class="ambient-label" x="524"  y="279">SIGNAL</text>
+          <text class="ambient-label" x="573"  y="403">JUDGMENT</text>
+          <text class="ambient-label" x="524"  y="527">SYSTEMS</text>
+          <text class="ambient-label" x="400"  y="578">EXECUTION</text>
+          <text class="ambient-label" x="275"  y="527">DESIRE</text>
+          <text class="ambient-label" x="226"  y="403">FORM</text>
+          <text class="ambient-label" x="275"  y="279">RELATION</text>
+
+          <!-- ── Inner ornament ring ── -->
+          <circle cx="400" cy="400" r="148" fill="none" stroke="rgba(138,114,78,0.2)"  stroke-width="0.5"/>
+          <circle cx="400" cy="400" r="140" fill="none" stroke="rgba(138,114,78,0.12)" stroke-width="0.5"/>
+
+          <!-- ── Center emblem ── -->
+          <circle cx="400" cy="400" r="128" fill="rgba(7,9,12,0.65)"
+                  stroke="rgba(138,114,78,0.32)" stroke-width="1"/>
+          <circle cx="400" cy="400" r="116" fill="none"
+                  stroke="rgba(138,114,78,0.14)" stroke-width="0.5"/>
+
+          <!-- Center axis cross (very faint) -->
+          <line x1="400" y1="280" x2="400" y2="520"
+                stroke="rgba(138,114,78,0.1)" stroke-width="0.5"/>
+          <line x1="280" y1="400" x2="520" y2="400"
+                stroke="rgba(138,114,78,0.1)" stroke-width="0.5"/>
+          <!-- Center diagonal cross -->
+          <line x1="318" y1="318" x2="482" y2="482"
+                stroke="rgba(138,114,78,0.06)" stroke-width="0.5"/>
+          <line x1="482" y1="318" x2="318" y2="482"
+                stroke="rgba(138,114,78,0.06)" stroke-width="0.5"/>
+
+          <!-- Center inner disc -->
+          <circle cx="400" cy="400" r="92" fill="rgba(7,9,12,0.55)"
+                  stroke="rgba(138,114,78,0.22)" stroke-width="0.8"/>
+
+          <!-- Center text block -->
+          <text class="center-title" x="400" y="388">PANTHEON</text>
+          <text class="center-sub"   x="400" y="406">of competence</text>
+
+          <!-- Four cardinal ornament diamonds -->
+          <polygon points="400,273 403,278 400,283 397,278"
+                   fill="rgba(196,168,106,0.35)"/>
+          <polygon points="527,400 522,403 517,400 522,397"
+                   fill="rgba(196,168,106,0.35)"/>
+          <polygon points="400,527 403,522 400,517 397,522"
+                   fill="rgba(196,168,106,0.35)"/>
+          <polygon points="273,400 278,403 283,400 278,397"
+                   fill="rgba(196,168,106,0.35)"/>
+
+          <!-- ── Connection lines (hidden by default, shown on selection) ── -->
+          <g id="conn-lines" aria-hidden="true">
+            <!-- lines from center (400,400) to each node -->
+            <!-- Marketing Strategy i=0 → (400,120) -->
+            <line class="conn-line" id="conn-0" x1="400" y1="400" x2="400" y2="148"/>
+            <!-- Brand Positioning i=1 → (540,157) -->
+            <line class="conn-line" id="conn-1" x1="400" y1="400" x2="521" y2="174"/>
+            <!-- Consumer Psychology i=2 → (642,260) -->
+            <line class="conn-line" id="conn-2" x1="400" y1="400" x2="622" y2="270"/>
+            <!-- Operations i=3 → (680,400) -->
+            <line class="conn-line" id="conn-3" x1="400" y1="400" x2="652" y2="400"/>
+            <!-- Sales i=4 → (642,540) -->
+            <line class="conn-line" id="conn-4" x1="400" y1="400" x2="622" y2="530"/>
+            <!-- AI Systems i=5 → (540,643) -->
+            <line class="conn-line" id="conn-5" x1="400" y1="400" x2="521" y2="626"/>
+            <!-- Web Design i=6 → (400,680) -->
+            <line class="conn-line" id="conn-6" x1="400" y1="400" x2="400" y2="652"/>
+            <!-- Creative Direction i=7 → (260,643) -->
+            <line class="conn-line" id="conn-7" x1="400" y1="400" x2="279" y2="626"/>
+            <!-- Fashion/Style i=8 → (158,540) -->
+            <line class="conn-line" id="conn-8" x1="400" y1="400" x2="178" y2="530"/>
+            <!-- Content Strategy i=9 → (120,400) -->
+            <line class="conn-line" id="conn-9" x1="400" y1="400" x2="148" y2="400"/>
+            <!-- Community Building i=10 → (158,260) -->
+            <line class="conn-line" id="conn-10" x1="400" y1="400" x2="178" y2="270"/>
+            <!-- Business Dev i=11 → (260,157) -->
+            <line class="conn-line" id="conn-11" x1="400" y1="400" x2="279" y2="174"/>
+          </g>
+
+          <!-- ══════════════════════════════════════════════════
+               DOMAIN NODES — 12 nodes at r=280 from center
+               Angles: -90° + i*30°, starting top, going clockwise
+          ══════════════════════════════════════════════════ -->
+
+          <!-- ─── 0 · Marketing Strategy · top (400,120) ─────── -->
+          <g class="domain-node" id="node-0" data-index="0"
+             tabindex="0" role="button"
+             aria-label="I — The Herald's War Map — Marketing Strategy">
+            <circle class="node-halo" cx="400" cy="120" r="36"/>
+            <circle class="node-bg"   cx="400" cy="120" r="26"/>
+            <g class="node-sigil" transform="translate(400,120)">
+              <!-- compass / war map: 8 rays + arrow north + center ring -->
+              <line x1="0" y1="-11" x2="0" y2="11"/>
+              <line x1="-11" y1="0" x2="11" y2="0"/>
+              <line x1="-7.8" y1="-7.8" x2="7.8" y2="7.8"/>
+              <line x1="7.8" y1="-7.8" x2="-7.8" y2="7.8"/>
+              <polygon points="0,-14 2.5,-7 -2.5,-7" fill="rgba(196,168,106,0.6)" stroke="none"/>
+              <circle cx="0" cy="0" r="3.5" fill="none" stroke="currentColor"/>
+              <circle cx="0" cy="0" r="1.2" fill="rgba(196,168,106,0.7)" stroke="none"/>
+            </g>
+            <text class="node-label" x="400" y="78" text-anchor="middle">WAR MAP</text>
+          </g>
+
+          <!-- ─── 1 · Brand Positioning · (540,157) ──────────── -->
+          <g class="domain-node" id="node-1" data-index="1"
+             tabindex="0" role="button"
+             aria-label="II — The Name-Forge — Brand Positioning">
+            <circle class="node-halo" cx="540" cy="157" r="36"/>
+            <circle class="node-bg"   cx="540" cy="157" r="26"/>
+            <g class="node-sigil" transform="translate(540,157)">
+              <!-- key: circle + shaft + two teeth -->
+              <circle cx="0" cy="-5" r="6" fill="none" stroke="currentColor"/>
+              <circle cx="0" cy="-5" r="2.2" fill="rgba(196,168,106,0.55)" stroke="none"/>
+              <line x1="0" y1="1" x2="0" y2="11"/>
+              <line x1="0" y1="5.5" x2="4" y2="5.5"/>
+              <line x1="0" y1="8.5" x2="4" y2="8.5"/>
+            </g>
+            <text class="node-label" x="578" y="133" text-anchor="start">NAME-FORGE</text>
+          </g>
+
+          <!-- ─── 2 · Consumer Psychology · (642,260) ─────────── -->
+          <g class="domain-node" id="node-2" data-index="2"
+             tabindex="0" role="button"
+             aria-label="III — The Mirror Pool — Consumer Psychology">
+            <circle class="node-halo" cx="642" cy="260" r="36"/>
+            <circle class="node-bg"   cx="642" cy="260" r="26"/>
+            <g class="node-sigil" transform="translate(642,260)">
+              <!-- mirror pool: horizon line + diminishing arcs above -->
+              <line x1="-11" y1="2" x2="11" y2="2"/>
+              <path d="M-9,2 A9,8 0 0,1 9,2" fill="none" stroke="currentColor"/>
+              <path d="M-6,2 A6,5 0 0,1 6,2" fill="none" stroke="currentColor"/>
+              <path d="M-3,2 A3,2.5 0 0,1 3,2" fill="none" stroke="currentColor"/>
+              <circle cx="0" cy="2" r="1.1" fill="rgba(196,168,106,0.6)" stroke="none"/>
+            </g>
+            <text class="node-label" x="676" y="255" text-anchor="start">MIRROR POOL</text>
+          </g>
+
+          <!-- ─── 3 · Operations · right (680,400) ────────────── -->
+          <g class="domain-node" id="node-3" data-index="3"
+             tabindex="0" role="button"
+             aria-label="IV — The Labyrinth Engine — Operations">
+            <circle class="node-halo" cx="680" cy="400" r="36"/>
+            <circle class="node-bg"   cx="680" cy="400" r="26"/>
+            <g class="node-sigil" transform="translate(680,400)">
+              <!-- labyrinth: nested squares + diamond overlay + dot -->
+              <rect x="-10" y="-10" width="20" height="20" fill="none" stroke="currentColor"/>
+              <rect x="-6"  y="-6"  width="12" height="12" fill="none" stroke="currentColor"/>
+              <polygon points="0,-8 8,0 0,8 -8,0" fill="none" stroke="currentColor" stroke-width="0.9"/>
+              <circle cx="0" cy="0" r="1.5" fill="rgba(196,168,106,0.65)" stroke="none"/>
+              <!-- entry gap -->
+              <line x1="-10" y1="3" x2="-6" y2="3"/>
+            </g>
+            <text class="node-label" x="714" y="404" text-anchor="start">LABYRINTH</text>
+          </g>
+
+          <!-- ─── 4 · Sales · (642,540) ────────────────────────── -->
+          <g class="domain-node" id="node-4" data-index="4"
+             tabindex="0" role="button"
+             aria-label="V — The Threshold Gate — Sales">
+            <circle class="node-halo" cx="642" cy="540" r="36"/>
+            <circle class="node-bg"   cx="642" cy="540" r="26"/>
+            <g class="node-sigil" transform="translate(642,540)">
+              <!-- threshold gate: two pillars + arch + ground -->
+              <line x1="-7" y1="-11" x2="-7" y2="10"/>
+              <line x1="7"  y1="-11" x2="7"  y2="10"/>
+              <line x1="-10" y1="-9" x2="10" y2="-9"/>
+              <path d="M-7,-9 A7,7 0 0,1 7,-9" fill="none" stroke="currentColor"/>
+              <line x1="-10" y1="10" x2="10" y2="10"/>
+            </g>
+            <text class="node-label" x="676" y="547" text-anchor="start">THRESHOLD</text>
+          </g>
+
+          <!-- ─── 5 · AI Systems · (540,643) ──────────────────── -->
+          <g class="domain-node" id="node-5" data-index="5"
+             tabindex="0" role="button"
+             aria-label="VI — The Mechanical Oracle — AI Systems and Automation">
+            <circle class="node-halo" cx="540" cy="643" r="36"/>
+            <circle class="node-bg"   cx="540" cy="643" r="26"/>
+            <g class="node-sigil" transform="translate(540,643)">
+              <!-- mechanical oracle: eye diamond + crosshairs + pupil -->
+              <path d="M-11,0 L0,-5 L11,0 L0,5 Z" fill="none" stroke="currentColor"/>
+              <circle cx="0" cy="0" r="3.5" fill="none" stroke="currentColor"/>
+              <circle cx="0" cy="0" r="1.2" fill="rgba(196,168,106,0.7)" stroke="none"/>
+              <line x1="0" y1="-5"  x2="0" y2="-10"/>
+              <line x1="0" y1="5"   x2="0" y2="10"/>
+              <line x1="-11" y1="0" x2="-14" y2="0"/>
+              <line x1="11"  y1="0" x2="14" y2="0"/>
+            </g>
+            <text class="node-label" x="566" y="672" text-anchor="start">THE ORACLE</text>
+          </g>
+
+          <!-- ─── 6 · Web Design · bottom (400,680) ───────────── -->
+          <g class="domain-node" id="node-6" data-index="6"
+             tabindex="0" role="button"
+             aria-label="VII — The Living Facade — Web Design and Frontend Direction">
+            <circle class="node-halo" cx="400" cy="680" r="36"/>
+            <circle class="node-bg"   cx="400" cy="680" r="26"/>
+            <g class="node-sigil" transform="translate(400,680)">
+              <!-- living facade: window frame + title bar + panes -->
+              <rect x="-10" y="-11" width="20" height="20" fill="none" stroke="currentColor"/>
+              <line x1="-10" y1="-4" x2="10" y2="-4"/>
+              <line x1="0"   y1="-4" x2="0"  y2="9"/>
+              <circle cx="-6.5" cy="-7.5" r="1.4" fill="rgba(196,168,106,0.5)" stroke="none"/>
+              <circle cx="-3"   cy="-7.5" r="1.4" fill="rgba(196,168,106,0.5)" stroke="none"/>
+              <circle cx="0.5"  cy="-7.5" r="1.4" fill="rgba(196,168,106,0.5)" stroke="none"/>
+            </g>
+            <text class="node-label" x="400" y="724" text-anchor="middle">THE FACADE</text>
+          </g>
+
+          <!-- ─── 7 · Creative Direction · (260,643) ───────────── -->
+          <g class="domain-node" id="node-7" data-index="7"
+             tabindex="0" role="button"
+             aria-label="VIII — The Flame-Bearer — Creative Direction">
+            <circle class="node-halo" cx="260" cy="643" r="36"/>
+            <circle class="node-bg"   cx="260" cy="643" r="26"/>
+            <g class="node-sigil" transform="translate(260,643)">
+              <!-- flame-bearer: torch handle + geometric flame -->
+              <line x1="0" y1="4" x2="0" y2="11"/>
+              <line x1="-3.5" y1="11" x2="3.5" y2="11"/>
+              <line x1="-2" y1="7" x2="2" y2="7"/>
+              <path d="M0,-11 C5,-7 5,-1 2,4 L0,2 L-2,4 C-5,-1 -5,-7 0,-11 Z"
+                    fill="none" stroke="currentColor"/>
+              <circle cx="0" cy="-3" r="1.5" fill="rgba(196,168,106,0.55)" stroke="none"/>
+            </g>
+            <text class="node-label" x="232" y="672" text-anchor="end">FLAME-BEARER</text>
+          </g>
+
+          <!-- ─── 8 · Fashion/Style · (158,540) ───────────────── -->
+          <g class="domain-node" id="node-8" data-index="8"
+             tabindex="0" role="button"
+             aria-label="IX — The Armor of Signal — Fashion and Style Analysis">
+            <circle class="node-halo" cx="158" cy="540" r="36"/>
+            <circle class="node-bg"   cx="158" cy="540" r="26"/>
+            <g class="node-sigil" transform="translate(158,540)">
+              <!-- armor: shield outline + chevron mark -->
+              <path d="M0,-11 L8,-7 L8,1 C8,7 4,10 0,11 C-4,10 -8,7 -8,1 L-8,-7 Z"
+                    fill="none" stroke="currentColor"/>
+              <path d="M-4,-2 L0,3 L4,-2" fill="none" stroke="currentColor" stroke-width="1.2"/>
+            </g>
+            <text class="node-label" x="122" y="547" text-anchor="end">ARMOR</text>
+          </g>
+
+          <!-- ─── 9 · Content Strategy · left (120,400) ────────── -->
+          <g class="domain-node" id="node-9" data-index="9"
+             tabindex="0" role="button"
+             aria-label="X — The Scriptorium — Content Strategy">
+            <circle class="node-halo" cx="120" cy="400" r="36"/>
+            <circle class="node-bg"   cx="120" cy="400" r="26"/>
+            <g class="node-sigil" transform="translate(120,400)">
+              <!-- scriptorium: open scroll/book with text lines -->
+              <path d="M-10,-9 Q-12,-9 -12,-6 Q-12,9 -10,9 L-2,7 L-2,-7 Z"
+                    fill="none" stroke="currentColor"/>
+              <path d="M10,-9 Q12,-9 12,-6 Q12,9 10,9 L2,7 L2,-7 Z"
+                    fill="none" stroke="currentColor"/>
+              <line x1="-2" y1="-7" x2="-2" y2="7"/>
+              <line x1="-8" y1="-3" x2="-3" y2="-3"/>
+              <line x1="-8" y1="1"  x2="-3" y2="1"/>
+              <line x1="-8" y1="5"  x2="-3" y2="5"/>
+              <line x1="3"  y1="-3" x2="8"  y2="-3"/>
+              <line x1="3"  y1="1"  x2="8"  y2="1"/>
+              <line x1="3"  y1="5"  x2="8"  y2="5"/>
+            </g>
+            <text class="node-label" x="84" y="404" text-anchor="end">SCRIPTORIUM</text>
+          </g>
+
+          <!-- ─── 10 · Community Building · (158,260) ──────────── -->
+          <g class="domain-node" id="node-10" data-index="10"
+             tabindex="0" role="button"
+             aria-label="XI — The Long Table — Community Building">
+            <circle class="node-halo" cx="158" cy="260" r="36"/>
+            <circle class="node-bg"   cx="158" cy="260" r="26"/>
+            <g class="node-sigil" transform="translate(158,260)">
+              <!-- long table: 3 circle-figures + table surface + legs -->
+              <circle cx="-6"  cy="-8" r="2.8" fill="none" stroke="currentColor"/>
+              <circle cx="0"   cy="-9" r="2.8" fill="none" stroke="currentColor"/>
+              <circle cx="6"   cy="-8" r="2.8" fill="none" stroke="currentColor"/>
+              <rect x="-10" y="-2" width="20" height="3" fill="none" stroke="currentColor"/>
+              <line x1="-7.5" y1="1"  x2="-7.5" y2="9"/>
+              <line x1="7.5"  y1="1"  x2="7.5"  y2="9"/>
+            </g>
+            <text class="node-label" x="122" y="257" text-anchor="end">LONG TABLE</text>
+          </g>
+
+          <!-- ─── 11 · Business Development · (260,157) ─────────── -->
+          <g class="domain-node" id="node-11" data-index="11"
+             tabindex="0" role="button"
+             aria-label="XII — The Open Road — Business Development">
+            <circle class="node-halo" cx="260" cy="157" r="36"/>
+            <circle class="node-bg"   cx="260" cy="157" r="26"/>
+            <g class="node-sigil" transform="translate(260,157)">
+              <!-- open road: converging paths + two horizons + destination star -->
+              <line x1="0"  y1="11" x2="-9" y2="-11"/>
+              <line x1="0"  y1="11" x2="9"  y2="-11"/>
+              <line x1="-8" y1="-3" x2="8"  y2="-3"/>
+              <line x1="-5" y1="-8" x2="5"  y2="-8"/>
+              <circle cx="0" cy="-11" r="1.8" fill="rgba(196,168,106,0.65)" stroke="none"/>
+            </g>
+            <text class="node-label" x="232" y="133" text-anchor="end">OPEN ROAD</text>
+          </g>
+
+        </svg><!-- /#pantheon-svg -->
+      </div><!-- /.diagram-wrap -->
+
+
+      <!-- ── Desktop Detail Panel ── -->
+      <aside class="detail-panel" id="detail-panel"
+             aria-live="polite" aria-label="Expertise detail">
+        <div class="panel-card" id="panel-card" aria-hidden="true">
+          <div class="panel-corner-tr" aria-hidden="true"></div>
+          <div class="panel-corner-bl" aria-hidden="true"></div>
+          <button class="panel-close" id="panel-close"
+                  aria-label="Close detail panel">dismiss</button>
+          <p class="panel-index" id="panel-index">I — Select a domain</p>
+          <h2 class="panel-mythic" id="panel-mythic"></h2>
+          <p  class="panel-plain"  id="panel-plain"></p>
+          <hr class="panel-rule"/>
+          <p  class="panel-desc"   id="panel-desc"></p>
+          <p  class="panel-section-head">In Practice</p>
+          <p  class="panel-section-body" id="panel-practice"></p>
+          <p  class="panel-section-head">Proof Signal</p>
+          <p  class="panel-signal" id="panel-signal"></p>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2024 SeldomSought. All rights reserved.</p>
+      </aside>
+
+    </main><!-- /.pantheon-stage -->
+
+
+    <!-- ── Mobile Domain Index ── -->
+    <div class="mobile-index" id="mobile-index"
+         aria-label="Expertise domains — tap to expand"></div>
+
+
+    <!-- ── Footer ── -->
+    <footer class="site-footer">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h3>SeldomSought</h3>
+          <p>Brand positioning, marketing strategy, and creative direction for work built to stand apart.</p>
         </div>
+        <div class="footer-col">
+          <h3>Navigate</h3>
+          <ul class="footer-links">
+            <li><a href="philosophy.html">Philosophy</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="expertise.html">Expertise</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Services</h3>
+          <ul class="footer-links">
+            <li><a href="services.html">Brand Positioning</a></li>
+            <li><a href="services.html">Marketing Strategy</a></li>
+            <li><a href="services.html">Creative Direction</a></li>
+            <li><a href="services.html">Web Design</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 SeldomSought. All rights reserved.</p>
+      </div>
     </footer>
 
-    <script>
-    (function() {
-        'use strict';
-
-        // --- Configuration ---
-        const PHI = (1 + Math.sqrt(5)) / 2;
-        const isMobile = window.innerWidth < 768;
-        const ITERATIONS = isMobile ? 10 : 14;
-        const PARTICLE_COUNT = isMobile ? 50 : 250;
-        const SPARKLE_COUNT = isMobile ? 20 : 80;
-        const DRAW_DURATION = 3500; // ms
-        const PANEL_COUNT = 12;
-        const CURVE_PADDING = 80;
-
-        // Golden dragon parameters
-        const r1 = 1 / Math.sqrt(1 + PHI * PHI);
-        const r2 = PHI / Math.sqrt(1 + PHI * PHI);
-        const theta1 = Math.atan(PHI);
-        const theta2 = Math.PI - Math.atan(1 / PHI);
-
-        // --- Canvas setup ---
-        const dragonCanvas = document.getElementById('dragonCanvas');
-        const decorCanvas = document.getElementById('decorCanvas');
-        const dCtx = dragonCanvas.getContext('2d');
-        const decCtx = decorCanvas.getContext('2d');
-
-        let W, H;
-        function resizeCanvases() {
-            W = window.innerWidth;
-            H = window.innerHeight;
-            dragonCanvas.width = W; dragonCanvas.height = H;
-            decorCanvas.width = W; decorCanvas.height = H;
-        }
-        resizeCanvases();
-
-        // --- Generate Golden Dragon Curve (IFS) ---
-        function generateGoldenDragon(iterations) {
-            let segments = [{x0: 0, y0: 0, x1: 1, y1: 0, dir: 1}];
-
-            for (let iter = 0; iter < iterations; iter++) {
-                const newSegments = [];
-                for (const seg of segments) {
-                    const dx = seg.x1 - seg.x0;
-                    const dy = seg.y1 - seg.y0;
-
-                    if (seg.dir === 1) {
-                        // T1: rotate by theta1, scale by r1
-                        const mx = seg.x0 + r1 * (dx * Math.cos(theta1) - dy * Math.sin(theta1));
-                        const my = seg.y0 + r1 * (dx * Math.sin(theta1) + dy * Math.cos(theta1));
-                        newSegments.push({x0: seg.x0, y0: seg.y0, x1: mx, y1: my, dir: 1});
-                        newSegments.push({x0: mx, y0: my, x1: seg.x1, y1: seg.y1, dir: -1});
-                    } else {
-                        // T2: rotate by -theta2 from end, scale by r2
-                        const mx = seg.x1 + r2 * (-dx * Math.cos(theta2) - (-dy) * Math.sin(theta2));
-                        const my = seg.y1 + r2 * (-dx * Math.sin(theta2) + (-dy) * Math.cos(theta2));
-                        newSegments.push({x0: seg.x0, y0: seg.y0, x1: mx, y1: my, dir: 1});
-                        newSegments.push({x0: mx, y0: my, x1: seg.x1, y1: seg.y1, dir: -1});
-                    }
-                }
-                segments = newSegments;
-            }
-
-            // Build a polyline from segments
-            const polyline = [{x: segments[0].x0, y: segments[0].y0}];
-            for (const seg of segments) {
-                polyline.push({x: seg.x1, y: seg.y1});
-            }
-            return polyline;
-        }
-
-        let dragonPoints = generateGoldenDragon(ITERATIONS);
-
-        // --- Fit to viewport ---
-        function fitToViewport(points) {
-            let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
-            for (const p of points) {
-                if (p.x < minX) minX = p.x;
-                if (p.x > maxX) maxX = p.x;
-                if (p.y < minY) minY = p.y;
-                if (p.y > maxY) maxY = p.y;
-            }
-
-            const curveW = maxX - minX;
-            const curveH = maxY - minY;
-            const padX = CURVE_PADDING;
-            const padY = CURVE_PADDING + 60; // extra top for nav
-            const scaleX = (W - padX * 2) / curveW;
-            const scaleY = (H - padY * 2) / curveH;
-            const scale = Math.min(scaleX, scaleY);
-
-            const offX = (W - curveW * scale) / 2 - minX * scale;
-            const offY = (H - curveH * scale) / 2 - minY * scale + 30;
-
-            const fitted = points.map(p => ({
-                x: p.x * scale + offX,
-                y: p.y * scale + offY
-            }));
-
-            return fitted;
-        }
-
-        let fittedPoints = fitToViewport(dragonPoints);
-
-        // --- Compute arc lengths and anchor points ---
-        let arcLengths = [];
-        let totalArcLength = 0;
-
-        function computeArcLengths() {
-            arcLengths = [0];
-            totalArcLength = 0;
-            for (let i = 1; i < fittedPoints.length; i++) {
-                const dx = fittedPoints[i].x - fittedPoints[i-1].x;
-                const dy = fittedPoints[i].y - fittedPoints[i-1].y;
-                totalArcLength += Math.sqrt(dx * dx + dy * dy);
-                arcLengths.push(totalArcLength);
-            }
-        }
-        computeArcLengths();
-
-        // Find point at given arc length fraction
-        function pointAtFraction(frac) {
-            const targetLen = frac * totalArcLength;
-            let lo = 0, hi = arcLengths.length - 1;
-            while (lo < hi - 1) {
-                const mid = (lo + hi) >> 1;
-                if (arcLengths[mid] < targetLen) lo = mid; else hi = mid;
-            }
-            const segLen = arcLengths[hi] - arcLengths[lo];
-            const t = segLen > 0 ? (targetLen - arcLengths[lo]) / segLen : 0;
-            return {
-                x: fittedPoints[lo].x + t * (fittedPoints[hi].x - fittedPoints[lo].x),
-                y: fittedPoints[lo].y + t * (fittedPoints[hi].y - fittedPoints[lo].y),
-                segIndex: lo
-            };
-        }
-
-        // 12 anchors at equal arc-length intervals
-        const anchors = [];
-        for (let i = 0; i < PANEL_COUNT; i++) {
-            const frac = (i + 0.5) / PANEL_COUNT;
-            const pt = pointAtFraction(frac);
-            const startSeg = Math.floor((i / PANEL_COUNT) * (fittedPoints.length - 1));
-            const endSeg = Math.floor(((i + 1) / PANEL_COUNT) * (fittedPoints.length - 1));
-            anchors.push({
-                x: pt.x, y: pt.y,
-                startSeg: startSeg,
-                endSeg: endSeg,
-                panelX: 0, panelY: 0
-            });
-        }
-
-        // --- Position panels with collision relaxation ---
-        const panels = document.querySelectorAll('.expertise-panel');
-        const panelW = 200, panelH = 85;
-
-        function positionPanels() {
-            if (isMobile) return;
-
-            // Initial positions: offset from anchor
-            for (let i = 0; i < anchors.length; i++) {
-                const a = anchors[i];
-                // Alternate sides to spread panels
-                const angle = (i / anchors.length) * Math.PI * 2 + Math.PI / 4;
-                const dist = 120;
-                a.panelX = a.x + Math.cos(angle) * dist - panelW / 2;
-                a.panelY = a.y + Math.sin(angle) * dist - panelH / 2;
-            }
-
-            // Force-directed relaxation
-            for (let iter = 0; iter < 100; iter++) {
-                for (let i = 0; i < anchors.length; i++) {
-                    for (let j = i + 1; j < anchors.length; j++) {
-                        const a = anchors[i], b = anchors[j];
-                        const cx1 = a.panelX + panelW / 2, cy1 = a.panelY + panelH / 2;
-                        const cx2 = b.panelX + panelW / 2, cy2 = b.panelY + panelH / 2;
-
-                        const overlapX = (panelW + 20) - Math.abs(cx1 - cx2);
-                        const overlapY = (panelH + 15) - Math.abs(cy1 - cy2);
-
-                        if (overlapX > 0 && overlapY > 0) {
-                            const pushX = overlapX / 2 * (cx1 < cx2 ? -1 : 1);
-                            const pushY = overlapY / 2 * (cy1 < cy2 ? -1 : 1);
-
-                            if (overlapX < overlapY) {
-                                a.panelX += pushX * 0.6;
-                                b.panelX -= pushX * 0.6;
-                            } else {
-                                a.panelY += pushY * 0.6;
-                                b.panelY -= pushY * 0.6;
-                            }
-                        }
-                    }
-
-                    // Keep in viewport
-                    const a = anchors[i];
-                    a.panelX = Math.max(10, Math.min(W - panelW - 10, a.panelX));
-                    a.panelY = Math.max(70, Math.min(H - panelH - 10, a.panelY));
-                }
-            }
-
-            // Apply positions
-            panels.forEach((panel, i) => {
-                if (i < anchors.length) {
-                    panel.style.left = anchors[i].panelX + 'px';
-                    panel.style.top = anchors[i].panelY + 'px';
-                }
-            });
-        }
-
-        // Set container height on desktop
-        function setContainerHeight() {
-            if (isMobile) return;
-            const container = document.getElementById('panelsContainer');
-            container.style.height = H + 'px';
-            container.style.position = 'relative';
-        }
-
-        setContainerHeight();
-        positionPanels();
-
-        // --- Particles ---
-        class Particle {
-            constructor() { this.reset(); }
-            reset() {
-                this.progress = Math.random();
-                this.speed = (0.0001 + Math.random() * 0.0003) * (isMobile ? 1.5 : 1);
-                this.size = 1 + Math.random() * 2;
-                this.alpha = 0.3 + Math.random() * 0.5;
-                this.trail = [];
-                this.trailMax = 6 + Math.floor(Math.random() * 8);
-            }
-            update() {
-                this.progress += this.speed;
-                if (this.progress >= 1) this.reset();
-
-                const pt = pointAtFraction(this.progress);
-                this.trail.unshift({x: pt.x, y: pt.y});
-                if (this.trail.length > this.trailMax) this.trail.pop();
-            }
-        }
-
-        const particles = [];
-        for (let i = 0; i < PARTICLE_COUNT; i++) particles.push(new Particle());
-
-        // --- Sparkles ---
-        class Sparkle {
-            constructor() { this.reset(); }
-            reset() {
-                const frac = Math.random();
-                const pt = pointAtFraction(frac);
-                this.x = pt.x + (Math.random() - 0.5) * 40;
-                this.y = pt.y + (Math.random() - 0.5) * 40;
-                this.life = 0;
-                this.maxLife = 40 + Math.random() * 60;
-                this.size = 1 + Math.random() * 2.5;
-            }
-            update() {
-                this.life++;
-                if (this.life >= this.maxLife) this.reset();
-            }
-            getAlpha() {
-                const t = this.life / this.maxLife;
-                return t < 0.3 ? t / 0.3 : (1 - t) / 0.7;
-            }
-        }
-
-        const sparkles = [];
-        for (let i = 0; i < SPARKLE_COUNT; i++) {
-            const s = new Sparkle();
-            s.life = Math.random() * s.maxLife;
-            sparkles.push(s);
-        }
-
-        // --- Draw state ---
-        let drawProgress = 0;
-        let drawStartTime = null;
-        let drawComplete = false;
-        let hoveredPanel = -1;
-
-        // --- Panel hover ---
-        panels.forEach((panel, i) => {
-            panel.addEventListener('mouseenter', () => { hoveredPanel = i; });
-            panel.addEventListener('mouseleave', () => { hoveredPanel = -1; });
-        });
-
-        // --- Decoration canvas (golden spiral + phi grid) ---
-        function drawDecoration() {
-            decCtx.clearRect(0, 0, W, H);
-
-            // Phi grid lines
-            decCtx.strokeStyle = 'rgba(212,175,55,0.04)';
-            decCtx.lineWidth = 1;
-
-            // Vertical phi divisions
-            const phiPositions = [1/PHI, 1 - 1/PHI, 1/(PHI*PHI), 1 - 1/(PHI*PHI)];
-            phiPositions.forEach(f => {
-                decCtx.beginPath();
-                decCtx.moveTo(f * W, 0);
-                decCtx.lineTo(f * W, H);
-                decCtx.stroke();
-
-                decCtx.beginPath();
-                decCtx.moveTo(0, f * H);
-                decCtx.lineTo(W, f * H);
-                decCtx.stroke();
-            });
-
-            // Golden spiral watermark (very subtle)
-            decCtx.strokeStyle = 'rgba(212,175,55,0.03)';
-            decCtx.lineWidth = 1.5;
-            decCtx.beginPath();
-            let spiralX = W * 0.5, spiralY = H * 0.5;
-            let spiralR = Math.min(W, H) * 0.3;
-            let spiralAngle = 0;
-
-            for (let i = 0; i < 720; i++) {
-                const a = (spiralAngle * Math.PI) / 180;
-                const r = spiralR * Math.pow(PHI, -spiralAngle / 360);
-                const sx = spiralX + r * Math.cos(a);
-                const sy = spiralY + r * Math.sin(a);
-
-                if (i === 0) decCtx.moveTo(sx, sy);
-                else decCtx.lineTo(sx, sy);
-
-                spiralAngle += 2;
-            }
-            decCtx.stroke();
-        }
-
-        drawDecoration();
-
-        // --- Main render loop ---
-        function render(now) {
-            requestAnimationFrame(render);
-
-            if (!drawStartTime) drawStartTime = now;
-            const elapsed = now - drawStartTime;
-
-            dCtx.clearRect(0, 0, W, H);
-
-            // Progress of draw animation
-            if (!drawComplete) {
-                drawProgress = Math.min(1, elapsed / DRAW_DURATION);
-                if (drawProgress >= 1) {
-                    drawComplete = true;
-                    showPanelsSequentially();
-                }
-            }
-
-            const pointsToDraw = Math.floor(drawProgress * fittedPoints.length);
-
-            // --- Draw the dragon curve ---
-            // Base curve (dim)
-            if (pointsToDraw > 1) {
-                dCtx.beginPath();
-                dCtx.moveTo(fittedPoints[0].x, fittedPoints[0].y);
-                for (let i = 1; i < pointsToDraw; i++) {
-                    dCtx.lineTo(fittedPoints[i].x, fittedPoints[i].y);
-                }
-                dCtx.strokeStyle = 'rgba(184,134,11,0.35)';
-                dCtx.lineWidth = 1.5;
-                dCtx.stroke();
-
-                // Glow layer
-                dCtx.beginPath();
-                dCtx.moveTo(fittedPoints[0].x, fittedPoints[0].y);
-                for (let i = 1; i < pointsToDraw; i++) {
-                    dCtx.lineTo(fittedPoints[i].x, fittedPoints[i].y);
-                }
-                dCtx.strokeStyle = 'rgba(212,175,55,0.12)';
-                dCtx.lineWidth = 4;
-                dCtx.stroke();
-            }
-
-            // Draw pen head glow during intro
-            if (!drawComplete && pointsToDraw > 0 && pointsToDraw < fittedPoints.length) {
-                const tip = fittedPoints[pointsToDraw - 1];
-                const gradient = dCtx.createRadialGradient(tip.x, tip.y, 0, tip.x, tip.y, 25);
-                gradient.addColorStop(0, 'rgba(232,201,103,0.8)');
-                gradient.addColorStop(0.3, 'rgba(212,175,55,0.4)');
-                gradient.addColorStop(1, 'rgba(212,175,55,0)');
-                dCtx.beginPath();
-                dCtx.arc(tip.x, tip.y, 25, 0, Math.PI * 2);
-                dCtx.fillStyle = gradient;
-                dCtx.fill();
-
-                // Bright core
-                dCtx.beginPath();
-                dCtx.arc(tip.x, tip.y, 3, 0, Math.PI * 2);
-                dCtx.fillStyle = '#E8C967';
-                dCtx.fill();
-            }
-
-            // --- Highlight hovered segment ---
-            if (hoveredPanel >= 0 && hoveredPanel < anchors.length && drawComplete) {
-                const a = anchors[hoveredPanel];
-                dCtx.beginPath();
-                const start = Math.max(0, a.startSeg);
-                const end = Math.min(fittedPoints.length - 1, a.endSeg);
-                if (start < fittedPoints.length) {
-                    dCtx.moveTo(fittedPoints[start].x, fittedPoints[start].y);
-                    for (let i = start + 1; i <= end; i++) {
-                        dCtx.lineTo(fittedPoints[i].x, fittedPoints[i].y);
-                    }
-                    dCtx.strokeStyle = 'rgba(232,201,103,0.8)';
-                    dCtx.lineWidth = 3;
-                    dCtx.shadowColor = '#E8C967';
-                    dCtx.shadowBlur = 15;
-                    dCtx.stroke();
-                    dCtx.shadowBlur = 0;
-                }
-            }
-
-            // --- Connector lines (dashed) from anchor to panel ---
-            if (drawComplete && !isMobile) {
-                dCtx.setLineDash([4, 6]);
-                for (let i = 0; i < anchors.length; i++) {
-                    const a = anchors[i];
-                    const pcx = a.panelX + panelW / 2;
-                    const pcy = a.panelY + panelH / 2;
-
-                    const alpha = hoveredPanel === i ? 0.6 : 0.2;
-                    dCtx.beginPath();
-                    dCtx.moveTo(a.x, a.y);
-                    dCtx.lineTo(pcx, pcy);
-                    dCtx.strokeStyle = `rgba(212,175,55,${alpha})`;
-                    dCtx.lineWidth = 1;
-                    dCtx.stroke();
-
-                    // Small circle at anchor
-                    dCtx.beginPath();
-                    dCtx.arc(a.x, a.y, 3, 0, Math.PI * 2);
-                    dCtx.fillStyle = `rgba(212,175,55,${alpha + 0.2})`;
-                    dCtx.fill();
-                }
-                dCtx.setLineDash([]);
-            }
-
-            // --- Particles (after draw completes) ---
-            if (drawComplete) {
-                for (const p of particles) {
-                    p.update();
-
-                    if (p.trail.length > 1) {
-                        for (let t = 1; t < p.trail.length; t++) {
-                            const trailAlpha = p.alpha * (1 - t / p.trail.length) * 0.6;
-                            dCtx.beginPath();
-                            dCtx.moveTo(p.trail[t-1].x, p.trail[t-1].y);
-                            dCtx.lineTo(p.trail[t].x, p.trail[t].y);
-                            dCtx.strokeStyle = `rgba(232,201,103,${trailAlpha})`;
-                            dCtx.lineWidth = p.size * (1 - t / p.trail.length);
-                            dCtx.stroke();
-                        }
-                    }
-
-                    if (p.trail.length > 0) {
-                        dCtx.beginPath();
-                        dCtx.arc(p.trail[0].x, p.trail[0].y, p.size, 0, Math.PI * 2);
-                        dCtx.fillStyle = `rgba(232,201,103,${p.alpha})`;
-                        dCtx.fill();
-                    }
-                }
-
-                // --- Sparkles ---
-                for (const s of sparkles) {
-                    s.update();
-                    const a = s.getAlpha() * 0.6;
-                    if (a > 0.01) {
-                        dCtx.beginPath();
-                        dCtx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
-                        dCtx.fillStyle = `rgba(212,175,55,${a})`;
-                        dCtx.fill();
-                    }
-                }
-            }
-        }
-
-        requestAnimationFrame(render);
-
-        // --- Show panels after draw ---
-        function showPanelsSequentially() {
-            if (isMobile) {
-                panels.forEach(p => p.classList.add('visible'));
-                return;
-            }
-            panels.forEach((panel, i) => {
-                setTimeout(() => panel.classList.add('visible'), i * 100);
-            });
-        }
-
-        // On mobile, show immediately
-        if (isMobile) {
-            panels.forEach(p => p.classList.add('visible'));
-        }
-
-        // --- Handle resize ---
-        let resizeTimeout;
-        window.addEventListener('resize', () => {
-            clearTimeout(resizeTimeout);
-            resizeTimeout = setTimeout(() => {
-                resizeCanvases();
-                fittedPoints = fitToViewport(dragonPoints);
-                computeArcLengths();
-
-                // Recompute anchors
-                for (let i = 0; i < PANEL_COUNT; i++) {
-                    const frac = (i + 0.5) / PANEL_COUNT;
-                    const pt = pointAtFraction(frac);
-                    anchors[i].x = pt.x;
-                    anchors[i].y = pt.y;
-                    anchors[i].startSeg = Math.floor((i / PANEL_COUNT) * (fittedPoints.length - 1));
-                    anchors[i].endSeg = Math.floor(((i + 1) / PANEL_COUNT) * (fittedPoints.length - 1));
-                }
-
-                setContainerHeight();
-                positionPanels();
-                drawDecoration();
-            }, 200);
-        });
-
-        // --- Mobile menu ---
-        const menuToggle = document.getElementById('menuToggle');
-        const mobileMenu = document.getElementById('mobileMenu');
-        menuToggle.addEventListener('click', function(e) {
-            e.stopPropagation();
-            mobileMenu.classList.toggle('active');
-            menuToggle.innerHTML = mobileMenu.classList.contains('active') ? '&#10005;' : '&#9776;';
-        });
-        document.addEventListener('click', function(e) {
-            if (!e.target.closest('nav')) {
-                mobileMenu.classList.remove('active');
-                menuToggle.innerHTML = '&#9776;';
-            }
-        });
-
+  </div><!-- /.pantheon-page -->
+
+
+  <script>
+  (function () {
+    'use strict';
+
+    /* ══ DOMAIN DATA ════════════════════════════════════════════ */
+    const DOMAINS = [
+      {
+        index:      'I',
+        id:         'marketing-strategy',
+        mythic:     "The Herald's War Map",
+        plain:      'Marketing Strategy',
+        shortLabel: 'WAR MAP',
+        nodeX: 400, nodeY: 120,
+        desc:     "Campaigns are not built from activity. They are built from leverage: audience, timing, channel, offer, and pressure.",
+        practice: "I map the terrain before moving. Who needs to hear it, why now, what friction blocks action, and which channel gives the message force.",
+        signal:   "Campaign architecture, local market strategy, paid and organic distribution, CRM follow-up, audience-specific messaging."
+      },
+      {
+        index:      'II',
+        id:         'brand-positioning',
+        mythic:     "The Name-Forge",
+        plain:      'Brand Positioning',
+        shortLabel: 'NAME-FORGE',
+        nodeX: 540, nodeY: 157,
+        desc:     "Positioning is the act of making something impossible to confuse with the mass around it.",
+        practice: "I sharpen the angle until the brand has a clear enemy, clear promise, clear aesthetic, and clear place in the buyer's mind.",
+        signal:   "Naming, landing pages, visual systems, offer design, taglines, and category differentiation."
+      },
+      {
+        index:      'III',
+        id:         'consumer-psychology',
+        mythic:     "The Mirror Pool",
+        plain:      'Consumer Psychology',
+        shortLabel: 'MIRROR POOL',
+        nodeX: 642, nodeY: 260,
+        desc:     "People rarely move from logic alone. They move from identity, pressure, fear, desire, status, and timing.",
+        practice: "I look for the gap between what people claim to want and what their behavior actually reveals.",
+        signal:   "Copy, funnel design, buyer objections, audience segmentation, product framing, and social proof."
+      },
+      {
+        index:      'IV',
+        id:         'operations',
+        mythic:     "The Labyrinth Engine",
+        plain:      'Operations',
+        shortLabel: 'LABYRINTH',
+        nodeX: 680, nodeY: 400,
+        desc:     "Operations is the discipline of making chaos repeatable without killing the human judgment inside it.",
+        practice: "I turn vague workflows into clear ownership, visible stages, accountable handoffs, and systems that survive pressure.",
+        signal:   "CRM design, SOPs, team workflows, acquisition integration, internal accountability, and process cleanup."
+      },
+      {
+        index:      'V',
+        id:         'sales',
+        mythic:     "The Threshold Gate",
+        plain:      'Sales',
+        shortLabel: 'THRESHOLD',
+        nodeX: 642, nodeY: 540,
+        desc:     "Sales is not pressure. It is the controlled movement from uncertainty to decision.",
+        practice: "I identify pain, clarify stakes, reduce perceived risk, and create enough trust for action.",
+        signal:   "Cold outreach, follow-up systems, referral relationships, client conversations, and offer framing."
+      },
+      {
+        index:      'VI',
+        id:         'ai-systems',
+        mythic:     "The Mechanical Oracle",
+        plain:      'AI Systems / Automation',
+        shortLabel: 'THE ORACLE',
+        nodeX: 540, nodeY: 643,
+        desc:     "AI is most useful when it is not a toy, but a force multiplier inside a real workflow.",
+        practice: "I use AI to structure intake, research, content, routing, analysis, repetitive execution, and decision support.",
+        signal:   "Agentic workflows, CRM cleanup, content systems, web development, research pipelines, and operational automation."
+      },
+      {
+        index:      'VII',
+        id:         'web-design',
+        mythic:     "The Living Facade",
+        plain:      'Web Design / Frontend Direction',
+        shortLabel: 'THE FACADE',
+        nodeX: 400, nodeY: 680,
+        desc:     "A website should not look assembled. It should feel authored.",
+        practice: "I focus on hierarchy, rhythm, readability, symbolic consistency, interaction, and the emotional atmosphere of the page.",
+        signal:   "Portfolio sites, client websites, landing pages, UI direction, conversion flow, and visual systems."
+      },
+      {
+        index:      'VIII',
+        id:         'creative-direction',
+        mythic:     "The Flame-Bearer",
+        plain:      'Creative Direction',
+        shortLabel: 'FLAME-BEARER',
+        nodeX: 260, nodeY: 643,
+        desc:     "Creative direction is the ability to make scattered parts obey one world.",
+        practice: "I unify visuals, language, reference, symbolism, and user experience into a coherent aesthetic system.",
+        signal:   "Brand worlds, art direction, video concepts, campaign ideas, and product presentation."
+      },
+      {
+        index:      'IX',
+        id:         'fashion-style',
+        mythic:     "The Armor of Signal",
+        plain:      'Fashion / Style Analysis',
+        shortLabel: 'ARMOR',
+        nodeX: 158, nodeY: 540,
+        desc:     "Clothing is not decoration. It is identity, proportion, material, status, tribe, and cultural fluency.",
+        practice: "I read garments through silhouette, context, construction, reference, rarity, and social meaning.",
+        signal:   "Styling, brand analysis, resale instincts, product design, visual taste, and fashion commentary."
+      },
+      {
+        index:      'X',
+        id:         'content-strategy',
+        mythic:     "The Scriptorium",
+        plain:      'Content Strategy',
+        shortLabel: 'SCRIPTORIUM',
+        nodeX: 120, nodeY: 400,
+        desc:     "Content only compounds when ideas become a system instead of random expression.",
+        practice: "I turn loose ideas into repeatable formats, publishing rhythms, hooks, essays, videos, and authority-building narratives.",
+        signal:   "YouTube strategy, newsletters, social posts, essays, brand storytelling, and content calendars."
+      },
+      {
+        index:      'XI',
+        id:         'community-building',
+        mythic:     "The Long Table",
+        plain:      'Community Building',
+        shortLabel: 'LONG TABLE',
+        nodeX: 158, nodeY: 260,
+        desc:     "Community is not a group chat. It is repeated belonging around shared values, rituals, and contribution.",
+        practice: "I create environments where people have a reason to show up, participate, recognize each other, and return.",
+        signal:   "Coliving, local events, online groups, recruiting, moderation, and culture design."
+      },
+      {
+        index:      'XII',
+        id:         'business-dev',
+        mythic:     "The Open Road",
+        plain:      'Business Development',
+        shortLabel: 'OPEN ROAD',
+        nodeX: 260, nodeY: 157,
+        desc:     "Business development is the art of turning loose possibility into structured opportunity.",
+        practice: "I find leverage points, open conversations, build trust, identify mutual upside, and move relationships toward concrete outcomes.",
+        signal:   "Partnerships, referrals, client acquisition, strategic outreach, vendor relationships, and deal flow."
+      }
+    ];
+
+    /* ══ ELEMENT REFS ═══════════════════════════════════════════ */
+    const panelCard     = document.getElementById('panel-card');
+    const panelIndex    = document.getElementById('panel-index');
+    const panelMythic   = document.getElementById('panel-mythic');
+    const panelPlain    = document.getElementById('panel-plain');
+    const panelDesc     = document.getElementById('panel-desc');
+    const panelPractice = document.getElementById('panel-practice');
+    const panelSignal   = document.getElementById('panel-signal');
+    const panelClose    = document.getElementById('panel-close');
+    const mobileIndex   = document.getElementById('mobile-index');
+
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let activeIdx = null;
+
+    /* ══ SVG GENERATION ══════════════════════════════════════════ */
+
+    // Tick marks at 30° (major) and 10° (minor)
+    (function buildTicks() {
+      const g = document.getElementById('tick-ring');
+      let html = '';
+      for (let deg = 0; deg < 360; deg += 10) {
+        const rad = (deg - 90) * Math.PI / 180;
+        const isMajor = deg % 30 === 0;
+        const r1 = isMajor ? 292 : 297;
+        const r2 = 310;
+        const x1 = 400 + r1 * Math.cos(rad);
+        const y1 = 400 + r1 * Math.sin(rad);
+        const x2 = 400 + r2 * Math.cos(rad);
+        const y2 = 400 + r2 * Math.sin(rad);
+        const opacity = isMajor ? 0.45 : 0.18;
+        const w = isMajor ? 1.2 : 0.6;
+        html += `<line x1="${x1.toFixed(2)}" y1="${y1.toFixed(2)}" x2="${x2.toFixed(2)}" y2="${y2.toFixed(2)}" stroke="rgba(196,165,100,${opacity})" stroke-width="${w}"/>`;
+      }
+      g.innerHTML = html;
     })();
-    </script>
+
+    // Radial dividers at each 30° (from domain ring to outer ring)
+    (function buildDividers() {
+      const g = document.getElementById('radial-dividers');
+      let html = '';
+      for (let i = 0; i < 12; i++) {
+        const deg = i * 30 - 90;
+        const rad = deg * Math.PI / 180;
+        const x1 = 400 + 282 * Math.cos(rad);
+        const y1 = 400 + 282 * Math.sin(rad);
+        const x2 = 400 + 318 * Math.cos(rad);
+        const y2 = 400 + 318 * Math.sin(rad);
+        html += `<line x1="${x1.toFixed(2)}" y1="${y1.toFixed(2)}" x2="${x2.toFixed(2)}" y2="${y2.toFixed(2)}" stroke="rgba(138,114,78,0.28)" stroke-width="0.7"/>`;
+      }
+      g.innerHTML = html;
+    })();
+
+    // Constellation dust: ~55 random points within ring r=145–275
+    (function buildConstellations() {
+      const g = document.getElementById('const-layer');
+      let html = '';
+      const seed = [
+        [330,200],[450,180],[310,170],[510,210],[580,310],[620,370],[600,460],
+        [555,555],[490,620],[420,650],[350,635],[275,600],[200,545],[162,470],
+        [148,380],[165,295],[215,225],[285,182],[365,165],[450,168],[525,200],
+        [575,265],[605,340],[595,445],[555,510],[495,560],[415,570],[345,560],
+        [272,522],[222,465],[195,390],[210,308],[255,255],[320,220],[390,210],
+        [465,222],[520,268],[540,335],[530,405],[510,465],[458,500],[395,508],
+        [335,495],[286,458],[270,398],[282,335],[318,288],[365,268],[405,264],
+        [445,272],[476,308],[490,352],[478,395],[456,425],[420,438],[385,432]
+      ];
+      seed.forEach(([cx, cy], i) => {
+        const r   = 1 + (i % 3) * 0.5;
+        const lo  = 0.08 + (i % 4) * 0.04;
+        const hi  = lo + 0.2 + (i % 3) * 0.1;
+        const dur = 3 + (i % 5);
+        const del = (i * 0.37) % 5;
+        html += `<circle class="const-pt" cx="${cx}" cy="${cy}" r="${r}" fill="rgba(196,168,106,${lo})" style="--lo:${lo};--hi:${hi};--dur:${dur}s;--del:${del}s"/>`;
+      });
+      g.innerHTML = html;
+    })();
+
+    /* ══ CONNECTION LINE ANIMATION ═══════════════════════════════ */
+    function animateLine(idx) {
+      const line = document.getElementById('conn-' + idx);
+      if (!line) return;
+
+      const dx = DOMAINS[idx].nodeX - 400;
+      const dy = DOMAINS[idx].nodeY - 400;
+      const len = Math.sqrt(dx * dx + dy * dy);
+
+      line.style.strokeDasharray = `${len} ${len}`;
+      line.style.strokeDashoffset = `${len}`;
+      line.classList.add('visible');
+
+      if (prefersReduced) {
+        line.style.strokeDashoffset = '0';
+        return;
+      }
+
+      requestAnimationFrame(() => {
+        line.style.transition = 'stroke-dashoffset 0.5s ease';
+        line.style.strokeDashoffset = '0';
+        setTimeout(() => { line.style.transition = ''; }, 520);
+      });
+    }
+
+    function clearLine(idx) {
+      const line = document.getElementById('conn-' + idx);
+      if (!line) return;
+      line.classList.remove('visible');
+      line.style.strokeDashoffset = '';
+    }
+
+    /* ══ SELECT DOMAIN ═══════════════════════════════════════════ */
+    function selectDomain(idx) {
+      const data = DOMAINS[idx];
+
+      // Deactivate previous
+      if (activeIdx !== null && activeIdx !== idx) {
+        document.getElementById('node-' + activeIdx)?.classList.remove('active');
+        clearLine(activeIdx);
+        // mobile
+        const prevHead = document.querySelector(`.domain-row-head[data-idx="${activeIdx}"]`);
+        const prevBody = document.getElementById('row-detail-' + activeIdx);
+        prevHead?.classList.remove('active');
+        if (prevBody) prevBody.classList.remove('open');
+      }
+
+      activeIdx = idx;
+
+      // Activate node
+      document.getElementById('node-' + idx)?.classList.add('active');
+      animateLine(idx);
+
+      // Desktop panel
+      panelIndex.textContent    = data.index + ' — ' + data.plain;
+      panelMythic.textContent   = data.mythic;
+      panelPlain.textContent    = data.plain;
+      panelDesc.textContent     = data.desc;
+      panelPractice.textContent = data.practice;
+      panelSignal.textContent   = data.signal;
+      panelCard.setAttribute('aria-hidden', 'false');
+      panelCard.classList.add('visible');
+
+      // Mobile row
+      const rowHead = document.querySelector(`.domain-row-head[data-idx="${idx}"]`);
+      const rowBody = document.getElementById('row-detail-' + idx);
+      rowHead?.classList.add('active');
+      if (rowBody) rowBody.classList.add('open');
+    }
+
+    function closeDomain() {
+      if (activeIdx !== null) {
+        document.getElementById('node-' + activeIdx)?.classList.remove('active');
+        clearLine(activeIdx);
+        const prevHead = document.querySelector(`.domain-row-head[data-idx="${activeIdx}"]`);
+        const prevBody = document.getElementById('row-detail-' + activeIdx);
+        prevHead?.classList.remove('active');
+        if (prevBody) prevBody.classList.remove('open');
+        activeIdx = null;
+      }
+      panelCard.classList.remove('visible');
+      panelCard.setAttribute('aria-hidden', 'true');
+    }
+
+    /* ══ DESKTOP NODE EVENTS ═════════════════════════════════════ */
+    DOMAINS.forEach((_, i) => {
+      const node = document.getElementById('node-' + i);
+      if (!node) return;
+      node.addEventListener('click', () => {
+        if (activeIdx === i) { closeDomain(); } else { selectDomain(i); }
+      });
+      node.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); selectDomain(i); }
+      });
+    });
+
+    panelClose.addEventListener('click', closeDomain);
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeDomain();
+    });
+
+    /* ══ MOBILE INDEX BUILDER ════════════════════════════════════ */
+    (function buildMobileIndex() {
+      // Small simplified SVG for mobile emblem
+      const emblemHTML = `
+        <div class="mobile-emblem-wrap">
+          <svg class="mobile-emblem" viewBox="0 0 200 200" aria-hidden="true">
+            <circle cx="100" cy="100" r="96" fill="none" stroke="rgba(138,114,78,0.2)" stroke-width="0.8"/>
+            <circle cx="100" cy="100" r="82" fill="none" stroke="rgba(138,114,78,0.14)" stroke-width="0.5"/>
+            <circle cx="100" cy="100" r="58" fill="rgba(7,9,12,0.6)" stroke="rgba(138,114,78,0.28)" stroke-width="0.8"/>
+            <circle cx="100" cy="100" r="42" fill="none" stroke="rgba(138,114,78,0.14)" stroke-width="0.5"/>
+            <line x1="100" y1="48" x2="100" y2="152" stroke="rgba(138,114,78,0.1)" stroke-width="0.5"/>
+            <line x1="48"  y1="100" x2="152" y2="100" stroke="rgba(138,114,78,0.1)" stroke-width="0.5"/>
+            <polygon points="100,70 102,75 100,80 98,75" fill="rgba(196,168,106,0.4)"/>
+            <polygon points="130,100 125,102 120,100 125,98" fill="rgba(196,168,106,0.4)"/>
+            <polygon points="100,130 102,125 100,120 98,125" fill="rgba(196,168,106,0.4)"/>
+            <polygon points="70,100 75,102 80,100 75,98" fill="rgba(196,168,106,0.4)"/>
+            <text font-family="Cinzel,serif" font-size="9" letter-spacing="2" fill="rgba(196,168,106,0.6)" text-anchor="middle" x="100" y="97">PANTHEON</text>
+            <text font-family="Cormorant Garamond,serif" font-size="7" font-style="italic" fill="rgba(138,114,78,0.45)" text-anchor="middle" x="100" y="109">of competence</text>
+          </svg>
+        </div>`;
+
+      let html = emblemHTML;
+
+      DOMAINS.forEach((data, i) => {
+        // Inline mini sigil (reuses the same sigil geometry, smaller scale)
+        const sigilSVG = buildMiniSigil(i);
+        html += `
+          <div class="domain-row" id="row-${i}">
+            <button class="domain-row-head" data-idx="${i}"
+                    aria-expanded="false"
+                    aria-controls="row-detail-${i}"
+                    aria-label="${data.index} — ${data.mythic} — ${data.plain}">
+              <span class="row-index">${data.index}</span>
+              <span class="row-sigil-wrap" aria-hidden="true">
+                <svg viewBox="-14 -14 28 28" fill="none"
+                     stroke="rgba(196,165,100,0.5)" stroke-width="1.4"
+                     stroke-linecap="round" stroke-linejoin="round">
+                  ${sigilSVG}
+                </svg>
+              </span>
+              <span class="row-text">
+                <span class="row-mythic">${data.mythic}</span>
+                <span class="row-plain">${data.plain}</span>
+              </span>
+              <span class="row-chevron" aria-hidden="true">›</span>
+            </button>
+            <div class="domain-row-detail" id="row-detail-${i}" role="region"
+                 aria-label="${data.mythic} detail">
+              <div class="mobile-panel-inner">
+                <p  class="panel-section-head">${data.index} · ${data.plain}</p>
+                <h3 class="panel-mythic">${data.mythic}</h3>
+                <p  class="panel-plain">${data.plain}</p>
+                <p  class="panel-desc">${data.desc}</p>
+                <p  class="panel-section-head">In Practice</p>
+                <p  class="panel-section-body">${data.practice}</p>
+                <p  class="panel-section-head">Proof Signal</p>
+                <p  class="panel-signal">${data.signal}</p>
+              </div>
+            </div>
+          </div>`;
+      });
+
+      mobileIndex.innerHTML = html;
+
+      // Attach mobile row events
+      mobileIndex.querySelectorAll('.domain-row-head').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const idx = parseInt(btn.dataset.idx, 10);
+          const body = document.getElementById('row-detail-' + idx);
+          const isOpen = body.classList.contains('open');
+
+          // Close all
+          mobileIndex.querySelectorAll('.domain-row-head').forEach(b => {
+            b.classList.remove('active');
+            b.setAttribute('aria-expanded', 'false');
+          });
+          mobileIndex.querySelectorAll('.domain-row-detail').forEach(d => d.classList.remove('open'));
+
+          if (!isOpen) {
+            btn.classList.add('active');
+            btn.setAttribute('aria-expanded', 'true');
+            body.classList.add('open');
+            // Also activate diagram node
+            if (activeIdx !== null && activeIdx !== idx) {
+              document.getElementById('node-' + activeIdx)?.classList.remove('active');
+              clearLine(activeIdx);
+            }
+            activeIdx = idx;
+            document.getElementById('node-' + idx)?.classList.add('active');
+            animateLine(idx);
+            setTimeout(() => body.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 100);
+          } else {
+            closeDomain();
+          }
+        });
+      });
+    })();
+
+    /* ══ MINI SIGIL PATHS (for mobile rows) ═════════════════════ */
+    function buildMiniSigil(i) {
+      const sigils = [
+        // 0 War Map
+        `<line x1="0" y1="-11" x2="0" y2="11"/><line x1="-11" y1="0" x2="11" y2="0"/><line x1="-7.8" y1="-7.8" x2="7.8" y2="7.8"/><line x1="7.8" y1="-7.8" x2="-7.8" y2="7.8"/><polygon points="0,-14 2.5,-7 -2.5,-7" fill="rgba(196,168,106,0.6)" stroke="none"/><circle cx="0" cy="0" r="3.5" fill="none" stroke="currentColor"/><circle cx="0" cy="0" r="1.2" fill="rgba(196,168,106,0.7)" stroke="none"/>`,
+        // 1 Name-Forge
+        `<circle cx="0" cy="-5" r="6" fill="none" stroke="currentColor"/><circle cx="0" cy="-5" r="2.2" fill="rgba(196,168,106,0.55)" stroke="none"/><line x1="0" y1="1" x2="0" y2="11"/><line x1="0" y1="5.5" x2="4" y2="5.5"/><line x1="0" y1="8.5" x2="4" y2="8.5"/>`,
+        // 2 Mirror Pool
+        `<line x1="-11" y1="2" x2="11" y2="2"/><path d="M-9,2 A9,8 0 0,1 9,2" fill="none" stroke="currentColor"/><path d="M-6,2 A6,5 0 0,1 6,2" fill="none" stroke="currentColor"/><path d="M-3,2 A3,2.5 0 0,1 3,2" fill="none" stroke="currentColor"/><circle cx="0" cy="2" r="1.1" fill="rgba(196,168,106,0.6)" stroke="none"/>`,
+        // 3 Labyrinth
+        `<rect x="-10" y="-10" width="20" height="20" fill="none" stroke="currentColor"/><rect x="-6" y="-6" width="12" height="12" fill="none" stroke="currentColor"/><polygon points="0,-8 8,0 0,8 -8,0" fill="none" stroke="currentColor" stroke-width="0.9"/><circle cx="0" cy="0" r="1.5" fill="rgba(196,168,106,0.65)" stroke="none"/>`,
+        // 4 Threshold
+        `<line x1="-7" y1="-11" x2="-7" y2="10"/><line x1="7" y1="-11" x2="7" y2="10"/><line x1="-10" y1="-9" x2="10" y2="-9"/><path d="M-7,-9 A7,7 0 0,1 7,-9" fill="none" stroke="currentColor"/><line x1="-10" y1="10" x2="10" y2="10"/>`,
+        // 5 Mechanical Oracle
+        `<path d="M-11,0 L0,-5 L11,0 L0,5 Z" fill="none" stroke="currentColor"/><circle cx="0" cy="0" r="3.5" fill="none" stroke="currentColor"/><circle cx="0" cy="0" r="1.2" fill="rgba(196,168,106,0.7)" stroke="none"/><line x1="0" y1="-5" x2="0" y2="-10"/><line x1="0" y1="5" x2="0" y2="10"/>`,
+        // 6 Living Facade
+        `<rect x="-10" y="-11" width="20" height="20" fill="none" stroke="currentColor"/><line x1="-10" y1="-4" x2="10" y2="-4"/><line x1="0" y1="-4" x2="0" y2="9"/><circle cx="-6.5" cy="-7.5" r="1.4" fill="rgba(196,168,106,0.5)" stroke="none"/><circle cx="-3" cy="-7.5" r="1.4" fill="rgba(196,168,106,0.5)" stroke="none"/>`,
+        // 7 Flame-Bearer
+        `<line x1="0" y1="4" x2="0" y2="11"/><line x1="-3.5" y1="11" x2="3.5" y2="11"/><path d="M0,-11 C5,-7 5,-1 2,4 L0,2 L-2,4 C-5,-1 -5,-7 0,-11 Z" fill="none" stroke="currentColor"/><circle cx="0" cy="-3" r="1.5" fill="rgba(196,168,106,0.55)" stroke="none"/>`,
+        // 8 Armor
+        `<path d="M0,-11 L8,-7 L8,1 C8,7 4,10 0,11 C-4,10 -8,7 -8,1 L-8,-7 Z" fill="none" stroke="currentColor"/><path d="M-4,-2 L0,3 L4,-2" fill="none" stroke="currentColor" stroke-width="1.2"/>`,
+        // 9 Scriptorium
+        `<path d="M-10,-9 Q-12,-9 -12,-6 Q-12,9 -10,9 L-2,7 L-2,-7 Z" fill="none" stroke="currentColor"/><path d="M10,-9 Q12,-9 12,-6 Q12,9 10,9 L2,7 L2,-7 Z" fill="none" stroke="currentColor"/><line x1="-2" y1="-7" x2="-2" y2="7"/><line x1="-8" y1="-3" x2="-3" y2="-3"/><line x1="-8" y1="1" x2="-3" y2="1"/><line x1="3" y1="-3" x2="8" y2="-3"/><line x1="3" y1="1" x2="8" y2="1"/>`,
+        // 10 Long Table
+        `<circle cx="-6" cy="-8" r="2.8" fill="none" stroke="currentColor"/><circle cx="0" cy="-9" r="2.8" fill="none" stroke="currentColor"/><circle cx="6" cy="-8" r="2.8" fill="none" stroke="currentColor"/><rect x="-10" y="-2" width="20" height="3" fill="none" stroke="currentColor"/><line x1="-7.5" y1="1" x2="-7.5" y2="9"/><line x1="7.5" y1="1" x2="7.5" y2="9"/>`,
+        // 11 Open Road
+        `<line x1="0" y1="11" x2="-9" y2="-11"/><line x1="0" y1="11" x2="9" y2="-11"/><line x1="-8" y1="-3" x2="8" y2="-3"/><line x1="-5" y1="-8" x2="5" y2="-8"/><circle cx="0" cy="-11" r="1.8" fill="rgba(196,168,106,0.65)" stroke="none"/>`
+      ];
+      return sigils[i] || '';
+    }
+
+    /* ══ DEFAULT SELECTION ═══════════════════════════════════════ */
+    // Pre-select first domain after brief delay
+    if (!prefersReduced) {
+      setTimeout(() => selectDomain(0), 800);
+    } else {
+      selectDomain(0);
+    }
+
+  })();
+  </script>
+
+  <script src="assets/js/nav.js"></script>
 </body>
 </html>
