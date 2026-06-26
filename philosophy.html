@@ -27,25 +27,6 @@
              --gc-anim-spin      : spinner/construction speed
              --gc-anim-blink     : blink/pulse speed
         ========================================= */
-        :root {
-            --fs-display: clamp(4rem, 9vw, 9.5rem);
-            --fs-h1:      clamp(3rem, 7vw, 7.5rem);
-            --fs-h2:      clamp(2rem, 3.8vw, 4rem);
-            --fs-h3:      clamp(1.4rem, 2.4vw, 2.5rem);
-            --fs-h4:      clamp(1.1rem, 1.8vw, 1.9rem);
-            --fs-body-lg: clamp(1.1rem, 1.65vw, 1.75rem);
-            --fs-body:    clamp(1rem, 1.4vw, 1.5rem);
-            --fs-small:   clamp(0.85rem, 1vw, 1rem);
-            --fs-label:   clamp(0.78rem, 0.9vw, 0.9rem);
-            --fs-nav:     clamp(0.95rem, 1.1vw, 1.2rem);
-            --fs-btn:     clamp(1rem, 1.35vw, 1.35rem);
-            --lh-tight:   1.1;
-            --lh-snug:    1.3;
-            --lh-copy:    1.7;
-            --lh-relaxed: 1.8;
-            --content-narrow: 65ch;
-            --content-wide:   82ch;
-        }
 
         body.retro-geocities {
             --gc-bg:             #000033;
@@ -240,10 +221,9 @@
             animation: gc-pulse var(--gc-anim-blink) ease-in-out infinite;
             animation-delay: 0.5s;
         }
-        /* H1 — mobile base, then 4× at desktop */
         .gc-main-title {
             font-family: Arial, Helvetica, sans-serif; font-weight: 900;
-            font-size: clamp(2rem, 6vw, 3.2rem);
+            font-size: var(--fs-h1);
             line-height: 1.05;
             color: var(--gc-accent-yellow); text-transform: uppercase;
             letter-spacing: 4px;
@@ -272,9 +252,8 @@
             /* ── Main content readability ── */
             .retro-window-body                  { font-size: clamp(1.1rem, 1.65vw, 1.75rem); }
             .retro-window.read-first .retro-window-body { font-size: 0.92rem; } /* intentionally small */
-            /* ── Hero title ── */
+            /* ── Hero title — scales via --fs-h1 from global.css ── */
             .gc-main-title {
-                font-size: clamp(3.5rem, 7vw, 7.5rem);
                 letter-spacing: 8px;
                 text-shadow:
                     5px 5px 0 var(--gc-accent-mag),

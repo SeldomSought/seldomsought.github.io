@@ -28,23 +28,6 @@
             --text-dim: rgba(255,255,255,0.3);
             --panel-bg: rgba(10,22,40,0.85);
             --panel-border: rgba(79,195,247,0.15);
-            --fs-display: clamp(4rem, 9vw, 9.5rem);
-            --fs-h1:      clamp(3rem, 7vw, 7.5rem);
-            --fs-h2:      clamp(2rem, 3.8vw, 4rem);
-            --fs-h3:      clamp(1.4rem, 2.4vw, 2.5rem);
-            --fs-h4:      clamp(1.1rem, 1.8vw, 1.9rem);
-            --fs-body-lg: clamp(1.1rem, 1.65vw, 1.75rem);
-            --fs-body:    clamp(1rem, 1.4vw, 1.5rem);
-            --fs-small:   clamp(0.85rem, 1vw, 1rem);
-            --fs-label:   clamp(0.78rem, 0.9vw, 0.9rem);
-            --fs-nav:     clamp(0.95rem, 1.1vw, 1.2rem);
-            --fs-btn:     clamp(1rem, 1.35vw, 1.35rem);
-            --lh-tight:   1.1;
-            --lh-snug:    1.3;
-            --lh-copy:    1.7;
-            --lh-relaxed: 1.8;
-            --content-narrow: 65ch;
-            --content-wide:   82ch;
         }
 
         body {
@@ -139,7 +122,7 @@
         }
         .page-header h1 {
             font-family: 'Inter', sans-serif;
-            font-weight: 300; font-size: clamp(2.4rem, 5vw, 3.5rem);
+            font-weight: 300; font-size: var(--fs-h1);
             color: var(--text-primary);
             letter-spacing: 3px; text-transform: uppercase;
             margin-bottom: 0.5rem;
@@ -284,7 +267,6 @@
 
         /* Mobile */
         @media (max-width: 768px) {
-            .page-header h1 { font-size: 1.6rem; }
             .services-grid { grid-template-columns: 1fr; }
             .hud { display: none; }
             .legend { display: none; }
