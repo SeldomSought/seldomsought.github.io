@@ -256,4 +256,62 @@ const PROJECTS = [
       },
     ],
   },
+
+  {
+    id: 'self-cartography',
+    title: 'The Self Cartography Project',
+    subtitle: 'A Map, Not a Type',
+    status: 'Prototype',
+    category: 'Web App',
+    description: 'A serious, evidence-informed self-assessment that triangulates desires, values, personality, and career fit across multiple measurement formats — forced choices, tradeoffs, rankings, and behavioral evidence, not just Likert ratings. Every score ships with a confidence level, never a fabricated percentile.',
+    components: [
+      {
+        id: 'purpose',
+        label: 'Purpose',
+        type: 'purpose',
+        content: 'Most self-assessments collapse a person into a type. This one is built to resist that — drawing on trait psychology, Schwartz values theory, and self-determination theory as evidence-informed instruments rather than claims of clinical precision, and deliberately measuring in several different ways (ratings, forced choices, tradeoffs, rankings, scenario judgments, behavioral history) so what you say about yourself can be checked against what you actually choose.\n\nThe architecture separates content from code entirely — every question, scoring rule, and career entry lives in typed data files, not inside components. Scoring runs as pure functions with a background validity layer that checks for straightlining, extreme-response bias, acquiescence, internal contradictions, and gaps between self-report and demonstrated behavior. Nothing is transmitted anywhere; the full assessment runs and scores itself inside your browser, with progress autosaved to local storage so you can leave and pick up later.',
+      },
+      {
+        id: 'features',
+        label: 'Features',
+        type: 'features',
+        content: [
+          'Journey through 11 conceptual regions — this build charts Orientation, Values, and a slice of Temperament',
+          '10 distinct measurement formats: Likert, frequency, forced-choice ranking, tradeoffs, rankings, scenarios, behavioral history, confidence checks, and optional written reflection',
+          'Every score reported as a 0–100 composite plus a High/Medium/Low confidence level — never an invented population percentile',
+          'Background validity engine: straightlining, extreme-response bias, acquiescence, forward/reverse-item contradictions, self-report-vs-behavior gaps, and unusually fast completion',
+          'Career fit engine — each of 16 seed occupations scored against your actual measured dimensions, with generated +/- explanations traceable to a specific facet, not hand-written per result',
+          'Autosave to local storage with resume — no accounts, nothing sent off-device',
+          'Field-notebook / navigation-chart visual language: fine hairlines, contour-line dividers, a compass-styled progress indicator, hand-rolled inline-SVG radar diagram',
+        ],
+      },
+      {
+        id: 'stack',
+        label: 'Stack',
+        type: 'stack',
+        content: [
+          'React',
+          'TypeScript',
+          'Vite',
+          'CSS Modules',
+          'Client-side only',
+          'localStorage',
+        ],
+      },
+      {
+        id: 'links',
+        label: 'Links',
+        type: 'links',
+        content: [
+          { label: 'Explore the Map', href: 'projects/self-cartography/index.html', sameTab: true },
+        ],
+      },
+      {
+        id: 'status',
+        label: 'Status',
+        type: 'status',
+        content: 'Prototype — Web App. Architecture, engine, and journey shell are complete; three of eleven regions are charted with real content, the rest are shown but not yet open. Runs entirely in the browser; no server, no account required. Updated August 2026.',
+      },
+    ],
+  },
 ];
