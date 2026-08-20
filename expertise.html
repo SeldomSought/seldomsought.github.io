@@ -5,40 +5,41 @@
   <link rel="stylesheet" href="assets/css/global.css">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Expertise — SeldomSought</title>
-  <meta name="description" content="Twelve domains of practice — from brand positioning and marketing strategy to AI systems, sales, and community building — approached as one continuous discipline.">
-  <meta name="theme-color" content="#0c0b09"/>
+  <title>Capability Index — SeldomSought</title>
+  <meta name="description" content="SeldomSought capability index: fields of practice, operating principle, independent technical record, and working toolchain — brand, marketing, and applied software under one register.">
+  <meta name="theme-color" content="#f1ece1"/>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Archivo:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
   <style>
 
     /* ══════════════════════════════════════════════════════════
-       EXPERTISE — editorial index
+       CAPABILITY INDEX — dossier register
     ══════════════════════════════════════════════════════════ */
     :root {
-      --paper:        #0c0b09;
-      --paper-raised: #15130f;
-      --ink:          #f2eee7;
-      --accent:       #c4a26c;
-      --rule:         rgba(242,238,231,0.16);
-      --rule-soft:    rgba(242,238,231,0.09);
-      --text-sec:     rgba(242,238,231,0.66);
-      --text-dim:     rgba(242,238,231,0.42);
+      --paper:        #f1ece1;
+      --paper-raised: #e7e0d0;
+      --ink:          #17130f;
+      --ink-soft:     rgba(23,19,15,0.68);
+      --ink-dim:      rgba(23,19,15,0.44);
+      --rule:         rgba(23,19,15,0.22);
+      --rule-soft:    rgba(23,19,15,0.12);
+      --accent:       #af2418;
+      --accent-soft:  rgba(175,36,24,0.12);
 
-      --font-serif: 'Fraunces', Georgia, 'Times New Roman', serif;
-      --font-sans:  'Archivo', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --font-sans:  'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       --font-mono:  'IBM Plex Mono', ui-monospace, 'Courier New', monospace;
+      --font-serif: 'IBM Plex Serif', Georgia, 'Times New Roman', serif;
 
-      --fs-h1:      clamp(2.75rem, 6vw, 4.6rem);
-      --fs-h2:      clamp(1.75rem, 3.4vw, 2.75rem);
-      --fs-row:     clamp(1.15rem, 1.7vw, 1.4rem);
-      --fs-body:    clamp(1rem, 1.05vw, 1.15rem);
-      --fs-small:   0.95rem;
-      --fs-label:   0.72rem;
-      --lh-copy:    1.6;
+      --fs-h1:     clamp(2.75rem, 9vw, 7.25rem);
+      --fs-h2:     clamp(1.6rem, 4.2vw, 3.1rem);
+      --fs-row:    clamp(1.05rem, 1.6vw, 1.4rem);
+      --fs-quote:  clamp(1.4rem, 3vw, 2.15rem);
+      --fs-body:   clamp(1rem, 1.05vw, 1.1rem);
+      --fs-meta:   0.82rem;
+      --fs-micro:  0.68rem;
 
-      --section-pad: clamp(3.25rem, 8vw, 6rem);
+      --section-pad: clamp(3rem, 7vw, 5.5rem);
     }
 
     *, *::before, *::after { box-sizing: border-box; }
@@ -47,12 +48,10 @@
       background: var(--paper);
       color: var(--ink);
       font-family: var(--font-sans);
-      line-height: var(--lh-copy);
+      line-height: 1.55;
     }
 
-    .page {
-      padding-top: var(--site-header-height, 72px);
-    }
+    .page { padding-top: var(--site-header-height, 72px); }
     @media (max-width: 860px) {
       .page { padding-top: var(--site-header-height-mobile, 60px); }
     }
@@ -60,299 +59,366 @@
     .wrap {
       max-width: var(--site-max-width, 1280px);
       margin: 0 auto;
-      padding-inline: clamp(1.25rem, 4vw, 2.5rem);
-    }
-
-    .eyebrow {
-      font-family: var(--font-mono);
-      font-size: var(--fs-label);
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--accent);
-      opacity: 0.85;
+      padding-inline: clamp(1.1rem, 4vw, 2.5rem);
     }
 
     a { color: inherit; }
-
-    /* ── Focus state (shared) ─────────────────────────── */
     a:focus-visible,
     summary:focus-visible,
-    .cta:focus-visible {
+    button:focus-visible {
       outline: 2px solid var(--accent);
       outline-offset: 3px;
     }
 
-    /* ══ 01 · POSITION ═══════════════════════════════════ */
-    .position {
-      padding-block: calc(var(--section-pad) * 1.15) var(--section-pad);
+    .micro {
+      font-family: var(--font-mono);
+      font-size: var(--fs-micro);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-dim);
     }
-    .position .wrap {
+    .micro strong { color: var(--ink-soft); font-weight: 500; }
+    .accent { color: var(--accent); }
+
+    .section-num {
+      font-family: var(--font-mono);
+      font-size: var(--fs-micro);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+    }
+
+    /* ══ 00 · MASTHEAD ═══════════════════════════════════ */
+    .masthead { padding-block: clamp(2.25rem,5vw,3.5rem) 0; }
+    .masthead .wrap {
       display: grid;
       grid-template-columns: repeat(12, 1fr);
+      gap: 0.75rem 1.5rem;
+      align-items: start;
     }
-    .position-inner {
-      grid-column: 1 / span 8;
+    .masthead-id { grid-column: 1 / span 7; }
+    .masthead-doc {
+      grid-column: 9 / span 4;
+      justify-self: end;
+      text-align: right;
+      display: grid;
+      gap: 0.15rem;
     }
-    @media (max-width: 860px) {
-      .position-inner { grid-column: 1 / -1; }
+    @media (max-width: 700px) {
+      .masthead-doc { grid-column: 1 / -1; justify-self: start; text-align: left; margin-top: 0.75rem; }
     }
-    .position h1 {
-      font-family: var(--font-serif);
-      font-weight: 500;
+
+    .brand-line {
+      font-family: var(--font-mono);
+      font-size: var(--fs-meta);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+    }
+    .brand-line b { color: var(--ink); font-weight: 600; }
+
+    h1.title {
+      grid-column: 1 / -1;
+      font-family: var(--font-mono);
+      font-weight: 600;
       font-size: var(--fs-h1);
-      line-height: 1.08;
+      line-height: 0.94;
       letter-spacing: -0.01em;
-      text-wrap: balance;
-      margin: 0.6rem 0 1.1rem;
-      color: var(--ink);
-    }
-    .position .subhead {
-      font-size: clamp(1.05rem, 1.6vw, 1.3rem);
-      color: var(--text-sec);
-      max-width: 46rem;
-      font-weight: 400;
+      text-transform: uppercase;
+      margin: 0.9rem 0 0;
     }
 
-    /* ══ Section shell — shared rule + eyebrow pattern ══ */
-    .section { padding-block: var(--section-pad); border-top: 1px solid var(--rule); }
-    .section .wrap { display: grid; grid-template-columns: repeat(12, 1fr); gap: 1.5rem 2rem; }
-
-    /* ══ 04 · APPROACH ═══════════════════════════════════ */
-    .approach .section-label { grid-column: 1 / span 3; }
-    .approach-body { grid-column: 4 / span 7; }
-    @media (max-width: 860px) {
-      .approach .section-label,
-      .approach-body { grid-column: 1 / -1; }
-      .approach .section-label { margin-bottom: 0.5rem; }
-    }
-    .approach h2 {
-      font-family: var(--font-serif);
-      font-weight: 500;
-      font-size: var(--fs-h2);
-      line-height: 1.15;
-      margin-bottom: 0.75rem;
-      text-wrap: balance;
-    }
-    .approach p {
+    .masthead-lede {
+      grid-column: 1 / span 7;
+      margin-top: clamp(1.5rem, 3vw, 2.25rem);
       font-size: var(--fs-body);
-      color: var(--text-sec);
-      max-width: 62ch;
+      color: var(--ink-soft);
+      max-width: 58ch;
+    }
+    @media (max-width: 900px) { .masthead-lede { grid-column: 1 / -1; } }
+
+    /* ticker */
+    .ticker-band {
+      margin-top: clamp(2rem, 4vw, 3rem);
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+      overflow: hidden;
+      white-space: nowrap;
+      padding: 0.55rem 0;
+    }
+    .ticker-track {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: var(--fs-micro);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink-dim);
+      animation: ticker 32s linear infinite;
+      padding-left: 100%;
+    }
+    .ticker-track span { color: var(--accent); }
+    @keyframes ticker {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-100%); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .ticker-band { overflow-x: auto; }
+      .ticker-track { animation: none; padding-left: 0; }
     }
 
-    /* ══ 02 · EXPERTISE INDEX ════════════════════════════ */
-    .expertise .section-head { grid-column: 1 / -1; margin-bottom: 2rem; }
-    .expertise .section-head h2 {
-      font-family: var(--font-serif);
-      font-weight: 500;
+    /* ══ shared section shell ═══════════════════════════ */
+    .section { padding-block: var(--section-pad); border-top: 1px solid var(--rule); }
+    .section-head {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 0.5rem 1.5rem;
+      margin-bottom: clamp(1.75rem, 4vw, 3rem);
+    }
+    .section-head .section-num { grid-column: 1 / span 3; padding-top: 0.3rem; }
+    .section-head h2 {
+      grid-column: 4 / span 6;
+      font-family: var(--font-sans);
+      font-weight: 600;
       font-size: var(--fs-h2);
-      margin-top: 0.6rem;
+      line-height: 1.08;
       text-wrap: balance;
     }
-    .expertise .section-head p {
-      color: var(--text-sec);
+    .section-head .section-note {
+      grid-column: 4 / span 6;
+      margin-top: 0.6rem;
+      color: var(--ink-soft);
       font-size: var(--fs-body);
       max-width: 56ch;
-      margin-top: 0.6rem;
+    }
+    @media (max-width: 780px) {
+      .section-head h2, .section-head .section-note { grid-column: 1 / -1; }
+      .section-head .section-num { grid-column: 1 / -1; }
     }
 
-    .index { grid-column: 1 / -1; }
-
-    .row {
-      border-bottom: 1px solid var(--rule);
-    }
-    .row:first-of-type { border-top: 1px solid var(--rule); }
-
-    .row summary {
+    /* ══ 01 · CAPABILITY INDEX ═══════════════════════════ */
+    .cap-list { border-top: 1px solid var(--rule); }
+    .cap-row { border-bottom: 1px solid var(--rule); }
+    .cap-row > summary {
       list-style: none;
       cursor: pointer;
       display: grid;
-      grid-template-columns: 3.2rem minmax(0,1fr) auto;
+      grid-template-columns: 3.4rem minmax(0,5fr) minmax(0,4fr) auto;
+      gap: 0.5rem 1.5rem;
       align-items: baseline;
-      gap: 0.35rem 1.25rem;
-      padding: 1.6rem 0;
-      min-height: 44px;
+      padding: 1.4rem 0.5rem;
+      margin-inline: -0.5rem;
+      border-radius: 2px;
     }
-    .row summary::-webkit-details-marker { display: none; }
+    .cap-row > summary::-webkit-details-marker { display: none; }
+    .cap-row > summary:hover,
+    .cap-row[open] > summary { background: var(--paper-raised); }
 
-    .row-numeral {
-      font-family: var(--font-mono);
-      font-size: var(--fs-small);
-      color: var(--accent);
-      letter-spacing: 0.04em;
-      padding-top: 0.15rem;
-    }
-
-    .row-heading { grid-column: 2; }
-    .row-kicker {
+    .cap-num { font-family: var(--font-mono); font-size: var(--fs-meta); color: var(--accent); padding-top: 0.2rem; }
+    .cap-field h3 { font-size: var(--fs-row); font-weight: 600; margin: 0 0 0.2rem; }
+    .cap-code {
       display: block;
       font-family: var(--font-mono);
-      font-size: 0.68rem;
-      letter-spacing: 0.14em;
+      font-size: var(--fs-micro);
+      letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: var(--text-dim);
-      margin-bottom: 0.3rem;
+      color: var(--ink-dim);
+      margin-bottom: 0.35rem;
     }
-    .row-name {
-      display: block;
-      font-family: var(--font-serif);
-      font-weight: 500;
-      font-size: var(--fs-row);
-      color: var(--ink);
-      margin-bottom: 0.5rem;
-    }
-    .row-claim {
-      font-size: var(--fs-small);
-      color: var(--text-sec);
-      max-width: 58ch;
-      font-weight: 400;
-    }
-
-    .row-chevron {
-      grid-column: 3;
-      grid-row: 1;
+    .cap-claim { grid-column: 3; font-size: var(--fs-meta); color: var(--ink-soft); align-self: center; }
+    .cap-mark {
+      grid-column: 4;
       font-family: var(--font-mono);
-      font-size: 0.85rem;
       color: var(--accent);
-      opacity: 0.7;
-      transition: transform 0.2s ease;
-      align-self: start;
-      padding-top: 0.2rem;
+      transition: transform 0.15s ease;
     }
-    .row[open] .row-chevron { transform: rotate(90deg); }
+    .cap-row[open] .cap-mark { transform: rotate(45deg); }
 
-    @media (max-width: 640px) {
-      .row summary {
-        grid-template-columns: 2.4rem 1fr auto;
-      }
-    }
-
-    .row-detail {
-      padding: 0 0 2rem 4.45rem;
-      animation: revealFade 0.22s ease both;
-    }
-    @media (max-width: 640px) {
-      .row-detail { padding-left: 2.4rem; }
-    }
-    @keyframes revealFade {
-      from { opacity: 0; transform: translateY(-4px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      .row-detail { animation: none; }
-      .row-chevron { transition: none; }
-    }
-
-    .row-detail h3 {
-      font-family: var(--font-mono);
-      font-size: 0.65rem;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--accent);
-      opacity: 0.75;
-      margin: 0 0 0.5rem;
-    }
-    .row-detail h3:not(:first-child) { margin-top: 1.4rem; }
-    .row-detail p {
-      font-size: var(--fs-small);
-      color: var(--text-sec);
-      max-width: 58ch;
-    }
-
-    .row:hover summary,
-    .row summary:hover {
-      background: var(--paper-raised);
-    }
-    .row summary { margin: 0 -1rem; padding-inline: 1rem; border-radius: 4px; }
-    .row-detail { margin-inline: -1rem; padding-inline: calc(4.45rem + 1rem) 1rem; }
-    @media (max-width: 640px) {
-      .row-detail { padding-inline: calc(2.4rem + 1rem) 1rem; }
-    }
-
-    /* ══ 05 · EVIDENCE ═══════════════════════════════════ */
-    .evidence .section-label { grid-column: 1 / span 3; }
-    .evidence-card { grid-column: 4 / span 7; }
     @media (max-width: 860px) {
-      .evidence .section-label,
-      .evidence-card { grid-column: 1 / -1; }
-      .evidence .section-label { margin-bottom: 0.5rem; }
+      .cap-row > summary { grid-template-columns: 2.6rem 1fr auto; }
+      .cap-claim { grid-column: 1 / -1; padding-left: 2.6rem; margin-top: -0.3rem; }
     }
-    .evidence h2 {
+
+    .cap-detail {
+      padding: 0 0.5rem 1.75rem calc(3.4rem + 0.5rem);
+      animation: reveal 0.18s ease both;
+    }
+    @media (max-width: 860px) { .cap-detail { padding-left: 2.6rem; } }
+    @keyframes reveal { from { opacity: 0; transform: translateY(-3px); } to { opacity: 1; transform: translateY(0); } }
+
+    .cap-detail dl { display: grid; gap: 0.5rem; }
+    .cap-detail dt {
+      font-family: var(--font-mono);
+      font-size: var(--fs-micro);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-top: 0.6rem;
+    }
+    .cap-detail dt:first-child { margin-top: 0; }
+    .cap-detail dd { font-size: var(--fs-meta); color: var(--ink-soft); max-width: 62ch; }
+    .cap-detail .disciplines { font-family: var(--font-mono); font-size: 0.78rem; }
+    .cap-detail .evidence a {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      text-decoration: underline;
+      text-decoration-color: var(--accent);
+      text-underline-offset: 3px;
+    }
+    .cap-detail .evidence a:hover { color: var(--accent); }
+
+    /* ══ 02 · OPERATING PRINCIPLE ═════════════════════════ */
+    .principle .wrap { display: grid; grid-template-columns: repeat(12, 1fr); }
+    .principle-inner {
+      grid-column: 2 / span 9;
+      border-left: 3px solid var(--accent);
+      padding-left: clamp(1.25rem, 3vw, 2rem);
+    }
+    @media (max-width: 780px) { .principle-inner { grid-column: 1 / -1; } }
+    .principle-inner .section-num { display: block; margin-bottom: 1rem; }
+    blockquote.principle-quote {
       font-family: var(--font-serif);
-      font-weight: 500;
-      font-size: var(--fs-h2);
-      line-height: 1.15;
-      margin-bottom: 0.9rem;
+      font-style: italic;
+      font-size: var(--fs-quote);
+      line-height: 1.32;
+      margin: 0 0 1.75rem;
+      max-width: 30ch;
       text-wrap: balance;
     }
-    .evidence p { font-size: var(--fs-body); color: var(--text-sec); max-width: 58ch; }
-    .evidence-list {
-      list-style: none;
-      margin-top: 1.5rem;
-      border-top: 1px solid var(--rule-soft);
+    .principle-body { font-size: var(--fs-body); color: var(--ink-soft); max-width: 62ch; }
+    .principle-body + .principle-body { margin-top: 1rem; }
+
+    /* ══ 03 · SELECTED EVIDENCE ═══════════════════════════ */
+    .evidence-list { border-top: 1px dashed var(--rule); }
+    .evidence-item {
+      border-bottom: 1px dashed var(--rule);
+      padding-block: clamp(1.5rem, 3vw, 2.25rem);
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 0.75rem 1.5rem;
     }
-    .evidence-list li {
-      border-bottom: 1px solid var(--rule-soft);
-      padding: 0.9rem 0;
-      font-size: var(--fs-small);
+    .evidence-item:nth-child(even) .ev-meta { order: 2; text-align: right; }
+    @media (max-width: 780px) { .evidence-item:nth-child(even) .ev-meta { text-align: left; } }
+
+    .ev-meta { grid-column: 1 / span 3; }
+    .ev-meta .micro { display: block; margin-bottom: 0.35rem; }
+    .ev-icon { width: 44px; height: 44px; filter: grayscale(1) contrast(1.1); opacity: 0.85; margin-bottom: 0.6rem; }
+
+    .ev-body { grid-column: 4 / span 9; }
+    .ev-body h3 { font-size: var(--fs-row); font-weight: 600; margin: 0 0 0.5rem; }
+    .ev-body h3 a { text-decoration: none; }
+    .ev-body h3 a:hover { color: var(--accent); }
+    .ev-body p { font-size: var(--fs-meta); color: var(--ink-soft); max-width: 68ch; margin-bottom: 0.75rem; }
+    .ev-stack { font-family: var(--font-mono); font-size: 0.76rem; color: var(--ink-dim); letter-spacing: 0.01em; }
+    .ev-stack b { color: var(--accent); font-weight: 500; }
+
+    @media (max-width: 780px) {
+      .ev-meta, .ev-body { grid-column: 1 / -1; }
     }
-    .evidence-list .proj-title {
-      font-family: var(--font-serif);
-      font-weight: 500;
-      color: var(--ink);
-      margin-right: 0.6rem;
+
+    /* ══ 04 · TOOLCHAIN ═══════════════════════════════════ */
+    .toolchain-grid {
+      column-count: 3;
+      column-gap: 2.5rem;
+      grid-column: 1/-1;
     }
-    .evidence-list .proj-sub { color: var(--text-dim); }
-    .evidence-cta {
-      display: inline-block;
-      margin-top: 1.75rem;
+    @media (max-width: 900px) { .toolchain-grid { column-count: 2; } }
+    @media (max-width: 560px) { .toolchain-grid { column-count: 1; } }
+    .tool-cat {
+      break-inside: avoid;
+      margin-bottom: 1.75rem;
+    }
+    .tool-cat h3 {
       font-family: var(--font-mono);
-      font-size: var(--fs-label);
+      font-size: var(--fs-micro);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin: 0 0 0.6rem;
+      border-bottom: 1px solid var(--rule);
+      padding-bottom: 0.4rem;
+    }
+    .tool-cat ul { list-style: none; }
+    .tool-cat li {
+      font-size: var(--fs-meta);
+      color: var(--ink-soft);
+      padding: 0.28rem 0;
+      border-bottom: 1px solid var(--rule-soft);
+    }
+
+    /* ══ 05 · CROSS-REFERENCES ════════════════════════════ */
+    .xref-scroll { overflow-x: auto; grid-column: 1/-1; }
+    table.xref {
+      border-collapse: collapse;
+      width: 100%;
+      min-width: 640px;
+      font-size: var(--fs-meta);
+    }
+    table.xref caption { text-align: left; margin-bottom: 1rem; }
+    table.xref th, table.xref td {
+      text-align: left;
+      padding: 0.85rem 1rem 0.85rem 0;
+      border-bottom: 1px solid var(--rule);
+      vertical-align: top;
+    }
+    table.xref thead th {
+      font-family: var(--font-mono);
+      font-size: var(--fs-micro);
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: var(--accent);
-      text-decoration: none;
-      border-bottom: 1px solid var(--accent);
-      padding-bottom: 0.2rem;
-    }
-    .evidence-cta:hover { opacity: 0.8; }
-
-    /* ══ 08 · FINAL CONVERSATION ═════════════════════════ */
-    .closing .wrap { grid-template-columns: repeat(12, 1fr); align-items: start; }
-    .closing-copy { grid-column: 1 / span 6; }
-    @media (max-width: 860px) { .closing-copy { grid-column: 1 / -1; } }
-    .closing h2 {
-      font-family: var(--font-serif);
+      color: var(--ink-dim);
+      border-bottom: 1px solid var(--ink);
       font-weight: 500;
-      font-size: var(--fs-h2);
-      line-height: 1.12;
-      margin-bottom: 0.9rem;
+    }
+    table.xref tbody th { font-weight: 600; white-space: nowrap; }
+    table.xref td a {
+      display: inline-block;
+      text-decoration: none;
+      margin-right: 1rem;
+      padding: 0.15rem 0;
+    }
+    table.xref td a::before { content: '→ '; color: var(--accent); }
+    table.xref td a:hover { color: var(--accent); }
+    table.xref tbody tr:hover { background: var(--paper-raised); }
+
+    /* ══ 06 · CLOSING ═════════════════════════════════════ */
+    .closing .wrap { display: grid; grid-template-columns: repeat(12,1fr); }
+    .closing-inner { grid-column: 1 / span 7; }
+    @media (max-width: 780px) { .closing-inner { grid-column: 1/-1; } }
+    .closing-inner p.statement {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: var(--fs-quote);
+      line-height: 1.3;
+      margin: 1rem 0 2rem;
       text-wrap: balance;
     }
-    .closing p { font-size: var(--fs-body); color: var(--text-sec); max-width: 42ch; margin-bottom: 2rem; }
-
-    .cta {
+    .closing-link {
       display: inline-flex;
-      align-items: center;
-      min-height: 44px;
-      padding: 0.85rem 1.75rem;
-      background: var(--ink);
-      color: var(--paper);
-      font-family: var(--font-sans);
-      font-weight: 600;
+      align-items: baseline;
+      gap: 0.75rem;
+      font-family: var(--font-mono);
       font-size: 0.95rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
       text-decoration: none;
-      border-radius: 4px;
-      transition: opacity 0.15s ease;
+      border-bottom: 1px solid var(--accent);
+      padding-bottom: 0.3rem;
+      min-height: 44px;
+      align-items: center;
     }
-    .cta:hover { opacity: 0.85; }
+    .closing-link:hover { color: var(--accent); }
+    .closing-note { margin-top: 0.9rem; }
 
-    /* ══ Footer (unchanged from site pattern) ═══════════ */
+    /* ══ FOOTER ═══════════════════════════════════════════ */
     .site-footer {
-      background: rgba(5,5,4,0.97);
+      background: var(--paper);
       border-top: 1px solid var(--rule);
       padding: 3.5rem 2.5rem 2.5rem;
-      font-family: var(--font-sans);
-      color: var(--text-sec);
+      color: var(--ink-soft);
     }
     .footer-grid {
       max-width: var(--site-max-width, 1280px); margin: 0 auto;
@@ -361,30 +427,28 @@
     }
     .footer-col h3 {
       font-family: var(--font-mono);
-      font-size: 0.85rem; font-weight: 500;
+      font-size: var(--fs-micro); font-weight: 500;
       color: var(--accent); letter-spacing: 0.14em;
       text-transform: uppercase; margin-bottom: 1rem;
     }
-    .footer-col p { font-size: 0.92rem; line-height: 1.7; }
+    .footer-col p { font-size: 0.92rem; line-height: 1.7; max-width: 40ch; }
     .footer-links { list-style: none; }
     .footer-links a {
       font-family: var(--font-mono);
-      color: var(--accent); text-decoration: none;
+      color: var(--ink-soft); text-decoration: none;
       display: block; padding: 0.3rem 0;
-      font-size: 0.85rem; letter-spacing: 0.04em;
-      opacity: 0.7; transition: opacity 0.2s, padding-left 0.2s;
+      font-size: 0.85rem; letter-spacing: 0.02em;
+      transition: color 0.15s;
     }
-    .footer-links a:hover { opacity: 1; padding-left: 0.4rem; }
+    .footer-links a:hover { color: var(--accent); }
     .footer-bottom {
       max-width: var(--site-max-width, 1280px); margin: 0 auto;
       padding-top: 1.8rem; border-top: 1px solid var(--rule-soft);
       text-align: center;
       font-family: var(--font-mono);
-      font-size: 0.72rem; letter-spacing: 0.04em; color: var(--text-dim);
+      font-size: 0.72rem; letter-spacing: 0.04em; color: var(--ink-dim);
     }
-    @media (max-width: 760px) {
-      .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
-    }
+    @media (max-width: 760px) { .footer-grid { grid-template-columns: 1fr; gap: 2rem; } }
 
   </style>
 </head>
@@ -420,252 +484,295 @@
 
   <div class="page">
 
-    <!-- ── 01 · Position ── -->
-    <section class="position">
+    <!-- ── 00 · Masthead ── -->
+    <section class="masthead">
       <div class="wrap">
-        <div class="position-inner">
-          <p class="eyebrow">Expertise</p>
-          <h1>Work that isn't trying to fit in.</h1>
-          <p class="subhead">Twelve domains — from positioning to operations to AI systems — run by one point of view, not a rotating cast of specialists.</p>
+        <div class="masthead-id">
+          <p class="brand-line"><b>SeldomSought</b> — Brand · Marketing · Consulting</p>
+        </div>
+        <div class="masthead-doc">
+          <p class="micro">Doc. SS&ndash;EXP/01</p>
+          <p class="micro">Est. 2024 &nbsp;·&nbsp; Rev. 2026</p>
+          <p class="micro">Status — <strong>Active</strong></p>
+        </div>
+
+        <h1 class="title">Capability<br>Index</h1>
+
+        <p class="masthead-lede">
+          SeldomSought works at the point where brand image, marketing execution, and applied software overlap. Most problems don't announce which discipline they belong to, so the practice isn't organized around one. Below: fields of practice, the reasoning that connects them, and a record of what's actually been built — service lines, independent projects, and the tools common to both.
+        </p>
+      </div>
+
+      <div class="ticker-band" aria-hidden="true">
+        <div class="ticker-track">
+          BRAND IMAGE&nbsp;&nbsp;·&nbsp;&nbsp;<span>SEO &amp; AEO</span>&nbsp;&nbsp;·&nbsp;&nbsp;GUERRILLA MARKETING&nbsp;&nbsp;·&nbsp;&nbsp;<span>COPYWRITING</span>&nbsp;&nbsp;·&nbsp;&nbsp;CONSULTING&nbsp;&nbsp;·&nbsp;&nbsp;<span>AUTOMATION</span>&nbsp;&nbsp;·&nbsp;&nbsp;INDEPENDENT RESEARCH&nbsp;&nbsp;·&nbsp;&nbsp;
+          BRAND IMAGE&nbsp;&nbsp;·&nbsp;&nbsp;<span>SEO &amp; AEO</span>&nbsp;&nbsp;·&nbsp;&nbsp;GUERRILLA MARKETING&nbsp;&nbsp;·&nbsp;&nbsp;<span>COPYWRITING</span>&nbsp;&nbsp;·&nbsp;&nbsp;CONSULTING&nbsp;&nbsp;·&nbsp;&nbsp;<span>AUTOMATION</span>&nbsp;&nbsp;·&nbsp;&nbsp;INDEPENDENT RESEARCH&nbsp;&nbsp;·&nbsp;&nbsp;
         </div>
       </div>
     </section>
 
-    <!-- ── 04 · Approach ── -->
-    <section class="section approach">
-      <div class="wrap">
-        <p class="section-label eyebrow">Approach</p>
-        <div class="approach-body">
-          <h2>Diagnosis first, always.</h2>
-          <p>The twelve domains below read differently on the surface — strategy, psychology, systems, style. Underneath, they run the same sequence: understand what's actually happening before recommending what to do about it.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ── 02 · Expertise index ── -->
-    <section class="section expertise">
+    <!-- ── 01 · Capability Index ── -->
+    <section class="section" id="index">
       <div class="wrap">
         <div class="section-head">
-          <p class="eyebrow">Index</p>
-          <h2>Twelve domains, in order.</h2>
-          <p>Each one answers the same three questions: what the domain is, what's hard about it, and what judgment it takes to do well.</p>
+          <p class="section-num">01 / Capability Index</p>
+          <h2>Twelve fields of practice</h2>
+          <p class="section-note">Each entry: what the field is, what's actually difficult about it, and the disciplines it draws on. Expand any row for the working detail.</p>
         </div>
 
-        <div class="index">
+        <div class="cap-list">
 
-          <details class="row">
+          <details class="cap-row">
             <summary>
-              <span class="row-numeral">I</span>
-              <span class="row-heading">
-                <span class="row-kicker">The Herald's War Map</span>
-                <span class="row-name">Marketing Strategy</span>
-                <span class="row-claim">Campaigns are not built from activity. They are built from leverage: audience, timing, channel, offer, and pressure.</span>
+              <span class="cap-num">001</span>
+              <span class="cap-field">
+                <span class="cap-code">Codename — The Herald's War Map</span>
+                <h3>Marketing Strategy</h3>
               </span>
-              <span class="row-chevron" aria-hidden="true">›</span>
+              <span class="cap-claim">Campaigns are not built from activity. They are built from leverage: audience, timing, channel, offer, and pressure.</span>
+              <span class="cap-mark" aria-hidden="true">+</span>
             </summary>
-            <div class="row-detail">
-              <h3>Approach</h3>
-              <p>I map the terrain before moving. Who needs to hear it, why now, what friction blocks action, and which channel gives the message force.</p>
-              <h3>Scope</h3>
-              <p>Campaign architecture, local market strategy, paid and organic distribution, CRM follow-up, audience-specific messaging.</p>
+            <div class="cap-detail">
+              <dl>
+                <dt>Approach</dt>
+                <dd>Map the terrain before moving — who needs to hear it, why now, what friction blocks action, and which channel gives the message force.</dd>
+                <dt>Disciplines</dt>
+                <dd class="disciplines">Campaign architecture / local market strategy / paid &amp; organic distribution / CRM follow-up / audience-specific messaging</dd>
+                <dt>Evidence</dt>
+                <dd class="evidence"><a href="services.html">Services — Guerrilla Marketing &amp; Strategy</a></dd>
+              </dl>
             </div>
           </details>
 
-          <details class="row">
+          <details class="cap-row">
             <summary>
-              <span class="row-numeral">II</span>
-              <span class="row-heading">
-                <span class="row-kicker">The Name-Forge</span>
-                <span class="row-name">Brand Positioning</span>
-                <span class="row-claim">Positioning is the act of making something impossible to confuse with the mass around it.</span>
+              <span class="cap-num">002</span>
+              <span class="cap-field">
+                <span class="cap-code">Codename — The Name-Forge</span>
+                <h3>Brand Positioning</h3>
               </span>
-              <span class="row-chevron" aria-hidden="true">›</span>
+              <span class="cap-claim">Positioning is the act of making something impossible to confuse with the mass around it.</span>
+              <span class="cap-mark" aria-hidden="true">+</span>
             </summary>
-            <div class="row-detail">
-              <h3>Approach</h3>
-              <p>I sharpen the angle until the brand has a clear enemy, clear promise, clear aesthetic, and clear place in the buyer's mind.</p>
-              <h3>Scope</h3>
-              <p>Naming, landing pages, visual systems, offer design, taglines, and category differentiation.</p>
+            <div class="cap-detail">
+              <dl>
+                <dt>Approach</dt>
+                <dd>Sharpen the angle until the brand has a clear enemy, clear promise, clear aesthetic, and clear place in the buyer's mind.</dd>
+                <dt>Disciplines</dt>
+                <dd class="disciplines">Naming / landing pages / visual systems / offer design / taglines / category differentiation</dd>
+                <dt>Evidence</dt>
+                <dd class="evidence"><a href="services.html">Services — Brand Image &amp; Aesthetic Orchestration</a></dd>
+              </dl>
             </div>
           </details>
 
-          <details class="row">
+          <details class="cap-row">
             <summary>
-              <span class="row-numeral">III</span>
-              <span class="row-heading">
-                <span class="row-kicker">The Mirror Pool</span>
-                <span class="row-name">Consumer Psychology</span>
-                <span class="row-claim">People rarely move from logic alone. They move from identity, pressure, fear, desire, status, and timing.</span>
+              <span class="cap-num">003</span>
+              <span class="cap-field">
+                <span class="cap-code">Codename — The Mirror Pool</span>
+                <h3>Consumer Psychology</h3>
               </span>
-              <span class="row-chevron" aria-hidden="true">›</span>
+              <span class="cap-claim">People rarely move from logic alone. They move from identity, pressure, fear, desire, status, and timing.</span>
+              <span class="cap-mark" aria-hidden="true">+</span>
             </summary>
-            <div class="row-detail">
-              <h3>Approach</h3>
-              <p>I look for the gap between what people claim to want and what their behavior actually reveals.</p>
-              <h3>Scope</h3>
-              <p>Copy, funnel design, buyer objections, audience segmentation, product framing, and social proof.</p>
+            <div class="cap-detail">
+              <dl>
+                <dt>Approach</dt>
+                <dd>Look for the gap between what people claim to want and what their behavior actually reveals.</dd>
+                <dt>Disciplines</dt>
+                <dd class="disciplines">Copy / funnel design / buyer objections / audience segmentation / product framing / social proof</dd>
+                <dt>Evidence</dt>
+                <dd class="evidence"><a href="projects.html">Project — Psychometric Battery</a> (independent, not client work)</dd>
+              </dl>
             </div>
           </details>
 
-          <details class="row">
+          <details class="cap-row">
             <summary>
-              <span class="row-numeral">IV</span>
-              <span class="row-heading">
-                <span class="row-kicker">The Labyrinth Engine</span>
-                <span class="row-name">Operations</span>
-                <span class="row-claim">Operations is the discipline of making chaos repeatable without killing the human judgment inside it.</span>
+              <span class="cap-num">004</span>
+              <span class="cap-field">
+                <span class="cap-code">Codename — The Labyrinth Engine</span>
+                <h3>Operations</h3>
               </span>
-              <span class="row-chevron" aria-hidden="true">›</span>
+              <span class="cap-claim">Operations is the discipline of making chaos repeatable without killing the human judgment inside it.</span>
+              <span class="cap-mark" aria-hidden="true">+</span>
             </summary>
-            <div class="row-detail">
-              <h3>Approach</h3>
-              <p>I turn vague workflows into clear ownership, visible stages, accountable handoffs, and systems that survive pressure.</p>
-              <h3>Scope</h3>
-              <p>CRM design, SOPs, team workflows, acquisition integration, internal accountability, and process cleanup.</p>
+            <div class="cap-detail">
+              <dl>
+                <dt>Approach</dt>
+                <dd>Turn vague workflows into clear ownership, visible stages, accountable handoffs, and systems that survive pressure.</dd>
+                <dt>Disciplines</dt>
+                <dd class="disciplines">CRM design / SOPs / team workflows / acquisition integration / internal accountability / process cleanup</dd>
+              </dl>
             </div>
           </details>
 
-          <details class="row">
+          <details class="cap-row">
             <summary>
-              <span class="row-numeral">V</span>
-              <span class="row-heading">
-                <span class="row-kicker">The Threshold Gate</span>
-                <span class="row-name">Sales</span>
-                <span class="row-claim">Sales is not pressure. It is the controlled movement from uncertainty to decision.</span>
+              <span class="cap-num">005</span>
+              <span class="cap-field">
+                <span class="cap-code">Codename — The Threshold Gate</span>
+                <h3>Sales</h3>
               </span>
-              <span class="row-chevron" aria-hidden="true">›</span>
+              <span class="cap-claim">Sales is not pressure. It is the controlled movement from uncertainty to decision.</span>
+              <span class="cap-mark" aria-hidden="true">+</span>
             </summary>
-            <div class="row-detail">
-              <h3>Approach</h3>
-              <p>I identify pain, clarify stakes, reduce perceived risk, and create enough trust for action.</p>
-              <h3>Scope</h3>
-              <p>Cold outreach, follow-up systems, referral relationships, client conversations, and offer framing.</p>
+            <div class="cap-detail">
+              <dl>
+                <dt>Approach</dt>
+                <dd>Identify pain, clarify stakes, reduce perceived risk, and create enough trust for action.</dd>
+                <dt>Disciplines</dt>
+                <dd class="disciplines">Cold outreach / follow-up systems / referral relationships / client conversations / offer framing</dd>
+              </dl>
             </div>
           </details>
 
-          <details class="row">
+          <details class="cap-row">
             <summary>
-              <span class="row-numeral">VI</span>
-              <span class="row-heading">
-                <span class="row-kicker">The Mechanical Oracle</span>
-                <span class="row-name">AI Systems / Automation</span>
-                <span class="row-claim">AI is most useful when it is not a toy, but a force multiplier inside a real workflow.</span>
+              <span class="cap-num">006</span>
+              <span class="cap-field">
+                <span class="cap-code">Codename — The Mechanical Oracle</span>
+                <h3>AI Systems &amp; Automation</h3>
               </span>
-              <span class="row-chevron" aria-hidden="true">›</span>
+              <span class="cap-claim">AI is most useful when it is not a toy, but a force multiplier inside a real workflow.</span>
+              <span class="cap-mark" aria-hidden="true">+</span>
             </summary>
-            <div class="row-detail">
-              <h3>Approach</h3>
-              <p>I use AI to structure intake, research, content, routing, analysis, repetitive execution, and decision support.</p>
-              <h3>Scope</h3>
-              <p>Agentic workflows, CRM cleanup, content systems, web development, research pipelines, and operational automation.</p>
+            <div class="cap-detail">
+              <dl>
+                <dt>Approach</dt>
+                <dd>Use automation to structure intake, research, content, routing, analysis, repetitive execution, and decision support.</dd>
+                <dt>Disciplines</dt>
+                <dd class="disciplines">Agentic workflows / CRM cleanup / content systems / web development / research pipelines / operational automation</dd>
+                <dt>Evidence</dt>
+                <dd class="evidence"><a href="projects.html">Bookmark Mirror</a> &nbsp;/&nbsp; <a href="projects.html">Psychometric Battery</a> &nbsp;/&nbsp; <a href="projects.html">The Self Cartography Project</a> — offline inference and scoring engines, no external API calls</dd>
+              </dl>
             </div>
           </details>
 
-          <details class="row">
+          <details class="cap-row">
             <summary>
-              <span class="row-numeral">VII</span>
-              <span class="row-heading">
-                <span class="row-kicker">The Living Facade</span>
-                <span class="row-name">Web Design / Frontend Direction</span>
-                <span class="row-claim">A website should not look assembled. It should feel authored.</span>
+              <span class="cap-num">007</span>
+              <span class="cap-field">
+                <span class="cap-code">Codename — The Living Facade</span>
+                <h3>Web Design &amp; Frontend Direction</h3>
               </span>
-              <span class="row-chevron" aria-hidden="true">›</span>
+              <span class="cap-claim">A website should not look assembled. It should feel authored.</span>
+              <span class="cap-mark" aria-hidden="true">+</span>
             </summary>
-            <div class="row-detail">
-              <h3>Approach</h3>
-              <p>I focus on hierarchy, rhythm, readability, symbolic consistency, interaction, and the emotional atmosphere of the page.</p>
-              <h3>Scope</h3>
-              <p>Portfolio sites, client websites, landing pages, UI direction, conversion flow, and visual systems.</p>
+            <div class="cap-detail">
+              <dl>
+                <dt>Approach</dt>
+                <dd>Attend to hierarchy, rhythm, readability, symbolic consistency, interaction, and the emotional atmosphere of the page.</dd>
+                <dt>Disciplines</dt>
+                <dd class="disciplines">Portfolio sites / client websites / landing pages / UI direction / conversion flow / visual systems</dd>
+                <dt>Evidence</dt>
+                <dd class="evidence"><a href="projects.html">The Self Cartography Project</a> (React / TypeScript / Vite, hand-rolled SVG instrumentation) &nbsp;/&nbsp; <a href="projects.html">Curated Feed</a></dd>
+              </dl>
             </div>
           </details>
 
-          <details class="row">
+          <details class="cap-row">
             <summary>
-              <span class="row-numeral">VIII</span>
-              <span class="row-heading">
-                <span class="row-kicker">The Flame-Bearer</span>
-                <span class="row-name">Creative Direction</span>
-                <span class="row-claim">Creative direction is the ability to make scattered parts obey one world.</span>
+              <span class="cap-num">008</span>
+              <span class="cap-field">
+                <span class="cap-code">Codename — The Flame-Bearer</span>
+                <h3>Creative Direction</h3>
               </span>
-              <span class="row-chevron" aria-hidden="true">›</span>
+              <span class="cap-claim">Creative direction is the ability to make scattered parts obey one world.</span>
+              <span class="cap-mark" aria-hidden="true">+</span>
             </summary>
-            <div class="row-detail">
-              <h3>Approach</h3>
-              <p>I unify visuals, language, reference, symbolism, and user experience into a coherent aesthetic system.</p>
-              <h3>Scope</h3>
-              <p>Brand worlds, art direction, video concepts, campaign ideas, and product presentation.</p>
+            <div class="cap-detail">
+              <dl>
+                <dt>Approach</dt>
+                <dd>Unify visuals, language, reference, symbolism, and user experience into one coherent aesthetic system.</dd>
+                <dt>Disciplines</dt>
+                <dd class="disciplines">Brand worlds / art direction / video concepts / campaign ideas / product presentation</dd>
+                <dt>Evidence</dt>
+                <dd class="evidence"><a href="projects.html">Curated Feed</a> — color-sequenced archive, manually curated, no algorithm</dd>
+              </dl>
             </div>
           </details>
 
-          <details class="row">
+          <details class="cap-row">
             <summary>
-              <span class="row-numeral">IX</span>
-              <span class="row-heading">
-                <span class="row-kicker">The Armor of Signal</span>
-                <span class="row-name">Fashion / Style Analysis</span>
-                <span class="row-claim">Clothing is not decoration. It is identity, proportion, material, status, tribe, and cultural fluency.</span>
+              <span class="cap-num">009</span>
+              <span class="cap-field">
+                <span class="cap-code">Codename — The Armor of Signal</span>
+                <h3>Fashion &amp; Style Analysis</h3>
               </span>
-              <span class="row-chevron" aria-hidden="true">›</span>
+              <span class="cap-claim">Clothing is not decoration. It is identity, proportion, material, status, tribe, and cultural fluency.</span>
+              <span class="cap-mark" aria-hidden="true">+</span>
             </summary>
-            <div class="row-detail">
-              <h3>Approach</h3>
-              <p>I read garments through silhouette, context, construction, reference, rarity, and social meaning.</p>
-              <h3>Scope</h3>
-              <p>Styling, brand analysis, resale instincts, product design, visual taste, and fashion commentary.</p>
+            <div class="cap-detail">
+              <dl>
+                <dt>Approach</dt>
+                <dd>Read garments through silhouette, context, construction, reference, rarity, and social meaning.</dd>
+                <dt>Disciplines</dt>
+                <dd class="disciplines">Styling / brand analysis / resale instincts / product design / visual taste / fashion commentary</dd>
+              </dl>
             </div>
           </details>
 
-          <details class="row">
+          <details class="cap-row">
             <summary>
-              <span class="row-numeral">X</span>
-              <span class="row-heading">
-                <span class="row-kicker">The Scriptorium</span>
-                <span class="row-name">Content Strategy</span>
-                <span class="row-claim">Content only compounds when ideas become a system instead of random expression.</span>
+              <span class="cap-num">010</span>
+              <span class="cap-field">
+                <span class="cap-code">Codename — The Scriptorium</span>
+                <h3>Content Strategy</h3>
               </span>
-              <span class="row-chevron" aria-hidden="true">›</span>
+              <span class="cap-claim">Content only compounds when ideas become a system instead of random expression.</span>
+              <span class="cap-mark" aria-hidden="true">+</span>
             </summary>
-            <div class="row-detail">
-              <h3>Approach</h3>
-              <p>I turn loose ideas into repeatable formats, publishing rhythms, hooks, essays, videos, and authority-building narratives.</p>
-              <h3>Scope</h3>
-              <p>YouTube strategy, newsletters, social posts, essays, brand storytelling, and content calendars.</p>
+            <div class="cap-detail">
+              <dl>
+                <dt>Approach</dt>
+                <dd>Turn loose ideas into repeatable formats, publishing rhythms, hooks, essays, videos, and authority-building narratives.</dd>
+                <dt>Disciplines</dt>
+                <dd class="disciplines">YouTube strategy / newsletters / social posts / essays / brand storytelling / content calendars</dd>
+                <dt>Evidence</dt>
+                <dd class="evidence"><a href="services.html">Services — Copywriting &amp; Direct Marketing</a></dd>
+              </dl>
             </div>
           </details>
 
-          <details class="row">
+          <details class="cap-row">
             <summary>
-              <span class="row-numeral">XI</span>
-              <span class="row-heading">
-                <span class="row-kicker">The Long Table</span>
-                <span class="row-name">Community Building</span>
-                <span class="row-claim">Community is not a group chat. It is repeated belonging around shared values, rituals, and contribution.</span>
+              <span class="cap-num">011</span>
+              <span class="cap-field">
+                <span class="cap-code">Codename — The Long Table</span>
+                <h3>Community Building</h3>
               </span>
-              <span class="row-chevron" aria-hidden="true">›</span>
+              <span class="cap-claim">Community is not a group chat. It is repeated belonging around shared values, rituals, and contribution.</span>
+              <span class="cap-mark" aria-hidden="true">+</span>
             </summary>
-            <div class="row-detail">
-              <h3>Approach</h3>
-              <p>I create environments where people have a reason to show up, participate, recognize each other, and return.</p>
-              <h3>Scope</h3>
-              <p>Coliving, local events, online groups, recruiting, moderation, and culture design.</p>
+            <div class="cap-detail">
+              <dl>
+                <dt>Approach</dt>
+                <dd>Create environments where people have a reason to show up, participate, recognize each other, and return.</dd>
+                <dt>Disciplines</dt>
+                <dd class="disciplines">Coliving / local events / online groups / recruiting / moderation / culture design</dd>
+              </dl>
             </div>
           </details>
 
-          <details class="row">
+          <details class="cap-row">
             <summary>
-              <span class="row-numeral">XII</span>
-              <span class="row-heading">
-                <span class="row-kicker">The Open Road</span>
-                <span class="row-name">Business Development</span>
-                <span class="row-claim">Business development is the art of turning loose possibility into structured opportunity.</span>
+              <span class="cap-num">012</span>
+              <span class="cap-field">
+                <span class="cap-code">Codename — The Open Road</span>
+                <h3>Business Development</h3>
               </span>
-              <span class="row-chevron" aria-hidden="true">›</span>
+              <span class="cap-claim">Business development is the art of turning loose possibility into structured opportunity.</span>
+              <span class="cap-mark" aria-hidden="true">+</span>
             </summary>
-            <div class="row-detail">
-              <h3>Approach</h3>
-              <p>I find leverage points, open conversations, build trust, identify mutual upside, and move relationships toward concrete outcomes.</p>
-              <h3>Scope</h3>
-              <p>Partnerships, referrals, client acquisition, strategic outreach, vendor relationships, and deal flow.</p>
+            <div class="cap-detail">
+              <dl>
+                <dt>Approach</dt>
+                <dd>Find leverage points, open conversations, build trust, identify mutual upside, and move relationships toward concrete outcomes.</dd>
+                <dt>Disciplines</dt>
+                <dd class="disciplines">Partnerships / referrals / client acquisition / strategic outreach / vendor relationships / deal flow</dd>
+              </dl>
             </div>
           </details>
 
@@ -673,31 +780,197 @@
       </div>
     </section>
 
-    <!-- ── 05 · Evidence ── -->
-    <section class="section evidence">
+    <!-- ── 02 · Operating Principle ── -->
+    <section class="section principle">
       <div class="wrap">
-        <p class="section-label eyebrow">Evidence</p>
-        <div class="evidence-card">
-          <h2>Selected work</h2>
-          <p>Domains above are applied in the projects below — built, shipped, and maintained rather than pitched.</p>
-          <ul class="evidence-list">
-            <li><span class="proj-title">Focus Shield</span><span class="proj-sub">Commitment-Locked Feed Control</span></li>
-            <li><span class="proj-title">Psychometric Battery</span><span class="proj-sub">Multi-Dimensional Self-Assessment</span></li>
-            <li><span class="proj-title">Curated Feed</span><span class="proj-sub">Color-Sequenced Instagram Archive</span></li>
-          </ul>
-          <a class="evidence-cta" href="projects.html">View all projects →</a>
+        <div class="principle-inner">
+          <h2 class="section-num">02 / Operating Principle</h2>
+          <blockquote class="principle-quote">
+            &ldquo;Visibility is not luck. It's the result of building the right systems in the right places at the right time.&rdquo;
+          </blockquote>
+          <p class="principle-body">That line is the practice's own operating note, and the pattern holds outside marketing, too. Every independent build in the record below runs client-side by default — no server required, no account, no data leaving the device unless someone chooses otherwise. That isn't a privacy feature added afterward; it's the default assumption going in.</p>
+          <p class="principle-body">Twelve fields of practice, one working assumption underneath all of them: build the system so it doesn't depend on someone else's.</p>
         </div>
       </div>
     </section>
 
-    <!-- ── 08 · Final conversation ── -->
+    <!-- ── 03 · Selected Evidence ── -->
+    <section class="section" id="evidence">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="section-num">03 / Selected Evidence</p>
+          <h2>Independent record</h2>
+          <p class="section-note">No client names disclosed here. What follows is public, independent, and shipped — the account with the fewest strings attached.</p>
+        </div>
+
+        <div class="evidence-list">
+
+          <article class="evidence-item">
+            <div class="ev-meta">
+              <img class="ev-icon" src="assets/focus-shield-icon.svg" alt="" loading="lazy">
+              <span class="micro">File 01</span>
+              <span class="micro">Chrome Extension</span>
+              <span class="micro">Status — Beta</span>
+            </div>
+            <div class="ev-body">
+              <h3><a href="https://github.com/SeldomSought/Focus-Shield">Focus Shield</a></h3>
+              <p>Enforces a 30-minute daily budget on passive feed browsing. Feeds are suppressed at the CSS level before JavaScript executes; bookmarks and creation tools stay accessible without limit. An optional commitment lock, keyed to a passphrase held by someone else, makes the limit difficult to defeat by design.</p>
+              <p class="ev-stack"><b>Stack</b> — JavaScript · Chrome MV3 · Service Worker · MutationObserver API · IndexedDB · Webhooks</p>
+            </div>
+          </article>
+
+          <article class="evidence-item">
+            <div class="ev-meta">
+              <span class="micro">File 02</span>
+              <span class="micro">Web App</span>
+              <span class="micro">Status — Beta</span>
+            </div>
+            <div class="ev-body">
+              <h3><a href="projects/psychometrics-battery/index.html">Psychometric Battery</a></h3>
+              <p>A 142-item assessment integrating four validated measurement frameworks — HEXACO personality, forced-choice ranking, Schwartz values, attachment style — into a single session. Scoring runs entirely in the browser; nothing is transmitted.</p>
+              <p class="ev-stack"><b>Stack</b> — JavaScript · HTML/CSS · client-side only · zero dependencies</p>
+            </div>
+          </article>
+
+          <article class="evidence-item">
+            <div class="ev-meta">
+              <span class="micro">File 03</span>
+              <span class="micro">Chrome Extension</span>
+              <span class="micro">Status — Beta</span>
+            </div>
+            <div class="ev-body">
+              <h3><a href="https://github.com/SeldomSought/Twitter-bookmark-analyzer">Bookmark Mirror</a></h3>
+              <p>Generates a psychological profile from Twitter/X bookmarks — Big Five inference, Schwartz values, LIWC-inspired linguistic analysis, topic velocity — entirely offline. No API key, no server, no data transmitted.</p>
+              <p class="ev-stack"><b>Stack</b> — JavaScript · Chrome MV3 · IndexedDB · Content Scripts · Service Worker</p>
+            </div>
+          </article>
+
+          <article class="evidence-item">
+            <div class="ev-meta">
+              <span class="micro">File 04</span>
+              <span class="micro">Instagram</span>
+              <span class="micro">Status — Live</span>
+            </div>
+            <div class="ev-body">
+              <h3><a href="https://www.instagram.com/seldomsought">Curated Feed</a></h3>
+              <p>Every post on @seldomsought resequenced by hue instead of time — manually, post by post, no algorithm. The chronological grid becomes a continuous color gradient.</p>
+              <p class="ev-stack"><b>Stack</b> — Manual curation · color theory</p>
+            </div>
+          </article>
+
+          <article class="evidence-item">
+            <div class="ev-meta">
+              <span class="micro">File 05</span>
+              <span class="micro">Web App</span>
+              <span class="micro">Status — Prototype</span>
+            </div>
+            <div class="ev-body">
+              <h3><a href="projects/self-cartography/index.html">The Self Cartography Project</a></h3>
+              <p>An evidence-informed self-assessment that triangulates values, personality, and career fit across ten measurement formats — not just Likert ratings — with a background validity engine that flags straightlining, contradiction, and self-report-vs-behavior gaps. Every score ships with a confidence level, never an invented percentile.</p>
+              <p class="ev-stack"><b>Stack</b> — React · TypeScript · Vite · client-side only</p>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 04 · Toolchain ── -->
+    <section class="section" id="toolchain">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="section-num">04 / Working Knowledge</p>
+          <h2>Toolchain</h2>
+          <p class="section-note">Legitimate working knowledge, demonstrated in the record above — not a logo wall.</p>
+        </div>
+
+        <div class="toolchain-grid">
+          <div class="tool-cat">
+            <h3>Languages &amp; Runtime</h3>
+            <ul><li>JavaScript</li><li>TypeScript</li><li>HTML / CSS</li></ul>
+          </div>
+          <div class="tool-cat">
+            <h3>Frameworks &amp; Tooling</h3>
+            <ul><li>React</li><li>Vite</li><li>CSS Modules</li></ul>
+          </div>
+          <div class="tool-cat">
+            <h3>Browser Engineering</h3>
+            <ul><li>Chrome MV3</li><li>Service Workers</li><li>Content Scripts</li><li>MutationObserver API</li><li>IndexedDB / localStorage</li><li>Alarm API</li></ul>
+          </div>
+          <div class="tool-cat">
+            <h3>Integration</h3>
+            <ul><li>Webhooks</li><li>GitHub</li></ul>
+          </div>
+          <div class="tool-cat">
+            <h3>Measurement Frameworks</h3>
+            <ul><li>HEXACO</li><li>Big Five (OCEAN)</li><li>Schwartz Basic Human Values</li><li>Attachment theory</li><li>LIWC-inspired linguistic analysis</li><li>Self-determination theory</li></ul>
+          </div>
+          <div class="tool-cat">
+            <h3>Marketing &amp; Growth</h3>
+            <ul><li>SEO</li><li>AEO — Answer Engine Optimization</li><li>Guerrilla campaign design</li><li>Email &amp; SMS marketing</li><li>Copywriting</li></ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 05 · Cross-References ── -->
+    <section class="section" id="xref">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="section-num">05 / Cross-References</p>
+          <h2>Field → record</h2>
+          <p class="section-note">Capability doesn't exist in isolation. Where a field above has a public artifact behind it, here's the link.</p>
+        </div>
+
+        <div class="xref-scroll">
+          <table class="xref">
+            <caption class="micro">Fields of practice mapped to public services and independent projects</caption>
+            <thead>
+              <tr><th scope="col">Field</th><th scope="col">Public record</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Web &amp; Frontend Direction</th>
+                <td><a href="projects/self-cartography/index.html">The Self Cartography Project</a><a href="https://www.instagram.com/seldomsought">Curated Feed</a></td>
+              </tr>
+              <tr>
+                <th scope="row">AI Systems &amp; Automation</th>
+                <td><a href="https://github.com/SeldomSought/Twitter-bookmark-analyzer">Bookmark Mirror</a><a href="projects/psychometrics-battery/index.html">Psychometric Battery</a><a href="projects/self-cartography/index.html">Self Cartography</a></td>
+              </tr>
+              <tr>
+                <th scope="row">Creative Direction</th>
+                <td><a href="https://www.instagram.com/seldomsought">Curated Feed</a></td>
+              </tr>
+              <tr>
+                <th scope="row">Brand Positioning</th>
+                <td><a href="services.html">Brand Image &amp; Aesthetic Orchestration</a></td>
+              </tr>
+              <tr>
+                <th scope="row">Marketing Strategy</th>
+                <td><a href="services.html">Guerrilla Marketing &amp; Strategy</a></td>
+              </tr>
+              <tr>
+                <th scope="row">Content Strategy</th>
+                <td><a href="services.html">Copywriting &amp; Direct Marketing</a></td>
+              </tr>
+              <tr>
+                <th scope="row">Consumer Psychology</th>
+                <td><a href="projects/psychometrics-battery/index.html">Psychometric Battery</a><a href="services.html">SEO &amp; AEO</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 06 · Closing ── -->
     <section class="section closing">
       <div class="wrap">
-        <div class="closing-copy">
-          <p class="section-label eyebrow" style="grid-column:1/-1; margin-bottom:0.75rem;">Contact</p>
-          <h2>Bring the problem.</h2>
-          <p>Not sure which domain it falls under — that's a fine place to start.</p>
-          <a class="cta" href="contact.html">Get in touch</a>
+        <div class="closing-inner">
+          <h2 class="section-num">06 / Closing</h2>
+          <p class="statement">The seldom sought is often the most worth finding.</p>
+          <a class="closing-link" href="contact.html">Correspondence →</a>
+          <p class="closing-note micro">Response window — 24&ndash;48 hrs</p>
         </div>
       </div>
     </section>
@@ -707,7 +980,7 @@
       <div class="footer-grid">
         <div class="footer-col">
           <h3>SeldomSought</h3>
-          <p>Brand positioning, marketing strategy, and creative direction for work that isn't trying to fit in.</p>
+          <p>Brand image, marketing strategy, and business consulting for people who'd rather get remembered than blend in.</p>
         </div>
         <div class="footer-col">
           <h3>Navigate</h3>
@@ -723,15 +996,15 @@
         <div class="footer-col">
           <h3>Services</h3>
           <ul class="footer-links">
-            <li><a href="services.html">Brand Positioning</a></li>
-            <li><a href="services.html">Marketing Strategy</a></li>
-            <li><a href="services.html">Creative Direction</a></li>
-            <li><a href="services.html">Web Design</a></li>
+            <li><a href="services.html">Brand Image</a></li>
+            <li><a href="services.html">SEO &amp; AEO</a></li>
+            <li><a href="services.html">Guerrilla Marketing</a></li>
+            <li><a href="services.html">Copywriting</a></li>
           </ul>
         </div>
       </div>
       <div class="footer-bottom">
-        <p>&copy; 2025 SeldomSought. All rights reserved.</p>
+        <p>&copy; 2026 SeldomSought. All rights reserved.</p>
       </div>
     </footer>
 
