@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SeldomSought - Brand Image, Marketing Strategy & Business Consulting</title>
     <meta name="description" content="SeldomSought builds brand image, writes the copy, runs the guerrilla campaigns, and gets you found — by search engines and AI both. Full-service marketing for brands allergic to blending in.">
-    <meta name="theme-color" content="#00ff41"/>
+    <meta name="theme-color" content="#eef5fa"/>
 
     <!-- Open Graph -->
     <meta property="og:site_name" content="SeldomSought"/>
@@ -32,23 +32,25 @@
         }
 
         :root {
-            --matrix-green: #00ff41;
-            --matrix-green-dim: #00cc33;
-            --matrix-green-dark: #008f11;
-            --matrix-green-glow: #00ff41;
-            --matrix-bg: #0a0a0a;
-            --matrix-bg-alt: #0d0d0d;
+            --ink: #1c2a36;
+            --ink-soft: #33495c;
+            --ink-muted: #4d6478;
+            --frost: #cfe1ee;
+            --frost-mid: #82abc9;
+            --frost-deep: #3d6a8c;
         }
 
         body {
             font-family: 'Share Tech Mono', monospace;
-            color: var(--matrix-green);
-            background: #000;
+            color: var(--ink);
+            background:
+                radial-gradient(ellipse 70% 55% at 50% 16%, rgba(255,255,255,0.85), rgba(255,255,255,0) 62%),
+                linear-gradient(160deg, #fdfeff 0%, #f6fafd 45%, #eaf3fa 100%);
             line-height: 1.6;
             overflow-x: hidden;
         }
 
-        /* Matrix Rain Canvas */
+        /* Digital Snow Canvas */
         #matrixCanvas {
             position: fixed;
             top: 0;
@@ -57,6 +59,16 @@
             height: 100%;
             z-index: 0;
             pointer-events: none;
+        }
+
+        /* Diffused daylight behind the hero content, keeps the snowfield from
+           reading as flat and gives the headline a soft place to sit */
+        .hero-glow {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            background: radial-gradient(ellipse 58% 48% at 50% 45%, rgba(255,255,255,0.55), rgba(255,255,255,0) 70%);
         }
 
         /* Hero */
@@ -80,8 +92,8 @@
         h1 {
             font-size: var(--fs-h1);
             margin-bottom: 1.5rem;
-            color: var(--matrix-green);
-            text-shadow: 0 0 20px rgba(0, 255, 65, 0.4), 0 0 40px rgba(0, 255, 65, 0.2);
+            color: var(--ink);
+            text-shadow: 0 0 24px rgba(130, 171, 201, 0.3), 0 0 2px rgba(61, 106, 140, 0.15);
             letter-spacing: 6px;
             text-transform: uppercase;
             font-weight: 400;
@@ -92,24 +104,24 @@
             display: block;
             width: 120px;
             height: 1px;
-            background: var(--matrix-green);
-            box-shadow: 0 0 10px var(--matrix-green), 0 0 20px rgba(0, 255, 65, 0.3);
+            background: var(--frost-mid);
+            box-shadow: 0 0 10px rgba(130, 171, 201, 0.4), 0 0 20px rgba(130, 171, 201, 0.2);
             margin: 1.2rem auto 0;
         }
 
         .tagline {
             font-size: var(--fs-body-lg);
-            color: var(--matrix-green-dim);
+            color: var(--ink-soft);
             margin-bottom: 2.5rem;
             letter-spacing: 2px;
-            text-shadow: 0 0 10px rgba(0, 255, 65, 0.2);
+            text-shadow: 0 0 12px rgba(130, 171, 201, 0.18);
         }
 
         .hero .description {
             font-size: var(--fs-body);
             line-height: var(--lh-copy);
             margin-bottom: 3rem;
-            color: var(--matrix-green-dark);
+            color: var(--ink-muted);
             max-width: min(680px, 90vw);
             margin-left: auto;
             margin-right: auto;
@@ -135,29 +147,29 @@
         }
 
         .btn-primary {
-            background: transparent;
-            color: var(--matrix-green);
-            border: 1px solid var(--matrix-green);
-            box-shadow: 0 0 10px rgba(0, 255, 65, 0.15), inset 0 0 10px rgba(0, 255, 65, 0.05);
+            background: rgba(255, 255, 255, 0.4);
+            color: var(--frost-deep);
+            border: 1px solid var(--frost-mid);
+            box-shadow: 0 0 10px rgba(130, 171, 201, 0.15), inset 0 0 10px rgba(130, 171, 201, 0.05);
         }
 
         .btn-primary:hover {
-            background: rgba(0, 255, 65, 0.1);
-            box-shadow: 0 0 20px rgba(0, 255, 65, 0.3), inset 0 0 20px rgba(0, 255, 65, 0.1);
-            text-shadow: 0 0 8px rgba(0, 255, 65, 0.5);
+            background: rgba(207, 225, 238, 0.4);
+            box-shadow: 0 0 20px rgba(130, 171, 201, 0.3), inset 0 0 20px rgba(130, 171, 201, 0.1);
+            text-shadow: 0 0 8px rgba(61, 106, 140, 0.25);
         }
 
         .btn-secondary {
             background: transparent;
-            color: var(--matrix-green-dark);
-            border: 1px solid var(--matrix-green-dark);
+            color: var(--ink-muted);
+            border: 1px solid var(--frost);
         }
 
         .btn-secondary:hover {
-            color: var(--matrix-green);
-            border-color: var(--matrix-green);
-            box-shadow: 0 0 15px rgba(0, 255, 65, 0.2);
-            text-shadow: 0 0 8px rgba(0, 255, 65, 0.5);
+            color: var(--frost-deep);
+            border-color: var(--frost-mid);
+            box-shadow: 0 0 15px rgba(130, 171, 201, 0.2);
+            text-shadow: 0 0 8px rgba(61, 106, 140, 0.2);
         }
 
         /* Decode animation for text elements */
@@ -175,8 +187,8 @@
         }
 
         .decode-char.scrambling {
-            color: var(--matrix-green);
-            text-shadow: 0 0 8px rgba(0, 255, 65, 0.8);
+            color: var(--frost-deep);
+            text-shadow: 0 0 8px rgba(130, 171, 201, 0.5);
         }
 
         .decode-char.settled {
@@ -188,11 +200,11 @@
             display: inline-block;
             width: 3px;
             height: 1em;
-            background: var(--matrix-green);
+            background: var(--frost-deep);
             margin-left: 4px;
             animation: blink 0.8s step-end infinite;
             vertical-align: text-bottom;
-            box-shadow: 0 0 8px var(--matrix-green);
+            box-shadow: 0 0 8px rgba(130, 171, 201, 0.5);
         }
 
         @keyframes blink {
@@ -204,10 +216,10 @@
 
         /* Footer */
         footer {
-            background: rgba(0, 0, 0, 0.9);
-            color: var(--matrix-green-dark);
+            background: rgba(255, 255, 255, 0.55);
+            color: var(--ink-muted);
             padding: 4rem 2.5rem 2.5rem;
-            border-top: 1px solid rgba(0, 255, 65, 0.1);
+            border-top: 1px solid rgba(130, 171, 201, 0.25);
             position: relative;
             z-index: 1;
         }
@@ -224,15 +236,15 @@
         .footer-section h3 {
             font-size: clamp(1.5rem, 2vw, 2rem);
             margin-bottom: 1.3rem;
-            color: var(--matrix-green);
-            text-shadow: 0 0 8px rgba(0, 255, 65, 0.3);
+            color: var(--ink);
+            text-shadow: 0 0 8px rgba(130, 171, 201, 0.25);
             letter-spacing: 2px;
             text-transform: uppercase;
             font-weight: 400;
         }
 
         .footer-section p {
-            color: var(--matrix-green-dark);
+            color: var(--ink-muted);
             line-height: var(--lh-copy);
         }
 
@@ -241,7 +253,7 @@
         }
 
         .footer-links a {
-            color: var(--matrix-green-dark);
+            color: var(--ink-muted);
             text-decoration: none;
             display: block;
             padding: 0.4rem 0;
@@ -251,8 +263,8 @@
         }
 
         .footer-links a:hover {
-            color: var(--matrix-green);
-            text-shadow: 0 0 8px rgba(0, 255, 65, 0.4);
+            color: var(--frost-deep);
+            text-shadow: 0 0 8px rgba(130, 171, 201, 0.3);
             padding-left: 0.5rem;
         }
 
@@ -270,29 +282,11 @@
             max-width: 1200px;
             margin: 0 auto;
             padding-top: 2.5rem;
-            border-top: 1px solid rgba(0, 255, 65, 0.1);
+            border-top: 1px solid rgba(130, 171, 201, 0.2);
             text-align: center;
-            color: rgba(0, 255, 65, 0.3);
+            color: rgba(77, 100, 120, 0.55);
             font-size: 1.1rem;
             letter-spacing: 1px;
-        }
-
-        /* Scanline overlay */
-        .scanlines {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 99;
-            background: repeating-linear-gradient(
-                0deg,
-                rgba(0, 0, 0, 0.03) 0px,
-                rgba(0, 0, 0, 0.03) 1px,
-                transparent 1px,
-                transparent 3px
-            );
         }
 
         /* Mobile */
@@ -358,7 +352,6 @@
 </head>
 <body>
     <canvas id="matrixCanvas"></canvas>
-    <div class="scanlines"></div>
 
     <header class="site-header" id="siteHeader">
       <div class="site-header__inner">
@@ -389,6 +382,7 @@
     </header>
 
     <section class="hero">
+        <div class="hero-glow"></div>
         <div class="hero-content">
             <h1 class="decode-text" data-decode-delay="500" data-decode-speed="40">Seldom Sought</h1>
             <p class="tagline decode-text" data-decode-delay="2000" data-decode-speed="30">Marketing for people allergic to blending in.</p>
@@ -433,72 +427,280 @@
     </footer>
 
     <script>
-        // ── Matrix Rain Canvas ──────────────────────────────────────
-        const canvas = document.getElementById('matrixCanvas');
-        const ctx = canvas.getContext('2d');
+        // ── Digital Snow (Matrix rain, frozen) ─────────────────────
+        // Descending glyphs keep the vertical-column DNA of the original
+        // Matrix rain, but the palette, cast of characters, and per-particle
+        // lifecycle (fade / early termination / drift) are new. Single canvas,
+        // no DOM nodes, no allocations in the steady-state frame loop.
+        (function () {
+            const canvas = document.getElementById('matrixCanvas');
+            const ctx = canvas.getContext('2d');
+            const reduceMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
 
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-        resizeCanvas();
-        window.addEventListener('resize', resizeCanvas);
+            const LATIN = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            const KATAKANA = 'アイウエオカキクケコサシスセソ';
+            const SNOWFLAKES = ['❄', '❅', '❆', '✦', '*'];
+            const SYMBOLS = ['+', '-', '/', '=', '~', '%', '<', '>', '#'];
+            const SMILEY = ':)';
 
-        const matrixChars = 'アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        const fontSize = 14;
-        let columns = Math.floor(canvas.width / fontSize);
-        let drops = [];
+            // Ice spectrum, near-white to a rare legible arctic blue. Index 0-1
+            // are the common faint tones; index 4 is deliberately rare.
+            const ICE = [
+                [214, 232, 246],
+                [182, 213, 235],
+                [147, 187, 219],
+                [104, 152, 192],
+                [61, 106, 140],
+            ];
 
-        function initDrops() {
-            columns = Math.floor(canvas.width / fontSize);
-            drops = [];
-            for (let i = 0; i < columns; i++) {
-                drops[i] = Math.random() * -100;
+            const LAYERS = {
+                bg:  { share: 0.40, size: [10, 12], speed: [0.15, 0.30], alpha: [0.08, 0.20], blur: [2, 4] },
+                mid: { share: 0.45, size: [13, 16], speed: [0.45, 0.85], alpha: [0.35, 0.62], blur: [0, 0] },
+                fg:  { share: 0.15, size: [18, 24], speed: [0.20, 0.38], alpha: [0.55, 0.85], blur: [0, 2] },
+            };
+
+            const TIERS = {
+                desktop: { maxWidth: Infinity, count: 230, blur: true,  interact: true,  dpr: Math.min(window.devicePixelRatio || 1, 2) },
+                tablet:  { maxWidth: 1024,      count: 150, blur: true,  interact: false, dpr: Math.min(window.devicePixelRatio || 1, 1.5) },
+                mobile:  { maxWidth: 640,       count: 75,  blur: false, interact: false, dpr: 1 },
+            };
+
+            function currentTierName() {
+                const w = window.innerWidth;
+                if (w <= TIERS.mobile.maxWidth) return 'mobile';
+                if (w <= TIERS.tablet.maxWidth) return 'tablet';
+                return 'desktop';
             }
-        }
-        initDrops();
-        window.addEventListener('resize', initDrops);
 
-        function drawMatrix() {
-            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            function rand(range) { return range[0] + Math.random() * (range[1] - range[0]); }
 
-            for (let i = 0; i < drops.length; i++) {
-                const char = matrixChars[Math.floor(Math.random() * matrixChars.length)];
-                const x = i * fontSize;
-                const y = drops[i] * fontSize;
+            // Katakana appears as a rare accent within the alnum pool — a nod to
+            // the original Matrix glyphs without reading as dominant or foreign.
+            function alnumChar() {
+                return Math.random() < 0.88
+                    ? LATIN[Math.floor(Math.random() * LATIN.length)]
+                    : KATAKANA[Math.floor(Math.random() * KATAKANA.length)];
+            }
 
-                // Brighter head character
-                if (Math.random() > 0.98) {
-                    ctx.fillStyle = '#ffffff';
-                    ctx.shadowColor = '#00ff41';
-                    ctx.shadowBlur = 15;
+            function pickGlyph() {
+                const r = Math.random();
+                if (r < 0.58) return { char: alnumChar(), type: 'alnum' };
+                if (r < 0.87) return { char: SNOWFLAKES[Math.floor(Math.random() * SNOWFLAKES.length)], type: 'snow' };
+                if (r < 0.992) return { char: SYMBOLS[Math.floor(Math.random() * SYMBOLS.length)], type: 'symbol' };
+                return { char: SMILEY, type: 'smiley' };
+            }
+
+            function pickLayerName() {
+                const r = Math.random();
+                if (r < LAYERS.bg.share) return 'bg';
+                if (r < LAYERS.bg.share + LAYERS.mid.share) return 'mid';
+                return 'fg';
+            }
+
+            let width = 0, height = 0, tierName = 'desktop', tier = TIERS.desktop;
+            let particles = [];
+            let mouseX = -9999, mouseY = -9999, mouseActive = false;
+            let rafId = null;
+            let resizeTimer = null;
+
+            // Mutates a particle in place so recycling never allocates.
+            function resetParticle(p, spawnAtTop) {
+                const layerName = pickLayerName();
+                const glyph = pickGlyph();
+                const L = LAYERS[layerName];
+
+                p.layer = layerName;
+                p.type = glyph.type;
+                p.char = glyph.char;
+                p.x = Math.random() * width;
+                p.y = spawnAtTop ? -rand([20, 300]) : Math.random() * height;
+                p.size = Math.round(rand(L.size));
+                p.speed = rand(L.speed);
+                p.baseAlpha = rand(L.alpha);
+                p.blur = rand(L.blur);
+                p.colorIdx = Math.min(ICE.length - 1, Math.floor(Math.random() * Math.random() * ICE.length));
+                p.swayAmp = rand([1.5, 6]);
+                p.swayFreq = rand([0.01, 0.025]);
+                p.swayPhase = Math.random() * Math.PI * 2;
+                p.flicker = glyph.type === 'alnum' || glyph.type === 'symbol';
+                p.rotation = 0;
+                p.rotSpeed = (layerName === 'fg' && glyph.type === 'snow') ? rand([-0.0006, 0.0006]) : 0;
+                p.pushX = 0;
+                p.pushY = 0;
+
+                // The smiley is the signature Easter egg — never bury it in the
+                // faint background layer where it would go unnoticed forever.
+                if (glyph.type === 'smiley' && layerName === 'bg') {
+                    const promoted = LAYERS[Math.random() < 0.5 ? 'mid' : 'fg'];
+                    p.size = Math.round(rand(promoted.size));
+                    p.baseAlpha = rand(promoted.alpha) * 1.1;
+                    p.blur = rand(promoted.blur);
+                }
+
+                const earlyTerminate = Math.random() < 0.15;
+                if (earlyTerminate) {
+                    p.fadeStart = height * rand([0.2, 0.55]);
+                    p.fadeEnd = p.fadeStart + rand([30, 90]);
                 } else {
-                    // Vary the green intensity
-                    const intensity = Math.random();
-                    if (intensity > 0.9) {
-                        ctx.fillStyle = '#00ff41';
-                    } else if (intensity > 0.6) {
-                        ctx.fillStyle = '#00cc33';
-                    } else {
-                        ctx.fillStyle = '#008f11';
-                    }
-                    ctx.shadowColor = 'transparent';
+                    p.fadeStart = height * rand([0.7, 0.95]);
+                    p.fadeEnd = height + rand([80, 220]);
+                }
+            }
+
+            function rebuildParticles() {
+                tierName = currentTierName();
+                tier = TIERS[tierName];
+                particles = new Array(tier.count);
+                for (let i = 0; i < tier.count; i++) {
+                    const p = {};
+                    resetParticle(p, false);
+                    particles[i] = p;
+                }
+            }
+
+            function resize() {
+                width = window.innerWidth;
+                height = window.innerHeight;
+                const dpr = TIERS[currentTierName()].dpr;
+                canvas.width = Math.round(width * dpr);
+                canvas.height = Math.round(height * dpr);
+                canvas.style.width = width + 'px';
+                canvas.style.height = height + 'px';
+                ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+                if (currentTierName() !== tierName || particles.length === 0) {
+                    rebuildParticles();
+                }
+            }
+
+            // Density thins in a soft ellipse behind the hero copy and rises
+            // slightly toward the viewport edges — no hard-edged empty box.
+            function centerFalloff(x, y) {
+                const nx = (x - width / 2) / (width * 0.42);
+                const ny = (y - height / 2) / (height * 0.30);
+                const d = Math.sqrt(nx * nx + ny * ny);
+                return 1 - Math.max(0, 1 - d) * 0.5;
+            }
+
+            function fadeMul(p) {
+                if (p.y < p.fadeStart) return 1;
+                if (p.y >= p.fadeEnd) return 0;
+                return 1 - (p.y - p.fadeStart) / (p.fadeEnd - p.fadeStart);
+            }
+
+            function drawParticle(p) {
+                const alpha = p.baseAlpha * fadeMul(p) * centerFalloff(p.x, p.y);
+                if (alpha <= 0.012) return;
+
+                const x = p.x + p.pushX;
+                const y = p.y + p.pushY;
+                const [r, g, b] = ICE[p.colorIdx];
+
+                ctx.font = p.size + 'px "Share Tech Mono", monospace';
+
+                if (p.blur > 0 && tier.blur) {
+                    ctx.shadowColor = `rgba(${r},${g},${b},${Math.min(0.5, alpha)})`;
+                    ctx.shadowBlur = p.blur;
+                } else {
                     ctx.shadowBlur = 0;
                 }
 
-                ctx.font = fontSize + 'px monospace';
-                ctx.fillText(char, x, y);
-
-                if (y > canvas.height && Math.random() > 0.975) {
-                    drops[i] = 0;
+                if (p.type === 'smiley') {
+                    const c = ICE[3];
+                    ctx.fillStyle = `rgba(${c[0]},${c[1]},${c[2]},${Math.min(0.85, alpha * 1.12)})`;
+                } else {
+                    ctx.fillStyle = `rgba(${r},${g},${b},${alpha})`;
                 }
-                drops[i]++;
+
+                if (p.rotSpeed !== 0) {
+                    ctx.save();
+                    ctx.translate(x, y);
+                    ctx.rotate(p.rotation);
+                    ctx.fillText(p.char, -p.size / 2, p.size / 2);
+                    ctx.restore();
+                } else {
+                    ctx.fillText(p.char, x, y);
+                }
             }
 
-            requestAnimationFrame(drawMatrix);
-        }
-        drawMatrix();
+            function step() {
+                ctx.clearRect(0, 0, width, height);
+
+                for (let i = 0; i < particles.length; i++) {
+                    const p = particles[i];
+
+                    p.y += p.speed;
+                    p.swayPhase += p.swayFreq;
+                    p.x += Math.sin(p.swayPhase) * (p.swayAmp * 0.02);
+                    if (p.rotSpeed !== 0) p.rotation += p.rotSpeed;
+
+                    if (p.flicker && Math.random() < 0.04) {
+                        p.char = p.type === 'alnum'
+                            ? alnumChar()
+                            : SYMBOLS[Math.floor(Math.random() * SYMBOLS.length)];
+                    }
+
+                    if (tier.interact && mouseActive) {
+                        const dx = p.x - mouseX;
+                        const dy = p.y - mouseY;
+                        const dist = Math.sqrt(dx * dx + dy * dy);
+                        const radius = 80;
+                        if (dist < radius && dist > 0.01) {
+                            const force = (1 - dist / radius) * 6;
+                            p.pushX += (dx / dist) * force * 0.15;
+                            p.pushY += (dy / dist) * force * 0.15;
+                        }
+                    }
+                    p.pushX *= 0.92;
+                    p.pushY *= 0.92;
+
+                    if (p.y > p.fadeEnd || p.x < -40 || p.x > width + 40) {
+                        resetParticle(p, true);
+                        continue;
+                    }
+
+                    drawParticle(p);
+                }
+
+                rafId = requestAnimationFrame(step);
+            }
+
+            function drawStaticFrame() {
+                ctx.clearRect(0, 0, width, height);
+                for (let i = 0; i < particles.length; i++) drawParticle(particles[i]);
+            }
+
+            function start() {
+                resize();
+                if (reduceMotionQuery.matches) {
+                    drawStaticFrame();
+                } else {
+                    if (rafId) cancelAnimationFrame(rafId);
+                    step();
+                }
+            }
+
+            window.addEventListener('resize', () => {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(() => {
+                    resize();
+                    if (reduceMotionQuery.matches) drawStaticFrame();
+                }, 150);
+            });
+
+            window.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+                mouseActive = true;
+            }, { passive: true });
+            window.addEventListener('mouseleave', () => { mouseActive = false; });
+
+            if (reduceMotionQuery.addEventListener) {
+                reduceMotionQuery.addEventListener('change', start);
+            }
+
+            start();
+        })();
 
         // ── Text Decode Effect ──────────────────────────────────────
         const scrambleChars = '01アイウエオ!@#$%カキクケコ10サシスセソ';
