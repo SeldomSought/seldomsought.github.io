@@ -23,7 +23,7 @@
     <meta name="twitter:image" content="https://img1.wsimg.com/isteam/ip/1ccf137f-e768-42fa-ac89-15fa5230f59d/b52a34679636d532da8d08a54fc92f55.jpg"/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -32,43 +32,108 @@
         }
 
         :root {
-            --ink: #1c2a36;
-            --ink-soft: #33495c;
-            --ink-muted: #4d6478;
+            --ink: #16222c;
+            --ink-soft: #2c4257;
+            --ink-muted: #4a6278;
             --frost: #cfe1ee;
-            --frost-mid: #82abc9;
-            --frost-deep: #3d6a8c;
+            --frost-mid: #7fa9cb;
+            --frost-deep: #33638a;
+            --lavender: #9c93c9;
+            --font-display: 'Instrument Serif', 'Times New Roman', serif;
+            --font-statement: 'Instrument Sans', 'Share Tech Mono', sans-serif;
+            --font-mono: 'Share Tech Mono', ui-monospace, monospace;
         }
 
         body {
-            font-family: 'Share Tech Mono', monospace;
+            font-family: var(--font-mono);
             color: var(--ink);
             background:
-                radial-gradient(ellipse 70% 55% at 50% 16%, rgba(255,255,255,0.85), rgba(255,255,255,0) 62%),
-                linear-gradient(160deg, #fdfeff 0%, #f6fafd 45%, #eaf3fa 100%);
+                radial-gradient(circle at 16% 18%, rgba(160, 210, 255, 0.30), transparent 42%),
+                radial-gradient(circle at 84% 12%, rgba(196, 182, 255, 0.20), transparent 40%),
+                radial-gradient(circle at 80% 86%, rgba(150, 220, 240, 0.24), transparent 46%),
+                radial-gradient(circle at 10% 90%, rgba(180, 200, 255, 0.14), transparent 40%),
+                linear-gradient(155deg, #fbfdff 0%, #eaf5ff 32%, #f4f0ff 62%, #e6f2f8 100%);
             line-height: 1.6;
             overflow-x: hidden;
         }
 
-        /* Digital Snow Canvas */
-        #matrixCanvas {
+        /* Edge framing — the outer field carries slightly more cyan/lavender
+           tone than the center, so the composition frames itself */
+        .edge-tint {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            background: radial-gradient(ellipse 75% 70% at 50% 45%, transparent 55%, rgba(140, 175, 215, 0.10) 100%);
+        }
+
+        /* Microtexture — fine turbulence grain over the whole viewport.
+           Invisible unless you go looking for it. */
+        .grain {
+            position: fixed;
+            inset: 0;
+            z-index: 4;
+            pointer-events: none;
+            opacity: 0.03;
+            mix-blend-mode: overlay;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+            background-size: 160px 160px;
+        }
+
+        /* Digital Snow Canvas — back layer sits behind the hero content,
+           front layer (sparse, larger accents) sits above it */
+        #matrixCanvas, #matrixCanvasFront {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: 0;
             pointer-events: none;
         }
+        #matrixCanvas { z-index: 0; }
+        #matrixCanvasFront { z-index: 3; }
 
-        /* Diffused daylight behind the hero content, keeps the snowfield from
-           reading as flat and gives the headline a soft place to sit */
+        /* Diffused winter daylight behind the hero content — luminous at the
+           core, cooling toward the edges, plus a faint bottom haze */
         .hero-glow {
             position: absolute;
             inset: 0;
             z-index: 0;
             pointer-events: none;
-            background: radial-gradient(ellipse 58% 48% at 50% 45%, rgba(255,255,255,0.55), rgba(255,255,255,0) 70%);
+            background:
+                radial-gradient(ellipse 46% 38% at 50% 42%, rgba(255,255,255,0.62), rgba(235,245,252,0.28) 55%, transparent 72%),
+                linear-gradient(to bottom, transparent 68%, rgba(170, 210, 235, 0.10) 100%);
+        }
+
+        /* One strange microdetail — a quiet status marker, easy to miss */
+        .sys-marker {
+            position: absolute;
+            left: clamp(1rem, 3vw, 2rem);
+            bottom: clamp(1rem, 3vw, 1.75rem);
+            z-index: 2;
+            font-family: var(--font-mono);
+            font-size: 0.68rem;
+            letter-spacing: 0.14em;
+            color: var(--frost-deep);
+            opacity: 0.4;
+            pointer-events: none;
+            user-select: none;
+        }
+        .sys-marker .sys-dot {
+            display: inline-block;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: var(--frost-deep);
+            margin-right: 0.5em;
+            animation: sysBlink 2.6s ease-in-out infinite;
+        }
+        @keyframes sysBlink { 0%, 100% { opacity: 0.25; } 50% { opacity: 0.9; } }
+        @media (prefers-reduced-motion: reduce) {
+            .sys-marker .sys-dot { animation: none; }
+        }
+        @media (max-width: 768px) {
+            .sys-marker { display: none; }
         }
 
         /* Hero */
@@ -89,42 +154,82 @@
             z-index: 1;
         }
 
+        /* Display type — the title is set, not typed: two lines with
+           deliberate optical offset and differing weight of presence */
         h1 {
-            font-size: var(--fs-h1);
-            margin-bottom: 1.5rem;
-            color: var(--ink);
-            text-shadow: 0 0 24px rgba(130, 171, 201, 0.3), 0 0 2px rgba(61, 106, 140, 0.15);
-            letter-spacing: 6px;
-            text-transform: uppercase;
+            margin: 0 0 1.1rem;
+            font-family: var(--font-display);
             font-weight: 400;
+            font-style: normal;
+            line-height: 0.92;
+            color: var(--ink);
+            text-transform: none;
+            letter-spacing: 0;
         }
 
-        h1::after {
-            content: '';
+        h1 .line {
             display: block;
-            width: 120px;
+        }
+
+        h1 .line-1 {
+            font-size: var(--fs-h1);
+            letter-spacing: 0.01em;
+            color: var(--ink-soft);
+            text-shadow: -1px 0 rgba(130, 210, 255, 0.14), 1px 0 rgba(180, 150, 255, 0.10);
+        }
+
+        h1 .line-2 {
+            font-size: calc(var(--fs-h1) * 1.18);
+            font-style: italic;
+            margin-left: 0.06em;
+            text-shadow: -1px 0 rgba(130, 210, 255, 0.16), 1px 0 rgba(180, 150, 255, 0.11), 0 0 30px rgba(130, 171, 201, 0.22);
+        }
+
+        /* Decorative rule — asymmetric hairline fading outward from a
+           single mark, replacing the generic centered underline */
+        .hero-rule {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.85rem;
+            margin: 0 auto 1.6rem;
+            width: min(280px, 70%);
+        }
+        .hero-rule span {
+            flex: 1;
             height: 1px;
-            background: var(--frost-mid);
-            box-shadow: 0 0 10px rgba(130, 171, 201, 0.4), 0 0 20px rgba(130, 171, 201, 0.2);
-            margin: 1.2rem auto 0;
+            background: linear-gradient(90deg, transparent, var(--frost-mid));
+        }
+        .hero-rule span:last-child {
+            background: linear-gradient(90deg, var(--frost-mid), transparent);
+        }
+        .hero-rule i {
+            font-style: normal;
+            font-size: 0.7rem;
+            color: var(--frost-deep);
+            opacity: 0.55;
+            transform: translateY(-0.5px);
         }
 
         .tagline {
+            font-family: var(--font-statement);
+            font-weight: 500;
             font-size: var(--fs-body-lg);
             color: var(--ink-soft);
-            margin-bottom: 2.5rem;
-            letter-spacing: 2px;
-            text-shadow: 0 0 12px rgba(130, 171, 201, 0.18);
+            margin-bottom: 2.25rem;
+            letter-spacing: 0.01em;
+            line-height: 1.35;
         }
 
         .hero .description {
-            font-size: var(--fs-body);
+            font-family: var(--font-mono);
+            font-size: var(--fs-small);
             line-height: var(--lh-copy);
-            margin-bottom: 3rem;
+            margin: 0 auto 3rem;
             color: var(--ink-muted);
-            max-width: min(680px, 90vw);
-            margin-left: auto;
-            margin-right: auto;
+            opacity: 0.85;
+            max-width: min(620px, 88vw);
+            letter-spacing: 0.01em;
         }
 
         .buttons {
@@ -137,39 +242,42 @@
         .btn {
             padding: 0.9rem 2.2rem;
             text-decoration: none;
-            font-family: 'Share Tech Mono', monospace;
+            font-family: var(--font-mono);
             font-size: 0.95rem;
-            letter-spacing: 2px;
+            font-weight: 400;
+            letter-spacing: 0.14em;
             text-transform: uppercase;
-            transition: all 0.3s;
+            transition: letter-spacing 150ms ease, background 150ms ease, border-color 150ms ease, transform 150ms ease, color 150ms ease;
             position: relative;
-            overflow: hidden;
         }
 
         .btn-primary {
-            background: rgba(255, 255, 255, 0.4);
+            background: rgba(255, 255, 255, 0.5);
             color: var(--frost-deep);
             border: 1px solid var(--frost-mid);
-            box-shadow: 0 0 10px rgba(130, 171, 201, 0.15), inset 0 0 10px rgba(130, 171, 201, 0.05);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7), inset 0 0 0 1px rgba(255, 255, 255, 0.15);
         }
 
         .btn-primary:hover {
-            background: rgba(207, 225, 238, 0.4);
-            box-shadow: 0 0 20px rgba(130, 171, 201, 0.3), inset 0 0 20px rgba(130, 171, 201, 0.1);
-            text-shadow: 0 0 8px rgba(61, 106, 140, 0.25);
+            background: rgba(224, 238, 248, 0.65);
+            border-color: var(--frost-deep);
+            letter-spacing: 0.17em;
+            transform: translateY(-1px);
         }
 
         .btn-secondary {
             background: transparent;
             color: var(--ink-muted);
-            border: 1px solid var(--frost);
+            border: 1px solid transparent;
+            border-bottom: 1px solid var(--frost);
+            padding-left: 0.4rem;
+            padding-right: 0.4rem;
         }
 
         .btn-secondary:hover {
             color: var(--frost-deep);
-            border-color: var(--frost-mid);
-            box-shadow: 0 0 15px rgba(130, 171, 201, 0.2);
-            text-shadow: 0 0 8px rgba(61, 106, 140, 0.2);
+            border-bottom-color: var(--frost-deep);
+            letter-spacing: 0.17em;
         }
 
         /* Decode animation for text elements */
@@ -214,6 +322,55 @@
             .cursor { animation: none; }
         }
 
+        /* ── Nav bezel — homepage-only override of the shared site header.
+           Moves off pure black toward a machined midnight-navy, since this
+           page's world is icy rather than the other pages' individual
+           aesthetics. Selectors match global.css; source order wins. ── */
+        .site-header {
+            background: linear-gradient(180deg, #0c131a 0%, #141e28 100%);
+            border-bottom: 1px solid rgba(170, 220, 245, 0.18);
+            box-shadow: inset 0 -1px 0 rgba(170, 220, 245, 0.06);
+        }
+        .site-header__brand {
+            font-family: var(--font-mono);
+            letter-spacing: 0.16em;
+            color: #eef6fb;
+        }
+        .site-header__brand:hover { color: #ffffff; }
+        .site-header__nav a {
+            font-family: var(--font-mono);
+            color: rgba(207, 225, 238, 0.5);
+            transition: color 200ms ease, letter-spacing 200ms ease, text-shadow 200ms ease;
+        }
+        .site-header__nav a:hover {
+            color: #dff2ff;
+            letter-spacing: 0.11em;
+            text-shadow: 0 0 10px rgba(140, 205, 240, 0.35);
+        }
+        .site-header__nav a[aria-current="page"] {
+            color: #cdeeff;
+            text-shadow: 0 0 8px rgba(140, 205, 240, 0.3);
+        }
+        .site-header__nav a[aria-current="page"]::after {
+            background: var(--frost-mid);
+            opacity: 0.8;
+        }
+        .site-header__toggle {
+            border-color: rgba(170, 220, 245, 0.25);
+            color: #eef6fb;
+        }
+        .site-header__toggle:hover { border-color: rgba(170, 220, 245, 0.5); }
+        .site-header__mobile {
+            background: rgba(12, 19, 26, 0.97);
+            border-bottom: 1px solid rgba(170, 220, 245, 0.18);
+        }
+        .site-header__mobile a {
+            font-family: var(--font-mono);
+            color: rgba(207, 225, 238, 0.55);
+        }
+        .site-header__mobile a:hover,
+        .site-header__mobile a[aria-current="page"] { color: #dff2ff; }
+
         /* Footer */
         footer {
             background: rgba(255, 255, 255, 0.55);
@@ -234,12 +391,13 @@
         }
 
         .footer-section h3 {
-            font-size: clamp(1.5rem, 2vw, 2rem);
+            font-family: var(--font-display);
+            font-size: clamp(1.7rem, 2.2vw, 2.3rem);
             margin-bottom: 1.3rem;
             color: var(--ink);
             text-shadow: 0 0 8px rgba(130, 171, 201, 0.25);
-            letter-spacing: 2px;
-            text-transform: uppercase;
+            letter-spacing: 0.02em;
+            text-transform: none;
             font-weight: 400;
         }
 
@@ -291,8 +449,8 @@
 
         /* Mobile */
         @media (max-width: 768px) {
-            h1 {
-                letter-spacing: 4px;
+            h1 .line-2 {
+                margin-left: 0.02em;
             }
 
             .tagline {
@@ -316,34 +474,40 @@
                 padding: calc(var(--site-header-height) + 4.5rem) 3rem 5rem;
             }
             .hero-content {
-                max-width: 1050px;
+                max-width: 1100px;
             }
             h1 {
-                font-size: var(--fs-display);
-                letter-spacing: 10px;
+                margin-bottom: 1.6rem;
+            }
+            h1 .line-1 {
+                font-size: clamp(3.4rem, 6.2vw, 6.6rem);
+            }
+            h1 .line-2 {
+                font-size: clamp(4.4rem, 8.4vw, 9.6rem);
+                margin-left: 0.09em;
+            }
+            .hero-rule {
+                width: min(340px, 60%);
                 margin-bottom: 2rem;
             }
-            h1::after {
-                width: 200px;
-            }
             .tagline {
-                font-size: clamp(1.5rem, 2.3vw, 2.5rem);
-                margin-bottom: 3rem;
+                font-size: clamp(1.7rem, 2.5vw, 2.75rem);
+                margin-bottom: 2.75rem;
             }
             .hero .description {
-                font-size: clamp(1.2rem, 1.7vw, 1.75rem);
-                max-width: 820px;
+                font-size: clamp(1rem, 1.05vw, 1.2rem);
+                max-width: 720px;
                 margin-bottom: 4rem;
             }
             .btn {
-                font-size: clamp(1.15rem, 1.5vw, 1.5rem);
+                font-size: clamp(1rem, 1.1vw, 1.2rem);
                 padding: 1.1rem 2rem;
             }
             .buttons {
                 gap: 2.5rem;
             }
             /* ── Footer ── */
-            .footer-section h3 { font-size: clamp(1.6rem, 2vw, 2.2rem); }
+            .footer-section h3 { font-size: clamp(1.8rem, 2.3vw, 2.5rem); }
             .footer-links a    { font-size: clamp(1.2rem, 1.5vw, 1.5rem); }
             .footer-section p  { font-size: var(--fs-body); }
             footer             { padding: 5rem 2.5rem 3rem; }
@@ -351,7 +515,10 @@
     </style>
 </head>
 <body>
+    <div class="edge-tint"></div>
     <canvas id="matrixCanvas"></canvas>
+    <canvas id="matrixCanvasFront"></canvas>
+    <div class="grain"></div>
 
     <header class="site-header" id="siteHeader">
       <div class="site-header__inner">
@@ -383,8 +550,10 @@
 
     <section class="hero">
         <div class="hero-glow"></div>
+        <span class="sys-marker" aria-hidden="true"><span class="sys-dot"></span><span id="sysClock">SYS · 00:00:00</span></span>
         <div class="hero-content">
-            <h1 class="decode-text" data-decode-delay="500" data-decode-speed="40">Seldom Sought</h1>
+            <h1 class="decode-text" data-decode-delay="500" data-decode-speed="40"><span class="line line-1">Seldom</span><span class="line line-2">Sought</span></h1>
+            <div class="hero-rule" aria-hidden="true"><span></span><i>✦</i><span></span></div>
             <p class="tagline decode-text" data-decode-delay="2000" data-decode-speed="30">Marketing for people allergic to blending in.</p>
             <p class="description decode-text" data-decode-delay="3800" data-decode-speed="15">We build the way you look, sharpen how you sound, and put both in front of people who'll actually care. SEO, AEO, guerrilla campaigns, copywriting, email, SMS — strategy and the actual doing, under one roof.</p>
             <div class="buttons decode-text" data-decode-delay="7000" data-decode-speed="35">
@@ -428,41 +597,81 @@
 
     <script>
         // ── Digital Snow (Matrix rain, frozen) ─────────────────────
-        // Descending glyphs keep the vertical-column DNA of the original
-        // Matrix rain, but the palette, cast of characters, and per-particle
-        // lifecycle (fade / early termination / drift) are new. Single canvas,
-        // no DOM nodes, no allocations in the steady-state frame loop.
+        // Two canvases: a back layer (bg/mid stream columns, sits behind
+        // the hero) and a sparse front layer (larger foreground accents,
+        // sits above it) for real depth-of-field. Streams keep the Matrix
+        // column DNA — several glyphs advancing together — rather than
+        // fully independent floating characters.
         (function () {
-            const canvas = document.getElementById('matrixCanvas');
-            const ctx = canvas.getContext('2d');
+            const backCanvas = document.getElementById('matrixCanvas');
+            const backCtx = backCanvas.getContext('2d');
+            const frontCanvas = document.getElementById('matrixCanvasFront');
+            const frontCtx = frontCanvas.getContext('2d');
             const reduceMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
 
-            const LATIN = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            const LETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
             const KATAKANA = 'アイウエオカキクケコサシスセソ';
-            const SNOWFLAKES = ['❄', '❅', '❆', '✦', '*'];
-            const SYMBOLS = ['+', '-', '/', '=', '~', '%', '<', '>', '#'];
+            const NUMBERS = '0123456789';
+            const PUNCT = ['+', '=', '/', '\\', ':', ';', '.', '-', '~', '<', '>', '#', '%'];
+            const SNOWSTAR = ['❄', '❅', '❆', '✦', '✧', '⋆', '*'];
             const SMILEY = ':)';
 
-            // Ice spectrum, near-white to a rare legible arctic blue. Index 0-1
-            // are the common faint tones; index 4 is deliberately rare.
+            // Ice spectrum plus a rare lavender accent (keeps the field from
+            // reading as monochrome cyan) and a near-white glint, reserved
+            // for the occasional bright highlight.
             const ICE = [
-                [214, 232, 246],
-                [182, 213, 235],
-                [147, 187, 219],
-                [104, 152, 192],
-                [61, 106, 140],
+                [222, 236, 248],
+                [188, 217, 238],
+                [150, 190, 222],
+                [123, 168, 205],
+                [156, 150, 205],
+                [255, 255, 255],
             ];
+            function pickColorIdx() {
+                const r = Math.random();
+                if (r < 0.94) return Math.floor(Math.random() * 4);
+                if (r < 0.985) return 4;
+                return 5;
+            }
+
+            function letterChar() {
+                return Math.random() < 0.9
+                    ? LETTERS[Math.floor(Math.random() * LETTERS.length)]
+                    : KATAKANA[Math.floor(Math.random() * KATAKANA.length)];
+            }
+
+            function pickGlyph() {
+                const r = Math.random();
+                if (r < 0.45) return { char: letterChar(), type: 'letter' };
+                if (r < 0.65) return { char: NUMBERS[Math.floor(Math.random() * NUMBERS.length)], type: 'number' };
+                if (r < 0.77) return { char: PUNCT[Math.floor(Math.random() * PUNCT.length)], type: 'punct' };
+                if (r < 0.985) return { char: SNOWSTAR[Math.floor(Math.random() * SNOWSTAR.length)], type: 'snow' };
+                return { char: SMILEY, type: 'smiley' };
+            }
+
+            // Three visibility tiers so some glyphs read clearly while
+            // others barely register — that contrast is what reads as depth.
+            const ALPHA_TIERS = {
+                ghost:  { range: [0.16, 0.26], share: 0.25 },
+                normal: { range: [0.30, 0.50], share: 0.48 },
+                accent: { range: [0.54, 0.78], share: 0.27 },
+            };
+            function pickAlphaTier() {
+                const r = Math.random();
+                if (r < ALPHA_TIERS.ghost.share) return 'ghost';
+                if (r < ALPHA_TIERS.ghost.share + ALPHA_TIERS.normal.share) return 'normal';
+                return 'accent';
+            }
 
             const LAYERS = {
-                bg:  { share: 0.40, size: [10, 12], speed: [0.15, 0.30], alpha: [0.08, 0.20], blur: [2, 4] },
-                mid: { share: 0.45, size: [13, 16], speed: [0.45, 0.85], alpha: [0.35, 0.62], blur: [0, 0] },
-                fg:  { share: 0.15, size: [18, 24], speed: [0.20, 0.38], alpha: [0.55, 0.85], blur: [0, 2] },
+                bg:  { share: 0.45, size: [11, 13], speed: [0.30, 0.55] },
+                mid: { share: 0.55, size: [15, 19], speed: [0.90, 1.70] },
             };
 
             const TIERS = {
-                desktop: { maxWidth: Infinity, count: 230, blur: true,  interact: true,  dpr: Math.min(window.devicePixelRatio || 1, 2) },
-                tablet:  { maxWidth: 1024,      count: 150, blur: true,  interact: false, dpr: Math.min(window.devicePixelRatio || 1, 1.5) },
-                mobile:  { maxWidth: 640,       count: 75,  blur: false, interact: false, dpr: 1 },
+                desktop: { maxWidth: Infinity, streams: 78, front: 16, blur: true,  interact: true,  dpr: Math.min(window.devicePixelRatio || 1, 2) },
+                tablet:  { maxWidth: 1024,      streams: 44, front: 9,  blur: true,  interact: false, dpr: Math.min(window.devicePixelRatio || 1, 1.5) },
+                mobile:  { maxWidth: 640,       streams: 18, front: 4,  blur: false, interact: false, dpr: 1 },
             };
 
             function currentTierName() {
@@ -474,102 +683,113 @@
 
             function rand(range) { return range[0] + Math.random() * (range[1] - range[0]); }
 
-            // Katakana appears as a rare accent within the alnum pool — a nod to
-            // the original Matrix glyphs without reading as dominant or foreign.
-            function alnumChar() {
-                return Math.random() < 0.88
-                    ? LATIN[Math.floor(Math.random() * LATIN.length)]
-                    : KATAKANA[Math.floor(Math.random() * KATAKANA.length)];
-            }
-
-            function pickGlyph() {
+            function pickStreamLength() {
                 const r = Math.random();
-                if (r < 0.58) return { char: alnumChar(), type: 'alnum' };
-                if (r < 0.87) return { char: SNOWFLAKES[Math.floor(Math.random() * SNOWFLAKES.length)], type: 'snow' };
-                if (r < 0.992) return { char: SYMBOLS[Math.floor(Math.random() * SYMBOLS.length)], type: 'symbol' };
-                return { char: SMILEY, type: 'smiley' };
-            }
-
-            function pickLayerName() {
-                const r = Math.random();
-                if (r < LAYERS.bg.share) return 'bg';
-                if (r < LAYERS.bg.share + LAYERS.mid.share) return 'mid';
-                return 'fg';
+                if (r < 0.50) return 2 + Math.floor(Math.random() * 3);
+                if (r < 0.85) return 4 + Math.floor(Math.random() * 4);
+                return 7 + Math.floor(Math.random() * 3);
             }
 
             let width = 0, height = 0, tierName = 'desktop', tier = TIERS.desktop;
-            let particles = [];
+            let streams = [];
+            let fronts = [];
             let mouseX = -9999, mouseY = -9999, mouseActive = false;
             let rafId = null;
             let resizeTimer = null;
+            let paused = false;
 
-            // Mutates a particle in place so recycling never allocates.
-            function resetParticle(p, spawnAtTop) {
-                const layerName = pickLayerName();
+            function makeSlot() {
                 const glyph = pickGlyph();
+                return { char: glyph.char, type: glyph.type, colorIdx: pickColorIdx() };
+            }
+
+            // Mutates a stream in place so recycling never allocates.
+            function resetStream(s, spawnAtTop) {
+                const layerName = Math.random() < LAYERS.bg.share ? 'bg' : 'mid';
                 const L = LAYERS[layerName];
+                const len = pickStreamLength();
 
-                p.layer = layerName;
-                p.type = glyph.type;
-                p.char = glyph.char;
-                p.x = Math.random() * width;
-                p.y = spawnAtTop ? -rand([20, 300]) : Math.random() * height;
-                p.size = Math.round(rand(L.size));
-                p.speed = rand(L.speed);
-                p.baseAlpha = rand(L.alpha);
-                p.blur = rand(L.blur);
-                p.colorIdx = Math.min(ICE.length - 1, Math.floor(Math.random() * Math.random() * ICE.length));
-                p.swayAmp = rand([1.5, 6]);
-                p.swayFreq = rand([0.01, 0.025]);
-                p.swayPhase = Math.random() * Math.PI * 2;
-                p.flicker = glyph.type === 'alnum' || glyph.type === 'symbol';
-                p.rotation = 0;
-                p.rotSpeed = (layerName === 'fg' && glyph.type === 'snow') ? rand([-0.0006, 0.0006]) : 0;
-                p.pushX = 0;
-                p.pushY = 0;
-
-                // The smiley is the signature Easter egg — never bury it in the
-                // faint background layer where it would go unnoticed forever.
-                if (glyph.type === 'smiley' && layerName === 'bg') {
-                    const promoted = LAYERS[Math.random() < 0.5 ? 'mid' : 'fg'];
-                    p.size = Math.round(rand(promoted.size));
-                    p.baseAlpha = rand(promoted.alpha) * 1.1;
-                    p.blur = rand(promoted.blur);
-                }
+                s.layer = layerName;
+                s.x = Math.random() * width;
+                s.headY = spawnAtTop ? -rand([20, 200]) : Math.random() * height;
+                s.size = Math.round(rand(L.size));
+                s.spacing = s.size * 1.15;
+                s.speed = rand(L.speed);
+                s.tier = pickAlphaTier();
+                s.alphaBase = rand(ALPHA_TIERS[s.tier].range);
+                s.glow = Math.random() < 0.07;
+                s.swayAmp = rand([1, 4]);
+                s.swayFreq = rand([0.01, 0.022]);
+                s.swayPhase = Math.random() * Math.PI * 2;
+                s.pushX = 0;
+                s.pushY = 0;
+                s.length = len;
+                s.slots = (s.slots && s.slots.length >= len) ? s.slots : new Array(len);
+                for (let i = 0; i < len; i++) s.slots[i] = makeSlot();
 
                 const earlyTerminate = Math.random() < 0.15;
                 if (earlyTerminate) {
-                    p.fadeStart = height * rand([0.2, 0.55]);
-                    p.fadeEnd = p.fadeStart + rand([30, 90]);
+                    s.fadeStart = height * rand([0.2, 0.55]);
+                    s.fadeEnd = s.fadeStart + rand([40, 110]);
                 } else {
-                    p.fadeStart = height * rand([0.7, 0.95]);
-                    p.fadeEnd = height + rand([80, 220]);
+                    s.fadeStart = height * rand([0.72, 0.95]);
+                    s.fadeEnd = height + rand([80, 220]);
                 }
             }
 
-            function rebuildParticles() {
+            function resetFront(f, spawnAtTop) {
+                const glyph = pickGlyph();
+                f.char = glyph.char;
+                f.type = glyph.type;
+                f.colorIdx = pickColorIdx();
+                f.x = Math.random() * width;
+                f.y = spawnAtTop ? -rand([20, 200]) : Math.random() * height;
+                f.size = Math.round(rand([24, 34]));
+                f.speed = rand([0.35, 0.7]);
+                f.alpha = rand([0.20, 0.42]);
+                f.blur = (tier.blur && Math.random() < 0.6) ? rand([2, 5]) : 0;
+                f.glow = Math.random() < 0.35;
+                f.rotation = 0;
+                f.rotSpeed = glyph.type === 'snow' ? rand([-0.0007, 0.0007]) : 0;
+                f.pushX = 0;
+                f.pushY = 0;
+                f.fadeEnd = height + rand([100, 260]);
+            }
+
+            function rebuildStreams() {
                 tierName = currentTierName();
                 tier = TIERS[tierName];
-                particles = new Array(tier.count);
-                for (let i = 0; i < tier.count; i++) {
-                    const p = {};
-                    resetParticle(p, false);
-                    particles[i] = p;
+                streams = new Array(tier.streams);
+                for (let i = 0; i < tier.streams; i++) {
+                    const s = {};
+                    resetStream(s, false);
+                    streams[i] = s;
                 }
+                fronts = new Array(tier.front);
+                for (let i = 0; i < tier.front; i++) {
+                    const f = {};
+                    resetFront(f, false);
+                    fronts[i] = f;
+                }
+            }
+
+            function resizeCanvas(canvas, ctx, dpr) {
+                canvas.width = Math.round(width * dpr);
+                canvas.height = Math.round(height * dpr);
+                canvas.style.width = width + 'px';
+                canvas.style.height = height + 'px';
+                ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
             }
 
             function resize() {
                 width = window.innerWidth;
                 height = window.innerHeight;
                 const dpr = TIERS[currentTierName()].dpr;
-                canvas.width = Math.round(width * dpr);
-                canvas.height = Math.round(height * dpr);
-                canvas.style.width = width + 'px';
-                canvas.style.height = height + 'px';
-                ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+                resizeCanvas(backCanvas, backCtx, dpr);
+                resizeCanvas(frontCanvas, frontCtx, dpr);
 
-                if (currentTierName() !== tierName || particles.length === 0) {
-                    rebuildParticles();
+                if (currentTierName() !== tierName || streams.length === 0) {
+                    rebuildStreams();
                 }
             }
 
@@ -579,102 +799,143 @@
                 const nx = (x - width / 2) / (width * 0.42);
                 const ny = (y - height / 2) / (height * 0.30);
                 const d = Math.sqrt(nx * nx + ny * ny);
-                return 1 - Math.max(0, 1 - d) * 0.5;
+                return 1 - Math.max(0, 1 - d) * 0.45;
             }
 
-            function fadeMul(p) {
-                if (p.y < p.fadeStart) return 1;
-                if (p.y >= p.fadeEnd) return 0;
-                return 1 - (p.y - p.fadeStart) / (p.fadeEnd - p.fadeStart);
+            function fadeMul(y, fadeStart, fadeEnd) {
+                if (y < fadeStart) return 1;
+                if (y >= fadeEnd) return 0;
+                return 1 - (y - fadeStart) / (fadeEnd - fadeStart);
             }
 
-            function drawParticle(p) {
-                const alpha = p.baseAlpha * fadeMul(p) * centerFalloff(p.x, p.y);
+            function drawStream(s) {
+                const overallFade = fadeMul(s.headY, s.fadeStart, s.fadeEnd);
+                if (overallFade <= 0.012) return;
+                const x = s.x + s.pushX;
+
+                backCtx.font = s.size + 'px "Share Tech Mono", monospace';
+                for (let i = 0; i < s.length; i++) {
+                    const y = s.headY - i * s.spacing + s.pushY;
+                    if (y < -40 || y > height + 40) continue;
+                    const slot = s.slots[i];
+                    const trail = Math.max(0.35, 1 - i * 0.07);
+                    const alpha = s.alphaBase * overallFade * trail * centerFalloff(x, y);
+                    if (alpha <= 0.012) continue;
+                    const isSmiley = slot.type === 'smiley';
+                    const [r, g, b] = isSmiley ? ICE[3] : ICE[slot.colorIdx];
+                    const a = isSmiley ? Math.min(0.85, alpha * 1.3) : alpha;
+
+                    if (s.glow && tier.blur && i < 2) {
+                        backCtx.shadowColor = `rgba(120, 205, 255, ${Math.min(0.4, a)})`;
+                        backCtx.shadowBlur = 8;
+                    } else {
+                        backCtx.shadowBlur = 0;
+                    }
+                    backCtx.fillStyle = `rgba(${r},${g},${b},${a})`;
+                    backCtx.fillText(slot.char, x, y);
+                }
+            }
+
+            function drawFront(f) {
+                const alpha = f.alpha * fadeMul(f.y, height * 0.85, f.fadeEnd);
                 if (alpha <= 0.012) return;
+                const x = f.x + f.pushX;
+                const y = f.y + f.pushY;
+                const [r, g, b] = ICE[f.colorIdx];
 
-                const x = p.x + p.pushX;
-                const y = p.y + p.pushY;
-                const [r, g, b] = ICE[p.colorIdx];
-
-                ctx.font = p.size + 'px "Share Tech Mono", monospace';
-
-                if (p.blur > 0 && tier.blur) {
-                    ctx.shadowColor = `rgba(${r},${g},${b},${Math.min(0.5, alpha)})`;
-                    ctx.shadowBlur = p.blur;
+                frontCtx.font = f.size + 'px "Share Tech Mono", monospace';
+                if (f.blur > 0) {
+                    frontCtx.shadowColor = `rgba(${r},${g},${b},${Math.min(0.45, alpha)})`;
+                    frontCtx.shadowBlur = f.blur;
+                } else if (f.glow) {
+                    frontCtx.shadowColor = `rgba(120, 205, 255, ${Math.min(0.35, alpha)})`;
+                    frontCtx.shadowBlur = 10;
                 } else {
-                    ctx.shadowBlur = 0;
+                    frontCtx.shadowBlur = 0;
                 }
+                frontCtx.fillStyle = `rgba(${r},${g},${b},${alpha})`;
 
-                if (p.type === 'smiley') {
-                    const c = ICE[3];
-                    ctx.fillStyle = `rgba(${c[0]},${c[1]},${c[2]},${Math.min(0.85, alpha * 1.12)})`;
+                if (f.rotSpeed !== 0) {
+                    frontCtx.save();
+                    frontCtx.translate(x, y);
+                    frontCtx.rotate(f.rotation);
+                    frontCtx.fillText(f.char, -f.size / 2, f.size / 2);
+                    frontCtx.restore();
                 } else {
-                    ctx.fillStyle = `rgba(${r},${g},${b},${alpha})`;
+                    frontCtx.fillText(f.char, x, y);
                 }
+            }
 
-                if (p.rotSpeed !== 0) {
-                    ctx.save();
-                    ctx.translate(x, y);
-                    ctx.rotate(p.rotation);
-                    ctx.fillText(p.char, -p.size / 2, p.size / 2);
-                    ctx.restore();
-                } else {
-                    ctx.fillText(p.char, x, y);
+            // Air disturbance, not particle physics — a small, spring-eased
+            // nudge shared by every member of the object passed in.
+            function applyMouse(obj, anchorY, radius) {
+                if (!tier.interact || !mouseActive) { obj.pushX *= 0.92; obj.pushY *= 0.92; return; }
+                const dx = obj.x - mouseX;
+                const dy = anchorY - mouseY;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                if (dist < radius && dist > 0.01) {
+                    const force = (1 - dist / radius) * 7;
+                    obj.pushX += (dx / dist) * force * 0.15;
+                    obj.pushY += (dy / dist) * force * 0.15;
                 }
+                obj.pushX *= 0.92;
+                obj.pushY *= 0.92;
             }
 
             function step() {
-                ctx.clearRect(0, 0, width, height);
+                backCtx.clearRect(0, 0, width, height);
+                frontCtx.clearRect(0, 0, width, height);
 
-                for (let i = 0; i < particles.length; i++) {
-                    const p = particles[i];
+                for (let i = 0; i < streams.length; i++) {
+                    const s = streams[i];
+                    s.headY += s.speed;
+                    s.swayPhase += s.swayFreq;
+                    s.x += Math.sin(s.swayPhase) * (s.swayAmp * 0.02);
 
-                    p.y += p.speed;
-                    p.swayPhase += p.swayFreq;
-                    p.x += Math.sin(p.swayPhase) * (p.swayAmp * 0.02);
-                    if (p.rotSpeed !== 0) p.rotation += p.rotSpeed;
-
-                    if (p.flicker && Math.random() < 0.04) {
-                        p.char = p.type === 'alnum'
-                            ? alnumChar()
-                            : SYMBOLS[Math.floor(Math.random() * SYMBOLS.length)];
+                    for (let j = 0; j < s.length; j++) {
+                        const slot = s.slots[j];
+                        if (slot.type === 'letter' && Math.random() < 0.035) slot.char = letterChar();
+                        else if (slot.type === 'number' && Math.random() < 0.035) slot.char = NUMBERS[Math.floor(Math.random() * NUMBERS.length)];
+                        else if (slot.type === 'punct' && Math.random() < 0.035) slot.char = PUNCT[Math.floor(Math.random() * PUNCT.length)];
                     }
 
-                    if (tier.interact && mouseActive) {
-                        const dx = p.x - mouseX;
-                        const dy = p.y - mouseY;
-                        const dist = Math.sqrt(dx * dx + dy * dy);
-                        const radius = 80;
-                        if (dist < radius && dist > 0.01) {
-                            const force = (1 - dist / radius) * 6;
-                            p.pushX += (dx / dist) * force * 0.15;
-                            p.pushY += (dy / dist) * force * 0.15;
-                        }
-                    }
-                    p.pushX *= 0.92;
-                    p.pushY *= 0.92;
+                    applyMouse(s, s.headY, 130);
 
-                    if (p.y > p.fadeEnd || p.x < -40 || p.x > width + 40) {
-                        resetParticle(p, true);
+                    if (s.headY - (s.length - 1) * s.spacing > height + 60 || s.x < -60 || s.x > width + 60) {
+                        resetStream(s, true);
                         continue;
                     }
+                    drawStream(s);
+                }
 
-                    drawParticle(p);
+                for (let i = 0; i < fronts.length; i++) {
+                    const f = fronts[i];
+                    f.y += f.speed;
+                    if (f.rotSpeed !== 0) f.rotation += f.rotSpeed;
+                    applyMouse(f, f.y, 160);
+
+                    if (f.y > f.fadeEnd) {
+                        resetFront(f, true);
+                        continue;
+                    }
+                    drawFront(f);
                 }
 
                 rafId = requestAnimationFrame(step);
             }
 
             function drawStaticFrame() {
-                ctx.clearRect(0, 0, width, height);
-                for (let i = 0; i < particles.length; i++) drawParticle(particles[i]);
+                backCtx.clearRect(0, 0, width, height);
+                frontCtx.clearRect(0, 0, width, height);
+                for (let i = 0; i < streams.length; i++) drawStream(streams[i]);
+                for (let i = 0; i < fronts.length; i++) drawFront(fronts[i]);
             }
 
             function start() {
                 resize();
                 if (reduceMotionQuery.matches) {
                     drawStaticFrame();
-                } else {
+                } else if (!paused) {
                     if (rafId) cancelAnimationFrame(rafId);
                     step();
                 }
@@ -695,6 +956,17 @@
             }, { passive: true });
             window.addEventListener('mouseleave', () => { mouseActive = false; });
 
+            // Don't burn cycles animating an invisible tab.
+            document.addEventListener('visibilitychange', () => {
+                if (document.hidden) {
+                    paused = true;
+                    if (rafId) cancelAnimationFrame(rafId);
+                } else {
+                    paused = false;
+                    if (!reduceMotionQuery.matches) step();
+                }
+            });
+
             if (reduceMotionQuery.addEventListener) {
                 reduceMotionQuery.addEventListener('change', start);
             }
@@ -709,26 +981,22 @@
             const delay = parseInt(el.dataset.decodeDelay) || 0;
             const speed = parseInt(el.dataset.decodeSpeed) || 30;
 
-            // Gather all text nodes and preserve HTML structure
-            const originalHTML = el.innerHTML;
-            const textContent = el.textContent;
-
-            // For elements with child elements (like .buttons), handle differently
-            if (el.children.length > 0 && el.classList.contains('buttons')) {
+            // Elements with child elements (the title's two lines, the
+            // button group) decode each child separately with a cascading
+            // stagger, rather than scrambling flat concatenated text.
+            if (el.children.length > 0) {
                 setTimeout(() => {
                     el.classList.add('revealed');
-                    // Decode each button text separately
-                    Array.from(el.querySelectorAll('.btn')).forEach((btn, idx) => {
-                        decodeSimpleText(btn, btn.textContent, speed, idx * 600);
+                    Array.from(el.children).forEach((child, idx) => {
+                        decodeSimpleText(child, child.textContent, speed, idx * 600);
                     });
                 }, delay);
                 return;
             }
 
-            // For simple text elements
             setTimeout(() => {
                 el.classList.add('revealed');
-                decodeSimpleText(el, textContent, speed, 0);
+                decodeSimpleText(el, el.textContent, speed, 0);
             }, delay);
         }
 
@@ -781,6 +1049,21 @@
             decodeElements.forEach(el => decodeElement(el));
         });
 
+        // ── Status marker — a quiet uptime readout, easy to miss ────
+        (function () {
+            const el = document.getElementById('sysClock');
+            if (!el) return;
+            const bootTime = Date.now();
+            function tick() {
+                const s = Math.floor((Date.now() - bootTime) / 1000);
+                const hh = String(Math.floor(s / 3600)).padStart(2, '0');
+                const mm = String(Math.floor((s % 3600) / 60)).padStart(2, '0');
+                const ss = String(s % 60).padStart(2, '0');
+                el.textContent = `SYS · ${hh}:${mm}:${ss}`;
+            }
+            tick();
+            setInterval(tick, 1000);
+        })();
     </script>
     <script src="assets/js/nav.js"></script>
 </body>
