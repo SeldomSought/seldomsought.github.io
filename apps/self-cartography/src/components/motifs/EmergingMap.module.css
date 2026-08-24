@@ -1,0 +1,99 @@
+.map {
+  display: block;
+  overflow: visible;
+  color: var(--sc-ink-ghost); /* the dot-texture pattern fill reads this via currentColor */
+  /* Fluid, capped at the map's own natural size via the inline max-width
+     EmergingMap.tsx sets from its own `size` prop — matches
+     StrengthQuadrantMap's already-correct pattern, so every hand-rolled
+     SVG in this app scales down consistently on narrow viewports. */
+  width: 100%;
+  height: auto;
+}
+
+.frame line {
+  stroke: var(--sc-ink-ghost);
+  stroke-width: var(--sc-line-hairline);
+}
+
+.bearing {
+  stroke: var(--sc-ink-faint);
+  stroke-width: var(--sc-line-hairline);
+  stroke-dasharray: var(--sc-dash-dashed);
+  opacity: 0.6;
+}
+
+.node {
+  r: 0;
+  fill: var(--sc-ink-faint);
+  opacity: 0;
+  transition:
+    r var(--sc-dur-slow) var(--sc-ease-instrument),
+    opacity var(--sc-dur-slow) var(--sc-ease-instrument),
+    fill var(--sc-dur-slow) var(--sc-ease-instrument);
+}
+.node.visible {
+  r: 2.6;
+  opacity: 1;
+}
+.node.anchor.visible {
+  fill: var(--sc-accent);
+}
+
+.edge {
+  stroke: var(--sc-hairline);
+  stroke-width: var(--sc-line-hairline);
+  opacity: 0;
+  transition: opacity var(--sc-dur-slow) var(--sc-ease-instrument);
+}
+.edge.visible {
+  opacity: 1;
+}
+
+.contour {
+  stroke: var(--sc-hairline-hover);
+  stroke-width: var(--sc-line-hairline);
+  opacity: 0;
+  transition: opacity var(--sc-dur-slow) var(--sc-ease-instrument);
+}
+.contour.visible {
+  opacity: 0.5;
+}
+.contour.hub {
+  stroke: var(--sc-accent-line);
+  fill: var(--sc-accent-dim);
+}
+.contour.hub.visible {
+  opacity: 0.85;
+}
+
+/* the "signature" placement (Synthesis) reads slightly bolder than the
+   ambient "inline" placement (the journey map) — same tokens, no new color */
+.signature .node.visible {
+  r: 3.2;
+}
+.signature .contour.visible {
+  opacity: 0.65;
+}
+.signature .contour.hub.visible {
+  opacity: 1;
+}
+
+/* Only the finished signature map responds to hover — a page catching
+   light when tilted, not a UI control. Same properties/tokens as the
+   reveal transitions above, but hovering in gets --sc-dur-fast rather than
+   inheriting --sc-dur-slow (1400ms) from .node/.edge/.contour's own base
+   rule — at that speed the brighten visibly lagged the cursor rather than
+   reading as responsive. Un-hovering settles back at the slower pace,
+   which suits the "catching light" metaphor fine. */
+.signature:hover .edge.visible {
+  opacity: 0.85;
+  transition-duration: var(--sc-dur-fast);
+}
+.signature:hover .contour.visible {
+  opacity: 0.75;
+  transition-duration: var(--sc-dur-fast);
+}
+.signature:hover .node.visible {
+  fill: var(--sc-ink);
+  transition-duration: var(--sc-dur-fast);
+}

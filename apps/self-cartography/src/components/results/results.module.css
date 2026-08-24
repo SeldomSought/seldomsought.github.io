@@ -1,0 +1,1462 @@
+.page {
+  max-width: var(--sc-content-wide);
+  margin: 0 auto;
+  padding: var(--sc-space-5) var(--sc-space-3) var(--sc-space-5);
+}
+
+.reportHeader {
+  margin-bottom: var(--sc-space-5);
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--sc-space-4);
+  flex-wrap: wrap-reverse;
+}
+
+.reportHeaderText {
+  flex: 1;
+  min-width: 260px;
+}
+
+.signatureWrap {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sc-space-1);
+}
+
+.signatureCoordinate {
+  font-family: var(--sc-font-mono);
+  font-size: var(--sc-fs-micro);
+  letter-spacing: 0.06em;
+  color: var(--sc-ink-faint);
+  opacity: 0.55;
+  text-align: center;
+}
+
+/* Below --sc-bp-sm, 260px (.reportHeaderText's own min-width) plus 140px
+   (the signature map) plus the row gap always exceeds the viewport, so
+   flex-wrap: wrap-reverse was already forced to wrap on every phone —
+   just via wrap-reverse's own ordering rules (map first, left-aligned,
+   title below it) rather than a deliberate choice. This makes the same
+   outcome — title leads, map follows, small and centered — intentional
+   instead of incidental. */
+@media (max-width: 559px) {
+  .reportHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    flex-wrap: nowrap;
+    gap: var(--sc-space-3);
+  }
+  .reportHeaderText {
+    min-width: 0;
+    width: 100%;
+  }
+  .signatureWrap {
+    align-self: center;
+  }
+}
+
+.reportTitle {
+  font-family: var(--sc-font-serif);
+  font-size: var(--sc-fs-display);
+  color: var(--sc-ink);
+  line-height: var(--sc-lh-tight);
+  margin-bottom: var(--sc-space-3);
+}
+
+.reportDate {
+  font-size: var(--sc-fs-micro);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--sc-ink-faint);
+}
+
+/* ── in-page section jump-menu — reachable from anywhere in the 28-section
+   scroll below, so "Career Fit" (or anything else) is never more than two
+   taps away regardless of where a reader currently is ── */
+.resultsNav {
+  position: sticky;
+  top: 0.75rem;
+  z-index: 40;
+  margin-bottom: var(--sc-space-4);
+  display: flex;
+  justify-content: flex-end;
+}
+
+.resultsNavTrigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  background: var(--sc-bg-raised);
+  border: var(--sc-line-hairline) solid var(--sc-hairline);
+  padding: 0.5rem 0.85rem;
+  font-family: var(--sc-font-mono);
+  font-size: var(--sc-fs-small);
+  letter-spacing: 0.04em;
+  color: var(--sc-ink-dim);
+  cursor: pointer;
+  transition: color var(--sc-dur-fast) var(--sc-ease-standard), border-color var(--sc-dur-fast) var(--sc-ease-standard);
+}
+.resultsNavTrigger:hover,
+.resultsNavTrigger[aria-expanded='true'] {
+  color: var(--sc-accent);
+  border-color: var(--sc-border-hover);
+}
+
+.resultsNavCaret {
+  font-size: 0.65em;
+  color: var(--sc-ink-faint);
+}
+
+.resultsNavPanel {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  right: 0;
+  z-index: 45;
+  width: max-content;
+  max-width: min(320px, calc(100vw - 2rem));
+  max-height: min(70vh, 520px);
+  overflow-y: auto;
+  background: var(--sc-bg-raised);
+  border: var(--sc-line-hairline) solid var(--sc-hairline);
+  box-shadow: var(--sc-shadow-lift);
+  padding: 0.35rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.resultsNavRow {
+  padding: 0.5rem 0.7rem;
+  font-family: var(--sc-font-mono);
+  font-size: var(--sc-fs-small);
+  color: var(--sc-ink);
+  text-decoration: none;
+  transition: background var(--sc-dur-fast) var(--sc-ease-standard);
+}
+.resultsNavRow:hover {
+  background: var(--sc-bg-raised-2);
+}
+
+/* Same viewport-overflow risk as PrivacyDisclosure's panel, same fix:
+   viewport-relative instead of trigger-relative once the container is
+   narrow enough that a trigger-relative panel isn't reliably on-screen. */
+@media (max-width: 559px) {
+  .resultsNavPanel {
+    position: fixed;
+    top: 4.5rem;
+    left: var(--sc-space-3);
+    right: var(--sc-space-3);
+    width: auto;
+    max-width: none;
+  }
+}
+
+.section {
+  margin-bottom: var(--sc-space-5);
+  padding-top: var(--sc-space-4);
+}
+
+.sectionLabel {
+  font-size: var(--sc-fs-label);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--sc-accent);
+  margin-bottom: var(--sc-space-1);
+}
+
+.sectionTitle {
+  font-family: var(--sc-font-serif);
+  font-size: var(--sc-fs-h2);
+  color: var(--sc-ink);
+  margin-bottom: var(--sc-space-3);
+}
+
+.sectionRule {
+  max-width: 180px;
+  margin-bottom: var(--sc-space-4);
+}
+
+.narrative {
+  font-family: var(--sc-font-serif);
+  font-size: var(--sc-fs-body-lg);
+  line-height: var(--sc-lh-copy);
+  color: var(--sc-ink);
+  max-width: 62ch;
+}
+
+.twoCol {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sc-space-4);
+}
+
+@media (min-width: 760px) { /* --sc-bp-md */
+  .twoCol { grid-template-columns: 1.1fr 0.9fr; }
+}
+
+/* ── continuum grid (small multiples of Continuum.tsx) — the visualization
+   system's primary layout, used across nearly every facet section ── */
+.barGrid2 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sc-space-3) var(--sc-space-4);
+}
+
+@media (min-width: 560px) { /* --sc-bp-sm */
+  .barGrid2 { grid-template-columns: 1fr 1fr; }
+}
+
+/* Reused as a generic small uppercase label outside Continuum too (see
+   StrengthCard's partial-signal note, and the "In Your Own Words" prompts). */
+.barConfidence {
+  font-size: var(--sc-fs-micro);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--sc-ink-faint);
+}
+
+/* ── validity / contradictions ── */
+.flagList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sc-space-2);
+}
+
+.flag {
+  padding: var(--sc-space-2) var(--sc-space-3);
+  border-left: 2px solid var(--sc-hairline-hover);
+  background: var(--sc-bg-raised);
+}
+
+.flag.severe { border-left-color: var(--sc-low); }
+
+.flagLabel {
+  font-size: var(--sc-fs-small);
+  letter-spacing: 0.03em;
+  color: var(--sc-ink);
+  margin-bottom: 0.25rem;
+}
+
+.flagDetail {
+  font-size: var(--sc-fs-small);
+  color: var(--sc-ink-dim);
+  line-height: var(--sc-lh-copy);
+}
+
+.emptyNote {
+  font-size: var(--sc-fs-small);
+  color: var(--sc-ink-faint);
+  font-style: italic;
+}
+
+/* ── career fit ── */
+.careerList {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  background: var(--sc-hairline);
+  border: 1px solid var(--sc-hairline);
+}
+
+.careerCard {
+  background: var(--sc-bg);
+  padding: var(--sc-space-3);
+}
+
+.careerHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--sc-space-2);
+  margin-bottom: 0.3rem;
+}
+
+.careerTitle {
+  font-family: var(--sc-font-serif);
+  font-size: var(--sc-fs-h3);
+  color: var(--sc-ink);
+  margin: 0; /* a real <h3> now (screen-reader heading navigation), not just styled text — reset its default block margin so the layout stays exactly what it was as a span */
+}
+
+.careerFamily {
+  font-size: var(--sc-fs-micro);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--sc-ink-faint);
+  margin-bottom: var(--sc-space-2);
+}
+
+.careerFit {
+  font-family: var(--sc-font-mono);
+  font-size: var(--sc-fs-small);
+  color: var(--sc-accent);
+  white-space: nowrap;
+}
+
+.careerBlurb {
+  font-size: var(--sc-fs-small);
+  color: var(--sc-ink-dim);
+  font-style: italic;
+  margin-bottom: var(--sc-space-2);
+}
+
+.bulletList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.bulletPos, .bulletNeg {
+  font-size: var(--sc-fs-small);
+  line-height: var(--sc-lh-copy);
+  padding-left: 1.1rem;
+  position: relative;
+}
+
+.bulletPos { color: var(--sc-ink-dim); }
+.bulletNeg { color: var(--sc-ink-faint); }
+
+.bulletPos::before { content: '+'; position: absolute; left: 0; color: var(--sc-high); }
+.bulletNeg::before { content: '−'; position: absolute; left: 0; color: var(--sc-low); }
+
+.careerGroupLabel {
+  font-size: var(--sc-fs-label);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--sc-ink-faint);
+  margin: var(--sc-space-4) 0 var(--sc-space-2);
+}
+
+/* ── own words ── */
+.quote {
+  font-family: var(--sc-font-serif);
+  font-style: italic;
+  font-size: var(--sc-fs-body-lg);
+  line-height: var(--sc-lh-copy);
+  color: var(--sc-ink);
+  border-left: 2px solid var(--sc-accent-line);
+  padding-left: var(--sc-space-3);
+  margin-bottom: var(--sc-space-3);
+  max-width: 58ch;
+}
+
+.deferredNote {
+  font-size: var(--sc-fs-small);
+  color: var(--sc-ink-faint);
+  line-height: var(--sc-lh-copy);
+  max-width: 62ch;
+}
+
+/* ── professed / revealed / behavioral agreement ── */
+.tableScroll {
+  overflow-x: auto;
+}
+
+.evidenceTable {
+  width: 100%;
+  min-width: 480px;
+  border-collapse: collapse;
+  font-family: var(--sc-font-mono);
+  font-size: var(--sc-fs-small);
+}
+
+.evidenceTable th {
+  text-align: left;
+  font-size: var(--sc-fs-micro);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--sc-ink-faint);
+  padding: 0.5rem 0.8rem;
+  border-bottom: var(--sc-line-hairline) solid var(--sc-border-hover);
+}
+
+.evidenceTable td {
+  padding: 0.6rem 0.8rem;
+  border-bottom: var(--sc-line-hairline) solid var(--sc-border-rest);
+}
+
+.evidenceTable tr:last-child td {
+  border-bottom: none;
+}
+
+.evidenceLabel {
+  font-family: var(--sc-font-serif);
+  font-size: var(--sc-fs-body);
+  color: var(--sc-ink);
+  white-space: nowrap;
+}
+
+.evidenceScore {
+  font-variant-numeric: tabular-nums;
+  color: var(--sc-ink-dim);
+}
+
+.agreementBadge {
+  display: inline-block;
+  font-size: var(--sc-fs-micro);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.55rem;
+  border: var(--sc-line-hairline) solid currentColor;
+  white-space: nowrap;
+}
+
+.agreementAligned { color: var(--sc-high); }
+.agreementMixed { color: var(--sc-medium); }
+.agreementDiverged { color: var(--sc-low); }
+.agreementUnknown { color: var(--sc-ink-faint); }
+
+/* Below --sc-bp-sm, every table sharing this class (CareerFitCard's open
+   dimension ledger, PoorFitCard, UnconventionalPathCard, CoreDriverCard,
+   ConstructConfidenceTable) stops being a 480px-min-width horizontally-
+   scrolled grid and becomes one card per row instead — reading a table
+   sideways with one thumb is not "responsive," it's the desktop layout
+   wearing a scrollbar. Each <td> supplies its own column header via a
+   data-label attribute (see the component files), read here through
+   content: attr() rather than duplicating the header text in markup. */
+@media (max-width: 559px) {
+  .tableScroll {
+    overflow-x: visible;
+  }
+  .evidenceTable {
+    min-width: 0;
+    width: 100%;
+  }
+  .evidenceTable thead {
+    display: none;
+  }
+  .evidenceTable, .evidenceTable tbody, .evidenceTable tr {
+    display: block;
+    width: 100%;
+  }
+  .evidenceTable tr {
+    margin-bottom: var(--sc-space-2);
+    border: var(--sc-line-hairline) solid var(--sc-border-rest);
+    padding: var(--sc-space-2);
+  }
+  .evidenceTable tr:last-child {
+    margin-bottom: 0;
+  }
+  .evidenceTable td {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: var(--sc-space-2);
+    padding: 0.35rem 0;
+    border-bottom: none;
+  }
+  .evidenceTable td:not(:last-child) {
+    border-bottom: var(--sc-line-hairline) solid var(--sc-border-rest);
+  }
+  .evidenceTable td::before {
+    content: attr(data-label);
+    font-family: var(--sc-font-mono);
+    font-size: var(--sc-fs-micro);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--sc-ink-faint);
+    flex-shrink: 0;
+  }
+  .evidenceLabel {
+    white-space: normal;
+    text-align: right;
+  }
+  /* Paragraph-length cells (ConstructConfidenceTable's Reason column) read
+     badly squeezed onto one label-and-value line — stack the label above
+     the text instead of beside it, scoped to inside this table only so
+     .flagDetail's other, non-tabular uses elsewhere are untouched. */
+  .evidenceTable td.flagDetail {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.2rem;
+  }
+  .evidenceTable td.flagDetail::before {
+    text-align: left;
+  }
+}
+
+/* ── strengths: a fourth tone for "real signal, just not confirmed yet" —
+   distinct from the pass/fail read of aligned/mixed/diverged ── */
+.strengthPromising { color: var(--sc-accent); }
+
+/* ── cross-construct contradictions ──
+   severity runs the opposite direction from confidence: High severity is
+   the attention-worthy end, so it takes the "concerning" tone (sc-low)
+   rather than the "trustworthy" one confidence badges use for High. */
+.contradictionCard {
+  background: var(--sc-bg);
+  padding: var(--sc-space-3);
+}
+
+.contradictionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--sc-space-2);
+  margin-bottom: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.contradictionTitle {
+  font-family: var(--sc-font-serif);
+  font-size: var(--sc-fs-h3);
+  color: var(--sc-ink);
+  max-width: 46ch;
+}
+
+.contradictionBadges {
+  display: flex;
+  gap: 0.4rem;
+  flex-shrink: 0;
+}
+
+.severityLow { color: var(--sc-ink-faint); }
+.severityMedium { color: var(--sc-medium); }
+.severityHigh { color: var(--sc-low); }
+
+.contradictionType {
+  font-size: var(--sc-fs-micro);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--sc-ink-faint);
+  margin-bottom: var(--sc-space-2);
+}
+
+.contradictionDetail {
+  font-size: var(--sc-fs-body);
+  color: var(--sc-ink-dim);
+  line-height: var(--sc-lh-copy);
+  max-width: 62ch;
+  margin-bottom: var(--sc-space-2);
+}
+
+.constructTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: var(--sc-space-2);
+}
+
+.constructTag {
+  font-size: var(--sc-fs-micro);
+  letter-spacing: 0.03em;
+  padding: 0.15rem 0.5rem;
+  border: var(--sc-line-hairline) solid var(--sc-border-rest);
+  color: var(--sc-ink-dim);
+}
+
+.supportingLabel {
+  font-size: var(--sc-fs-micro);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--sc-ink-faint);
+  margin-bottom: 0.35rem;
+}
+
+.supportingList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.supportingItem {
+  font-size: var(--sc-fs-small);
+  color: var(--sc-ink-faint);
+  font-style: italic;
+  line-height: var(--sc-lh-copy);
+  padding-left: 1rem;
+  position: relative;
+}
+
+.supportingItem::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+}
+
+/* ── aspirational-self layer: current vs. desired, kept visibly separate ── */
+.aspirationCard {
+  background: var(--sc-bg);
+  padding: var(--sc-space-3);
+}
+
+.aspirationHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--sc-space-2);
+  margin-bottom: 0.3rem;
+  flex-wrap: wrap;
+}
+
+.aspirationLabel {
+  font-family: var(--sc-font-serif);
+  font-size: var(--sc-fs-h3);
+  color: var(--sc-ink);
+}
+
+.aspirationStatement {
+  font-family: var(--sc-font-serif);
+  font-style: italic;
+  font-size: var(--sc-fs-body);
+  color: var(--sc-ink-dim);
+  margin-bottom: var(--sc-space-3);
+  max-width: 58ch;
+}
+
+.aspirationNumbers {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sc-space-3);
+  margin-bottom: var(--sc-space-2);
+}
+
+.aspirationStat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.aspirationStatLabel {
+  font-size: var(--sc-fs-micro);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--sc-ink-faint);
+}
+
+.aspirationStatValue {
+  font-family: var(--sc-font-serif);
+  font-size: 1.6rem;
+  color: var(--sc-ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.aspirationGapPositive { color: var(--sc-accent); }
+.aspirationGapNegative { color: var(--sc-medium); }
+.aspirationGapNone { color: var(--sc-ink-faint); }
+
+.categoryAligned { color: var(--sc-high); }
+.categoryDevelopmental { color: var(--sc-accent); }
+.categoryExceeds { color: var(--sc-medium); }
+
+@media (max-width: 559px) {
+  .aspirationNumbers { grid-template-columns: 1fr; gap: var(--sc-space-2); }
+}
+
+/* ── response quality model ── */
+.profileConfidenceRow {
+  display: flex;
+  align-items: baseline;
+  gap: var(--sc-space-3);
+  margin-bottom: var(--sc-space-3);
+}
+
+.profileConfidenceLabel {
+  font-size: var(--sc-fs-label);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--sc-ink-faint);
+}
+
+.profileConfidenceValue {
+  font-family: var(--sc-font-serif);
+  font-size: var(--sc-fs-h2);
+}
+
+.qualityCategoryTag {
+  font-size: var(--sc-fs-micro);
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--sc-ink-faint);
+  margin-bottom: 0.3rem;
+}
+
+/* ── synthesis: convergence + tension ── */
+.strengthEmerging { color: var(--sc-accent); }
+.strengthNotable { color: var(--sc-medium); }
+.strengthStrong { color: var(--sc-high); }
+
+.conditionsNote {
+  font-size: var(--sc-fs-micro);
+  letter-spacing: 0.03em;
+  color: var(--sc-ink-faint);
+  white-space: nowrap;
+}
+
+.contributorGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 0.4rem var(--sc-space-3);
+  margin-top: var(--sc-space-2);
+}
+
+.contributorRow {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem;
+  font-size: var(--sc-fs-small);
+  padding: 0.2rem 0;
+  border-bottom: var(--sc-line-hairline) solid var(--sc-border-rest);
+}
+
+.contributorLabel {
+  color: var(--sc-ink-dim);
+}
+.contributorMet .contributorLabel {
+  color: var(--sc-ink);
+}
+.contributorUnmet .contributorLabel {
+  color: var(--sc-ink-faint);
+}
+
+.contributorScore {
+  font-variant-numeric: tabular-nums;
+  color: var(--sc-ink-faint);
+  white-space: nowrap;
+}
+.contributorMet .contributorScore {
+  color: var(--sc-accent);
+}
+
+.tensionPair {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: var(--sc-space-2);
+  margin-top: var(--sc-space-2);
+  padding-top: var(--sc-space-2);
+  border-top: var(--sc-line-hairline) solid var(--sc-border-rest);
+}
+
+.tensionSide {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+.tensionSide:last-child {
+  text-align: right;
+}
+
+.tensionLabel {
+  font-size: var(--sc-fs-micro);
+  letter-spacing: 0.03em;
+  color: var(--sc-ink-faint);
+}
+
+.tensionScore {
+  font-family: var(--sc-font-serif);
+  font-size: 1.3rem;
+  color: var(--sc-ink);
+}
+
+.tensionVs {
+  font-family: var(--sc-font-mono);
+  font-size: var(--sc-fs-micro);
+  color: var(--sc-ink-faint);
+  text-transform: uppercase;
+}
+
+/* ── career fit: category breakdown + explicit penalties ── */
+.careerHeadline {
+  font-family: var(--sc-font-serif);
+  font-style: italic;
+  font-size: var(--sc-fs-body);
+  color: var(--sc-low);
+  margin-bottom: var(--sc-space-2);
+  max-width: 52ch;
+}
+
+.careerPenaltyNote {
+  font-family: var(--sc-font-mono);
+  font-size: var(--sc-fs-micro);
+  letter-spacing: 0.02em;
+  color: var(--sc-ink-faint);
+  margin-bottom: var(--sc-space-2);
+  font-variant-numeric: tabular-nums;
+}
+
+.categoryGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  margin-bottom: var(--sc-space-2);
+}
+
+.categoryRow {
+  display: grid;
+  grid-template-columns: 7rem 1fr 2ch;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.categoryLabel {
+  font-size: var(--sc-fs-micro);
+  color: var(--sc-ink-faint);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.categoryTrack {
+  height: 2px;
+  background: var(--sc-ink-ghost);
+}
+
+.categoryFill {
+  display: block;
+  height: 100%;
+  background: var(--sc-accent);
+}
+
+.categoryValue {
+  font-size: var(--sc-fs-micro);
+  color: var(--sc-ink-dim);
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.penaltyList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  margin-bottom: var(--sc-space-2);
+}
+
+.penaltyItem {
+  font-size: var(--sc-fs-small);
+  color: var(--sc-low);
+  padding-left: 1.1rem;
+  position: relative;
+}
+.penaltyItem::before {
+  content: '−';
+  position: absolute;
+  left: 0;
+}
+
+/* ── career fit: why this fits / why it might not, confidence, and the
+   open dimensions ledger ── */
+.careerWhyBlock {
+  margin-bottom: var(--sc-space-3);
+}
+
+.careerConfidenceRow {
+  margin-bottom: var(--sc-space-3);
+}
+
+.careerConfidenceReason {
+  font-size: var(--sc-fs-small);
+  color: var(--sc-ink-faint);
+  line-height: var(--sc-lh-copy);
+  max-width: 58ch;
+  margin-top: 0.2rem;
+}
+
+.roleStrength { color: var(--sc-high); }
+.roleFriction { color: var(--sc-low); }
+.roleNeutral { color: var(--sc-ink-faint); }
+
+.careerDimensionsDetails {
+  border-top: var(--sc-line-hairline) solid var(--sc-border-rest);
+  padding-top: var(--sc-space-2);
+}
+
+.careerDimensionsSummary {
+  cursor: pointer;
+  font-size: var(--sc-fs-micro);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--sc-accent);
+  list-style: none;
+}
+
+.careerDimensionsSummary::-webkit-details-marker {
+  display: none;
+}
+
+.careerDimensionsSummary::before {
+  content: '+ ';
+}
+
+details[open] > .careerDimensionsSummary::before {
+  content: '− ';
+}
+
+/* This <summary> toggle (CareerFitCard, PoorFitCard, UnconventionalPathCard,
+   CoreDriverCard) is plain inline text with no padding of its own on
+   desktop — a <summary> is fully clickable across its whole box, so
+   turning it into a padded block on mobile genuinely enlarges the tap
+   target rather than just making the text bigger. */
+@media (max-width: 559px) {
+  .careerDimensionsSummary {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0.6rem 0;
+  }
+}
+
+.careerDimensionsDetails .tableScroll {
+  margin-top: var(--sc-space-2);
+}
+
+/* ── likely poor fits: a calm, non-alarming claim — never the
+   headline-red tone careerHeadline uses for a positive surprise ── */
+.poorFitClaim {
+  font-family: var(--sc-font-serif);
+  font-style: italic;
+  font-size: var(--sc-fs-body);
+  color: var(--sc-ink-dim);
+  border-left: 2px solid var(--sc-border-rest);
+  padding-left: var(--sc-space-2);
+  margin-bottom: var(--sc-space-2);
+  max-width: 56ch;
+}
+
+/* ── core drivers: when-healthy / when-excessive side by side ── */
+.driverColumns {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sc-space-2) var(--sc-space-4);
+  margin-bottom: var(--sc-space-3);
+}
+
+@media (min-width: 480px) {
+  .driverColumns { grid-template-columns: 1fr 1fr; }
+}
+
+.driverPhrase {
+  font-size: var(--sc-fs-small);
+  color: var(--sc-ink-dim);
+  line-height: var(--sc-lh-copy);
+}
+
+/* ── energy map: energizes / neutral / drains, three columns ── */
+.energyGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sc-space-4);
+}
+
+@media (min-width: 700px) { /* --sc-bp-md */
+  .energyGrid { grid-template-columns: 1fr 1fr 1fr; }
+}
+
+.energyColumn {
+  display: flex;
+  flex-direction: column;
+}
+
+.energyHeading {
+  font-family: var(--sc-font-mono);
+  font-size: var(--sc-fs-label);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 0.3rem;
+}
+
+.energyEnergizes { color: var(--sc-high); }
+.energyNeutral { color: var(--sc-ink-faint); }
+.energyDrains { color: var(--sc-low); }
+
+.energyHint {
+  font-size: var(--sc-fs-small);
+  color: var(--sc-ink-faint);
+  line-height: var(--sc-lh-copy);
+  margin-bottom: var(--sc-space-2);
+  max-width: 30ch;
+}
+
+.energyList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sc-space-2);
+}
+
+.energyRow {
+  padding: 0.55rem 0;
+  border-top: var(--sc-line-hairline) solid var(--sc-border-rest);
+}
+.energyList .energyRow:first-child { border-top: none; }
+
+.energyRowTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-size: var(--sc-fs-small);
+  margin-bottom: 0.2rem;
+}
+
+.energyLabel { color: var(--sc-ink); }
+.energyScore {
+  font-family: var(--sc-font-mono);
+  font-size: var(--sc-fs-micro);
+  color: var(--sc-ink-faint);
+  font-variant-numeric: tabular-nums;
+}
+
+.energyMeta {
+  display: block;
+  font-size: var(--sc-fs-micro);
+  color: var(--sc-ink-faint);
+  line-height: var(--sc-lh-copy);
+}
+
+/* ── tensions: the pole-pair header a reader scans first ── */
+.tensionPoleHeader {
+  font-family: var(--sc-font-mono);
+  font-size: var(--sc-fs-h3);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--sc-ink);
+  margin-bottom: 0.3rem;
+}
+
+.tensionArrow {
+  color: var(--sc-accent);
+  font-weight: 400;
+}
+
+/* ── strength quadrant map: Ability × Energy coordinate plot ── */
+.quadrantPlotWrap {
+  display: flex;
+  justify-content: center;
+  margin-bottom: var(--sc-space-4);
+}
+
+.quadrantSvg {
+  width: 100%;
+  max-width: 380px;
+  height: auto;
+  overflow: visible;
+}
+
+.quadrantRegion { opacity: 0.55; }
+.quadrantAxisLine {
+  stroke: var(--sc-hairline-hover);
+  stroke-width: var(--sc-line-hairline);
+  stroke-dasharray: var(--sc-dash-dashed);
+}
+
+.quadrantAxisLabel {
+  font-family: var(--sc-font-mono);
+  font-size: 8px;
+  letter-spacing: 0.04em;
+  fill: var(--sc-ink-faint);
+}
+
+.quadrantDot {
+  stroke: var(--sc-bg);
+  stroke-width: 1.5;
+}
+
+.quadrantDotLabel {
+  font-family: var(--sc-font-mono);
+  font-size: 8px;
+  fill: var(--sc-ink-dim);
+}
+
+.quadrantRegion.quadrantSignature { fill: var(--sc-high); opacity: 0.08; }
+.quadrantRegion.quadrantUtilitarian { fill: var(--sc-medium); opacity: 0.08; }
+.quadrantRegion.quadrantDevelopment { fill: var(--sc-accent); opacity: 0.08; }
+.quadrantRegion.quadrantLowReturn { fill: var(--sc-low); opacity: 0.08; }
+
+.quadrantDot.quadrantSignature { fill: var(--sc-high); }
+.quadrantDot.quadrantUtilitarian { fill: var(--sc-medium); }
+.quadrantDot.quadrantDevelopment { fill: var(--sc-accent); }
+.quadrantDot.quadrantLowReturn { fill: var(--sc-low); }
+
+.quadrantHeading.quadrantSignature { color: var(--sc-high); }
+.quadrantHeading.quadrantUtilitarian { color: var(--sc-medium); }
+.quadrantHeading.quadrantDevelopment { color: var(--sc-accent); }
+.quadrantHeading.quadrantLowReturn { color: var(--sc-low); }
+
+.quadrantGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sc-space-4);
+}
+
+@media (min-width: 560px) { /* --sc-bp-sm */
+  .quadrantGrid { grid-template-columns: 1fr 1fr; }
+}
+
+.quadrantListPanel {
+  display: flex;
+  flex-direction: column;
+}
+
+.quadrantHeading {
+  font-family: var(--sc-font-mono);
+  font-size: var(--sc-fs-label);
+  letter-spacing: 0.1em;
+  margin-bottom: 0.3rem;
+}
+
+/* ── career fit: strength quadrant annotation ── */
+.quadrantTag {
+  display: inline-block;
+  font-size: var(--sc-fs-micro);
+  letter-spacing: 0.04em;
+  padding: 0.1rem 0.45rem;
+  border: var(--sc-line-hairline) solid currentColor;
+  margin-left: 0.4rem;
+}
+
+/* ── environment specification: a datasheet, not a paragraph ── */
+.specSheet {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sc-space-4);
+  border: var(--sc-line-hairline) solid var(--sc-border-rest);
+  padding: var(--sc-space-4);
+}
+
+@media (min-width: 640px) {
+  .specSheet { grid-template-columns: 1fr 1fr; }
+}
+
+.specColumn {
+  display: flex;
+  flex-direction: column;
+}
+
+.specHeading {
+  font-family: var(--sc-font-mono);
+  font-size: var(--sc-fs-label);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--sc-accent);
+  margin-bottom: 0.4rem;
+}
+
+.specHeadingFriction { color: var(--sc-low); }
+
+.specLead {
+  font-size: var(--sc-fs-small);
+  color: var(--sc-ink-faint);
+  font-style: italic;
+  margin-bottom: var(--sc-space-2);
+}
+
+.specList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  list-style: none;
+}
+
+.specLine {
+  display: flex;
+  align-items: baseline;
+  gap: 0.55rem;
+  padding: 0.42rem 0;
+  border-top: var(--sc-line-hairline) solid var(--sc-border-rest);
+  font-family: var(--sc-font-mono);
+}
+.specList .specLine:first-child { border-top: none; }
+
+.specMarker {
+  font-size: 0.6rem;
+  color: var(--sc-accent);
+  flex-shrink: 0;
+}
+.specMarkerFriction { color: var(--sc-low); }
+
+.specPhrase {
+  flex: 1;
+  font-size: var(--sc-fs-small);
+  color: var(--sc-ink);
+  letter-spacing: 0.01em;
+}
+
+.specValue {
+  font-size: var(--sc-fs-micro);
+  color: var(--sc-ink-faint);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── career explorer: controls ── */
+.explorerControls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--sc-space-3);
+  margin-bottom: var(--sc-space-3);
+}
+
+.explorerSortLabel {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: var(--sc-fs-micro);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--sc-ink-faint);
+}
+
+.explorerSelect {
+  font-family: var(--sc-font-mono);
+  font-size: var(--sc-fs-small);
+  color: var(--sc-ink);
+  background: var(--sc-bg);
+  border: var(--sc-line-hairline) solid var(--sc-border-rest);
+  padding: 0.3rem 0.5rem;
+}
+
+.explorerDirButton,
+.explorerFilterToggle,
+.explorerResetButton {
+  font-family: var(--sc-font-mono);
+  font-size: var(--sc-fs-micro);
+  letter-spacing: 0.04em;
+  color: var(--sc-ink-dim);
+  background: var(--sc-bg);
+  border: var(--sc-line-hairline) solid var(--sc-border-rest);
+  padding: 0.35rem 0.7rem;
+  cursor: pointer;
+  transition: color var(--sc-dur-fast) var(--sc-ease-standard), border-color var(--sc-dur-fast) var(--sc-ease-standard);
+}
+.explorerDirButton:hover, .explorerFilterToggle:hover, .explorerResetButton:hover {
+  color: var(--sc-ink);
+  border-color: var(--sc-border-hover);
+}
+
+/* Below --sc-bp-sm, these controls' compact desktop padding (built for a
+   mouse pointer) falls well short of a comfortable touch target — Career
+   Explorer is explicitly a "career comparison" surface someone is likely
+   to use one-handed. min-height plus flex centering, not just more
+   padding, so the enlarged box is genuinely tappable edge to edge. */
+@media (max-width: 559px) {
+  .explorerSelect {
+    min-height: 44px;
+    padding: 0.6rem 0.9rem;
+  }
+  .explorerDirButton,
+  .explorerFilterToggle,
+  .explorerResetButton {
+    min-height: 44px;
+    padding: 0.6rem 0.9rem;
+    display: inline-flex;
+    align-items: center;
+  }
+}
+
+.explorerFilterPanel {
+  border: var(--sc-line-hairline) solid var(--sc-border-rest);
+  padding: var(--sc-space-3);
+  margin-bottom: var(--sc-space-3);
+}
+
+.explorerFilterGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sc-space-3) var(--sc-space-4);
+  margin-bottom: var(--sc-space-2);
+}
+
+@media (min-width: 560px) { /* --sc-bp-sm */
+  .explorerFilterGrid { grid-template-columns: 1fr 1fr; }
+}
+
+.explorerFilterRow {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.explorerFilterLabel {
+  font-size: var(--sc-fs-micro);
+  color: var(--sc-ink-faint);
+}
+
+/* A native <input type="range"> renders as a rounded pill track with a
+   circular thumb in every mainstream browser by default — the one place
+   in this app a generic, un-art-directed control was otherwise going to
+   leak in unnoticed. Redrawn to match the same hairline-track-plus-
+   accent-mark language every other value readout here already uses
+   (.categoryTrack/.barTrack): a 2px flat line, a small square mark, sharp
+   corners throughout, no exception for this one being a native control. */
+.explorerRange {
+  width: 100%;
+  height: 24px;
+  display: block;
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.explorerRange::-webkit-slider-runnable-track {
+  height: var(--sc-line-hairline);
+  background: var(--sc-ink-ghost);
+}
+.explorerRange::-moz-range-track {
+  height: var(--sc-line-hairline);
+  background: var(--sc-ink-ghost);
+}
+
+.explorerRange::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  margin-top: -5.5px; /* centers the 12px mark on the 1px track */
+  background: var(--sc-accent);
+  border-radius: var(--sc-radius-sharp);
+  transition: background var(--sc-dur-fast) var(--sc-ease-standard);
+}
+.explorerRange::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border: none;
+  background: var(--sc-accent);
+  border-radius: var(--sc-radius-sharp);
+  transition: background var(--sc-dur-fast) var(--sc-ease-standard);
+}
+
+.explorerRange:hover::-webkit-slider-thumb,
+.explorerRange:focus-visible::-webkit-slider-thumb {
+  background: var(--sc-accent-bright);
+}
+.explorerRange:hover::-moz-range-thumb,
+.explorerRange:focus-visible::-moz-range-thumb {
+  background: var(--sc-accent-bright);
+}
+
+@media (max-width: 559px) {
+  .explorerRange {
+    height: 44px;
+  }
+}
+
+.explorerCount {
+  font-size: var(--sc-fs-micro);
+  letter-spacing: 0.04em;
+  color: var(--sc-ink-faint);
+  margin-bottom: var(--sc-space-2);
+}
+
+/* ── career explorer: restrained cards ── */
+.explorerList {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  background: var(--sc-hairline);
+  border: 1px solid var(--sc-hairline);
+}
+
+.explorerCard {
+  background: var(--sc-bg);
+}
+
+.explorerCardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--sc-space-2);
+  width: 100%;
+  padding: var(--sc-space-3) var(--sc-space-3) 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  font: inherit;
+}
+
+@media (max-width: 559px) {
+  .explorerCardHeader {
+    min-height: 44px;
+    padding-bottom: var(--sc-space-2);
+  }
+}
+
+.explorerCardTitle {
+  font-family: var(--sc-font-serif);
+  font-size: var(--sc-fs-h3);
+  color: var(--sc-ink);
+}
+
+.explorerCardFitWrap {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.15rem;
+  flex-shrink: 0;
+}
+
+.explorerCardFit {
+  font-family: var(--sc-font-mono);
+  font-size: var(--sc-fs-h3);
+  color: var(--sc-accent);
+}
+
+.explorerCardConfidence {
+  font-family: var(--sc-font-mono);
+  font-size: var(--sc-fs-micro);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.explorerCardReason {
+  font-size: var(--sc-fs-small);
+  color: var(--sc-ink-dim);
+  padding: 0.3rem var(--sc-space-3) 0;
+}
+
+.explorerCardFriction {
+  font-size: var(--sc-fs-small);
+  color: var(--sc-low);
+  padding: 0.15rem var(--sc-space-3) var(--sc-space-3);
+}
+
+.explorerCardDeep {
+  border-top: var(--sc-line-hairline) solid var(--sc-border-rest);
+  padding: var(--sc-space-3);
+}
+
+/* ── career experiments ── */
+.experimentList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sc-space-2);
+}
+
+.experimentRow {
+  padding: 0.6rem 0;
+  border-top: var(--sc-line-hairline) solid var(--sc-border-rest);
+}
+.experimentList .experimentRow:first-child { border-top: none; }
+
+.experimentTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--sc-space-2);
+  margin-bottom: 0.25rem;
+}
+
+.experimentLabel {
+  font-family: var(--sc-font-serif);
+  font-size: var(--sc-fs-body);
+  color: var(--sc-ink);
+}
+
+.experimentDescription {
+  font-size: var(--sc-fs-small);
+  color: var(--sc-ink-dim);
+  line-height: var(--sc-lh-copy);
+  max-width: 58ch;
+  margin-bottom: 0.3rem;
+}
+
+.experimentMeta {
+  display: flex;
+  gap: var(--sc-space-3);
+  font-family: var(--sc-font-mono);
+  font-size: var(--sc-fs-micro);
+  color: var(--sc-ink-faint);
+}

@@ -1,0 +1,27 @@
+.wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: var(--sc-fs-micro);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--sc-ink-faint);
+}
+
+.dot {
+  width: 5px;
+  height: 5px;
+  border-radius: var(--sc-radius-full);
+  background: var(--sc-accent);
+  opacity: 0.75;
+  transition: opacity var(--sc-dur-med) ease;
+}
+
+.dot.pulse {
+  animation: sc-saved-pulse 900ms var(--sc-ease-instrument);
+}
+
+@keyframes sc-saved-pulse {
+  0% { opacity: 1; transform: scale(1.6); }
+  100% { opacity: 0.75; transform: scale(1); }
+}

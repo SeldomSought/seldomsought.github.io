@@ -1,0 +1,119 @@
+.wrap {
+  position: relative;
+  display: inline-flex;
+}
+
+.trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: var(--sc-font-mono);
+  font-size: var(--sc-fs-small);
+  letter-spacing: 0.02em;
+  color: var(--sc-ink-dim);
+  cursor: pointer;
+  transition: color var(--sc-dur-fast) var(--sc-ease-standard);
+}
+.trigger:hover,
+.trigger[aria-expanded='true'] {
+  color: var(--sc-accent);
+}
+
+.caret {
+  font-size: 0.65em;
+  color: var(--sc-ink-faint);
+}
+
+.panel {
+  position: absolute;
+  top: calc(100% + 0.6rem);
+  left: 0;
+  z-index: 60;
+  width: max-content;
+  min-width: 220px;
+  max-width: calc(100vw - 2rem);
+  background: var(--sc-bg-raised);
+  border: 1px solid var(--sc-hairline);
+  box-shadow: var(--sc-shadow-lift);
+  padding: 0.35rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sc-space-3);
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 0.5rem 0.6rem;
+  text-align: left;
+  font-family: var(--sc-font-mono);
+  font-size: var(--sc-fs-small);
+  color: var(--sc-ink);
+  cursor: pointer;
+  transition: background var(--sc-dur-fast) var(--sc-ease-standard), color var(--sc-dur-fast) var(--sc-ease-standard);
+}
+
+.row:hover:not(:disabled) {
+  background: var(--sc-bg-raised-2);
+}
+
+.rowOverview {
+  color: var(--sc-ink-dim);
+  font-size: var(--sc-fs-micro);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.divider {
+  height: 1px;
+  background: var(--sc-hairline);
+  margin: 0.3rem 0.2rem 0.35rem;
+}
+
+.rowSubdued {
+  color: var(--sc-ink-faint);
+}
+
+.rowActive {
+  color: var(--sc-accent-bright);
+}
+.rowActive .rowLabel::before {
+  content: '· ';
+  color: var(--sc-accent);
+}
+
+.rowDisabled {
+  color: var(--sc-ink-faint);
+  opacity: 0.5;
+  cursor: default;
+}
+
+.rowLabel {
+  white-space: nowrap;
+}
+
+.badge {
+  font-size: var(--sc-fs-micro);
+  letter-spacing: 0.03em;
+  color: var(--sc-ink-faint);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.badgeComplete {
+  color: var(--sc-high);
+}
+
+@media (max-width: 559px) {
+  .panel {
+    left: auto;
+    right: 0;
+  }
+}

@@ -1,0 +1,47 @@
+.wrap {
+  display: flex;
+  justify-content: center;
+  padding: var(--sc-space-3) 0;
+}
+
+.svg {
+  overflow: visible;
+  /* Fluid, capped at the diagram's own natural size via the inline
+     max-width RadarDiagram.tsx sets from its own `size` prop — without
+     this a 260px-wide SVG barely fits a 320px viewport once page padding
+     is subtracted, and doesn't shrink at all on anything narrower.
+     viewBox keeps the drawing itself correct at any rendered size. */
+  width: 100%;
+  height: auto;
+}
+
+.ring {
+  fill: none;
+  stroke: var(--sc-hairline);
+  stroke-width: 1;
+}
+
+.axis {
+  stroke: var(--sc-hairline);
+  stroke-width: 1;
+}
+
+.shape {
+  fill: var(--sc-accent-dim);
+  stroke: var(--sc-accent);
+  stroke-width: 1.25;
+  transition: d var(--sc-dur-slow) var(--sc-ease-instrument);
+}
+
+.point {
+  fill: var(--sc-accent-bright);
+}
+
+.label {
+  font-family: var(--sc-font-mono);
+  /* Was a hardcoded 9px — below even the app's own smallest type step, and
+     didn't pick up the mobile bump --sc-fs-micro gets below --sc-bp-sm. */
+  font-size: var(--sc-fs-micro);
+  fill: var(--sc-ink-faint);
+  text-anchor: middle;
+}

@@ -1,0 +1,135 @@
+/* A gauge, not a radio-button row: options sit on a shared baseline
+   (each post's own border-top, which visually joins into one continuous
+   line across the row) with a tick that rises off it — closer to an
+   instrument's tick scale than a generic survey control. */
+
+.wrap {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sc-space-2);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(var(--sc-likert-count), 1fr);
+  column-gap: 2px;
+}
+
+.post {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 1.1rem 0.3rem 0.6rem;
+  background: none;
+  border: none;
+  border-top: var(--sc-line-hairline) solid var(--sc-border-rest);
+  cursor: pointer;
+  font-family: var(--sc-font-mono);
+  transition: border-color var(--sc-dur-fast) var(--sc-ease-standard);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.post:hover {
+  border-top-color: var(--sc-border-hover);
+}
+
+.tick {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--sc-radius-full);
+  background: var(--sc-bg);
+  border: var(--sc-line-hairline) solid var(--sc-border-hover);
+  margin-top: -1.42rem;
+  transition: width var(--sc-dur-fast) var(--sc-ease-standard), height var(--sc-dur-fast) var(--sc-ease-standard),
+    background var(--sc-dur-fast) var(--sc-ease-standard), margin-top var(--sc-dur-fast) var(--sc-ease-standard);
+}
+
+.numeral {
+  font-size: 0.72rem;
+  color: var(--sc-ink-faint);
+  transition: color var(--sc-dur-fast) var(--sc-ease-standard);
+}
+
+.label {
+  font-size: var(--sc-fs-micro);
+  letter-spacing: 0.01em;
+  line-height: 1.28;
+  text-align: center;
+  color: var(--sc-ink-faint);
+  max-width: 10ch;
+  transition: color var(--sc-dur-fast) var(--sc-ease-standard);
+}
+
+/* ── selected: unmistakable — thicker track, larger filled tick, bolder
+   brighter text, all at once, not just a border-color tweak ── */
+.post[aria-checked='true'] {
+  border-top: 2px solid var(--sc-accent);
+}
+.post[aria-checked='true'] .tick {
+  width: 11px;
+  height: 11px;
+  margin-top: -1.46rem;
+  background: var(--sc-accent);
+  border-color: var(--sc-accent);
+}
+.post[aria-checked='true'] .numeral {
+  color: var(--sc-accent-bright);
+  font-weight: 600;
+}
+.post[aria-checked='true'] .label {
+  color: var(--sc-ink);
+  font-weight: 600;
+}
+
+.post:focus-visible {
+  outline: var(--sc-line-hairline) solid var(--sc-accent);
+  outline-offset: 4px;
+}
+
+/* ── mobile: a stacked list of full-width, generously padded rows —
+   large comfortable targets, not a cramped grid ── */
+@media (max-width: 559px) {
+  .grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+  }
+
+  .post {
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.9rem;
+    border-top: none;
+    border: var(--sc-line-hairline) solid var(--sc-border-rest);
+    padding: 0.95rem 1.1rem;
+    text-align: left;
+  }
+
+  .tick {
+    margin-top: 0;
+    flex-shrink: 0;
+  }
+
+  .numeral {
+    order: -1;
+  }
+
+  .label {
+    text-align: left;
+    max-width: none;
+    font-size: var(--sc-fs-small);
+    flex: 1;
+  }
+
+  .post[aria-checked='true'] {
+    border: var(--sc-line-hairline) solid var(--sc-accent);
+    border-left-width: 4px;
+    background: var(--sc-accent-dim);
+  }
+  .post[aria-checked='true'] .tick {
+    margin-top: 0;
+  }
+}

@@ -1,0 +1,101 @@
+.shell {
+  max-width: var(--sc-width-question);
+  margin: 0 auto;
+  padding: var(--sc-space-4) var(--sc-space-3) var(--sc-space-3);
+  min-height: calc(100vh - 60px);
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── header: title + conceptual progress. The region description and
+   the overall-progress mini-map both used to live here too, repeated on
+   every single item; both were redundant (description already read once
+   on RegionIntroScreen, overall progress already owned by RegionMap /
+   CompassMark) so they were cut rather than shrunk. */
+.header {
+  padding-bottom: var(--sc-space-3);
+  border-bottom: var(--sc-line-hairline) solid var(--sc-border-rest);
+  margin-bottom: var(--sc-space-4);
+}
+
+.sectionTitle {
+  font-family: var(--sc-font-mono);
+  font-size: var(--sc-fs-label);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--sc-accent);
+  margin-bottom: var(--sc-space-2);
+}
+
+/* conceptual progress — a fixed number of coarse segments, never a
+   question-count fraction. The "current" segment is the one bright mark. */
+.progressBar {
+  display: flex;
+  gap: 3px;
+}
+
+.segment {
+  height: 3px;
+  flex: 1;
+  background: var(--sc-ink-ghost);
+  transition: background var(--sc-dur-fast) var(--sc-ease-standard);
+}
+.segment.filled {
+  background: var(--sc-border-hover);
+}
+.segment.current {
+  background: var(--sc-accent);
+}
+
+/* always visible, on every viewport — the one thing here that shouldn't
+   be hidden for space is the confirmation that nothing gets lost */
+.savedRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sc-space-3);
+  margin-bottom: var(--sc-space-2);
+}
+
+.savedGroup {
+  display: flex;
+  align-items: center;
+  gap: var(--sc-space-2);
+}
+
+/* ── the question itself ── */
+.itemArea {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: var(--sc-space-3) 0;
+}
+
+/* ── navigation: inline on desktop, thumb-reachable fixed bar on mobile ── */
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--sc-space-3);
+  padding-top: var(--sc-space-3);
+}
+
+@media (max-width: 559px) {
+  .nav {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 40;
+    background: var(--sc-scrim);
+    backdrop-filter: blur(10px);
+    border-top: var(--sc-line-hairline) solid var(--sc-border-rest);
+    padding: var(--sc-space-2) var(--sc-space-3);
+    padding-bottom: max(var(--sc-space-2), env(safe-area-inset-bottom));
+  }
+  /* keeps the fixed bar from covering the last inch of content */
+  .shell {
+    padding-bottom: calc(var(--sc-space-5) + 56px);
+  }
+}
