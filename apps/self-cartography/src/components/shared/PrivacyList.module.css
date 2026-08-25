@@ -1,0 +1,33 @@
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sc-space-3);
+}
+
+.row {
+  padding-top: var(--sc-space-2);
+  border-top: var(--sc-line-hairline) solid var(--sc-border-rest);
+}
+
+.label {
+  font-family: var(--sc-font-serif);
+  font-size: var(--sc-fs-h3);
+  color: var(--sc-ink);
+  margin-bottom: 0.35rem;
+}
+
+.body {
+  font-size: var(--sc-fs-small);
+  line-height: var(--sc-lh-copy);
+  color: var(--sc-ink-dim);
+  max-width: 52ch;
+}
+
+.positive {
+  font-size: var(--sc-fs-small);
+  line-height: var(--sc-lh-copy);
+  color: var(--sc-ink);
+  font-style: italic;
+  max-width: 52ch;
+  padding-top: var(--sc-space-2);
+}

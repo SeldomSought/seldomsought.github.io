@@ -1,0 +1,42 @@
+.page {
+  max-width: var(--sc-content-width);
+  margin: 0 auto;
+  padding: var(--sc-space-5) var(--sc-space-3) var(--sc-space-5);
+  min-height: calc(100vh - 60px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.priorComplete {
+  font-family: var(--sc-font-mono);
+  font-size: var(--sc-fs-micro);
+  letter-spacing: 0.04em;
+  color: var(--sc-ink-faint);
+  margin-bottom: var(--sc-space-3);
+}
+
+.introEyebrow {
+  margin-bottom: var(--sc-space-2);
+}
+
+.introTitle {
+  font-family: var(--sc-font-serif);
+  font-size: var(--sc-fs-h1);
+  color: var(--sc-ink);
+  margin-bottom: var(--sc-space-3);
+}
+
+.introDesc {
+  font-size: var(--sc-fs-body-lg);
+  line-height: var(--sc-lh-copy);
+  color: var(--sc-ink-dim);
+  max-width: 48ch;
+  margin-bottom: var(--sc-space-3);
+}
+
+.introMeta {
+  font-size: var(--sc-fs-small);
+  color: var(--sc-ink-faint);
+  margin-bottom: var(--sc-space-4);
+}

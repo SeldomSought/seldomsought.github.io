@@ -1,0 +1,16 @@
+.contour {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.line {
+  fill: none;
+  stroke: var(--sc-hairline);
+  stroke-width: 1;
+}
+
+.line:nth-child(2) {
+  stroke: var(--sc-accent-line);
+}

@@ -1,0 +1,36 @@
+{
+  "compilerOptions": {
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.test.tsbuildinfo",
+    "target": "es2023",
+    /* DOM added so test files that transitively import browser-touching
+       app code (persistence.ts's `window.localStorage`) type-check — the
+       actual runtime is still Node (see vitest.config.ts), so any such
+       test has to stub `window` itself before importing that code. */
+    "lib": ["ES2023", "DOM"],
+    "module": "esnext",
+    /* "vite/client" added alongside "node" so the one component test file
+       that imports real .tsx components (which side-effect-import
+       *.module.css) type-checks its CSS-module imports the same way
+       tsconfig.app.json does — every other test file here is plain
+       engine/TypeScript and never touches this. */
+    "types": ["node", "vite/client"],
+    "skipLibCheck": true,
+
+    /* Bundler mode — matches tsconfig.app.json's resolution so test files
+       can import app source the same extensionless way app code does;
+       tsconfig.node.json's nodenext resolution (for vite.config.ts, a real
+       Node ESM entrypoint) is deliberately stricter and wrong for this. */
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "verbatimModuleSyntax": true,
+    "moduleDetection": "force",
+    "noEmit": true,
+    "jsx": "react-jsx",
+
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "erasableSyntaxOnly": true,
+    "noFallthroughCasesInSwitch": true
+  },
+  "include": ["src/**/*.test.ts", "src/**/*.test.tsx"]
+}

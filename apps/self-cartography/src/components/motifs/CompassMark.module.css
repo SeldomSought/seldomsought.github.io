@@ -1,0 +1,23 @@
+.compass {
+  display: block;
+  overflow: visible;
+}
+
+.needle {
+  transform-origin: 50% 50%;
+  transition: transform var(--sc-dur-slow) var(--sc-ease-instrument);
+}
+
+.ring {
+  fill: none;
+  stroke: var(--sc-hairline);
+  stroke-width: 1;
+}
+
+.progressArc {
+  fill: none;
+  stroke: var(--sc-accent);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  transition: stroke-dashoffset var(--sc-dur-slow) var(--sc-ease-instrument);
+}

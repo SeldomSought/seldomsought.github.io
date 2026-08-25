@@ -1,0 +1,20 @@
+.wrap {
+  background: var(--sc-accent-dim);
+  border-bottom: 1px solid var(--sc-accent-line);
+}
+
+.inner {
+  max-width: var(--sc-content-wide);
+  margin: 0 auto;
+  padding: var(--sc-space-2) var(--sc-space-3);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sc-space-3);
+  flex-wrap: wrap;
+}
+
+.text {
+  font-size: var(--sc-fs-small);
+  color: var(--sc-ink);
+}

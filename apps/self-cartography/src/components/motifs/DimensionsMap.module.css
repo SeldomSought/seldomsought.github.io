@@ -1,0 +1,115 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sc-space-3);
+}
+
+.diagram {
+  position: relative;
+  width: 100%;
+  height: clamp(200px, 46vw, 260px);
+}
+
+.lines {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.line {
+  stroke: var(--sc-border-rest);
+  stroke-width: var(--sc-line-hairline);
+  transition: stroke var(--sc-dur-fast) var(--sc-ease-standard);
+}
+.lineActive {
+  stroke: var(--sc-accent-line);
+  stroke-width: var(--sc-line-emphasis);
+}
+
+.node {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0.5rem 0.7rem;
+  margin: -0.7rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: var(--sc-font-mono);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--sc-radius-full);
+  background: var(--sc-ink-faint);
+  transition: background var(--sc-dur-fast) var(--sc-ease-standard), transform var(--sc-dur-fast) var(--sc-ease-standard);
+}
+
+.label {
+  font-size: var(--sc-fs-micro);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--sc-ink-faint);
+  white-space: nowrap;
+  transition: color var(--sc-dur-fast) var(--sc-ease-standard);
+}
+
+.node:hover .dot,
+.node:focus-visible .dot {
+  background: var(--sc-ink);
+}
+.node:hover .label,
+.node:focus-visible .label {
+  color: var(--sc-ink-dim);
+}
+
+.nodeActive .dot {
+  background: var(--sc-accent);
+  transform: scale(1.3);
+}
+.nodeActive .label {
+  color: var(--sc-accent-bright);
+}
+
+.node:focus-visible {
+  outline: var(--sc-line-hairline) solid var(--sc-accent);
+  outline-offset: 2px;
+}
+
+.detail {
+  border-top: var(--sc-line-hairline) solid var(--sc-border-rest);
+  padding-top: var(--sc-space-2);
+  min-height: 4.6em;
+}
+
+.detailLabel {
+  font-family: var(--sc-font-mono);
+  font-size: var(--sc-fs-label);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--sc-accent);
+}
+
+.detailText {
+  font-size: var(--sc-fs-body);
+  color: var(--sc-ink-dim);
+  line-height: var(--sc-lh-snug);
+  margin-top: 0.3rem;
+  max-width: 42ch;
+}
+
+@media (min-width: 560px) { /* --sc-bp-sm */
+  .label {
+    font-size: 0.68rem;
+  }
+}

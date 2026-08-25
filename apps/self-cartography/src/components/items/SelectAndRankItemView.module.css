@@ -1,0 +1,74 @@
+.hint {
+  font-size: var(--sc-fs-micro);
+  color: var(--sc-ink-faint);
+  letter-spacing: 0.05em;
+  margin-bottom: var(--sc-space-3);
+}
+
+/* generous, wrapping chips — never a cramped inline list, comfortable to
+   tap on a phone without a tiny hit target */
+.chipGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 0.5rem;
+}
+
+.chip {
+  padding: 0.85rem 1rem;
+  background: var(--sc-bg-raised);
+  border: var(--sc-line-hairline) solid var(--sc-border-rest);
+  color: var(--sc-ink-dim);
+  font-family: var(--sc-font-mono);
+  font-size: var(--sc-fs-small);
+  text-align: center;
+  cursor: pointer;
+  transition: border-color var(--sc-dur-fast) var(--sc-ease-standard), background var(--sc-dur-fast) var(--sc-ease-standard),
+    color var(--sc-dur-fast) var(--sc-ease-standard), opacity var(--sc-dur-fast) var(--sc-ease-standard);
+}
+
+.chip:hover:not(:disabled) {
+  border-color: var(--sc-border-hover);
+}
+
+.chip:focus-visible {
+  outline: var(--sc-line-hairline) solid var(--sc-accent);
+  outline-offset: 2px;
+}
+
+.chipSelected {
+  border-color: var(--sc-accent);
+  background: var(--sc-accent-dim);
+  color: var(--sc-ink);
+  font-weight: 600;
+}
+
+.chipDisabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.changeLink {
+  display: inline-block;
+  background: none;
+  border: none;
+  padding: 0;
+  margin-bottom: var(--sc-space-3);
+  font-family: var(--sc-font-mono);
+  font-size: var(--sc-fs-small);
+  letter-spacing: 0.04em;
+  color: var(--sc-ink-faint);
+  cursor: pointer;
+  transition: color var(--sc-dur-fast) var(--sc-ease-standard);
+}
+.changeLink:hover {
+  color: var(--sc-accent);
+}
+
+@media (max-width: 559px) {
+  .chipGrid {
+    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  }
+  .chip {
+    padding: 1rem 0.8rem;
+  }
+}

@@ -1,0 +1,117 @@
+.page {
+  max-width: var(--sc-width-question);
+  margin: 0 auto;
+  padding: var(--sc-space-5) var(--sc-space-3);
+  min-height: calc(100vh - 60px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+}
+
+.skip {
+  position: absolute;
+  top: var(--sc-space-3);
+  right: var(--sc-space-3);
+  font-family: var(--sc-font-mono);
+  font-size: var(--sc-fs-micro);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--sc-ink-faint);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.4rem 0.6rem;
+  transition: color var(--sc-dur-fast) var(--sc-ease-standard);
+}
+.skip:hover,
+.skip:focus-visible {
+  color: var(--sc-ink-dim);
+}
+
+.mapWrap {
+  margin-bottom: var(--sc-space-4);
+  filter: drop-shadow(0 0 0 transparent);
+  transition: filter var(--sc-dur-slow) var(--sc-ease-instrument);
+}
+.mapWrap.resolved {
+  filter: drop-shadow(0 0 14px var(--sc-accent-dim));
+}
+
+.textStack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sc-space-2);
+  margin-bottom: var(--sc-space-4);
+}
+
+.thesis,
+.reveal {
+  opacity: 0;
+  transform: translateY(6px);
+  transition:
+    opacity var(--sc-dur-med) var(--sc-ease-instrument),
+    transform var(--sc-dur-med) var(--sc-ease-instrument);
+}
+.thesis.visible,
+.reveal.visible {
+  opacity: 1;
+  transform: none;
+}
+
+.thesis {
+  font-family: var(--sc-font-serif);
+  font-weight: 500;
+  font-size: var(--sc-fs-h2);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--sc-ink);
+  max-width: 22ch;
+  line-height: var(--sc-lh-tight);
+}
+
+.attribution {
+  font-family: var(--sc-font-mono);
+  font-size: var(--sc-fs-micro);
+  letter-spacing: 0.05em;
+  color: var(--sc-ink-faint);
+}
+
+.reveal {
+  font-family: var(--sc-font-serif);
+  font-style: italic;
+  font-size: var(--sc-fs-body-lg);
+  color: var(--sc-ink-dim);
+  max-width: 28ch;
+}
+
+/* Stricter than just speeding the sequence up (see TIMING/REDUCED_MOTION_DIVISOR
+   in CompletionTransition.tsx, which already compresses the timeline) — this
+   drops the translateY motion itself for anyone who's said they don't want
+   transform-based animation, fading content in in place rather than sliding it. */
+@media (prefers-reduced-motion: reduce) {
+  .thesis,
+  .attribution,
+  .reveal,
+  .ctaRow {
+    transform: none;
+    transition: opacity var(--sc-dur-fast) var(--sc-ease-standard);
+  }
+}
+
+.ctaRow {
+  opacity: 0;
+  transform: translateY(6px);
+  transition:
+    opacity var(--sc-dur-med) var(--sc-ease-instrument),
+    transform var(--sc-dur-med) var(--sc-ease-instrument);
+  pointer-events: none;
+}
+.ctaRow.visible {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+}

@@ -1,0 +1,206 @@
+/* Fast, opacity-only — question transitions must read as almost
+   instantaneous. No translate: a shifting question is slower to read and
+   slower to click than one that's just already there. */
+.frame {
+  animation: sc-item-in var(--sc-dur-fast) linear;
+}
+
+@keyframes sc-item-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.eyebrow {
+  font-size: var(--sc-fs-label);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--sc-ink-faint);
+  margin-bottom: var(--sc-space-2);
+}
+
+.eyebrowEvidence {
+  color: var(--sc-accent);
+}
+
+.prompt {
+  font-family: var(--sc-font-serif);
+  font-size: var(--sc-fs-h3);
+  line-height: var(--sc-lh-tight);
+  color: var(--sc-ink);
+  margin-bottom: var(--sc-space-4);
+  max-width: 34ch;
+}
+
+.scenarioText {
+  font-family: var(--sc-font-serif);
+  font-style: italic;
+  font-size: var(--sc-fs-body-lg);
+  line-height: var(--sc-lh-copy);
+  color: var(--sc-ink);
+  margin-bottom: var(--sc-space-4);
+  max-width: 52ch;
+  border-left: 2px solid var(--sc-accent-line);
+  padding-left: var(--sc-space-3);
+}
+
+/* ── rating scale (likert / frequency / confidence / behavioral-history) ── */
+.ratingRow {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.ratingBtn {
+  flex: 1 1 90px;
+  min-width: 84px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.85rem 0.4rem;
+  background: transparent;
+  border: 1px solid var(--sc-hairline);
+  color: var(--sc-ink-dim);
+  cursor: pointer;
+  font-family: var(--sc-font-mono);
+  transition: border-color var(--sc-dur-fast) ease, background var(--sc-dur-fast) ease, color var(--sc-dur-fast) ease;
+}
+
+.ratingBtn:hover { border-color: var(--sc-hairline-hover); }
+
+.ratingBtn[aria-checked='true'] {
+  border-color: var(--sc-accent);
+  background: var(--sc-accent-dim);
+  color: var(--sc-ink);
+}
+
+.ratingBtn:focus-visible {
+  outline: var(--sc-line-hairline) solid var(--sc-accent);
+  outline-offset: 4px;
+}
+
+.ratingValue {
+  font-family: var(--sc-font-serif);
+  font-size: 1.1rem;
+}
+
+.ratingLabel {
+  font-size: var(--sc-fs-micro);
+  letter-spacing: 0.03em;
+  text-align: center;
+  line-height: 1.3;
+  color: inherit;
+  opacity: 0.85;
+}
+
+/* ── option cards: tradeoff / scenario ── */
+.optionList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.optionCard {
+  text-align: left;
+  padding: 0.9rem 1.1rem;
+  background: var(--sc-bg-raised);
+  border: 1px solid var(--sc-hairline);
+  color: var(--sc-ink-dim);
+  font-family: var(--sc-font-mono);
+  font-size: var(--sc-fs-body);
+  line-height: var(--sc-lh-copy);
+  cursor: pointer;
+  transition: border-color var(--sc-dur-fast) ease, color var(--sc-dur-fast) ease;
+}
+
+.optionCard:hover { border-color: var(--sc-hairline-hover); }
+
+.optionCard[aria-pressed='true'] {
+  border-color: var(--sc-accent);
+  color: var(--sc-ink);
+  background: var(--sc-accent-dim);
+}
+
+/* ── ranking (click-to-order) ── */
+.rankList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.rankRow {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 0.75rem 1rem;
+  background: var(--sc-bg-raised);
+  border: 1px solid var(--sc-hairline);
+  cursor: pointer;
+  transition: border-color var(--sc-dur-fast) ease, background var(--sc-dur-fast) ease;
+}
+
+.rankRow:hover { border-color: var(--sc-hairline-hover); }
+
+.rankRow:focus-visible {
+  outline: var(--sc-line-hairline) solid var(--sc-accent);
+  outline-offset: 4px;
+}
+
+.rankRow.ranked {
+  border-color: var(--sc-accent-line);
+  background: var(--sc-accent-dim);
+}
+
+.rankBadge {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  border: 1px solid var(--sc-hairline-hover);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--sc-fs-small);
+  color: var(--sc-ink-faint);
+}
+
+.rankRow.ranked .rankBadge {
+  border-color: var(--sc-accent);
+  color: var(--sc-accent-bright);
+}
+
+.rankLabel {
+  font-size: var(--sc-fs-body);
+  color: var(--sc-ink-dim);
+}
+
+.rankRow.ranked .rankLabel { color: var(--sc-ink); }
+
+.rankHint {
+  font-size: var(--sc-fs-micro);
+  color: var(--sc-ink-faint);
+  letter-spacing: 0.05em;
+  margin-bottom: var(--sc-space-2);
+}
+
+/* ── open text ── */
+.textarea {
+  width: 100%;
+  min-height: 110px;
+  resize: vertical;
+  background: var(--sc-bg-raised);
+  border: 1px solid var(--sc-hairline);
+  color: var(--sc-ink);
+  font-family: var(--sc-font-serif);
+  font-size: var(--sc-fs-body);
+  line-height: var(--sc-lh-copy);
+  padding: 0.9rem 1rem;
+}
+
+.textarea:focus { outline: none; border-color: var(--sc-accent-line); }
+
+.optionalNote {
+  font-size: var(--sc-fs-micro);
+  color: var(--sc-ink-faint);
+  letter-spacing: 0.05em;
+  margin-top: 0.5rem;
+}

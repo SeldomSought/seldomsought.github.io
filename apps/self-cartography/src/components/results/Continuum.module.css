@@ -1,0 +1,70 @@
+.row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.topRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-size: var(--sc-fs-small);
+}
+
+.name {
+  color: var(--sc-ink-dim);
+}
+
+.score {
+  font-family: var(--sc-font-mono);
+  font-size: var(--sc-fs-micro);
+  color: var(--sc-ink-faint);
+  font-variant-numeric: tabular-nums;
+}
+
+.track {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.pole {
+  font-size: var(--sc-fs-micro);
+  letter-spacing: 0.03em;
+  color: var(--sc-ink-faint);
+  white-space: nowrap;
+  transition: color var(--sc-dur-fast) var(--sc-ease-standard);
+}
+
+.poleRight {
+  text-align: right;
+}
+
+.leaning {
+  color: var(--sc-ink);
+}
+
+.svg {
+  display: block;
+  width: 100%;
+  height: 12px;
+  overflow: visible;
+}
+
+.line {
+  stroke: var(--sc-hairline-hover);
+  stroke-width: 1;
+  stroke-dasharray: var(--sc-dash-dashed);
+}
+
+.dot {
+  fill: var(--sc-accent);
+}
+
+.confidence {
+  font-size: var(--sc-fs-micro);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--sc-ink-faint);
+}

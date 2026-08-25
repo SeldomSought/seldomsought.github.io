@@ -1,0 +1,55 @@
+.disclosure {
+  position: relative;
+  display: inline-flex;
+}
+
+.summary {
+  cursor: pointer;
+  list-style: none;
+  font-family: var(--sc-font-mono);
+  font-size: var(--sc-fs-micro);
+  letter-spacing: 0.04em;
+  color: var(--sc-ink-faint);
+  transition: color var(--sc-dur-fast) var(--sc-ease-standard);
+}
+.summary::-webkit-details-marker {
+  display: none;
+}
+.summary:hover,
+.disclosure[open] .summary {
+  color: var(--sc-accent);
+}
+
+.panel {
+  position: absolute;
+  top: calc(100% + 0.6rem);
+  right: 0;
+  z-index: 60;
+  width: max-content;
+  min-width: 260px;
+  max-width: min(380px, calc(100vw - 2rem));
+  background: var(--sc-bg-raised);
+  border: var(--sc-line-hairline) solid var(--sc-hairline);
+  box-shadow: var(--sc-shadow-lift);
+  padding: var(--sc-space-3);
+}
+
+/* Below ~560px, this trigger sits close enough to its container's own
+   right edge that a trigger-relative panel (however width-clamped) can
+   still push its left edge past the true viewport edge — the same class
+   of risk SectionNavigator's dropdown guards against with its own mobile
+   override. Switching to viewport-relative positioning here removes the
+   risk outright instead of trying to clamp it: anchored near the top of
+   the screen (not the bottom, where AssessmentShell's own fixed nav bar
+   already docks on mobile) with equal margins on both sides. */
+@media (max-width: 559px) {
+  .panel {
+    position: fixed;
+    top: 4.5rem;
+    left: var(--sc-space-3);
+    right: var(--sc-space-3);
+    width: auto;
+    min-width: 0;
+    max-width: none;
+  }
+}

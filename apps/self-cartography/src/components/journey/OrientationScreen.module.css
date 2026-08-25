@@ -1,0 +1,122 @@
+.page {
+  max-width: var(--sc-width-question);
+  margin: 0 auto;
+  padding: var(--sc-space-5) var(--sc-space-3) var(--sc-space-5);
+  min-height: calc(100vh - 60px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.eyebrow {
+  margin-bottom: var(--sc-space-2);
+}
+
+.intro {
+  font-family: var(--sc-font-serif);
+  font-size: var(--sc-fs-h2);
+  color: var(--sc-ink);
+  line-height: var(--sc-lh-tight);
+  max-width: 20ch;
+  margin-bottom: var(--sc-space-4);
+}
+
+.dots {
+  display: flex;
+  gap: 0.4rem;
+  margin-bottom: var(--sc-space-4);
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--sc-radius-full);
+  background: var(--sc-ink-ghost);
+  transition: background var(--sc-dur-fast) var(--sc-ease-standard);
+}
+.dot.done {
+  background: var(--sc-accent);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  min-height: 14rem;
+}
+
+.principle {
+  display: flex;
+  gap: var(--sc-space-2);
+  align-items: baseline;
+  padding: 0.7rem 0;
+  border-top: var(--sc-line-hairline) solid var(--sc-border-rest);
+}
+.principle:first-child {
+  border-top: none;
+}
+
+.num {
+  flex-shrink: 0;
+  font-family: var(--sc-font-mono);
+  font-size: var(--sc-fs-micro);
+  letter-spacing: 0.05em;
+  color: var(--sc-ink-faint);
+  padding-top: 0.15em;
+}
+
+.text {
+  font-family: var(--sc-font-serif);
+  font-size: var(--sc-fs-body-lg);
+  line-height: var(--sc-lh-snug);
+  color: var(--sc-ink-dim);
+  transition: color var(--sc-dur-med) var(--sc-ease-standard);
+}
+
+.current {
+  animation: sc-principle-in var(--sc-dur-med) var(--sc-ease-instrument);
+}
+.current .text {
+  color: var(--sc-ink);
+}
+.current .num {
+  color: var(--sc-accent);
+}
+
+@keyframes sc-principle-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: none; }
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--sc-space-3);
+  margin-top: var(--sc-space-4);
+  padding-top: var(--sc-space-3);
+  border-top: var(--sc-line-hairline) solid var(--sc-border-rest);
+}
+
+/* ── closing ── */
+.closing {
+  animation: sc-principle-in var(--sc-dur-slow) var(--sc-ease-instrument);
+}
+
+.closingRule {
+  max-width: 200px;
+  margin-bottom: var(--sc-space-4);
+}
+
+.closingText {
+  font-family: var(--sc-font-serif);
+  font-size: var(--sc-fs-h1);
+  line-height: var(--sc-lh-tight);
+  color: var(--sc-ink);
+  max-width: 20ch;
+  margin-bottom: var(--sc-space-4);
+}
+
+.closingNav {
+  display: flex;
+  justify-content: flex-start;
+}

@@ -1,0 +1,43 @@
+.changeLink {
+  display: inline-block;
+  background: none;
+  border: none;
+  padding: 0;
+  margin-bottom: var(--sc-space-3);
+  font-family: var(--sc-font-mono);
+  font-size: var(--sc-fs-small);
+  letter-spacing: 0.04em;
+  color: var(--sc-ink-faint);
+  cursor: pointer;
+}
+.changeLink:hover {
+  color: var(--sc-accent);
+}
+
+.progressRow {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: var(--sc-space-3);
+  font-family: var(--sc-font-mono);
+  font-size: var(--sc-fs-micro);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.stage {
+  color: var(--sc-ink-faint);
+}
+
+.stageDone {
+  color: var(--sc-ink-dim);
+}
+
+.stageActive {
+  color: var(--sc-accent);
+  font-weight: 600;
+}
+
+.stageDivider {
+  color: var(--sc-ink-faint);
+}

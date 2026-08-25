@@ -1,0 +1,69 @@
+.shell {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--sc-scrim);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--sc-hairline);
+}
+
+.inner {
+  max-width: var(--sc-content-wide);
+  margin: 0 auto;
+  padding: 0.85rem var(--sc-space-3);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sc-space-3);
+}
+
+.left {
+  display: flex;
+  align-items: center;
+  gap: var(--sc-space-3);
+  min-width: 0;
+}
+
+.wordmark {
+  font-family: var(--sc-font-mono);
+  font-size: var(--sc-fs-small);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--sc-ink-faint);
+  white-space: nowrap;
+  /* At ~320-375px, this text plus the compass mark and .right's contents
+     can exceed the available width — .regionLabel right next to it
+     already truncates; this brings .wordmark in line with that instead
+     of letting it force the header wider than the viewport. min-width:0
+     is required alongside overflow/text-overflow for a flex child to
+     actually shrink below its own text's intrinsic width. */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+}
+
+.regionLabel {
+  font-family: var(--sc-font-serif);
+  font-size: 1.05rem;
+  color: var(--sc-ink);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  gap: var(--sc-space-3);
+  flex-shrink: 0;
+}
+
+.savedWrap {
+  display: none;
+  align-items: center;
+  gap: var(--sc-space-2);
+}
+
+@media (min-width: 560px) { /* --sc-bp-sm */
+  .savedWrap { display: inline-flex; }
+}

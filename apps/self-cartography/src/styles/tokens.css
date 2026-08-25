@@ -1,0 +1,335 @@
+/* ══════════════════════════════════════════════════════════
+   The Self Cartography Project — design system
+   Night-sky navigation chart × field notebook (Direction C,
+   "The Celestial Instrument," with one loan from Direction A's
+   bearing/route vocabulary for progress — see
+   /three-cartographies design-direction artifact).
+
+   Dark ground, warm parchment ink, one restrained accent. Fine
+   hairlines, not cards. No gradients, no glassmorphism, no neon.
+
+   Constructs are differentiated by shape, line, position, label,
+   and texture — never by a per-construct color. See "DIFFERENTIATION
+   TOOLKIT" below and styles/README.md for the rationale.
+   ══════════════════════════════════════════════════════════ */
+
+:root {
+  /* ── surface hierarchy ──────────────────────────────────
+     Three levels. Elevate by lightening the surface + a
+     hairline border, never by adding a shadow — see SHADOW below.
+  ────────────────────────────────────────────────────────── */
+  --sc-bg:            #0a0e14; /* level 0 — page ground */
+  --sc-bg-raised:     #0e1420; /* level 1 — panels, cards, badges */
+  --sc-bg-raised-2:   #121a28; /* level 2 — a panel nested inside a raised panel */
+  /* backdrop-blur scrim behind sticky/fixed chrome (JourneyShell's header,
+     AssessmentShell's mobile nav bar) — one value, not two hand-rolled
+     rgba() literals that drift apart from each other over time. */
+  --sc-scrim:         rgba(10, 14, 20, 0.93);
+
+  /* ── ink ──
+     --sc-ink-faint was 0.34 alpha — 2.63:1 against --sc-bg, a WCAG AA
+     failure (needs 4.5:1 for body text) despite being used for real
+     information in dozens of places (mobile table column labels, the
+     saved-state indicator, region marginalia), not just decoration. Raised
+     to 0.55 (~5.08:1). That lands close to --sc-ink-dim (0.58) — an
+     inherent limit of this background: a third tier this quiet plainly
+     could not also be legible. --sc-ink-ghost stays low-contrast on
+     purpose; it's decorative-only (hairline fills, dot-texture patterns),
+     never a place real information is read from. */
+  --sc-ink:           #e9e2d3;
+  --sc-ink-dim:       rgba(233, 226, 211, 0.58);
+  --sc-ink-faint:     rgba(233, 226, 211, 0.55);
+  --sc-ink-ghost:     rgba(233, 226, 211, 0.14);
+
+  /* ── border hierarchy ────────────────────────────────────
+     Four levels, rest → hover → active → strong. This is the
+     primary way elements signal state — color-shifting a border,
+     not adding a shadow or a fill.
+  ────────────────────────────────────────────────────────── */
+  --sc-border-rest:   rgba(233, 226, 211, 0.14); /* default — every hairline divider and panel edge */
+  --sc-border-hover:  rgba(233, 226, 211, 0.32); /* interactive hover */
+  --sc-border-active: rgba(201, 154, 83, 0.45);  /* selected / current answer / active state */
+  --sc-border-strong: #c99a53;                   /* rare — maximum emphasis only (e.g. a focused instrument reading) */
+
+  /* legacy aliases — existing components reference these names directly */
+  --sc-hairline:       var(--sc-border-rest);
+  --sc-hairline-hover: var(--sc-border-hover);
+
+  /* ── single restrained accent: warm brass/gold ink ── */
+  --sc-accent:        #c99a53;
+  --sc-accent-dim:    rgba(201, 154, 83, 0.16);
+  --sc-accent-line:   var(--sc-border-active);
+  --sc-accent-bright: #e0b568;
+
+  /* ── functional color — confidence & validity only, never a construct identity ── */
+  --sc-high:          #7fa987;
+  --sc-medium:        #c99a53;
+  --sc-low:           #b06a56;
+
+  /* ── type ── */
+  --sc-font-serif: 'Newsreader', Georgia, 'Times New Roman', serif;
+  --sc-font-mono:  'Share Tech Mono', ui-monospace, 'Courier New', monospace;
+
+  --sc-fs-display: clamp(2.6rem, 6vw, 4.6rem);
+  --sc-fs-h1:      clamp(2rem, 4.4vw, 3.2rem);
+  --sc-fs-h2:      clamp(1.5rem, 2.8vw, 2.1rem);
+  --sc-fs-h3:      clamp(1.15rem, 1.8vw, 1.5rem);
+  --sc-fs-body-lg: clamp(1.05rem, 1.5vw, 1.25rem);
+  --sc-fs-body:    clamp(0.95rem, 1.15vw, 1.05rem);
+  --sc-fs-small:   0.82rem;
+  --sc-fs-label:   0.72rem;
+  --sc-fs-micro:   0.65rem;
+
+  --sc-lh-tight:   1.15; /* headlines */
+  --sc-lh-snug:    1.35; /* card/panel body — not full prose, not a label */
+  --sc-lh-copy:    1.7;  /* narrative prose */
+
+  /* ── spacing scale ────────────────────────────────────────
+     5 steps, ~1.6–1.8× growth. Use these for every gap/padding/
+     margin — a new one-off value is a sign something should
+     reuse an existing step instead.
+  ────────────────────────────────────────────────────────── */
+  --sc-space-1: 0.4rem;  /*  6.4px — icon-to-label gaps, tight inline spacing */
+  --sc-space-2: 0.8rem;  /* 12.8px — internal padding within a control */
+  --sc-space-3: 1.4rem;  /* 22.4px — panel padding, spacing between related elements */
+  --sc-space-4: 2.2rem;  /* 35.2px — spacing between distinct sections of one screen */
+  --sc-space-5: 3.6rem;  /* 57.6px — top-level page padding, spacing between major sections */
+
+  /* ── line widths ──────────────────────────────────────────
+     Three weights only — matches every stroke-width already in
+     use across the motif/diagram components.
+  ────────────────────────────────────────────────────────── */
+  --sc-line-hairline:   1px;    /* dividers, default borders, grid lines */
+  --sc-line-emphasis:   1.25px; /* a data shape's outline (e.g. the radar polygon) */
+  --sc-line-instrument: 1.5px;  /* the one moving/active line — a needle, a progress arc */
+
+  /* ── radius ───────────────────────────────────────────────
+     This direction has no rounded rectangles. Sharp is the
+     default everywhere; the only curve is a true circle.
+  ────────────────────────────────────────────────────────── */
+  --sc-radius-sharp: 0;
+  --sc-radius-soft:  2px;  /* rare exception — a 90° corner reading harsh at very small scale */
+  --sc-radius-full:  50%;  /* circles only — dots, nodes, the compass mark */
+  --sc-radius: var(--sc-radius-soft); /* legacy alias */
+
+  /* ── shadow hierarchy ─────────────────────────────────────
+     This direction elevates with surface + border, not shadow.
+     --sc-shadow-lift exists for the rare floating element
+     (a future tooltip/overlay) — it is not the default elevation
+     mechanism and should almost never be reached for.
+  ────────────────────────────────────────────────────────── */
+  --sc-shadow-none: none;
+  --sc-shadow-lift: 0 8px 24px -12px rgba(0, 0, 0, 0.5);
+
+  /* ── animation timing ─────────────────────────────────────
+     fast     — hover/interactive state changes
+     med      — a screen/item entering or leaving
+     slow     — a value changing (a fill, a needle, a stroke draw)
+  ────────────────────────────────────────────────────────── */
+  --sc-dur-fast:  180ms;
+  --sc-dur-med:   420ms;
+  --sc-dur-slow:  1400ms;
+
+  /* ── animation easing ─────────────────────────────────────
+     standard   — native, unremarkable — every hover/interactive transition
+     instrument — the direction's signature settle — every value change
+  ────────────────────────────────────────────────────────── */
+  --sc-ease-standard:   ease;
+  --sc-ease-instrument: cubic-bezier(0.19, 1, 0.22, 1);
+  --sc-ease: var(--sc-ease-instrument); /* legacy alias */
+
+  /* ── widths ───────────────────────────────────────────────
+     Three named measures, all reusing the two values already
+     in production — named by purpose, not by size, so a future
+     change to one doesn't have to touch the others.
+  ────────────────────────────────────────────────────────── */
+  --sc-width-question: 640px; /* orientation / region-intro / item screens — narrow, for focus */
+  --sc-width-result:   900px; /* the synthesis report — wide enough for two columns + a diagram */
+  --sc-width-shell:    900px; /* header/nav max-width — matches the widest container below it */
+  --sc-width-content:  var(--sc-width-question); /* generic prose fallback */
+
+  /* legacy aliases — existing components reference these names directly */
+  --sc-content-width: var(--sc-width-question);
+  --sc-content-wide:  var(--sc-width-result);
+}
+
+/* ── breakpoints ──────────────────────────────────────────
+   CSS custom properties can't drive @media conditions, so this
+   is a documented convention, not an enforced token — every
+   @media rule in this app should match one of these four values
+   and reference its name in a comment, rather than picking a new
+   number. bp-header is NOT this app's to choose — it's the
+   site-wide header's own breakpoint (assets/css/global.css) and
+   must stay in sync with it.
+
+     --sc-bp-sm     560px   inline layouts gain room (e.g. a single-column
+                             facet grid becomes two columns)
+     --sc-bp-md     760px   the results two-column layout, journey shell
+     --sc-bp-header 860px   site-wide header collapses to the mobile drawer
+                             — inherited from global.css, do not diverge
+     --sc-bp-lg     1024px  desktop-enhancement tier, matching the site's
+                             existing precedent (reserved; not yet used here)
+──────────────────────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --sc-dur-fast: 1ms;
+    --sc-dur-med: 1ms;
+    --sc-dur-slow: 1ms;
+  }
+}
+
+/* Below --sc-bp-sm, the two smallest type steps read as genuinely tiny —
+   fine for a dense "instrument panel" label on a desktop display, not fine
+   for a thumb's-length mobile screen. Bumping the TOKENS (not every
+   individual class that reaches for them) fixes every eyebrow, badge, and
+   marginal note across the whole app in one place, and keeps the desktop
+   density intentional rather than accidentally regressed. */
+@media (max-width: 559px) {
+  :root {
+    --sc-fs-micro: 0.72rem;
+    --sc-fs-label: 0.78rem;
+  }
+}
+
+/* ══════════════════════════════════════════════════════════
+   DIFFERENTIATION TOOLKIT
+   How constructs tell themselves apart without color. Line-dash
+   and texture are real CSS tokens below; shape, position, label,
+   and diagrammatic treatment are structural principles — they
+   need markup, not a custom property, so they're documented here
+   with a pointer to where they're already in use.
+   ══════════════════════════════════════════════════════════ */
+
+:root {
+  /* LINE — a second data series in a diagram changes dash pattern, not hue.
+     Use in stroke-dasharray. */
+  --sc-dash-solid:  none;
+  --sc-dash-dotted: 1 5;
+  --sc-dash-dashed: 4 3;
+
+  /* TEXTURE — a fill differentiator for overlapping/adjacent regions in a
+     diagram, always at low opacity, always in `currentColor` so it inherits
+     the one ink color rather than introducing a new hue. */
+  --sc-texture-hatch:      repeating-linear-gradient(45deg, currentColor 0 1px, transparent 1px 6px);
+  --sc-texture-hatch-dense: repeating-linear-gradient(45deg, currentColor 0 1px, transparent 1px 3px);
+  --sc-texture-dot:        radial-gradient(currentColor 1px, transparent 1px);
+}
+
+/* SHAPE — not CSS-expressible as a token (a marker is markup, not a
+   property). The vocabulary is fixed at four: circle, diamond, triangle,
+   square. When a diagram needs more than one marker (e.g. plotting two
+   people's results on the same chart), assign shapes from this set before
+   ever reaching for a second color. No component implements this yet —
+   build a <Marker shape="circle | diamond | triangle | square"> when the
+   first multi-series diagram needs it, rather than inventing per-diagram
+   shape logic. */
+
+/* POSITION — already the primary differentiator in RadarDiagram.tsx: each
+   facet gets its own fixed angle around the circle. Two facets are told
+   apart by where they sit, not by how they're colored. */
+
+/* LABELING — already the primary differentiator everywhere else: the
+   mono micro-label convention (.sc-marginalia, Continuum's pole labels)
+   names a value directly rather than relying on a color key a reader has
+   to memorize. */
+
+/* DIAGRAMMATIC TREATMENT — different report sections already use
+   different diagram *types*, not different diagram *colors*: a horizontal
+   pole-to-pole continuum for nearly every scored facet (Continuum — see
+   components/results/Continuum.tsx), reserved for a radar polygon only
+   where a field convention actually justifies one (RIASEC's Holland
+   hexagon, in RadarDiagram). The diagram shape itself carries the category. */
+
+/* In-page anchor jumps (Landing's "How It Works") — smooth by default,
+   plain by request. Scoped to html so it doesn't affect the SPA's own
+   view-to-view navigation, which isn't scroll-based. */
+html {
+  scroll-behavior: smooth;
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* ── shared base ── */
+.sc-root {
+  background: var(--sc-bg);
+  color: var(--sc-ink);
+  font-family: var(--sc-font-mono);
+  min-height: 100vh;
+  position: relative;
+}
+
+.sc-serif {
+  font-family: var(--sc-font-serif);
+}
+
+.sc-eyebrow {
+  font-family: var(--sc-font-mono);
+  font-size: var(--sc-fs-label);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--sc-accent);
+  opacity: 0.9;
+}
+
+.sc-marginalia {
+  font-family: var(--sc-font-mono);
+  font-size: var(--sc-fs-micro);
+  letter-spacing: 0.08em;
+  color: var(--sc-ink-faint);
+}
+
+/* The one-time gap while the results bundle (lazy-loaded, see App.tsx)
+   finishes downloading — plain text, no spinner icon, matching the app's
+   own no-decoration-without-justification stance. */
+.sc-loading-fallback {
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--sc-font-mono);
+  font-size: var(--sc-fs-label);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--sc-ink-faint);
+}
+
+.sc-hairline {
+  border: none;
+  border-top: var(--sc-line-hairline) solid var(--sc-border-rest);
+}
+
+.sc-visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.sc-focusable:focus-visible {
+  outline: var(--sc-line-hairline) solid var(--sc-accent);
+  outline-offset: 3px;
+}
+
+/* Back-link in the shared site header, styled to match this project's ink tone
+   without touching the shared global.css rules used by the rest of the site. */
+.sc-back-link {
+  font-family: var(--sc-font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(240, 240, 240, 0.52);
+  text-decoration: none;
+  border: 1px solid rgba(240, 240, 240, 0.18);
+  padding: 0.4rem 0.9rem;
+  transition: color var(--sc-dur-fast) var(--sc-ease-standard), border-color var(--sc-dur-fast) var(--sc-ease-standard);
+}
+.sc-back-link:hover {
+  color: #f0f0f0;
+  border-color: rgba(240, 240, 240, 0.4);
+}
