@@ -16,7 +16,7 @@ function makeCareer(): Career {
 
 function makeResult(overrides: Partial<CareerFitResult> = {}): CareerFitResult {
   return {
-    career: makeCareer(), fitScore: 50, weightedCompatibility: 50, penaltyTotal: 0,
+    career: makeCareer(), fitScore: 50, weightedCompatibility: 50, penaltyTotal: 0, frictionPenalty: 0,
     categories: [], penalties: [], strengths: [], frictions: [],
     dimensionsScored: 0, dimensionsTotal: 0, headline: null,
     confidence: 'High', confidenceReason: '', dimensions: [],

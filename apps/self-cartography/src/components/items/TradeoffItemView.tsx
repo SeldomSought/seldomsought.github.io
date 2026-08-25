@@ -9,6 +9,25 @@ interface TradeoffItemViewProps {
   onAnswer: (value: 'A' | 'B') => void
 }
 
+// ~38 of this app's ~80 tradeoff items carry one of these five prompts,
+// verbatim, purely restating the mechanic ("pick one of the two
+// statements below") — the two option cards already make that obvious.
+// 'Which is closer to true?' alone repeats 18 times; read in sequence
+// (Desire's 12 items lean on it especially hard) it stops conveying
+// anything and just sits above the actual signal, the two statements
+// themselves. The other ~42 tradeoff items have real, construct-specific
+// framing (a scenario, a concrete tradeoff) that stays exactly as shown —
+// this only ever hides the content-free ones, never blanks item.prompt
+// itself (describeResponse.ts still quotes the real string for
+// results-report evidence text either way).
+const GENERIC_PROMPTS = new Set([
+  'Which is closer to true?',
+  'Which would you actually choose?',
+  'Which would you rather have?',
+  'Which would you actually do?',
+  'Picture both, ten years out. Which would you actually choose?',
+])
+
 /**
  * The two-option forced choice — "which describes you MORE?" — not to be
  * confused with ForcedChoiceItemView (format 'forcedChoiceRank'), which
@@ -32,10 +51,12 @@ export function TradeoffItemView({ item, value, onAnswer }: TradeoffItemViewProp
     ? [{ key: 'A', label: item.optionA.label }, { key: 'B', label: item.optionB.label }]
     : [{ key: 'B', label: item.optionB.label }, { key: 'A', label: item.optionA.label }]
 
+  const showPrompt = !GENERIC_PROMPTS.has(item.prompt)
+
   return (
     <div className={sharedStyles.frame}>
       <div className={sharedStyles.eyebrow}>Forced choice</div>
-      <p className={sharedStyles.prompt}>{item.prompt}</p>
+      {showPrompt && <p className={sharedStyles.prompt}>{item.prompt}</p>}
 
       <div className={styles.pair} role="radiogroup" aria-label={item.prompt}>
         <button

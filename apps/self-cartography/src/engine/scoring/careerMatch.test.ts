@@ -111,7 +111,7 @@ describe('computeCareerFit — the worked example: excellent interest fit, sever
     expect(result.penalties[0].points).toBeGreaterThan(0)
 
     // the subtraction is visible, not hidden inside one blended number
-    expect(result.fitScore).toBe(Math.max(0, result.weightedCompatibility - result.penaltyTotal))
+    expect(result.fitScore).toBe(Math.max(0, result.weightedCompatibility - result.penaltyTotal - result.frictionPenalty))
     expect(result.fitScore).toBeLessThan(result.weightedCompatibility)
 
     // and it's named explicitly, in almost the requested phrasing
@@ -132,11 +132,31 @@ describe('computeCareerFit — the worked example: excellent interest fit, sever
     expect(result.headline).toBeNull()
   })
 
-  it('a non-dealbreaker dimension never generates a penalty, no matter how large the gap', () => {
+  it('a non-dealbreaker dimension never generates an itemized (severe-mismatch) penalty, no matter how large the gap', () => {
     // "social" never carries a dealbreaker flag at all, regardless of how extreme the occupation's own value is.
     const career = makeCareer({ socialOrientation: 100 })
     const result = computeCareerFit(career, { sociability: fs('sociability', 0) }) // maximum possible gap
     expect(result.penalties).toEqual([])
+  })
+
+  it('a large non-dealbreaker gap still nudges the score down via the smaller friction penalty, instead of vanishing entirely', () => {
+    // diff 60 (comfortably past the friction threshold, but leaves
+    // weightedCompatibility at a non-zero 40 so the deduction is actually
+    // observable, unlike a maximal diff=100 gap that already floors at 0).
+    const career = makeCareer({ socialOrientation: 90 })
+    const result = computeCareerFit(career, { sociability: fs('sociability', 30) })
+    expect(result.penalties).toEqual([]) // still not itemized as a severe mismatch
+    expect(result.frictionPenalty).toBeGreaterThan(0)
+    expect(result.fitScore).toBeLessThan(result.weightedCompatibility)
+    // gentler than the dealbreaker penalty rate would produce for the same gap
+    expect(result.frictionPenalty).toBeLessThanOrEqual(10)
+  })
+
+  it('does not apply a friction penalty for a non-dealbreaker gap at or below the friction threshold', () => {
+    const career = makeCareer({ socialOrientation: 90 }) // sociability desired 90
+    const result = computeCareerFit(career, { sociability: fs('sociability', 50) }) // diff 40 — exactly at the threshold, not past it
+    expect(result.frictionPenalty).toBe(0)
+    expect(result.fitScore).toBe(result.weightedCompatibility)
   })
 
   it('does not raise a headline when the strong category and the mismatched category are the same one', () => {

@@ -121,6 +121,61 @@ describe('detectUnconventionalPaths — sorts strongest signal first', () => {
   })
 })
 
+describe('detectUnconventionalPaths — caps how many qualifying structures actually surface', () => {
+  // A real synthetic-walkthrough finding: 12 structures share real overlap
+  // (autonomy_need:high alone appears in most of them), so a consistent
+  // profile can clear the bar on far more than a handful at once —
+  // technically correct per-structure, but it dilutes a section meant to
+  // read as a distinctive, non-obvious insight into "most things matched."
+  function structureAt(id: string, conditionsMet: 2 | 3 | 4): CareerStructure {
+    const conditions: CareerStructure['conditions'] = [
+      { facetId: 'autonomy_need', direction: 'high', threshold: 65 },
+      { facetId: 'work_task_variety', direction: 'high', threshold: 65 },
+      { facetId: 'structure_need', direction: 'low', threshold: 60 },
+      { facetId: 'risk_financial', direction: 'high', threshold: 55 },
+    ]
+    // Swap in a condition on a facet that's never scored below, so exactly
+    // (4 - conditionsMet) of the four conditions go unmet for this structure.
+    for (let i = 0; i < 4 - conditionsMet; i++) conditions[i] = { facetId: `unscored_${id}_${i}`, direction: 'high', threshold: 65 }
+    return { id, label: id, description: '', exampleRoles: ['Role'], conditions, minimumMet: 2, detail: '' }
+  }
+
+  const scores = {
+    autonomy_need: fs('autonomy_need', 80),
+    work_task_variety: fs('work_task_variety', 75),
+    structure_need: fs('structure_need', 20),
+    risk_financial: fs('risk_financial', 70),
+  }
+
+  it('returns at most 4 structures even when 6 qualify', () => {
+    const structures = [
+      structureAt('a', 4), structureAt('b', 4), structureAt('c', 3),
+      structureAt('d', 3), structureAt('e', 2), structureAt('f', 2),
+    ]
+    const result = detectUnconventionalPaths(scores, structures)
+    expect(result.length).toBeLessThanOrEqual(4)
+  })
+
+  it('keeps the strongest matches (highest conditionsMet) when trimming, not an arbitrary subset', () => {
+    const structures = [
+      structureAt('a', 4), structureAt('b', 4), structureAt('c', 3),
+      structureAt('d', 3), structureAt('e', 2), structureAt('f', 2),
+    ]
+    const result = detectUnconventionalPaths(scores, structures)
+    const returnedIds = new Set(result.map((r) => r.id))
+    expect(returnedIds.has('a')).toBe(true)
+    expect(returnedIds.has('b')).toBe(true)
+    expect(returnedIds.has('e')).toBe(false)
+    expect(returnedIds.has('f')).toBe(false)
+  })
+
+  it('returns all of them, unchanged, when 4 or fewer qualify', () => {
+    const structures = [structureAt('a', 4), structureAt('b', 3), structureAt('c', 2)]
+    const result = detectUnconventionalPaths(scores, structures)
+    expect(result).toHaveLength(3)
+  })
+})
+
 describe('the real CAREER_STRUCTURES content — every structure is auditable and covers the requested list', () => {
   it('every condition names a facet that actually exists', () => {
     for (const structure of CAREER_STRUCTURES) {

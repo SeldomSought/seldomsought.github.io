@@ -258,9 +258,21 @@ function categorizeLegacyFlag(id: string): QualityCategory | null {
   return null
 }
 
-function summarize(signals: QualitySignal[]): { profileConfidence: ProfileConfidence; summary: string } {
-  const points = signals.reduce((sum, s) => sum + (s.severity === 'flag' ? 2 : 1), 0)
-  const profileConfidence: ProfileConfidence = points <= 1 ? 'High' : points <= 4 ? 'Moderate' : 'Limited'
+export function summarize(signals: QualitySignal[]): { profileConfidence: ProfileConfidence; summary: string } {
+  const flagPoints = signals.filter((s) => s.severity === 'flag').length * 2
+  const notePoints = signals.filter((s) => s.severity === 'note').length
+
+  // 'note' is explicitly documented above (QualitySignal) as short of a real
+  // data-quality problem — several of the checks that produce one say so
+  // directly in their own detail text ("not necessarily a problem," "that's
+  // useful on its own," a respondent's own self-awareness "is noted", not
+  // penalized). A note can still tip High to Moderate (worth a mention),
+  // but "Limited" explicitly means "treat this as a hypothesis, not a
+  // conclusion" — too strong a claim to reach on notes alone, or on notes
+  // stacked onto flags that, by themselves, only reached Moderate. Only
+  // real flags can cross that specific boundary.
+  const profileConfidence: ProfileConfidence =
+    flagPoints > 4 ? 'Limited' : flagPoints + notePoints > 1 ? 'Moderate' : 'High'
   const categories = joinList([...new Set(signals.map((s) => QUALITY_CATEGORY_LABEL[s.category]))])
 
   let summary: string

@@ -265,7 +265,7 @@ const TENSION_RULES: TensionRuleDef[] = [
     poleA: 'Mastery', poleB: 'Variety',
     conditionA: { facetId: 'anchor_technical_mastery', direction: 'high', threshold: 65 },
     conditionB: { facetId: 'work_task_variety', direction: 'high', threshold: 65 },
-    detail: 'Technical mastery — depth in one specific thing — is a strong career anchor, but task variety, switching between genuinely different kinds of work, also scored high. Deep mastery is usually built through sustained repetition in one domain; high task variety usually prevents that repetition from accumulating.',
+    detail: 'Technical mastery — depth in one specific thing — is a strong career anchor, but task variety, switching between different kinds of work, also scored high. Deep mastery is usually built through sustained repetition in one domain; high task variety usually prevents that repetition from accumulating.',
   },
   {
     id: 'freedom-security',
@@ -281,7 +281,7 @@ const TENSION_RULES: TensionRuleDef[] = [
     poleA: 'Impact', poleB: 'Privacy',
     conditionA: { facetId: 'desire_impact_comfort', direction: 'high', threshold: 65 },
     conditionB: { facetId: 'desire_status_privacy', direction: 'low', threshold: 65 },
-    detail: 'You want influence — work that might genuinely change something — but show low appetite for the public exposure that usually comes with visible impact. Influence at any real scale is hard to have unseen; this isn’t proof one number is truer than the other, it’s a shape a role has to accommodate: impact exercised through the work itself, or through people who trust you, rather than through a public platform.',
+    detail: 'You want influence — work that might change something — but show low appetite for the public exposure that usually comes with visible impact. Influence at any real scale is hard to have unseen; this isn’t proof one number is truer than the other, it’s a shape a role has to accommodate: impact exercised through the work itself, or through people who trust you, rather than through a public platform.',
   },
   {
     id: 'novelty-completion',

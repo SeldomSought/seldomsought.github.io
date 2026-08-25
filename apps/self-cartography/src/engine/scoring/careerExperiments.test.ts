@@ -25,7 +25,7 @@ function category(cat: CategoryFitResult['category'], compatibility: number): Ca
 
 function makeResult(overrides: Partial<CareerFitResult> = {}): CareerFitResult {
   return {
-    career: makeCareer(), fitScore: 80, weightedCompatibility: 80, penaltyTotal: 0,
+    career: makeCareer(), fitScore: 80, weightedCompatibility: 80, penaltyTotal: 0, frictionPenalty: 0,
     categories: [category('interest', 85)], penalties: [], strengths: [], frictions: [],
     dimensionsScored: 1, dimensionsTotal: 1, headline: null,
     confidence: 'High', confidenceReason: '', dimensions: [],

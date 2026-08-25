@@ -72,7 +72,10 @@ export function Continuum({ facetScore }: { facetScore: FacetScore }) {
         <span className={[styles.pole, styles.poleRight, leaning === 'high' ? styles.leaning : ''].join(' ')}>{highLabel}</span>
       </div>
 
-      <span className={styles.confidence}>Confidence: {facetScore.confidence}</span>
+      <span className={styles.confidence}>
+        Confidence: {facetScore.confidence}
+        {facetScore.evidenceCount <= 1 && ' — from a single comparison, not a scale'}
+      </span>
     </div>
   )
 }

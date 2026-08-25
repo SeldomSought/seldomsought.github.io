@@ -78,6 +78,16 @@ export interface CareerFitResult {
    *  inside one blended number. */
   weightedCompatibility: number
   penaltyTotal: number
+  /** A second, smaller deduction from ordinary (non-dealbreaker) friction —
+   *  see FRICTION_GAP_THRESHOLD below for why this exists: category
+   *  averaging alone can dilute a genuinely large gap on one dimension
+   *  into invisibility when that category also holds several well-aligned
+   *  ones, or carries a low weight. This doesn't replace the dealbreaker
+   *  penalty system (still the stronger, itemized signal for a
+   *  near-requirement miss) — it just means several real, moderate
+   *  frictions nudge the headline number down instead of vanishing into
+   *  an average, the same way they'd genuinely register with a person. */
+  frictionPenalty: number
   categories: CategoryFitResult[]
   penalties: IncompatibilityPenalty[]
   strengths: CareerAlignmentBullet[]
@@ -97,6 +107,17 @@ export interface CareerFitResult {
 const SEVERE_GAP_THRESHOLD = 45
 const PENALTY_RATE = 1.0
 const MAX_PENALTY_PER_DIMENSION = 30
+
+/** Same boundary dimensionRole already uses to call a gap "friction" —
+ *  reused here so "this dimension reads as friction" and "this dimension
+ *  nudges the score down" never disagree with each other. Deliberately a
+ *  much gentler rate/cap than the dealbreaker penalty above: this is for
+ *  ordinary, real friction the career itself never flagged as a
+ *  near-requirement, so several of these together should be noticeable,
+ *  not punishing the way one severe dealbreaker miss is. */
+const FRICTION_GAP_THRESHOLD = 40
+const FRICTION_PENALTY_RATE = 0.3
+const MAX_FRICTION_PENALTY_PER_DIMENSION = 10
 
 function mean(nums: number[]): number {
   return nums.reduce((a, b) => a + b, 0) / nums.length
@@ -169,7 +190,7 @@ export function computeCareerFit(career: Career, facetScores: Record<string, Fac
 
   if (scoredCategories.length === 0) {
     return {
-      career, fitScore: 0, weightedCompatibility: 0, penaltyTotal: 0,
+      career, fitScore: 0, weightedCompatibility: 0, penaltyTotal: 0, frictionPenalty: 0,
       categories: [], penalties: [], strengths: [], frictions: [],
       dimensionsScored: 0, dimensionsTotal, headline: null,
       confidence: 'Limited',
@@ -204,7 +225,20 @@ export function computeCareerFit(career: Career, facetScores: Record<string, Fac
     }
   }
   const penaltyTotal = penalties.reduce((s, p) => s + p.points, 0)
-  const fitScore = clamp(weightedCompatibility - penaltyTotal, 0, 100)
+
+  // Ordinary friction: every non-dealbreaker dimension whose gap is still
+  // large enough to read as real friction (the same threshold dimensionRole
+  // classifies as 'friction'), each contributing a small, capped deduction.
+  // Never double-counts a dimension already penalized above as a dealbreaker.
+  let frictionPenalty = 0
+  for (const c of scoredCategories) {
+    for (const a of c.alignments) {
+      if (a.dealbreaker || a.diff <= FRICTION_GAP_THRESHOLD) continue
+      frictionPenalty += Math.min(MAX_FRICTION_PENALTY_PER_DIMENSION, Math.round((a.diff - FRICTION_GAP_THRESHOLD) * FRICTION_PENALTY_RATE))
+    }
+  }
+
+  const fitScore = clamp(weightedCompatibility - penaltyTotal - frictionPenalty, 0, 100)
 
   const allAlignments = scoredCategories.flatMap((c) => c.alignments.map((a) => ({ ...a, category: c.category })))
   const strengths: CareerAlignmentBullet[] = allAlignments
@@ -242,6 +276,7 @@ export function computeCareerFit(career: Career, facetScores: Record<string, Fac
     fitScore,
     weightedCompatibility,
     penaltyTotal,
+    frictionPenalty,
     categories,
     penalties,
     strengths,

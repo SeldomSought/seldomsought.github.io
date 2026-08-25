@@ -22,11 +22,19 @@ interface LikertItemProps {
  * accidentally skips a question by fat-fingering a digit. Undocumented on
  * screen deliberately: repeating the same hint under every likert item in
  * a region added up to real, low-value clutter for the mouse-only majority.
+ *
+ * No eyebrow label either, for the same reason and at even higher stakes:
+ * likert5 is by far the most common format (80 items app-wide, 42 of them
+ * back to back in Temperament alone) — a static "Rate how true this is"
+ * repeated that many times stops being read at all, and the five-point
+ * gauge with agree/disagree labels already makes the format self-evident
+ * from the first item onward. Every other item-format component keeps its
+ * eyebrow (it's the one honest signal that the format itself just
+ * changed) — this is the one case where the eyebrow would never change.
  */
 export function LikertItem({ item, value, onAnswer }: LikertItemProps) {
   return (
     <div className={[sharedStyles.frame, styles.wrap].join(' ')}>
-      <div className={sharedStyles.eyebrow}>Rate how true this is</div>
       <p className={sharedStyles.prompt}>{item.prompt}</p>
 
       <div

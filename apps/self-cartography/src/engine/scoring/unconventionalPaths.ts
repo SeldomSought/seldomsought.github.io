@@ -91,10 +91,21 @@ function evaluateStructure(structure: CareerStructure, facetScores: Record<strin
   }
 }
 
-/** Every career structure that clears its own convergence bar, strongest
- *  signal first. `structures` mirrors matchCareers/evaluatePoorFits —
- *  defaults to the real content set but takes it as data, so this stays
- *  testable against synthetic structures without touching real content. */
+/** With 12 real structures sharing real overlap (autonomy_need:high alone
+ *  appears in 7 of them), a genuinely consistent profile can clear the
+ *  convergence bar on most of the catalog at once — technically correct
+ *  per-structure, but a section meant to surface a distinctive, unexpected
+ *  structural read stops being either once it's most of the list. Capped
+ *  the same way careerMatch.ts already caps strengths/frictions to their
+ *  own strongest 4 — the underlying detection is untouched, this only
+ *  decides how many of the qualifying matches actually surface. */
+const MAX_PATHS_SURFACED = 4
+
+/** The strongest-matching career structures that clear their own
+ *  convergence bar, capped at MAX_PATHS_SURFACED. `structures` mirrors
+ *  matchCareers/evaluatePoorFits — defaults to the real content set but
+ *  takes it as data, so this stays testable against synthetic structures
+ *  without touching real content. */
 export function detectUnconventionalPaths(
   facetScores: Record<string, FacetScore>,
   structures: CareerStructure[] = CAREER_STRUCTURES,
@@ -103,4 +114,5 @@ export function detectUnconventionalPaths(
     .map((s) => evaluateStructure(s, facetScores))
     .filter((r): r is UnconventionalPathResult => r !== null)
     .sort((a, b) => b.conditionsMet - a.conditionsMet)
+    .slice(0, MAX_PATHS_SURFACED)
 }

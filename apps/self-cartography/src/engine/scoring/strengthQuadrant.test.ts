@@ -78,7 +78,7 @@ describe('quadrantByFacetId — a lookup keyed by every Ability-axis facet id be
 describe('annotateCareerFitStrengths — the actual career-recommendation integration point', () => {
   const baseResult: CareerFitResult = {
     career: {} as CareerFitResult['career'],
-    fitScore: 80, weightedCompatibility: 80, penaltyTotal: 0,
+    fitScore: 80, weightedCompatibility: 80, penaltyTotal: 0, frictionPenalty: 0,
     categories: [], penalties: [], strengths: [], frictions: [],
     dimensionsScored: 2, dimensionsTotal: 2, headline: null,
     confidence: 'High', confidenceReason: '',

@@ -31,14 +31,21 @@ const ROLE_LABEL: Record<CareerFitDimensionDetail['role'], string> = {
  */
 export function CareerFitCard({ result, strengthQuadrants = {} }: { result: CareerFitResult; strengthQuadrants?: Record<string, StrengthQuadrant> }) {
   const {
-    career, fitScore, weightedCompatibility, penaltyTotal, categories, penalties,
+    career, fitScore, weightedCompatibility, penaltyTotal, frictionPenalty, categories, penalties,
     strengths, frictions, headline, confidence, confidenceReason, dimensions,
     dimensionsScored, dimensionsTotal,
   } = result
 
-  const compatNote = penaltyTotal > 0
-    ? `${weightedCompatibility} weighted compatibility across ${dimensionsScored} of ${dimensionsTotal} scored dimensions − ${penaltyTotal} for ${penalties.length} severe mismatch${penalties.length > 1 ? 'es' : ''} = ${fitScore}`
-    : `${fitScore} weighted compatibility across ${dimensionsScored} of ${dimensionsTotal} scored dimensions — no severe mismatches`
+  // Every deduction stays visible in the same sentence the headline number
+  // comes from — a friction penalty is exactly as much "shown work" as a
+  // severe-mismatch one, just gentler, so it never quietly changes a score
+  // without the arithmetic to back it up.
+  const deductionParts: string[] = []
+  if (penaltyTotal > 0) deductionParts.push(`${penaltyTotal} for ${penalties.length} severe mismatch${penalties.length > 1 ? 'es' : ''}`)
+  if (frictionPenalty > 0) deductionParts.push(`${frictionPenalty} for ordinary friction elsewhere`)
+  const compatNote = deductionParts.length > 0
+    ? `${weightedCompatibility} weighted compatibility across ${dimensionsScored} of ${dimensionsTotal} scored dimensions − ${deductionParts.join(' − ')} = ${fitScore}`
+    : `${fitScore} weighted compatibility across ${dimensionsScored} of ${dimensionsTotal} scored dimensions — no mismatches`
 
   // The fit score reads a strength dimension's ability alone — it can't
   // distinguish a Signature Strength from a Utilitarian Skill that scores
@@ -67,7 +74,14 @@ export function CareerFitCard({ result, strengthQuadrants = {} }: { result: Care
             <span className={styles.categoryTrack}>
               <span className={styles.categoryFill} style={{ width: `${c.compatibility}%` }} />
             </span>
-            <span className={styles.categoryValue}>{c.compatibility}</span>
+            <span className={styles.categoryValue}>
+              {c.compatibility}
+              {/* A 60% backed by one dimension and a 66% backed by six
+                  otherwise render with identical visual weight — this is
+                  the same "how many things actually agree" signal
+                  per-facet confidence already shows, just for a category. */}
+              <span className={styles.categoryDimCount}>{c.dimensionsScored}/{c.dimensionsTotal}</span>
+            </span>
           </div>
         ))}
       </div>
