@@ -1,275 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-  <link rel="stylesheet" href="assets/css/global.css">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="stylesheet" href="assets/css/global.css">
+    <link rel="stylesheet" href="assets/css/contact.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact — SeldomSought</title>
-    <meta name="description" content="Open a line of correspondence with SeldomSought.">
-    <meta name="theme-color" content="#0c0c0c"/>
+    <meta name="description" content="A project, a question, a half-formed idea — write to SeldomSought.">
+    <meta name="theme-color" content="#f8f8f4"/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
-    <style>
-    /* ── reset ── */
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    button { font: inherit; cursor: pointer; }
-
-    /* ── tokens ── */
-    :root {
-        --bg:      #0c0c0c;
-        --fg:      #d4d4d4;
-        --fg-br:   #f0f0f0;
-        --fg-dim:  #4e4e4e;
-        --border:  #222222;
-        --border-h:#888888;
-        --mono:    'Share Tech Mono', 'Courier New', monospace;
-    }
-
-    /* ── base ── */
-    html { scroll-behavior: smooth; }
-    body {
-        font-family: var(--mono);
-        background: var(--bg);
-        color: var(--fg);
-        line-height: 1.65;
-        overflow-x: hidden;
-    }
-    .sr-only {
-        position: absolute; width: 1px; height: 1px;
-        padding: 0; margin: -1px; overflow: hidden;
-        clip: rect(0,0,0,0); white-space: nowrap; border: 0;
-    }
-    a { color: var(--fg); }
-
-
-    /* ── page wrapper ── */
-    .page-wrap {
-        max-width: 660px; margin: 0 auto;
-        padding: calc(var(--site-header-height-mobile) + 3rem) 2rem 6rem;
-    }
-    @media (min-width: 861px) {
-        .page-wrap { padding-top: calc(var(--site-header-height) + 3rem); }
-    }
-
-    /* ── header ── */
-    .page-header { margin-bottom: 3.5rem; }
-
-    .ascii-banner {
-        font-size: clamp(9px, 1.2vw, 11px);
-        line-height: 1.3; white-space: pre;
-        color: var(--fg-dim);
-        margin-bottom: 2rem;
-        display: block;
-        overflow: hidden;
-    }
-
-    .page-h1 {
-        font-family: var(--mono);
-        font-size: var(--fs-h2);
-        font-weight: 400;
-        letter-spacing: 10px; text-transform: uppercase;
-        color: var(--fg-br); line-height: 1.0;
-        margin-bottom: 0.5rem;
-    }
-
-    .page-sub {
-        font-size: 0.70rem; letter-spacing: 3px; text-transform: uppercase;
-        color: var(--fg-dim);
-    }
-
-    .h-rule {
-        border: none; border-top: 1px solid var(--border);
-        margin: 2rem 0;
-    }
-
-    /* ── section kicker ── */
-    .kicker {
-        font-size: 0.65rem; letter-spacing: 4px; text-transform: uppercase;
-        color: var(--fg-dim); margin-bottom: 2rem;
-    }
-    .kicker::before { content: '// '; color: var(--fg-br); }
-
-    /* ── form ── */
-    .field-block { margin-bottom: 1.8rem; }
-
-    .field-label {
-        display: block;
-        font-size: 0.58rem; letter-spacing: 4px; text-transform: uppercase;
-        color: var(--fg-dim); margin-bottom: 0.45rem;
-    }
-
-    /* signature-line inputs */
-    .field-input {
-        width: 100%;
-        background: none;
-        border: none;
-        border-bottom: 1px solid var(--border);
-        color: var(--fg-br);
-        font-family: var(--mono);
-        font-size: 0.88rem;
-        padding: 0.45rem 0;
-        outline: none;
-        transition: border-color 0.2s;
-    }
-    .field-input::placeholder { color: var(--fg-dim); opacity: 0.6; }
-    .field-input:focus { border-bottom-color: var(--fg-br); }
-    .field-input:focus-visible { outline: none; }
-
-    /* select stays as a select (can't remove arrow reliably, style it plainly) */
-    .field-select {
-        width: 100%;
-        background: #111;
-        border: 1px solid var(--border);
-        color: var(--fg);
-        font-family: var(--mono);
-        font-size: 0.86rem;
-        padding: 0.55rem 0.7rem;
-        outline: none;
-        -webkit-appearance: none; appearance: none;
-        cursor: pointer;
-        transition: border-color 0.2s;
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%234e4e4e' stroke-width='1.4' fill='none'/%3E%3C/svg%3E");
-        background-repeat: no-repeat;
-        background-position: right 0.8rem center;
-        background-size: 10px;
-        padding-right: 2rem;
-    }
-    .field-select:focus { border-color: var(--border-h); }
-    .field-select option { background: #111; color: var(--fg); }
-
-    /* textarea */
-    .field-textarea {
-        width: 100%; min-height: 130px; resize: vertical;
-        background: #111;
-        border: 1px solid var(--border);
-        color: var(--fg-br);
-        font-family: var(--mono);
-        font-size: 0.88rem;
-        line-height: 1.65;
-        padding: 0.75rem 0.85rem;
-        outline: none;
-        transition: border-color 0.2s;
-    }
-    .field-textarea::placeholder { color: var(--fg-dim); opacity: 0.5; }
-    .field-textarea:focus { border-color: var(--border-h); }
-
-    /* error */
-    .form-error {
-        font-size: 0.68rem; letter-spacing: 1.5px;
-        color: #888; margin-top: 0.7rem;
-        min-height: 1.2em; opacity: 0; transition: opacity 0.2s;
-    }
-    .form-error.visible { opacity: 1; }
-
-    /* submit button */
-    .submit-row { margin-top: 2rem; display: flex; align-items: center; gap: 1.5rem; }
-
-    .submit-btn {
-        background: none;
-        border: 1px solid var(--border);
-        color: var(--fg);
-        font-family: var(--mono);
-        font-size: 0.70rem; letter-spacing: 5px; text-transform: uppercase;
-        padding: 0.75rem 1.8rem;
-        transition: border-color 0.2s, color 0.2s;
-    }
-    .submit-btn:hover   { border-color: var(--border-h); color: var(--fg-br); }
-    .submit-btn:focus-visible { outline: 1px solid var(--fg-br); outline-offset: 2px; }
-    .submit-btn:disabled { opacity: 0.3; pointer-events: none; }
-
-    /* terminal prompt */
-    .term-line {
-        font-size: 0.64rem; letter-spacing: 1px;
-        color: var(--fg-dim); flex: 1;
-    }
-    .term-ident { color: var(--fg); }
-    .cursor-blink {
-        display: inline-block; width: 6px; height: 10px;
-        background: var(--fg-dim); vertical-align: middle;
-        animation: blink 1s step-end infinite;
-        margin-left: 1px;
-    }
-    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
-
-    /* success */
-    .success-state {
-        display: none; padding: 2rem 0;
-    }
-    .success-state.visible { display: block; }
-    .success-box {
-        border: 1px solid var(--border);
-        padding: 1.5rem 1.8rem;
-        display: inline-block;
-    }
-    .success-line {
-        font-size: 0.72rem; letter-spacing: 2px; line-height: 2;
-        color: var(--fg-dim);
-    }
-    .success-line span { color: var(--fg-br); }
-
-    /* ── contact info ── */
-    .routes-list { list-style: none; }
-    .routes-list li {
-        font-size: 0.82rem; letter-spacing: 1px;
-        padding: 0.38rem 0;
-        border-bottom: 1px solid var(--border);
-        display: flex; gap: 1rem; align-items: baseline;
-    }
-    .routes-list li:last-child { border-bottom: none; }
-    .route-key {
-        font-size: 0.58rem; letter-spacing: 3px; text-transform: uppercase;
-        color: var(--fg-dim); min-width: 80px; flex-shrink: 0;
-    }
-    .routes-list a {
-        color: var(--fg); text-decoration: none; transition: color 0.2s;
-    }
-    .routes-list a:hover { color: #fff; }
-    .routes-list a:focus-visible { outline: 1px solid var(--fg-br); outline-offset: 2px; }
-
-    .note {
-        font-size: 0.62rem; letter-spacing: 2px; text-transform: uppercase;
-        color: var(--fg-dim); margin-top: 1.5rem;
-    }
-
-    /* ── footer ── */
-    .site-floor {
-        border-top: 1px solid var(--border);
-        padding: 2rem 2.5rem;
-        position: relative; z-index: 1;
-    }
-    .floor-inner {
-        max-width: 1380px; margin: 0 auto;
-        display: flex; justify-content: space-between; align-items: center;
-        flex-wrap: wrap; gap: 1rem;
-    }
-    .floor-nav { display: flex; gap: 1.5rem; list-style: none; flex-wrap: wrap; }
-    .floor-nav a {
-        font-size: 0.60rem; letter-spacing: 2px; text-transform: uppercase;
-        color: var(--fg-dim); text-decoration: none; transition: color 0.2s;
-    }
-    .floor-nav a:hover { color: var(--fg-br); }
-    .floor-copy {
-        font-size: 0.60rem; letter-spacing: 2px; text-transform: uppercase;
-        color: var(--fg-dim); opacity: 0.5;
-    }
-
-    /* ── responsive ── */
-    @media (max-width: 768px) {
-        .page-wrap { padding: calc(var(--site-header-height-mobile) + 1.5rem) 1.5rem 4rem; }
-        .submit-row { flex-direction: column; align-items: flex-start; }
-        .floor-inner { flex-direction: column; gap: 1.2rem; }
-        .floor-nav { gap: 1rem; }
-        .ascii-banner { display: none; }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-        .cursor-blink { animation: none; opacity: 1; }
-    }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Bodoni+Moda:ital,wght@0,400..500;1,400..500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="contact-heaven">
 
     <!-- nav -->
     <header class="site-header" id="siteHeader">
@@ -285,7 +29,7 @@
           <a href="expertise.html">Expertise</a>
           <a href="projects.html">Projects</a>
           <a href="faq.html">FAQ</a>
-          <a href="contact.html">Contact</a>
+          <a href="contact.html" aria-current="page">Contact</a>
         </nav>
       </div>
       <nav class="site-header__mobile" id="siteMobileMenu"
@@ -296,176 +40,208 @@
         <a href="expertise.html">Expertise</a>
         <a href="projects.html">Projects</a>
         <a href="faq.html">FAQ</a>
-        <a href="contact.html">Contact</a>
+        <a href="contact.html" aria-current="page">Contact</a>
       </nav>
     </header>
 
+    <!-- icon sprite (decorative, reused across the scene) -->
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+      <defs>
+        <symbol id="ss-icon-envelope" viewBox="0 0 120 64">
+          <path d="M18 40 C4 34 -4 18 4 4 C14 10 20 22 22 34" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M102 40 C116 34 124 18 116 4 C106 10 100 22 98 34" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <rect x="22" y="14" width="76" height="42" rx="3" fill="none" stroke="currentColor" stroke-width="2"/>
+          <path d="M22 16 L60 44 L98 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </symbol>
+        <symbol id="ss-icon-star" viewBox="0 0 24 24">
+          <path d="M12 2 L14.9 8.9 L22 9.5 L16.6 14.3 L18.2 21.4 L12 17.6 L5.8 21.4 L7.4 14.3 L2 9.5 L9.1 8.9 Z" fill="currentColor"/>
+        </symbol>
+        <symbol id="ss-icon-cloud" viewBox="0 0 200 110">
+          <path d="M40 90 C14 90 4 68 24 56 C18 34 48 20 68 32 C78 14 116 12 128 32 C160 26 182 50 166 70 C176 86 158 98 140 92 C126 100 60 100 40 90 Z" fill="currentColor"/>
+        </symbol>
+      </defs>
+    </svg>
+
     <!-- main -->
-    <main class="page-wrap">
+    <main class="ss-contact" id="ssContact">
+      <div class="ss-sky" aria-hidden="true"></div>
 
-        <!-- header -->
-        <header class="page-header">
-<span class="ascii-banner" aria-hidden="true">+-- SELDOMSOUGHT ----------------------------------------------------+
-|   correspondence terminal  //  open a line                        |
-+-------------------------------------------------------------------+</span>
-            <h1 class="page-h1">Contact</h1>
-            <p class="page-sub">open a line &middot; dispatches received</p>
-        </header>
+      <svg class="ss-cloud ss-cloud--a" viewBox="0 0 200 110" data-ss-ambient aria-hidden="true"><use href="#ss-icon-cloud"/></svg>
+      <svg class="ss-cloud ss-cloud--b" viewBox="0 0 200 110" data-ss-ambient aria-hidden="true"><use href="#ss-icon-cloud"/></svg>
+      <svg class="ss-cloud ss-cloud--c" viewBox="0 0 200 110" data-ss-ambient aria-hidden="true"><use href="#ss-icon-cloud"/></svg>
 
-        <hr class="h-rule">
+      <svg class="ss-star" viewBox="0 0 24 24" style="width:10px; top:14%; left:20%;" aria-hidden="true"><use href="#ss-icon-star"/></svg>
+      <svg class="ss-star" viewBox="0 0 24 24" style="width:8px; top:24%; right:16%;" aria-hidden="true"><use href="#ss-icon-star"/></svg>
+      <svg class="ss-star" viewBox="0 0 24 24" style="width:12px; top:64%; left:8%;" aria-hidden="true"><use href="#ss-icon-star"/></svg>
+      <svg class="ss-star" viewBox="0 0 24 24" style="width:9px; bottom:10%; right:10%;" aria-hidden="true"><use href="#ss-icon-star"/></svg>
+      <svg class="ss-star" viewBox="0 0 24 24" style="width:7px; top:8%; right:36%;" aria-hidden="true"><use href="#ss-icon-star"/></svg>
 
-        <!-- form section -->
-        <section aria-label="Contact form">
-            <p class="kicker">transmission</p>
+      <div class="ss-halo" aria-hidden="true"></div>
 
-            <div id="formWrapper">
-                <form id="contactForm" novalidate>
+      <!-- intro -->
+      <header class="ss-intro">
+        <span class="ss-eyebrow-label">A little correspondence</span>
+        <svg class="ss-envelope-mark" viewBox="0 0 120 64" aria-hidden="true"><use href="#ss-icon-envelope"/></svg>
+        <h1 class="ss-title">
+          <span>Some things</span>
+          <span><em>begin with hello.</em></span>
+        </h1>
+        <p class="ss-subtitle">A project, a question, a half-formed idea. Tell us what's on your mind.</p>
+      </header>
 
-                    <div class="field-row" style="display:grid;grid-template-columns:1fr 1fr;gap:1.4rem;">
-                        <div class="field-block">
-                            <label for="fName" class="field-label">name</label>
-                            <input type="text" id="fName" class="field-input" placeholder="your name" autocomplete="name" required>
-                        </div>
-                        <div class="field-block">
-                            <label for="fEmail" class="field-label">email</label>
-                            <input type="email" id="fEmail" class="field-input" placeholder="you@address.com" autocomplete="email" required>
-                        </div>
-                    </div>
+      <!-- letter grid -->
+      <form id="contactForm" class="ss-letter-grid" novalidate>
 
-                    <div class="field-block">
-                        <label for="fSubject" class="field-label">subject</label>
-                        <select id="fSubject" class="field-select">
-                            <option value="">-- select --</option>
-                            <option value="brand">Brand Image</option>
-                            <option value="strategy">Marketing Strategy</option>
-                            <option value="seo">SEO / AEO</option>
-                            <option value="copy">Copywriting</option>
-                            <option value="consulting">Consulting</option>
-                            <option value="other">Other</option>
-                        </select>
-                    </div>
+        <div class="ss-slot ss-slot--name">
+          <div class="ss-float ss-paper" data-ss-ambient data-ss-field>
+            <span class="ss-eyebrow">From</span>
+            <label for="fName">Your name</label>
+            <input
+              class="ss-entry"
+              id="fName"
+              name="name"
+              type="text"
+              autocomplete="name"
+              placeholder="What should we call you?"
+              aria-describedby="fNameError"
+              required
+            >
+            <p class="ss-signature" id="ssSignature" aria-hidden="true"></p>
+            <p class="ss-field-error" id="fNameError" hidden></p>
+          </div>
+        </div>
 
-                    <div class="field-block">
-                        <label for="fMessage" class="field-label">message</label>
-                        <textarea id="fMessage" class="field-textarea" placeholder="what are you building?" required></textarea>
-                    </div>
+        <div class="ss-slot ss-slot--email">
+          <div class="ss-float ss-paper" data-ss-ambient data-ss-field>
+            <span class="ss-eyebrow">Reply to</span>
+            <label for="fEmail">Your email</label>
+            <input
+              class="ss-entry"
+              id="fEmail"
+              name="email"
+              type="email"
+              autocomplete="email"
+              placeholder="you@somewhere.com"
+              aria-describedby="fEmailError"
+              required
+            >
+            <p class="ss-field-error" id="fEmailError" hidden></p>
+          </div>
+        </div>
 
-                    <div class="form-error" id="formError" role="alert" aria-live="polite"></div>
+        <div class="ss-slot ss-slot--subject">
+          <div class="ss-float" data-ss-ambient data-ss-field>
+            <fieldset class="ss-subject-group">
+              <legend class="ss-subject-legend">A note about <span class="ss-optional">optional</span></legend>
+              <div class="ss-subject-options">
+                <label class="ss-subject-option">
+                  <input type="radio" name="subject" value="brand">
+                  <svg class="ss-subject-star" viewBox="0 0 24 24" aria-hidden="true"><use href="#ss-icon-star"/></svg>
+                  <span>Brand Image</span>
+                </label>
+                <label class="ss-subject-option">
+                  <input type="radio" name="subject" value="strategy">
+                  <svg class="ss-subject-star" viewBox="0 0 24 24" aria-hidden="true"><use href="#ss-icon-star"/></svg>
+                  <span>Marketing Strategy</span>
+                </label>
+                <label class="ss-subject-option">
+                  <input type="radio" name="subject" value="seo">
+                  <svg class="ss-subject-star" viewBox="0 0 24 24" aria-hidden="true"><use href="#ss-icon-star"/></svg>
+                  <span>SEO / AEO</span>
+                </label>
+                <label class="ss-subject-option">
+                  <input type="radio" name="subject" value="copy">
+                  <svg class="ss-subject-star" viewBox="0 0 24 24" aria-hidden="true"><use href="#ss-icon-star"/></svg>
+                  <span>Copywriting</span>
+                </label>
+                <label class="ss-subject-option">
+                  <input type="radio" name="subject" value="consulting">
+                  <svg class="ss-subject-star" viewBox="0 0 24 24" aria-hidden="true"><use href="#ss-icon-star"/></svg>
+                  <span>Consulting</span>
+                </label>
+                <label class="ss-subject-option">
+                  <input type="radio" name="subject" value="other">
+                  <svg class="ss-subject-star" viewBox="0 0 24 24" aria-hidden="true"><use href="#ss-icon-star"/></svg>
+                  <span>Other</span>
+                </label>
+              </div>
+            </fieldset>
+          </div>
+        </div>
 
-                    <div class="submit-row">
-                        <button type="submit" class="submit-btn" id="submitBtn">&gt;&gt; send message</button>
-                        <span class="term-line" id="termLine" aria-hidden="true">
-                            <span class="term-ident" id="termIdent">_</span>@correspondence:~$<span class="cursor-blink"></span>
-                        </span>
-                    </div>
+        <div class="ss-slot ss-slot--message">
+          <div class="ss-float ss-paper" data-ss-ambient data-ss-field>
+            <span class="ss-eyebrow">Your letter</span>
+            <label for="fMessage">Your message</label>
+            <textarea
+              class="ss-entry"
+              id="fMessage"
+              name="message"
+              placeholder="Tell us what you're building, changing, or figuring out."
+              aria-describedby="fMessageError"
+              required
+            ></textarea>
+            <p class="ss-field-error" id="fMessageError" hidden></p>
+          </div>
+        </div>
 
-                </form>
-            </div>
+        <div class="ss-send-row">
+          <p class="ss-required-note">Name, email, and message are required.</p>
+          <button type="submit" class="ss-send-btn" id="ssSendBtn">
+            <span class="ss-send-label" id="ssSendLabel">Send this note</span>
+            <svg class="ss-send-arrow" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">
+              <path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <p class="ss-reply-note">Usually within 24–48 hours.</p>
+        </div>
+      </form>
 
-            <!-- success -->
-            <div class="success-state" id="successState" tabindex="-1">
-                <div class="success-box">
-                    <p class="success-line"><span>// message dispatched</span></p>
-                    <p class="success-line">status &nbsp;&nbsp;&gt; <span>received</span></p>
-                    <p class="success-line">response &gt; <span>24 – 48 hours</span></p>
-                    <p class="success-line">channel &nbsp;&gt; <span>open</span></p>
-                </div>
-            </div>
-        </section>
+      <noscript>
+        <p style="max-width:560px;margin:24px auto;text-align:center;font-family:Manrope,sans-serif;color:#586880;">
+          This form needs JavaScript to compose your note. In the meantime, write to us directly on
+          <a href="https://www.instagram.com/seldomsought" target="_blank" rel="noopener">Instagram</a>.
+        </p>
+      </noscript>
 
-        <hr class="h-rule">
+      <!-- honest handoff: no delivery backend is configured for this site,
+           so submission hands the composed note to Instagram rather than
+           claiming to have sent it anywhere. -->
+      <div class="ss-handoff" id="ssHandoff" hidden>
+        <div class="ss-handoff-card">
+          <svg class="ss-handoff-envelope" viewBox="0 0 120 64" aria-hidden="true"><use href="#ss-icon-envelope"/></svg>
+          <h2 class="ss-handoff-heading" id="ssHandoffHeading" tabindex="-1">One step to go.</h2>
+          <p class="ss-handoff-detail">Direct sending isn't connected yet, so nothing was lost — your note is right here. Open Instagram and paste it into a DM to <strong>@seldomsought</strong>.</p>
+          <textarea class="ss-handoff-note" id="ssHandoffNote" readonly aria-label="Your composed note"></textarea>
+          <div class="ss-handoff-actions">
+            <a class="ss-handoff-primary" id="ssHandoffInstagram" href="https://www.instagram.com/seldomsought" target="_blank" rel="noopener">Open Instagram</a>
+            <button type="button" class="ss-handoff-secondary" id="ssHandoffEdit">Edit your note</button>
+          </div>
+          <button type="button" class="ss-handoff-again" id="ssHandoffCopyAgain">Copy note again</button>
+          <p class="ss-handoff-status" id="ssHandoffStatus" role="status" aria-live="polite"></p>
+          <p class="ss-reply-note">Usually within 24–48 hours.</p>
+        </div>
+      </div>
 
-        <!-- contact info -->
-        <section aria-label="Contact information">
-            <p class="kicker">find us</p>
-            <ul class="routes-list">
-                <li>
-                    <span class="route-key">web</span>
-                    <a href="index.html">seldomsought.com</a>
-                </li>
-                <li>
-                    <span class="route-key">archive</span>
-                    <a href="https://github.com/SeldomSought" target="_blank" rel="noopener">github.com/SeldomSought</a>
-                </li>
-                <li>
-                    <span class="route-key">photo</span>
-                    <a href="https://www.instagram.com/seldomsought" target="_blank" rel="noopener">@seldomsought</a>
-                </li>
-                <li>
-                    <span class="route-key">dispatch</span>
-                    <span>via form above</span>
-                </li>
-            </ul>
-            <p class="note">responds within 24 &ndash; 48 hours</p>
-        </section>
+      <svg class="ss-fly-envelope" id="ssFlyEnvelope" viewBox="0 0 120 64" aria-hidden="true"><use href="#ss-icon-envelope"/></svg>
 
+      <button type="button" class="ss-motion-toggle" data-ss-motion-toggle
+              aria-pressed="false" hidden>Pause motion</button>
     </main>
 
     <!-- footer -->
     <footer class="site-floor">
         <div class="floor-inner">
-            <ul class="floor-nav">
-                <li><a href="philosophy.html">Philosophy</a></li>
-                <li><a href="services.html">Services</a></li>
-                <li><a href="expertise.html">Expertise</a></li>
-                <li><a href="projects.html">Projects</a></li>
-                <li><a href="faq.html">FAQ</a></li>
+            <ul class="floor-social">
+                <li><a href="https://www.instagram.com/seldomsought" target="_blank" rel="noopener">Instagram</a></li>
+                <li><a href="https://github.com/SeldomSought" target="_blank" rel="noopener">GitHub</a></li>
             </ul>
             <span class="floor-copy">&copy; MMXXVI SeldomSought</span>
         </div>
     </footer>
 
-    <script>
-    (function () {
-        'use strict';
-
-
-        /* live terminal ident */
-        var nameIn   = document.getElementById('fName');
-        var termIdent = document.getElementById('termIdent');
-        nameIn.addEventListener('input', function () {
-            var v = nameIn.value.trim().replace(/\s+/g, '_').toLowerCase();
-            termIdent.textContent = v || '_';
-        });
-
-        /* form */
-        var form       = document.getElementById('contactForm');
-        var errEl      = document.getElementById('formError');
-        var submitBtn  = document.getElementById('submitBtn');
-        var wrapper    = document.getElementById('formWrapper');
-        var success    = document.getElementById('successState');
-
-        form.addEventListener('submit', function (e) {
-            e.preventDefault();
-            errEl.textContent = ''; errEl.classList.remove('visible');
-
-            var name = document.getElementById('fName').value.trim();
-            var email = document.getElementById('fEmail').value.trim();
-            var msg  = document.getElementById('fMessage').value.trim();
-
-            if (!name)  return err('// name required', 'fName');
-            if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))
-                        return err('// invalid email address', 'fEmail');
-            if (!msg)   return err('// message is empty', 'fMessage');
-
-            submitBtn.disabled = true;
-            submitBtn.textContent = '>> sending...';
-
-            setTimeout(function () {
-                wrapper.style.display = 'none';
-                success.classList.add('visible');
-                success.focus();
-            }, 900);
-        });
-
-        function err(msg, id) {
-            errEl.textContent = msg;
-            errEl.classList.add('visible');
-            document.getElementById(id).focus();
-        }
-    }());
-    </script>
     <script src="assets/js/nav.js"></script>
+    <script src="assets/js/contact.js"></script>
 
 </body>
 </html>
