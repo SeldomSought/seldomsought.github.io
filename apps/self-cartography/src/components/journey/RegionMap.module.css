@@ -175,3 +175,15 @@
 }
 
 .synthesisText { font-size: var(--sc-fs-small); color: var(--sc-ink); }
+
+.page { max-width: 1100px; }
+.mapWrap { display: flex; margin-top: 0; margin-bottom: 40px; }
+.trail { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.trail::before { display: none; }
+.regionRow { padding: 22px; border: 1px solid var(--sc-border-rest); border-radius: 10px; background: var(--sc-bg-raised); transition: background .2s, border-color .2s; }
+.regionRow:hover:not(:disabled) { border-color: var(--sc-accent-line); background: var(--sc-bg-raised-2); }
+.regionTitle { font-size: 24px; font-weight: 400; }
+.regionDesc { font: 15px/1.65 var(--sc-font-sans); }
+.regionMarginalia { font-size: 12px; }
+.synthesisCallout, .resumeBanner { border-radius: 10px; }
+@media (max-width: 759px) { .trail { grid-template-columns: 1fr; } }

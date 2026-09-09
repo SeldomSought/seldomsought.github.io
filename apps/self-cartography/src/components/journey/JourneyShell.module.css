@@ -1,6 +1,6 @@
 .shell {
   position: sticky;
-  top: 0;
+  top: var(--sc-header-offset);
   z-index: 50;
   background: var(--sc-scrim);
   backdrop-filter: blur(10px);

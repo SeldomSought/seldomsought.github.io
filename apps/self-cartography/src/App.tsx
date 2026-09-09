@@ -160,7 +160,7 @@ function AppShell() {
   // title, progress, save indicator, and its own nav — so it never shows
   // the generic JourneyShell underneath it, same as the pre-assessment stages.
   const usesOwnChrome =
-    state.view.type === 'item' || state.view.type === 'completion' || (state.view.type === 'map' && stage !== 'done')
+    state.view.type === 'item' || state.view.type === 'completion' || state.view.type === 'synthesis' || (state.view.type === 'map' && stage !== 'done')
 
   function renderView() {
     switch (state.view.type) {
@@ -211,6 +211,9 @@ function AppShell() {
 }
 
 export default function App() {
+  // The example bypasses AppShell entirely: no hydration, autosave, or history writes.
+  const example = new URLSearchParams(window.location.search).get('example') === '1'
+  if (example) return <AssessmentProvider><div className="sc-root"><Suspense fallback={<div className="sc-loading-fallback">Opening the example atlas…</div>}><ResultsReport example /></Suspense></div></AssessmentProvider>
   return (
     <AssessmentProvider>
       <AppShell />

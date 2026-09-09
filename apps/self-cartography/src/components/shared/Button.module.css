@@ -42,3 +42,7 @@
   flex-wrap: wrap;
   align-items: center;
 }
+
+.btn { border-radius: 7px; font-family: var(--sc-font-sans); font-size: 14px; letter-spacing: .02em; text-transform: none; padding: 12px 20px; min-height: 46px; }
+.primary { background: #dce9df; border-color: #dce9df; color: #14251c; }
+.primary:hover:not(:disabled) { background: #eef7ec; border-color: #eef7ec; color: #14251c; }

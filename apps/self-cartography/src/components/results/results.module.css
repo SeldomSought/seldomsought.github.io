@@ -4,6 +4,35 @@
   padding: var(--sc-space-5) var(--sc-space-3) var(--sc-space-5);
 }
 
+/* The atlas organizes the original report; every section remains mounted
+   for direct links, local state, full-report reading, and print. */
+.section[hidden] { display: none; }
+.atlasNavigation { position: sticky; top: var(--sc-header-offset); z-index: 35; margin: 0 0 24px; padding: 12px 0; background: var(--sc-scrim); backdrop-filter: blur(18px); }
+.viewTabs { display: flex; align-items: stretch; gap: 5px; border-bottom: 1px solid var(--sc-border-rest); }
+.viewTabs button { flex: 1; min-width: 0; min-height: 56px; padding: 10px 12px 14px; font: 14px/1.4 var(--sc-font-sans); text-align: left; color: var(--sc-ink-dim); background: none; border: 0; border-bottom: 2px solid transparent; cursor: pointer; }
+.viewTabs button > span { display: block; font: 11px var(--sc-font-mono); color: var(--sc-ink-faint); margin-bottom: 6px; }
+.viewTabs button[aria-pressed='true'] { color: var(--sc-accent-bright); border-bottom-color: var(--sc-accent); }
+.viewTabs button:hover { color: var(--sc-ink); background: var(--sc-accent-dim); }
+.viewTabs .fullReport { flex: 0 0 auto; font-size: 12px; text-align: right; align-self: flex-end; }
+.sectionLinks { display: flex; flex-wrap: wrap; gap: 6px 18px; padding: 14px 6px 0; }
+.sectionLinks a { font: 13px/1.6 var(--sc-font-sans); color: var(--sc-ink-dim); text-decoration: none; }
+.sectionLinks a:hover { color: var(--sc-accent-bright); }
+.headerNote { font: 16px/1.6 var(--sc-font-sans); color: var(--sc-ink-dim); margin: 0 0 6px; }
+.headerNote span { color: var(--sc-accent-bright); }
+.bearings { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin: 24px 0 64px; border-top: 1px solid var(--sc-border-rest); border-bottom: 1px solid var(--sc-border-rest); }
+.bearings button { position: relative; display: flex; flex-direction: column; align-items: flex-start; gap: 14px; text-align: left; background: transparent; color: var(--sc-ink); padding: 28px 32px 30px 24px; border: 0; cursor: pointer; }
+.bearings button + button { border-left: 1px solid var(--sc-border-rest); }
+.bearings button:hover { background: var(--sc-accent-dim); }
+.bearings span { font: 11px var(--sc-font-mono); letter-spacing: .1em; color: var(--sc-accent); }
+.bearings strong { font: 400 25px/1.2 var(--sc-font-serif); }
+.bearings p { font: 14px/1.6 var(--sc-font-sans); color: var(--sc-ink-dim); margin: 0; max-width: 34ch; }
+.bearings b { position: absolute; top: 25px; right: 14px; font-weight: 400; color: var(--sc-accent); }
+.readingNotes { margin: 0 0 24px; padding: 10px 0; border-bottom: 1px solid var(--sc-border-rest); }
+.readingNotes summary { font: 14px var(--sc-font-sans); color: var(--sc-ink-dim); cursor: pointer; padding: 8px 0; }
+.readingNotes[open] summary { color: var(--sc-accent); margin-bottom: 12px; }
+.readingNotes p { max-width: 80ch; }
+.viewTabs button:focus-visible, .sectionLinks a:focus-visible, .bearings button:focus-visible, .readingNotes summary:focus-visible { outline: 2px solid var(--sc-accent); outline-offset: -2px; }
+
 .reportHeader {
   margin-bottom: var(--sc-space-5);
   display: flex;
@@ -1469,3 +1498,45 @@ details[open] > .careerDimensionsSummary::before {
   font-size: var(--sc-fs-micro);
   color: var(--sc-ink-faint);
 }
+
+/* Atlas reading rhythm */
+.page { padding-top: 38px; }
+.reportHeader { align-items: center; margin-bottom: 26px; flex-wrap: wrap; }
+.reportTitle { font-weight: 400; font-size: clamp(2.8rem, 5.5vw, 4.6rem); letter-spacing: -.045em; line-height: 1.03; margin: 18px 0 14px; }
+.reportTitle em { font-weight: 400; color: var(--sc-accent-bright); }
+.reportDate { font: 13px/1.6 var(--sc-font-sans); text-transform: none; letter-spacing: .01em; }
+.section { scroll-margin-top: 200px; margin-bottom: 54px; padding-top: 28px; }
+.sectionTitle { font-weight: 400; letter-spacing: -.025em; font-size: clamp(1.8rem, 3vw, 2.6rem); }
+.sectionRule { opacity: .45; margin-bottom: 24px; }
+.narrative { font-family: var(--sc-font-sans); color: var(--sc-ink-dim); }
+.exampleBanner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px; margin: 0 0 28px; padding: 16px 20px; background: #d6ba8020; border: 1px solid #d6ba8035; border-radius: 8px; font: 14px/1.5 var(--sc-font-sans); color: #ddcba4; }
+.exampleBanner strong { font-weight: 500; }
+.exampleBanner a { color: #f2dfb6; text-underline-offset: 4px; }
+.aspirationPlot { display: block; width: 100%; max-width: 600px; color: var(--sc-ink-faint); margin: 22px 0 8px; }
+@media (max-width: 759px) {
+  .headerNote { display: none; }
+  .atlasNavigation { top: var(--sc-header-offset); padding: 8px 0; }
+  .viewTabs { overflow-x: auto; scrollbar-width: thin; }
+  .viewTabs button { flex: 0 0 auto; min-width: 112px; max-width: 150px; padding: 10px; }
+  .viewTabs .fullReport { min-width: 90px; }
+  .bearings { grid-template-columns: 1fr; margin-bottom: 32px; }
+  .bearings button { padding: 24px 38px 24px 20px; gap: 10px; }
+  .bearings button + button { border-left: 0; border-top: 1px solid var(--sc-border-rest); }
+  .bearings p { max-width: none; }
+  .page { padding: 26px 18px 50px; }
+  .sectionLinks { max-height: 92px; overflow-y: auto; gap: 5px 15px; }
+}
+@media print {
+  .page { max-width: none; padding: 0; }
+  .section[hidden] { display: block; }
+  .atlasNavigation, .bearings, .headerNote, .exampleBanner a { display: none; }
+  .section { scroll-margin-top: 0; break-inside: avoid; }
+  .readingNotes { display: block; }
+}
+
+.reportActions { display: flex; flex-direction: column; align-items: flex-end; gap: 14px; }
+.reportActions p { font: 14px var(--sc-font-sans); color: var(--sc-ink-faint); }
+.reportActions button { border: 1px solid var(--sc-border-rest); border-radius: 6px; background: transparent; padding: 10px 16px; color: var(--sc-accent-bright); font: 14px var(--sc-font-sans); }
+.reportActions button:hover { background: var(--sc-accent-dim); }
+@media (max-width: 559px) { .reportActions { flex-direction: row; flex-wrap: wrap; align-items: center; justify-content: space-between; width: 100%; } }
+@media print { .reportActions { display: none; } }
