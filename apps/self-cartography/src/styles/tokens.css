@@ -1,30 +1,20 @@
-/* ══════════════════════════════════════════════════════════
-   The Self Cartography Project — design system
-   Night-sky navigation chart × field notebook (Direction C,
-   "The Celestial Instrument," with one loan from Direction A's
-   bearing/route vocabulary for progress — see
-   /three-cartographies design-direction artifact).
-
-   Dark ground, warm parchment ink, one restrained accent. Fine
-   hairlines, not cards. No gradients, no glassmorphism, no neon.
-
-   Constructs are differentiated by shape, line, position, label,
-   and texture — never by a per-construct color. See "DIFFERENTIATION
-   TOOLKIT" below and styles/README.md for the rationale.
-   ══════════════════════════════════════════════════════════ */
+/* Self Cartography — an illuminated field atlas.
+   Dark mineral surfaces, clear reading type, fine botanical ink, and generous
+   space. Color marks interface state; construct identity is carried by labels,
+   position, and shape. The scoring and confidence vocabulary remain unchanged. */
 
 :root {
   /* ── surface hierarchy ──────────────────────────────────
      Three levels. Elevate by lightening the surface + a
      hairline border, never by adding a shadow — see SHADOW below.
   ────────────────────────────────────────────────────────── */
-  --sc-bg:            #0a0e14; /* level 0 — page ground */
-  --sc-bg-raised:     #0e1420; /* level 1 — panels, cards, badges */
-  --sc-bg-raised-2:   #121a28; /* level 2 — a panel nested inside a raised panel */
+  --sc-bg:            #101a1b; /* level 0 — page ground */
+  --sc-bg-raised:     #162123; /* level 1 — panels, cards, badges */
+  --sc-bg-raised-2:   #1c2a2c; /* level 2 — a panel nested inside a raised panel */
   /* backdrop-blur scrim behind sticky/fixed chrome (JourneyShell's header,
      AssessmentShell's mobile nav bar) — one value, not two hand-rolled
      rgba() literals that drift apart from each other over time. */
-  --sc-scrim:         rgba(10, 14, 20, 0.93);
+  --sc-scrim:         rgba(16, 26, 27, 0.96);
 
   /* ── ink ──
      --sc-ink-faint was 0.34 alpha — 2.63:1 against --sc-bg, a WCAG AA
@@ -36,37 +26,38 @@
      could not also be legible. --sc-ink-ghost stays low-contrast on
      purpose; it's decorative-only (hairline fills, dot-texture patterns),
      never a place real information is read from. */
-  --sc-ink:           #e9e2d3;
-  --sc-ink-dim:       rgba(233, 226, 211, 0.58);
-  --sc-ink-faint:     rgba(233, 226, 211, 0.55);
-  --sc-ink-ghost:     rgba(233, 226, 211, 0.14);
+  --sc-ink:           #eeeee5;
+  --sc-ink-dim:       #b7c2bd;
+  --sc-ink-faint:     #a5b4ac;
+  --sc-ink-ghost:     rgba(238, 238, 229, 0.14);
 
   /* ── border hierarchy ────────────────────────────────────
      Four levels, rest → hover → active → strong. This is the
      primary way elements signal state — color-shifting a border,
      not adding a shadow or a fill.
   ────────────────────────────────────────────────────────── */
-  --sc-border-rest:   rgba(233, 226, 211, 0.14); /* default — every hairline divider and panel edge */
-  --sc-border-hover:  rgba(233, 226, 211, 0.32); /* interactive hover */
-  --sc-border-active: rgba(201, 154, 83, 0.45);  /* selected / current answer / active state */
-  --sc-border-strong: #c99a53;                   /* rare — maximum emphasis only (e.g. a focused instrument reading) */
+  --sc-border-rest:   rgba(238, 238, 229, 0.14); /* default — every hairline divider and panel edge */
+  --sc-border-hover:  rgba(238, 238, 229, 0.32); /* interactive hover */
+  --sc-border-active: rgba(180, 213, 197, 0.45);  /* selected / current answer / active state */
+  --sc-border-strong: #b4d5c5;                   /* rare — maximum emphasis only (e.g. a focused instrument reading) */
 
   /* legacy aliases — existing components reference these names directly */
   --sc-hairline:       var(--sc-border-rest);
   --sc-hairline-hover: var(--sc-border-hover);
 
   /* ── single restrained accent: warm brass/gold ink ── */
-  --sc-accent:        #c99a53;
-  --sc-accent-dim:    rgba(201, 154, 83, 0.16);
+  --sc-accent:        #b4d5c5;
+  --sc-accent-dim:    rgba(180, 213, 197, 0.16);
   --sc-accent-line:   var(--sc-border-active);
-  --sc-accent-bright: #e0b568;
+  --sc-accent-bright: #d8eddf;
 
   /* ── functional color — confidence & validity only, never a construct identity ── */
   --sc-high:          #7fa987;
-  --sc-medium:        #c99a53;
+  --sc-medium:        #b4d5c5;
   --sc-low:           #b06a56;
 
   /* ── type ── */
+  --sc-font-sans: 'DM Sans', system-ui, -apple-system, sans-serif;
   --sc-font-serif: 'Newsreader', Georgia, 'Times New Roman', serif;
   --sc-font-mono:  'Share Tech Mono', ui-monospace, 'Courier New', monospace;
 
@@ -75,10 +66,10 @@
   --sc-fs-h2:      clamp(1.5rem, 2.8vw, 2.1rem);
   --sc-fs-h3:      clamp(1.15rem, 1.8vw, 1.5rem);
   --sc-fs-body-lg: clamp(1.05rem, 1.5vw, 1.25rem);
-  --sc-fs-body:    clamp(0.95rem, 1.15vw, 1.05rem);
-  --sc-fs-small:   0.82rem;
-  --sc-fs-label:   0.72rem;
-  --sc-fs-micro:   0.65rem;
+  --sc-fs-body:    1rem;
+  --sc-fs-small:   0.9rem;
+  --sc-fs-label:   0.8rem;
+  --sc-fs-micro:   0.75rem;
 
   --sc-lh-tight:   1.15; /* headlines */
   --sc-lh-snug:    1.35; /* card/panel body — not full prose, not a label */
@@ -143,9 +134,9 @@
      in production — named by purpose, not by size, so a future
      change to one doesn't have to touch the others.
   ────────────────────────────────────────────────────────── */
-  --sc-width-question: 640px; /* orientation / region-intro / item screens — narrow, for focus */
-  --sc-width-result:   900px; /* the synthesis report — wide enough for two columns + a diagram */
-  --sc-width-shell:    900px; /* header/nav max-width — matches the widest container below it */
+  --sc-width-question: 720px; /* orientation / region-intro / item screens — narrow, for focus */
+  --sc-width-result:   1240px; /* the synthesis report — wide enough for two columns + a diagram */
+  --sc-width-shell:    1240px; /* header/nav max-width — matches the widest container below it */
   --sc-width-content:  var(--sc-width-question); /* generic prose fallback */
 
   /* legacy aliases — existing components reference these names directly */
@@ -187,8 +178,8 @@
    density intentional rather than accidentally regressed. */
 @media (max-width: 559px) {
   :root {
-    --sc-fs-micro: 0.72rem;
-    --sc-fs-label: 0.78rem;
+    --sc-fs-micro: 0.75rem;
+    --sc-fs-label: 0.8rem;
   }
 }
 
@@ -257,7 +248,7 @@ html {
 .sc-root {
   background: var(--sc-bg);
   color: var(--sc-ink);
-  font-family: var(--sc-font-mono);
+  font-family: var(--sc-font-sans);
   min-height: 100vh;
   position: relative;
 }
@@ -333,3 +324,22 @@ html {
   color: #f0f0f0;
   border-color: rgba(240, 240, 240, 0.4);
 }
+
+/* Shared reading defaults. Inputs keep their native keyboard behavior. */
+.sc-root *, .sc-root *::before, .sc-root *::after { box-sizing: border-box; }
+.sc-root button, .sc-root a { -webkit-tap-highlight-color: transparent; }
+.sc-root button { min-height: 40px; }
+.sc-root :focus-visible { outline: 2px solid var(--sc-accent); outline-offset: 4px; }
+.sc-root p { text-wrap: pretty; }
+.sc-root h1, .sc-root h2, .sc-root h3 { text-wrap: balance; }
+.sc-root ::selection { background: #b4d5c5; color: #101a1b; }
+@media print {
+  .site-header { display: none !important; }
+  .sc-root { --sc-bg: white; --sc-bg-raised: white; --sc-ink: #162123; --sc-ink-dim: #33463d; --sc-ink-faint: #47594e; --sc-accent: #365f4d; --sc-accent-bright: #254c3b; background: white; color: #162123; }
+}
+
+/* Reserve the actual shared header height; it is fixed outside the React root. */
+:root { --sc-header-offset: var(--site-header-height, 72px); }
+body.self-cartography-page { background: var(--sc-bg); padding-top: var(--sc-header-offset); }
+@media (max-width: 860px) { :root { --sc-header-offset: var(--site-header-height-mobile, 60px); } }
+@media print { body.self-cartography-page { padding-top: 0; } }

@@ -1,6 +1,7 @@
-import { useMemo, useEffect, useRef, useState, useCallback, useContext, createContext, type ReactNode } from 'react'
+import { useMemo, useEffect, useRef, useState, useCallback, useContext, createContext, Children, isValidElement, type ReactNode } from 'react'
 import { track } from '../../engine/analytics'
-import { useAssessment } from '../../engine/state'
+import { useAssessment, initialState } from '../../engine/state'
+import { createExampleResponses } from './exampleResponses'
 import { scoreAssessment } from '../../engine/scoring'
 import { matchCareers } from '../../engine/scoring/careerMatch'
 import { evaluatePoorFits } from '../../engine/scoring/poorFitArchetypes'
@@ -26,8 +27,6 @@ import { ITEMS_BY_ID } from '../../content/instruments'
 import type { EvidencePromptItem } from '../../engine/types'
 import { buildFutureSelfNarrative } from '../../content/copy/synthesize'
 import { ContourLines } from '../motifs/ContourLines'
-import { EmergingMap } from '../motifs/EmergingMap'
-import { coordinateSignature } from '../motifs/emergingMapGraph'
 import { Continuum } from './Continuum'
 import { RadarDiagram } from './RadarDiagram'
 import { CareerFitCard } from './CareerFitCard'
@@ -49,6 +48,8 @@ import { AspirationGapCard } from './AspirationGapCard'
 import { ResponseQualityReport } from './ResponseQualityReport'
 import { ConstructConfidenceTable } from './ConstructConfidenceTable'
 import { ProfilePortrait } from './ProfilePortrait'
+import { ProfileAtlas } from './ProfileAtlas'
+import { REPORT_VIEWS, sectionView, sectionSlug, type ReportView } from './atlasModel'
 import styles from './results.module.css'
 
 const DESIRE_ORDER = [
@@ -92,6 +93,7 @@ interface TocEntry {
 // links. This way the jump-menu can only ever list a section that's
 // actually on the page.
 const ResultsNavContext = createContext<((entry: TocEntry) => void) | null>(null)
+const ReportViewContext = createContext<ReportView>('overview')
 
 function slugify(text: string): string {
   return text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-+|-+$)/g, '')
@@ -102,6 +104,13 @@ function Section({ eyebrow, title, children }: { eyebrow: string; title: string;
   const viewed = useRef(false)
   const id = useMemo(() => slugify(eyebrow), [eyebrow])
   const register = useContext(ResultsNavContext)
+  const view = useContext(ReportViewContext)
+  const hidden = view !== 'all' && sectionView(eyebrow) !== view
+  const content = Children.toArray(children)
+  const notes: ReactNode[] = []
+  while (content.length && isValidElement<{ className?: string }>(content[0]) && content[0].type === 'p' && content[0].props.className?.includes(styles.narrative)) {
+    notes.push(content.shift())
+  }
 
   useEffect(() => {
     register?.({ id, eyebrow })
@@ -128,11 +137,12 @@ function Section({ eyebrow, title, children }: { eyebrow: string; title: string;
   }, [eyebrow])
 
   return (
-    <section ref={ref} id={id} className={styles.section}>
+    <section ref={ref} id={id} className={styles.section} hidden={hidden} tabIndex={-1} data-report-section={eyebrow}>
       <div className={styles.sectionLabel}>{eyebrow}</div>
       <h2 className={styles.sectionTitle}>{title}</h2>
       <div className={styles.sectionRule}><ContourLines seed={eyebrow} /></div>
-      {children}
+      {notes.length > 0 && <details className={styles.readingNotes}><summary>How to read this</summary>{notes}</details>}
+      {content}
     </section>
   )
 }
@@ -141,31 +151,52 @@ function Section({ eyebrow, title, children }: { eyebrow: string; title: string;
  *  header, so any of the 28 sections below — Career Fit included, which
  *  otherwise sits 24 sections deep in one unbroken scroll — is reachable
  *  in two taps from anywhere on the page. */
-function ResultsSectionNav({ entries }: { entries: TocEntry[] }) {
-  const [open, setOpen] = useState(false)
-  if (entries.length === 0) return null
-
-  return (
-    <div className={styles.resultsNav}>
-      <button type="button" className={styles.resultsNavTrigger} onClick={() => setOpen((o) => !o)} aria-expanded={open}>
-        Jump to section <span className={styles.resultsNavCaret} aria-hidden="true">▾</span>
-      </button>
-      {open && (
-        <nav className={styles.resultsNavPanel} aria-label="Jump to a report section">
-          {entries.map((entry) => (
-            <a key={entry.id} href={`#${entry.id}`} className={styles.resultsNavRow} onClick={() => setOpen(false)}>
-              {entry.eyebrow}
-            </a>
-          ))}
-        </nav>
-      )}
-    </div>
-  )
+function ResultsSectionNav({ entries, activeView, onView }: { entries: TocEntry[]; activeView: ReportView; onView: (view: ReportView) => void }) {
+  const visible = entries.filter((e) => activeView === 'all' || sectionView(e.eyebrow) === activeView)
+  return <div className={styles.atlasNavigation}>
+    <nav className={styles.viewTabs} aria-label="Explore your results">
+      {REPORT_VIEWS.map((view, i) => <button type="button" key={view.id} aria-pressed={activeView === view.id} onClick={() => onView(view.id)}>
+        <span>{String(i + 1).padStart(2, '0')}</span>{view.label}
+      </button>)}
+      <button type="button" className={styles.fullReport} aria-pressed={activeView === 'all'} onClick={() => onView(activeView === 'all' ? 'overview' : 'all')}>Full report</button>
+    </nav>
+    {activeView !== 'overview' && <nav className={styles.sectionLinks} aria-label="Sections in this view">
+      {visible.map((entry) => <a key={entry.id} href={`#${entry.id}`}>{entry.eyebrow}</a>)}
+    </nav>}
+  </div>
 }
 
-export function ResultsReport() {
-  const { state } = useAssessment()
+function viewFromHash(): ReportView {
+  const hash = window.location.hash.slice(1)
+  if (hash === 'all') return 'all'
+  const view = REPORT_VIEWS.find((v) => v.id === hash || v.sections.some((s) => sectionSlug(s) === hash))
+  return view?.id ?? 'overview'
+}
+
+export function ResultsReport({ example = false }: { example?: boolean }) {
+  const { state: actualState, dispatch } = useAssessment()
+  const exampleState = useMemo(() => example ? { ...initialState, responses: createExampleResponses(), startedAt: 1788220800000, completedAt: 1788224400000 } : null, [example])
+  const state = exampleState ?? actualState
   const { responses } = state
+  const [activeView, setActiveView] = useState<ReportView>(viewFromHash)
+  useEffect(() => {
+    const onHashChange = () => setActiveView((current) => current === 'all' && !REPORT_VIEWS.some((v) => v.id === window.location.hash.slice(1)) ? 'all' : viewFromHash())
+    window.addEventListener('hashchange', onHashChange)
+    return () => window.removeEventListener('hashchange', onHashChange)
+  }, [])
+  function changeView(view: ReportView) {
+    setActiveView(view)
+    window.history.replaceState(null, '', `#${view}`)
+  }
+  function exploreSection(section: string) {
+    setActiveView(sectionView(section))
+    window.history.replaceState(null, '', `#${sectionSlug(section)}`)
+    requestAnimationFrame(() => {
+      const el = document.getElementById(sectionSlug(section))
+      el?.scrollIntoView({ block: 'start', behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' })
+      el?.focus({ preventScroll: true })
+    })
+  }
 
   const [tocEntries, setTocEntries] = useState<TocEntry[]>([])
   const registeredIds = useRef<Set<string>>(new Set())
@@ -180,9 +211,6 @@ export function ResultsReport() {
   const responseQuality = useMemo(() => computeResponseQuality(responses, facetScores), [responses, facetScores])
   const constructConfidences = useMemo(() => Object.values(computeConstructConfidence(facetScores, responses)), [facetScores, responses])
 
-  // Same session seed used on the region map — the completed map is the
-  // same one that was forming the whole way through, not a new shape swapped in.
-  const signatureSeed = String(state.startedAt)
 
   // RETESTING ARCHITECTURE: the most recent PRIOR completed profile this
   // device has archived, excluding the one this very completion just
@@ -190,8 +218,8 @@ export function ResultsReport() {
   // first-time completion, which is most of them; this section only ever
   // renders once a respondent has genuinely retaken.
   const priorSnapshot = useMemo(
-    () => loadHistory().filter((s) => s.completedAt !== state.completedAt).at(-1) ?? null,
-    [state.completedAt],
+    () => example ? null : loadHistory().filter((s) => s.completedAt !== state.completedAt).at(-1) ?? null,
+    [state.completedAt, example],
   )
   const stabilityComparison = useMemo(
     () => (priorSnapshot ? compareSnapshots(priorSnapshot.facetScores, facetScores) : null),
@@ -273,27 +301,38 @@ export function ResultsReport() {
 
   return (
     <ResultsNavContext.Provider value={registerSection}>
+    <ReportViewContext.Provider value={activeView}>
     <main className={styles.page}>
+      {example && <div className={styles.exampleBanner}><span><strong>Example profile</strong> · Fictional answers, scored by the real assessment.</span><a href="./">Return to my assessment ↗</a></div>}
       <header className={styles.reportHeader}>
         <div className={styles.reportHeaderText}>
-          <div className="sc-eyebrow">Synthesis</div>
-          <h1 className={styles.reportTitle}>Your Map, So Far</h1>
-          <p className={styles.reportDate}>Generated {new Date().toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })} · scored entirely in this browser</p>
+          <div className="sc-eyebrow">Self Cartography / Your field notes</div>
+          <h1 className={styles.reportTitle}>Your map, <em>so far.</em></h1>
+          <p className={styles.reportDate}>{state.completedAt ? new Date(state.completedAt).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' }) : 'A profile in progress'} · Private to this browser</p>
         </div>
-        <div className={styles.signatureWrap}>
-          <EmergingMap seed={signatureSeed} progress={1} size={140} variant="signature" />
-          <span className={styles.signatureCoordinate}>{coordinateSignature(signatureSeed)}</span>
-        </div>
+        <div className={styles.reportActions}><p>{Object.keys(responses).length} answers, connected.</p>{!example && <button type="button" onClick={() => dispatch({ type: 'GOTO_MAP' })}>Assessment regions ↗</button>}</div>
       </header>
+      <ResultsSectionNav entries={tocEntries} activeView={activeView} onView={changeView} />
+      {activeView !== 'overview' && activeView !== 'all' && tocEntries.length > 0 && !tocEntries.some((e) => sectionView(e.eyebrow) === activeView) && <p className={styles.emptyNote}>This part of your map is still uncharted. Return to the regions to add the evidence it needs.</p>}
+      {(activeView === 'overview' || activeView === 'all') && <>
+        <ProfileAtlas facetScores={facetScores} onExplore={exploreSection} />
+        <div className={styles.bearings} aria-label="Three bearings from your profile">
+          <button type="button" onClick={() => exploreSection(coreDrivers.length ? 'Core Drivers' : constructConfidences.length ? 'Construct Confidence' : 'Response Quality')}>
+            <span>01 / WHAT MOVES YOU</span><strong>{coreDrivers[0]?.label ?? 'Still taking shape'}</strong>
+            <p>{coreDrivers[0] ? `${coreDrivers[0].conditionsMet} converging signals · ${coreDrivers[0].confidence} confidence` : 'More evidence will make your strongest drivers clearer.'}</p><b aria-hidden="true">↗</b>
+          </button>
+          <button type="button" onClick={() => exploreSection(profileRelationships.tensions.length ? 'Tensions' : 'Response Quality')}>
+            <span>02 / A TENSION TO UNDERSTAND</span><strong>{profileRelationships.tensions[0]?.name ?? 'No strong tension detected'}</strong>
+            <p>{profileRelationships.tensions[0] ? 'Two priorities to design around. Explore both sides.' : 'Read the evidence before treating a quiet signal as certainty.'}</p><b aria-hidden="true">↗</b>
+          </button>
+          <button type="button" onClick={() => exploreSection(careerResults.some((r) => r.dimensionsScored > 0) ? 'Career Fit' : constructConfidences.length ? 'Construct Confidence' : 'Response Quality')}>
+            <span>03 / A DIRECTION TO EXPLORE</span><strong>{careerResults.find((r) => r.dimensionsScored > 0)?.career.title ?? 'More of the map is needed'}</strong>
+            <p>{careerResults.some((r) => r.dimensionsScored > 0) ? 'A starting hypothesis. See the fit, friction, and ways to test it.' : 'Your career hypotheses emerge from the regions you complete.'}</p><b aria-hidden="true">↗</b>
+          </button>
+        </div>
+      </>}
 
-      <ResultsSectionNav entries={tocEntries} />
-
-      <Section eyebrow="Portrait" title="What Kind of Person Does This Data Describe?">
-        <p className={styles.narrative} style={{ fontSize: 'var(--sc-fs-body)', marginBottom: 'var(--sc-space-3)' }}>
-          Six compact reads, not forty charts — every sentence below is generated deterministically from the scored
-          facets it names, never written per person. Everything past this point is the same data explored in more
-          depth: full facet breakdowns, career fit, unconventional paths, and where this profile pulls against itself.
-        </p>
+      <Section eyebrow="Portrait" title="The person behind the pattern.">
         <ProfilePortrait
           facetScores={facetScores}
           strengthResults={strengthResults}
@@ -736,6 +775,7 @@ export function ResultsReport() {
         </p>
       </Section>
     </main>
+    </ReportViewContext.Provider>
     </ResultsNavContext.Provider>
   )
 }

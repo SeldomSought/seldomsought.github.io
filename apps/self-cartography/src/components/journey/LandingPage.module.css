@@ -146,3 +146,29 @@
     font-size: 1.55rem;
   }
 }
+
+/* An opening spread, with the instrument visible alongside the invitation. */
+.page { max-width: 1240px; padding-top: 72px; }
+.hero { display: grid; grid-template-columns: 1fr 1.1fr; gap: 60px; align-items: center; padding-top: 0; }
+.introduction { min-width: 0; }
+.wordmark { font-size: clamp(3.8rem, 6.5vw, 6.3rem); text-transform: none; font-weight: 400; letter-spacing: -.055em; line-height: .98; margin: 32px 0 26px; }
+.tagline { font: 400 22px/1.55 var(--sc-font-serif); max-width: 36ch; margin-bottom: 34px; }
+.ctaRow { gap: 12px; margin-bottom: 22px; }
+.ctaRow > * { letter-spacing: 0; text-transform: none; }
+.consentNote { border: 0; padding: 0; font: 14px/1.65 var(--sc-font-sans); max-width: 43ch; }
+.quietLinks { display: flex; gap: 24px; padding-top: 22px; }
+.quietLinks a { color: var(--sc-ink-dim); font: 13px var(--sc-font-sans); text-underline-offset: 5px; text-decoration-color: var(--sc-border-hover); }
+.chartPanel { padding: 28px; border: 1px solid var(--sc-border-rest); border-radius: 50% 50% 14px 14px / 28% 28% 14px 14px; background: radial-gradient(ellipse at 50% 35%, #35594b55, transparent 67%), #152224; min-height: 510px; display: flex; flex-direction: column; justify-content: center; }
+.chartIndex { display: flex; justify-content: space-between; gap: 12px; margin: 40px 12px 32px; font: 11px var(--sc-font-mono); color: var(--sc-ink-faint); letter-spacing: .07em; }
+.dimensionsBlock { margin: auto 0 28px; }
+.dimensionsLabel { text-align: center; font-size: 12px; margin-bottom: 20px; }
+.chartCaption { font: 24px/1.3 var(--sc-font-serif); text-align: center; margin: 16px 0 24px; }
+.chartCaption em { color: var(--sc-accent); }
+.howItWorks { margin-top: 90px; }
+.howGrid { gap: 38px; }
+.howBody { font: 16px/1.7 var(--sc-font-sans); max-width: 55ch; }
+.howLabel { font-weight: 400; font-size: 26px; }
+.sectionTitle { font-weight: 400; }
+@media (max-width: 1023px) { .hero { gap: 32px; } .ctaRow { flex-direction: column; align-items: flex-start; } .chartPanel { padding: 22px; } }
+@media (max-width: 759px) { .page { padding-top: 38px; } .hero { grid-template-columns: 1fr; gap: 40px; } .wordmark { max-width: 9ch; font-size: 4.8rem; margin-top: 22px; } .chartPanel { min-height: 420px; } .ctaRow { flex-direction: row; flex-wrap: wrap; } .howItWorks { margin-top: 56px; } }
+@media (max-width: 379px) { .wordmark { font-size: 4rem; } }

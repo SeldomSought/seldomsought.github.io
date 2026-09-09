@@ -56,3 +56,9 @@
   color: var(--sc-ink);
   font-weight: 600;
 }
+
+.grid { background: transparent; border: 0; gap: 24px 36px; }
+.panel { background: transparent; border-top: 1px solid var(--sc-border-rest); padding: 24px 0 18px; }
+.panelEyebrow { font-size: 12px; letter-spacing: .08em; margin-bottom: 12px; }
+.panelTitle { font-weight: 400; font-size: 26px; line-height: 1.25; margin-bottom: 14px; }
+.panelBody, .tensionList { font: 16px/1.75 var(--sc-font-sans); max-width: 54ch; }

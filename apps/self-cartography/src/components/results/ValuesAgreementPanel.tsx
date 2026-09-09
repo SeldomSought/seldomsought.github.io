@@ -1,5 +1,6 @@
 import { FACET_BY_ID } from '../../content/facets'
 import type { ValuesEvidenceBreakdown } from '../../engine/scoring/valuesEvidence'
+import { EvidenceAlignment } from './EvidenceAlignment'
 import styles from './results.module.css'
 
 const AGREEMENT_COPY: Record<ValuesEvidenceBreakdown['agreement'], string> = {
@@ -31,7 +32,7 @@ export function ValuesAgreementPanel({ rows }: { rows: ValuesEvidenceBreakdown[]
   if (withEvidence.length === 0) return null
 
   return (
-    <div className={styles.tableScroll}>
+    <div><EvidenceAlignment rows={withEvidence} /><details className={styles.readingNotes}><summary>Exact evidence scores</summary><div className={styles.tableScroll}>
       <table className={styles.evidenceTable}>
         <thead>
           <tr>
@@ -58,6 +59,6 @@ export function ValuesAgreementPanel({ rows }: { rows: ValuesEvidenceBreakdown[]
           ))}
         </tbody>
       </table>
-    </div>
+    </div></details></div>
   )
 }

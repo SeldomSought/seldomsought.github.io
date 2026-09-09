@@ -99,3 +99,9 @@
     padding-bottom: calc(var(--sc-space-5) + 56px);
   }
 }
+
+.shell { padding-top: 40px; }
+.header { border-bottom: none; margin-bottom: 32px; }
+.sectionTitle { font-size: 13px; margin-bottom: 20px; }
+.segment { height: 4px; border-radius: 2px; }
+.itemArea { padding: 32px 0 44px; }

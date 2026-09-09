@@ -284,7 +284,9 @@ const PROJECTS = [
           'Unconventional-path detection — surfaces career structures like portfolio work or consulting when trait combinations converge, not just job titles',
           'Privacy-conscious analytics — interaction telemetry stays structurally separate from assessment responses, with a plain-English disclosure of exactly what is collected',
           'Autosave to local storage with resume — no accounts, nothing sent off-device',
-          'Field-notebook / navigation-chart visual language: fine hairlines, contour-line dividers, a compass-styled progress indicator, hand-rolled inline-SVG radar diagram',
+          'Interactive 3D profile atlas for interests, temperament, and values, with a flat view and visible score confidence',
+          'Five focused results views, evidence-alignment charts, and current-versus-desired identity maps',
+          'Clearly labeled example report that never replaces your saved answers',
         ],
       },
       {
@@ -305,14 +307,15 @@ const PROJECTS = [
         label: 'Links',
         type: 'links',
         content: [
-          { label: 'Explore the Map', href: 'projects/self-cartography/index.html', sameTab: true },
+          { label: 'Take the Assessment', href: 'projects/self-cartography/index.html', sameTab: true },
+          { label: 'Explore Example Results', href: 'projects/self-cartography/index.html?example=1', sameTab: true },
         ],
       },
       {
         id: 'status',
         label: 'Status',
         type: 'status',
-        content: 'Beta — Web App. Architecture, scoring engine, career-fit model, validity checks, and journey shell are complete; 12 of 14 regions are charted with real content, Relationships and Constraints are shown but not yet open. Runs entirely in the browser; no server, no account required. Updated August 2026.',
+        content: 'Beta — Web App. Architecture, scoring engine, career-fit model, validity checks, and journey shell are complete; 12 of 14 regions are charted with real content, Relationships and Constraints are shown but not yet open. Runs entirely in the browser; no server, no account required. Results redesigned September 2026.',
       },
     ],
   },
