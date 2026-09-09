@@ -7,11 +7,11 @@
       description: 'Map your values, personality, and career fit. See where your answers agree, where they pull apart, and what that means for your next move.',
       summary: 'A clearer picture of what drives you, and where to go next.',
       facts: ['Multiple ways to measure', 'Visual results with confidence levels', 'Progress saved in your browser'], action: 'Take the assessment', shortAction: 'Launch assessment' },
-    { id: 'focus-shield', number: '02', name: 'Focus Shield', structure: 'Defense barracks', x: 20.5, y: 22, ground: 35, label: 'above', crop: [20.5, 22], zoom: 3.7,
+    { id: 'focus-shield', number: '02', name: 'Focus Shield', structure: 'Defense barracks', x: 20.5, y: 22, ground: 35, label: 'below', crop: [20.5, 22], zoom: 3.7,
       description: 'Put a hard limit on passive scrolling. Keep your bookmarks and creation tools, with a commitment lock to make the limit stick.',
       summary: 'Cut the feed. Keep the parts of the internet you came for.',
       facts: ['30-minute daily feed budget', 'Five social platforms', 'Optional accountability lock'], action: 'Download ZIP', shortAction: 'Download ZIP' },
-    { id: 'bookmark-mirror', number: '03', name: 'Bookmark Mirror', structure: 'Signal intelligence', x: 82.7, y: 22, ground: 36, label: 'above', crop: [82.7, 22], zoom: 3.5,
+    { id: 'bookmark-mirror', number: '03', name: 'Bookmark Mirror', structure: 'Signal intelligence', x: 82.7, y: 22, ground: 36, label: 'below', crop: [82.7, 22], zoom: 3.5,
       description: 'Turn your Twitter/X bookmarks into a map of your interests. Explore the recurring topics, language, and patterns in what you save.',
       summary: 'Find the patterns hiding in everything you save.',
       facts: ['Analyzes Twitter/X bookmarks', 'Tracks topics and changing interests', 'Runs offline. No API key.'], action: 'Download ZIP', shortAction: 'Download ZIP' },
@@ -173,7 +173,7 @@
     world.style.transform = '';
   }
   function syncMotion() {
-    motionToggle.hidden = !finePointer.matches;
+    motionToggle.hidden = motionPreference.matches || !finePointer.matches;
     motionToggle.setAttribute('aria-pressed', String(motionEnabled));
     motionToggle.textContent = motionEnabled ? 'Motion on' : 'Motion off';
     terrain.classList.toggle('motion-enabled', motionEnabled);
