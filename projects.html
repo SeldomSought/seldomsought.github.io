@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Projects — SeldomSought</title>
-  <meta name="description" content="Independent tools for attention, self-knowledge, and a different way of seeing. Explore the SeldomSought outpost. Launch an assessment or download a tool.">
-  <meta name="theme-color" content="#090d10">
+  <meta name="description" content="Independent tools for understanding yourself, protecting your attention, and following your curiosity. Explore the projects from SeldomSought.">
+  <meta name="theme-color" content="#f5f8f2">
   <meta property="og:site_name" content="SeldomSought">
   <meta property="og:title" content="Projects — SeldomSought">
   <meta property="og:description" content="Tools built to shift behavior toward intention.">
@@ -13,16 +13,16 @@
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=DM+Sans:wght@400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
-  <link rel="preload" as="image" href="assets/images/projects/outpost.webp">
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="assets/images/projects/garden.webp">
   <link rel="stylesheet" href="assets/css/global.css">
   <link rel="stylesheet" href="assets/css/projects.css">
   <script src="projects-data.js" defer></script>
   <script src="assets/js/nav.js" defer></script>
   <script src="assets/js/projects.js" defer></script>
 </head>
-<body class="outpost-page">
-<a class="skip-link" href="#projectBrief">Skip to project</a>
+<body class="garden-page">
+<a class="skip-link" href="#self-cartography">Skip to projects</a>
 <header class="site-header" id="siteHeader">
   <div class="site-header__inner">
     <a href="index.html" class="site-header__brand">SeldomSought</a>
@@ -50,55 +50,37 @@
     <a href="contact.html">Contact</a>
   </nav>
 </header>
-<main class="outpost" id="projects">
-  <div class="outpost-heading">
-    <div>
-      <p class="eyebrow">SeldomSought <span>/</span> Projects</p>
-      <h1>THE OUTPOST<span class="heading-stop">.</span></h1>
+<main class="garden-main">
+  <section class="garden-hero" aria-labelledby="gardenTitle">
+    <div class="garden-intro">
+      <p class="garden-eyebrow">The independent collection <span aria-hidden="true">·</span> SeldomSought</p>
+      <h1 id="gardenTitle">A garden of<br><em>useful things.</em></h1>
+      <p class="garden-lede">Tools for understanding yourself, protecting your attention, and following your curiosity.</p>
     </div>
-    <p class="outpost-intro">Independent tools for attention,<br>self-knowledge, and a different way of seeing.</p>
-    <a class="index-jump" href="#projectIndex">Explore all <span id="projectCount">05</span> <span aria-hidden="true">↓</span></a>
-  </div>
-
-  <section class="command" aria-label="Interactive project outpost">
-    <div class="terrain" id="terrain">
-      <div class="terrain-topline">
-        <p><span class="field-mark" aria-hidden="true">⌖</span> Field station <span class="secondary">/ Project map</span></p>
-        <button class="motion-toggle" id="motionToggle" type="button" aria-pressed="false" hidden>Motion off</button>
+    <figure class="garden-art">
+      <img src="assets/images/projects/garden.webp" width="1536" height="1024" alt="A sunlit garden with lush grass, a sculptural willow tree, silver birches, and a winding limestone path." fetchpriority="high" draggable="false">
+      <figcaption>Room to explore. Space to grow.</figcaption>
+    </figure>
+    <article class="garden-feature" id="self-cartography" aria-labelledby="featuredTitle">
+      <p class="feature-label"><span class="feature-number">01</span> Featured project <span class="garden-status">Beta</span></p>
+      <h2 id="featuredTitle">Self Cartography</h2>
+      <p>Explore your values, personality, and career fit through an assessment that gives you a map of yourself, with room for complexity.</p>
+      <div class="feature-actions">
+        <a class="garden-action garden-action--primary" href="projects/self-cartography/index.html">Take the assessment <span aria-hidden="true">↗</span></a>
+        <a class="garden-action garden-action--quiet" href="projects/self-cartography/index.html?example=1">See an example <span aria-hidden="true">↗</span></a>
       </div>
-      <div class="terrain-world" id="terrainWorld">
-        <img class="terrain-art" id="terrainArt" src="assets/images/projects/outpost.webp" width="1536" height="1024" alt="An isometric outpost: a central command center surrounded by a defense barracks, a radar facility, an archive hangar, and a communications tower." fetchpriority="high" draggable="false">
-        <svg class="terrain-network" viewBox="0 0 1000 667" preserveAspectRatio="none" aria-hidden="true">
-          <path id="activeRoute" d=""/>
-        </svg>
-        <div class="structure-markers" id="structureMarkers" role="group" aria-label="Choose a project"></div>
-        <div class="selection-reticle" id="selectionReticle" aria-hidden="true"><span></span></div>
-      </div>
-      <div class="terrain-bottomline">
-        <span class="map-hint">Select a structure to explore</span>
-        <div class="map-selection"><span class="selection-light" aria-hidden="true"></span><span id="mapSelection">01 / Command center</span></div>
-      </div>
-      <div class="terrain-unavailable" id="terrainUnavailable" hidden>Explore the projects below.</div>
-    </div>
-
-    <aside class="brief" id="projectBrief" aria-labelledby="briefTitle" tabindex="-1">
-      <div class="brief-topline"><span id="briefLocation">01 / Command center</span><span class="project-status" id="briefStatus">Beta</span></div>
-      <div class="brief-portrait" aria-hidden="true"><div id="briefPortrait"></div><span class="portrait-corner portrait-corner--tl"></span><span class="portrait-corner portrait-corner--br"></span></div>
-      <p class="brief-category" id="briefCategory">Web app</p>
-      <h2 id="briefTitle">Self Cartography</h2>
-      <p class="brief-description" id="briefDescription">Map your values, personality, and career fit. See where your answers agree, where they pull apart, and what that means for your next move.</p>
-      <ul class="brief-facts" id="briefFacts"><li>Multiple ways to measure</li><li>Visual results with confidence levels</li><li>Progress saved in your browser</li></ul>
-      <div class="brief-actions" id="briefActions"><a class="action action--primary" href="projects/self-cartography/index.html">Take the assessment <span aria-hidden="true">↗</span></a><a class="action action--secondary" href="projects/self-cartography/index.html?example=1">Explore example results <span aria-hidden="true">↗</span></a></div>
-      <a class="brief-more" href="#projectDetails">Full project brief <span aria-hidden="true">↓</span></a>
-    </aside>
+      <button class="garden-more" type="button" data-details="self-cartography" hidden>About this project <span aria-hidden="true">+</span></button>
+    </article>
   </section>
 
-  <section class="project-index" id="projectIndex" aria-labelledby="indexTitle">
-    <div class="section-bar"><h2 id="indexTitle">Choose your project</h2><span>Open it. Put it to work.</span></div>
-    <div class="project-roster" id="projectRoster"></div>
+  <section class="garden-collection" id="projectIndex" aria-labelledby="collectionTitle">
+    <div class="collection-heading">
+      <div><p class="garden-eyebrow">A little further along</p><h2 id="collectionTitle">More to <em>discover.</em></h2></div>
+      <p>Small projects.<br>Different ways of seeing.</p>
+    </div>
+    <div class="garden-grid" id="projectGrid"></div>
     <noscript>
-      <ul class="fallback-links">
-        <li><a href="projects/self-cartography/index.html">Self Cartography — map your values, personality, and career fit</a></li>
+      <ul class="garden-fallback">
         <li><a href="projects/focus-shield/focus-shield.zip" download>Focus Shield — download the feed-control extension</a></li>
         <li><a href="projects/bookmark-mirror/bookmark-mirror.zip" download>Bookmark Mirror — download the bookmark analyzer</a></li>
         <li><a href="https://www.instagram.com/seldomsought">Curated Feed — explore the color-sequenced archive</a></li>
@@ -106,17 +88,21 @@
       </ul>
     </noscript>
   </section>
-
-  <section class="project-details" id="projectDetails" aria-labelledby="detailsTitle">
-    <div class="section-bar"><h2 id="detailsTitle">Inside the project</h2><span id="detailsProject">Self Cartography</span></div>
-    <div id="projectDetailsBody"></div>
-  </section>
 </main>
-<footer class="outpost-footer">
-  <a href="index.html" class="footer-brand">SeldomSought</a>
-  <p>Independent work. Out in the world.</p>
-  <a href="contact.html">Get in touch <span aria-hidden="true">↗</span></a>
+
+<footer class="garden-footer">
+  <img class="meadow-art" src="assets/images/projects/meadow.webp" width="1536" height="1024" alt="" loading="lazy" decoding="async">
+  <div class="garden-footer-inner">
+    <a href="index.html" class="garden-brand">SeldomSought</a>
+    <a href="contact.html" class="garden-contact">Have something in mind? <span>Let’s talk <span aria-hidden="true">↗</span></span></a>
+  </div>
 </footer>
-<p class="sr-only" id="selectionAnnouncement" role="status"></p>
+
+<dialog class="garden-dialog" id="projectDialog" aria-labelledby="dialogTitle">
+  <div class="dialog-topline"><p id="dialogMeta"></p><form method="dialog"><button type="submit" class="dialog-close" aria-label="Close project details">×</button></form></div>
+  <h2 id="dialogTitle"></h2>
+  <div class="dialog-actions" id="dialogActions"></div>
+  <div class="dialog-content" id="dialogContent"></div>
+</dialog>
 </body>
 </html>
