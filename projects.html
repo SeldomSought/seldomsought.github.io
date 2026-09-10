@@ -1,25 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-  <link rel="stylesheet" href="assets/css/global.css">
-  <link rel="stylesheet" href="assets/css/projects.css">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Projects — SeldomSought</title>
-  <meta name="description" content="Tools built to shift behavior toward intention. Independent software projects from SeldomSought.">
-  <meta name="theme-color" content="#05060a"/>
-  <meta property="og:site_name" content="SeldomSought"/>
-  <meta property="og:title" content="Projects — SeldomSought"/>
-  <meta property="og:description" content="Tools built to shift behavior toward intention."/>
-  <meta property="og:type" content="website"/>
+  <meta name="description" content="Independent tools for understanding yourself, protecting your attention, and following your curiosity. Explore the projects from SeldomSought.">
+  <meta name="theme-color" content="#f5f8f2">
+  <meta property="og:site_name" content="SeldomSought">
+  <meta property="og:title" content="Projects — SeldomSought">
+  <meta property="og:description" content="Tools built to shift behavior toward intention.">
+  <meta property="og:type" content="website">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="assets/images/projects/garden.webp">
+  <link rel="stylesheet" href="assets/css/global.css">
+  <link rel="stylesheet" href="assets/css/projects.css">
+  <script src="projects-data.js" defer></script>
+  <script src="assets/js/nav.js" defer></script>
+  <script src="assets/js/projects.js" defer></script>
 </head>
-<body>
-
-<!-- Global header -->
+<body class="garden-page">
+<a class="skip-link" href="#self-cartography">Skip to projects</a>
 <header class="site-header" id="siteHeader">
   <div class="site-header__inner">
     <a href="index.html" class="site-header__brand">SeldomSought</a>
@@ -47,505 +50,59 @@
     <a href="contact.html">Contact</a>
   </nav>
 </header>
-
-<main class="mol-page">
-
-  <!-- Hero -->
-  <section class="mol-hero">
-    <div class="mol-hero__inner">
-      <p class="mol-eyebrow">SeldomSought / Projects</p>
-      <h1>Independent Tools for Directed Attention</h1>
-      <p class="mol-lede">A working archive of experiments, utilities, and behavioral systems built to make the internet less passive. Select a molecule to explore.</p>
+<main class="garden-main">
+  <section class="garden-hero" aria-labelledby="gardenTitle">
+    <div class="garden-intro">
+      <p class="garden-eyebrow">The independent collection <span aria-hidden="true">·</span> SeldomSought</p>
+      <h1 id="gardenTitle">A garden of<br><em>useful things.</em></h1>
+      <p class="garden-lede">Tools for understanding yourself, protecting your attention, and following your curiosity.</p>
     </div>
+    <figure class="garden-art">
+      <img src="assets/images/projects/garden.webp" width="1536" height="1024" alt="A sunlit garden with lush grass, a sculptural willow tree, silver birches, and a winding limestone path." fetchpriority="high" draggable="false">
+      <figcaption>Room to explore. Space to grow.</figcaption>
+    </figure>
+    <article class="garden-feature" id="self-cartography" aria-labelledby="featuredTitle">
+      <p class="feature-label"><span class="feature-number">01</span> Featured project <span class="garden-status">Beta</span></p>
+      <h2 id="featuredTitle">Self Cartography</h2>
+      <p>Explore your values, personality, and career fit through an assessment that gives you a map of yourself, with room for complexity.</p>
+      <div class="feature-actions">
+        <a class="garden-action garden-action--primary" href="projects/self-cartography/index.html">Take the assessment <span aria-hidden="true">↗</span></a>
+        <a class="garden-action garden-action--quiet" href="projects/self-cartography/index.html?example=1">See an example <span aria-hidden="true">↗</span></a>
+      </div>
+      <button class="garden-more" type="button" data-details="self-cartography" hidden>About this project <span aria-hidden="true">+</span></button>
+    </article>
   </section>
 
-  <!-- Molecular stage — populated by JS -->
-  <section class="mol-stage" id="molStage" aria-label="Projects">
-    <div class="mol-field" id="molField" role="list"></div>
-    <div class="mol-detail-pane" id="molDetailPane" aria-live="polite"></div>
+  <section class="garden-collection" id="projectIndex" aria-labelledby="collectionTitle">
+    <div class="collection-heading">
+      <div><p class="garden-eyebrow">A little further along</p><h2 id="collectionTitle">More to <em>discover.</em></h2></div>
+      <p>Small projects.<br>Different ways of seeing.</p>
+    </div>
+    <div class="garden-grid" id="projectGrid"></div>
+    <noscript>
+      <ul class="garden-fallback">
+        <li><a href="projects/focus-shield/focus-shield.zip" download>Focus Shield — download the feed-control extension</a></li>
+        <li><a href="projects/bookmark-mirror/bookmark-mirror.zip" download>Bookmark Mirror — download the bookmark analyzer</a></li>
+        <li><a href="https://www.instagram.com/seldomsought">Curated Feed — explore the color-sequenced archive</a></li>
+        <li><a href="projects/psychometrics-battery/index.html">Psychometric Battery — open the original assessment</a></li>
+      </ul>
+    </noscript>
   </section>
-
 </main>
 
-<!-- Footer -->
-<footer class="mol-footer">
-  <div class="mol-footer__inner">
-    <div class="mol-footer__brand">
-      <span class="mol-footer__logo">SeldomSought</span>
-      <p class="mol-footer__desc">Brand image, marketing strategy, and business consulting for people who'd rather get remembered than blend in.</p>
-    </div>
-    <nav class="mol-footer__nav" aria-label="Footer navigation">
-      <a href="philosophy.html">Philosophy</a>
-      <a href="services.html">Services</a>
-      <a href="expertise.html">Expertise</a>
-      <a href="projects.html">Projects</a>
-      <a href="faq.html">FAQ</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-    <div class="mol-footer__copy">&copy; 2025 SeldomSought. All rights reserved.</div>
+<footer class="garden-footer">
+  <img class="meadow-art" src="assets/images/projects/meadow.webp" width="1536" height="1024" alt="" loading="lazy" decoding="async">
+  <div class="garden-footer-inner">
+    <a href="index.html" class="garden-brand">SeldomSought</a>
+    <a href="contact.html" class="garden-contact">Have something in mind? <span>Let’s talk <span aria-hidden="true">↗</span></span></a>
   </div>
 </footer>
 
-<script src="projects-data.js"></script>
-<script src="assets/js/nav.js"></script>
-<script>
-(function () {
-  'use strict';
-
-  /* ─────────────────────────────────────────────────────────
-     MOLECULAR RENDERER
-     Builds SVG molecule diagrams from the PROJECTS data array.
-     Each project gets a central node + 5 satellite nodes.
-  ───────────────────────────────────────────────────────── */
-
-  /* SVG geometry constants */
-  var VB   = 400;         /* viewBox width & height */
-  var CX   = 200;         /* center x */
-  var CY   = 200;         /* center y */
-  var OR   = 112;         /* orbit radius (center → satellite center) */
-  var CR   = 40;          /* central node radius */
-  var SR   = 22;          /* satellite node radius */
-  var LBL_OFFSET = 15;    /* label offset beyond satellite edge */
-
-  /* Status → accent color mapping */
-  var STATUS_COLOR = {
-    'Live':        '#9cffc5',
-    'Beta':        '#ffbf69',
-    'In Progress': '#6bc8ff',
-    'Prototype':   '#6bc8ff',
-    'Concept':     '#b7a3ff',
-  };
-
-  /* Component type → symbol rendered inside satellite */
-  var COMP_SYMBOL = {
-    'purpose':  '◆',
-    'features': '≡',
-    'stack':    '{}',
-    'links':    '↗',
-    'status':   '◉',
-  };
-
-  /* ── Math helpers ──────────────────────────────────────── */
-  function rad(deg) { return deg * Math.PI / 180; }
-  function cos(deg) { return Math.cos(rad(deg)); }
-  function sin(deg) { return Math.sin(rad(deg)); }
-  function fmt(n)   { return n.toFixed(2); }
-
-  function esc(s) {
-    return String(s == null ? '' : s)
-      .replace(/&/g,  '&amp;')
-      .replace(/</g,  '&lt;')
-      .replace(/>/g,  '&gt;')
-      .replace(/"/g,  '&quot;');
-  }
-
-  /* ── Compute satellite geometry ──────────────────────────
-     Evenly distributes n satellites starting at the top (-90°).
-     Returns an array of objects with positions for:
-       - satellite center (sx, sy)
-       - connection line start (lx1,ly1) at central node edge
-       - connection line end (lx2,ly2) at satellite node edge
-       - label position (labX, labY) with text-anchor
-  ───────────────────────────────────────────────────────── */
-  function computeSatellites(components) {
-    var n = components.length;
-    return components.map(function (comp, i) {
-      var angleDeg = -90 + (360 / n) * i;
-
-      /* Satellite center */
-      var sx = CX + OR * cos(angleDeg);
-      var sy = CY + OR * sin(angleDeg);
-
-      /* Direction unit vector from center to satellite */
-      var dx = sx - CX;
-      var dy = sy - CY;
-      var len = Math.sqrt(dx * dx + dy * dy);
-      var nx = dx / len;
-      var ny = dy / len;
-
-      /* Connection line endpoints (edge to edge) */
-      var lx1 = CX + nx * CR;
-      var ly1 = CY + ny * CR;
-      var lx2 = sx - nx * SR;
-      var ly2 = sy - ny * SR;
-
-      /* Label position radially outside satellite */
-      var labX = sx + nx * (SR + LBL_OFFSET);
-      var labY = sy + ny * (SR + LBL_OFFSET);
-      var labAnchor = nx > 0.3 ? 'start' : nx < -0.3 ? 'end' : 'middle';
-
-      return {
-        sx: sx, sy: sy,
-        lx1: lx1, ly1: ly1, lx2: lx2, ly2: ly2,
-        labX: labX, labY: labY, labAnchor: labAnchor,
-        comp: comp, nx: nx, ny: ny
-      };
-    });
-  }
-
-  /* ── Build SVG for one project ───────────────────────────
-     Returns an SVG string with:
-       - radial ambient glow
-       - dashed orbital ring
-       - connection lines
-       - satellite nodes (interactive)
-       - central node (interactive)
-  ───────────────────────────────────────────────────────── */
-  function buildMoleculeSVG(project) {
-    var color = STATUS_COLOR[project.status] || '#9cffc5';
-    var sats  = computeSatellites(project.components || []);
-    var pid   = project.id;
-    var gId   = 'cg-' + pid;
-
-    var parts = [];
-
-    /* Open SVG */
-    parts.push(
-      '<svg class="mol-svg" viewBox="0 0 ' + VB + ' ' + VB + '"',
-      ' role="img" aria-label="' + esc(project.title) + ' molecule diagram"',
-      ' focusable="false">'
-    );
-
-    /* Defs: radial gradient for center glow */
-    parts.push(
-      '<defs>',
-        '<radialGradient id="' + gId + '" cx="50%" cy="50%" r="50%">',
-          '<stop offset="0%" stop-color="' + color + '" stop-opacity="0.10"/>',
-          '<stop offset="100%" stop-color="' + color + '" stop-opacity="0"/>',
-        '</radialGradient>',
-      '</defs>'
-    );
-
-    /* Ambient glow disk */
-    parts.push(
-      '<circle cx="' + CX + '" cy="' + CY + '" r="' + (OR + 24) + '"',
-      ' fill="url(#' + gId + ')"/>'
-    );
-
-    /* Orbital ring */
-    parts.push(
-      '<circle cx="' + CX + '" cy="' + CY + '" r="' + OR + '"',
-      ' fill="none"',
-      ' stroke="' + color + '" stroke-width="0.5" stroke-opacity="0.10"',
-      ' stroke-dasharray="3 8"/>'
-    );
-
-    /* Connection lines */
-    sats.forEach(function (s) {
-      parts.push(
-        '<line class="mol-line" data-comp="' + esc(s.comp.id) + '"',
-        ' x1="' + fmt(s.lx1) + '" y1="' + fmt(s.ly1) + '"',
-        ' x2="' + fmt(s.lx2) + '" y2="' + fmt(s.ly2) + '"',
-        ' stroke="' + color + '" stroke-width="0.75" stroke-opacity="0.18"/>'
-      );
-    });
-
-    /* Satellite nodes */
-    sats.forEach(function (s) {
-      var sym = COMP_SYMBOL[s.comp.type] || '·';
-      parts.push(
-        '<g class="mol-satellite" data-comp="' + esc(s.comp.id) + '"',
-        ' role="button" tabindex="0"',
-        ' aria-label="' + esc(s.comp.label) + ': click to view section">',
-
-        /* Outer halo ring */
-        '<circle cx="' + fmt(s.sx) + '" cy="' + fmt(s.sy) + '"',
-        ' r="' + (SR + 6) + '"',
-        ' fill="none" stroke="' + color + '" stroke-width="0.5" stroke-opacity="0.06"/>',
-
-        /* Main satellite circle */
-        '<circle class="mol-sat-circle"',
-        ' cx="' + fmt(s.sx) + '" cy="' + fmt(s.sy) + '"',
-        ' r="' + SR + '"',
-        ' fill="#0c0e18" stroke="' + color + '" stroke-width="1"',
-        ' stroke-opacity="0.28"/>',
-
-        /* Symbol inside */
-        '<text x="' + fmt(s.sx) + '" y="' + fmt(s.sy + 4.5) + '"',
-        ' text-anchor="middle"',
-        ' font-family="Share Tech Mono, monospace"',
-        ' font-size="12" fill="' + color + '" fill-opacity="0.65"',
-        ' class="mol-sat-icon">' + esc(sym) + '</text>',
-
-        /* Label outside */
-        '<text class="mol-sat-label"',
-        ' x="' + fmt(s.labX) + '" y="' + fmt(s.labY + 3.5) + '"',
-        ' text-anchor="' + s.labAnchor + '"',
-        ' font-family="Share Tech Mono, monospace"',
-        ' font-size="9.5" letter-spacing="1.5"',
-        ' fill="' + color + '" fill-opacity="0.38">' + esc(s.comp.label.toUpperCase()) + '</text>',
-
-        '</g>'
-      );
-    });
-
-    /* Central node (drawn on top) */
-    parts.push(
-      '<g class="mol-center" role="button" tabindex="0"',
-      ' aria-label="' + esc(project.title) + ' — click to expand">',
-
-      /* Outer pulse ring */
-      '<circle cx="' + CX + '" cy="' + CY + '"',
-      ' r="' + (CR + 10) + '"',
-      ' fill="none" stroke="' + color + '" stroke-width="0.5" stroke-opacity="0.08"/>',
-
-      /* Main circle */
-      '<circle class="mol-central-circle"',
-      ' cx="' + CX + '" cy="' + CY + '"',
-      ' r="' + CR + '"',
-      ' fill="#0c0e18" stroke="' + color + '" stroke-width="1.5"',
-      ' stroke-opacity="0.42"/>',
-
-      /* Inner accent dot */
-      '<circle class="mol-central-dot"',
-      ' cx="' + CX + '" cy="' + CY + '"',
-      ' r="4"',
-      ' fill="' + color + '" fill-opacity="0.80"/>',
-
-      '</g>'
-    );
-
-    parts.push('</svg>');
-    return parts.join('');
-  }
-
-  /* ── Build detail panel for one project ──────────────────
-     Generates the HTML content shown in #molDetailPane.
-  ───────────────────────────────────────────────────────── */
-  function buildDetailPanel(project) {
-    var index   = String(PROJECTS.indexOf(project) + 1).padStart(2, '0');
-    var parts   = [];
-
-    parts.push('<div class="mol-panel" id="panel-' + esc(project.id) + '">');
-
-    /* Header */
-    parts.push(
-      '<header class="mol-panel__header">',
-        '<div class="mol-panel__title-block">',
-          '<p class="mol-panel__label">' + index + ' — ' + esc(project.category) + '</p>',
-          '<h2 class="mol-panel__title">' + esc(project.title) + '</h2>',
-          '<p class="mol-panel__subtitle">' + esc(project.subtitle || '') + '</p>',
-        '</div>',
-        '<span class="mol-panel__badge" data-status="' + esc(project.status) + '">' + esc(project.status) + '</span>',
-      '</header>'
-    );
-
-    /* Sections */
-    parts.push('<div class="mol-panel__sections">');
-
-    (project.components || []).forEach(function (comp) {
-      parts.push(
-        '<section class="mol-section" id="sec-' + esc(project.id) + '-' + esc(comp.id) + '"',
-        ' data-comp="' + esc(comp.id) + '">',
-        '<h3 class="mol-section__label">' + esc(comp.label) + '</h3>',
-        '<div class="mol-section__body">'
-      );
-
-      if (comp.type === 'features' && Array.isArray(comp.content)) {
-        parts.push('<ul class="mol-features">');
-        comp.content.forEach(function (f) {
-          parts.push('<li>' + esc(f) + '</li>');
-        });
-        parts.push('</ul>');
-
-      } else if (comp.type === 'stack' && Array.isArray(comp.content)) {
-        parts.push('<div class="mol-stack">');
-        comp.content.forEach(function (s) {
-          parts.push('<span class="mol-stack-chip">' + esc(s) + '</span>');
-        });
-        parts.push('</div>');
-
-      } else if (comp.type === 'links' && Array.isArray(comp.content)) {
-        parts.push('<div class="mol-links">');
-        comp.content.forEach(function (lnk) {
-          var target = lnk.sameTab ? '' : ' target="_blank" rel="noopener"';
-          parts.push(
-            '<a href="' + esc(lnk.href) + '"' + target +
-            ' class="mol-link">' + esc(lnk.label) + '</a>'
-          );
-        });
-        parts.push('</div>');
-
-      } else if (comp.type === 'status') {
-        parts.push('<p class="mol-status-text">' + esc(String(comp.content)) + '</p>');
-
-      } else {
-        parts.push('<p class="mol-section__text">' + esc(String(comp.content)) + '</p>');
-      }
-
-      parts.push('</div></section>');
-    });
-
-    parts.push('</div>'); /* .mol-panel__sections */
-    parts.push('</div>'); /* .mol-panel */
-
-    return parts.join('');
-  }
-
-  /* ── Build a molecule card element ───────────────────────
-     Returns an HTML string for one .mol-card.
-  ───────────────────────────────────────────────────────── */
-  function buildCard(project, idx) {
-    var num   = String(idx + 1).padStart(2, '0');
-    var color = STATUS_COLOR[project.status] || '#9cffc5';
-
-    return [
-      '<div class="mol-card" id="mol-' + esc(project.id) + '"',
-      ' role="listitem" tabindex="0"',
-      ' data-id="' + esc(project.id) + '"',
-      ' data-status="' + esc(project.status) + '"',
-      ' aria-label="' + esc(project.title) + '">',
-        '<div class="mol-svg-wrap">',
-          buildMoleculeSVG(project),
-        '</div>',
-        '<div class="mol-card__meta">',
-          '<span class="mol-card__index">' + num + '</span>',
-          '<span class="mol-card__title">' + esc(project.title) + '</span>',
-          '<span class="mol-card__status-dot" style="background:' + color + '; opacity:0.75;"></span>',
-        '</div>',
-      '</div>'
-    ].join('');
-  }
-
-  /* ── State ───────────────────────────────────────────────
-     activeId: currently selected project id or null
-  ───────────────────────────────────────────────────────── */
-  var activeId = null;
-  var field    = document.getElementById('molField');
-  var detPane  = document.getElementById('molDetailPane');
-
-  if (!field || !detPane || typeof PROJECTS === 'undefined') return;
-
-  /* Render all molecule cards */
-  field.innerHTML = PROJECTS.map(buildCard).join('');
-
-  /* ── Select a project ────────────────────────────────────
-     Updates the detail pane and marks the active card.
-     Restarts the pane-in animation on every switch by toggling
-     the .is-open class with a forced reflow between states.
-  ───────────────────────────────────────────────────────── */
-  function selectProject(id) {
-    /* Deactivate previous */
-    if (activeId) {
-      var prev = document.getElementById('mol-' + activeId);
-      if (prev) prev.classList.remove('is-active');
-    }
-
-    /* Same project → deselect */
-    if (activeId === id) {
-      activeId = null;
-      detPane.classList.remove('is-open');
-      detPane.innerHTML = '';
-      return;
-    }
-
-    activeId = id;
-    var project = PROJECTS.filter(function (p) { return p.id === id; })[0];
-    if (!project) return;
-
-    /* Activate card */
-    var card = document.getElementById('mol-' + id);
-    if (card) card.classList.add('is-active');
-
-    /* Collapse → update content → expand (forces animation restart) */
-    detPane.classList.remove('is-open');
-    void detPane.offsetWidth; /* force reflow */
-    detPane.innerHTML = buildDetailPanel(project);
-    detPane.classList.add('is-open');
-
-    /* Scroll into view on mobile */
-    if (window.innerWidth <= 860) {
-      setTimeout(function () {
-        detPane.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-      }, 80);
-    }
-  }
-
-  /* ── Jump to a section within the detail pane ────────────
-     Opens the pane if needed, then highlights the section.
-  ───────────────────────────────────────────────────────── */
-  function jumpToSection(projectId, compId) {
-    /* Open if not already active */
-    if (activeId !== projectId) {
-      selectProject(projectId);
-    }
-
-    /* Wait for DOM to settle, then highlight */
-    requestAnimationFrame(function () {
-      var secId = 'sec-' + projectId + '-' + compId;
-      var sec   = document.getElementById(secId);
-      if (!sec) return;
-
-      /* Clear other highlights */
-      detPane.querySelectorAll('.mol-section.is-active').forEach(function (el) {
-        el.classList.remove('is-active');
-      });
-
-      sec.classList.add('is-active');
-      sec.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-
-      setTimeout(function () {
-        sec.classList.remove('is-active');
-      }, 1600);
-    });
-  }
-
-  /* ── Event delegation ────────────────────────────────────
-     Handles clicks on:
-       .mol-card (anywhere) → selectProject
-       .mol-satellite       → jumpToSection (stops propagation)
-       .mol-center          → selectProject via card click
-  ───────────────────────────────────────────────────────── */
-  document.addEventListener('click', function (e) {
-
-    /* Satellite click — jump to section */
-    var sat = e.target.closest('.mol-satellite');
-    if (sat) {
-      var satSvg  = sat.closest('.mol-svg');
-      var satCard = satSvg && satSvg.closest('.mol-card');
-      if (satCard) {
-        e.stopPropagation();
-        jumpToSection(satCard.dataset.id, sat.dataset.comp);
-      }
-      return;
-    }
-
-    /* Card click (includes central node) — toggle project */
-    var card = e.target.closest('.mol-card');
-    if (card && card.dataset.id) {
-      selectProject(card.dataset.id);
-      return;
-    }
-  });
-
-  /* ── Keyboard support ────────────────────────────────────
-     Enter/Space on .mol-card, .mol-center, .mol-satellite.
-  ───────────────────────────────────────────────────────── */
-  document.addEventListener('keydown', function (e) {
-    if (e.key !== 'Enter' && e.key !== ' ') return;
-
-    var sat = e.target.closest('.mol-satellite');
-    if (sat) {
-      e.preventDefault();
-      sat.dispatchEvent(new MouseEvent('click', { bubbles: true }));
-      return;
-    }
-
-    var card = e.target.closest('.mol-card');
-    if (card) {
-      e.preventDefault();
-      card.dispatchEvent(new MouseEvent('click', { bubbles: true }));
-    }
-  });
-
-  /* ── Auto-select first project on load ───────────────────
-     Gives the page immediate content on desktop.
-  ───────────────────────────────────────────────────────── */
-  if (PROJECTS.length > 0 && window.innerWidth > 860) {
-    selectProject(PROJECTS[0].id);
-  }
-
-}());
-</script>
+<dialog class="garden-dialog" id="projectDialog" aria-labelledby="dialogTitle">
+  <div class="dialog-topline"><p id="dialogMeta"></p><form method="dialog"><button type="submit" class="dialog-close" aria-label="Close project details">×</button></form></div>
+  <h2 id="dialogTitle"></h2>
+  <div class="dialog-actions" id="dialogActions"></div>
+  <div class="dialog-content" id="dialogContent"></div>
+</dialog>
 </body>
 </html>
