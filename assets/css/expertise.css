@@ -264,3 +264,11 @@
 /* Crop native SVG image regions and allow marginalia to cross plate boundaries. */
 .pencil-specimen { overflow: hidden; }
 .atlas-plate:has(.atlas-place[open]) { z-index: 40; }
+/* Keep the whole colophon and estuary within a desktop frame, and dissolve
+   cropped branches into the paper instead of exposing a hard image edge. */
+@media (min-width: 861px) {
+ .estuary { height: clamp(440px,43vw,650px); object-fit: cover; object-position: center bottom; mask-image: linear-gradient(to bottom,transparent,#000 9%,#000); }
+}
+@media (max-width: 860px) {
+ .estuary { mask-image: linear-gradient(to bottom,transparent,#000 10%,#000); }
+}
