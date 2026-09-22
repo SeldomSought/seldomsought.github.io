@@ -20,8 +20,10 @@
   if (location.hash) openPlaceFromHash();
 
   places.forEach(place => {
-    place.addEventListener('toggle', () => {
-      if (place.open) places.forEach(other => { if (other !== place) other.open = false; });
+    // Close siblings before native activation; the details name also enforces
+    // exclusivity without JavaScript in browsers supporting grouped details.
+    place.querySelector('summary').addEventListener('click', () => {
+      if (!place.open) places.forEach(other => { if (other !== place) other.open = false; });
     });
     place.addEventListener('keydown', event => {
       if (event.key === 'Escape' && place.open) {
