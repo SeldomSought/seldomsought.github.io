@@ -260,3 +260,7 @@
  .pencil-plate .plate-caption { font-size: 18px; }
  .estuary { height: 390px; object-position: 55% bottom; }
 }
+
+/* Crop native SVG image regions and allow marginalia to cross plate boundaries. */
+.pencil-specimen { overflow: hidden; }
+.atlas-plate:has(.atlas-place[open]) { z-index: 40; }
