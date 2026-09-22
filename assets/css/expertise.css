@@ -196,3 +196,67 @@
   .atlas-place:not(.marked) .annotation { opacity: 1; }
   .atlas-place { break-inside: avoid; }
 }
+/* Pencil source integrated as five landscapes and twelve independently framed
+   SVG regions. The filter removes the source paper and prints only cobalt ink. */
+.atlas-filter-defs { position: absolute; pointer-events: none; }
+.pencil-plate { aspect-ratio: var(--plate-ratio); }
+.pencil-plate .plate-ground, .estuary { filter: url('#pencil-ink'); }
+.pencil-plate .plate-ground { opacity: .91; }
+.pencil-plate:first-child { margin-top: 28px; }
+.pencil-specimen { opacity: 0; }
+.atlas-place:is(:hover,:focus-within,[open]) .pencil-specimen { opacity: .14; }
+.atlas-place summary { aspect-ratio: var(--art-ratio); }
+.annotation { top: auto; bottom: 0; left: 10%; padding: 8px 12px; background: rgba(243,238,227,.95); width: max-content; max-width: min(330px,100%); }
+.place-name { font-size: clamp(22px, 2vw, 29px); }
+.place-descriptor { font-size: clamp(14px,1.1vw,16px); }
+.annotation-line { left: 43%; bottom: calc(100% - 4px); }
+.place-number { top: 22%; left: 10%; background: var(--paper); color: var(--ink); border-color: var(--ink); }
+#brand-image .annotation { bottom: 7%; left: 8%; }
+#brand-voice .annotation { bottom: 2%; left: 20%; }
+#aesthetic-orchestration .annotation { bottom: -13%; left: 9%; }
+#seo .annotation { bottom: 3%; left: 4%; }
+#aeo .annotation { bottom: 7%; left: 9%; }
+#competitive-analysis .annotation { bottom: -18%; left: 1%; max-width: 290px; }
+#marketing-strategy .annotation { bottom: 3%; left: 5%; }
+#guerrilla-marketing .annotation { bottom: 0%; left: 0; }
+#email-marketing .annotation { bottom: 8%; left: 23%; }
+#sms-marketing .annotation { bottom: 2%; left: 7%; }
+#business-consulting .annotation { bottom: 5%; left: 10%; }
+#copywriting .annotation { bottom: 0%; left: 17%; }
+.field-note { top: 100%; left: 8%; padding: 17px; }
+.pencil-plate .plate-caption { left: 43%; top: 10%; padding: 7px 12px; background: rgba(243,238,227,.93); font-size: 18px; max-width: 210px; }
+.pencil-plate.plate-1 .plate-caption { left: 36%; top: 12%; }
+.pencil-plate.plate-2 .plate-caption { left: 38%; top: 10%; }
+.pencil-plate.plate-3 .plate-caption { left: 43%; top: 13%; }
+.pencil-plate.plate-4 .plate-caption { left: 35%; top: 6%; }
+.atlas-colophon { margin-top: 75px; }
+.estuary { margin-top: -25px; }
+@media (min-width:861px) {
+ .pencil-plate:first-child .plate-ground { mask-image: linear-gradient(to bottom,transparent,#000 5%,#000); }
+ .pencil-plate:last-child .plate-ground { mask-image: linear-gradient(to bottom,#000 94%,transparent); }
+}
+@media (max-width: 860px) {
+ .pencil-plate { aspect-ratio: auto; }
+ .pencil-plate .plate-ground { object-fit: cover; opacity: .13; mask-image: linear-gradient(to bottom,transparent,#000 6%,#000 94%,transparent); }
+ .pencil-plate:first-child { margin-top: 0; }
+ .atlas-place { width: 82%; max-width: 410px; margin-bottom: 36px; }
+ .pencil-specimen, .atlas-place:is(:hover,:focus-within,[open]) .pencil-specimen { opacity: 1; mask-image: linear-gradient(to right,transparent,#000 6%,#000 94%,transparent); }
+ .atlas-place summary { aspect-ratio: auto; }
+ .atlas-place .annotation { position: relative; bottom: auto !important; top: auto; left: auto !important; margin: -3px 0 0; width: 100%; padding: 12px 10px; background: var(--paper); max-width: none !important; }
+ .place-number { z-index: 1; top: 11%; left: 1%; }
+ .field-note { top: auto; left: auto; padding: 17px 10px; }
+ .pencil-plate .plate-caption { position: relative; left: auto; top: auto; background: transparent; max-width: 250px; font-size: 20px; }
+ .pencil-plate.plate-1 .plate-caption, .pencil-plate.plate-2 .plate-caption, .pencil-plate.plate-3 .plate-caption, .pencil-plate.plate-4 .plate-caption { left: auto; top: auto; }
+ .atlas-colophon { margin-top: 5px; }
+ .estuary { margin-top: 12px; }
+}
+@media (max-width:520px) {
+ .atlas-place { width: 90%; max-width: 335px; margin-bottom: 28px; }
+ #email-marketing { width: 100%; max-width: none; margin-left: 0; }
+ #competitive-analysis { width: 83%; }
+ .place-name { font-size: 27px; }
+ .place-descriptor { font-size: 16px; }
+ .atlas-place .annotation { padding-left: 20px; }
+ .pencil-plate .plate-caption { font-size: 18px; }
+ .estuary { height: 390px; object-position: 55% bottom; }
+}
