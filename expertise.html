@@ -1,459 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-  <link rel="stylesheet" href="assets/css/global.css">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Capability Index — SeldomSought</title>
-  <meta name="description" content="SeldomSought capability index: fields of practice, operating principle, independent technical record, and working toolchain — brand, marketing, and applied software under one register.">
-  <meta name="theme-color" content="#f1ece1"/>
+  <title>An Atlas of Commercial Perception — SeldomSought Expertise</title>
+  <meta name="description" content="Explore twelve connected disciplines in brand, search, language and marketing. An illustrated atlas of the systems that shape commercial perception, by SeldomSought.">
+  <meta name="theme-color" content="#F3EEE3">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="stylesheet" href="assets/css/global.css">
+  <link rel="stylesheet" href="assets/css/expertise.css?v=atlas-7">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
-  <style>
-
-    /* ══════════════════════════════════════════════════════════
-       CAPABILITY INDEX — dossier register
-    ══════════════════════════════════════════════════════════ */
-    :root {
-      --paper:        #f1ece1;
-      --paper-raised: #e7e0d0;
-      --ink:          #17130f;
-      --ink-soft:     rgba(23,19,15,0.68);
-      --ink-dim:      rgba(23,19,15,0.44);
-      --rule:         rgba(23,19,15,0.22);
-      --rule-soft:    rgba(23,19,15,0.12);
-      --accent:       #af2418;
-      --accent-soft:  rgba(175,36,24,0.12);
-
-      --font-sans:  'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      --font-mono:  'IBM Plex Mono', ui-monospace, 'Courier New', monospace;
-      --font-serif: 'IBM Plex Serif', Georgia, 'Times New Roman', serif;
-
-      --fs-h1:     clamp(2.75rem, 9vw, 7.25rem);
-      --fs-h2:     clamp(1.6rem, 4.2vw, 3.1rem);
-      --fs-row:    clamp(1.05rem, 1.6vw, 1.4rem);
-      --fs-quote:  clamp(1.4rem, 3vw, 2.15rem);
-      --fs-body:   clamp(1rem, 1.05vw, 1.1rem);
-      --fs-meta:   0.82rem;
-      --fs-micro:  0.68rem;
-
-      --section-pad: clamp(3rem, 7vw, 5.5rem);
-    }
-
-    *, *::before, *::after { box-sizing: border-box; }
-
-    body {
-      background: var(--paper);
-      color: var(--ink);
-      font-family: var(--font-sans);
-      line-height: 1.55;
-    }
-
-    .page { padding-top: var(--site-header-height, 72px); }
-    @media (max-width: 860px) {
-      .page { padding-top: var(--site-header-height-mobile, 60px); }
-    }
-
-    .wrap {
-      max-width: var(--site-max-width, 1280px);
-      margin: 0 auto;
-      padding-inline: clamp(1.1rem, 4vw, 2.5rem);
-    }
-
-    a { color: inherit; }
-    a:focus-visible,
-    summary:focus-visible,
-    button:focus-visible {
-      outline: 2px solid var(--accent);
-      outline-offset: 3px;
-    }
-
-    .micro {
-      font-family: var(--font-mono);
-      font-size: var(--fs-micro);
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--ink-dim);
-    }
-    .micro strong { color: var(--ink-soft); font-weight: 500; }
-    .accent { color: var(--accent); }
-
-    .section-num {
-      font-family: var(--font-mono);
-      font-size: var(--fs-micro);
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--accent);
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      * { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
-    }
-
-    /* ══ 00 · MASTHEAD ═══════════════════════════════════ */
-    .masthead { padding-block: clamp(2.25rem,5vw,3.5rem) 0; }
-    .masthead .wrap {
-      display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap: 0.75rem 1.5rem;
-      align-items: start;
-    }
-    .masthead-id { grid-column: 1 / span 7; }
-    .masthead-doc {
-      grid-column: 9 / span 4;
-      justify-self: end;
-      text-align: right;
-      display: grid;
-      gap: 0.15rem;
-    }
-    @media (max-width: 700px) {
-      .masthead-doc { grid-column: 1 / -1; justify-self: start; text-align: left; margin-top: 0.75rem; }
-    }
-
-    .brand-line {
-      font-family: var(--font-mono);
-      font-size: var(--fs-meta);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--ink-soft);
-    }
-    .brand-line b { color: var(--ink); font-weight: 600; }
-
-    h1.title {
-      grid-column: 1 / -1;
-      font-family: var(--font-mono);
-      font-weight: 600;
-      font-size: var(--fs-h1);
-      line-height: 0.94;
-      letter-spacing: -0.01em;
-      text-transform: uppercase;
-      margin: 0.9rem 0 0;
-    }
-
-    .masthead-lede {
-      grid-column: 1 / span 7;
-      margin-top: clamp(1.5rem, 3vw, 2.25rem);
-      font-size: var(--fs-body);
-      color: var(--ink-soft);
-      max-width: 58ch;
-    }
-    @media (max-width: 900px) { .masthead-lede { grid-column: 1 / -1; } }
-
-    /* ticker */
-    .ticker-band {
-      margin-top: clamp(2rem, 4vw, 3rem);
-      border-top: 1px solid var(--rule);
-      border-bottom: 1px solid var(--rule);
-      overflow: hidden;
-      white-space: nowrap;
-      padding: 0.55rem 0;
-    }
-    .ticker-track {
-      display: inline-block;
-      font-family: var(--font-mono);
-      font-size: var(--fs-micro);
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--ink-dim);
-      animation: ticker 32s linear infinite;
-      padding-left: 100%;
-    }
-    .ticker-track span { color: var(--accent); }
-    @keyframes ticker {
-      from { transform: translateX(0); }
-      to   { transform: translateX(-100%); }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      .ticker-band { overflow-x: auto; }
-      .ticker-track { animation: none; padding-left: 0; }
-    }
-
-    /* ══ shared section shell ═══════════════════════════ */
-    .section { padding-block: var(--section-pad); border-top: 1px solid var(--rule); }
-    .section-head {
-      display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap: 0.5rem 1.5rem;
-      margin-bottom: clamp(1.75rem, 4vw, 3rem);
-    }
-    .section-head .section-num { grid-column: 1 / span 3; padding-top: 0.3rem; }
-    .section-head h2 {
-      grid-column: 4 / span 6;
-      font-family: var(--font-sans);
-      font-weight: 600;
-      font-size: var(--fs-h2);
-      line-height: 1.08;
-      text-wrap: balance;
-    }
-    .section-head .section-note {
-      grid-column: 4 / span 6;
-      margin-top: 0.6rem;
-      color: var(--ink-soft);
-      font-size: var(--fs-body);
-      max-width: 56ch;
-    }
-    @media (max-width: 780px) {
-      .section-head h2, .section-head .section-note { grid-column: 1 / -1; }
-      .section-head .section-num { grid-column: 1 / -1; }
-    }
-
-    /* ══ 01 · CAPABILITY INDEX ═══════════════════════════ */
-    .cap-list { border-top: 1px solid var(--rule); }
-    .cap-row { border-bottom: 1px solid var(--rule); }
-    .cap-row > summary {
-      list-style: none;
-      cursor: pointer;
-      display: grid;
-      grid-template-columns: 3.4rem minmax(0,5fr) minmax(0,4fr) auto;
-      gap: 0.5rem 1.5rem;
-      align-items: baseline;
-      padding: 1.4rem 0.5rem;
-      margin-inline: -0.5rem;
-      border-radius: 2px;
-    }
-    .cap-row > summary::-webkit-details-marker { display: none; }
-    .cap-row > summary:hover,
-    .cap-row[open] > summary { background: var(--paper-raised); }
-
-    .cap-num { font-family: var(--font-mono); font-size: var(--fs-meta); color: var(--accent); padding-top: 0.2rem; }
-    .cap-field h3 { font-size: var(--fs-row); font-weight: 600; margin: 0 0 0.2rem; }
-    .cap-code {
-      display: block;
-      font-family: var(--font-mono);
-      font-size: var(--fs-micro);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--ink-dim);
-      margin-bottom: 0.35rem;
-    }
-    .cap-claim { grid-column: 3; font-size: var(--fs-meta); color: var(--ink-soft); align-self: center; }
-    .cap-mark {
-      grid-column: 4;
-      font-family: var(--font-mono);
-      color: var(--accent);
-      transition: transform 0.15s ease;
-    }
-    .cap-row[open] .cap-mark { transform: rotate(45deg); }
-
-    @media (max-width: 860px) {
-      .cap-row > summary { grid-template-columns: 2.6rem 1fr auto; }
-      .cap-claim { grid-column: 1 / -1; padding-left: 2.6rem; margin-top: -0.3rem; }
-    }
-
-    .cap-detail {
-      padding: 0 0.5rem 1.75rem calc(3.4rem + 0.5rem);
-      animation: reveal 0.18s ease both;
-    }
-    @media (max-width: 860px) { .cap-detail { padding-left: 2.6rem; } }
-    @keyframes reveal { from { opacity: 0; transform: translateY(-3px); } to { opacity: 1; transform: translateY(0); } }
-
-    .cap-detail dl { display: grid; gap: 0.5rem; }
-    .cap-detail dt {
-      font-family: var(--font-mono);
-      font-size: var(--fs-micro);
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-top: 0.6rem;
-    }
-    .cap-detail dt:first-child { margin-top: 0; }
-    .cap-detail dd { font-size: var(--fs-meta); color: var(--ink-soft); max-width: 62ch; }
-    .cap-detail .disciplines { font-family: var(--font-mono); font-size: 0.78rem; }
-    .cap-detail .evidence a {
-      font-family: var(--font-mono);
-      font-size: 0.78rem;
-      text-decoration: underline;
-      text-decoration-color: var(--accent);
-      text-underline-offset: 3px;
-    }
-    .cap-detail .evidence a:hover { color: var(--accent); }
-
-    /* ══ 02 · OPERATING PRINCIPLE ═════════════════════════ */
-    .principle .wrap { display: grid; grid-template-columns: repeat(12, 1fr); }
-    .principle-inner {
-      grid-column: 2 / span 9;
-      border-left: 3px solid var(--accent);
-      padding-left: clamp(1.25rem, 3vw, 2rem);
-    }
-    @media (max-width: 780px) { .principle-inner { grid-column: 1 / -1; } }
-    .principle-inner .section-num { display: block; margin-bottom: 1rem; }
-    blockquote.principle-quote {
-      font-family: var(--font-serif);
-      font-style: italic;
-      font-size: var(--fs-quote);
-      line-height: 1.32;
-      margin: 0 0 1.75rem;
-      max-width: 30ch;
-      text-wrap: balance;
-    }
-    .principle-body { font-size: var(--fs-body); color: var(--ink-soft); max-width: 62ch; }
-    .principle-body + .principle-body { margin-top: 1rem; }
-
-    /* ══ 03 · SELECTED EVIDENCE ═══════════════════════════ */
-    .evidence-list { border-top: 1px dashed var(--rule); }
-    .evidence-item {
-      border-bottom: 1px dashed var(--rule);
-      padding-block: clamp(1.5rem, 3vw, 2.25rem);
-      display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap: 0.75rem 1.5rem;
-    }
-    .evidence-item:nth-child(even) .ev-meta { order: 2; text-align: right; }
-    @media (max-width: 780px) { .evidence-item:nth-child(even) .ev-meta { text-align: left; } }
-
-    .ev-meta { grid-column: 1 / span 3; }
-    .ev-meta .micro { display: block; margin-bottom: 0.35rem; }
-    .ev-icon { width: 44px; height: 44px; filter: grayscale(1) contrast(1.1); opacity: 0.85; margin-bottom: 0.6rem; }
-
-    .ev-body { grid-column: 4 / span 9; }
-    .ev-body h3 { font-size: var(--fs-row); font-weight: 600; margin: 0 0 0.5rem; }
-    .ev-body h3 a { text-decoration: none; }
-    .ev-body h3 a:hover { color: var(--accent); }
-    .ev-body p { font-size: var(--fs-meta); color: var(--ink-soft); max-width: 68ch; margin-bottom: 0.75rem; }
-    .ev-stack { font-family: var(--font-mono); font-size: 0.76rem; color: var(--ink-dim); letter-spacing: 0.01em; }
-    .ev-stack b { color: var(--accent); font-weight: 500; }
-
-    @media (max-width: 780px) {
-      .ev-meta, .ev-body { grid-column: 1 / -1; }
-    }
-
-    /* ══ 04 · TOOLCHAIN ═══════════════════════════════════ */
-    .toolchain-grid {
-      column-count: 3;
-      column-gap: 2.5rem;
-      grid-column: 1/-1;
-    }
-    @media (max-width: 900px) { .toolchain-grid { column-count: 2; } }
-    @media (max-width: 560px) { .toolchain-grid { column-count: 1; } }
-    .tool-cat {
-      break-inside: avoid;
-      margin-bottom: 1.75rem;
-    }
-    .tool-cat h3 {
-      font-family: var(--font-mono);
-      font-size: var(--fs-micro);
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin: 0 0 0.6rem;
-      border-bottom: 1px solid var(--rule);
-      padding-bottom: 0.4rem;
-    }
-    .tool-cat ul { list-style: none; }
-    .tool-cat li {
-      font-size: var(--fs-meta);
-      color: var(--ink-soft);
-      padding: 0.28rem 0;
-      border-bottom: 1px solid var(--rule-soft);
-    }
-
-    /* ══ 05 · CROSS-REFERENCES ════════════════════════════ */
-    .xref-scroll { overflow-x: auto; grid-column: 1/-1; }
-    table.xref {
-      border-collapse: collapse;
-      width: 100%;
-      min-width: 640px;
-      font-size: var(--fs-meta);
-    }
-    table.xref caption { text-align: left; margin-bottom: 1rem; }
-    table.xref th, table.xref td {
-      text-align: left;
-      padding: 0.85rem 1rem 0.85rem 0;
-      border-bottom: 1px solid var(--rule);
-      vertical-align: top;
-    }
-    table.xref thead th {
-      font-family: var(--font-mono);
-      font-size: var(--fs-micro);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--ink-dim);
-      border-bottom: 1px solid var(--ink);
-      font-weight: 500;
-    }
-    table.xref tbody th { font-weight: 600; white-space: nowrap; }
-    table.xref td a {
-      display: inline-block;
-      text-decoration: none;
-      margin-right: 1rem;
-      padding: 0.15rem 0;
-    }
-    table.xref td a::before { content: '→ '; color: var(--accent); }
-    table.xref td a:hover { color: var(--accent); }
-    table.xref tbody tr:hover { background: var(--paper-raised); }
-
-    /* ══ 06 · CLOSING ═════════════════════════════════════ */
-    .closing .wrap { display: grid; grid-template-columns: repeat(12,1fr); }
-    .closing-inner { grid-column: 1 / span 7; }
-    @media (max-width: 780px) { .closing-inner { grid-column: 1/-1; } }
-    .closing-inner p.statement {
-      font-family: var(--font-serif);
-      font-style: italic;
-      font-size: var(--fs-quote);
-      line-height: 1.3;
-      margin: 1rem 0 2rem;
-      text-wrap: balance;
-    }
-    .closing-link {
-      display: inline-flex;
-      align-items: baseline;
-      gap: 0.75rem;
-      font-family: var(--font-mono);
-      font-size: 0.95rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      text-decoration: none;
-      border-bottom: 1px solid var(--accent);
-      padding-bottom: 0.3rem;
-      min-height: 44px;
-      align-items: center;
-    }
-    .closing-link:hover { color: var(--accent); }
-    .closing-note { margin-top: 0.9rem; }
-
-    /* ══ FOOTER ═══════════════════════════════════════════ */
-    .site-footer {
-      background: var(--paper);
-      border-top: 1px solid var(--rule);
-      padding: 3.5rem 2.5rem 2.5rem;
-      color: var(--ink-soft);
-    }
-    .footer-grid {
-      max-width: var(--site-max-width, 1280px); margin: 0 auto;
-      display: grid; grid-template-columns: 2fr 1fr 1fr;
-      gap: 3rem; margin-bottom: 2.5rem;
-    }
-    .footer-col h3 {
-      font-family: var(--font-mono);
-      font-size: var(--fs-micro); font-weight: 500;
-      color: var(--accent); letter-spacing: 0.14em;
-      text-transform: uppercase; margin-bottom: 1rem;
-    }
-    .footer-col p { font-size: 0.92rem; line-height: 1.7; max-width: 40ch; }
-    .footer-links { list-style: none; }
-    .footer-links a {
-      font-family: var(--font-mono);
-      color: var(--ink-soft); text-decoration: none;
-      display: block; padding: 0.3rem 0;
-      font-size: 0.85rem; letter-spacing: 0.02em;
-      transition: color 0.15s;
-    }
-    .footer-links a:hover { color: var(--accent); }
-    .footer-bottom {
-      max-width: var(--site-max-width, 1280px); margin: 0 auto;
-      padding-top: 1.8rem; border-top: 1px solid var(--rule-soft);
-      text-align: center;
-      font-family: var(--font-mono);
-      font-size: 0.72rem; letter-spacing: 0.04em; color: var(--ink-dim);
-    }
-    @media (max-width: 760px) { .footer-grid { grid-template-columns: 1fr; gap: 2rem; } }
-
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <script src="assets/js/nav.js" defer></script>
+  <script src="assets/js/expertise.js?v=atlas-7" defer></script>
 </head>
-<body>
-
+<body class="expertise-atlas">
+  <a class="skip-link" href="#atlas">Skip to the atlas</a>
   <header class="site-header" id="siteHeader">
     <div class="site-header__inner">
       <a href="index.html" class="site-header__brand">SeldomSought</a>
@@ -481,535 +44,280 @@
       <a href="contact.html">Contact</a>
     </nav>
   </header>
-
-  <div class="page">
-
-    <!-- ── 00 · Masthead ── -->
-    <section class="masthead">
-      <div class="wrap">
-        <div class="masthead-id">
-          <p class="brand-line"><b>SeldomSought</b> — Brand · Marketing · Consulting</p>
-        </div>
-        <div class="masthead-doc">
-          <p class="micro">Doc. SS&ndash;EXP/01</p>
-          <p class="micro">Est. 2024 &nbsp;·&nbsp; Rev. 2026</p>
-          <p class="micro">Status — <strong>Active</strong></p>
-        </div>
-
-        <h1 class="title">Capability<br>Index</h1>
-
-        <p class="masthead-lede">
-          SeldomSought works at the point where brand image, marketing execution, and applied software overlap. Most problems don't announce which discipline they belong to, so the practice isn't organized around one. Below: fields of practice, the reasoning that connects them, and a record of what's actually been built — service lines, independent projects, and the tools common to both.
-        </p>
+  <svg class="atlas-filter-defs" aria-hidden="true" width="0" height="0"><defs><filter id="pencil-ink" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="0 0 0 0 .0902 0 0 0 0 .2275 0 0 0 0 .4667 -1.6 0 0 0 1.43" result="ink"/><feComposite in="ink" in2="SourceGraphic" operator="in"/></filter></defs></svg>
+  <main id="atlas">
+    <section class="atlas-opening" aria-labelledby="atlas-title">
+      <div class="edition"><span>SeldomSought / Field notes</span><span>Vol. I &nbsp; · &nbsp; Twelve disciplines</span></div>
+      <p class="eyebrow">Areas of expertise</p>
+      <h1 id="atlas-title">An atlas of<br><em>commercial perception.</em></h1>
+      <p class="opening-line">The systems through which a company becomes<br class="desktop-break"> seen, understood, remembered and desired.</p>
+      <div class="atlas-tools">
+        <a class="begin-link" href="#brand-image">Enter the landscape <span aria-hidden="true">↓</span></a>
+        <details class="atlas-index">
+          <summary>Index of disciplines <span aria-hidden="true">+</span></summary>
+          <nav aria-label="Expertise index"><a href="#brand-image"><span>01</span>Brand Image</a><a href="#aesthetic-orchestration"><span>02</span>Aesthetic Orchestration</a><a href="#brand-voice"><span>03</span>Brand Voice</a><a href="#seo"><span>04</span>SEO</a><a href="#aeo"><span>05</span>AEO</a><a href="#competitive-analysis"><span>06</span>Competitive Analysis</a><a href="#marketing-strategy"><span>07</span>Marketing Strategy</a><a href="#guerrilla-marketing"><span>08</span>Guerrilla Marketing</a><a href="#email-marketing"><span>09</span>Email Marketing</a><a href="#sms-marketing"><span>10</span>SMS Marketing</a><a href="#business-consulting"><span>11</span>Business Consulting</a><a href="#copywriting"><span>12</span>Copywriting</a></nav>
+        </details>
       </div>
-
-      <div class="ticker-band" aria-hidden="true">
-        <div class="ticker-track">
-          BRAND IMAGE&nbsp;&nbsp;·&nbsp;&nbsp;<span>SEO &amp; AEO</span>&nbsp;&nbsp;·&nbsp;&nbsp;GUERRILLA MARKETING&nbsp;&nbsp;·&nbsp;&nbsp;<span>COPYWRITING</span>&nbsp;&nbsp;·&nbsp;&nbsp;CONSULTING&nbsp;&nbsp;·&nbsp;&nbsp;<span>AUTOMATION</span>&nbsp;&nbsp;·&nbsp;&nbsp;INDEPENDENT RESEARCH&nbsp;&nbsp;·&nbsp;&nbsp;
-          BRAND IMAGE&nbsp;&nbsp;·&nbsp;&nbsp;<span>SEO &amp; AEO</span>&nbsp;&nbsp;·&nbsp;&nbsp;GUERRILLA MARKETING&nbsp;&nbsp;·&nbsp;&nbsp;<span>COPYWRITING</span>&nbsp;&nbsp;·&nbsp;&nbsp;CONSULTING&nbsp;&nbsp;·&nbsp;&nbsp;<span>AUTOMATION</span>&nbsp;&nbsp;·&nbsp;&nbsp;INDEPENDENT RESEARCH&nbsp;&nbsp;·&nbsp;&nbsp;
-        </div>
-      </div>
+      <p class="reading-note"><span class="desktop-instruction">Follow the marks. Inspect what catches your eye.</span><span class="mobile-instruction">A continuous field guide. Touch a drawing to inspect.</span></p>
+      <div class="opening-mark" aria-hidden="true"><svg viewBox="0 0 80 90"><path d="M40 4 L42 38 64 26 47 45 72 47 47 50 61 72 42 57 40 86 37 56 18 69 32 50 8 47 33 43 21 24 37 37Z"/><path d="M40 4 V86 M8 47 H72"/></svg><span>Not to scale</span></div>
     </section>
+    <div class="atlas-world" aria-label="An illustrated journey through twelve disciplines">
 
-    <!-- ── 01 · Capability Index ── -->
-    <section class="section" id="index">
-      <div class="wrap">
-        <div class="section-head">
-          <p class="section-num">01 / Capability Index</p>
-          <h2>Twelve fields of practice</h2>
-          <p class="section-note">Each entry: what the field is, what's actually difficult about it, and the disciplines it draws on. Expand any row for the working detail.</p>
-        </div>
-
-        <div class="cap-list">
-
-          <details class="cap-row">
-            <summary>
-              <span class="cap-num">001</span>
-              <span class="cap-field">
-                <span class="cap-code">Codename — The Herald's War Map</span>
-                <h3>Marketing Strategy</h3>
-              </span>
-              <span class="cap-claim">Campaigns are not built from activity. They are built from leverage: audience, timing, channel, offer, and pressure.</span>
-              <span class="cap-mark" aria-hidden="true">+</span>
-            </summary>
-            <div class="cap-detail">
-              <dl>
-                <dt>Approach</dt>
-                <dd>Map the terrain before moving — who needs to hear it, why now, what friction blocks action, and which channel gives the message force.</dd>
-                <dt>Disciplines</dt>
-                <dd class="disciplines">Campaign architecture / local market strategy / paid &amp; organic distribution / CRM follow-up / audience-specific messaging</dd>
-                <dt>Evidence</dt>
-                <dd class="evidence"><a href="services.html">Services — Guerrilla Marketing &amp; Strategy</a></dd>
-              </dl>
-            </div>
-          </details>
-
-          <details class="cap-row">
-            <summary>
-              <span class="cap-num">002</span>
-              <span class="cap-field">
-                <span class="cap-code">Codename — The Name-Forge</span>
-                <h3>Brand Positioning</h3>
-              </span>
-              <span class="cap-claim">Positioning is the act of making something impossible to confuse with the mass around it.</span>
-              <span class="cap-mark" aria-hidden="true">+</span>
-            </summary>
-            <div class="cap-detail">
-              <dl>
-                <dt>Approach</dt>
-                <dd>Sharpen the angle until the brand has a clear enemy, clear promise, clear aesthetic, and clear place in the buyer's mind.</dd>
-                <dt>Disciplines</dt>
-                <dd class="disciplines">Naming / landing pages / visual systems / offer design / taglines / category differentiation</dd>
-                <dt>Evidence</dt>
-                <dd class="evidence"><a href="services.html">Services — Brand Image &amp; Aesthetic Orchestration</a></dd>
-              </dl>
-            </div>
-          </details>
-
-          <details class="cap-row">
-            <summary>
-              <span class="cap-num">003</span>
-              <span class="cap-field">
-                <span class="cap-code">Codename — The Mirror Pool</span>
-                <h3>Consumer Psychology</h3>
-              </span>
-              <span class="cap-claim">People rarely move from logic alone. They move from identity, pressure, fear, desire, status, and timing.</span>
-              <span class="cap-mark" aria-hidden="true">+</span>
-            </summary>
-            <div class="cap-detail">
-              <dl>
-                <dt>Approach</dt>
-                <dd>Look for the gap between what people claim to want and what their behavior actually reveals.</dd>
-                <dt>Disciplines</dt>
-                <dd class="disciplines">Copy / funnel design / buyer objections / audience segmentation / product framing / social proof</dd>
-                <dt>Evidence</dt>
-                <dd class="evidence"><a href="projects.html">Project — Psychometric Battery</a> (independent, not client work)</dd>
-              </dl>
-            </div>
-          </details>
-
-          <details class="cap-row">
-            <summary>
-              <span class="cap-num">004</span>
-              <span class="cap-field">
-                <span class="cap-code">Codename — The Labyrinth Engine</span>
-                <h3>Operations</h3>
-              </span>
-              <span class="cap-claim">Operations is the discipline of making chaos repeatable without killing the human judgment inside it.</span>
-              <span class="cap-mark" aria-hidden="true">+</span>
-            </summary>
-            <div class="cap-detail">
-              <dl>
-                <dt>Approach</dt>
-                <dd>Turn vague workflows into clear ownership, visible stages, accountable handoffs, and systems that survive pressure.</dd>
-                <dt>Disciplines</dt>
-                <dd class="disciplines">CRM design / SOPs / team workflows / acquisition integration / internal accountability / process cleanup</dd>
-              </dl>
-            </div>
-          </details>
-
-          <details class="cap-row">
-            <summary>
-              <span class="cap-num">005</span>
-              <span class="cap-field">
-                <span class="cap-code">Codename — The Threshold Gate</span>
-                <h3>Sales</h3>
-              </span>
-              <span class="cap-claim">Sales is not pressure. It is the controlled movement from uncertainty to decision.</span>
-              <span class="cap-mark" aria-hidden="true">+</span>
-            </summary>
-            <div class="cap-detail">
-              <dl>
-                <dt>Approach</dt>
-                <dd>Identify pain, clarify stakes, reduce perceived risk, and create enough trust for action.</dd>
-                <dt>Disciplines</dt>
-                <dd class="disciplines">Cold outreach / follow-up systems / referral relationships / client conversations / offer framing</dd>
-              </dl>
-            </div>
-          </details>
-
-          <details class="cap-row">
-            <summary>
-              <span class="cap-num">006</span>
-              <span class="cap-field">
-                <span class="cap-code">Codename — The Mechanical Oracle</span>
-                <h3>AI Systems &amp; Automation</h3>
-              </span>
-              <span class="cap-claim">AI is most useful when it is not a toy, but a force multiplier inside a real workflow.</span>
-              <span class="cap-mark" aria-hidden="true">+</span>
-            </summary>
-            <div class="cap-detail">
-              <dl>
-                <dt>Approach</dt>
-                <dd>Use automation to structure intake, research, content, routing, analysis, repetitive execution, and decision support.</dd>
-                <dt>Disciplines</dt>
-                <dd class="disciplines">Agentic workflows / CRM cleanup / content systems / web development / research pipelines / operational automation</dd>
-                <dt>Evidence</dt>
-                <dd class="evidence"><a href="projects.html">Bookmark Mirror</a> &nbsp;/&nbsp; <a href="projects.html">Psychometric Battery</a> &nbsp;/&nbsp; <a href="projects.html">The Self Cartography Project</a> — offline inference and scoring engines, no external API calls</dd>
-              </dl>
-            </div>
-          </details>
-
-          <details class="cap-row">
-            <summary>
-              <span class="cap-num">007</span>
-              <span class="cap-field">
-                <span class="cap-code">Codename — The Living Facade</span>
-                <h3>Web Design &amp; Frontend Direction</h3>
-              </span>
-              <span class="cap-claim">A website should not look assembled. It should feel authored.</span>
-              <span class="cap-mark" aria-hidden="true">+</span>
-            </summary>
-            <div class="cap-detail">
-              <dl>
-                <dt>Approach</dt>
-                <dd>Attend to hierarchy, rhythm, readability, symbolic consistency, interaction, and the emotional atmosphere of the page.</dd>
-                <dt>Disciplines</dt>
-                <dd class="disciplines">Portfolio sites / client websites / landing pages / UI direction / conversion flow / visual systems</dd>
-                <dt>Evidence</dt>
-                <dd class="evidence"><a href="projects.html">The Self Cartography Project</a> (React / TypeScript / Vite, hand-rolled SVG instrumentation) &nbsp;/&nbsp; <a href="projects.html">Curated Feed</a></dd>
-              </dl>
-            </div>
-          </details>
-
-          <details class="cap-row">
-            <summary>
-              <span class="cap-num">008</span>
-              <span class="cap-field">
-                <span class="cap-code">Codename — The Flame-Bearer</span>
-                <h3>Creative Direction</h3>
-              </span>
-              <span class="cap-claim">Creative direction is the ability to make scattered parts obey one world.</span>
-              <span class="cap-mark" aria-hidden="true">+</span>
-            </summary>
-            <div class="cap-detail">
-              <dl>
-                <dt>Approach</dt>
-                <dd>Unify visuals, language, reference, symbolism, and user experience into one coherent aesthetic system.</dd>
-                <dt>Disciplines</dt>
-                <dd class="disciplines">Brand worlds / art direction / video concepts / campaign ideas / product presentation</dd>
-                <dt>Evidence</dt>
-                <dd class="evidence"><a href="projects.html">Curated Feed</a> — color-sequenced archive, manually curated, no algorithm</dd>
-              </dl>
-            </div>
-          </details>
-
-          <details class="cap-row">
-            <summary>
-              <span class="cap-num">009</span>
-              <span class="cap-field">
-                <span class="cap-code">Codename — The Armor of Signal</span>
-                <h3>Fashion &amp; Style Analysis</h3>
-              </span>
-              <span class="cap-claim">Clothing is not decoration. It is identity, proportion, material, status, tribe, and cultural fluency.</span>
-              <span class="cap-mark" aria-hidden="true">+</span>
-            </summary>
-            <div class="cap-detail">
-              <dl>
-                <dt>Approach</dt>
-                <dd>Read garments through silhouette, context, construction, reference, rarity, and social meaning.</dd>
-                <dt>Disciplines</dt>
-                <dd class="disciplines">Styling / brand analysis / resale instincts / product design / visual taste / fashion commentary</dd>
-              </dl>
-            </div>
-          </details>
-
-          <details class="cap-row">
-            <summary>
-              <span class="cap-num">010</span>
-              <span class="cap-field">
-                <span class="cap-code">Codename — The Scriptorium</span>
-                <h3>Content Strategy</h3>
-              </span>
-              <span class="cap-claim">Content only compounds when ideas become a system instead of random expression.</span>
-              <span class="cap-mark" aria-hidden="true">+</span>
-            </summary>
-            <div class="cap-detail">
-              <dl>
-                <dt>Approach</dt>
-                <dd>Turn loose ideas into repeatable formats, publishing rhythms, hooks, essays, videos, and authority-building narratives.</dd>
-                <dt>Disciplines</dt>
-                <dd class="disciplines">YouTube strategy / newsletters / social posts / essays / brand storytelling / content calendars</dd>
-                <dt>Evidence</dt>
-                <dd class="evidence"><a href="services.html">Services — Copywriting &amp; Direct Marketing</a></dd>
-              </dl>
-            </div>
-          </details>
-
-          <details class="cap-row">
-            <summary>
-              <span class="cap-num">011</span>
-              <span class="cap-field">
-                <span class="cap-code">Codename — The Long Table</span>
-                <h3>Community Building</h3>
-              </span>
-              <span class="cap-claim">Community is not a group chat. It is repeated belonging around shared values, rituals, and contribution.</span>
-              <span class="cap-mark" aria-hidden="true">+</span>
-            </summary>
-            <div class="cap-detail">
-              <dl>
-                <dt>Approach</dt>
-                <dd>Create environments where people have a reason to show up, participate, recognize each other, and return.</dd>
-                <dt>Disciplines</dt>
-                <dd class="disciplines">Coliving / local events / online groups / recruiting / moderation / culture design</dd>
-              </dl>
-            </div>
-          </details>
-
-          <details class="cap-row">
-            <summary>
-              <span class="cap-num">012</span>
-              <span class="cap-field">
-                <span class="cap-code">Codename — The Open Road</span>
-                <h3>Business Development</h3>
-              </span>
-              <span class="cap-claim">Business development is the art of turning loose possibility into structured opportunity.</span>
-              <span class="cap-mark" aria-hidden="true">+</span>
-            </summary>
-            <div class="cap-detail">
-              <dl>
-                <dt>Approach</dt>
-                <dd>Find leverage points, open conversations, build trust, identify mutual upside, and move relationships toward concrete outcomes.</dd>
-                <dt>Disciplines</dt>
-                <dd class="disciplines">Partnerships / referrals / client acquisition / strategic outreach / vendor relationships / deal flow</dd>
-              </dl>
-            </div>
-          </details>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- ── 02 · Operating Principle ── -->
-    <section class="section principle">
-      <div class="wrap">
-        <div class="principle-inner">
-          <h2 class="section-num">02 / Operating Principle</h2>
-          <blockquote class="principle-quote">
-            &ldquo;Visibility is not luck. It's the result of building the right systems in the right places at the right time.&rdquo;
-          </blockquote>
-          <p class="principle-body">That line is the practice's own operating note, and the pattern holds outside marketing, too. Every independent build in the record below runs client-side by default — no server required, no account, no data leaving the device unless someone chooses otherwise. That isn't a privacy feature added afterward; it's the default assumption going in.</p>
-          <p class="principle-body">Twelve fields of practice, one working assumption underneath all of them: build the system so it doesn't depend on someone else's.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ── 03 · Selected Evidence ── -->
-    <section class="section" id="evidence">
-      <div class="wrap">
-        <div class="section-head">
-          <p class="section-num">03 / Selected Evidence</p>
-          <h2>Independent record</h2>
-          <p class="section-note">No client names disclosed here. What follows is public, independent, and shipped — the account with the fewest strings attached.</p>
-        </div>
-
-        <div class="evidence-list">
-
-          <article class="evidence-item">
-            <div class="ev-meta">
-              <img class="ev-icon" src="assets/focus-shield-icon.svg" alt="" loading="lazy">
-              <span class="micro">File 01</span>
-              <span class="micro">Chrome Extension</span>
-              <span class="micro">Status — Beta</span>
-            </div>
-            <div class="ev-body">
-              <h3><a href="https://github.com/SeldomSought/Focus-Shield">Focus Shield</a></h3>
-              <p>Enforces a 30-minute daily budget on passive feed browsing. Feeds are suppressed at the CSS level before JavaScript executes; bookmarks and creation tools stay accessible without limit. An optional commitment lock, keyed to a passphrase held by someone else, makes the limit difficult to defeat by design.</p>
-              <p class="ev-stack"><b>Stack</b> — JavaScript · Chrome MV3 · Service Worker · MutationObserver API · IndexedDB · Webhooks</p>
-            </div>
-          </article>
-
-          <article class="evidence-item">
-            <div class="ev-meta">
-              <span class="micro">File 02</span>
-              <span class="micro">Web App</span>
-              <span class="micro">Status — Beta</span>
-            </div>
-            <div class="ev-body">
-              <h3><a href="projects/psychometrics-battery/index.html">Psychometric Battery</a></h3>
-              <p>A 142-item assessment integrating four validated measurement frameworks — HEXACO personality, forced-choice ranking, Schwartz values, attachment style — into a single session. Scoring runs entirely in the browser; nothing is transmitted.</p>
-              <p class="ev-stack"><b>Stack</b> — JavaScript · HTML/CSS · client-side only · zero dependencies</p>
-            </div>
-          </article>
-
-          <article class="evidence-item">
-            <div class="ev-meta">
-              <span class="micro">File 03</span>
-              <span class="micro">Chrome Extension</span>
-              <span class="micro">Status — Beta</span>
-            </div>
-            <div class="ev-body">
-              <h3><a href="https://github.com/SeldomSought/Twitter-bookmark-analyzer">Bookmark Mirror</a></h3>
-              <p>Generates a psychological profile from Twitter/X bookmarks — Big Five inference, Schwartz values, LIWC-inspired linguistic analysis, topic velocity — entirely offline. No API key, no server, no data transmitted.</p>
-              <p class="ev-stack"><b>Stack</b> — JavaScript · Chrome MV3 · IndexedDB · Content Scripts · Service Worker</p>
-            </div>
-          </article>
-
-          <article class="evidence-item">
-            <div class="ev-meta">
-              <span class="micro">File 04</span>
-              <span class="micro">Instagram</span>
-              <span class="micro">Status — Live</span>
-            </div>
-            <div class="ev-body">
-              <h3><a href="https://www.instagram.com/seldomsought">Curated Feed</a></h3>
-              <p>Every post on @seldomsought resequenced by hue instead of time — manually, post by post, no algorithm. The chronological grid becomes a continuous color gradient.</p>
-              <p class="ev-stack"><b>Stack</b> — Manual curation · color theory</p>
-            </div>
-          </article>
-
-          <article class="evidence-item">
-            <div class="ev-meta">
-              <span class="micro">File 05</span>
-              <span class="micro">Web App</span>
-              <span class="micro">Status — Beta</span>
-            </div>
-            <div class="ev-body">
-              <h3><a href="projects/self-cartography/index.html">The Self Cartography Project</a></h3>
-              <p>An evidence-informed self-assessment that triangulates values, personality, and career fit across eleven measurement formats — not just Likert ratings — with a background validity engine that flags straightlining, contradiction, and self-report-vs-behavior gaps. Every score ships with a confidence level, never an invented percentile.</p>
-              <p class="ev-stack"><b>Stack</b> — React · TypeScript · Vite · client-side only</p>
-            </div>
-          </article>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- ── 04 · Toolchain ── -->
-    <section class="section" id="toolchain">
-      <div class="wrap">
-        <div class="section-head">
-          <p class="section-num">04 / Working Knowledge</p>
-          <h2>Toolchain</h2>
-          <p class="section-note">Legitimate working knowledge, demonstrated in the record above — not a logo wall.</p>
-        </div>
-
-        <div class="toolchain-grid">
-          <div class="tool-cat">
-            <h3>Languages &amp; Runtime</h3>
-            <ul><li>JavaScript</li><li>TypeScript</li><li>HTML / CSS</li></ul>
+      <section class="atlas-plate plate-1 pencil-plate" style="--plate-ratio:724 / 416" aria-labelledby="plate-title-1">
+        <h2 id="plate-title-1" class="sr-only">Where the eye arrives</h2>
+        <img class="plate-ground" src="assets/images/expertise/pencil-1.webp" width="724" height="416" alt="" fetchpriority="high" decoding="async">
+        <p class="plate-caption"><span>I.</span> The first impression is already an argument.</p>
+        <details name="atlas-notes" class="atlas-place marked" id="brand-image" style="--x:0.000%;--y:0.000%;--w:33.287%;--art-ratio:241/404">
+          <summary aria-label="Inspect Brand Image">
+            <span class="place-number" aria-hidden="true">01</span>
+            <svg class="specimen pencil-specimen" aria-hidden="true" focusable="false" viewBox="0 0 241 404"><image href="assets/images/expertise/pencil-1.webp" x="0" y="0" width="724" height="416" filter="url(#pencil-ink)"/></svg>
+            <span class="annotation">
+              <svg class="annotation-line" viewBox="0 0 150 48" aria-hidden="true"><path d="M145 3 Q118 31 65 29 L3 39 M8 32 L3 39 13 42"/></svg>
+              <span class="place-name">Brand Image</span>
+              <span class="place-descriptor">Recognition, before a word is read.</span>
+              <span class="inspect" aria-hidden="true"><span class="inspect-closed">Inspect</span><span class="inspect-open">Close note</span> <span class="inspect-mark">+</span></span>
+            </span>
+          </summary>
+          <div class="field-note">
+            <p class="field-note-reference">Fig. 01 &nbsp; / &nbsp; The looking glass</p>
+            <p>The image a company projects sets the terms of every encounter. SeldomSought defines its visual identity, positioning and public presentation so the business is recognisable across every point of contact.</p>
+            <a href="contact.html">Discuss brand image <span aria-hidden="true">↗</span></a>
           </div>
-          <div class="tool-cat">
-            <h3>Frameworks &amp; Tooling</h3>
-            <ul><li>React</li><li>Vite</li><li>CSS Modules</li></ul>
+        </details>
+        <details name="atlas-notes" class="atlas-place " id="aesthetic-orchestration" style="--x:32.597%;--y:49.038%;--w:37.017%;--art-ratio:268/207">
+          <summary aria-label="Inspect Aesthetic Orchestration">
+            <span class="place-number" aria-hidden="true">02</span>
+            <svg class="specimen pencil-specimen" aria-hidden="true" focusable="false" viewBox="236 204 268 207"><image href="assets/images/expertise/pencil-1.webp" x="0" y="0" width="724" height="416" filter="url(#pencil-ink)"/></svg>
+            <span class="annotation">
+              <svg class="annotation-line" viewBox="0 0 150 48" aria-hidden="true"><path d="M145 3 Q118 31 65 29 L3 39 M8 32 L3 39 13 42"/></svg>
+              <span class="place-name">Aesthetic Orchestration</span>
+              <span class="place-descriptor">Every element, in the same world.</span>
+              <span class="inspect" aria-hidden="true"><span class="inspect-closed">Inspect</span><span class="inspect-open">Close note</span> <span class="inspect-mark">+</span></span>
+            </span>
+          </summary>
+          <div class="field-note">
+            <p class="field-note-reference">Fig. 02 &nbsp; / &nbsp; The theatre of appearances</p>
+            <p>Art direction gives disparate materials a common intention. Image, typography, colour, layout and atmosphere are composed into a visual language that holds together across a website, a campaign and the physical world.</p>
+            <a href="contact.html">Discuss aesthetic orchestration <span aria-hidden="true">↗</span></a>
           </div>
-          <div class="tool-cat">
-            <h3>Browser Engineering</h3>
-            <ul><li>Chrome MV3</li><li>Service Workers</li><li>Content Scripts</li><li>MutationObserver API</li><li>IndexedDB / localStorage</li><li>Alarm API</li></ul>
+        </details>
+        <details name="atlas-notes" class="atlas-place " id="brand-voice" style="--x:58.840%;--y:2.404%;--w:41.160%;--art-ratio:298/381">
+          <summary aria-label="Inspect Brand Voice">
+            <span class="place-number" aria-hidden="true">03</span>
+            <svg class="specimen pencil-specimen" aria-hidden="true" focusable="false" viewBox="426 10 298 381"><image href="assets/images/expertise/pencil-1.webp" x="0" y="0" width="724" height="416" filter="url(#pencil-ink)"/></svg>
+            <span class="annotation">
+              <svg class="annotation-line" viewBox="0 0 150 48" aria-hidden="true"><path d="M145 3 Q118 31 65 29 L3 39 M8 32 L3 39 13 42"/></svg>
+              <span class="place-name">Brand Voice</span>
+              <span class="place-descriptor">A character you can hear in the dark.</span>
+              <span class="inspect" aria-hidden="true"><span class="inspect-closed">Inspect</span><span class="inspect-open">Close note</span> <span class="inspect-mark">+</span></span>
+            </span>
+          </summary>
+          <div class="field-note">
+            <p class="field-note-reference">Fig. 03 &nbsp; / &nbsp; The echo chamber</p>
+            <p>A recognisable voice comes from choices repeated with conviction. SeldomSought establishes tone, vocabulary and editorial principles, then puts them to work in the places a business actually speaks.</p>
+            <a href="contact.html">Discuss brand voice <span aria-hidden="true">↗</span></a>
           </div>
-          <div class="tool-cat">
-            <h3>Integration</h3>
-            <ul><li>Webhooks</li><li>GitHub</li></ul>
+        </details>
+      </section>
+
+      <section class="atlas-plate plate-2 pencil-plate" style="--plate-ratio:724 / 395" aria-labelledby="plate-title-2">
+        <h2 id="plate-title-2" class="sr-only">Instruments for being found</h2>
+        <img class="plate-ground" src="assets/images/expertise/pencil-2.webp" width="724" height="395" alt="" loading="lazy" decoding="async">
+        <p class="plate-caption"><span>II.</span> What remains unseen cannot be chosen.</p>
+        <details name="atlas-notes" class="atlas-place marked" id="seo" style="--x:1.105%;--y:0.000%;--w:34.807%;--art-ratio:252/278">
+          <summary aria-label="Inspect SEO">
+            <span class="place-number" aria-hidden="true">04</span>
+            <svg class="specimen pencil-specimen" aria-hidden="true" focusable="false" viewBox="8 0 252 278"><image href="assets/images/expertise/pencil-2.webp" x="0" y="0" width="724" height="395" filter="url(#pencil-ink)"/></svg>
+            <span class="annotation">
+              <svg class="annotation-line" viewBox="0 0 150 48" aria-hidden="true"><path d="M145 3 Q118 31 65 29 L3 39 M8 32 L3 39 13 42"/></svg>
+              <span class="place-name">SEO</span>
+              <span class="place-descriptor">Be present where intent begins.</span>
+              <span class="inspect" aria-hidden="true"><span class="inspect-closed">Inspect</span><span class="inspect-open">Close note</span> <span class="inspect-mark">+</span></span>
+            </span>
+          </summary>
+          <div class="field-note">
+            <p class="field-note-reference">Fig. 04 &nbsp; / &nbsp; The light of intent</p>
+            <p>Search visibility begins with understanding what people are trying to find. Technical audits, site structure, local presence and useful content make a business easier to discover, with measurement tied to enquiries and commercial intent.</p>
+            <a href="contact.html">Discuss seo <span aria-hidden="true">↗</span></a>
           </div>
-          <div class="tool-cat">
-            <h3>Measurement Frameworks</h3>
-            <ul><li>HEXACO</li><li>Big Five (OCEAN)</li><li>Schwartz Basic Human Values</li><li>Attachment theory</li><li>LIWC-inspired linguistic analysis</li><li>Self-determination theory</li></ul>
+        </details>
+        <details name="atlas-notes" class="atlas-place " id="aeo" style="--x:60.359%;--y:1.013%;--w:39.641%;--art-ratio:287/303">
+          <summary aria-label="Inspect AEO">
+            <span class="place-number" aria-hidden="true">05</span>
+            <svg class="specimen pencil-specimen" aria-hidden="true" focusable="false" viewBox="437 4 287 303"><image href="assets/images/expertise/pencil-2.webp" x="0" y="0" width="724" height="395" filter="url(#pencil-ink)"/></svg>
+            <span class="annotation">
+              <svg class="annotation-line" viewBox="0 0 150 48" aria-hidden="true"><path d="M145 3 Q118 31 65 29 L3 39 M8 32 L3 39 13 42"/></svg>
+              <span class="place-name">AEO</span>
+              <span class="place-descriptor">Make the answer traceable to you.</span>
+              <span class="inspect" aria-hidden="true"><span class="inspect-closed">Inspect</span><span class="inspect-open">Close note</span> <span class="inspect-mark">+</span></span>
+            </span>
+          </summary>
+          <div class="field-note">
+            <p class="field-note-reference">Fig. 05 &nbsp; / &nbsp; The machine observatory</p>
+            <p>Answer engine optimisation makes a business and its expertise easier for retrieval systems to interpret. Clear entities, structured information and well-supported answers improve the conditions for inclusion and citation; placement is measured, never promised.</p>
+            <a href="contact.html">Discuss aeo <span aria-hidden="true">↗</span></a>
           </div>
-          <div class="tool-cat">
-            <h3>Marketing &amp; Growth</h3>
-            <ul><li>SEO</li><li>AEO — Answer Engine Optimization</li><li>Guerrilla campaign design</li><li>Email &amp; SMS marketing</li><li>Copywriting</li></ul>
+        </details>
+        <details name="atlas-notes" class="atlas-place " id="competitive-analysis" style="--x:34.392%;--y:54.684%;--w:27.210%;--art-ratio:197/167">
+          <summary aria-label="Inspect Competitive Analysis">
+            <span class="place-number" aria-hidden="true">06</span>
+            <svg class="specimen pencil-specimen" aria-hidden="true" focusable="false" viewBox="249 216 197 167"><image href="assets/images/expertise/pencil-2.webp" x="0" y="0" width="724" height="395" filter="url(#pencil-ink)"/></svg>
+            <span class="annotation">
+              <svg class="annotation-line" viewBox="0 0 150 48" aria-hidden="true"><path d="M145 3 Q118 31 65 29 L3 39 M8 32 L3 39 13 42"/></svg>
+              <span class="place-name">Competitive Analysis</span>
+              <span class="place-descriptor">Read the territory before entering it.</span>
+              <span class="inspect" aria-hidden="true"><span class="inspect-closed">Inspect</span><span class="inspect-open">Close note</span> <span class="inspect-mark">+</span></span>
+            </span>
+          </summary>
+          <div class="field-note">
+            <p class="field-note-reference">Fig. 06 &nbsp; / &nbsp; The distant prospect</p>
+            <p>Study what competitors offer, how they present it and where customers remain underserved. The result is a practical account of the category: its habits, its openings and the differences worth defending.</p>
+            <a href="contact.html">Discuss competitive analysis <span aria-hidden="true">↗</span></a>
           </div>
-        </div>
-      </div>
+        </details>
+      </section>
+
+      <section class="atlas-plate plate-3 pencil-plate" style="--plate-ratio:724 / 511" aria-labelledby="plate-title-3">
+        <h2 id="plate-title-3" class="sr-only">Routes of circulation</h2>
+        <img class="plate-ground" src="assets/images/expertise/pencil-3.webp" width="724" height="511" alt="" loading="lazy" decoding="async">
+        <p class="plate-caption"><span>III.</span> A message is only as useful as its passage.</p>
+        <details name="atlas-notes" class="atlas-place marked" id="marketing-strategy" style="--x:0.000%;--y:9.589%;--w:41.436%;--art-ratio:300/282">
+          <summary aria-label="Inspect Marketing Strategy">
+            <span class="place-number" aria-hidden="true">07</span>
+            <svg class="specimen pencil-specimen" aria-hidden="true" focusable="false" viewBox="0 49 300 282"><image href="assets/images/expertise/pencil-3.webp" x="0" y="0" width="724" height="511" filter="url(#pencil-ink)"/></svg>
+            <span class="annotation">
+              <svg class="annotation-line" viewBox="0 0 150 48" aria-hidden="true"><path d="M145 3 Q118 31 65 29 L3 39 M8 32 L3 39 13 42"/></svg>
+              <span class="place-name">Marketing Strategy</span>
+              <span class="place-descriptor">Choose the route. Give it a reason.</span>
+              <span class="inspect" aria-hidden="true"><span class="inspect-closed">Inspect</span><span class="inspect-open">Close note</span> <span class="inspect-mark">+</span></span>
+            </span>
+          </summary>
+          <div class="field-note">
+            <p class="field-note-reference">Fig. 07 &nbsp; / &nbsp; The cartographer’s table</p>
+            <p>Audience, offer, channel, budget and timing belong in one plan. SeldomSought sets priorities, designs the campaign sequence and defines what to measure, so effort accumulates toward a commercial objective.</p>
+            <a href="contact.html">Discuss marketing strategy <span aria-hidden="true">↗</span></a>
+          </div>
+        </details>
+        <details name="atlas-notes" class="atlas-place marked" id="guerrilla-marketing" style="--x:67.956%;--y:-0.587%;--w:32.044%;--art-ratio:232/331">
+          <summary aria-label="Inspect Guerrilla Marketing">
+            <span class="place-number" aria-hidden="true">08</span>
+            <svg class="specimen pencil-specimen" aria-hidden="true" focusable="false" viewBox="492 -3 232 331"><image href="assets/images/expertise/pencil-3.webp" x="0" y="0" width="724" height="511" filter="url(#pencil-ink)"/></svg>
+            <span class="annotation">
+              <svg class="annotation-line" viewBox="0 0 150 48" aria-hidden="true"><path d="M145 3 Q118 31 65 29 L3 39 M8 32 L3 39 13 42"/></svg>
+              <span class="place-name">Guerrilla Marketing</span>
+              <span class="place-descriptor">Attention has unofficial entrances.</span>
+              <span class="inspect" aria-hidden="true"><span class="inspect-closed">Inspect</span><span class="inspect-open">Close note</span> <span class="inspect-mark">+</span></span>
+            </span>
+          </summary>
+          <div class="field-note">
+            <p class="field-note-reference">Fig. 08 &nbsp; / &nbsp; The unofficial passage</p>
+            <p>Find the places where an unexpected intervention earns attention. From a physical activation to an unconventional distribution tactic, each idea is built around context, participation and a clear next step.</p>
+            <a href="contact.html">Discuss guerrilla marketing <span aria-hidden="true">↗</span></a>
+          </div>
+        </details>
+        <details name="atlas-notes" class="atlas-place " id="email-marketing" style="--x:19.475%;--y:58.708%;--w:69.061%;--art-ratio:500/220">
+          <summary aria-label="Inspect Email Marketing">
+            <span class="place-number" aria-hidden="true">09</span>
+            <svg class="specimen pencil-specimen" aria-hidden="true" focusable="false" viewBox="141 300 500 220"><image href="assets/images/expertise/pencil-3.webp" x="0" y="0" width="724" height="511" filter="url(#pencil-ink)"/></svg>
+            <span class="annotation">
+              <svg class="annotation-line" viewBox="0 0 150 48" aria-hidden="true"><path d="M145 3 Q118 31 65 29 L3 39 M8 32 L3 39 13 42"/></svg>
+              <span class="place-name">Email Marketing</span>
+              <span class="place-descriptor">Correspondence that earns its return.</span>
+              <span class="inspect" aria-hidden="true"><span class="inspect-closed">Inspect</span><span class="inspect-open">Close note</span> <span class="inspect-mark">+</span></span>
+            </span>
+          </summary>
+          <div class="field-note">
+            <p class="field-note-reference">Fig. 09 &nbsp; / &nbsp; The correspondence works</p>
+            <p>A useful email programme gives each message a job. Segmentation, welcome sequences, campaign writing and reactivation turn an existing audience into an ongoing relationship, with performance judged beyond the open rate.</p>
+            <a href="contact.html">Discuss email marketing <span aria-hidden="true">↗</span></a>
+          </div>
+        </details>
+      </section>
+
+      <section class="atlas-plate plate-4 pencil-plate" style="--plate-ratio:724 / 458" aria-labelledby="plate-title-4">
+        <h2 id="plate-title-4" class="sr-only">What carries the work</h2>
+        <img class="plate-ground" src="assets/images/expertise/pencil-4.webp" width="724" height="458" alt="" loading="lazy" decoding="async">
+        <p class="plate-caption"><span>IV.</span> The promise rests on something built.</p>
+        <details name="atlas-notes" class="atlas-place " id="sms-marketing" style="--x:0.000%;--y:-0.655%;--w:37.431%;--art-ratio:271/345">
+          <summary aria-label="Inspect SMS Marketing">
+            <span class="place-number" aria-hidden="true">10</span>
+            <svg class="specimen pencil-specimen" aria-hidden="true" focusable="false" viewBox="0 -3 271 345"><image href="assets/images/expertise/pencil-4.webp" x="0" y="0" width="724" height="458" filter="url(#pencil-ink)"/></svg>
+            <span class="annotation">
+              <svg class="annotation-line" viewBox="0 0 150 48" aria-hidden="true"><path d="M145 3 Q118 31 65 29 L3 39 M8 32 L3 39 13 42"/></svg>
+              <span class="place-name">SMS Marketing</span>
+              <span class="place-descriptor">A direct line. Used with restraint.</span>
+              <span class="inspect" aria-hidden="true"><span class="inspect-closed">Inspect</span><span class="inspect-open">Close note</span> <span class="inspect-mark">+</span></span>
+            </span>
+          </summary>
+          <div class="field-note">
+            <p class="field-note-reference">Fig. 10 &nbsp; / &nbsp; The immediate signal</p>
+            <p>Text is reserved for messages whose timing matters. SeldomSought develops opt-in campaigns and lifecycle messages with clear offers, considered frequency and an easy path from notification to action.</p>
+            <a href="contact.html">Discuss sms marketing <span aria-hidden="true">↗</span></a>
+          </div>
+        </details>
+        <details name="atlas-notes" class="atlas-place marked" id="business-consulting" style="--x:57.320%;--y:3.930%;--w:42.680%;--art-ratio:309/331">
+          <summary aria-label="Inspect Business Consulting">
+            <span class="place-number" aria-hidden="true">11</span>
+            <svg class="specimen pencil-specimen" aria-hidden="true" focusable="false" viewBox="415 18 309 331"><image href="assets/images/expertise/pencil-4.webp" x="0" y="0" width="724" height="458" filter="url(#pencil-ink)"/></svg>
+            <span class="annotation">
+              <svg class="annotation-line" viewBox="0 0 150 48" aria-hidden="true"><path d="M145 3 Q118 31 65 29 L3 39 M8 32 L3 39 13 42"/></svg>
+              <span class="place-name">Business Consulting</span>
+              <span class="place-descriptor">Build what the promise depends on.</span>
+              <span class="inspect" aria-hidden="true"><span class="inspect-closed">Inspect</span><span class="inspect-open">Close note</span> <span class="inspect-mark">+</span></span>
+            </span>
+          </summary>
+          <div class="field-note">
+            <p class="field-note-reference">Fig. 11 &nbsp; / &nbsp; The supporting structure</p>
+            <p>A compelling proposition needs a business that can deliver it. SeldomSought examines workflows, customer handoffs and operating priorities, then implements practical changes to the systems carrying the work.</p>
+            <a href="contact.html">Discuss business consulting <span aria-hidden="true">↗</span></a>
+          </div>
+        </details>
+        <details name="atlas-notes" class="atlas-place marked" id="copywriting" style="--x:25.552%;--y:48.908%;--w:50.829%;--art-ratio:368/234">
+          <summary aria-label="Inspect Copywriting">
+            <span class="place-number" aria-hidden="true">12</span>
+            <svg class="specimen pencil-specimen" aria-hidden="true" focusable="false" viewBox="185 224 368 234"><image href="assets/images/expertise/pencil-4.webp" x="0" y="0" width="724" height="458" filter="url(#pencil-ink)"/></svg>
+            <span class="annotation">
+              <svg class="annotation-line" viewBox="0 0 150 48" aria-hidden="true"><path d="M145 3 Q118 31 65 29 L3 39 M8 32 L3 39 13 42"/></svg>
+              <span class="place-name">Copywriting</span>
+              <span class="place-descriptor">The right words carry weight.</span>
+              <span class="inspect" aria-hidden="true"><span class="inspect-closed">Inspect</span><span class="inspect-open">Close note</span> <span class="inspect-mark">+</span></span>
+            </span>
+          </summary>
+          <div class="field-note">
+            <p class="field-note-reference">Fig. 12 &nbsp; / &nbsp; The printing works</p>
+            <p>Good copy makes a proposition clear, credible and worth acting on. Websites, campaigns and sales materials are written around the reader’s questions, the evidence available and the decision the business needs to earn.</p>
+            <a href="contact.html">Discuss copywriting <span aria-hidden="true">↗</span></a>
+          </div>
+        </details>
+      </section>
+
+    </div>
+    <section class="atlas-colophon" aria-labelledby="colophon-title">
+      <p class="eyebrow">At the far edge of the map</p>
+      <h2 id="colophon-title">Nothing here<br>works <em>alone.</em></h2>
+      <p>Image gives language a face. Language gives strategy a voice.<br class="desktop-break"> The work is making the connections.</p>
+      <a href="contact.html" class="correspondence-link">Begin a correspondence <span aria-hidden="true">↗</span></a>
     </section>
-
-    <!-- ── 05 · Cross-References ── -->
-    <section class="section" id="xref">
-      <div class="wrap">
-        <div class="section-head">
-          <p class="section-num">05 / Cross-References</p>
-          <h2>Field → record</h2>
-          <p class="section-note">Capability doesn't exist in isolation. Where a field above has a public artifact behind it, here's the link.</p>
-        </div>
-
-        <div class="xref-scroll">
-          <table class="xref">
-            <caption class="micro">Fields of practice mapped to public services and independent projects</caption>
-            <thead>
-              <tr><th scope="col">Field</th><th scope="col">Public record</th></tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">Web &amp; Frontend Direction</th>
-                <td><a href="projects/self-cartography/index.html">The Self Cartography Project</a><a href="https://www.instagram.com/seldomsought">Curated Feed</a></td>
-              </tr>
-              <tr>
-                <th scope="row">AI Systems &amp; Automation</th>
-                <td><a href="https://github.com/SeldomSought/Twitter-bookmark-analyzer">Bookmark Mirror</a><a href="projects/psychometrics-battery/index.html">Psychometric Battery</a><a href="projects/self-cartography/index.html">Self Cartography</a></td>
-              </tr>
-              <tr>
-                <th scope="row">Creative Direction</th>
-                <td><a href="https://www.instagram.com/seldomsought">Curated Feed</a></td>
-              </tr>
-              <tr>
-                <th scope="row">Brand Positioning</th>
-                <td><a href="services.html">Brand Image &amp; Aesthetic Orchestration</a></td>
-              </tr>
-              <tr>
-                <th scope="row">Marketing Strategy</th>
-                <td><a href="services.html">Guerrilla Marketing &amp; Strategy</a></td>
-              </tr>
-              <tr>
-                <th scope="row">Content Strategy</th>
-                <td><a href="services.html">Copywriting &amp; Direct Marketing</a></td>
-              </tr>
-              <tr>
-                <th scope="row">Consumer Psychology</th>
-                <td><a href="projects/psychometrics-battery/index.html">Psychometric Battery</a><a href="services.html">SEO &amp; AEO</a></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+  </main>
+  <footer class="atlas-footer">
+    <div class="footer-writing">
+      <div class="footer-imprint">
+        <a href="index.html" class="footer-brand">SeldomSought</a>
+        <p>Independent thought.<br>Commercial consequence.</p>
+        <a class="footer-return" href="#atlas">Return to the beginning ↑</a>
       </div>
-    </section>
-
-    <!-- ── 06 · Closing ── -->
-    <section class="section closing">
-      <div class="wrap">
-        <div class="closing-inner">
-          <h2 class="section-num">06 / Closing</h2>
-          <p class="statement">What's seldom sought is often most worth finding.</p>
-          <a class="closing-link" href="contact.html">Correspondence →</a>
-          <p class="closing-note micro">Response window — 24&ndash;48 hrs</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ── Footer ── -->
-    <footer class="site-footer">
-      <div class="footer-grid">
-        <div class="footer-col">
-          <h3>SeldomSought</h3>
-          <p>Brand image, marketing strategy, and business consulting for people who'd rather get remembered than blend in.</p>
-        </div>
-        <div class="footer-col">
-          <h3>Navigate</h3>
-          <ul class="footer-links">
-            <li><a href="philosophy.html">Philosophy</a></li>
-            <li><a href="services.html">Services</a></li>
-            <li><a href="expertise.html">Expertise</a></li>
-            <li><a href="projects.html">Projects</a></li>
-            <li><a href="faq.html">FAQ</a></li>
-            <li><a href="contact.html">Contact</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h3>Services</h3>
-          <ul class="footer-links">
-            <li><a href="services.html">Brand Image</a></li>
-            <li><a href="services.html">SEO &amp; AEO</a></li>
-            <li><a href="services.html">Guerrilla Marketing</a></li>
-            <li><a href="services.html">Copywriting</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p>&copy; 2026 SeldomSought. All rights reserved.</p>
-      </div>
-    </footer>
-
-  </div><!-- /.page -->
-
-  <script src="assets/js/nav.js"></script>
+      <nav aria-label="Footer navigation">
+        <h2>Elsewhere</h2>
+        <a href="index.html">Home</a><a href="philosophy.html">Philosophy</a><a href="services.html">Services</a><a href="expertise.html" aria-current="page">Expertise</a><a href="projects.html">Projects</a><a href="faq.html">FAQ</a><a href="contact.html">Contact</a>
+      </nav>
+      <nav aria-label="Services">
+        <h2>The practice</h2>
+        <a href="services.html">Brand &amp; image</a><a href="services.html">Search &amp; discovery</a><a href="services.html">Strategy &amp; distribution</a><a href="services.html">Language &amp; systems</a>
+      </nav>
+      <p class="footer-note">The territory is connected.<br><em>So is the practice.</em><span aria-hidden="true">↙</span></p>
+    </div>
+    <img class="estuary" src="assets/images/expertise/estuary-final.webp" width="1672" height="941" loading="lazy" decoding="async" alt="A blue-ink estuary with a distant city, a small sailing boat and three travellers following a path between trees. The far edge of the atlas.">
+    <div class="footer-bottom"><p>© 2026 SeldomSought</p><p>An atlas, always in progress.</p><span aria-hidden="true">Fin.</span></div>
+  </footer>
 </body>
 </html>
