@@ -272,3 +272,26 @@
 @media (max-width: 860px) {
  .estuary { mask-image: linear-gradient(to bottom,transparent,#000 10%,#000); }
 }
+/* Tablets keep the broad tableau; the manuscript begins below 620px. */
+@media (min-width:621px) and (max-width:860px) {
+ .atlas-world { max-width: none; }
+ .pencil-plate { display: block; aspect-ratio: var(--plate-ratio); padding: 0; }
+ .pencil-plate .plate-ground { object-fit: fill; opacity: .91; mask-image: none; }
+ .atlas-place, .atlas-place:nth-of-type(even), .atlas-place:nth-of-type(3n) { position: absolute; left: var(--x); top: var(--y); width: var(--w); max-width: none; margin: 0; }
+ .atlas-place summary { aspect-ratio: var(--art-ratio); }
+ .pencil-specimen { opacity: 0; mask-image: none; }
+ .atlas-place:is(:hover,:focus-within,[open]) .pencil-specimen { opacity: .14; }
+ .atlas-place .annotation { position: absolute; top: auto; bottom: 0 !important; left: 4% !important; margin: 0; padding: 8px; width: max-content; max-width: 96% !important; background: rgba(243,238,227,.97); opacity: 1; }
+ .annotation-line { width: 62px; height: 26px; }
+ .place-name { font-size: 21px; }
+ .place-descriptor { font-size: 13px; }
+ .inspect { min-height: 16px; font-size: 8px; margin-top: 6px; }
+ .place-number { width: 24px; height: 24px; font-size: 9px; }
+ .field-note { position: absolute; top: 100%; left: 4%; width: 280px; max-width: 40vw; padding: 13px; font-size: 12px; }
+ .pencil-plate .plate-caption { position: absolute; margin: 0; font-size: 14px; max-width: 150px; padding: 4px 8px; background: rgba(243,238,227,.94); }
+ .pencil-plate.plate-1 .plate-caption { left: 36%; top: 10%; }
+ .pencil-plate.plate-2 .plate-caption { left: 37%; top: 7%; }
+ .pencil-plate.plate-3 .plate-caption { left: 43%; top: 8%; }
+ .pencil-plate.plate-4 .plate-caption { left: 34%; top: 3%; }
+ .atlas-colophon { margin-top: 40px; }
+}
