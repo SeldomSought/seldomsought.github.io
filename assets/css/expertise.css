@@ -4,7 +4,8 @@
   --ink: #173a77;
   --faded-ink: #4f6386;
   --hairline: rgba(23,58,119,.24);
-  --serif: 'Cormorant Garamond', 'Baskerville', 'Palatino Linotype', Georgia, serif;
+  --serif: 'IM Fell English', 'Baskerville', Georgia, serif;
+  --display: 'Bodoni Moda', 'Bodoni MT', 'Didot', Georgia, serif;
   --sans: 'DM Sans', Arial, sans-serif;
   color: var(--ink);
   background: var(--paper);
@@ -23,7 +24,7 @@
 .expertise-atlas :is(a, summary, button):focus-visible { outline: 2px solid var(--ink); outline-offset: 6px; }
 .expertise-atlas .site-header { background: var(--paper); border-bottom-color: var(--hairline); backdrop-filter: none; -webkit-backdrop-filter: none; }
 .expertise-atlas .site-header__inner { max-width: 1440px; padding-inline: clamp(24px, 4.4vw, 72px); }
-.expertise-atlas .site-header__brand { color: var(--ink); font: 500 22px/1 var(--serif); letter-spacing: -.5px; text-transform: none; }
+.expertise-atlas .site-header__brand { color: var(--ink); font: italic 900 21px/1.2 var(--display); letter-spacing: -.8px; text-transform: none; }
 .expertise-atlas .site-header__nav a { font: 400 11px/1 var(--sans); color: var(--faded-ink); letter-spacing: .03em; text-transform: none; }
 .expertise-atlas .site-header__nav a:hover, .expertise-atlas .site-header__nav a[aria-current] { color: var(--ink); }
 .expertise-atlas .site-header__toggle { color: var(--ink); border-color: var(--hairline); }
@@ -36,9 +37,13 @@
 .atlas-opening { position: relative; max-width: 1440px; margin: auto; padding: 32px 64px 22px; text-align: center; }
 .edition { display: flex; justify-content: space-between; font: 10px/1.5 var(--sans); letter-spacing: .11em; color: var(--faded-ink); }
 .eyebrow { margin: 60px 0 23px; font: 10px/1.3 var(--sans); text-transform: uppercase; letter-spacing: .22em; }
-.atlas-opening h1 { font-size: clamp(52px, 5.8vw, 84px); line-height: .96; letter-spacing: -.044em; font-weight: 400; }
-.atlas-opening h1 em { font-weight: 400; }
-.opening-line { margin: 26px auto 0; font-size: 18px; line-height: 1.4; max-width: 490px; }
+/* A composed title plate: emphatic foundry type and a small printer’s aside. */
+.atlas-masthead { position: relative; width: min(100%, 790px); margin: 0 auto; padding-top: 12px; font-family: var(--display); font-weight: 900; font-optical-sizing: auto; }
+.title-prelude { position: absolute; top: 18px; left: 8%; font: italic 34px/1 var(--serif); transform: rotate(-8deg); }
+.title-atlas { display: block; font-size: clamp(108px, 12.5vw, 180px); line-height: .84; letter-spacing: -.075em; text-transform: uppercase; }
+.title-bridge { display: block; margin: 14px 0 0; font: italic 21px/1.3 var(--serif); letter-spacing: .015em; }
+.title-perception { display: block; padding: 0 .15em .12em; margin: -3px 0 0 8%; font-size: clamp(67px, 7.6vw, 109px); font-weight: 900; line-height: 1.05; letter-spacing: -.07em; }
+.opening-line { margin: 20px auto 0; font-size: 17px; line-height: 1.4; max-width: 490px; }
 .atlas-tools { margin: 28px auto 0; display: flex; justify-content: center; gap: 36px; align-items: start; font: 11px/1.5 var(--sans); }
 .begin-link { text-decoration: none; border-bottom: 1px solid var(--hairline); padding-bottom: 7px; }
 .begin-link span { margin-left: 17px; }
@@ -51,7 +56,7 @@
 .atlas-index nav a { display: flex; align-items: baseline; gap: 9px; break-inside: avoid; text-decoration: none; padding: 9px 0; font-size: 11px; }
 .atlas-index nav a:hover { text-decoration: underline; }
 .atlas-index nav span { font-size: 9px; color: var(--faded-ink); }
-.reading-note { margin-top: 28px; font-size: 14px; font-style: italic; color: var(--faded-ink); }
+.reading-note { margin-top: 28px; font-size: 15px; font-style: italic; color: var(--faded-ink); }
 .mobile-instruction { display: none; }
 .opening-mark { position: absolute; right: 9%; top: 193px; width: 69px; transform: rotate(10deg); color: var(--faded-ink); }
 .opening-mark svg { display: block; fill: none; stroke: var(--ink); stroke-width: .7; opacity: .68; }
@@ -71,7 +76,7 @@
 .place-number { position: absolute; top: 12%; left: 9%; font: 10px/1 var(--sans); color: var(--faded-ink); border: 1px solid var(--hairline); border-radius: 50% 45% 49% 44%; width: 29px; height: 29px; display: grid; place-items: center; }
 .annotation { position: absolute; top: 88%; left: 9%; width: max-content; max-width: 100%; padding: 12px 0 0; color: var(--ink); }
 .annotation-line { width: 110px; height: 36px; position: absolute; left: 40%; bottom: calc(100% - 18px); fill: none; stroke: var(--ink); stroke-width: .8; stroke-dasharray: 175; stroke-dashoffset: 175; transition: stroke-dashoffset 650ms ease; pointer-events: none; }
-.place-name { display: block; font-size: clamp(20px, 2.15vw, 31px); letter-spacing: -.035em; line-height: 1.12; }
+.place-name { display: block; font-family: var(--display); font-weight: 900; font-optical-sizing: auto; font-size: clamp(20px, 2.15vw, 31px); letter-spacing: -.045em; line-height: 1.1; text-wrap: balance; }
 .place-descriptor { display: block; font-size: clamp(13px, 1.13vw, 17px); margin-top: 5px; line-height: 1.25; }
 .inspect { display: block; margin-top: 10px; font: 9px/1.4 var(--sans); letter-spacing: .11em; text-transform: uppercase; }
 .inspect-mark { display: inline-block; margin-left: 12px; font-size: 15px; vertical-align: -1px; }
@@ -88,19 +93,19 @@
 .field-note a { display: inline-block; margin-top: 14px; font-size: 10px; }
 .atlas-colophon { position: relative; text-align: center; max-width: 1200px; margin: 50px auto 0; padding: 30px 24px 65px; }
 .atlas-colophon .eyebrow { margin: 0 0 25px; }
-.atlas-colophon h2 { font-weight: 400; font-size: clamp(53px, 6vw, 86px); line-height: .95; letter-spacing: -.035em; }
+.atlas-colophon h2 { font-family: var(--display); font-weight: 900; font-size: clamp(53px, 6.5vw, 94px); line-height: .98; letter-spacing: -.065em; }
 .atlas-colophon p:not(.eyebrow) { margin-top: 26px; font-size: 18px; line-height: 1.5; }
 .correspondence-link { display: inline-block; font: 12px/1.5 var(--sans); margin-top: 28px; padding-bottom: 7px; text-decoration: none; border-bottom: 1px solid var(--ink); }
 .correspondence-link span { margin-left: 24px; }
 .atlas-footer { position: relative; max-width: 1600px; margin: 0 auto; min-height: 640px; aspect-ratio: 1672 / 941; padding-top: 35px; }
 .footer-writing { position: relative; z-index: 2; display: grid; grid-template-columns: 2.1fr 1fr 1.4fr 1fr; gap: 35px; padding: 0 6%; }
-.footer-brand { display: inline-block; font-size: 29px; line-height: 1.1; letter-spacing: -.9px; text-decoration: none; }
+.footer-brand { display: inline-block; font-family: var(--display); font-weight: 900; font-style: italic; font-size: clamp(30px, 3.2vw, 46px); line-height: 1.15; letter-spacing: -.06em; text-decoration: none; }
 .footer-imprint p { font-size: 18px; margin-top: 13px; }
 .footer-return { display: inline-block; font-size: 13px; font-style: italic; margin-top: 20px; text-decoration: none; }
-.footer-writing nav h2 { font-size: 16px; font-weight: 500; font-style: italic; text-decoration: underline; text-underline-offset: 7px; margin-bottom: 13px; }
-.footer-writing nav a { display: block; width: fit-content; font-size: 15px; text-decoration: none; line-height: 1.4; padding: 4px 0; }
+.footer-writing nav h2 { font-size: 21px; font-weight: 400; font-style: italic; text-decoration: underline; text-underline-offset: 7px; margin-bottom: 13px; }
+.footer-writing nav a { display: block; width: fit-content; font-size: 16px; text-decoration: none; line-height: 1.4; padding: 4px 0; }
 .footer-writing nav a:hover { text-decoration: underline; }
-.footer-note { font-size: 16px; padding-top: 36px; transform: rotate(-6deg); }
+.footer-note { font-size: 18px; padding-top: 36px; transform: rotate(-6deg); }
 .footer-note span { display: block; margin: 10px 0 0 15px; font-size: 31px; }
 .estuary { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center bottom; z-index: 0; pointer-events: none; }
 .footer-bottom { position: absolute; bottom: 14px; left: 6%; right: 6%; display: flex; align-items: baseline; justify-content: space-between; font: 10px/1.4 var(--sans); z-index: 2; }
@@ -119,7 +124,7 @@
   .edition { font-size: 8px; letter-spacing: .06em; }
   .eyebrow { margin-top: 53px; }
   .opening-mark { display: none; }
-  .atlas-opening h1 { font-size: clamp(48px, 7.8vw, 67px); }
+  .title-prelude { left: 11%; font-size: 28px; }
   .atlas-world { max-width: 700px; }
   .atlas-plate { aspect-ratio: auto; padding: 5px 26px 35px; }
   .plate-ground { object-fit: cover; object-position: center; opacity: .45; }
@@ -148,8 +153,11 @@
   .edition span:last-child { max-width: 95px; text-align: right; }
   .atlas-opening { padding-inline: 22px; }
   .eyebrow { margin-top: 41px; margin-bottom: 21px; font-size: 9px; }
-  .atlas-opening h1 { font-size: clamp(42px, 11.5vw, 60px); line-height: 1.02; }
-  .atlas-opening h1 em { display: inline-block; max-width: 340px; }
+  .atlas-masthead { padding-top: 21px; }
+  .title-prelude { top: 0; left: 7%; font-size: 23px; }
+  .title-atlas { font-size: clamp(80px, 25vw, 126px); }
+  .title-bridge { font-size: 17px; margin-top: 12px; }
+  .title-perception { font-size: clamp(42px, 13.7vw, 70px); margin: 0 0 0 2%; }
   .opening-line { font-size: 17px; max-width: 286px; margin-top: 20px; }
   .desktop-break { display: none; }
   .atlas-tools { gap: 22px; margin-top: 27px; font-size: 10px; }
@@ -174,14 +182,14 @@
   .plate-caption, .plate-2 .plate-caption, .plate-3 .plate-caption, .plate-4 .plate-caption { font-size: 19px; max-width: 220px; margin-top: 22px; margin-bottom: 45px; }
   .atlas-colophon { padding-bottom: 56px; }
   .atlas-colophon .eyebrow { font-size: 9px; }
-  .atlas-colophon h2 { font-size: 65px; }
+  .atlas-colophon h2 { font-size: clamp(45px, 13vw, 65px); }
   .atlas-colophon p:not(.eyebrow) { font-size: 17px; max-width: 285px; margin-inline: auto; }
   .footer-writing { grid-template-columns: 1fr 1fr; gap: 30px 16px; padding-inline: 30px; }
   .footer-imprint { grid-column: 1 / -1; }
-  .footer-brand { font-size: 33px; }
+  .footer-brand { font-size: 39px; }
   .footer-imprint p { font-size: 18px; }
   .footer-writing nav a { font-size: 16px; min-height: 36px; padding-top: 7px; }
-  .footer-writing nav h2 { font-size: 18px; }
+  .footer-writing nav h2 { font-size: 21px; }
   .estuary { height: 340px; object-position: 54% bottom; margin-top: -90px; }
   .footer-bottom { font-size: 8px; left: 20px; right: 20px; bottom: 12px; flex-wrap: wrap; gap: 8px; }
   .footer-bottom > span { font-size: 17px; }
@@ -207,8 +215,8 @@
 .atlas-place:is(:hover,:focus-within,[open]) .pencil-specimen { opacity: .14; }
 .atlas-place summary { aspect-ratio: var(--art-ratio); }
 .annotation { top: auto; bottom: 0; left: 10%; padding: 8px 12px; background: rgba(243,238,227,.95); width: max-content; max-width: min(330px,100%); }
-.place-name { font-size: clamp(22px, 2vw, 29px); }
-.place-descriptor { font-size: clamp(14px,1.1vw,16px); }
+.place-name { font-size: clamp(22px, 2.25vw, 32px); }
+.place-descriptor { font-size: clamp(14px,1.1vw,16px); font-style: italic; line-height: 1.4; }
 .annotation-line { left: 43%; bottom: calc(100% - 4px); }
 .place-number { top: 22%; left: 10%; background: var(--paper); color: var(--ink); border-color: var(--ink); }
 #brand-image .annotation { bottom: 7%; left: 8%; }
@@ -252,7 +260,7 @@
  .atlas-place { width: 90%; max-width: 335px; margin-bottom: 28px; }
  #email-marketing { width: 100%; max-width: none; margin-left: 0; }
  #competitive-analysis { width: 83%; }
- .place-name { font-size: 27px; }
+ .place-name { font-size: 28px; }
  .place-descriptor { font-size: 16px; }
  .atlas-place .annotation { padding-left: 20px; }
  .pencil-plate .plate-caption { font-size: 18px; }
