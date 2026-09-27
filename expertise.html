@@ -8,14 +8,15 @@
   <meta name="theme-color" content="#F3EEE3">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="stylesheet" href="assets/css/global.css">
-  <link rel="stylesheet" href="assets/css/expertise.css?v=atlas-7">
+  <link rel="stylesheet" href="assets/css/atlas.css?v=atlas-8">
+  <link rel="stylesheet" href="assets/css/expertise.css?v=atlas-8">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
   <script src="assets/js/nav.js" defer></script>
-  <script src="assets/js/expertise.js?v=atlas-7" defer></script>
+  <script src="assets/js/expertise.js?v=atlas-8" defer></script>
 </head>
-<body class="expertise-atlas">
+<body class="atlas expertise-atlas">
   <a class="skip-link" href="#atlas">Skip to the atlas</a>
   <header class="site-header" id="siteHeader">
     <div class="site-header__inner">
@@ -44,35 +45,38 @@
       <a href="contact.html">Contact</a>
     </nav>
   </header>
-  <svg class="atlas-filter-defs" aria-hidden="true" width="0" height="0"><defs><filter id="pencil-ink" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="0 0 0 0 .0902 0 0 0 0 .2275 0 0 0 0 .4667 -1.6 0 0 0 1.43" result="ink"/><feComposite in="ink" in2="SourceGraphic" operator="in"/></filter></defs></svg>
+  <svg class="atlas-filter-defs" aria-hidden="true" width="0" height="0"><defs><filter id="atlas-ink" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="0 0 0 0 .0902 0 0 0 0 .2275 0 0 0 0 .4667 -1.6 0 0 0 1.43" result="ink"/><feComposite in="ink" in2="SourceGraphic" operator="in"/></filter></defs></svg>
   <main id="atlas">
     <section class="atlas-opening" aria-labelledby="atlas-title">
-      <div class="edition"><span>SeldomSought / Field notes</span><span>Vol. I &nbsp; · &nbsp; Twelve disciplines</span></div>
-      <p class="eyebrow">Areas of expertise</p>
-      <h1 id="atlas-title">An atlas of<br><em>commercial perception.</em></h1>
-      <p class="opening-line">The systems through which a company becomes<br class="desktop-break"> seen, understood, remembered and desired.</p>
+      <div class="atlas-edition"><span>SeldomSought / Field notes</span><span>Vol. I &nbsp; · &nbsp; Twelve disciplines</span></div>
+      <p class="atlas-eyebrow">Areas of expertise</p>
+      <h1 id="atlas-title" class="atlas-display">An atlas of<br><em>commercial perception.</em></h1>
+      <p class="opening-line atlas-lede">The systems through which a company becomes<br class="desktop-break"> seen, understood, remembered and desired.</p>
       <div class="atlas-tools">
-        <a class="begin-link" href="#brand-image">Enter the landscape <span aria-hidden="true">↓</span></a>
+        <a class="begin-link ink-link" href="#plate-1">Enter the landscape <span aria-hidden="true">↓</span></a>
         <details class="atlas-index">
-          <summary>Index of disciplines <span aria-hidden="true">+</span></summary>
+          <summary class="ink-link">Index of disciplines <span aria-hidden="true">+</span></summary>
           <nav aria-label="Expertise index"><a href="#brand-image"><span>01</span>Brand Image</a><a href="#aesthetic-orchestration"><span>02</span>Aesthetic Orchestration</a><a href="#brand-voice"><span>03</span>Brand Voice</a><a href="#seo"><span>04</span>SEO</a><a href="#aeo"><span>05</span>AEO</a><a href="#competitive-analysis"><span>06</span>Competitive Analysis</a><a href="#marketing-strategy"><span>07</span>Marketing Strategy</a><a href="#guerrilla-marketing"><span>08</span>Guerrilla Marketing</a><a href="#email-marketing"><span>09</span>Email Marketing</a><a href="#sms-marketing"><span>10</span>SMS Marketing</a><a href="#business-consulting"><span>11</span>Business Consulting</a><a href="#copywriting"><span>12</span>Copywriting</a></nav>
         </details>
       </div>
-      <p class="reading-note"><span class="desktop-instruction">Follow the marks. Inspect what catches your eye.</span><span class="mobile-instruction">A continuous field guide. Touch a drawing to inspect.</span></p>
+      <p class="reading-note"><span class="desktop-instruction">Four plates, twelve disciplines. Open any label for its field note.</span><span class="mobile-instruction">Four plates, twelve disciplines. Tap any label for its field note.</span></p>
       <div class="opening-mark" aria-hidden="true"><svg viewBox="0 0 80 90"><path d="M40 4 L42 38 64 26 47 45 72 47 47 50 61 72 42 57 40 86 37 56 18 69 32 50 8 47 33 43 21 24 37 37Z"/><path d="M40 4 V86 M8 47 H72"/></svg><span>Not to scale</span></div>
     </section>
     <div class="atlas-world" aria-label="An illustrated journey through twelve disciplines">
 
-      <section class="atlas-plate plate-1 pencil-plate" style="--plate-ratio:724 / 416" aria-labelledby="plate-title-1">
-        <h2 id="plate-title-1" class="sr-only">Where the eye arrives</h2>
+      <section class="atlas-plate plate-1 pencil-plate" id="plate-1" style="--plate-ratio:724 / 416" aria-labelledby="plate-title-1">
         <img class="plate-ground" src="assets/images/expertise/pencil-1.webp" width="724" height="416" alt="" fetchpriority="high" decoding="async">
-        <p class="plate-caption"><span>I.</span> The first impression is already an argument.</p>
-        <details name="atlas-notes" class="atlas-place marked" id="brand-image" style="--x:0.000%;--y:0.000%;--w:33.287%;--art-ratio:241/404">
+        <header class="plate-caption">
+          <p class="plate-number">Plate I</p>
+          <h2 id="plate-title-1">Where the eye arrives</h2>
+          <p class="plate-line">The first impression is already an argument.</p>
+        </header>
+        <details name="atlas-notes" class="atlas-place" id="brand-image" style="--x:0.000%;--y:0.000%;--w:33.287%;--art-ratio:241/404">
           <summary aria-label="Inspect Brand Image">
-            <span class="place-number" aria-hidden="true">01</span>
-            <svg class="specimen pencil-specimen" aria-hidden="true" focusable="false" viewBox="0 0 241 404"><image href="assets/images/expertise/pencil-1.webp" x="0" y="0" width="724" height="416" filter="url(#pencil-ink)"/></svg>
+            <svg class="specimen pencil-specimen" aria-hidden="true" focusable="false" viewBox="0 0 241 404"><image href="assets/images/expertise/pencil-1.webp" x="0" y="0" width="724" height="416" filter="url(#atlas-ink)"/></svg>
             <span class="annotation">
               <svg class="annotation-line" viewBox="0 0 150 48" aria-hidden="true"><path d="M145 3 Q118 31 65 29 L3 39 M8 32 L3 39 13 42"/></svg>
+              <span class="place-number" aria-hidden="true">No. 01</span>
               <span class="place-name">Brand Image</span>
               <span class="place-descriptor">Recognition, before a word is read.</span>
               <span class="inspect" aria-hidden="true"><span class="inspect-closed">Inspect</span><span class="inspect-open">Close note</span> <span class="inspect-mark">+</span></span>
@@ -81,15 +85,15 @@
           <div class="field-note">
             <p class="field-note-reference">Fig. 01 &nbsp; / &nbsp; The looking glass</p>
             <p>The image a company projects sets the terms of every encounter. SeldomSought defines its visual identity, positioning and public presentation so the business is recognisable across every point of contact.</p>
-            <a href="contact.html">Discuss brand image <span aria-hidden="true">↗</span></a>
+            <a href="contact.html?about=brand-image">Discuss brand image <span aria-hidden="true">↗</span></a>
           </div>
         </details>
-        <details name="atlas-notes" class="atlas-place " id="aesthetic-orchestration" style="--x:32.597%;--y:49.038%;--w:37.017%;--art-ratio:268/207">
+        <details name="atlas-notes" class="atlas-place" id="aesthetic-orchestration" style="--x:32.597%;--y:49.038%;--w:37.017%;--art-ratio:268/207">
           <summary aria-label="Inspect Aesthetic Orchestration">
-            <span class="place-number" aria-hidden="true">02</span>
-            <svg class="specimen pencil-specimen" aria-hidden="true" focusable="false" viewBox="236 204 268 207"><image href="assets/images/expertise/pencil-1.webp" x="0" y="0" width="724" height="416" filter="url(#pencil-ink)"/></svg>
+            <svg class="specimen pencil-specimen" aria-hidden="true" focusable="false" viewBox="236 204 268 207"><image href="assets/images/expertise/pencil-1.webp" x="0" y="0" width="724" height="416" filter="url(#atlas-ink)"/></svg>
             <span class="annotation">
               <svg class="annotation-line" viewBox="0 0 150 48" aria-hidden="true"><path d="M145 3 Q118 31 65 29 L3 39 M8 32 L3 39 13 42"/></svg>
+              <span class="place-number" aria-hidden="true">No. 02</span>
               <span class="place-name">Aesthetic Orchestration</span>
               <span class="place-descriptor">Every element, in the same world.</span>
               <span class="inspect" aria-hidden="true"><span class="inspect-closed">Inspect</span><span class="inspect-open">Close note</span> <span class="inspect-mark">+</span></span>
@@ -98,15 +102,15 @@
           <div class="field-note">
             <p class="field-note-reference">Fig. 02 &nbsp; / &nbsp; The theatre of appearances</p>
             <p>Art direction gives disparate materials a common intention. Image, typography, colour, layout and atmosphere are composed into a visual language that holds together across a website, a campaign and the physical world.</p>
-            <a href="contact.html">Discuss aesthetic orchestration <span aria-hidden="true">↗</span></a>
+            <a href="contact.html?about=aesthetic-orchestration">Discuss aesthetic orchestration <span aria-hidden="true">↗</span></a>
           </div>
         </details>
-        <details name="atlas-notes" class="atlas-place " id="brand-voice" style="--x:58.840%;--y:2.404%;--w:41.160%;--art-ratio:298/381">
+        <details name="atlas-notes" class="atlas-place atlas-place--east" id="brand-voice" style="--x:58.840%;--y:2.404%;--w:41.160%;--art-ratio:298/381">
           <summary aria-label="Inspect Brand Voice">
-            <span class="place-number" aria-hidden="true">03</span>
-            <svg class="specimen pencil-specimen" aria-hidden="true" focusable="false" viewBox="426 10 298 381"><image href="assets/images/expertise/pencil-1.webp" x="0" y="0" width="724" height="416" filter="url(#pencil-ink)"/></svg>
+            <svg class="specimen pencil-specimen" aria-hidden="true" focusable="false" viewBox="426 10 298 381"><image href="assets/images/expertise/pencil-1.webp" x="0" y="0" width="724" height="416" filter="url(#atlas-ink)"/></svg>
             <span class="annotation">
               <svg class="annotation-line" viewBox="0 0 150 48" aria-hidden="true"><path d="M145 3 Q118 31 65 29 L3 39 M8 32 L3 39 13 42"/></svg>
+              <span class="place-number" aria-hidden="true">No. 03</span>
               <span class="place-name">Brand Voice</span>
               <span class="place-descriptor">A character you can hear in the dark.</span>
               <span class="inspect" aria-hidden="true"><span class="inspect-closed">Inspect</span><span class="inspect-open">Close note</span> <span class="inspect-mark">+</span></span>
@@ -115,21 +119,24 @@
           <div class="field-note">
             <p class="field-note-reference">Fig. 03 &nbsp; / &nbsp; The echo chamber</p>
             <p>A recognisable voice comes from choices repeated with conviction. SeldomSought establishes tone, vocabulary and editorial principles, then puts them to work in the places a business actually speaks.</p>
-            <a href="contact.html">Discuss brand voice <span aria-hidden="true">↗</span></a>
+            <a href="contact.html?about=brand-voice">Discuss brand voice <span aria-hidden="true">↗</span></a>
           </div>
         </details>
       </section>
 
-      <section class="atlas-plate plate-2 pencil-plate" style="--plate-ratio:724 / 395" aria-labelledby="plate-title-2">
-        <h2 id="plate-title-2" class="sr-only">Instruments for being found</h2>
+      <section class="atlas-plate plate-2 pencil-plate" id="plate-2" style="--plate-ratio:724 / 395" aria-labelledby="plate-title-2">
         <img class="plate-ground" src="assets/images/expertise/pencil-2.webp" width="724" height="395" alt="" loading="lazy" decoding="async">
-        <p class="plate-caption"><span>II.</span> What remains unseen cannot be chosen.</p>
-        <details name="atlas-notes" class="atlas-place marked" id="seo" style="--x:1.105%;--y:0.000%;--w:34.807%;--art-ratio:252/278">
+        <header class="plate-caption">
+          <p class="plate-number">Plate II</p>
+          <h2 id="plate-title-2">Instruments for being found</h2>
+          <p class="plate-line">What remains unseen cannot be chosen.</p>
+        </header>
+        <details name="atlas-notes" class="atlas-place" id="seo" style="--x:1.105%;--y:0.000%;--w:34.807%;--art-ratio:252/278">
           <summary aria-label="Inspect SEO">
-            <span class="place-number" aria-hidden="true">04</span>
-            <svg class="specimen pencil-specimen" aria-hidden="true" focusable="false" viewBox="8 0 252 278"><image href="assets/images/expertise/pencil-2.webp" x="0" y="0" width="724" height="395" filter="url(#pencil-ink)"/></svg>
+            <svg class="specimen pencil-specimen" aria-hidden="true" focusable="false" viewBox="8 0 252 278"><image href="assets/images/expertise/pencil-2.webp" x="0" y="0" width="724" height="395" filter="url(#atlas-ink)"/></svg>
             <span class="annotation">
               <svg class="annotation-line" viewBox="0 0 150 48" aria-hidden="true"><path d="M145 3 Q118 31 65 29 L3 39 M8 32 L3 39 13 42"/></svg>
+              <span class="place-number" aria-hidden="true">No. 04</span>
               <span class="place-name">SEO</span>
               <span class="place-descriptor">Be present where intent begins.</span>
               <span class="inspect" aria-hidden="true"><span class="inspect-closed">Inspect</span><span class="inspect-open">Close note</span> <span class="inspect-mark">+</span></span>
@@ -138,15 +145,15 @@
           <div class="field-note">
             <p class="field-note-reference">Fig. 04 &nbsp; / &nbsp; The light of intent</p>
             <p>Search visibility begins with understanding what people are trying to find. Technical audits, site structure, local presence and useful content make a business easier to discover, with measurement tied to enquiries and commercial intent.</p>
-            <a href="contact.html">Discuss seo <span aria-hidden="true">↗</span></a>
+            <a href="contact.html?about=seo">Discuss SEO <span aria-hidden="true">↗</span></a>
           </div>
         </details>
-        <details name="atlas-notes" class="atlas-place " id="aeo" style="--x:60.359%;--y:1.013%;--w:39.641%;--art-ratio:287/303">
+        <details name="atlas-notes" class="atlas-place atlas-place--east" id="aeo" style="--x:60.359%;--y:1.013%;--w:39.641%;--art-ratio:287/303">
           <summary aria-label="Inspect AEO">
-            <span class="place-number" aria-hidden="true">05</span>
-            <svg class="specimen pencil-specimen" aria-hidden="true" focusable="false" viewBox="437 4 287 303"><image href="assets/images/expertise/pencil-2.webp" x="0" y="0" width="724" height="395" filter="url(#pencil-ink)"/></svg>
+            <svg class="specimen pencil-specimen" aria-hidden="true" focusable="false" viewBox="437 4 287 303"><image href="assets/images/expertise/pencil-2.webp" x="0" y="0" width="724" height="395" filter="url(#atlas-ink)"/></svg>
             <span class="annotation">
               <svg class="annotation-line" viewBox="0 0 150 48" aria-hidden="true"><path d="M145 3 Q118 31 65 29 L3 39 M8 32 L3 39 13 42"/></svg>
+              <span class="place-number" aria-hidden="true">No. 05</span>
               <span class="place-name">AEO</span>
               <span class="place-descriptor">Make the answer traceable to you.</span>
               <span class="inspect" aria-hidden="true"><span class="inspect-closed">Inspect</span><span class="inspect-open">Close note</span> <span class="inspect-mark">+</span></span>
@@ -155,15 +162,15 @@
           <div class="field-note">
             <p class="field-note-reference">Fig. 05 &nbsp; / &nbsp; The machine observatory</p>
             <p>Answer engine optimisation makes a business and its expertise easier for retrieval systems to interpret. Clear entities, structured information and well-supported answers improve the conditions for inclusion and citation; placement is measured, never promised.</p>
-            <a href="contact.html">Discuss aeo <span aria-hidden="true">↗</span></a>
+            <a href="contact.html?about=aeo">Discuss AEO <span aria-hidden="true">↗</span></a>
           </div>
         </details>
-        <details name="atlas-notes" class="atlas-place " id="competitive-analysis" style="--x:34.392%;--y:54.684%;--w:27.210%;--art-ratio:197/167">
+        <details name="atlas-notes" class="atlas-place" id="competitive-analysis" style="--x:34.392%;--y:54.684%;--w:27.210%;--art-ratio:197/167">
           <summary aria-label="Inspect Competitive Analysis">
-            <span class="place-number" aria-hidden="true">06</span>
-            <svg class="specimen pencil-specimen" aria-hidden="true" focusable="false" viewBox="249 216 197 167"><image href="assets/images/expertise/pencil-2.webp" x="0" y="0" width="724" height="395" filter="url(#pencil-ink)"/></svg>
+            <svg class="specimen pencil-specimen" aria-hidden="true" focusable="false" viewBox="249 216 197 167"><image href="assets/images/expertise/pencil-2.webp" x="0" y="0" width="724" height="395" filter="url(#atlas-ink)"/></svg>
             <span class="annotation">
               <svg class="annotation-line" viewBox="0 0 150 48" aria-hidden="true"><path d="M145 3 Q118 31 65 29 L3 39 M8 32 L3 39 13 42"/></svg>
+              <span class="place-number" aria-hidden="true">No. 06</span>
               <span class="place-name">Competitive Analysis</span>
               <span class="place-descriptor">Read the territory before entering it.</span>
               <span class="inspect" aria-hidden="true"><span class="inspect-closed">Inspect</span><span class="inspect-open">Close note</span> <span class="inspect-mark">+</span></span>
@@ -172,21 +179,24 @@
           <div class="field-note">
             <p class="field-note-reference">Fig. 06 &nbsp; / &nbsp; The distant prospect</p>
             <p>Study what competitors offer, how they present it and where customers remain underserved. The result is a practical account of the category: its habits, its openings and the differences worth defending.</p>
-            <a href="contact.html">Discuss competitive analysis <span aria-hidden="true">↗</span></a>
+            <a href="contact.html?about=competitive-analysis">Discuss competitive analysis <span aria-hidden="true">↗</span></a>
           </div>
         </details>
       </section>
 
-      <section class="atlas-plate plate-3 pencil-plate" style="--plate-ratio:724 / 511" aria-labelledby="plate-title-3">
-        <h2 id="plate-title-3" class="sr-only">Routes of circulation</h2>
+      <section class="atlas-plate plate-3 pencil-plate" id="plate-3" style="--plate-ratio:724 / 511" aria-labelledby="plate-title-3">
         <img class="plate-ground" src="assets/images/expertise/pencil-3.webp" width="724" height="511" alt="" loading="lazy" decoding="async">
-        <p class="plate-caption"><span>III.</span> A message is only as useful as its passage.</p>
-        <details name="atlas-notes" class="atlas-place marked" id="marketing-strategy" style="--x:0.000%;--y:9.589%;--w:41.436%;--art-ratio:300/282">
+        <header class="plate-caption">
+          <p class="plate-number">Plate III</p>
+          <h2 id="plate-title-3">Routes of circulation</h2>
+          <p class="plate-line">A message is only as useful as its passage.</p>
+        </header>
+        <details name="atlas-notes" class="atlas-place" id="marketing-strategy" style="--x:0.000%;--y:9.589%;--w:41.436%;--art-ratio:300/282">
           <summary aria-label="Inspect Marketing Strategy">
-            <span class="place-number" aria-hidden="true">07</span>
-            <svg class="specimen pencil-specimen" aria-hidden="true" focusable="false" viewBox="0 49 300 282"><image href="assets/images/expertise/pencil-3.webp" x="0" y="0" width="724" height="511" filter="url(#pencil-ink)"/></svg>
+            <svg class="specimen pencil-specimen" aria-hidden="true" focusable="false" viewBox="0 49 300 282"><image href="assets/images/expertise/pencil-3.webp" x="0" y="0" width="724" height="511" filter="url(#atlas-ink)"/></svg>
             <span class="annotation">
               <svg class="annotation-line" viewBox="0 0 150 48" aria-hidden="true"><path d="M145 3 Q118 31 65 29 L3 39 M8 32 L3 39 13 42"/></svg>
+              <span class="place-number" aria-hidden="true">No. 07</span>
               <span class="place-name">Marketing Strategy</span>
               <span class="place-descriptor">Choose the route. Give it a reason.</span>
               <span class="inspect" aria-hidden="true"><span class="inspect-closed">Inspect</span><span class="inspect-open">Close note</span> <span class="inspect-mark">+</span></span>
@@ -195,15 +205,15 @@
           <div class="field-note">
             <p class="field-note-reference">Fig. 07 &nbsp; / &nbsp; The cartographer’s table</p>
             <p>Audience, offer, channel, budget and timing belong in one plan. SeldomSought sets priorities, designs the campaign sequence and defines what to measure, so effort accumulates toward a commercial objective.</p>
-            <a href="contact.html">Discuss marketing strategy <span aria-hidden="true">↗</span></a>
+            <a href="contact.html?about=marketing-strategy">Discuss marketing strategy <span aria-hidden="true">↗</span></a>
           </div>
         </details>
-        <details name="atlas-notes" class="atlas-place marked" id="guerrilla-marketing" style="--x:67.956%;--y:-0.587%;--w:32.044%;--art-ratio:232/331">
+        <details name="atlas-notes" class="atlas-place atlas-place--east" id="guerrilla-marketing" style="--x:67.956%;--y:-0.587%;--w:32.044%;--art-ratio:232/331">
           <summary aria-label="Inspect Guerrilla Marketing">
-            <span class="place-number" aria-hidden="true">08</span>
-            <svg class="specimen pencil-specimen" aria-hidden="true" focusable="false" viewBox="492 -3 232 331"><image href="assets/images/expertise/pencil-3.webp" x="0" y="0" width="724" height="511" filter="url(#pencil-ink)"/></svg>
+            <svg class="specimen pencil-specimen" aria-hidden="true" focusable="false" viewBox="492 -3 232 331"><image href="assets/images/expertise/pencil-3.webp" x="0" y="0" width="724" height="511" filter="url(#atlas-ink)"/></svg>
             <span class="annotation">
               <svg class="annotation-line" viewBox="0 0 150 48" aria-hidden="true"><path d="M145 3 Q118 31 65 29 L3 39 M8 32 L3 39 13 42"/></svg>
+              <span class="place-number" aria-hidden="true">No. 08</span>
               <span class="place-name">Guerrilla Marketing</span>
               <span class="place-descriptor">Attention has unofficial entrances.</span>
               <span class="inspect" aria-hidden="true"><span class="inspect-closed">Inspect</span><span class="inspect-open">Close note</span> <span class="inspect-mark">+</span></span>
@@ -212,15 +222,15 @@
           <div class="field-note">
             <p class="field-note-reference">Fig. 08 &nbsp; / &nbsp; The unofficial passage</p>
             <p>Find the places where an unexpected intervention earns attention. From a physical activation to an unconventional distribution tactic, each idea is built around context, participation and a clear next step.</p>
-            <a href="contact.html">Discuss guerrilla marketing <span aria-hidden="true">↗</span></a>
+            <a href="contact.html?about=guerrilla-marketing">Discuss guerrilla marketing <span aria-hidden="true">↗</span></a>
           </div>
         </details>
-        <details name="atlas-notes" class="atlas-place " id="email-marketing" style="--x:19.475%;--y:58.708%;--w:69.061%;--art-ratio:500/220">
+        <details name="atlas-notes" class="atlas-place" id="email-marketing" style="--x:19.475%;--y:58.708%;--w:69.061%;--art-ratio:500/220">
           <summary aria-label="Inspect Email Marketing">
-            <span class="place-number" aria-hidden="true">09</span>
-            <svg class="specimen pencil-specimen" aria-hidden="true" focusable="false" viewBox="141 300 500 220"><image href="assets/images/expertise/pencil-3.webp" x="0" y="0" width="724" height="511" filter="url(#pencil-ink)"/></svg>
+            <svg class="specimen pencil-specimen" aria-hidden="true" focusable="false" viewBox="141 300 500 220"><image href="assets/images/expertise/pencil-3.webp" x="0" y="0" width="724" height="511" filter="url(#atlas-ink)"/></svg>
             <span class="annotation">
               <svg class="annotation-line" viewBox="0 0 150 48" aria-hidden="true"><path d="M145 3 Q118 31 65 29 L3 39 M8 32 L3 39 13 42"/></svg>
+              <span class="place-number" aria-hidden="true">No. 09</span>
               <span class="place-name">Email Marketing</span>
               <span class="place-descriptor">Correspondence that earns its return.</span>
               <span class="inspect" aria-hidden="true"><span class="inspect-closed">Inspect</span><span class="inspect-open">Close note</span> <span class="inspect-mark">+</span></span>
@@ -229,21 +239,24 @@
           <div class="field-note">
             <p class="field-note-reference">Fig. 09 &nbsp; / &nbsp; The correspondence works</p>
             <p>A useful email programme gives each message a job. Segmentation, welcome sequences, campaign writing and reactivation turn an existing audience into an ongoing relationship, with performance judged beyond the open rate.</p>
-            <a href="contact.html">Discuss email marketing <span aria-hidden="true">↗</span></a>
+            <a href="contact.html?about=email-marketing">Discuss email marketing <span aria-hidden="true">↗</span></a>
           </div>
         </details>
       </section>
 
-      <section class="atlas-plate plate-4 pencil-plate" style="--plate-ratio:724 / 458" aria-labelledby="plate-title-4">
-        <h2 id="plate-title-4" class="sr-only">What carries the work</h2>
+      <section class="atlas-plate plate-4 pencil-plate" id="plate-4" style="--plate-ratio:724 / 458" aria-labelledby="plate-title-4">
         <img class="plate-ground" src="assets/images/expertise/pencil-4.webp" width="724" height="458" alt="" loading="lazy" decoding="async">
-        <p class="plate-caption"><span>IV.</span> The promise rests on something built.</p>
-        <details name="atlas-notes" class="atlas-place " id="sms-marketing" style="--x:0.000%;--y:-0.655%;--w:37.431%;--art-ratio:271/345">
+        <header class="plate-caption">
+          <p class="plate-number">Plate IV</p>
+          <h2 id="plate-title-4">What carries the work</h2>
+          <p class="plate-line">The promise rests on something built.</p>
+        </header>
+        <details name="atlas-notes" class="atlas-place" id="sms-marketing" style="--x:0.000%;--y:-0.655%;--w:37.431%;--art-ratio:271/345">
           <summary aria-label="Inspect SMS Marketing">
-            <span class="place-number" aria-hidden="true">10</span>
-            <svg class="specimen pencil-specimen" aria-hidden="true" focusable="false" viewBox="0 -3 271 345"><image href="assets/images/expertise/pencil-4.webp" x="0" y="0" width="724" height="458" filter="url(#pencil-ink)"/></svg>
+            <svg class="specimen pencil-specimen" aria-hidden="true" focusable="false" viewBox="0 -3 271 345"><image href="assets/images/expertise/pencil-4.webp" x="0" y="0" width="724" height="458" filter="url(#atlas-ink)"/></svg>
             <span class="annotation">
               <svg class="annotation-line" viewBox="0 0 150 48" aria-hidden="true"><path d="M145 3 Q118 31 65 29 L3 39 M8 32 L3 39 13 42"/></svg>
+              <span class="place-number" aria-hidden="true">No. 10</span>
               <span class="place-name">SMS Marketing</span>
               <span class="place-descriptor">A direct line. Used with restraint.</span>
               <span class="inspect" aria-hidden="true"><span class="inspect-closed">Inspect</span><span class="inspect-open">Close note</span> <span class="inspect-mark">+</span></span>
@@ -252,15 +265,15 @@
           <div class="field-note">
             <p class="field-note-reference">Fig. 10 &nbsp; / &nbsp; The immediate signal</p>
             <p>Text is reserved for messages whose timing matters. SeldomSought develops opt-in campaigns and lifecycle messages with clear offers, considered frequency and an easy path from notification to action.</p>
-            <a href="contact.html">Discuss sms marketing <span aria-hidden="true">↗</span></a>
+            <a href="contact.html?about=sms-marketing">Discuss SMS marketing <span aria-hidden="true">↗</span></a>
           </div>
         </details>
-        <details name="atlas-notes" class="atlas-place marked" id="business-consulting" style="--x:57.320%;--y:3.930%;--w:42.680%;--art-ratio:309/331">
+        <details name="atlas-notes" class="atlas-place atlas-place--east" id="business-consulting" style="--x:57.320%;--y:3.930%;--w:42.680%;--art-ratio:309/331">
           <summary aria-label="Inspect Business Consulting">
-            <span class="place-number" aria-hidden="true">11</span>
-            <svg class="specimen pencil-specimen" aria-hidden="true" focusable="false" viewBox="415 18 309 331"><image href="assets/images/expertise/pencil-4.webp" x="0" y="0" width="724" height="458" filter="url(#pencil-ink)"/></svg>
+            <svg class="specimen pencil-specimen" aria-hidden="true" focusable="false" viewBox="415 18 309 331"><image href="assets/images/expertise/pencil-4.webp" x="0" y="0" width="724" height="458" filter="url(#atlas-ink)"/></svg>
             <span class="annotation">
               <svg class="annotation-line" viewBox="0 0 150 48" aria-hidden="true"><path d="M145 3 Q118 31 65 29 L3 39 M8 32 L3 39 13 42"/></svg>
+              <span class="place-number" aria-hidden="true">No. 11</span>
               <span class="place-name">Business Consulting</span>
               <span class="place-descriptor">Build what the promise depends on.</span>
               <span class="inspect" aria-hidden="true"><span class="inspect-closed">Inspect</span><span class="inspect-open">Close note</span> <span class="inspect-mark">+</span></span>
@@ -269,15 +282,15 @@
           <div class="field-note">
             <p class="field-note-reference">Fig. 11 &nbsp; / &nbsp; The supporting structure</p>
             <p>A compelling proposition needs a business that can deliver it. SeldomSought examines workflows, customer handoffs and operating priorities, then implements practical changes to the systems carrying the work.</p>
-            <a href="contact.html">Discuss business consulting <span aria-hidden="true">↗</span></a>
+            <a href="contact.html?about=business-consulting">Discuss business consulting <span aria-hidden="true">↗</span></a>
           </div>
         </details>
-        <details name="atlas-notes" class="atlas-place marked" id="copywriting" style="--x:25.552%;--y:48.908%;--w:50.829%;--art-ratio:368/234">
+        <details name="atlas-notes" class="atlas-place" id="copywriting" style="--x:25.552%;--y:48.908%;--w:50.829%;--art-ratio:368/234">
           <summary aria-label="Inspect Copywriting">
-            <span class="place-number" aria-hidden="true">12</span>
-            <svg class="specimen pencil-specimen" aria-hidden="true" focusable="false" viewBox="185 224 368 234"><image href="assets/images/expertise/pencil-4.webp" x="0" y="0" width="724" height="458" filter="url(#pencil-ink)"/></svg>
+            <svg class="specimen pencil-specimen" aria-hidden="true" focusable="false" viewBox="185 224 368 234"><image href="assets/images/expertise/pencil-4.webp" x="0" y="0" width="724" height="458" filter="url(#atlas-ink)"/></svg>
             <span class="annotation">
               <svg class="annotation-line" viewBox="0 0 150 48" aria-hidden="true"><path d="M145 3 Q118 31 65 29 L3 39 M8 32 L3 39 13 42"/></svg>
+              <span class="place-number" aria-hidden="true">No. 12</span>
               <span class="place-name">Copywriting</span>
               <span class="place-descriptor">The right words carry weight.</span>
               <span class="inspect" aria-hidden="true"><span class="inspect-closed">Inspect</span><span class="inspect-open">Close note</span> <span class="inspect-mark">+</span></span>
@@ -286,17 +299,17 @@
           <div class="field-note">
             <p class="field-note-reference">Fig. 12 &nbsp; / &nbsp; The printing works</p>
             <p>Good copy makes a proposition clear, credible and worth acting on. Websites, campaigns and sales materials are written around the reader’s questions, the evidence available and the decision the business needs to earn.</p>
-            <a href="contact.html">Discuss copywriting <span aria-hidden="true">↗</span></a>
+            <a href="contact.html?about=copywriting">Discuss copywriting <span aria-hidden="true">↗</span></a>
           </div>
         </details>
       </section>
 
     </div>
     <section class="atlas-colophon" aria-labelledby="colophon-title">
-      <p class="eyebrow">At the far edge of the map</p>
-      <h2 id="colophon-title">Nothing here<br>works <em>alone.</em></h2>
+      <p class="atlas-eyebrow">At the far edge of the map</p>
+      <h2 id="colophon-title" class="atlas-display">Nothing here<br>works <em>alone.</em></h2>
       <p>Image gives language a face. Language gives strategy a voice.<br class="desktop-break"> The work is making the connections.</p>
-      <a href="contact.html" class="correspondence-link">Begin a correspondence <span aria-hidden="true">↗</span></a>
+      <a href="contact.html" class="correspondence-link ink-link">Begin a correspondence <span aria-hidden="true">↗</span></a>
     </section>
   </main>
   <footer class="atlas-footer">
