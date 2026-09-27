@@ -1,6 +1,6 @@
 /* ══════════════════════════════════════════════════════
    contact.js — Correspondence
-   Validation, a live signature, subject pre-selection from
+   Validation, subject pre-selection from
    the Expertise atlas (?about=<discipline>), and the honest
    Instagram handoff.
 
@@ -45,15 +45,14 @@
 
     var fields = {
       message: { input: document.getElementById('fMessage'), error: document.getElementById('fMessageError'),
-                 check: function (v) { return v ? '' : 'Please write a few words.'; } },
+                 check: function (v) { return v ? '' : 'Add a quick message first.'; } },
       name:    { input: document.getElementById('fName'), error: document.getElementById('fNameError'),
-                 check: function (v) { return v ? '' : 'Please sign with your name.'; } },
+                 check: function (v) { return v ? '' : 'What should we call you?'; } },
       email:   { input: document.getElementById('fEmail'), error: document.getElementById('fEmailError'),
-                 check: function (v) { return EMAIL.test(v) ? '' : 'Please add an email address we can reply to.'; } }
+                 check: function (v) { return EMAIL.test(v) ? '' : 'We need an email to reply to.'; } }
     };
     var ORDER = ['message', 'name', 'email'];   /* the order they appear in the letter */
 
-    var signature = document.getElementById('ssSignature');
     var origin = document.getElementById('regardingOrigin');
     var sendBtn = document.getElementById('ssSendBtn');
     var sendLabel = document.getElementById('ssSendLabel');
@@ -76,7 +75,7 @@
       var radio = form.querySelector('input[name="subject"][value="' + entry[0] + '"]');
       if (radio) radio.checked = true;
       discipline = entry[1];
-      origin.textContent = 'From the atlas: ' + discipline + '.';
+      origin.textContent = 'Looks like you came from ' + discipline + '.';
       origin.hidden = false;
       form.addEventListener('change', function (e) {
         if (e.target.name !== 'subject') return;
@@ -85,11 +84,6 @@
         origin.hidden = !keep;
       });
     }
-
-    /* the name signs the letter as it is typed */
-    fields.name.input.addEventListener('input', function () {
-      signature.textContent = fields.name.input.value.trim();
-    });
 
     function setError(key, message) {
       var f = fields[key];
@@ -123,13 +117,12 @@
       var checked = form.querySelector('input[name="subject"]:checked');
       var lines = [];
       if (checked) {
-        lines.push('Regarding: ' + SUBJECTS[checked.value] + (discipline ? ' — ' + discipline : ''));
+        lines.push('Re: ' + SUBJECTS[checked.value] + (discipline ? ' (' + discipline + ')' : ''));
         lines.push('');
       }
       lines.push(fields.message.input.value.trim());
       lines.push('');
-      lines.push('Yours,');
-      lines.push(fields.name.input.value.trim() + ' (' + fields.email.input.value.trim() + ')');
+      lines.push('— ' + fields.name.input.value.trim() + ' (' + fields.email.input.value.trim() + ')');
       return lines.join('\n');
     }
 
@@ -158,7 +151,7 @@
       var note = composeNote();
       var originalLabel = sendLabel.textContent;
       sendBtn.disabled = true;
-      sendLabel.textContent = 'Sealing…';
+      sendLabel.textContent = 'One sec…';
 
       /* Copy inside the user gesture so browsers that require
          direct activation allow it; the animation is decorative. */
@@ -169,8 +162,8 @@
         handoffNote.value = note;
         handoff.hidden = false;
         handoffStatus.textContent = results[1]
-          ? 'Your letter is copied. Paste it into the message.'
-          : 'Copy the letter above, then paste it into the message.';
+          ? 'Copied! Just paste it into the DM.'
+          : 'Copy the message above, then paste it into the DM.';
         handoffHeading.focus();
         sendBtn.disabled = false;
         sendLabel.textContent = originalLabel;
@@ -180,7 +173,7 @@
 
     handoffCopyAgain.addEventListener('click', function () {
       attemptCopy(handoffNote.value).then(function (ok) {
-        handoffStatus.textContent = ok ? 'Copied.' : 'Select the letter above and copy it.';
+        handoffStatus.textContent = ok ? 'Copied.' : 'Select the message above and copy it.';
         if (!ok) { handoffNote.focus(); handoffNote.select(); }
       });
     });

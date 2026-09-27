@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Correspondence — SeldomSought</title>
-  <meta name="description" content="A project, a question, a half-formed idea — write to SeldomSought.">
+  <title>Contact — SeldomSought</title>
+  <meta name="description" content="Got a project, a question or a half-baked idea? Let’s talk. Get in touch with SeldomSought.">
   <meta name="theme-color" content="#0e2146">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="stylesheet" href="assets/css/global.css">
@@ -17,7 +17,7 @@
   <script src="assets/js/contact.js?v=atlas-8" defer></script>
 </head>
 <body class="atlas atlas--nocturne contact-atlas">
-  <a class="skip-link" href="#letter">Skip to the letter</a>
+  <a class="skip-link" href="#contactForm">Skip to the form</a>
   <header class="site-header" id="siteHeader">
     <div class="site-header__inner">
       <a href="index.html" class="site-header__brand">SeldomSought</a>
@@ -109,11 +109,11 @@
     </svg>
 
     <section class="correspondence-opening" aria-labelledby="contact-title">
-      <div class="atlas-edition"><span>SeldomSought / Correspondence</span><span>Vol. I &nbsp; · &nbsp; Plate V</span></div>
+      <div class="atlas-edition"><span>SeldomSought / Contact</span><span>Vol. I &nbsp; · &nbsp; Plate V</span></div>
       <svg class="carrier" viewBox="405 262 82 84" aria-hidden="true" focusable="false"><image href="assets/images/expertise/pencil-3.webp" x="0" y="0" width="724" height="511" filter="url(#atlas-ink)" mask="url(#feather-mask)"/></svg>
-      <p class="atlas-eyebrow">A little correspondence</p>
-      <h1 id="contact-title" class="atlas-display">Some things<br><em>begin with hello.</em></h1>
-      <p class="opening-line atlas-lede">A project, a question, a half-formed idea.<br class="desktop-break"> Tell us what’s on your mind.</p>
+      <p class="atlas-eyebrow">Get in touch</p>
+      <h1 id="contact-title" class="atlas-display">Let’s <em>talk.</em></h1>
+      <p class="opening-line atlas-lede">Got a project, a question or a half-baked idea?<br class="desktop-break"> Send it over. We’d love to hear about it.</p>
     </section>
 
     <div class="correspondence-desk">
@@ -121,8 +121,8 @@
       <form id="contactForm" class="letter on-paper" novalidate aria-labelledby="letter-title">
         <header class="letter-head">
           <div>
-            <p class="letter-kicker">Fig. V &nbsp; / &nbsp; The letter</p>
-            <h2 id="letter-title">Write to us</h2>
+            <p class="letter-kicker">Fig. V &nbsp; / &nbsp; A quick note</p>
+            <h2 id="letter-title">Drop us a line</h2>
           </div>
           <svg class="postmark" viewBox="0 0 120 120" aria-hidden="true" focusable="false">
             <defs><path id="pm-ring" d="M60 60 m-43 0 a43 43 0 1 1 86 0 a43 43 0 1 1 -86 0"/></defs>
@@ -134,7 +134,7 @@
         </header>
 
         <fieldset class="regarding">
-          <legend>Regarding <span class="optional">optional</span></legend>
+          <legend>What’s it about? <span class="optional">optional</span></legend>
           <div class="regarding-options">
             <label><input type="radio" name="subject" value="brand"><span>Brand &amp; image</span></label>
             <label><input type="radio" name="subject" value="search"><span>Search &amp; discovery</span></label>
@@ -146,78 +146,76 @@
         </fieldset>
 
         <div class="field field--message">
-          <label for="fMessage">Your letter</label>
+          <label for="fMessage">Message</label>
           <textarea class="entry entry--ruled" id="fMessage" name="message" rows="8"
-                    placeholder="What you’re building, changing or figuring out — and where it’s stuck."
+                    placeholder="What are you working on, and where are you stuck?"
                     aria-describedby="fMessageError" required></textarea>
           <p class="field-error" id="fMessageError" hidden></p>
         </div>
 
         <div class="letter-close">
-          <p class="valediction" aria-hidden="true">Yours,</p>
-          <p class="signature" id="ssSignature" aria-hidden="true"></p>
           <div class="field">
             <label for="fName">Your name</label>
             <input class="entry" id="fName" name="name" type="text" autocomplete="name"
-                   placeholder="What should we call you?" aria-describedby="fNameError" required>
+                   placeholder="First name’s fine" aria-describedby="fNameError" required>
             <p class="field-error" id="fNameError" hidden></p>
           </div>
           <div class="field">
-            <label for="fEmail">Reply to</label>
+            <label for="fEmail">Your email</label>
             <input class="entry" id="fEmail" name="email" type="email" autocomplete="email"
-                   placeholder="you@somewhere.com" aria-describedby="fEmailError" required>
+                   placeholder="you@example.com" aria-describedby="fEmailError" required>
             <p class="field-error" id="fEmailError" hidden></p>
           </div>
         </div>
 
         <div class="send-row">
           <button type="submit" class="seal-button" id="ssSendBtn">
-            <span id="ssSendLabel">Seal this letter</span>
+            <span id="ssSendLabel">Send it</span>
             <svg width="18" height="18" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
-          <p class="send-note">Your letter, name and reply address are needed.<br>Sealing copies the letter and opens Instagram to deliver it.</p>
+          <p class="send-note">Message, name and email are required.<br>Hitting send copies your message and opens Instagram so you can DM it to us.</p>
         </div>
       </form>
 
       <!-- honest handoff: there is no delivery backend on this static site,
            so the composed letter is handed to Instagram, never "sent". -->
       <section class="letter on-paper handoff" id="ssHandoff" aria-labelledby="ssHandoffHeading" hidden>
-        <p class="letter-kicker">Fig. V &nbsp; / &nbsp; The envelope</p>
-        <h2 class="handoff-heading" id="ssHandoffHeading" tabindex="-1">One step to go.</h2>
-        <p class="handoff-detail">Direct sending isn’t connected yet, so nothing has left this page, and nothing is lost. Open Instagram and paste your letter into a message to <strong>@seldomsought</strong>.</p>
-        <textarea class="entry handoff-note" id="ssHandoffNote" readonly aria-label="Your composed letter" rows="6"></textarea>
+        <p class="letter-kicker">Fig. V &nbsp; / &nbsp; Almost there</p>
+        <h2 class="handoff-heading" id="ssHandoffHeading" tabindex="-1">One more step.</h2>
+        <p class="handoff-detail">We haven’t hooked up direct sending yet, so your message hasn’t gone anywhere. It’s copied and ready. Open Instagram and paste it into a DM to <strong>@seldomsought</strong>.</p>
+        <textarea class="entry handoff-note" id="ssHandoffNote" readonly aria-label="Your message" rows="6"></textarea>
         <div class="handoff-actions">
           <a class="seal-button" id="ssHandoffInstagram" href="https://www.instagram.com/seldomsought" target="_blank" rel="noopener">Open Instagram <span aria-hidden="true">↗</span></a>
-          <button type="button" class="ink-link" id="ssHandoffCopyAgain">Copy letter again</button>
-          <button type="button" class="ink-link" id="ssHandoffEdit">Edit your letter</button>
+          <button type="button" class="ink-link" id="ssHandoffCopyAgain">Copy it again</button>
+          <button type="button" class="ink-link" id="ssHandoffEdit">Go back and edit</button>
         </div>
         <p class="handoff-status" id="ssHandoffStatus" role="status" aria-live="polite"></p>
       </section>
 
-      <aside class="marginalia" aria-label="About writing to SeldomSought">
+      <aside class="marginalia" aria-label="Before you write">
         <section>
-          <h2 class="atlas-eyebrow">Worth including</h2>
+          <h2 class="atlas-eyebrow">Helpful to mention</h2>
           <ol>
-            <li>What you’re building or changing.</li>
-            <li>Where it’s stuck, or what’s next.</li>
-            <li>Any timing that matters.</li>
+            <li>What you’re working on.</li>
+            <li>Where you’re stuck.</li>
+            <li>Any deadlines.</li>
           </ol>
         </section>
         <section>
-          <h2 class="atlas-eyebrow">Reply</h2>
-          <p>Every letter is read. Replies usually arrive within <em>24–48 hours.</em></p>
+          <h2 class="atlas-eyebrow">Response time</h2>
+          <p>We read everything and usually reply within <em>a day or two.</em></p>
         </section>
         <section>
-          <h2 class="atlas-eyebrow">Other routes</h2>
+          <h2 class="atlas-eyebrow">Other ways to reach us</h2>
           <a class="ink-link" href="https://www.instagram.com/seldomsought" target="_blank" rel="noopener">Instagram &nbsp;@seldomsought <span aria-hidden="true">↗</span></a>
           <a class="ink-link" href="https://github.com/SeldomSought" target="_blank" rel="noopener">GitHub &nbsp;SeldomSought <span aria-hidden="true">↗</span></a>
         </section>
-        <p class="margin-note" aria-hidden="true">Not every road<br>is on the map.<span>↘</span></p>
+        <p class="margin-note" aria-hidden="true">No pitch deck<br>required.<span>↘</span></p>
       </aside>
     </div>
 
     <noscript>
-      <p class="noscript-note">This letter needs JavaScript to compose. In the meantime, write directly on
+      <p class="noscript-note">This form needs JavaScript. You can also just message us on
         <a href="https://www.instagram.com/seldomsought" target="_blank" rel="noopener">Instagram</a>.</p>
     </noscript>
 
@@ -232,20 +230,20 @@
       <div class="footer-imprint">
         <a href="index.html" class="footer-brand">SeldomSought</a>
         <p>Independent thought.<br>Commercial consequence.</p>
-        <a class="footer-return" href="#correspondence">Return to the letter ↑</a>
+        <a class="footer-return" href="#correspondence">Back to top ↑</a>
       </div>
       <nav aria-label="Footer navigation">
         <h2>Elsewhere</h2>
         <a href="index.html">Home</a><a href="philosophy.html">Philosophy</a><a href="services.html">Services</a><a href="expertise.html">Expertise</a><a href="projects.html">Projects</a><a href="faq.html">FAQ</a><a href="contact.html" aria-current="page">Contact</a>
       </nav>
       <nav aria-label="Correspondence">
-        <h2>By other means</h2>
+        <h2>Find us</h2>
         <a href="https://www.instagram.com/seldomsought" target="_blank" rel="noopener">Instagram</a><a href="https://github.com/SeldomSought" target="_blank" rel="noopener">GitHub</a>
       </nav>
-      <p class="footer-note">The same estuary,<br><em>after dark.</em><span aria-hidden="true">↙</span></p>
+      <p class="footer-note">Same view,<br><em>after dark.</em><span aria-hidden="true">↙</span></p>
     </div>
     <img class="estuary" src="assets/images/expertise/estuary-final.webp" width="1672" height="941" loading="lazy" decoding="async" alt="The atlas's estuary by night, drawn in pale ink: a distant city, a small sailing boat and three travellers on the path home.">
-    <div class="footer-bottom"><p>© 2026 SeldomSought</p><p>Correspondence, always open.</p><span aria-hidden="true">Yours.</span></div>
+    <div class="footer-bottom"><p>© 2026 SeldomSought</p><p>Always happy to chat.</p><span aria-hidden="true">Talk soon.</span></div>
   </footer>
 </body>
 </html>
