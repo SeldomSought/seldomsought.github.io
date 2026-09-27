@@ -121,7 +121,7 @@
 
     function composeNote() {
       var checked = form.querySelector('input[name="subject"]:checked');
-      var lines = ['Dear SeldomSought,', ''];
+      var lines = [];
       if (checked) {
         lines.push('Regarding: ' + SUBJECTS[checked.value] + (discipline ? ' — ' + discipline : ''));
         lines.push('');
