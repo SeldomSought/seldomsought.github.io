@@ -14,7 +14,8 @@
    matrix so illustrations print in the same ink.
 ══════════════════════════════════════════════════════ */
 
-.atlas {
+.atlas,
+.atlas .on-paper {
   /* colour */
   --paper:           #f3eee3;
   --paper-raised:    #f8f4eb;
@@ -45,7 +46,26 @@
 
   --gutter: clamp(20px, 4.4vw, 72px);
   --ease: cubic-bezier(.22, 1, .36, 1);
+}
 
+/* ── theme variants ──────────────────────────────────
+   Nocturne: the atlas printed as a night chart. Ground and
+   ink trade places (pale ink on Prussian blue), so every
+   component above re-tints without being restyled. An
+   element marked .on-paper inside it returns to day paper
+   (the tokens above apply again at that element). */
+.atlas--nocturne {
+  --paper:           #0e2146;
+  --paper-raised:    #132a56;
+  --ink:             #efe7d6;   /* 12.6:1 on the ground */
+  --ink-soft:        #b9c4dc;   /*  8.9:1 */
+  --ink-rgb:         239, 231, 214;
+  --veil:            rgba(14, 33, 70, .94);
+  --grain-opacity:   .05;
+}
+
+.atlas,
+.atlas .on-paper {
   color: var(--ink);
   background: var(--paper);
   font-family: var(--serif);
