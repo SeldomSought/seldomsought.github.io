@@ -1,39 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-    <link rel="stylesheet" href="assets/css/global.css">
-    <link rel="stylesheet" href="assets/css/contact.css">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact — SeldomSought</title>
-    <meta name="description" content="A project, a question, a half-formed idea — write to SeldomSought.">
-    <meta name="theme-color" content="#f8f8f4"/>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Bodoni+Moda:ital,wght@0,400..500;1,400..500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Correspondence — SeldomSought</title>
+  <meta name="description" content="A project, a question, a half-formed idea — write to SeldomSought.">
+  <meta name="theme-color" content="#0e2146">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="stylesheet" href="assets/css/global.css">
+  <link rel="stylesheet" href="assets/css/atlas.css?v=atlas-8">
+  <link rel="stylesheet" href="assets/css/contact.css?v=atlas-8">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <script src="assets/js/nav.js" defer></script>
+  <script src="assets/js/contact.js?v=atlas-8" defer></script>
 </head>
-<body class="contact-heaven">
-
-    <!-- nav -->
-    <header class="site-header" id="siteHeader">
-      <div class="site-header__inner">
-        <a href="index.html" class="site-header__brand">SeldomSought</a>
-        <button class="site-header__toggle" id="siteMenuToggle"
-                aria-label="Toggle navigation" aria-expanded="false"
-                aria-controls="siteMobileMenu">☰</button>
-        <nav class="site-header__nav" aria-label="Primary navigation">
-          <a href="index.html">Home</a>
-          <a href="philosophy.html">Philosophy</a>
-          <a href="services.html">Services</a>
-          <a href="expertise.html">Expertise</a>
-          <a href="projects.html">Projects</a>
-          <a href="faq.html">FAQ</a>
-          <a href="contact.html" aria-current="page">Contact</a>
-        </nav>
-      </div>
-      <nav class="site-header__mobile" id="siteMobileMenu"
-           aria-label="Mobile navigation" aria-hidden="true">
+<body class="atlas atlas--nocturne contact-atlas">
+  <a class="skip-link" href="#letter">Skip to the letter</a>
+  <header class="site-header" id="siteHeader">
+    <div class="site-header__inner">
+      <a href="index.html" class="site-header__brand">SeldomSought</a>
+      <button class="site-header__toggle" id="siteMenuToggle"
+              aria-label="Toggle navigation" aria-expanded="false"
+              aria-controls="siteMobileMenu">☰</button>
+      <nav class="site-header__nav" aria-label="Primary navigation">
         <a href="index.html">Home</a>
         <a href="philosophy.html">Philosophy</a>
         <a href="services.html">Services</a>
@@ -42,206 +33,219 @@
         <a href="faq.html">FAQ</a>
         <a href="contact.html" aria-current="page">Contact</a>
       </nav>
-    </header>
+    </div>
+    <nav class="site-header__mobile" id="siteMobileMenu"
+         aria-label="Mobile navigation" aria-hidden="true">
+      <a href="index.html">Home</a>
+      <a href="philosophy.html">Philosophy</a>
+      <a href="services.html">Services</a>
+      <a href="expertise.html">Expertise</a>
+      <a href="projects.html">Projects</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html" aria-current="page">Contact</a>
+    </nav>
+  </header>
 
-    <!-- icon sprite (decorative, reused across the scene) -->
-    <svg width="0" height="0" style="position:absolute" aria-hidden="true">
-      <defs>
-        <symbol id="ss-icon-envelope" viewBox="0 0 120 64">
-          <path d="M18 40 C4 34 -4 18 4 4 C14 10 20 22 22 34" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M102 40 C116 34 124 18 116 4 C106 10 100 22 98 34" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          <rect x="22" y="14" width="76" height="42" rx="3" fill="none" stroke="currentColor" stroke-width="2"/>
-          <path d="M22 16 L60 44 L98 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </symbol>
-        <symbol id="ss-icon-star" viewBox="0 0 24 24">
-          <path d="M12 2 L14.9 8.9 L22 9.5 L16.6 14.3 L18.2 21.4 L12 17.6 L5.8 21.4 L7.4 14.3 L2 9.5 L9.1 8.9 Z" fill="currentColor"/>
-        </symbol>
-        <symbol id="ss-icon-cloud" viewBox="0 0 200 110">
-          <path d="M40 90 C14 90 4 68 24 56 C18 34 48 20 68 32 C78 14 116 12 128 32 C160 26 182 50 166 70 C176 86 158 98 140 92 C126 100 60 100 40 90 Z" fill="currentColor"/>
-        </symbol>
-      </defs>
+  <!-- The same engraving filter as the Expertise atlas, re-inked:
+       #atlas-ink prints drawings in pale starlight on the night ground,
+       #atlas-ink-day prints them in cobalt on the letter's paper. -->
+  <svg class="atlas-filter-defs" aria-hidden="true" width="0" height="0"><defs>
+    <filter id="atlas-ink" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="0 0 0 0 .937 0 0 0 0 .906 0 0 0 0 .839 -1.6 0 0 0 1.43" result="ink"/><feComposite in="ink" in2="SourceGraphic" operator="in"/></filter>
+    <filter id="atlas-ink-day" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="0 0 0 0 .0902 0 0 0 0 .2275 0 0 0 0 .4667 -1.6 0 0 0 1.43" result="ink"/><feComposite in="ink" in2="SourceGraphic" operator="in"/></filter>
+    <radialGradient id="feather" gradientUnits="userSpaceOnUse" cx="446" cy="304" r="44"><stop offset=".62" stop-color="#fff"/><stop offset="1" stop-color="#000"/></radialGradient>
+    <mask id="feather-mask" maskUnits="userSpaceOnUse" x="405" y="262" width="82" height="84"><rect x="405" y="262" width="82" height="84" fill="url(#feather)"/></mask>
+  </defs></svg>
+
+  <main id="correspondence">
+    <!-- a celestial chart, engraved in the same hand as the atlas -->
+    <svg class="star-chart" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMin slice" aria-hidden="true" focusable="false">
+      <g class="chart-circles">
+        <circle cx="720" cy="-260" r="620"/>
+        <circle cx="720" cy="-260" r="760" stroke-dasharray="2 7"/>
+        <circle cx="720" cy="-260" r="900"/>
+        <path d="M-40 520 Q720 200 1480 520" stroke-dasharray="1 9"/>
+      </g>
+      <g class="chart-lines">
+        <polyline points="118,212 196,168 262,204 318,150 402,176"/>
+        <polyline points="196,168 214,96 286,70"/>
+        <polyline points="1080,118 1146,176 1232,150 1296,214 1262,300"/>
+        <polyline points="1146,176 1178,262"/>
+        <polyline points="152,560 236,618 212,712"/>
+        <polyline points="1210,560 1286,610 1340,570"/>
+      </g>
+      <g class="chart-stars">
+        <path d="M118 212l2 -7 2 7 7 2 -7 2 -2 7 -2 -7 -7 -2z"/>
+        <path d="M196 168l3 -10 3 10 10 3 -10 3 -3 10 -3 -10 -10 -3z"/>
+        <path d="M262 204l2 -6 2 6 6 2 -6 2 -2 6 -2 -6 -6 -2z"/>
+        <path d="M318 150l2 -8 2 8 8 2 -8 2 -2 8 -2 -8 -8 -2z"/>
+        <path d="M402 176l2 -6 2 6 6 2 -6 2 -2 6 -2 -6 -6 -2z"/>
+        <path d="M214 96l2 -6 2 6 6 2 -6 2 -2 6 -2 -6 -6 -2z"/>
+        <path d="M286 70l2 -7 2 7 7 2 -7 2 -2 7 -2 -7 -7 -2z"/>
+        <path d="M1080 118l2 -7 2 7 7 2 -7 2 -2 7 -2 -7 -7 -2z"/>
+        <path d="M1146 176l3 -11 3 11 11 3 -11 3 -3 11 -3 -11 -11 -3z"/>
+        <path d="M1232 150l2 -6 2 6 6 2 -6 2 -2 6 -2 -6 -6 -2z"/>
+        <path d="M1296 214l2 -8 2 8 8 2 -8 2 -2 8 -2 -8 -8 -2z"/>
+        <path d="M1262 300l2 -6 2 6 6 2 -6 2 -2 6 -2 -6 -6 -2z"/>
+        <path d="M1178 262l2 -6 2 6 6 2 -6 2 -2 6 -2 -6 -6 -2z"/>
+        <path d="M152 560l2 -7 2 7 7 2 -7 2 -2 7 -2 -7 -7 -2z"/>
+        <path d="M236 618l2 -6 2 6 6 2 -6 2 -2 6 -2 -6 -6 -2z"/>
+        <path d="M212 712l2 -8 2 8 8 2 -8 2 -2 8 -2 -8 -8 -2z"/>
+        <path d="M1210 560l2 -6 2 6 6 2 -6 2 -2 6 -2 -6 -6 -2z"/>
+        <path d="M1286 610l3 -9 3 9 9 3 -9 3 -3 9 -3 -9 -9 -3z"/>
+        <path d="M1340 570l2 -6 2 6 6 2 -6 2 -2 6 -2 -6 -6 -2z"/>
+      </g>
+      <g class="chart-dust">
+        <circle cx="520" cy="84" r="1.3"/><circle cx="610" cy="210" r="1"/><circle cx="880" cy="60" r="1.4"/>
+        <circle cx="960" cy="240" r="1"/><circle cx="440" cy="330" r="1.2"/><circle cx="1020" cy="380" r="1.2"/>
+        <circle cx="80" cy="400" r="1"/><circle cx="1380" cy="420" r="1.3"/><circle cx="340" cy="470" r="1"/>
+        <circle cx="1110" cy="470" r="1"/><circle cx="60" cy="120" r="1.2"/><circle cx="1400" cy="80" r="1"/>
+        <circle cx="700" cy="30" r="1"/><circle cx="760" cy="300" r="1.1"/><circle cx="30" cy="700" r="1.2"/>
+        <circle cx="1420" cy="720" r="1"/><circle cx="380" cy="800" r="1"/><circle cx="1060" cy="820" r="1.2"/>
+      </g>
+      <g class="chart-labels">
+        <text x="232" y="238">Columba</text>
+        <text x="1184" y="232" text-anchor="middle">Mercurius</text>
+      </g>
     </svg>
 
-    <!-- main -->
-    <main class="ss-contact" id="ssContact">
-      <div class="ss-sky" aria-hidden="true"></div>
+    <section class="correspondence-opening" aria-labelledby="contact-title">
+      <div class="atlas-edition"><span>SeldomSought / Correspondence</span><span>Vol. I &nbsp; · &nbsp; Plate V</span></div>
+      <svg class="carrier" viewBox="405 262 82 84" aria-hidden="true" focusable="false"><image href="assets/images/expertise/pencil-3.webp" x="0" y="0" width="724" height="511" filter="url(#atlas-ink)" mask="url(#feather-mask)"/></svg>
+      <p class="atlas-eyebrow">A little correspondence</p>
+      <h1 id="contact-title" class="atlas-display">Some things<br><em>begin with hello.</em></h1>
+      <p class="opening-line atlas-lede">A project, a question, a half-formed idea.<br class="desktop-break"> Tell us what’s on your mind.</p>
+    </section>
 
-      <svg class="ss-cloud ss-cloud--a" viewBox="0 0 200 110" data-ss-ambient aria-hidden="true"><use href="#ss-icon-cloud"/></svg>
-      <svg class="ss-cloud ss-cloud--b" viewBox="0 0 200 110" data-ss-ambient aria-hidden="true"><use href="#ss-icon-cloud"/></svg>
-      <svg class="ss-cloud ss-cloud--c" viewBox="0 0 200 110" data-ss-ambient aria-hidden="true"><use href="#ss-icon-cloud"/></svg>
+    <div class="correspondence-desk">
+      <!-- the letter: the one object on this page printed on day paper -->
+      <form id="contactForm" class="letter on-paper" novalidate aria-labelledby="letter-title">
+        <header class="letter-head">
+          <div>
+            <p class="letter-kicker">Fig. V &nbsp; / &nbsp; The letter</p>
+            <h2 id="letter-title">Dear SeldomSought,</h2>
+          </div>
+          <svg class="postmark" viewBox="0 0 120 120" aria-hidden="true" focusable="false">
+            <defs><path id="pm-ring" d="M60 60 m-43 0 a43 43 0 1 1 86 0 a43 43 0 1 1 -86 0"/></defs>
+            <circle cx="60" cy="60" r="56"/><circle cx="60" cy="60" r="31"/>
+            <text><textPath href="#pm-ring" startOffset="2%">SELDOMSOUGHT · CORRESPONDENCE · MMXXVI ·</textPath></text>
+            <path class="postmark-star" d="M60 40l3 15 15 5 -15 5 -3 15 -3 -15 -15 -5 15 -5z"/>
+            <path class="postmark-waves" d="M-4 44q10 -6 20 0t20 0M-4 54q10 -6 20 0t20 0M-4 64q10 -6 20 0t20 0M-4 74q10 -6 20 0t20 0" transform="translate(114 0)"/>
+          </svg>
+        </header>
 
-      <svg class="ss-star" viewBox="0 0 24 24" style="width:10px; top:14%; left:20%;" aria-hidden="true"><use href="#ss-icon-star"/></svg>
-      <svg class="ss-star" viewBox="0 0 24 24" style="width:8px; top:24%; right:16%;" aria-hidden="true"><use href="#ss-icon-star"/></svg>
-      <svg class="ss-star" viewBox="0 0 24 24" style="width:12px; top:64%; left:8%;" aria-hidden="true"><use href="#ss-icon-star"/></svg>
-      <svg class="ss-star" viewBox="0 0 24 24" style="width:9px; bottom:10%; right:10%;" aria-hidden="true"><use href="#ss-icon-star"/></svg>
-      <svg class="ss-star" viewBox="0 0 24 24" style="width:7px; top:8%; right:36%;" aria-hidden="true"><use href="#ss-icon-star"/></svg>
+        <fieldset class="regarding">
+          <legend>Regarding <span class="optional">optional</span></legend>
+          <div class="regarding-options">
+            <label><input type="radio" name="subject" value="brand"><span>Brand &amp; image</span></label>
+            <label><input type="radio" name="subject" value="search"><span>Search &amp; discovery</span></label>
+            <label><input type="radio" name="subject" value="strategy"><span>Strategy &amp; distribution</span></label>
+            <label><input type="radio" name="subject" value="language"><span>Language &amp; systems</span></label>
+            <label><input type="radio" name="subject" value="other"><span>Something else</span></label>
+          </div>
+          <p class="regarding-origin" id="regardingOrigin" hidden></p>
+        </fieldset>
 
-      <div class="ss-halo" aria-hidden="true"></div>
+        <div class="field field--message">
+          <label for="fMessage">Your letter</label>
+          <textarea class="entry entry--ruled" id="fMessage" name="message" rows="8"
+                    placeholder="What you’re building, changing or figuring out — and where it’s stuck."
+                    aria-describedby="fMessageError" required></textarea>
+          <p class="field-error" id="fMessageError" hidden></p>
+        </div>
 
-      <!-- intro -->
-      <header class="ss-intro">
-        <span class="ss-eyebrow-label">A little correspondence</span>
-        <svg class="ss-envelope-mark" viewBox="0 0 120 64" aria-hidden="true"><use href="#ss-icon-envelope"/></svg>
-        <h1 class="ss-title">
-          <span>Some things</span>
-          <span><em>begin with hello.</em></span>
-        </h1>
-        <p class="ss-subtitle">A project, a question, a half-formed idea. Tell us what's on your mind.</p>
-      </header>
-
-      <!-- letter grid -->
-      <form id="contactForm" class="ss-letter-grid" novalidate>
-
-        <div class="ss-slot ss-slot--name">
-          <div class="ss-float ss-paper" data-ss-ambient data-ss-field>
-            <span class="ss-eyebrow">From</span>
+        <div class="letter-close">
+          <p class="valediction" aria-hidden="true">Yours,</p>
+          <p class="signature" id="ssSignature" aria-hidden="true"></p>
+          <div class="field">
             <label for="fName">Your name</label>
-            <input
-              class="ss-entry"
-              id="fName"
-              name="name"
-              type="text"
-              autocomplete="name"
-              placeholder="What should we call you?"
-              aria-describedby="fNameError"
-              required
-            >
-            <p class="ss-signature" id="ssSignature" aria-hidden="true"></p>
-            <p class="ss-field-error" id="fNameError" hidden></p>
+            <input class="entry" id="fName" name="name" type="text" autocomplete="name"
+                   placeholder="What should we call you?" aria-describedby="fNameError" required>
+            <p class="field-error" id="fNameError" hidden></p>
+          </div>
+          <div class="field">
+            <label for="fEmail">Reply to</label>
+            <input class="entry" id="fEmail" name="email" type="email" autocomplete="email"
+                   placeholder="you@somewhere.com" aria-describedby="fEmailError" required>
+            <p class="field-error" id="fEmailError" hidden></p>
           </div>
         </div>
 
-        <div class="ss-slot ss-slot--email">
-          <div class="ss-float ss-paper" data-ss-ambient data-ss-field>
-            <span class="ss-eyebrow">Reply to</span>
-            <label for="fEmail">Your email</label>
-            <input
-              class="ss-entry"
-              id="fEmail"
-              name="email"
-              type="email"
-              autocomplete="email"
-              placeholder="you@somewhere.com"
-              aria-describedby="fEmailError"
-              required
-            >
-            <p class="ss-field-error" id="fEmailError" hidden></p>
-          </div>
-        </div>
-
-        <div class="ss-slot ss-slot--subject">
-          <div class="ss-float" data-ss-ambient data-ss-field>
-            <fieldset class="ss-subject-group">
-              <legend class="ss-subject-legend">A note about <span class="ss-optional">optional</span></legend>
-              <div class="ss-subject-options">
-                <label class="ss-subject-option">
-                  <input type="radio" name="subject" value="brand">
-                  <svg class="ss-subject-star" viewBox="0 0 24 24" aria-hidden="true"><use href="#ss-icon-star"/></svg>
-                  <span>Brand Image</span>
-                </label>
-                <label class="ss-subject-option">
-                  <input type="radio" name="subject" value="strategy">
-                  <svg class="ss-subject-star" viewBox="0 0 24 24" aria-hidden="true"><use href="#ss-icon-star"/></svg>
-                  <span>Marketing Strategy</span>
-                </label>
-                <label class="ss-subject-option">
-                  <input type="radio" name="subject" value="seo">
-                  <svg class="ss-subject-star" viewBox="0 0 24 24" aria-hidden="true"><use href="#ss-icon-star"/></svg>
-                  <span>SEO / AEO</span>
-                </label>
-                <label class="ss-subject-option">
-                  <input type="radio" name="subject" value="copy">
-                  <svg class="ss-subject-star" viewBox="0 0 24 24" aria-hidden="true"><use href="#ss-icon-star"/></svg>
-                  <span>Copywriting</span>
-                </label>
-                <label class="ss-subject-option">
-                  <input type="radio" name="subject" value="consulting">
-                  <svg class="ss-subject-star" viewBox="0 0 24 24" aria-hidden="true"><use href="#ss-icon-star"/></svg>
-                  <span>Consulting</span>
-                </label>
-                <label class="ss-subject-option">
-                  <input type="radio" name="subject" value="other">
-                  <svg class="ss-subject-star" viewBox="0 0 24 24" aria-hidden="true"><use href="#ss-icon-star"/></svg>
-                  <span>Other</span>
-                </label>
-              </div>
-            </fieldset>
-          </div>
-        </div>
-
-        <div class="ss-slot ss-slot--message">
-          <div class="ss-float ss-paper" data-ss-ambient data-ss-field>
-            <span class="ss-eyebrow">Your letter</span>
-            <label for="fMessage">Your message</label>
-            <textarea
-              class="ss-entry"
-              id="fMessage"
-              name="message"
-              placeholder="Tell us what you're building, changing, or figuring out."
-              aria-describedby="fMessageError"
-              required
-            ></textarea>
-            <p class="ss-field-error" id="fMessageError" hidden></p>
-          </div>
-        </div>
-
-        <div class="ss-send-row">
-          <p class="ss-required-note">Name, email, and message are required.</p>
-          <button type="submit" class="ss-send-btn" id="ssSendBtn">
-            <span class="ss-send-label" id="ssSendLabel">Send this note</span>
-            <svg class="ss-send-arrow" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">
-              <path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
+        <div class="send-row">
+          <button type="submit" class="seal-button" id="ssSendBtn">
+            <span id="ssSendLabel">Seal this letter</span>
+            <svg width="18" height="18" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
-          <p class="ss-reply-note">Usually within 24–48 hours.</p>
+          <p class="send-note">Your letter, name and reply address are needed.<br>Sealing copies the letter and opens Instagram to deliver it.</p>
         </div>
       </form>
 
-      <noscript>
-        <p style="max-width:560px;margin:24px auto;text-align:center;font-family:Manrope,sans-serif;color:#586880;">
-          This form needs JavaScript to compose your note. In the meantime, write to us directly on
-          <a href="https://www.instagram.com/seldomsought" target="_blank" rel="noopener">Instagram</a>.
-        </p>
-      </noscript>
-
-      <!-- honest handoff: no delivery backend is configured for this site,
-           so submission hands the composed note to Instagram rather than
-           claiming to have sent it anywhere. -->
-      <div class="ss-handoff" id="ssHandoff" hidden>
-        <div class="ss-handoff-card">
-          <svg class="ss-handoff-envelope" viewBox="0 0 120 64" aria-hidden="true"><use href="#ss-icon-envelope"/></svg>
-          <h2 class="ss-handoff-heading" id="ssHandoffHeading" tabindex="-1">One step to go.</h2>
-          <p class="ss-handoff-detail">Direct sending isn't connected yet, so nothing was lost — your note is right here. Open Instagram and paste it into a DM to <strong>@seldomsought</strong>.</p>
-          <textarea class="ss-handoff-note" id="ssHandoffNote" readonly aria-label="Your composed note"></textarea>
-          <div class="ss-handoff-actions">
-            <a class="ss-handoff-primary" id="ssHandoffInstagram" href="https://www.instagram.com/seldomsought" target="_blank" rel="noopener">Open Instagram</a>
-            <button type="button" class="ss-handoff-secondary" id="ssHandoffEdit">Edit your note</button>
-          </div>
-          <button type="button" class="ss-handoff-again" id="ssHandoffCopyAgain">Copy note again</button>
-          <p class="ss-handoff-status" id="ssHandoffStatus" role="status" aria-live="polite"></p>
-          <p class="ss-reply-note">Usually within 24–48 hours.</p>
+      <!-- honest handoff: there is no delivery backend on this static site,
+           so the composed letter is handed to Instagram, never "sent". -->
+      <section class="letter on-paper handoff" id="ssHandoff" aria-labelledby="ssHandoffHeading" hidden>
+        <p class="letter-kicker">Fig. V &nbsp; / &nbsp; The envelope</p>
+        <h2 class="handoff-heading" id="ssHandoffHeading" tabindex="-1">One step to go.</h2>
+        <p class="handoff-detail">Direct sending isn’t connected yet, so nothing has left this page, and nothing is lost. Open Instagram and paste your letter into a message to <strong>@seldomsought</strong>.</p>
+        <textarea class="entry handoff-note" id="ssHandoffNote" readonly aria-label="Your composed letter" rows="6"></textarea>
+        <div class="handoff-actions">
+          <a class="seal-button" id="ssHandoffInstagram" href="https://www.instagram.com/seldomsought" target="_blank" rel="noopener">Open Instagram <span aria-hidden="true">↗</span></a>
+          <button type="button" class="ink-link" id="ssHandoffCopyAgain">Copy letter again</button>
+          <button type="button" class="ink-link" id="ssHandoffEdit">Edit your letter</button>
         </div>
+        <p class="handoff-status" id="ssHandoffStatus" role="status" aria-live="polite"></p>
+      </section>
+
+      <aside class="marginalia" aria-label="About writing to SeldomSought">
+        <section>
+          <h2 class="atlas-eyebrow">Worth including</h2>
+          <ol>
+            <li>What you’re building or changing.</li>
+            <li>Where it’s stuck, or what’s next.</li>
+            <li>Any timing that matters.</li>
+          </ol>
+        </section>
+        <section>
+          <h2 class="atlas-eyebrow">Reply</h2>
+          <p>Every letter is read. Replies usually arrive within <em>24–48 hours.</em></p>
+        </section>
+        <section>
+          <h2 class="atlas-eyebrow">Other routes</h2>
+          <a class="ink-link" href="https://www.instagram.com/seldomsought" target="_blank" rel="noopener">Instagram &nbsp;@seldomsought <span aria-hidden="true">↗</span></a>
+          <a class="ink-link" href="https://github.com/SeldomSought" target="_blank" rel="noopener">GitHub &nbsp;SeldomSought <span aria-hidden="true">↗</span></a>
+        </section>
+        <p class="margin-note" aria-hidden="true">Not every road<br>is on the map.<span>↘</span></p>
+      </aside>
+    </div>
+
+    <noscript>
+      <p class="noscript-note">This letter needs JavaScript to compose. In the meantime, write directly on
+        <a href="https://www.instagram.com/seldomsought" target="_blank" rel="noopener">Instagram</a>.</p>
+    </noscript>
+
+    <svg class="fly-envelope" id="ssFlyEnvelope" viewBox="0 0 120 64" aria-hidden="true" focusable="false">
+      <rect x="22" y="14" width="76" height="42" rx="2"/><path d="M22 16 L60 44 L98 16"/>
+      <path d="M18 40 C4 34 -4 18 4 4 C14 10 20 22 22 34"/><path d="M102 40 C116 34 124 18 116 4 C106 10 100 22 98 34"/>
+    </svg>
+  </main>
+
+  <footer class="atlas-footer">
+    <div class="footer-writing">
+      <div class="footer-imprint">
+        <a href="index.html" class="footer-brand">SeldomSought</a>
+        <p>Independent thought.<br>Commercial consequence.</p>
+        <a class="footer-return" href="#correspondence">Return to the letter ↑</a>
       </div>
-
-      <svg class="ss-fly-envelope" id="ssFlyEnvelope" viewBox="0 0 120 64" aria-hidden="true"><use href="#ss-icon-envelope"/></svg>
-
-      <button type="button" class="ss-motion-toggle" data-ss-motion-toggle
-              aria-pressed="false" hidden>Pause motion</button>
-    </main>
-
-    <!-- footer -->
-    <footer class="site-floor">
-        <div class="floor-inner">
-            <ul class="floor-social">
-                <li><a href="https://www.instagram.com/seldomsought" target="_blank" rel="noopener">Instagram</a></li>
-                <li><a href="https://github.com/SeldomSought" target="_blank" rel="noopener">GitHub</a></li>
-            </ul>
-            <span class="floor-copy">&copy; MMXXVI SeldomSought</span>
-        </div>
-    </footer>
-
-    <script src="assets/js/nav.js"></script>
-    <script src="assets/js/contact.js"></script>
-
+      <nav aria-label="Footer navigation">
+        <h2>Elsewhere</h2>
+        <a href="index.html">Home</a><a href="philosophy.html">Philosophy</a><a href="services.html">Services</a><a href="expertise.html">Expertise</a><a href="projects.html">Projects</a><a href="faq.html">FAQ</a><a href="contact.html" aria-current="page">Contact</a>
+      </nav>
+      <nav aria-label="Correspondence">
+        <h2>By other means</h2>
+        <a href="https://www.instagram.com/seldomsought" target="_blank" rel="noopener">Instagram</a><a href="https://github.com/SeldomSought" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <p class="footer-note">The same estuary,<br><em>after dark.</em><span aria-hidden="true">↙</span></p>
+    </div>
+    <img class="estuary" src="assets/images/expertise/estuary-final.webp" width="1672" height="941" loading="lazy" decoding="async" alt="The atlas's estuary by night, drawn in pale ink: a distant city, a small sailing boat and three travellers on the path home.">
+    <div class="footer-bottom"><p>© 2026 SeldomSought</p><p>Correspondence, always open.</p><span aria-hidden="true">Yours.</span></div>
+  </footer>
 </body>
 </html>

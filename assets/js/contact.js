@@ -1,124 +1,63 @@
 /* ══════════════════════════════════════════════════════
-   contact.js
-   Correspondence-in-the-clouds page: ambient stationery
-   motion + validation + honest Instagram handoff.
+   contact.js — Correspondence
+   Validation, a live signature, subject pre-selection from
+   the Expertise atlas (?about=<discipline>), and the honest
+   Instagram handoff.
 
    There is no configured delivery backend for this static
-   site, so submission never claims to have sent the note.
-   It composes the message, offers it for copying, and
-   hands the visitor to the verified Instagram DM route.
+   site, so sealing never claims to have sent the letter.
+   It composes the letter, offers it for copying, and hands
+   the visitor to the verified Instagram DM route.
 ══════════════════════════════════════════════════════ */
 
 (function () {
   'use strict';
 
-  var INSTAGRAM_URL = 'https://www.instagram.com/seldomsought';
+  var EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-  var ERRORS = {
-    name: 'Please add your name.',
-    email: 'Please enter a valid email address.',
-    message: 'Please add a message.'
+  var SUBJECTS = {
+    brand: 'Brand & image',
+    search: 'Search & discovery',
+    strategy: 'Strategy & distribution',
+    language: 'Language & systems',
+    other: 'Something else'
   };
 
-  var SUBJECT_LABELS = {
-    brand: 'Brand Image',
-    strategy: 'Marketing Strategy',
-    seo: 'SEO / AEO',
-    copy: 'Copywriting',
-    consulting: 'Consulting',
-    other: 'Other'
+  /* Expertise atlas disciplines → the plate (subject) they belong to. */
+  var DISCIPLINES = {
+    'brand-image':             ['brand', 'Brand Image'],
+    'aesthetic-orchestration': ['brand', 'Aesthetic Orchestration'],
+    'brand-voice':             ['brand', 'Brand Voice'],
+    'seo':                     ['search', 'SEO'],
+    'aeo':                     ['search', 'AEO'],
+    'competitive-analysis':    ['search', 'Competitive Analysis'],
+    'marketing-strategy':      ['strategy', 'Marketing Strategy'],
+    'guerrilla-marketing':     ['strategy', 'Guerrilla Marketing'],
+    'email-marketing':         ['strategy', 'Email Marketing'],
+    'sms-marketing':           ['language', 'SMS Marketing'],
+    'business-consulting':     ['language', 'Business Consulting'],
+    'copywriting':             ['language', 'Copywriting']
   };
 
-  /* ── ambient motion controller ──────────────────── */
-  function mountHeavenMotion(root) {
-    var form = root.querySelector('#contactForm');
-    var toggle = root.querySelector('[data-ss-motion-toggle]');
-    if (!form || !toggle || typeof Element.prototype.animate !== 'function') {
-      return function () {};
-    }
-
-    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
-    var desktop = window.matchMedia('(min-width: 901px) and (hover: hover) and (pointer: fine)');
-    var listeners = new AbortController();
-    var motions = [];
-    var manualPause = false;
-    var hovering = false;
-    var editing = false;
-    var inView = true;
-
-    function createMotions() {
-      motions = Array.prototype.slice.call(root.querySelectorAll('[data-ss-ambient]')).map(function (el, i) {
-        var duration = 10000 + (i % 4) * 2000;
-        var animation = el.animate([
-          { transform: 'translate3d(0, 0, 0)', offset: 0 },
-          { transform: 'translate3d(' + (i % 2 ? 3 : -3) + 'px, -' + (4 + (i % 3) * 2) + 'px, 0)', offset: .5 },
-          { transform: 'translate3d(0, 0, 0)', offset: 1 }
-        ], { duration: duration, iterations: Infinity, easing: 'ease-in-out' });
-        animation.pause();
-        animation.currentTime = (i * 1733) % duration;
-        return { animation: animation, isField: el.hasAttribute('data-ss-field') };
-      });
-    }
-
-    function sync() {
-      var enabled = desktop.matches && !reduced.matches;
-      toggle.hidden = !enabled;
-      toggle.setAttribute('aria-pressed', String(manualPause));
-
-      if (!enabled) {
-        motions.forEach(function (m) { m.animation.cancel(); });
-        motions = [];
-        return;
-      }
-
-      if (!motions.length) createMotions();
-      var pauseEverything = manualPause || document.hidden || !inView;
-      motions.forEach(function (m) {
-        var pause = pauseEverything || (m.isField && (hovering || editing));
-        if (pause) m.animation.pause();
-        else m.animation.play();
-      });
-    }
-
-    form.addEventListener('pointerenter', function () { hovering = true; sync(); }, { signal: listeners.signal });
-    form.addEventListener('pointerleave', function () { hovering = false; sync(); }, { signal: listeners.signal });
-    form.addEventListener('focusin', function () { editing = true; sync(); }, { signal: listeners.signal });
-    toggle.addEventListener('click', function () { manualPause = !manualPause; sync(); }, { signal: listeners.signal });
-    document.addEventListener('visibilitychange', sync, { signal: listeners.signal });
-    reduced.addEventListener('change', sync);
-    desktop.addEventListener('change', sync);
-
-    var observer = typeof IntersectionObserver === 'function'
-      ? new IntersectionObserver(function (entries) { inView = entries[0].isIntersecting; sync(); })
-      : null;
-    if (observer) observer.observe(root);
-    sync();
-
-    return function () {
-      listeners.abort();
-      reduced.removeEventListener('change', sync);
-      desktop.removeEventListener('change', sync);
-      if (observer) observer.disconnect();
-      motions.forEach(function (m) { m.animation.cancel(); });
-    };
-  }
-
-  /* ── page wiring ─────────────────────────────────── */
   function init() {
-    var root = document.getElementById('ssContact');
-    if (!root) return;
-
-    mountHeavenMotion(root);
-
     var form = document.getElementById('contactForm');
-    var nameInput = document.getElementById('fName');
-    var emailInput = document.getElementById('fEmail');
-    var messageInput = document.getElementById('fMessage');
+    if (!form) return;
+
+    var fields = {
+      message: { input: document.getElementById('fMessage'), error: document.getElementById('fMessageError'),
+                 check: function (v) { return v ? '' : 'Please write a few words.'; } },
+      name:    { input: document.getElementById('fName'), error: document.getElementById('fNameError'),
+                 check: function (v) { return v ? '' : 'Please sign with your name.'; } },
+      email:   { input: document.getElementById('fEmail'), error: document.getElementById('fEmailError'),
+                 check: function (v) { return EMAIL.test(v) ? '' : 'Please add an email address we can reply to.'; } }
+    };
+    var ORDER = ['message', 'name', 'email'];   /* the order they appear in the letter */
+
     var signature = document.getElementById('ssSignature');
+    var origin = document.getElementById('regardingOrigin');
     var sendBtn = document.getElementById('ssSendBtn');
     var sendLabel = document.getElementById('ssSendLabel');
     var flyEnvelope = document.getElementById('ssFlyEnvelope');
-    var letterGrid = form;
     var handoff = document.getElementById('ssHandoff');
     var handoffHeading = document.getElementById('ssHandoffHeading');
     var handoffNote = document.getElementById('ssHandoffNote');
@@ -126,169 +65,137 @@
     var handoffStatus = document.getElementById('ssHandoffStatus');
     var handoffInstagram = document.getElementById('ssHandoffInstagram');
     var handoffEdit = document.getElementById('ssHandoffEdit');
-
     var reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+    var discipline = '';
     var submitting = false;
 
-    /* live letter signature */
-    if (nameInput && signature) {
-      nameInput.addEventListener('input', function () {
-        var v = nameInput.value.trim();
-        signature.textContent = v ? 'From, ' + v : '';
+    /* arriving from an Expertise field note */
+    var about = new URLSearchParams(window.location.search).get('about');
+    if (about && DISCIPLINES[about]) {
+      var entry = DISCIPLINES[about];
+      var radio = form.querySelector('input[name="subject"][value="' + entry[0] + '"]');
+      if (radio) radio.checked = true;
+      discipline = entry[1];
+      origin.textContent = 'From the atlas: ' + discipline + '.';
+      origin.hidden = false;
+      form.addEventListener('change', function (e) {
+        if (e.target.name !== 'subject') return;
+        var keep = e.target.value === entry[0];
+        discipline = keep ? entry[1] : '';
+        origin.hidden = !keep;
       });
     }
 
-    function fieldEl(id) { return document.getElementById(id); }
+    /* the name signs the letter as it is typed */
+    fields.name.input.addEventListener('input', function () {
+      signature.textContent = fields.name.input.value.trim();
+    });
 
-    function showError(fieldId, errId, msg) {
-      var el = fieldEl(errId);
-      if (!el) return;
-      el.textContent = msg;
-      el.hidden = false;
-    }
-    function clearError(errId) {
-      var el = fieldEl(errId);
-      if (!el) return;
-      el.textContent = '';
-      el.hidden = true;
+    function setError(key, message) {
+      var f = fields[key];
+      f.error.textContent = message;
+      f.error.hidden = !message;
+      if (message) f.input.setAttribute('aria-invalid', 'true');
+      else f.input.removeAttribute('aria-invalid');
     }
 
-    /* clear a field's error as soon as it becomes valid, rather than
-       waiting for the next submit attempt */
-    nameInput.addEventListener('input', function () {
-      if (nameInput.value.trim()) clearError('fNameError');
-    });
-    emailInput.addEventListener('input', function () {
-      if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value.trim())) clearError('fEmailError');
-    });
-    messageInput.addEventListener('input', function () {
-      if (messageInput.value.trim()) clearError('fMessageError');
+    /* clear an error as soon as the field becomes valid */
+    ORDER.forEach(function (key) {
+      var f = fields[key];
+      f.input.addEventListener('input', function () {
+        if (!f.error.hidden && !f.check(f.input.value.trim())) setError(key, '');
+      });
     });
 
     function validate() {
-      var name = nameInput.value.trim();
-      var email = emailInput.value.trim();
-      var message = messageInput.value.trim();
       var firstInvalid = null;
-
-      clearError('fNameError');
-      clearError('fEmailError');
-      clearError('fMessageError');
-
-      var valid = true;
-      if (!name) { showError('fName', 'fNameError', ERRORS.name); firstInvalid = firstInvalid || nameInput; valid = false; }
-      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showError('fEmail', 'fEmailError', ERRORS.email); firstInvalid = firstInvalid || emailInput; valid = false; }
-      if (!message) { showError('fMessage', 'fMessageError', ERRORS.message); firstInvalid = firstInvalid || messageInput; valid = false; }
-
-      if (!valid && firstInvalid) firstInvalid.focus();
-      return valid;
-    }
-
-    function selectedSubject() {
-      var checked = form.querySelector('input[name="subject"]:checked');
-      return checked ? checked.value : '';
+      ORDER.forEach(function (key) {
+        var f = fields[key];
+        var message = f.check(f.input.value.trim());
+        setError(key, message);
+        if (message && !firstInvalid) firstInvalid = f.input;
+      });
+      if (firstInvalid) firstInvalid.focus();
+      return !firstInvalid;
     }
 
     function composeNote() {
-      var name = nameInput.value.trim();
-      var email = emailInput.value.trim();
-      var subject = selectedSubject();
-      var message = messageInput.value.trim();
-      var lines = [];
-      lines.push('From: ' + name + ' (' + email + ')');
-      if (subject) lines.push('About: ' + (SUBJECT_LABELS[subject] || subject));
+      var checked = form.querySelector('input[name="subject"]:checked');
+      var lines = ['Dear SeldomSought,', ''];
+      if (checked) {
+        lines.push('Regarding: ' + SUBJECTS[checked.value] + (discipline ? ' — ' + discipline : ''));
+        lines.push('');
+      }
+      lines.push(fields.message.input.value.trim());
       lines.push('');
-      lines.push(message);
+      lines.push('Yours,');
+      lines.push(fields.name.input.value.trim() + ' (' + fields.email.input.value.trim() + ')');
       return lines.join('\n');
     }
 
     function attemptCopy(text) {
       if (navigator.clipboard && navigator.clipboard.writeText) {
-        return navigator.clipboard.writeText(text).then(function () { return true; }).catch(function () { return false; });
+        return navigator.clipboard.writeText(text).then(function () { return true; }, function () { return false; });
       }
       return Promise.resolve(false);
     }
 
     function playFlyEnvelope() {
-      if (!flyEnvelope || reduced.matches || typeof flyEnvelope.animate !== 'function') {
-        return Promise.resolve();
-      }
-      flyEnvelope.style.opacity = '1';
+      if (!flyEnvelope || reduced.matches || typeof flyEnvelope.animate !== 'function') return Promise.resolve();
       var anim = flyEnvelope.animate([
-        { transform: 'translate(-50%, 0) scale(0.9)', opacity: 0 },
-        { transform: 'translate(-50%, -12px) scale(1)', opacity: 1, offset: .25 },
-        { transform: 'translate(-50%, -46px) scale(0.94)', opacity: 0 }
-      ], { duration: 700, easing: 'cubic-bezier(.22,1,.36,1)' });
-      return anim.finished.catch(function () {}).then(function () {
-        flyEnvelope.style.opacity = '0';
-      });
-    }
-
-    function revealHandoff(note) {
-      letterGrid.hidden = true;
-      handoffNote.value = note;
-      handoff.hidden = false;
-      handoffHeading.focus();
+        { transform: 'translate(-50%, 0) scale(.9)', opacity: 0 },
+        { transform: 'translate(-50%, -14px) scale(1)', opacity: 1, offset: .25 },
+        { transform: 'translate(-50%, -60px) scale(.92)', opacity: 0 }
+      ], { duration: 750, easing: 'cubic-bezier(.22,1,.36,1)' });
+      return anim.finished.catch(function () {});
     }
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();
-      if (submitting) return;
-      if (!validate()) return;
+      if (submitting || !validate()) return;
 
       submitting = true;
       var note = composeNote();
-      sendBtn.disabled = true;
       var originalLabel = sendLabel.textContent;
-      sendLabel.textContent = 'Wrapping up your note…';
+      sendBtn.disabled = true;
+      sendLabel.textContent = 'Sealing…';
 
-      /* Attempt the clipboard copy synchronously within the user
-         gesture so browsers that require direct activation still
-         allow it; the animation is purely decorative sequencing. */
-      var copyPromise = attemptCopy(note);
+      /* Copy inside the user gesture so browsers that require
+         direct activation allow it; the animation is decorative. */
+      var copied = attemptCopy(note);
 
-      Promise.all([playFlyEnvelope(), copyPromise]).then(function (results) {
-        var copied = results[1];
-        revealHandoff(note);
-        handoffStatus.textContent = copied
-          ? 'Your note is copied — paste it into the DM.'
-          : 'Copy it below, then paste it into the DM.';
+      Promise.all([playFlyEnvelope(), copied]).then(function (results) {
+        form.hidden = true;
+        handoffNote.value = note;
+        handoff.hidden = false;
+        handoffStatus.textContent = results[1]
+          ? 'Your letter is copied. Paste it into the message.'
+          : 'Copy the letter above, then paste it into the message.';
+        handoffHeading.focus();
         sendBtn.disabled = false;
         sendLabel.textContent = originalLabel;
         submitting = false;
       });
     });
 
-    if (handoffCopyAgain) {
-      handoffCopyAgain.addEventListener('click', function () {
-        attemptCopy(handoffNote.value).then(function (copied) {
-          handoffStatus.textContent = copied ? 'Copied.' : 'Select the text above and copy it manually.';
-          if (!copied) {
-            handoffNote.focus();
-            handoffNote.select();
-          }
-        });
+    handoffCopyAgain.addEventListener('click', function () {
+      attemptCopy(handoffNote.value).then(function (ok) {
+        handoffStatus.textContent = ok ? 'Copied.' : 'Select the letter above and copy it.';
+        if (!ok) { handoffNote.focus(); handoffNote.select(); }
       });
-    }
+    });
 
-    if (handoffInstagram) {
-      handoffInstagram.addEventListener('click', function () {
-        handoffStatus.textContent = 'Opening Instagram…';
-      });
-    }
+    handoffInstagram.addEventListener('click', function () {
+      handoffStatus.textContent = 'Opening Instagram…';
+    });
 
-    if (handoffEdit) {
-      handoffEdit.addEventListener('click', function () {
-        handoff.hidden = true;
-        letterGrid.hidden = false;
-        nameInput.focus();
-      });
-    }
+    handoffEdit.addEventListener('click', function () {
+      handoff.hidden = true;
+      form.hidden = false;
+      fields.message.input.focus();
+    });
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    init();
-  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
 }());
